@@ -1,0 +1,9 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>Default mime types, DocTypeHandler can override it</comment>
+    <entry key="pdf">application/pdf</entry>
+    <entry key="rtf">application/rtf</entry>
+    <entry key="xml">text/xml</entry>
+    <entry key="xls">application/vnd.ms-excel</entry>
+    <entry key="html">text/html</entry>
+</properties>

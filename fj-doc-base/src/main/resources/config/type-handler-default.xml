@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+	<type-handler-list>
+		<type-handler name="xls" type="org.fugerit.java.core.doc.type.XlsTypeHandler"/>
+	</type-handler-list>
+	

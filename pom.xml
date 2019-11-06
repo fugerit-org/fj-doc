@@ -1,0 +1,330 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.fugerit.java</groupId>
+	<artifactId>fj-doc</artifactId>
+
+	<version>0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>fj-doc</name>
+	<description>Fugerit Documents Generation API (DOC)</description>
+	<url>http://www.fugerit.org/java/</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java-version-compliance>1.7</java-version-compliance>
+		<j2ee-version-compliance>6.0</j2ee-version-compliance>
+	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
+	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
+	    <maven.test.skip>true</maven.test.skip>
+		<fj-version>0.6.4.9</fj-version>
+	    <!-- maven plugin versions -->
+	    <mvn-source-version>3.1.0</mvn-source-version>
+	    <mvn-javadoc-version>3.1.0</mvn-javadoc-version>
+	    <mvn-jar-version>3.1.2</mvn-jar-version>
+	    <mvn-shade-version>3.2.1</mvn-shade-version>	    
+	    <!-- dependancy library versions -->    
+	    <slf4j-version>1.7.26</slf4j-version>		
+	    <poi-version>4.1.0</poi-version>
+	    <dbcp-version>1.4</dbcp-version>
+	    <log4j-version>1.2.17</log4j-version>
+	    <!-- release dependancies -->
+	    <nexus-version>1.6.8</nexus-version>
+	    <mvn-gpg-version>1.6</mvn-gpg-version>	
+	    <!-- testing dependancies -->
+	    <junit-version>4.12</junit-version>
+	    <hsqldb-version>2.3.4</hsqldb-version>	   	    
+	</properties>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Matteo a.k.a. Fugerit</name>
+			<email>m@fugerit.org</email>
+			<organization>Fugerit</organization>
+			<organizationUrl>http://www.fugerit.org</organizationUrl>
+		</developer>
+		<developer>
+			<name>Daneel</name>
+			<email>d@fugerit.org</email>
+			<organization>Fugerit</organization>
+			<organizationUrl>http://www.fugerit.org</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/fugerit-org/fj-doc.git</connection>
+		<developerConnection>scm:git:ssh://github.com/fugerit-org/fj-doc.git</developerConnection>
+		<url>http://github.com/fugerit-org/fj-doc</url>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<modules>
+		<module>fj-doc-base</module>
+		<module>fj-doc-mod-itext</module>
+		<module>fj-doc-mod-jxl</module>
+		<module>fj-doc-ent</module>
+		<module>fj-doc-sample</module>		
+	</modules>
+
+	<dependencyManagement>
+	
+		<dependencies>
+
+	        <dependency>
+	            <groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>${hsqldb-version}</version>
+			</dependency>			
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-test</artifactId>
+				<version>${fj-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-core</artifactId>
+				<version>${fj-version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-base</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-jxl</artifactId>
+				<version>${project.version}</version>
+			</dependency>				
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-ent</artifactId>
+				<version>${project.version}</version>
+			</dependency>				
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-itext</artifactId>
+				<version>${project.version}</version>
+			</dependency>		
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-sample</artifactId>
+				<version>${project.version}</version>
+				<type>war</type>
+			</dependency>								
+								
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>${j2ee-version-compliance}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- logging -->
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>${log4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>${slf4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>jcl-over-slf4j</artifactId>
+				<version>${slf4j-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>${slf4j-version}</version>
+			</dependency>		
+
+			<dependency>
+			    <groupId>commons-dbcp</groupId>
+			    <artifactId>commons-dbcp</artifactId>
+			    <version>${dbcp-version}</version>
+			</dependency>	
+
+			<dependency>
+			    <groupId>org.apache.poi</groupId>
+			    <artifactId>poi-ooxml</artifactId>
+			    <version>${poi-version}</version>
+			</dependency>
+
+			<!-- for testing -->
+			
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit-version}</version>
+				<scope>test</scope>
+			</dependency>
+		
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-core</artifactId>
+				<version>${fj-version}</version>
+				<type>test-jar</type>
+				<scope>test</scope>
+			</dependency>			
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+
+		<pluginManagement>
+		
+			<plugins>
+
+				<!-- 
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.5.1</version>
+				</plugin>
+				 -->
+			
+			</plugins>
+		
+		</pluginManagement>
+
+	</build>
+
+	<dependencies>
+
+	</dependencies>
+
+	<profiles>
+
+		<profile>
+			<id>full</id>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-source-plugin</artifactId>
+							<version>${mvn-source-version}</version>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>${mvn-javadoc-version}</version>
+						</plugin>
+					</plugins>					
+				</pluginManagement>
+			</build>
+		</profile>
+
+		<profile>
+			<id>test</id>
+			<properties>
+			    <maven.test.skip>false</maven.test.skip>
+			</properties>
+		</profile>		
+
+		<profile>
+			<id>doRelease</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>${nexus-version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${mvn-gpg-version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>singlepackage</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<version>${mvn-jar-version}</version>
+						<configuration>
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+									<mainClass>org.fugerit.java.tool.Launcher</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</plugin>				
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-shade-plugin</artifactId>
+						<version>${mvn-shade-version}</version>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>shade</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<finalName>dist-${project.artifactId}-${project.version}</finalName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<organization>
+		<url>http://www.fugerit.org</url>
+		<name>Fugerit</name>
+	</organization>
+	
+</project>

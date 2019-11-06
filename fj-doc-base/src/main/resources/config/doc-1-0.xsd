@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+	/*
+	 * @(#)doc-1-0.xsd
+	 *
+	 * @project    : org.fugerit.java.core
+	 * @creation   : 2012-12-29
+	 * @version    : 1.1.1 (2012-12-29)
+	 *
+	 * DTD per la configurazione della libreria DOC
+	 */
+
+	WARNING!!! - DTD remains just for compatibility, but will not be mantained, use XSD
+
+	<!DOCTYPE doc SYSTEM "http://javacoredoc.fugerit.org">
+       
+-->
+<schema
+  xmlns='http://www.w3.org/2000/10/XMLSchema'
+  targetNamespace='http://javacoredoc.fugerit.org'
+  xmlns:doc='http://javacoredoc.fugerit.org'>
+
+ <element name='doc'>
+  <complexType>
+   <sequence>
+    <element ref='doc:metadata'/>
+    <element ref='doc:body'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='metadata'>
+  <complexType>
+   <sequence>
+    <element ref='doc:info' minOccurs='0' maxOccurs='unbounded'/>
+    <element ref='doc:header' minOccurs='0' maxOccurs='1'/>
+    <element ref='doc:footer' minOccurs='0' maxOccurs='1'/>
+    <element ref='doc:header-ext' minOccurs='0' maxOccurs='1'/>
+    <element ref='doc:footer-ext' minOccurs='0' maxOccurs='1'/>
+   </sequence>
+  </complexType>
+ </element>
+ 
+ <element name='info'>
+  <complexType mixed='true'>
+   <attribute name='name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='header'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <choice>
+     <element ref='doc:para'/>
+     <element ref='doc:image'/>
+     <element ref='doc:phrase'/>
+    </choice>
+   </sequence>
+   <attribute name='border-width' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='footer'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <choice>
+     <element ref='doc:para'/>
+     <element ref='doc:image'/>
+     <element ref='doc:phrase'/>
+    </choice>
+   </sequence>
+   <attribute name='border-width' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='header-ext'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <choice>
+     <element ref='doc:para'/>
+     <element ref='doc:table'/>
+     <element ref='doc:image'/>
+     <element ref='doc:phrase'/>
+     <element ref='doc:barcode'/>
+    </choice>
+   </sequence>
+   <attribute name='border-width' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='footer-ext'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <choice>
+     <element ref='doc:para'/>
+     <element ref='doc:table'/>
+     <element ref='doc:image'/>
+     <element ref='doc:phrase'/>
+     <element ref='doc:barcode'/>
+    </choice>
+   </sequence>
+   <attribute name='border-width' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='body'>
+  <complexType>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <choice>
+     <element ref='doc:para'/>
+     <element ref='doc:table'/>
+     <element ref='doc:image'/>
+     <element ref='doc:phrase'/>
+     <element ref='doc:barcode'/>
+    </choice>
+    <element ref='doc:page-break'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='image'>
+  <complexType mixed='true'>
+   <attribute name='scaling' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='barcode'>
+  <complexType mixed='true'>
+   <attribute name='type' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='para'>
+  <complexType mixed='true'>
+   <attribute name='id' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='phrase'>
+  <complexType mixed='true'>
+  </complexType>
+ </element>
+
+ <element name='table'>
+  <complexType>
+   <sequence>
+    <element ref='doc:row' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='id' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='row'>
+  <complexType>
+   <sequence>
+    <element ref='doc:cell' minOccurs='0' maxOccurs='unbounded'/>
+   </sequence>
+   <attribute name='id' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='cell'>
+  <complexType>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <choice>
+     <element ref='doc:para'/>
+     <element ref='doc:table'/>
+     <element ref='doc:image'/>
+     <element ref='doc:phrase'/>
+     <element ref='doc:barcode'/>
+    </choice>
+   </sequence>
+   <attribute name='id' type='string' use='optional'/>
+  </complexType>
+ </element>
+
+ <element name='page-break'>
+  <complexType/>
+ </element>
+</schema>

@@ -1,0 +1,37 @@
+<doc>
+	<metadata>
+		<info name="pageorient">horizontal</info>
+		<info name="exceltableid">exceltable=Error</info>
+		<info name="excelwidthmultiplier">450</info>
+	</metadata>
+	<body>
+		<table columns="2" colwidths="25;75" width="100" id="exceltable">
+			<row>
+				<cell colspan="2" align="center">
+					<para size="14">Error generating document</para>
+				</cell>
+			</row>
+			<row>
+				<cell>
+					<para>Code</para>
+				</cell>
+				<cell>
+					<para>{0}</para>				
+				</cell>
+			</row>
+			<row>
+				<cell>
+					<para>Message</para>
+				</cell>
+				<cell>
+					<para>{1}</para>				
+				</cell>
+			</row>
+			<row>
+				<cell colspan="2">
+					<para>{2}</para>
+				</cell>				
+			</row>						
+		</table>
+	</body>
+</doc>

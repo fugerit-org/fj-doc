@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+
+	/*
+	 * @(#)doc-1-0.dtd
+	 *
+	 * @project    : org.fugerit.java.core
+	 * @creation   : 2012-12-29
+	 * @version    : 1.1.1 (2012-12-29)
+	 *
+	 * DTD per la configurazione della libreria DOC
+	 */
+
+	WARNING!!! - DTD remains just for compatibility, but will not be mantained, use XSD
+
+	<!DOCTYPE doc SYSTEM "http://javacoredoc.fugerit.org">
+       
+-->
+
+<!ENTITY % PhraseElement "( para | image | phrase )">
+
+<!ENTITY % BasicElement "( para | table | image | phrase | barcode )">
+
+<!ENTITY % AlignType "( left | center | right | justify | justifyall )">
+
+<!ENTITY % StyleType "( normal | bold | underline | italic | bolditalic )">
+
+<!ENTITY % FormatType "( string | int | double | date )">
+
+<!ENTITY % ContentType "( string | number )">
+
+<!--+
+	| Elemento radice del file di configurazione della libreria DAO-GEN2
+	+-->
+<!ELEMENT doc ( ( meta | metadata ), body )>
+
+<!ELEMENT meta (info*, header?, footer?, header-ext?, footer-ext?)>
+<!ELEMENT metadata (info*, header?, footer?, header-ext?, footer-ext?)>
+
+<!ELEMENT info ( #PCDATA  )>
+<!ATTLIST info name CDATA #REQUIRED>
+
+<!ELEMENT header ( %PhraseElement; )*>
+<!ATTLIST header align CDATA #IMPLIED>
+<!ATTLIST header numbered CDATA #IMPLIED>
+<!ATTLIST header border-width CDATA #IMPLIED>
+
+<!ELEMENT footer ( %PhraseElement; )*>
+<!ATTLIST footer align CDATA #IMPLIED>
+<!ATTLIST footer numbered CDATA #IMPLIED>
+<!ATTLIST footer border-width CDATA #IMPLIED>
+
+<!ELEMENT header-ext ( %BasicElement; )*>
+<!ATTLIST header-ext align CDATA #IMPLIED>
+<!ATTLIST header-ext numbered CDATA #IMPLIED>
+<!ATTLIST header-ext border-width CDATA #IMPLIED>
+
+<!ELEMENT footer-ext ( %BasicElement; )*>
+<!ATTLIST footer-ext align CDATA #IMPLIED>
+<!ATTLIST footer-ext numbered CDATA #IMPLIED>
+<!ATTLIST footer-ext border-width CDATA #IMPLIED>
+
+<!ELEMENT body ( %BasicElement; | page-break )*>
+
+<!ELEMENT image ( #PCDATA  )>
+<!ATTLIST image url CDATA #REQUIRED>
+<!ATTLIST image scaling CDATA #IMPLIED>
+
+<!ELEMENT barcode ( #PCDATA  )>
+<!ATTLIST barcode text CDATA #REQUIRED>
+<!ATTLIST barcode size CDATA #IMPLIED>
+<!ATTLIST barcode type CDATA #IMPLIED>
+
+<!ELEMENT para ( #PCDATA  )>
+<!ATTLIST para align %AlignType; #IMPLIED>
+<!ATTLIST para size CDATA #IMPLIED>
+<!ATTLIST para style %StyleType; #IMPLIED>
+<!ATTLIST para type CDATA #IMPLIED>
+<!ATTLIST para fore-color CDATA #IMPLIED>
+<!ATTLIST para font-name CDATA #IMPLIED>
+<!ATTLIST para leading CDATA #IMPLIED>
+<!ATTLIST para space-before CDATA #IMPLIED>
+<!ATTLIST para space-after CDATA #IMPLIED>
+<!ATTLIST para id CDATA #IMPLIED>
+
+<!ELEMENT phrase ( #PCDATA  )>
+
+<!ELEMENT table ( row* )>
+<!ATTLIST table columns CDATA #REQUIRED>
+<!ATTLIST table colwidths CDATA #REQUIRED>
+<!ATTLIST table width CDATA #REQUIRED>
+<!ATTLIST table fore-color CDATA #IMPLIED>
+<!ATTLIST table back-color CDATA #IMPLIED>
+<!ATTLIST table space-before CDATA #IMPLIED>
+<!ATTLIST table space-after CDATA #IMPLIED>
+<!ATTLIST table padding CDATA #IMPLIED>
+<!ATTLIST table spacing CDATA #IMPLIED>
+<!ATTLIST table id CDATA #IMPLIED>
+
+<!ELEMENT row ( cell* )>
+<!ATTLIST row id CDATA #IMPLIED>
+
+<!ELEMENT cell ( %BasicElement; )*>
+<!ATTLIST cell align %AlignType; #IMPLIED>
+<!ATTLIST cell type %FormatType; #IMPLIED>
+<!ATTLIST cell valign %AlignType; #IMPLIED>
+<!ATTLIST cell header CDATA #IMPLIED>
+<!ATTLIST cell size CDATA #IMPLIED>
+<!ATTLIST cell style %StyleType; #IMPLIED>
+<!ATTLIST cell colspan CDATA #IMPLIED>
+<!ATTLIST cell rowspan CDATA #IMPLIED>
+<!ATTLIST cell fore-color CDATA #IMPLIED>
+<!ATTLIST cell back-color CDATA #IMPLIED>
+<!ATTLIST cell border-width CDATA #IMPLIED>
+<!ATTLIST cell border-width-top CDATA #IMPLIED>
+<!ATTLIST cell border-width-bottom CDATA #IMPLIED>
+<!ATTLIST cell border-width-left CDATA #IMPLIED>
+<!ATTLIST cell border-width-right CDATA #IMPLIED>
+<!ATTLIST cell border-color CDATA #IMPLIED>
+<!ATTLIST cell border-color-top CDATA #IMPLIED>
+<!ATTLIST cell border-color-bottom CDATA #IMPLIED>
+<!ATTLIST cell border-color-left CDATA #IMPLIED>
+<!ATTLIST cell border-color-right CDATA #IMPLIED>
+<!ATTLIST cell id CDATA #IMPLIED>
+
+<!ELEMENT page-break EMPTY>
+
