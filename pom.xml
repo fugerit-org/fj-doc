@@ -78,6 +78,7 @@
 		<module>fj-doc-base</module>
 		<module>fj-doc-mod-itext</module>
 		<module>fj-doc-mod-jxl</module>
+		<module>fj-doc-mod-pdfbox</module>
 		<module>fj-doc-ent</module>
 		<module>fj-doc-sample</module>		
 	</modules>
@@ -127,6 +128,12 @@
 				<artifactId>fj-doc-mod-itext</artifactId>
 				<version>${project.version}</version>
 			</dependency>		
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-pdfbox</artifactId>
+				<version>${project.version}</version>
+			</dependency>				
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>

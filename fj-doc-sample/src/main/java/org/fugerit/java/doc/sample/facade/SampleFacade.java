@@ -32,10 +32,8 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.type.XlsTypeHandler;
-import org.fugerit.java.doc.mod.itext.HtmlTypeHandler;
 import org.fugerit.java.doc.mod.itext.ITextDocHandler;
-import org.fugerit.java.doc.mod.itext.PdfTypeHandler;
-import org.fugerit.java.doc.mod.itext.RtfTypeHandler;
+import org.fugerit.java.doc.mod.pdfbox.PdfBoxDocHandler;
 
 /**
  * 
@@ -48,9 +46,10 @@ public class SampleFacade {
 	private static DocHandlerFacade FACADE = new DocHandlerFacade();
 	static {
 		try {
-			FACADE.registerHandler( PdfTypeHandler.HANDLER );
-			FACADE.registerHandler( RtfTypeHandler.HANDLER );
-			FACADE.registerHandler( HtmlTypeHandler.HANDLER );
+			FACADE.registerHandler( org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler.HANDLER );
+			//FACADE.registerHandler( org.fugerit.java.doc.mod.itext.PdfTypeHandler.HANDLER );
+			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.RtfTypeHandler.HANDLER );
+			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.HtmlTypeHandler.HANDLER );
 			FACADE.registerHandler( XlsTypeHandler.HANDLER );
 		} catch (Exception e) {
 			throw new RuntimeException( e );
@@ -62,7 +61,7 @@ public class SampleFacade {
 	}	
 	
 	public static void createPDF( DocBase docBase, OutputStream outputStream ) throws Exception {
-		FACADE.handle( DocInput.newInput( ITextDocHandler.DOC_OUTPUT_PDF , docBase) , DocOutput.newOutput( outputStream ) );	
+		FACADE.handle( DocInput.newInput( PdfBoxDocHandler.DOC_OUTPUT_PDF , docBase) , DocOutput.newOutput( outputStream ) );	
 	}		
 	
 	public static void createRTF( DocBase docBase, OutputStream outputStream ) throws Exception {

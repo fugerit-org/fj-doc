@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-sample</artifactId>
+	<artifactId>fj-doc-mod-pdfbox</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,7 +10,7 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-sample</name>
+	<name>fj-doc-mod-pdfbox</name>
 	<description></description>
 
 	<licenses>
@@ -20,12 +20,23 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<properties>
+		<pdfbox-version>2.0.17</pdfbox-version>
+	</properties>
 	
 	<build>
 		
 	</build>
 
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+		<dependency>
+		    <groupId>org.apache.pdfbox</groupId>
+		    <artifactId>pdfbox</artifactId>
+		    <version>${pdfbox-version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
@@ -41,26 +52,6 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-itext</artifactId>
-		</dependency>	
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-jxl</artifactId>
-		</dependency>	
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-pdfbox</artifactId>
-		</dependency>			
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-ent</artifactId>
-		</dependency>			
 	
 		<!-- java core dependancies -->
 		<dependency>
