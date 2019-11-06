@@ -6,7 +6,7 @@ import org.fugerit.java.core.web.tld.helpers.TagSupportHelper;
 
 public class TypeTag extends TagSupportHelper {
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = 2342342342L;

@@ -26,7 +26,7 @@
 package org.fugerit.java.doc.base.model;
 
 /**
- * <p></p>
+ * 
  *
  * @author mfranci
  *

@@ -1,4 +1,4 @@
-/*****************************************************************
+/****************************************************************
 <copyright>
 	Fugerit Java Library 
 
@@ -29,8 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.TagSupport;
 
-/**
- * <p>/p>
+/*
+ * 
  *
  * @author Fugerit
  *
@@ -59,7 +59,7 @@ public class UrlTag extends TagSupport {
 		return EVAL_PAGE;
 	}
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = -6000737096593291817L;
@@ -68,28 +68,28 @@ public class UrlTag extends TagSupport {
 	
 	private String relative;
 
-	/**
+	/*
 	 * @return the relative
 	 */
 	public String getRelative() {
 		return relative;
 	}
 
-	/**
+	/*
 	 * @param relative the relative to set
 	 */
 	public void setRelative(String relative) {
 		this.relative = relative;
 	}
 
-	/**
+	/*
 	 * @return the url
 	 */
 	public String getUrl() {
 		return url;
 	}
 
-	/**
+	/*
 	 * @param url the url to set
 	 */
 	public void setUrl(String url) {

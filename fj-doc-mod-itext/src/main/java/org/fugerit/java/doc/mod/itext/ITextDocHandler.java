@@ -80,7 +80,7 @@ import com.lowagie.text.rtf.RtfWriter2;
 import com.lowagie.text.rtf.headerfooter.RtfHeaderFooter;
 
 /**
- * <p></p>
+ * 
  *
  * @author mfranci
  *

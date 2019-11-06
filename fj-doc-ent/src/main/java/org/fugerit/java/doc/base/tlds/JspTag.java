@@ -1,4 +1,4 @@
-/*****************************************************************
+/****************************************************************
 <copyright>
 	Fugerit Java Library 
 
@@ -31,15 +31,15 @@ import javax.servlet.jsp.JspException;
 
 import org.fugerit.java.core.web.tld.helpers.TagSupportHelper;
 
-/**
- * <p>/p>
+/*
+ * 
  *
  * @author Fugerit
  *
  */
 public class JspTag extends TagSupportHelper {
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = -4312310531274216168L;

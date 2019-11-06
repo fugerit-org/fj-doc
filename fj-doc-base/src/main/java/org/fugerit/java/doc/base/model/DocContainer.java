@@ -30,7 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * <p></p>
+ * 
  *
  * @author mfranci
  *

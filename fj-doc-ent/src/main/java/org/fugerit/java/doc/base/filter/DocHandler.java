@@ -16,7 +16,7 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.w3c.dom.Element;
 
 
-/**
+/*
  * <p>
  *	<jdl:section>
  * 		<jdl:text lang='it'>

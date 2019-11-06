@@ -19,7 +19,7 @@ import org.w3c.dom.Element;
 
 public class DocServlet extends LogObjectServlet {
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = -3048440498921813465L;

@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
 
 import org.fugerit.java.core.log.LogFacade;
 
-/**
+/*
  * <p>
  *	<jdl:section>
  * 		<jdl:text lang='it'>
@@ -61,7 +61,7 @@ public class HttpServletResponsePush extends HttpServletResponseWrapper  {
 		return new PrintWriter( this.getOutputStream() );
 	}
 
-	/**
+	/*
 	 * <jdl:section>
 	 * 		<jdl:text lang='it'><p>Crea una nuova istanza di HttpServletResponseData.</p></jdl:text>
 	 * 		<jdl:text lang='en'><p>Creates a new instance of HttpServletResponseData.</p></jdl:text>

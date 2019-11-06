@@ -19,7 +19,7 @@ import org.fugerit.java.core.log.BasicLogObject;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.w3c.dom.Element;
 
-/**
+/*
  * <p>
  *	<jdl:section>
  * 		<jdl:text lang='it'>

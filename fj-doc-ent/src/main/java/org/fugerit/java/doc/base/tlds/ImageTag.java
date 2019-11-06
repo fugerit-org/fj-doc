@@ -1,4 +1,4 @@
-/*****************************************************************
+/****************************************************************
 <copyright>
 	Fugerit Java Library 
 
@@ -34,15 +34,15 @@ import javax.servlet.jsp.JspException;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.web.tld.helpers.TagSupportHelper;
 
-/**
- * <p>/p>
+/*
+ * 
  *
  * @author Fugerit
  *
  */
 public class ImageTag extends TagSupportHelper {
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = -318929122394310665L;
@@ -63,42 +63,42 @@ public class ImageTag extends TagSupportHelper {
 
 	private String webapp;
 
-	/**
+	/*
 	 * @return the scaling
 	 */
 	public String getScaling() {
 		return scaling;
 	}
 
-	/**
+	/*
 	 * @param scaling the scaling to set
 	 */
 	public void setScaling(String scaling) {
 		this.scaling = scaling;
 	}
 
-	/**
+	/*
 	 * @return the url
 	 */
 	public String getUrl() {
 		return url;
 	}
 
-	/**
+	/*
 	 * @param url the url to set
 	 */
 	public void setUrl(String url) {
 		this.url = url;
 	}
 
-	/**
+	/*
 	 * @return the webapp
 	 */
 	public String getWebapp() {
 		return webapp;
 	}
 
-	/**
+	/*
 	 * @param webapp the webapp to set
 	 */
 	public void setWebapp(String webapp) {

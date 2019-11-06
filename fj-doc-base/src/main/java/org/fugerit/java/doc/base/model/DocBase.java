@@ -31,7 +31,7 @@ import java.util.Iterator;
 import java.util.Properties;
 
 /**
- * <p></p>
+ * 
  *
  * @author mfranci
  *

@@ -38,7 +38,7 @@ import org.fugerit.java.doc.mod.itext.PdfTypeHandler;
 import org.fugerit.java.doc.mod.itext.RtfTypeHandler;
 
 /**
- * <p></p>
+ * 
  *
  * @author mfranci
  *

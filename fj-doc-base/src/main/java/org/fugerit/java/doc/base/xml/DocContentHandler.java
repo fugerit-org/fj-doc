@@ -53,7 +53,7 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 
 /**
- * <p></p>
+ * 
  *
  * @author Matteo 
  *
