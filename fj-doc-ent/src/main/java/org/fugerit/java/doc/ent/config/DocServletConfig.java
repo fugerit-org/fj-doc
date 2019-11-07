@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.config;
+package org.fugerit.java.doc.ent.config;
 
 import java.io.File;
 
@@ -8,7 +8,7 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.web.servlet.config.BasicConfig;
 import org.fugerit.java.core.xml.dom.DOMIO;
-import org.fugerit.java.doc.base.filter.DocRequestFacade;
+import org.fugerit.java.doc.ent.servlet.DocRequestFacade;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

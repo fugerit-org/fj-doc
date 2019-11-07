@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.tlds;
+package org.fugerit.java.doc.ent.tlds;
 
 import javax.servlet.jsp.JspException;
 

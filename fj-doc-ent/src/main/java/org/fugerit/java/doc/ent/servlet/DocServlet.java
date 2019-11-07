@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,7 @@ import org.fugerit.java.core.web.log.helpers.LogObjectServlet;
 import org.fugerit.java.core.web.servlet.config.ConfigContext;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocConfig;
-import org.fugerit.java.doc.base.config.DocServletConfig;
+import org.fugerit.java.doc.ent.config.DocServletConfig;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -35,7 +35,7 @@ public class DocServlet extends LogObjectServlet {
 
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doGet(req, resp);
+		this.doGet(req, resp);
 	}
 	
 	/* (non-Javadoc)

@@ -18,12 +18,12 @@
 /*
  * @(#)UrlTag.java
  *
- * @project     : org.fugerit.java.doc.base
- * @package     : org.fugerit.java.doc.base.tlds
+ * @project     : org.fugerit.java.doc.ent
+ * @package     : org.fugerit.java.doc.ent.tlds
  * @creation	: 16/lug/07
  * @release		: xxxx.xx.xx
  */
-package org.fugerit.java.doc.base.tlds;
+package org.fugerit.java.doc.ent.tlds;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;

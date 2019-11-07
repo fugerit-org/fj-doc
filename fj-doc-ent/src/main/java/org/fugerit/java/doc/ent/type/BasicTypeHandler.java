@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.type;
+package org.fugerit.java.doc.ent.type;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.log.BasicLogObject;
-import org.fugerit.java.doc.base.filter.DocContext;
-import org.fugerit.java.doc.base.filter.DocTypeHandler;
+import org.fugerit.java.doc.ent.servlet.DocContext;
+import org.fugerit.java.doc.ent.servlet.DocTypeHandler;
 import org.w3c.dom.Element;
 
 public class BasicTypeHandler extends BasicLogObject implements DocTypeHandler {

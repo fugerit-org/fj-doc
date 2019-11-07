@@ -18,12 +18,12 @@
 /*
  * @(#)ImageTag.java
  *
- * @project     : org.fugerit.java.doc.base
- * @package     : org.fugerit.java.doc.base.tlds
+ * @project     : org.fugerit.java.doc.ent
+ * @package     : org.fugerit.java.doc.ent.tlds
  * @creation	: 20/ago/07
  * @release		: xxxx.xx.xx
  */
-package org.fugerit.java.doc.base.tlds;
+package org.fugerit.java.doc.ent.tlds;
 
 import java.io.File;
 import java.net.MalformedURLException;

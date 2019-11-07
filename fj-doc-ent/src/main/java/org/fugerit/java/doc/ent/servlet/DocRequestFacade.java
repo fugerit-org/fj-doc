@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -19,9 +19,10 @@ import org.fugerit.java.core.web.servlet.config.ConfigContext;
 import org.fugerit.java.core.web.servlet.response.HttpServletResponseByteData;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocConstants;
-import org.fugerit.java.doc.base.filter.facade.DocRequestConfig;
+import org.fugerit.java.doc.base.config.DocException;
+import org.fugerit.java.doc.base.helper.DefaultMimeHelper;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.model.DocException;
+import org.fugerit.java.doc.ent.servlet.facade.DocRequestConfig;
 import org.w3c.dom.Element;
 
 public class DocRequestFacade extends BasicLogObject {
@@ -84,7 +85,9 @@ public class DocRequestFacade extends BasicLogObject {
 
 			request.setAttribute( "doc.render.type" , type );
 			
-			String contentType = this.getDocRequestConfig().getMime().getProperty( type, "text/xml" );
+			
+			
+			String contentType = DefaultMimeHelper.getDefaultMime( type );
 			
 			if ( !"SERVER".equals( contentType ) ) {
 				response.setContentType( contentType );	

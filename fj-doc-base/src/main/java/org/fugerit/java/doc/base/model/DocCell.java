@@ -33,6 +33,9 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocCell extends DocContainer implements DocStyle {
 	
+	public DocCell() {
+	}
+	
 	public String toString() {
 		return super.toString()+"[align:"+this.getAlign()+"]";
 	}

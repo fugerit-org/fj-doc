@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -6,7 +6,7 @@
  * @creation   : 12/lug/07
  * @license	   : META-INF/LICENSE.TXT
  */
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import java.util.Properties;
 

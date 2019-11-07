@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.model;
+package org.fugerit.java.doc.base.config;
 
 public class DocException extends Exception {
 

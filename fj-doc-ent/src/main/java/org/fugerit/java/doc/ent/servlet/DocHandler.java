@@ -6,7 +6,7 @@
  * @creation   : 12/lug/07
  * @license	   : META-INF/LICENSE.TXT
  */
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +34,7 @@ public interface DocHandler {
 	public final static String MODE_DIRECT = "direct";
 	public final static String MODE_JSP = "jsp";
 	
-	public final static String ATT_NAME_DOC = "org.fugerit.java.doc.base.DocBase.ATT_NAME";
+	public final static String ATT_NAME_DOC = "org.fugerit.java.doc.ent.DocBase.ATT_NAME";
 	
 	public void handleDoc( HttpServletRequest request, HttpServletResponse response, ServletContext context ) throws Exception;
 	

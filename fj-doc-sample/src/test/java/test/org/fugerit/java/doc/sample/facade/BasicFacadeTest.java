@@ -49,34 +49,40 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
-	public String getXmlPath() {
+	protected String getXmlPath() {
 		return "src/test/resources/sample_docs/"+this.getNameBase()+".xml";
+	}
+	
+	protected DocBase getDocBase() throws Exception {
+		DocBase docBase = null;
+		try ( FileInputStream is = new FileInputStream( this.getXmlPath() ) ) {
+			 docBase = DocFacade.parse( is );
+		}
+		return docBase;
 	}
 	
 	@Test
 	public void produce() throws Exception {
-		File baseFile = new File( BASIC_OUTPUT_PATH );
-		if ( !baseFile.exists() ) {
-			logger.info( "Create base path : {} ({})", baseFile.mkdirs(), baseFile.getCanonicalPath() );
+		File baseFile = new File(BASIC_OUTPUT_PATH);
+		if (!baseFile.exists()) {
+			logger.info("Create base path : {} ({})", baseFile.mkdirs(), baseFile.getCanonicalPath());
 		}
-		try ( FileInputStream is = new FileInputStream( this.getXmlPath() ) ) {
-			DocBase docBase = DocFacade.parse( is );
-			for ( String type : this.types ) {
-				File file = new File( baseFile, this.getNameBase()+"."+type );
-				logger.info( "Create file {}, from generator {}", file.getCanonicalPath(), this.getXmlPath()  );
-				try ( FileOutputStream fos = new FileOutputStream( file ) ) {
-					if ( TYPE_PDF.equalsIgnoreCase( type ) ) {
-						SampleFacade.createPDF( docBase , fos );
-					} else if ( TYPE_HTML.equalsIgnoreCase( type ) ) {
-						SampleFacade.createHTML( docBase , fos );
-					} else if ( TYPE_RTF.equalsIgnoreCase( type ) ) {
-						SampleFacade.createRTF( docBase , fos );
-					} else if ( TYPE_XLS.equalsIgnoreCase( type ) ) {
-						SampleFacade.createXLS( docBase , fos );
-					} else {
-						throw new Exception( "Unsupported type : "+type );
-					}
-				}			
+		DocBase docBase = this.getDocBase();
+		for (String type : this.types) {
+			File file = new File(baseFile, this.getNameBase() + "." + type);
+			logger.info("Create file {}", file.getCanonicalPath());
+			try (FileOutputStream fos = new FileOutputStream(file)) {
+				if (TYPE_PDF.equalsIgnoreCase(type)) {
+					SampleFacade.createPDF(docBase, fos);
+				} else if (TYPE_HTML.equalsIgnoreCase(type)) {
+					SampleFacade.createHTML(docBase, fos);
+				} else if (TYPE_RTF.equalsIgnoreCase(type)) {
+					SampleFacade.createRTF(docBase, fos);
+				} else if (TYPE_XLS.equalsIgnoreCase(type)) {
+					SampleFacade.createXLS(docBase, fos);
+				} else {
+					throw new Exception("Unsupported type : " + type);
+				}
 			}
 		}
 	}

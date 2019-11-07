@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

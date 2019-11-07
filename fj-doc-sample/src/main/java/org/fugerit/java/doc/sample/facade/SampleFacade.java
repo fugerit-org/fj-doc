@@ -1,6 +1,6 @@
 /*****************************************************************
 <copyright>
-	Fugerit Java Library org.fugerit.java.doc.base 
+	Fugerit Java Library org.fugerit.java.doc.ent 
 
 	Copyright (c) 2019 Fugerit
 
@@ -18,7 +18,7 @@
 /*
  * @(#)SampleFacade.java
  *
- * @project    : org.fugerit.java.doc.base
+ * @project    : org.fugerit.java.doc.ent
  * @package    : org.fugerit.java.doc.sample.facade
  * @creation   : 13/set/06
  * @license	   : META-INF/LICENSE.TXT
@@ -46,8 +46,8 @@ public class SampleFacade {
 	private static DocHandlerFacade FACADE = new DocHandlerFacade();
 	static {
 		try {
-			FACADE.registerHandler( org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler.HANDLER );
-			//FACADE.registerHandler( org.fugerit.java.doc.mod.itext.PdfTypeHandler.HANDLER );
+			//FACADE.registerHandler( org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler.HANDLER );
+			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.PdfTypeHandler.HANDLER );
 			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.RtfTypeHandler.HANDLER );
 			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.HtmlTypeHandler.HANDLER );
 			FACADE.registerHandler( XlsTypeHandler.HANDLER );

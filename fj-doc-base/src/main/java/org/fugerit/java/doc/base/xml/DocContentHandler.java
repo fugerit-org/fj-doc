@@ -26,8 +26,9 @@
 package org.fugerit.java.doc.base.xml;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Properties;
 
 import org.fugerit.java.doc.base.model.DocBarcode;
@@ -71,7 +72,7 @@ public class DocContentHandler implements ContentHandler {
 														"header-ext", 
 														"footer-ext" };
 	
-	private static final List<String> CONTAINER_LIST = Arrays.asList( ELEMENT_CONTAINER );
+	private static final Collection<String> CONTAINER_LIST = new HashSet<>( Arrays.asList( ELEMENT_CONTAINER ) );
 	
 	private DocBase docBase;
 	

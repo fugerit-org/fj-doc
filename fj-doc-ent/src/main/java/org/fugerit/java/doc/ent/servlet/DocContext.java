@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.filter;
+package org.fugerit.java.doc.ent.servlet;
 
 import java.io.OutputStream;
 import java.io.StringReader;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.fugerit.java.core.log.BasicLogObject;
 import org.fugerit.java.doc.base.facade.DocFacade;
-import org.fugerit.java.doc.base.filter.facade.DocRequestConfig;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.ent.servlet.facade.DocRequestConfig;
 
 
 public class DocContext extends BasicLogObject {

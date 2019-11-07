@@ -91,14 +91,7 @@
 			<artifactId>hsqldb</artifactId>
 			<scope>test</scope>
 		</dependency>			
-	
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-core</artifactId>
-			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>					
-
+					
 	</dependencies>
 
 	<organization>

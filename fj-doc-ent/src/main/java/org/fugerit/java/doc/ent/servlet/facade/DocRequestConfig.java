@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.filter.facade;
+package org.fugerit.java.doc.ent.servlet.facade;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -12,10 +12,10 @@ import org.fugerit.java.core.web.servlet.config.ConfigContext;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.core.xml.dom.SearchDOM;
-import org.fugerit.java.doc.base.filter.DefaultDocHandler;
-import org.fugerit.java.doc.base.filter.DocHandler;
-import org.fugerit.java.doc.base.filter.DocTypeHandler;
 import org.fugerit.java.doc.base.model.DocHelper;
+import org.fugerit.java.doc.ent.servlet.DefaultDocHandler;
+import org.fugerit.java.doc.ent.servlet.DocHandler;
+import org.fugerit.java.doc.ent.servlet.DocTypeHandler;
 import org.fugerit.java.doc.mod.itext.ITextDocHandler;
 import org.w3c.dom.Element;
 
