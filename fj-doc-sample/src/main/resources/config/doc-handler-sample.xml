@@ -1,0 +1,17 @@
+<doc-handler-config user-catalog="default-complete">
+
+	<factory id="default-complete">
+		<data id="pdf-itext" info="pdf" type="org.fugerit.java.doc.mod.itext.PdfTypeHandler" />
+		<data id="rtf-itext" info="rtf" type="org.fugerit.java.doc.mod.itext.RtfTypeHandler" />
+		<data id="html-itext" info="html" type="org.fugerit.java.doc.mod.itext.HtmlTypeHandler" />
+		<data id="xls-jxl" info="xls" type="org.fugerit.java.doc.mod.jxl.XlsTypeHandler" />
+	</factory>
+
+	<factory id="alternate-complete">
+		<data id="pdf-box" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler" />
+		<data id="rtf-itext" info="rtf" type="org.fugerit.java.doc.mod.itext.RtfTypeHandler" />
+		<data id="html-itext" info="html" type="org.fugerit.java.doc.mod.itext.HtmlTypeHandler" />
+		<data id="xls-jxl" info="xls" type="org.fugerit.java.doc.mod.jxl.XlsTypeHandler" />
+	</factory>
+
+</doc-handler-config>

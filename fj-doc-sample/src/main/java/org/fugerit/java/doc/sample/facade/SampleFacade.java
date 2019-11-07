@@ -25,15 +25,8 @@
  */
 package org.fugerit.java.doc.sample.facade;
 
-import java.io.OutputStream;
-
-import org.fugerit.java.doc.base.config.DocInput;
-import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
-import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.type.XlsTypeHandler;
-import org.fugerit.java.doc.mod.itext.ITextDocHandler;
-import org.fugerit.java.doc.mod.pdfbox.PdfBoxDocHandler;
+import org.fugerit.java.doc.base.facade.DocHandlerFactory;
 
 /**
  * 
@@ -43,33 +36,27 @@ import org.fugerit.java.doc.mod.pdfbox.PdfBoxDocHandler;
  */
 public class SampleFacade {
 
-	private static DocHandlerFacade FACADE = new DocHandlerFacade();
+	private static DocHandlerFacade FACADE_MAIN = new DocHandlerFacade();
+	private static DocHandlerFacade FACADE_ALT = new DocHandlerFacade();
 	static {
 		try {
-			//FACADE.registerHandler( org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler.HANDLER );
-			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.PdfTypeHandler.HANDLER );
-			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.RtfTypeHandler.HANDLER );
-			FACADE.registerHandler( org.fugerit.java.doc.mod.itext.HtmlTypeHandler.HANDLER );
-			FACADE.registerHandler( XlsTypeHandler.HANDLER );
+			FACADE_MAIN = DocHandlerFactory.register( "cl://config/doc-handler-sample.xml" );
+			FACADE_ALT = DocHandlerFactory.register( "cl://config/doc-handler-sample.xml" , "alternate-complete" );
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}	
 	}
 	
-	public static void createXLS( DocBase docBase, OutputStream outputStream ) throws Exception {
-		FACADE.handle( DocInput.newInput( XlsTypeHandler.DOC_OUTPUT_XLS , docBase) , DocOutput.newOutput( outputStream ) );
+	public static DocHandlerFacade getInstance() {
+		return getInstanceMain();
 	}	
 	
-	public static void createPDF( DocBase docBase, OutputStream outputStream ) throws Exception {
-		FACADE.handle( DocInput.newInput( PdfBoxDocHandler.DOC_OUTPUT_PDF , docBase) , DocOutput.newOutput( outputStream ) );	
-	}		
-	
-	public static void createRTF( DocBase docBase, OutputStream outputStream ) throws Exception {
-		FACADE.handle( DocInput.newInput( ITextDocHandler.DOC_OUTPUT_RTF , docBase) , DocOutput.newOutput( outputStream ) );
+	public static DocHandlerFacade getInstanceMain() {
+		return FACADE_MAIN;
 	}	
 	
-	public static void createHTML( DocBase docBase, OutputStream outputStream ) throws Exception {
-		FACADE.handle( DocInput.newInput( ITextDocHandler.DOC_OUTPUT_HTML , docBase) , DocOutput.newOutput( outputStream ) );		
-	}		
+	public static DocHandlerFacade getInstanceAlt() {
+		return FACADE_ALT;
+	}	
 	
 }

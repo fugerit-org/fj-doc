@@ -6,6 +6,9 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fugerit.java.doc.base.config.DocConfig;
+import org.fugerit.java.doc.base.config.DocInput;
+import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.sample.facade.SampleFacade;
@@ -15,16 +18,6 @@ import org.slf4j.LoggerFactory;
 
 public class BasicFacadeTest {
 
-	public static final String TYPE_XML = "xml";
-	
-	public static final String TYPE_PDF = "pdf";
-	
-	public static final String TYPE_RTF = "rtf";
-	
-	public static final String TYPE_HTML = "html";
-	
-	public static final String TYPE_XLS = "xls";
-	
 	protected final static Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
 	
 	private static final String BASIC_OUTPUT_PATH = "target/sample_out";
@@ -34,7 +27,7 @@ public class BasicFacadeTest {
 	private List<String> types;
 	
 	public BasicFacadeTest() {
-		this( "basic", TYPE_PDF, TYPE_XLS, TYPE_RTF, TYPE_HTML );
+		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_RTF, DocConfig.TYPE_HTML );
 	}
 	
 	protected BasicFacadeTest( String nameBase, String ...typeList ) {
@@ -72,17 +65,9 @@ public class BasicFacadeTest {
 			File file = new File(baseFile, this.getNameBase() + "." + type);
 			logger.info("Create file {}", file.getCanonicalPath());
 			try (FileOutputStream fos = new FileOutputStream(file)) {
-				if (TYPE_PDF.equalsIgnoreCase(type)) {
-					SampleFacade.createPDF(docBase, fos);
-				} else if (TYPE_HTML.equalsIgnoreCase(type)) {
-					SampleFacade.createHTML(docBase, fos);
-				} else if (TYPE_RTF.equalsIgnoreCase(type)) {
-					SampleFacade.createRTF(docBase, fos);
-				} else if (TYPE_XLS.equalsIgnoreCase(type)) {
-					SampleFacade.createXLS(docBase, fos);
-				} else {
-					throw new Exception("Unsupported type : " + type);
-				}
+				DocInput input = DocInput.newInput( type , docBase );
+				DocOutput output = DocOutput.newOutput( fos );
+				SampleFacade.getInstance().handle( input , output );
 			}
 		}
 	}

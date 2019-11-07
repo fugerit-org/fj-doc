@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.type;
+package org.fugerit.java.doc.mod.jxl;
 
 import java.awt.Color;
 import java.io.File;

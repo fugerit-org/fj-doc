@@ -1,5 +1,6 @@
 package test.org.fugerit.java.doc.sample.facade;
 
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocBorders;
 import org.fugerit.java.doc.base.model.DocCell;
@@ -11,7 +12,7 @@ import org.fugerit.java.doc.base.model.DocTable;
 public class TestBuildFromJava01 extends BasicFacadeTest {
 
 	public TestBuildFromJava01() {
-		super( "build_from_java_01", TYPE_PDF, TYPE_RTF, TYPE_HTML );
+		super( "build_from_java_01", DocConfig.TYPE_PDF, DocConfig.TYPE_RTF, DocConfig.TYPE_HTML );
 	}
 
 	@Override
