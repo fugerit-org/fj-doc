@@ -1,0 +1,14 @@
+<doc-process>
+
+	<chain id="free-marker-01">
+	
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="Sample step for free marker template" 
+			type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>	
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="Sample step for free marker template" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerStep"
+			param01="test_01.xml"/>
+	</chain>
+
+</doc-process>

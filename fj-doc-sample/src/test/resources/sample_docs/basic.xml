@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
 
   <meta>
-	<info name="excel-table-id">excel-table=stampa</info>
+	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info> 
   </meta>
 

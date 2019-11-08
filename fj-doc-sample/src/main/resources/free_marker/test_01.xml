@@ -10,15 +10,8 @@
   </meta>
  
   <body>
-  	
-  	
-  		<phrase>Test phrase 01</phrase>
-  		
-  		<phrase>Test phrase 02</phrase>
-  		
-  		<phrase>Test phrase 03</phrase>
-  		
-  		<phrase>Test phrase 04</phrase>
+  
+  		<phrase>Test template page apache free marker</phrase>
   
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
@@ -26,16 +19,13 @@
     			<cell align="center"><para style="bold">Surname</para></cell>
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
+			<#list userList as user>
        		<row>
-    			<cell><para>Luthien</para></cell>
-    			<cell><para>Tinuviel</para></cell>
-    			<cell><para>Queen</para></cell>
+    			<cell><para>${user.name}</para></cell>
+    			<cell><para>${user.surname}</para></cell>
+    			<cell><para>${user.title}</para></cell>
     		</row>
-       		<row>
-    			<cell><para>Thorin</para></cell>
-    			<cell><para>Oakshield</para></cell>
-    			<cell><para>King</para></cell>
-    		</row>    		
+			</#list>   		
     	</table>
   </body>
   

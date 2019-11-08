@@ -76,6 +76,7 @@
 
 	<modules>
 		<module>fj-doc-base</module>
+		<module>fj-doc-freemarker</module>
 		<module>fj-doc-mod-itext</module>
 		<module>fj-doc-mod-jxl</module>
 		<module>fj-doc-mod-pdfbox</module>
@@ -110,6 +111,12 @@
 				<artifactId>fj-doc-base</artifactId>
 				<version>${project.version}</version>
 			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-freemarker</artifactId>
+				<version>${project.version}</version>
+			</dependency>				
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
