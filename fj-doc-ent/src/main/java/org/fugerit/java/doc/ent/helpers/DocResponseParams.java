@@ -90,6 +90,7 @@ public class DocResponseParams implements Serializable {
 		this.request = request;
 		this.response = response;
 		this.jspGeneratorPath = jspGeneratorPath;
+		this.type = type;
 		this.fileName = fileName;
 		this.inline = inline;
 		this.contentType = DEF_CONTANT_TYPE;
