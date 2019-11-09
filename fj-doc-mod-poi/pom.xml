@@ -45,11 +45,6 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-itext</artifactId>
-		</dependency>			
 	
 		<!-- java core dependancies -->
 		<dependency>

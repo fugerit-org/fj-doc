@@ -4,7 +4,8 @@
 		<data id="pdf-itext" info="pdf" type="org.fugerit.java.doc.mod.itext.PdfTypeHandler" />
 		<data id="rtf-itext" info="rtf" type="org.fugerit.java.doc.mod.itext.RtfTypeHandler" />
 		<data id="html-itext" info="html" type="org.fugerit.java.doc.mod.itext.HtmlTypeHandler" />
-		<data id="xls-jxl" info="xls" type="org.fugerit.java.doc.mod.jxl.XlsTypeHandler" />
+		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
+		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
 	</factory>
 
 	<factory id="alternate-complete">
@@ -12,6 +13,7 @@
 		<data id="rtf-itext" info="rtf" type="org.fugerit.java.doc.mod.itext.RtfTypeHandler" />
 		<data id="html-itext" info="html" type="org.fugerit.java.doc.mod.itext.HtmlTypeHandler" />
 		<data id="xls-jxl" info="xls" type="org.fugerit.java.doc.mod.jxl.XlsTypeHandler" />
+		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
 	</factory>
 
 </doc-handler-config>

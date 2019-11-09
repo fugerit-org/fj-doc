@@ -1,8 +1,15 @@
 package org.fugerit.java.doc.base.config;
 
+import java.io.Serializable;
+
 import org.fugerit.java.doc.base.helper.DefaultMimeHelper;
 
-public class DocTypeHandlerDefault implements DocTypeHandler {
+public class DocTypeHandlerDefault implements DocTypeHandler, Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5024985828785381015L;
 
 	private String type;
 	
