@@ -11,6 +11,7 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
+import org.fugerit.java.doc.base.xml.DocValidator;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
@@ -43,6 +44,9 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 		int res = chain.apply( context , data );
 		logger.info( "RES {} ", res );
 		DocBase docBase = null;
+		try ( Reader input = data.getCurrentXmlReader() ) {
+			DocValidator.logValidation( input , logger );
+		}
 		try ( Reader input = data.getCurrentXmlReader() ) {
 			 docBase = DocFacade.parse( input );
 		}

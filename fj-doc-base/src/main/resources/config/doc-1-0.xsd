@@ -22,226 +22,245 @@
 </doc>	
 	
 -->
-<schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
 	targetNamespace='http://javacoredoc.fugerit.org'
 	xmlns:doc='http://javacoredoc.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-	<element name='doc'>
-		<complexType>
-			<sequence>
-				<element ref='doc:metadata' />
-				<element ref='doc:body' />
-			</sequence>
-		</complexType>
-	</element>
+	<xsd:element name='doc'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element ref='doc:metadata' />
+					<xsd:element ref='doc:meta' />
+				</xsd:choice>
+				<xsd:element ref='doc:body' />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='metadata'>
-		<complexType>
-			<sequence>
-				<element ref='doc:info' minOccurs='0' maxOccurs='unbounded' />
-				<element ref='doc:header' minOccurs='0' maxOccurs='1' />
-				<element ref='doc:footer' minOccurs='0' maxOccurs='1' />
-				<element ref='doc:header-ext' minOccurs='0' maxOccurs='1' />
-				<element ref='doc:footer-ext' minOccurs='0' maxOccurs='1' />
-			</sequence>
-		</complexType>
-	</element>
+	<xsd:element name='metadata' type="doc:metaType">
 
-	<element name='info'>
-		<complexType mixed='true'>
-			<attribute name='name' type='string' use='required' />
-		</complexType>
-	</element>
+	</xsd:element>
 
-	<element name='header'>
-		<complexType>
-			<sequence minOccurs='0' maxOccurs='unbounded'>
-				<choice>
-					<element ref='doc:para' />
-					<element ref='doc:image' />
-					<element ref='doc:phrase' />
-				</choice>
-			</sequence>
-			<attribute name='border-width' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='meta' type="doc:metaType">
 
-	<element name='footer'>
-		<complexType>
-			<sequence minOccurs='0' maxOccurs='unbounded'>
-				<choice>
-					<element ref='doc:para' />
-					<element ref='doc:image' />
-					<element ref='doc:phrase' />
-				</choice>
-			</sequence>
-			<attribute name='border-width' type='string' use='optional' />
-		</complexType>
-	</element>
+	</xsd:element>
 
-	<element name='header-ext'>
-		<complexType>
-			<sequence minOccurs='0' maxOccurs='unbounded'>
-				<choice>
-					<element ref='doc:para' />
-					<element ref='doc:table' />
-					<element ref='doc:image' />
-					<element ref='doc:phrase' />
-					<element ref='doc:barcode' />
-				</choice>
-			</sequence>
-			<attribute name='border-width' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='info'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='name' type='xsd:string' use='required' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='footer-ext'>
-		<complexType>
-			<sequence minOccurs='0' maxOccurs='unbounded'>
-				<choice>
-					<element ref='doc:para' />
-					<element ref='doc:table' />
-					<element ref='doc:image' />
-					<element ref='doc:phrase' />
-					<element ref='doc:barcode' />
-				</choice>
-			</sequence>
-			<attribute name='border-width' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='header'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='body'>
-		<complexType>
-			<choice minOccurs='0' maxOccurs='unbounded'>
-				<choice>
-					<element ref='doc:para' />
-					<element ref='doc:table' />
-					<element ref='doc:image' />
-					<element ref='doc:phrase' />
-					<element ref='doc:barcode' />
-				</choice>
-				<element ref='doc:page-break' />
-			</choice>
-		</complexType>
-	</element>
+	<xsd:element name='footer'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='image'>
-		<complexType mixed='true'>
-			<attribute name='scaling' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='header-ext'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:barcode' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='barcode'>
-		<complexType mixed='true'>
-			<attribute name='type' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='footer-ext'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:barcode' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='para'>
-		<complexType mixed='true'>
-			<attribute name='id' type='string' use='optional' />
-			<attribute name='style' type='doc:styleType' use='optional' />
-			<attribute name='align' type='doc:alignType' use='optional' />
-			<attribute name='font-name' type='string' use='optional' />
-			<attribute name='leading' type='string' use='optional' />
-			<attribute name='back-color' type='doc:colorType' use='optional' />
-			<attribute name='fore-color' type='doc:colorType' use='optional' />
-			<attribute name='type' type='string' use='optional' />
-			<attribute name='size' type='string' use='optional' />
-			<attribute name='space-before' type='string' use='optional' />
-			<attribute name='space-after' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='body'>
+		<xsd:complexType>
+			<xsd:choice minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:barcode' />
+				</xsd:choice>
+				<xsd:element ref='doc:page-break' />
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='phrase'>
-		<complexType mixed='true'>
-		</complexType>
-	</element>
+	<xsd:element name='image'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='url' type='xsd:string' use='optional' />
+			<xsd:attribute name='scaling' type='xsd:int' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='table'>
-		<complexType>
-			<sequence>
-				<element ref='doc:row' minOccurs='0' maxOccurs='unbounded' />
-			</sequence>
-			<attribute name='id' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='barcode'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='size' type='xsd:int' use='optional' />
+			<xsd:attribute name='type' type='xsd:string' use='optional' />
+			<xsd:attribute name='text' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='row'>
-		<complexType>
-			<sequence>
-				<element ref='doc:cell' minOccurs='0' maxOccurs='unbounded' />
-			</sequence>
-			<attribute name='id' type='string' use='optional' />
-		</complexType>
-	</element>
+	<xsd:element name='para'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='style' type='doc:styleType' use='optional' />
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='font-name' type='xsd:string' use='optional' />
+			<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
+			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='type' type='xsd:string' use='optional' />
+			<xsd:attribute name='size' type="xsd:int" use='optional' />
+			<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
+			<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='cell'>
-		<complexType>
-			<sequence minOccurs='0' maxOccurs='unbounded'>
-				<choice>
-					<element ref='doc:para' />
-					<element ref='doc:table' />
-					<element ref='doc:image' />
-					<element ref='doc:phrase' />
-					<element ref='doc:barcode' />
-				</choice>
-			</sequence>
-			<attribute name='id' type='string' use='optional' />
-			<attribute name='colspan' type='string' use='optional' />
-			<attribute name='rowspan' type='string' use='optional' />
-			<attribute name='align' type='doc:alignType' use='optional' />
-			<attribute name='valign' type='doc:valignType' use='optional' />
-			<attribute name='header' type='string' use='optional' />
-			<attribute name='border-color' type='doc:colorType' use='optional' />
-			<attribute name='border-color-top' type='doc:colorType' use='optional' />
-			<attribute name='border-color-bottom' type='doc:colorType' use='optional' />
-			<attribute name='border-color-left' type='doc:colorType' use='optional' />
-			<attribute name='border-color-right' type='doc:colorType' use='optional' />
-			<attribute name='border-width' type='string' use='optional' />
-			<attribute name='border-width-top' type='string' use='optional' />
-			<attribute name='border-width-bottom' type='string' use='optional' />
-			<attribute name='border-width-left' type='string' use='optional' />
-			<attribute name='border-width-right' type='string' use='optional' />						
-		</complexType>
-	</element>
+	<xsd:element name='phrase'>
+		<xsd:complexType mixed='true'>
+		</xsd:complexType>
+	</xsd:element>
 
-	<element name='page-break'>
-		<complexType />
-	</element>
+	<xsd:element name='table'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='doc:row' minOccurs='0' maxOccurs='unbounded' />
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='columns' type='xsd:string' use='optional' />
+			<xsd:attribute name='width' type='xsd:int' use='optional' />
+			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='spacing' type='xsd:int' use='optional' />
+			<xsd:attribute name='padding' type='xsd:int' use='optional' />
+			<xsd:attribute name='colwidths' type='xsd:string' use='optional' />
+			<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
+			<xsd:attribute name='space-after' type='xsd:decimal' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
 
-	<simpleType name="styleType">
-		<restriction base="xsd:string">
-			<enumeration value="bold"></enumeration>
-			<enumeration value="underline"></enumeration>
-			<enumeration value="italic"></enumeration>
-			<enumeration value="bolditalic"></enumeration>
-		</restriction>
-	</simpleType>
+	<xsd:element name='row'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='doc:cell' minOccurs='0' maxOccurs='unbounded' />
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='cell'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:barcode' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='colspan' type='xsd:string' use='optional' />
+			<xsd:attribute name='rowspan' type='xsd:string' use='optional' />
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='valign' type='doc:valignType' use='optional' />
+			<xsd:attribute name='header' type="xsd:boolean" use='optional' />
+			<xsd:attribute name='border-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-top' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-bottom' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-left' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-right' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-width' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-top' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-bottom' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-left' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />						
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='page-break'>
+		<xsd:complexType />
+	</xsd:element>
+
+	<xsd:simpleType name="styleType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="bold"></xsd:enumeration>
+			<xsd:enumeration value="underline"></xsd:enumeration>
+			<xsd:enumeration value="italic"></xsd:enumeration>
+			<xsd:enumeration value="bolditalic"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 	
-	<simpleType name="alignType">
-		<restriction base="xsd:string">
-			<enumeration value="center"></enumeration>
-			<enumeration value="right"></enumeration>
-			<enumeration value="left"></enumeration>
-			<enumeration value="justify"></enumeration>
-			<enumeration value="justifyall"></enumeration>
-		</restriction>
-	</simpleType>	
+	<xsd:simpleType name="alignType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="center"></xsd:enumeration>
+			<xsd:enumeration value="right"></xsd:enumeration>
+			<xsd:enumeration value="left"></xsd:enumeration>
+			<xsd:enumeration value="justify"></xsd:enumeration>
+			<xsd:enumeration value="justifyall"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>	
 	
-	<simpleType name="valignType">
-		<restriction base="xsd:string">
-			<enumeration value="center"></enumeration>
-			<enumeration value="right"></enumeration>
-			<enumeration value="left"></enumeration>
-			<enumeration value="justify"></enumeration>
-			<enumeration value="justifyall"></enumeration>
-		</restriction>
-	</simpleType>		
+	<xsd:simpleType name="valignType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="middle"></xsd:enumeration>
+			<xsd:enumeration value="top"></xsd:enumeration>
+			<xsd:enumeration value="bottom"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>		
 	
-	<simpleType name="colorType">
-		<restriction base="xsd:string">
-			<pattern value="#([A-Fa-f0-9]{6})"></pattern>
-		</restriction>
-	</simpleType>
+	<xsd:simpleType name="colorType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="#([A-Fa-f0-9]{6})"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
 
-</schema>
+	<xsd:complexType name="metaType">
+		<xsd:sequence>
+			<xsd:element ref='doc:info' minOccurs='0' maxOccurs='unbounded' />
+			<xsd:element ref='doc:header' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:footer' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:header-ext' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:footer-ext' minOccurs='0' maxOccurs='1' />
+		</xsd:sequence>
+	</xsd:complexType>	
+
+</xsd:schema>
