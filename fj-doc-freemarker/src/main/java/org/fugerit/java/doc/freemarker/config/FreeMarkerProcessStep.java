@@ -12,12 +12,8 @@ import org.fugerit.java.doc.base.process.DocProcessorBasic;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
-public class FreeMarkerStep extends DocProcessorBasic {
+public class FreeMarkerProcessStep extends DocProcessorBasic {
 
-	public static final String ATT_FREEMARKER_CONFIG = "FreeMarkerConfig";
-	
-	public static final String ATT_FREEMARKER_MAP = "FreeMarkerMap";
-	
 	/**
 	 * 
 	 */
@@ -26,10 +22,10 @@ public class FreeMarkerStep extends DocProcessorBasic {
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {
 		int res = super.process(context, data);
-		Configuration cfg = (Configuration) context.getAttribute( ATT_FREEMARKER_CONFIG );
+		Configuration cfg = (Configuration) context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_CONFIG );
 		Template template = cfg.getTemplate( this.getParam01() );
 		@SuppressWarnings("unchecked")
-		Map<String, Object> map = (Map<String, Object>)context.getAttribute( ATT_FREEMARKER_MAP );
+		Map<String, Object> map = (Map<String, Object>)context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP );
 		if ( map == null ) {
 			map = new HashMap<>();
 		}
