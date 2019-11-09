@@ -26,6 +26,7 @@ public class TestFreeMarker01DataStep extends DocProcessorBasic {
 		List<UserModel> userList = new ArrayList<>();
 		userList.add( new UserModel( "Queen" , "Luthien", "Tinuviel" ) );
 		userList.add( new UserModel( "King" , "Thorin", "Oakshield" ) );
+		userList.add( new UserModel( "Strider" , "Aragorn II", null ) );
 		map.put( "userList" , userList );
 		context.setAttribute( FreeMarkerStep.ATT_FREEMARKER_MAP, map );
 		return res;

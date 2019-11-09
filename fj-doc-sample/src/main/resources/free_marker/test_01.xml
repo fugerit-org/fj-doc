@@ -4,6 +4,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
 
+  <!-- 
+  	Sample Apache FreeMarker template for Fugerit Doc.
+  	Note : this example has no intention of being a guid to FreeMarker
+  			(In case check FreeMarker documentation https://freemarker.apache.org/docs/index.html)
+   -->
+
   <meta>
 	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info> 
@@ -20,11 +26,7 @@
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
 			<#list userList as user>
-       		<row>
-    			<cell><para>${user.name}</para></cell>
-    			<cell><para>${user.surname}</para></cell>
-    			<cell><para>${user.title}</para></cell>
-    		</row>
+				<#include "/include/test_01_row.xml">
 			</#list>   		
     	</table>
   </body>
