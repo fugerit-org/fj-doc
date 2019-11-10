@@ -38,5 +38,5 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 		workbook.write( docOutput.getOs() );
 		workbook.close();
 	}
-	
+
 }

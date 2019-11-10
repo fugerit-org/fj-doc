@@ -37,6 +37,6 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	protected void closeWorkbook(Workbook workbook, DocOutput docOutput) throws Exception {
 		workbook.write( docOutput.getOs() );
 		workbook.close();
-	}
-
+	}	
+	
 }

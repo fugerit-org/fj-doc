@@ -12,4 +12,9 @@ public class ExcelHelperConsts {
 
 	public final static String PROP_XLS_WIDTH_MULTIPLIER_DEFAULT = "256";
 	
+	public final static String PROP_XLS_TRY_AUTORESIZE = "excel-try-autoresize";
+	public final static String PROP_XLS_TRY_AUTORESIZE_FALSE = "false";
+	public final static String PROP_XLS_TRY_AUTORESIZE_TRUE = "true";
+	public final static String PROP_XLS_TRY_AUTORESIZE_DEFAULT = PROP_XLS_TRY_AUTORESIZE_FALSE;
+	
 }

@@ -2,17 +2,26 @@ package org.fugerit.java.doc.mod.poi;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Iterator;
 
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.model.DocBorders;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocPara;
@@ -37,12 +46,104 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	
 	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws Exception;
 	
-	
 	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws Exception {
 		
 	}
 	
-	private static TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati ) throws Exception {
+	protected static BorderStyle getBorderWidth( int width ) {
+		BorderStyle b = BorderStyle.NONE;
+		if ( width > 5 ) {
+			b = BorderStyle.THICK;
+		} else if ( width > 3 ) {
+			b = BorderStyle.MEDIUM;
+		} else if ( width > 0 || width == -1 ) {
+			b = BorderStyle.THIN;
+		}
+		return b;
+	}
+	
+	private void checkFormat( Workbook workbook, Collection<PoiCellStyleModel> styleSet, DocPara currentePara,
+			 DocCell cell, TableMatrix matrix, int rn, int cn, Cell currentCell  ) throws Exception {
+		CellStyle cellStyle = PoiCellStyleModel.find( styleSet , currentePara, cell );
+		if ( cellStyle == null ) {
+			
+			cellStyle = workbook.createCellStyle();
+			
+//			// must go first as it has the chance to change the cell format
+//			if ( parent.getForeColor() != null ) {
+//				Font f = cf.getFont();
+//				WritableFont wf = new WritableFont( f );
+//				wf.setColour( ( closestColor( ITextDocHandler.parseHtmlColor( parent.getForeColor() ) ) ) );
+//				if ( df != null ) {
+//					cf = new WritableCellFormat( wf, df );	
+//				} else {
+//					cf = new WritableCellFormat( wf );
+//				}
+//				
+//			}	
+			// style
+			if ( currentePara != null ) {
+				Font font = workbook.createFont();
+				if ( currentePara.getStyle() == DocPara.STYLE_BOLD ) {
+					font.setBold( true );
+				} else if ( currentePara.getStyle() == DocPara.STYLE_ITALIC ) {
+					font.setItalic( true );
+				} else if ( currentePara.getStyle() == DocPara.STYLE_BOLDITALIC ) {	
+					font.setBold( true );
+					font.setItalic( true );
+				} else if ( currentePara.getStyle() == DocPara.STYLE_UNDERLINE ) {
+					font.setUnderline( Font.U_SINGLE );
+				}
+				cellStyle.setFont( font );
+			}
+//			// back color
+//			if ( parent.getBackColor() != null) {
+//				cellStyle.setFillBackgroundColor(  );
+//				cf.setBackground( closestColor( ITextDocHandler.parseHtmlColor( parent.getBackColor() ) ) );
+//			}
+			//bordi
+			DocBorders borders = matrix.getBorders( rn, cn );
+			
+			cellStyle.setBorderBottom( getBorderWidth( borders.getBorderWidthBottom() ) );
+			cellStyle.setBorderTop( getBorderWidth( borders.getBorderWidthTop() ) );
+			cellStyle.setBorderRight( getBorderWidth( borders.getBorderWidthRight() ) );
+			cellStyle.setBorderLeft( getBorderWidth( borders.getBorderWidthLeft() ) );
+			
+			if ( cell != null ) {
+				// alignment
+				if ( cell.getAlign() == DocPara.ALIGN_CENTER ) {
+					cellStyle.setAlignment( HorizontalAlignment.CENTER );
+				} else if ( cell.getAlign() == DocPara.ALIGN_RIGHT ) {
+					cellStyle.setAlignment( HorizontalAlignment.RIGHT );
+				} else if ( cell.getAlign() == DocPara.ALIGN_LEFT ) {
+					cellStyle.setAlignment( HorizontalAlignment.LEFT );
+				}
+				// vertical alignment
+				if ( cell.getValign() == DocPara.ALIGN_MIDDLE ) {
+					cellStyle.setVerticalAlignment( VerticalAlignment.CENTER );
+				} else if ( cell.getValign() == DocPara.ALIGN_BOTTOM ) {
+					cellStyle.setVerticalAlignment( VerticalAlignment.BOTTOM );
+				} else if ( cell.getValign() == DocPara.ALIGN_TOP ) {
+					cellStyle.setVerticalAlignment( VerticalAlignment.TOP );
+				} 
+			}
+			
+			styleSet.add( new PoiCellStyleModel( cellStyle , currentePara, cell ) );
+			
+		}
+		
+		currentCell.setCellStyle( cellStyle );
+		
+//		Cell current = null;
+//		if ( FormatTypeConsts.TYPE_NUMBER.equalsIgnoreCase( type ) ) {
+//			BigDecimal bd = new BigDecimal( text );
+//			current = new Number( cn, rn,  bd.doubleValue(), cf );
+//		} else {
+//			current = new Label( cn, rn, text, cf );
+//		}
+	}
+	
+	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, Workbook workbook ) throws Exception {
 		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
 		Iterator<DocElement> rows = table.docElements();
 		while ( rows.hasNext() ) {
@@ -53,6 +154,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				matrix.setNext( cell, cell.getRSpan() , cell.getCSpan() );
 			}
 		}
+		
+		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
+		int totalCell = 0;
 		
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			Row currentRow = dati.getRow( rn );
@@ -81,6 +185,14 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				} else {
 					currentePara = null;
 				}
+				
+				Cell currentCell = currentRow.getCell( cn );
+				if ( currentCell == null ) {
+					currentCell = currentRow.createCell( cn );
+				}
+				currentCell.setCellValue( text );
+				
+				
 //				WritableCellFormat cf = new WritableCellFormat();
 //				DisplayFormat df = null;
 //				// in case of number check for format string
@@ -92,88 +204,25 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 //					}
 //					cf = new WritableCellFormat( df );
 //				}
-//				if ( parent != null && !ignoreFormat ) {
-//					
-//					// must go first as it has the chance to change the cell format
-//					if ( parent.getForeColor() != null ) {
-//						Font f = cf.getFont();
-//						WritableFont wf = new WritableFont( f );
-//						wf.setColour( ( closestColor( ITextDocHandler.parseHtmlColor( parent.getForeColor() ) ) ) );
-//						if ( df != null ) {
-//							cf = new WritableCellFormat( wf, df );	
-//						} else {
-//							cf = new WritableCellFormat( wf );
-//						}
-//						
-//					}	
-//					// style
-//					if ( currentePara != null ) {
-//						Font f = cf.getFont();
-//						WritableFont wf = new WritableFont( f );
-//						if ( currentePara.getStyle() == DocPara.STYLE_BOLD ) {
-//							wf.setBoldStyle( WritableFont.BOLD );
-//						} else if ( currentePara.getStyle() == DocPara.STYLE_ITALIC ) {
-//							wf.setItalic( true );
-//						} else if ( currentePara.getStyle() == DocPara.STYLE_BOLDITALIC ) {	
-//							wf.setBoldStyle( WritableFont.BOLD );
-//							wf.setItalic( true );
-//						} else if ( currentePara.getStyle() == DocPara.STYLE_UNDERLINE ) {
-//							wf.setUnderlineStyle( UnderlineStyle.SINGLE );
-//						}
-//						if ( df != null ) {
-//							cf = new WritableCellFormat( wf, df );	
-//						} else {
-//							cf = new WritableCellFormat( wf );
-//						}
-//					}
-//					// back color
-//					if ( parent.getBackColor() != null) {
-//						cf.setBackground( closestColor( ITextDocHandler.parseHtmlColor( parent.getBackColor() ) ) );
-//					}
-//					//bordi
-//					DocBorders borders = matrix.getBorders( rn, cn );
-//					cf.setBorder( Border.LEFT,  getBorderStyle( borders.getBorderWidthLeft() ) );
-//					cf.setBorder( Border.RIGHT,  getBorderStyle( borders.getBorderWidthRight() ) );
-//					cf.setBorder( Border.BOTTOM,  getBorderStyle( borders.getBorderWidthBottom() ) );
-//					cf.setBorder( Border.TOP,  getBorderStyle( borders.getBorderWidthTop() ) );
-//					if ( cell != null ) {
-//						// alignment
-//						if ( cell.getAlign() == DocPara.ALIGN_CENTER ) {
-//							cf.setAlignment( Alignment.CENTRE );
-//						} else if ( cell.getAlign() == DocPara.ALIGN_RIGHT ) {
-//							cf.setAlignment( Alignment.RIGHT );
-//						} else if ( cell.getAlign() == DocPara.ALIGN_LEFT ) {
-//							cf.setAlignment( Alignment.LEFT );
-//						}
-//						// vertical alignment
-//						if ( cell.getValign() == DocPara.ALIGN_MIDDLE ) {
-//							cf.setVerticalAlignment( VerticalAlignment.CENTRE );
-//						} else if ( cell.getValign() == DocPara.ALIGN_BOTTOM ) {
-//							cf.setVerticalAlignment( VerticalAlignment.BOTTOM );
-//						} else if ( cell.getValign() == DocPara.ALIGN_TOP ) {
-//							cf.setVerticalAlignment( VerticalAlignment.TOP );
-//						} 
-//					}
-//				}
-				Cell currentCell = currentRow.getCell( cn );
-				if ( currentCell == null ) {
-					currentCell = currentRow.createCell( cn );
-				}
+				if ( cell != null && parent != null && !ignoreFormat ) {
+					this.checkFormat(workbook, styleSet, currentePara, cell, matrix, rn, cn, currentCell);
+				} 
+				
 				currentCell.setCellValue( text );
-//				Cell current = null;
-//				if ( FormatTypeConsts.TYPE_NUMBER.equalsIgnoreCase( type ) ) {
-//					BigDecimal bd = new BigDecimal( text );
-//					current = new Number( cn, rn,  bd.doubleValue(), cf );
-//				} else {
-//					current = new Label( cn, rn, text, cf );
-//				}
+				
+				totalCell++;
 			}
+			 
 		}
+		
+		
+		System.out.println( "STYLE SIZE : "+styleSet.size()+" / "+totalCell );
+		
 		return matrix;
 	}
 	
-	private static void handleMerge( DocTable table, boolean ignoreFormat, Sheet dati ) throws Exception {
-		TableMatrix matrix = handleMatrix(table, ignoreFormat, dati);
+	private void handleMerge( DocTable table, boolean ignoreFormat, Sheet dati, Workbook workbook ) throws Exception {
+		TableMatrix matrix = handleMatrix(table, ignoreFormat, dati, workbook);
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
 				DocCell cell = matrix.getCell( rn, cn );
@@ -181,7 +230,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 					int rs = cell.getRSpan()-1;
 					int cs = cell.getCSpan()-1;
 					if ( rs != 0 || cs != 0 ) {
-						dati.addMergedRegion( new CellRangeAddress( cn, rn, cn+cs, rn+rs ) );  
+						dati.addMergedRegion( new CellRangeAddress( rn, rn+rs, cn, cn+cs ) );  
 					}
 				}
 			}
@@ -219,10 +268,14 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 //				dati.setColumnView( i , cw );
 //			}
 			
-			handleMerge(table, ignoreFormat, dati);
+			handleMerge(table, ignoreFormat, dati, outputXls);
 			
 		}
 
+		boolean tryAutoResize = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE, ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE_DEFAULT ) );
+		if ( tryAutoResize ) {
+			PoiUtils.autoSizeColumns( outputXls );
+		}
 		
 		this.closeWorkbook( outputXls , docOutput );
 	}
