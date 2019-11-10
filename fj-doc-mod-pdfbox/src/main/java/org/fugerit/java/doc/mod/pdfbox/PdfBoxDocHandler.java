@@ -247,7 +247,6 @@ public class PdfBoxDocHandler implements AutoCloseable {
 ////					FontFactory.
 ////					PDCIDFont bf =  PDCIDFont.createFont( Font.HELVETICA, PDCIDFont.WINANSI, true );
 //					this.pdfWriter.getExtraCatalog().put( PdfName.OUTPUTINTENTS, new PdfArray( outi ) );
-//					System.out.println( "PDF-A 2 <<<<<<<<<<<<<<<<<<<<<" );
 //				}
 //				
 //			}
@@ -502,7 +501,6 @@ public class PdfBoxDocHandler implements AutoCloseable {
 //		while ( itRow.hasNext() ) {
 //			DocRow docRow = (DocRow)itRow.next();
 //			//maxMam = Math.max( Runtime.getRuntime().totalMemory()/1000/1000 , )
-//			//System.out.println(  "Handle row DONE ! -> "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000 );
 //			Iterator<DocElement> itCell = docRow.docElements();
 //			while ( itCell.hasNext() ) {
 //				DocCell docCell = (DocCell)itCell.next();

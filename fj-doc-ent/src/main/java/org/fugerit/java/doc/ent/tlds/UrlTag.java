@@ -52,7 +52,6 @@ public class UrlTag extends TagSupport {
 			buffer.append( request.getContextPath() );
 		}
 		buffer.append( this.getUrl() );
-		System.out.println( "URL : "+buffer );
 		try {
 			this.pageContext.getOut().print( buffer.toString() );
 		} catch (Exception e) {}
