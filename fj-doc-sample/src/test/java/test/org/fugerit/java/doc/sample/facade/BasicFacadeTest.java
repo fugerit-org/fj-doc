@@ -10,6 +10,7 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.facade.DocFacade;
+import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.sample.facade.SampleFacade;
 import org.junit.Test;
@@ -54,6 +55,17 @@ public class BasicFacadeTest {
 		return docBase;
 	}
 	
+	public static void produce( File outputFolder, DocBase docBase, String baseName, String type ) throws Exception {
+		File file = new File( outputFolder, baseName + "." + type);
+		logger.info("Create file {}", file.getCanonicalPath());
+		try (FileOutputStream fos = new FileOutputStream(file)) {
+			DocInput input = DocInput.newInput( type , docBase );
+			DocOutput output = DocOutput.newOutput( fos );
+			DocHandlerFacade facade = SampleFacade.getInstance(); 
+			facade.handle( input , output );
+		}
+	}
+	
 	@Test
 	public void produce() throws Exception {
 		File baseFile = new File(BASIC_OUTPUT_PATH);
@@ -62,13 +74,7 @@ public class BasicFacadeTest {
 		}
 		DocBase docBase = this.getDocBase();
 		for (String type : this.types) {
-			File file = new File(baseFile, this.getNameBase() + "." + type);
-			logger.info("Create file {}", file.getCanonicalPath());
-			try (FileOutputStream fos = new FileOutputStream(file)) {
-				DocInput input = DocInput.newInput( type , docBase );
-				DocOutput output = DocOutput.newOutput( fos );
-				SampleFacade.getInstance().handle( input , output );
-			}
+			produce( baseFile, docBase, this.getNameBase(), type);
 		}
 	}
 	

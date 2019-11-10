@@ -17,22 +17,6 @@
 		</step>
 	</chain>
 
-
-	<chain id="basic" extends="shared">
-		<step id="step-data" defaultBehaviour="CONTINUE"
-			description="Creates data necessary to FreeMarker" 
-			type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>	
-		<step id="step-data" defaultBehaviour="CONTINUE"
-			description="Map items from DocContext to FreeMarker Data" 
-			type="org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep">		
-			<properties  list="userList" />		
-		</step>
-		<step id="step-process" defaultBehaviour="CONTINUE"
-			description="Apply FreeMarker template to get the full XML" 
-			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="basic.xml"/>
-	</chain>
-
 	<chain id="free-marker-01" extends="shared">
 		<step id="step-data" defaultBehaviour="CONTINUE"
 			description="Creates data necessary to FreeMarker" 
@@ -61,6 +45,21 @@
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
 			param01="test_02.xml"/>
+	</chain>
+
+	<chain id="basic" extends="shared">
+		<step id="step-data" defaultBehaviour="CONTINUE"
+			description="Creates data necessary to FreeMarker" 
+			type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>	
+		<step id="step-data" defaultBehaviour="CONTINUE"
+			description="Map items from DocContext to FreeMarker Data" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep">		
+			<properties  list="userList" />		
+		</step>
+		<step id="step-process" defaultBehaviour="CONTINUE"
+			description="Apply FreeMarker template to get the full XML" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
+			param01="basic.xml"/>
 	</chain>
 
 </doc-process>

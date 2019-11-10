@@ -36,16 +36,19 @@ import org.fugerit.java.doc.base.facade.DocHandlerFactory;
  */
 public class SampleFacade {
 
-	private static DocHandlerFacade FACADE_MAIN = new DocHandlerFacade();
-	private static DocHandlerFacade FACADE_ALT = new DocHandlerFacade();
-	static {
+	private static DocHandlerFacade init( String path, String name ) {
+		DocHandlerFacade facade = null;
 		try {
-			FACADE_MAIN = DocHandlerFactory.register( "cl://config/doc-handler-sample.xml" );
-			FACADE_ALT = DocHandlerFactory.register( "cl://config/doc-handler-sample.xml" , "alternate-complete" );
+			facade = DocHandlerFactory.register( path, name );
 		} catch (Exception e) {
 			throw new RuntimeException( e );
-		}	
+		}
+		return facade;
 	}
+	
+	private static DocHandlerFacade FACADE_MAIN = init( "cl://config/doc-handler-sample.xml", "default-complete" );
+	
+	private static DocHandlerFacade FACADE_ALT = init( "cl://config/doc-handler-sample.xml", "alternate-complete" );
 	
 	public static DocHandlerFacade getInstance() {
 		return getInstanceMain();

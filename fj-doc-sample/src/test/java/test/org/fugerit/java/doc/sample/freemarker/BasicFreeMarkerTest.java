@@ -25,32 +25,40 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 		super(nameBase, typeList);
 	}
 
-	private static DocProcessConfig PROCESS_CONFIG = null;
-
-	
-	static {
+	private static DocProcessConfig init() {
+		DocProcessConfig config = null;
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/doc-process-sample.xml" ) ) {
-			PROCESS_CONFIG = DocProcessConfig.loadConfig( is );
+			config = DocProcessConfig.loadConfig( is );
 		} catch (Exception e) {
 			throw new RuntimeException( e ); 
 		}
+		return config;
 	}
+	
+	private static DocProcessConfig PROCESS_CONFIG = init();
 
-	@Override
-	protected DocBase getDocBase() throws Exception {
-		MiniFilterChain chain = PROCESS_CONFIG.getChainCache( this.getNameBase() );
+	public DocBase process( String chainId ) throws Exception {
+		// required : access to che processing chain
+		MiniFilterChain chain = PROCESS_CONFIG.getChainCache( chainId );
 		DocProcessContext context = new DocProcessContext();
 		DocProcessData data = new DocProcessData();
 		int res = chain.apply( context , data );
 		logger.info( "RES {} ", res );
-		DocBase docBase = null;
+		// optional : validate and print XSD errors : 
 		try ( Reader input = data.getCurrentXmlReader() ) {
 			DocValidator.logValidation( input , logger );
 		}
+		// required : parsing the XML for model to be passed to DocFacade
+		DocBase docBase = null;
 		try ( Reader input = data.getCurrentXmlReader() ) {
 			 docBase = DocFacade.parse( input );
 		}
 		return docBase;
+	}
+	
+	@Override
+	protected DocBase getDocBase() throws Exception {
+		return process( this.getNameBase() );
 	}
 	
 }
