@@ -6,8 +6,6 @@ import java.io.Reader;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.doc.base.config.DocConfig;
-import org.fugerit.java.doc.base.facade.DocFacade;
-import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
@@ -37,7 +35,14 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 	
 	private static DocProcessConfig PROCESS_CONFIG = init();
 
-	public DocBase process( String chainId ) throws Exception {
+	
+	
+	@Override
+	protected Reader getXmlReader() throws Exception {
+		return this.process( this.getNameBase() );
+	}
+
+	public Reader process( String chainId ) throws Exception {
 		// required : access to che processing chain
 		MiniFilterChain chain = PROCESS_CONFIG.getChainCache( chainId );
 		DocProcessContext context = new DocProcessContext();
@@ -48,17 +53,7 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 		try ( Reader input = data.getCurrentXmlReader() ) {
 			DocValidator.logValidation( input , logger );
 		}
-		// required : parsing the XML for model to be passed to DocFacade
-		DocBase docBase = null;
-		try ( Reader input = data.getCurrentXmlReader() ) {
-			 docBase = DocFacade.parse( input );
-		}
-		return docBase;
+		return data.getCurrentXmlReader();
 	}
-	
-	@Override
-	protected DocBase getDocBase() throws Exception {
-		return process( this.getNameBase() );
-	}
-	
+
 }

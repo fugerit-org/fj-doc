@@ -1,8 +1,9 @@
 package test.org.fugerit.java.doc.sample.facade;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,23 +44,28 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
-	protected String getXmlPath() {
+	private String getXmlPath() {
 		return "src/test/resources/sample_docs/"+this.getNameBase()+".xml";
 	}
 	
+	protected Reader getXmlReader() throws Exception {
+		return new FileReader( this.getXmlPath() );
+	}
+	
 	protected DocBase getDocBase() throws Exception {
+		// required : parsing the XML for model to be passed to DocFacade
 		DocBase docBase = null;
-		try ( FileInputStream is = new FileInputStream( this.getXmlPath() ) ) {
-			 docBase = DocFacade.parse( is );
+		try ( Reader reader = this.getXmlReader() ) {
+			 docBase = DocFacade.parse( reader );
 		}
 		return docBase;
 	}
 	
-	public static void produce( File outputFolder, DocBase docBase, String baseName, String type ) throws Exception {
+	public static void produce( File outputFolder, DocBase doc, Reader reader, String baseName, String type ) throws Exception {
 		File file = new File( outputFolder, baseName + "." + type);
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
-			DocInput input = DocInput.newInput( type , docBase );
+			DocInput input = DocInput.newInput( type , reader );
 			DocOutput output = DocOutput.newOutput( fos );
 			DocHandlerFacade facade = SampleFacade.getInstance(); 
 			facade.handle( input , output );
@@ -72,9 +78,9 @@ public class BasicFacadeTest {
 		if (!baseFile.exists()) {
 			logger.info("Create base path : {} ({})", baseFile.mkdirs(), baseFile.getCanonicalPath());
 		}
-		DocBase docBase = this.getDocBase();
+		DocBase doc = this.getDocBase();
 		for (String type : this.types) {
-			produce( baseFile, docBase, this.getNameBase(), type);
+			produce( baseFile, doc, this.getXmlReader(), this.getNameBase(), type);
 		}
 	}
 	

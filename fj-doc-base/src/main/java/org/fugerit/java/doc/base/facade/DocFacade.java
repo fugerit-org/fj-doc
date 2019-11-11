@@ -153,6 +153,16 @@ public class DocFacade {
 		return parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 	}
 	
+	public static DocBase parseRE( Reader is ) {
+		DocBase doc = null;
+		try {
+			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
+		} catch (Exception e) {
+			throw new RuntimeException( e );
+		}
+		return doc;
+	}
+	
 	public static DocBase parse( InputStream is ) throws Exception {
 		return parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 	}

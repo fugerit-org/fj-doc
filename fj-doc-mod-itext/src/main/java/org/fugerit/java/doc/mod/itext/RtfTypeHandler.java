@@ -15,6 +15,11 @@ import com.lowagie.text.rtf.RtfWriter2;
 
 public class RtfTypeHandler extends DocTypeHandlerDefault {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7532380038613171305L;
+	
 	public static final DocTypeHandler HANDLER = new RtfTypeHandler();
 	
 	public RtfTypeHandler() {
