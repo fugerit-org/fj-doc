@@ -12,4 +12,10 @@ public class DocProcessContext extends MiniFilterContext implements Serializable
 	 */
 	private static final long serialVersionUID = -110760708709527036L;
 
+	public static DocProcessContext newContext( String key, Object value ) {
+		DocProcessContext context = new DocProcessContext();
+		context.setAttribute( key , value);
+		return context;
+	}
+	
 }

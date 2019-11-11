@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<#import "/macro/element.xml" as element>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+	<fo:layout-master-set>
+		<fo:simple-page-master 
+			margin-right="1cm" margin-left="1cm" margin-bottom="1cm" margin-top="1cm"
+			page-width="21cm" page-height="29.7cm" master-name="simpleA4">
+			<fo:region-body />
+		</fo:simple-page-master>
+	</fo:layout-master-set>
+	<fo:page-sequence master-reference="simpleA4">
+		<fo:flow flow-name="xsl-region-body">
+
+			<#list docBase.docBody.elementList as item>
+				<@element.handle current=item/>			    
+			</#list>		
+		
+			<fo:block font-size="10pt">
+				<fo:table border-collapse="separate" width="100%"
+					table-layout="fixed">
+					<fo:table-column column-width="4cm" />
+					<fo:table-column column-width="4cm" />
+					<fo:table-column column-width="5cm" />
+					<fo:table-body>
+						<fo:table-row font-weight="bold">
+							<fo:table-cell>
+								<fo:block>A</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block>B</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block>C</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell>
+								<fo:block>D</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block>E</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block>F</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+						<fo:table-row>
+							<fo:table-cell>
+								<fo:block>G</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block>H</fo:block>
+							</fo:table-cell>
+							<fo:table-cell>
+								<fo:block>I</fo:block>
+							</fo:table-cell>
+						</fo:table-row>
+					</fo:table-body>
+				</fo:table>
+			</fo:block>
+		</fo:flow>
+	</fo:page-sequence>
+</fo:root>

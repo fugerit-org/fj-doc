@@ -36,30 +36,30 @@ import org.fugerit.java.doc.base.facade.DocHandlerFactory;
  */
 public class SampleFacade {
 
-	private static DocHandlerFacade init( String path, String name ) {
-		DocHandlerFacade facade = null;
+	private static DocHandlerFactory init( String path ) {
+		DocHandlerFactory factory = null;
 		try {
-			facade = DocHandlerFactory.register( path, name );
+			factory = DocHandlerFactory.newInstance( path );
 		} catch (Exception e) {
 			throw new RuntimeException( e );
 		}
-		return facade;
+		return factory;
 	}
 	
-	private static DocHandlerFacade FACADE_MAIN = init( "cl://config/doc-handler-sample.xml", "default-complete" );
+	private static DocHandlerFactory FACTORY = init( "cl://config/doc-handler-sample.xml" );
 	
-	private static DocHandlerFacade FACADE_ALT = init( "cl://config/doc-handler-sample.xml", "alternate-complete" );
+	public static final String MAIN_FACTORY = "default-complete";
 	
+	public static final String ALT_COMPLETE_FACTORY = "alternate-complete";
+	
+	public static final String ALT_FOP_FACTORY = "alternate-fop";
+	
+	public static DocHandlerFacade getFacade( String id ) {
+		return FACTORY.get( id );
+	}
+
 	public static DocHandlerFacade getInstance() {
-		return getInstanceMain();
-	}	
-	
-	public static DocHandlerFacade getInstanceMain() {
-		return FACADE_MAIN;
-	}	
-	
-	public static DocHandlerFacade getInstanceAlt() {
-		return FACADE_ALT;
+		return getFacade( MAIN_FACTORY ) ;
 	}	
 	
 }

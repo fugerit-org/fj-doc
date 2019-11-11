@@ -26,6 +26,8 @@ public class BasicFacadeTest {
 	
 	private String nameBase;
 	
+	private String facadeId;
+	
 	private List<String> types;
 	
 	public BasicFacadeTest() {
@@ -38,8 +40,17 @@ public class BasicFacadeTest {
 		for ( String current : typeList ) {
 			types.add( current );
 		}
+		this.setFacadeId( SampleFacade.MAIN_FACTORY );
 	}
 	
+	protected void setFacadeId(String facadeId) {
+		this.facadeId = facadeId;
+	}
+	
+	protected String getFacadeId() {
+		return facadeId;
+	}
+
 	public String getNameBase() {
 		return this.nameBase;
 	}
@@ -61,13 +72,13 @@ public class BasicFacadeTest {
 		return docBase;
 	}
 	
-	public static void produce( File outputFolder, DocBase doc, Reader reader, String baseName, String type ) throws Exception {
+	public static void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String type ) throws Exception {
 		File file = new File( outputFolder, baseName + "." + type);
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			DocInput input = DocInput.newInput( type , reader );
 			DocOutput output = DocOutput.newOutput( fos );
-			DocHandlerFacade facade = SampleFacade.getInstance(); 
+			DocHandlerFacade facade = SampleFacade.getFacade( facadeId );
 			facade.handle( input , output );
 		}
 	}
@@ -80,7 +91,7 @@ public class BasicFacadeTest {
 		}
 		DocBase doc = this.getDocBase();
 		for (String type : this.types) {
-			produce( baseFile, doc, this.getXmlReader(), this.getNameBase(), type);
+			produce( baseFile, this.getFacadeId(), doc, this.getXmlReader(), this.getNameBase(), type);
 		}
 	}
 	

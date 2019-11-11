@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-sample</artifactId>
+	<artifactId>fj-doc-mod-fop</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,7 +10,7 @@
 		<version>0.2-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-sample</name>
+	<name>fj-doc-mod-fop</name>
 	<description></description>
 
 	<licenses>
@@ -21,11 +21,22 @@
 		</license>
 	</licenses>
 	
+	<properties>
+		<fop-version>2.4</fop-version>
+	</properties>
+	
 	<build>
 		
 	</build>
 
 	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/fop -->
+		<dependency>
+		    <groupId>org.apache.xmlgraphics</groupId>
+		    <artifactId>fop</artifactId>
+		    <version>${fop-version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
@@ -36,41 +47,6 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-freemarker</artifactId>
-		</dependency>		
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-fop</artifactId>
-		</dependency>	
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-itext</artifactId>
-		</dependency>	
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-poi</artifactId>
-		</dependency>	
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-jxl</artifactId>
-		</dependency>	
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-pdfbox</artifactId>
-		</dependency>			
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-ent</artifactId>
-		</dependency>			
 	
 		<!-- java core dependancies -->
 		<dependency>
@@ -115,7 +91,7 @@
             <groupId>org.hsqldb</groupId>
 			<artifactId>hsqldb</artifactId>
 			<scope>test</scope>
-		</dependency>			
+		</dependency>					
 
 	</dependencies>
 

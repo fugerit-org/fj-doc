@@ -1,0 +1,12 @@
+<#macro handle current>
+	<#assign elementType="${current.class.simpleName}"/>
+	<#if elementType = 'DocPhrase'>
+		<fo:block space-after="5mm" font-weight="bold" font-size="16pt">${current.text}</fo:block>	
+	<#elseif elementType = 'DocPara'>
+		<fo:block space-after="5mm" font-weight="bold" font-size="16pt">${current.text}</fo:block>
+	<#elseif elementType = 'DocTable'>
+		<fo:block space-after="5mm" font-weight="bold" font-size="16pt">Table!</fo:block>
+	<#else>
+		<fo:block space-after="5mm" font-weight="bold" font-size="16pt">Else ${elementType}</fo:block>
+	</#if>
+</#macro>

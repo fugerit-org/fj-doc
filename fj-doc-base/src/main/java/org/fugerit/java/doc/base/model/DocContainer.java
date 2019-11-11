@@ -55,4 +55,8 @@ public class DocContainer extends DocElement {
 		this.elementList.add( docElement );
 	}
 	
+	public List<DocElement> getElementList() {
+		return elementList;
+	}
+	
 }
