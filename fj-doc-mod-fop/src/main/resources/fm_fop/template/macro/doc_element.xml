@@ -1,0 +1,63 @@
+<#global defaultBorderColor='black'>
+<#global defaultFontSize='10'>
+
+<#macro handleElement current>
+	<#assign elementType="${current.class.simpleName}"/>
+	<#if elementType = 'DocPhrase'>
+		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:block>
+	<#elseif elementType = 'DocPara'>
+		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:block>
+	<#elseif elementType = 'DocTable'>
+		<@handleTable docTable=current/>			
+	<#else>
+		<fo:block space-after="5mm" font-weight="bold" font-size="${defaultFontSize}pt">Element type non implemented yet : ${elementType}</fo:block>
+	</#if>
+</#macro>
+
+<#macro handleTable docTable>
+	<fo:block font-size="10pt">
+		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed">
+			<#list docTable.colWithds as currentColWidth>
+			<fo:table-column column-width="${currentColWidth}%" />	
+			</#list>
+			<fo:table-body>
+				<#list docTable.elementList as row>	
+				<fo:table-row>
+					<#list row.elementList as cell>
+						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>>
+							<#list cell.elementList as cellElement>
+							<@handleElement current=cellElement/>
+							</#list>
+						</fo:table-cell>
+					</#list>
+				</fo:table-row>				
+				</#list>
+			</fo:table-body>
+		</fo:table>
+	</fo:block>
+</#macro>
+
+<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}='${calcSize}pt solid ${color}' </#if></#macro>
+
+<#macro handleBorders docBorders>
+	<#if (docBorders.borderColorTop)??><#assign borderColorTop="${docBorders.borderColorTop}"/><#else><#assign borderColorTop="${defaultBorderColor}"/></#if>
+	<#if (docBorders.borderColorBottom)??><#assign borderColorBottom="${docBorders.borderColorBottom}"/><#else><#assign borderColorBottom="${defaultBorderColor}"/></#if>
+	<#if (docBorders.borderColorLeft)??><#assign borderColorLeft="${docBorders.borderColorLeft}"/><#else><#assign borderColorLeft="${defaultBorderColor}"/></#if>
+	<#if (docBorders.borderColorRight)??><#assign borderColorRight="${docBorders.borderColorRight}"/><#else><#assign borderColorRight="${defaultBorderColor}"/></#if>
+	<@handleBorder mode='border-top' size=docBorders.borderWidthTop color=borderColorTop/>
+	<@handleBorder mode='border-bottom' size=docBorders.borderWidthBottom color=borderColorBottom/>
+	<@handleBorder mode='border-left' size=docBorders.borderWidthLeft color=borderColorLeft/>
+	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
+</#macro>
+
+<#macro handleAlign alignValue>
+	<#if alignValue = 1>text-align="left"
+	<#elseif alignValue = 2>text-align="center"
+	</#if>
+</#macro>
+
+<#macro handleStyle styleValue>
+	<#if styleValue = 2>font-weight="bold"
+	<#elseif styleValue = 3>font-weight="underline"
+	</#if>
+</#macro>

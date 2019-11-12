@@ -10,6 +10,4 @@ public class TestFreeMarker01Fop extends BasicFreeMarkerTest {
 		this.setFacadeId( SampleFacade.ALT_FOP_FACTORY );
 	}
 
-	
-	
 }

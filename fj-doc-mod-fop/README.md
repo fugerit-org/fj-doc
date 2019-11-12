@@ -5,7 +5,7 @@
 [back to fj-doc index](../README.md)  
 
 *Status* :  
-Implementation started. (not yet usable).
+Basic features implemented. (Sample JUnit [TestFreeMarker01Fop](../fj-doc-sample/src/test/java/test/org/fugerit/java/doc/sample/freemarker/TestFreeMarker01Fop.java) is now working).
   
 *Quickstart* :  
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md).  
