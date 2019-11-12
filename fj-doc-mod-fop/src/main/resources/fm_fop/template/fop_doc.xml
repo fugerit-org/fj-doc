@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<#import "/macro/doc_element.xml" as doc_element>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+	<fo:layout-master-set>
+		<fo:simple-page-master 
+			margin-right="5mm" margin-left="5mm" margin-bottom="5mm" margin-top="5mm"
+			page-width="21cm" page-height="29.7cm" master-name="simpleA4">
+			<fo:region-body />
+		</fo:simple-page-master>
+	</fo:layout-master-set>
+	<fo:page-sequence master-reference="simpleA4">
+		<fo:flow flow-name="xsl-region-body" >
+			<fo:block>
+			<#list docBase.docBody.elementList as item>
+				<@doc_element.handleElement current=item/>			    
+			</#list>	
+			</fo:block>	
+		</fo:flow>
+	</fo:page-sequence>
+</fo:root>

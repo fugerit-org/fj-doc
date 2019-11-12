@@ -14,6 +14,11 @@ import com.lowagie.text.html.HtmlWriter;
 
 public class HtmlTypeHandler extends DocTypeHandlerDefault {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3491991891783269389L;
+	
 	public static final DocTypeHandler HANDLER = new HtmlTypeHandler();
 	
 	public HtmlTypeHandler() {

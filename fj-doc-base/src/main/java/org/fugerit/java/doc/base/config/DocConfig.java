@@ -16,4 +16,6 @@ public class DocConfig {
 	
 	public static final String TYPE_XLSX = "xlsx";
 	
+	public static final String TYPE_FO = "fo";
+	
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
+
+  <meta>
+	<info name="excel-table-id">excel-table=print</info>
+	<info name="excel-try-autoresize">true</info> 
+  </meta>
+ 
+  <body>
+  	
+    	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
+    		<row>
+    			<cell align="center"><para style="bold">Name</para></cell>
+    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para style="bold">Title (Queen / King / Emperor)</para></cell>
+    		</row>
+       		<row>
+    			<cell><para>Luthien</para></cell>
+    			<cell><para>Tinuviel</para></cell>
+    			<cell><para>Queen</para></cell>
+    		</row>
+       		<row>
+    			<cell><para>Thorin</para></cell>
+    			<cell><para>Oakshield</para></cell>
+    			<cell><para>King</para></cell>
+    		</row>    		
+    	</table>
+  </body>
+  
+</doc>

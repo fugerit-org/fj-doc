@@ -122,11 +122,6 @@ public class DocRequestFacade extends BasicLogObject {
 					} else {
 						resp = new HttpServletResponseByteData( response );
 					}
-					
-					System.out.println( ">>>>>>>>> request : "+request );
-					System.out.println( ">>>>>>>>> resp    : "+resp );
-					System.out.println( ">>>>>>>>> context : "+this.getDocRequestConfig().getContext().getContext() );
-					
 					docHandler.handleDoc( request, resp, this.getDocRequestConfig().getContext().getContext() );
 					String encoding = docHandler.getEncoding();
 					try {

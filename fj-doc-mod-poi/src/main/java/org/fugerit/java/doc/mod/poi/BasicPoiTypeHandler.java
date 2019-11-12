@@ -214,10 +214,6 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			}
 			 
 		}
-		
-		
-		System.out.println( "STYLE SIZE : "+styleSet.size()+" / "+totalCell );
-		
 		return matrix;
 	}
 	

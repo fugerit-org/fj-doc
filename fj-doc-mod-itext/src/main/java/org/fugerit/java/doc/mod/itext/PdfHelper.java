@@ -63,7 +63,6 @@ public class PdfHelper  extends PdfPageEventHelper {
         totalPages = writer.getDirectContent().createTemplate(100, 100);
         totalPages.setBoundingBox( new Rectangle(-20, -20, 100, 100) );
 		//this.baseFont = ITextDocHandler.findFont( this.docHelper.getDefFontName() );
-		//System.out.println( "BASE FONT "+this.docHelper.getDefFontName()+" - "+this.baseFont );
         try {
 			this.baseFont = BaseFont.createFont( BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED);
 		} catch (DocumentException e) {
@@ -120,7 +119,6 @@ public class PdfHelper  extends PdfPageEventHelper {
 //    				DocPara para = (DocPara) current;
 //    		        String originalText = para.getText();
 //    		        String text = ITextDocHandler.createText( docHelper.getParams(), originalText );
-//    		        System.out.println( "TEXT "+text+ " OFFSET "+totalOffset );
 //        		    float textBase = document.bottom() - totalOffset;
 //    		        float textSize = baseFont.getWidthPoint(text, footerTextSize);
 //    		        cb.beginText();
