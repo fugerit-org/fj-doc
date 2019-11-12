@@ -9,10 +9,12 @@
 		</fo:simple-page-master>
 	</fo:layout-master-set>
 	<fo:page-sequence master-reference="simpleA4">
-		<fo:flow flow-name="xsl-region-body">
+		<fo:flow flow-name="xsl-region-body" >
+			<fo:block>
 			<#list docBase.docBody.elementList as item>
 				<@doc_element.handleElement current=item/>			    
-			</#list>		
+			</#list>	
+			</fo:block>	
 		</fo:flow>
 	</fo:page-sequence>
 </fo:root>

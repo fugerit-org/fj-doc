@@ -4,7 +4,7 @@
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
-		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:block>
+		<fo:inline   <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:inline>
 	<#elseif elementType = 'DocPara'>
 		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:block>
 	<#elseif elementType = 'DocTable'>
