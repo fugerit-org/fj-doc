@@ -216,7 +216,9 @@
 			<xsd:attribute name='border-width-top' type='xsd:int' use='optional' />
 			<xsd:attribute name='border-width-bottom' type='xsd:int' use='optional' />
 			<xsd:attribute name='border-width-left' type='xsd:int' use='optional' />
-			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />						
+			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />	
+			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 

@@ -22,7 +22,7 @@ public class BasicFacadeTest {
 
 	protected final static Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
 	
-	private static final String BASIC_OUTPUT_PATH = "target/sample_out";
+	public static final String BASIC_OUTPUT_PATH = "target/sample_out";
 	
 	private String nameBase;
 	

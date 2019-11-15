@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
+
+  <!-- 
+  	Sample Apache FreeMarker template for Fugerit Doc.
+  	Note : this example has no intention of being a guid to FreeMarker
+  			(In case check FreeMarker documentation https://freemarker.apache.org/docs/index.html)
+   -->
+
+  <meta>
+	<info name="excel-table-id">excel-table=print</info>
+	<!-- 
+	<info name="excel-width-multiplier">450</info>
+	 -->
+	<info name="excel-try-autoresize">true</info> 
+  </meta>
+ 
+  <body>
+  
+    	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2"> 	
+    		<row>
+    			<cell align="center" border-width="1" back-color="#FF0000"><para style="bold">Name</para></cell>
+    			<cell align="center" border-width="1" fore-color="#0000FF"><para style="bold">Surname</para></cell>
+    			<cell align="center" border-width="1"><para style="bold">Title</para></cell>
+    		</row>
+    	</table>
+
+  </body>
+  
+</doc>

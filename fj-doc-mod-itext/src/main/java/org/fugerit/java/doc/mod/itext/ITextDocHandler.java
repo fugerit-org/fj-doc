@@ -35,7 +35,6 @@ import java.util.List;
 import java.util.Properties;
 
 import org.fugerit.java.core.log.LogFacade;
-import org.fugerit.java.core.util.BinaryCalc;
 import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -53,6 +52,7 @@ import org.fugerit.java.doc.base.model.DocPhrase;
 import org.fugerit.java.doc.base.model.DocRow;
 import org.fugerit.java.doc.base.model.DocStyle;
 import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.xml.DocModelUtils;
 
 import com.lowagie.text.Cell;
 import com.lowagie.text.Chunk;
@@ -120,15 +120,7 @@ public class ITextDocHandler {
 			current.setForeColor( parent.getForeColor() );
 		}
 	}
-	
-	
-	public static Color parseHtmlColor( String c ) {
-		int r = (int)BinaryCalc.hexToLong( c.substring( 1, 3 ) );
-		int g = (int)BinaryCalc.hexToLong( c.substring( 3, 5 ) );
-		int b = (int)BinaryCalc.hexToLong( c.substring( 5, 7 ) );
-		return new Color( r, g, b );
-	}
-	
+		
 	private PdfWriter pdfWriter;
 	
 	//private RtfWriter2 rtfWriter2;
@@ -259,7 +251,7 @@ public class ITextDocHandler {
 		Phrase phrase = new Phrase( text, f );
 		Paragraph p = new Paragraph( new Phrase( text, f ) );
 		if ( docPara.getForeColor() != null ) {
-			Color c = parseHtmlColor( docPara.getForeColor() );
+			Color c = DocModelUtils.parseHtmlColor( docPara.getForeColor() );
 			Font f1 = new Font( f.getFamily(), f.getSize(), f.getStyle(), c );
 			p = new Paragraph( new Phrase( text, f1 ) );
 			//f = f1;
@@ -337,16 +329,16 @@ public class ITextDocHandler {
 				DocBorders docBorders = docCell.getDocBorders();
 				if ( docBorders != null ) {
 					if ( docBorders.getBorderColorBottom() != null ) {
-						cell.setBorderColorBottom(  parseHtmlColor( docBorders.getBorderColorBottom() ) );
+						cell.setBorderColorBottom( DocModelUtils.parseHtmlColor( docBorders.getBorderColorBottom() ) );
 					}
 					if ( docBorders.getBorderColorTop() != null ) {
-						cell.setBorderColorTop(  parseHtmlColor( docBorders.getBorderColorTop() ) );
+						cell.setBorderColorTop(  DocModelUtils.parseHtmlColor( docBorders.getBorderColorTop() ) );
 					}
 					if ( docBorders.getBorderColorLeft() != null ) {
-						cell.setBorderColorLeft(  parseHtmlColor( docBorders.getBorderColorLeft() ) );
+						cell.setBorderColorLeft(  DocModelUtils.parseHtmlColor( docBorders.getBorderColorLeft() ) );
 					}
 					if ( docBorders.getBorderColorRight() != null ) {
-						cell.setBorderColorRight(  parseHtmlColor( docBorders.getBorderColorRight() ) );
+						cell.setBorderColorRight(  DocModelUtils.parseHtmlColor( docBorders.getBorderColorRight() ) );
 					}
 					if ( docBorders.getBorderWidthBottom() != -1 ) {
 						cell.setBorderWidthBottom( docBorders.getBorderWidthBottom() );
@@ -362,7 +354,7 @@ public class ITextDocHandler {
 					}
 				}
 				if ( docCell.getBackColor() != null ) {
-					cell.setBackgroundColor( parseHtmlColor( docCell.getBackColor() ) );
+					cell.setBackgroundColor( DocModelUtils.parseHtmlColor( docCell.getBackColor() ) );
 				}
 				if ( docCell.getAlign() != DocPara.ALIGN_UNSET ) {
 					cell.setHorizontalAlignment( getAlign( docCell.getAlign() ) );
@@ -494,7 +486,7 @@ public class ITextDocHandler {
 		}
 		Color c = Color.BLACK;
 		if ( color != null ) {
-			c = parseHtmlColor( color );
+			c = DocModelUtils.parseHtmlColor( color );
 		}
 		if ( bfV == -1 ) {
 			font = new Font( bf, size, style, c );	
@@ -667,7 +659,7 @@ public class ITextDocHandler {
 				Font f = new Font( Font.HELVETICA, docPara.getSize() );
 				if ( docPara.getForeColor() != null ) {
 					try {
-						f.setColor( parseHtmlColor( docPara.getForeColor() ) );	
+						f.setColor( DocModelUtils.parseHtmlColor( docPara.getForeColor() ) );	
 					} catch (Exception fe) {
 						LogFacade.getLog().warn( "Error setting fore color on footer : "+docPara.getForeColor(), fe );
 					}

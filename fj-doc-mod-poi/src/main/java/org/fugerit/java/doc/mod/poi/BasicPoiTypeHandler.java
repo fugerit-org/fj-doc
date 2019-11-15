@@ -30,9 +30,13 @@ import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperConsts;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperUtils;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
+	private final static Logger logger = LoggerFactory.getLogger( BasicPoiTypeHandler.class );  
+	
 	/**
 	 * 
 	 */
@@ -45,6 +49,8 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	protected abstract Workbook newWorkbook( DocInput docInput, InputStream is ) throws Exception;
 	
 	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws Exception;
+	
+	protected abstract void setFormatStyle( Workbook workbook, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	
 	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws Exception {
 		
@@ -68,6 +74,8 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		if ( cellStyle == null ) {
 			
 			cellStyle = workbook.createCellStyle();
+			
+			this.setFormatStyle( workbook, cellStyle , cell, currentePara );
 			
 //			// must go first as it has the chance to change the cell format
 //			if ( parent.getForeColor() != null ) {
@@ -156,7 +164,6 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		}
 		
 		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
-		int totalCell = 0;
 		
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			Row currentRow = dati.getRow( rn );
@@ -210,10 +217,12 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				
 				currentCell.setCellValue( text );
 				
-				totalCell++;
 			}
 			 
 		}
+		
+		logger.info( "TOTAL STYLES : {}", styleSet.size() );
+		
 		return matrix;
 	}
 	

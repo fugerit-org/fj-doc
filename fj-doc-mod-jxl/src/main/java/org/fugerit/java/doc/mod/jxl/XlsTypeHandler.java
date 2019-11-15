@@ -21,7 +21,7 @@ import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperConsts;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
 import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
-import org.fugerit.java.doc.mod.itext.ITextDocHandler;
+import org.fugerit.java.doc.base.xml.DocModelUtils;
 
 import jxl.CellView;
 import jxl.Workbook;
@@ -159,7 +159,7 @@ public class XlsTypeHandler extends DocTypeHandlerDefault {
 					if ( parent.getForeColor() != null ) {
 						Font f = cf.getFont();
 						WritableFont wf = new WritableFont( f );
-						wf.setColour( ( closestColor( ITextDocHandler.parseHtmlColor( parent.getForeColor() ) ) ) );
+						wf.setColour( ( closestColor( DocModelUtils.parseHtmlColor( parent.getForeColor() ) ) ) );
 						if ( df != null ) {
 							cf = new WritableCellFormat( wf, df );	
 						} else {
@@ -189,7 +189,7 @@ public class XlsTypeHandler extends DocTypeHandlerDefault {
 					}
 					// back color
 					if ( parent.getBackColor() != null) {
-						cf.setBackground( closestColor( ITextDocHandler.parseHtmlColor( parent.getBackColor() ) ) );
+						cf.setBackground( closestColor( DocModelUtils.parseHtmlColor( parent.getBackColor() ) ) );
 					}
 					//bordi
 					DocBorders borders = matrix.getBorders( rn, cn );
