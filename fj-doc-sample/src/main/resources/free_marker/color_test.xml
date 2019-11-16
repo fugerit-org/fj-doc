@@ -22,9 +22,9 @@
   
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2"> 	
     		<row>
-    			<cell align="center" border-width="1" back-color="#FF0000"><para style="bold">Name</para></cell>
+    			<cell align="center" border-width="1" back-color="#900000" fore-color="#FFFFFF"><para style="bold">Name</para></cell>
     			<cell align="center" border-width="1" fore-color="#0000FF"><para style="bold">Surname</para></cell>
-    			<cell align="center" border-width="1"><para style="bold">Title</para></cell>
+    			<cell align="center" border-width="1" back-color="#000090" fore-color="#FFFF00"><para style="bold">Title</para></cell>
     		</row>
     	</table>
 

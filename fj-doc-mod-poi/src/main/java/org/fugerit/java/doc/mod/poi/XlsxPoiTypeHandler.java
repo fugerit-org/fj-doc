@@ -5,7 +5,7 @@ import java.io.InputStream;
 
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
@@ -51,25 +51,26 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 	
 	@Override
-	protected void setFormatStyle( Workbook workbook, CellStyle style, DocCell cell, DocPara para ) throws Exception {
+	protected void setFormatStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception {
 		if ( style instanceof XSSFCellStyle ) {
 			XSSFCellStyle realStyle = (XSSFCellStyle) style;
 			if ( cell != null ) {
 				if ( StringUtils.isNotEmpty( cell.getBackColor() ) ) {
 					Color c = DocModelUtils.parseHtmlColor( cell.getBackColor() );
-					realStyle.setFillBackgroundColor( new XSSFColor( c ) );
-					realStyle.setFillPattern( FillPatternType.BIG_SPOTS );
+					realStyle.setFillForegroundColor( new XSSFColor( c ) );
+					realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
 				}
-				if ( StringUtils.isNotEmpty( cell.getForeColor() ) ) {
-					Color c = DocModelUtils.parseHtmlColor( cell.getForeColor() );
-					XSSFFont font = (XSSFFont)workbook.createFont();
-					realStyle.setFillForegroundColor(IndexedColors.GREEN.getIndex());
-					font.setColor(IndexedColors.WHITE.getIndex());
-					realStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-					realStyle.setFont(font);
-					
-					realStyle.setFont( font ); 
-				}
+			}
+		}
+	}
+
+	@Override
+	protected void setFontStyle(Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+		if ( font instanceof XSSFFont ) {
+			XSSFFont realFont = (XSSFFont) font;
+			if ( StringUtils.isNotEmpty( cell.getForeColor() ) ) {
+				Color c = DocModelUtils.parseHtmlColor( cell.getForeColor() );
+				realFont.setColor( new XSSFColor( c ) );
 			}
 		}
 	}	

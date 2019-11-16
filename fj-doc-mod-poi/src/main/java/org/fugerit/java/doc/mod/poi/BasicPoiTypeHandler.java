@@ -50,7 +50,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	
 	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws Exception;
 	
-	protected abstract void setFormatStyle( Workbook workbook, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	protected abstract  void setFormatStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	
+	protected abstract void setFontStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	
 	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws Exception {
 		
@@ -74,9 +76,11 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		if ( cellStyle == null ) {
 			
 			cellStyle = workbook.createCellStyle();
+			Font font = workbook.createFont();
 			
-			this.setFormatStyle( workbook, cellStyle , cell, currentePara );
-			
+			this.setFontStyle(workbook, font, cellStyle, cell, currentePara);
+			this.setFormatStyle(workbook, font, cellStyle, cell, currentePara);
+
 //			// must go first as it has the chance to change the cell format
 //			if ( parent.getForeColor() != null ) {
 //				Font f = cf.getFont();
@@ -91,7 +95,6 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 //			}	
 			// style
 			if ( currentePara != null ) {
-				Font font = workbook.createFont();
 				if ( currentePara.getStyle() == DocPara.STYLE_BOLD ) {
 					font.setBold( true );
 				} else if ( currentePara.getStyle() == DocPara.STYLE_ITALIC ) {
@@ -102,8 +105,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				} else if ( currentePara.getStyle() == DocPara.STYLE_UNDERLINE ) {
 					font.setUnderline( Font.U_SINGLE );
 				}
-				cellStyle.setFont( font );
+				
 			}
+			cellStyle.setFont( font );
 //			// back color
 //			if ( parent.getBackColor() != null) {
 //				cellStyle.setFillBackgroundColor(  );
@@ -136,9 +140,11 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				} 
 			}
 			
-			styleSet.add( new PoiCellStyleModel( cellStyle , currentePara, cell ) );
+			cellStyle.setFont( font );
 			
+			styleSet.add( new PoiCellStyleModel( cellStyle , currentePara, cell ) );
 		}
+		
 		
 		currentCell.setCellStyle( cellStyle );
 		

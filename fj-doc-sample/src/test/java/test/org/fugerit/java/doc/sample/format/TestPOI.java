@@ -16,13 +16,15 @@ import org.junit.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
-public class TestPOI {
+public class TestPOI extends TestFormatBase {
 
 	private void close( Workbook workbook, String test ) throws Exception {
-		try ( FileOutputStream fos = new FileOutputStream( new File( BasicFacadeTest.BASIC_OUTPUT_PATH, test+".xlsx" ) ) ) {
+		File file = this.getFile( BasicFacadeTest.BASIC_OUTPUT_PATH, test+".xlsx" );
+		try ( FileOutputStream fos = new FileOutputStream( file ) ) {
 			workbook.write( fos );
 			workbook.close();
 		}
+		logger.info( "File generated! {}", file.getCanonicalPath() );
 	}
 	
 	@Test
@@ -41,7 +43,7 @@ public class TestPOI {
 	    font.setBold(true);
 	    style.setFont(font);
 	    style.setFillForegroundColor(IndexedColors.BLUE.getIndex());
-	    style.setFillPattern(FillPatternType.ALT_BARS);
+	    style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 		
 		cell.setCellStyle( style );
 		close( workbook, test );
