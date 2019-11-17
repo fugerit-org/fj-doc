@@ -2,13 +2,17 @@ package org.fugerit.java.doc.mod.poi;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,6 +21,7 @@ import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
@@ -30,9 +35,14 @@ import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperConsts;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperUtils;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
+import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
+	private final static Logger logger = LoggerFactory.getLogger( BasicPoiTypeHandler.class );  
+	
 	/**
 	 * 
 	 */
@@ -45,6 +55,10 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	protected abstract Workbook newWorkbook( DocInput docInput, InputStream is ) throws Exception;
 	
 	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws Exception;
+	
+	protected abstract  void setFormatStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	
+	protected abstract void setFontStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	
 	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws Exception {
 		
@@ -62,28 +76,53 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		return b;
 	}
 	
+	protected void setCellValue( Workbook workbook, Cell currentCell, String type, String format, String text ) throws Exception {
+		try {
+  			if ( StringUtils.isEmpty( type ) ) {
+				currentCell.setCellValue( text );
+			} else if ( FormatTypeConsts.TYPE_NUMBER.equalsIgnoreCase( type ) ) {
+				BigDecimal bd = new BigDecimal( text );
+				currentCell.setCellValue( bd.doubleValue() );
+			} else if ( FormatTypeConsts.TYPE_DATE.equalsIgnoreCase( type ) ) {
+				String formatString = StringUtils.valueWithDefault( format , FormatTypeConsts.FORMAT_DATE_DEFAULT );
+				if ( "iso".equalsIgnoreCase( format ) ) {
+					formatString = FormatTypeConsts.FORMAT_DATE_ISO;
+				}
+				SimpleDateFormat sdf = new SimpleDateFormat( formatString );
+				Date d = sdf.parse( text );
+				currentCell.setCellValue( d );
+				CellStyle style = currentCell.getCellStyle();
+				CreationHelper helper = workbook.getCreationHelper();
+				if ( FormatTypeConsts.FORMAT_DATE_ISO.equals( formatString ) ) {
+					style.setDataFormat( helper.createDataFormat().getFormat( "d/m/yy h:mm:ss" ) );	
+				} else if ( FormatTypeConsts.FORMAT_DATE_YYYY_MM_DD_HH_MM_SS.equals( formatString ) ) {
+					style.setDataFormat( helper.createDataFormat().getFormat( "d/m/yy h:mm:ss" ) );	
+				} else {
+					style.setDataFormat( helper.createDataFormat().getFormat( "d/m/yy" ) );	
+				}
+			} else {
+				currentCell.setCellValue( text );
+			}
+		} catch (Exception e) {
+			logger.warn( "Format conversion errot for text '{}', type '{}', format '{}'", text, type, format, e );
+			currentCell.setCellValue( text );
+		}
+
+	}
+	
 	private void checkFormat( Workbook workbook, Collection<PoiCellStyleModel> styleSet, DocPara currentePara,
 			 DocCell cell, TableMatrix matrix, int rn, int cn, Cell currentCell  ) throws Exception {
 		CellStyle cellStyle = PoiCellStyleModel.find( styleSet , currentePara, cell );
 		if ( cellStyle == null ) {
 			
 			cellStyle = workbook.createCellStyle();
+			Font font = workbook.createFont();
 			
-//			// must go first as it has the chance to change the cell format
-//			if ( parent.getForeColor() != null ) {
-//				Font f = cf.getFont();
-//				WritableFont wf = new WritableFont( f );
-//				wf.setColour( ( closestColor( ITextDocHandler.parseHtmlColor( parent.getForeColor() ) ) ) );
-//				if ( df != null ) {
-//					cf = new WritableCellFormat( wf, df );	
-//				} else {
-//					cf = new WritableCellFormat( wf );
-//				}
-//				
-//			}	
+			this.setFontStyle(workbook, font, cellStyle, cell, currentePara);
+			this.setFormatStyle(workbook, font, cellStyle, cell, currentePara);
+
 			// style
 			if ( currentePara != null ) {
-				Font font = workbook.createFont();
 				if ( currentePara.getStyle() == DocPara.STYLE_BOLD ) {
 					font.setBold( true );
 				} else if ( currentePara.getStyle() == DocPara.STYLE_ITALIC ) {
@@ -94,13 +133,10 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				} else if ( currentePara.getStyle() == DocPara.STYLE_UNDERLINE ) {
 					font.setUnderline( Font.U_SINGLE );
 				}
-				cellStyle.setFont( font );
+				
 			}
-//			// back color
-//			if ( parent.getBackColor() != null) {
-//				cellStyle.setFillBackgroundColor(  );
-//				cf.setBackground( closestColor( ITextDocHandler.parseHtmlColor( parent.getBackColor() ) ) );
-//			}
+			cellStyle.setFont( font );
+
 			//bordi
 			DocBorders borders = matrix.getBorders( rn, cn );
 			
@@ -127,20 +163,10 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 					cellStyle.setVerticalAlignment( VerticalAlignment.TOP );
 				} 
 			}
-			
+			cellStyle.setFont( font );
 			styleSet.add( new PoiCellStyleModel( cellStyle , currentePara, cell ) );
-			
 		}
-		
 		currentCell.setCellStyle( cellStyle );
-		
-//		Cell current = null;
-//		if ( FormatTypeConsts.TYPE_NUMBER.equalsIgnoreCase( type ) ) {
-//			BigDecimal bd = new BigDecimal( text );
-//			current = new Number( cn, rn,  bd.doubleValue(), cf );
-//		} else {
-//			current = new Label( cn, rn, text, cf );
-//		}
 	}
 	
 	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, Workbook workbook ) throws Exception {
@@ -156,7 +182,6 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		}
 		
 		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
-		int totalCell = 0;
 		
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			Row currentRow = dati.getRow( rn );
@@ -190,30 +215,16 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				if ( currentCell == null ) {
 					currentCell = currentRow.createCell( cn );
 				}
-				currentCell.setCellValue( text );
-				
-				
-//				WritableCellFormat cf = new WritableCellFormat();
-//				DisplayFormat df = null;
-//				// in case of number check for format string
-//				if ( format != null && FormatTypeConsts.TYPE_NUMBER.equalsIgnoreCase( type ) ) {
-//					if ( "float".equalsIgnoreCase( format ) ) {
-//						df = NumberFormats.FLOAT;
-//					} else {
-//						df = new NumberFormat( format, NumberFormat.COMPLEX_FORMAT);
-//					}
-//					cf = new WritableCellFormat( df );
-//				}
 				if ( cell != null && parent != null && !ignoreFormat ) {
 					this.checkFormat(workbook, styleSet, currentePara, cell, matrix, rn, cn, currentCell);
 				} 
-				
-				currentCell.setCellValue( text );
-				
-				totalCell++;
+				this.setCellValue( workbook, currentCell, type, format, text);
 			}
 			 
 		}
+		
+		logger.info( "TOTAL STYLES : {}", styleSet.size() );
+		
 		return matrix;
 	}
 	

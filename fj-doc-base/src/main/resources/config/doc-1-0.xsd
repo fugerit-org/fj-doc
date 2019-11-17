@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2019-11-06
-	 * @version    : 1.1.0 (2019-11-09)
+	 * @version    : 1.0.2 (2019-11-16)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -147,7 +147,8 @@
 			<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
 			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
 			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
-			<xsd:attribute name='type' type='xsd:string' use='optional' />
+			<xsd:attribute name='type' type='doc:dataType' use='optional' />
+			<xsd:attribute name='format' type='xsd:string' use='optional' />
 			<xsd:attribute name='size' type="xsd:int" use='optional' />
 			<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
 			<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
@@ -216,7 +217,10 @@
 			<xsd:attribute name='border-width-top' type='xsd:int' use='optional' />
 			<xsd:attribute name='border-width-bottom' type='xsd:int' use='optional' />
 			<xsd:attribute name='border-width-left' type='xsd:int' use='optional' />
-			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />						
+			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />	
+			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='type' type='doc:dataType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -256,6 +260,23 @@
 			<xsd:pattern value="#([A-Fa-f0-9]{6})"></xsd:pattern>
 		</xsd:restriction>
 	</xsd:simpleType>
+
+	<xsd:simpleType name="dataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="string"></xsd:enumeration>
+			<xsd:enumeration value="number"></xsd:enumeration>
+			<xsd:enumeration value="date"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="formatType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yyyy-MM-dd"></xsd:enumeration>
+			<xsd:enumeration value="yyyy-MM-dd hh:mm:ss"></xsd:enumeration>
+			<xsd:enumeration value="yyyy-MM-dd'T'HH:mm:ss.SSSZ"></xsd:enumeration>
+			<xsd:enumeration value="iso"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>	
 
 	<xsd:complexType name="metaType">
 		<xsd:sequence>

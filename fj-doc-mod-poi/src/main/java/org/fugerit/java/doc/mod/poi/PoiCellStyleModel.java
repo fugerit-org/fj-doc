@@ -53,7 +53,7 @@ public class PoiCellStyleModel implements Serializable {
 	}
 
 	private static boolean eq( Object o1, Object o2 ) {
-		return (o1 == null && o2 == null) || o1.equals( o2 );
+		return (o1 == null && o2 == null) || ( o1 != null && o1.equals( o2 ));
 	}
 	
 	public static CellStyle find( Collection<PoiCellStyleModel> styles, DocPara p, DocCell c ) {

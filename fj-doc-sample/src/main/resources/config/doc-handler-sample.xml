@@ -22,5 +22,11 @@
 		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler" />
 		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" />	
 	</factory>	
+	
+	<factory id="alternate-html-fm">
+		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
+	</factory>		
+	
+
 
 </doc-handler-config>

@@ -43,15 +43,19 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 	}
 
 	public Reader process( String chainId ) throws Exception {
+		long startTime = System.currentTimeMillis();
 		// required : access to che processing chain
 		MiniFilterChain chain = PROCESS_CONFIG.getChainCache( chainId );
 		DocProcessContext context = new DocProcessContext();
 		DocProcessData data = new DocProcessData();
 		int res = chain.apply( context , data );
 		logger.info( "RES {} ", res );
-		// optional : validate and print XSD errors : 
+		this.checkpoints.addCheckpointFromStartTime( "DOC-FREEMARKER" , startTime );
+		startTime = System.currentTimeMillis();
+		// optional : validate and print XSD errors :
 		try ( Reader input = data.getCurrentXmlReader() ) {
 			DocValidator.logValidation( input , logger );
+			this.checkpoints.addCheckpointFromStartTime( "DOC-VALIDATION" , startTime );
 		}
 		return data.getCurrentXmlReader();
 	}

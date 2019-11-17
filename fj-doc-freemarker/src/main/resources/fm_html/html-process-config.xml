@@ -1,0 +1,29 @@
+<doc-process>
+
+	<chain id="html-freemarker">
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="FreeMarker Configuration step, only one FreeMarker configuration instance is created for every key under 'param01'" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep"
+			param01="FJDOC_MOD_FREEMARKER_HTML_CONFIG">
+			<properties 
+				version="2.3.29"
+				path="/fm_html/template/"
+				mode="class" 
+				class="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlProcess"
+				exception-handler="RETHROW_HANDLER"
+				log-exception="false"
+				wrap-unchecked-exceptions="true"
+				fallback-on-null-loop-variable="false" />
+		</step>
+		<step id="step-data" defaultBehaviour="CONTINUE"
+			description="Map items from DocContext to FreeMarker Data" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep">		
+			<properties docBase="docBase" />		
+		</step>			
+		<step id="step-process" defaultBehaviour="CONTINUE"
+			description="Apply FreeMarker template to get the full XML" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
+			param01="html_doc.xml"/>
+	</chain>
+
+</doc-process>
