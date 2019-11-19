@@ -12,6 +12,8 @@ public class DocConfig {
 	
 	public static final String TYPE_HTML = "html";
 	
+	public static final String TYPE_HTML_FRAGMENT = "fhtml";
+	
 	public static final String TYPE_XLS = "xls";
 	
 	public static final String TYPE_XLSX = "xlsx";

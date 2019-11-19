@@ -1,17 +1,17 @@
-package org.fugerit.java.doc.freemarker.html;
+package org.fugerit.java.doc.freemarker.helper;
 
 import java.io.Serializable;
 
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 
-public class FreeMarkerHtmlProcess implements Serializable {
+public class FreeMarkerDocProcess implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1277168639030295400L;
 
-	public static final String CONFIG_PATH = "cl://fm_html/html-process-config.xml";
+	public static final String CONFIG_PATH = "cl://fm_doc/fm-process-config.xml";
 	
 	private static DocProcessConfig INSTANCE = DocProcessConfig.loadConfigSafe( CONFIG_PATH );
 

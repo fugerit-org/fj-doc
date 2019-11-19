@@ -25,6 +25,7 @@
 	
 	<factory id="alternate-html-fm">
 		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
+		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />	
 	</factory>		
 	
 
