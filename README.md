@@ -16,11 +16,11 @@ There are five kinds of components (each components README.md contains module st
 * Doc format XSD [public](http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-0.xsd)
 
 ### 2. Feature extensions :
-* [FreeMarker template (fj-doc-freemarker)](fj-doc-freemarker/README.md)
+* [FreeMarker template, (fj-doc-freemarker)](fj-doc-freemarker/README.md) (containes a simple renderer for [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) and [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java))
 * [Java EE extension (fj-doc-ent)](fj-doc-ent/README.md)
 
 ### 3. Type Handlers (Render) :
-* [Apache POI Renderer (XLS/XLSX)(fj-doc-mod-poi)](fj-doc-mod-poi/README.md)
+* [Apache POI Renderer (fj-doc-mod-poi)](fj-doc-mod-poi/README.md) ([XLS](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java)/[XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsxPoiTypeHandler.java))
 * [Apache PdfBox Renderer (PDF)(fj-doc-mod-pdfbox)](fj-doc-mod-pdfbox/README.md)
 * [Itext 2.X Renderer (PDF/RTF/HTML)(fj-doc-mod-itext)](fj-doc-mod-itext/README.md)
 * [JXL Renderer (XLS)(fj-doc-mod-jxl)](fj-doc-mod-jxl/README.md)
