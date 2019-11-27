@@ -278,10 +278,6 @@ public class ITextDocHandler {
 	
 	protected static Table createTable( DocTable docTable, ITextHelper docHelper ) throws Exception {
 		
-		LogFacade.getLog().debug( "Handle table DONE ! -> "+docTable.getClass().getName()+" - "+Runtime.getRuntime().freeMemory()/1000/1000+" / "+Runtime.getRuntime().totalMemory()/1000/1000+" / "+Runtime.getRuntime().maxMemory()/1000/1000 );
-		
-		//int maxMem = 0;
-		
 		boolean startHeader = false;
 		Table table = new Table( docTable.getColumns() );
 		table.setBorderWidth(0);	

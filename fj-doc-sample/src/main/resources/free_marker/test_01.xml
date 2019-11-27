@@ -11,8 +11,18 @@
    -->
 
   <meta>
+  
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>  
+  
 	<info name="excel-table-id">excel-table=print</info>
-	<info name="excel-width-multiplier">450</info> 
+	<info name="excel-width-multiplier">450</info>
+	
+	<!-- you need to escape free marker expression for currentPage --> 
+	<footer-ext numbered="true" align="right">
+		<para>${r"${currentPage}"}</para>
+	</footer-ext>
+	 
   </meta>
  
   <body>

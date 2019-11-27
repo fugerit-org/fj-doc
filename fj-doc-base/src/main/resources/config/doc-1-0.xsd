@@ -61,6 +61,8 @@
 					<xsd:element ref='doc:phrase' />
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -74,6 +76,8 @@
 					<xsd:element ref='doc:phrase' />
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -89,7 +93,9 @@
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 			</xsd:sequence>
-			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />			
+			<xsd:attribute name='border-width' type='xsd:int' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -104,6 +110,8 @@
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>

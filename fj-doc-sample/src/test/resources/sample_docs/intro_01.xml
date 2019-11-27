@@ -4,10 +4,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
 
-  <meta>
-	<info name="excel-table-id">excel-table=print</info>
+  <metadata>
+  
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>  
+  
+  	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info> 
-  </meta>
+
+	<footer-ext numbered="true">
+        <para align="center">Page ${currentPage}</para>
+	</footer-ext>	
+	
+  </metadata>
  
   <body>
   	
