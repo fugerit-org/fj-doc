@@ -34,6 +34,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.fugerit.java.core.io.StreamIO;
+import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.model.DocBarcode;
@@ -189,7 +191,11 @@ public class ITextDocHandler {
 		Image image = null;
 		String url = docImage.getUrl();
 		try {
-			image = Image.getInstance( new URL( url )  );
+			if ( url.startsWith( StreamHelper.PATH_CLASSLOADER ) ) {
+				image = Image.getInstance( StreamIO.readBytes( StreamHelper.resolveStream( url ) )  );
+			} else {
+				image = Image.getInstance( new URL( url )  );	
+			}
 			if ( docImage.getScaling() != null ) {
 				image.scalePercent( docImage.getScaling().floatValue() );
 			}

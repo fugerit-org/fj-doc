@@ -20,7 +20,6 @@
  
   <body>
   	
-  	
   		<phrase>Test phrase 01</phrase>
   		
   		<phrase>Test phrase 02</phrase>
@@ -28,6 +27,14 @@
   		<phrase>Test phrase 03</phrase>
   		
   		<phrase>Test phrase 04</phrase>
+
+		<!-- load image from class loader and scale it -->
+	  
+  		<image url="cl://test/img_test.png" scaling="100"/>
+
+  		<image url="cl://test/img_test.png" scaling="50"/>
+  		
+  		<image url="cl://test/img_test.png" scaling="25"/>
   
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
@@ -44,7 +51,7 @@
     			<cell><para>Thorin</para></cell>
     			<cell><para>Oakshield</para></cell>
     			<cell><para>King</para></cell>
-    		</row>    		
+    		</row>    	
     	</table>
   </body>
   
