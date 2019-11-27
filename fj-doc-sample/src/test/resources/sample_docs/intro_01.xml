@@ -4,13 +4,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
 
-  <meta>
-	<info name="excel-table-id">excel-table=print</info>
+  <metadata>
+  
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>  
+  
+  	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info> 
-  </meta>
+
+	<footer-ext numbered="true">
+        <para align="center">Page ${currentPage}</para>
+	</footer-ext>	
+	
+  </metadata>
  
   <body>
-  	
   	
   		<phrase>Test phrase 01</phrase>
   		
@@ -19,6 +27,14 @@
   		<phrase>Test phrase 03</phrase>
   		
   		<phrase>Test phrase 04</phrase>
+
+		<!-- load image from class loader and scale it -->
+	  
+  		<image url="cl://test/img_test.png" scaling="100"/>
+
+  		<image url="cl://test/img_test.png" scaling="50"/>
+  		
+  		<image url="cl://test/img_test.png" scaling="25"/>
   
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
@@ -35,7 +51,7 @@
     			<cell><para>Thorin</para></cell>
     			<cell><para>Oakshield</para></cell>
     			<cell><para>King</para></cell>
-    		</row>    		
+    		</row>    	
     	</table>
   </body>
   

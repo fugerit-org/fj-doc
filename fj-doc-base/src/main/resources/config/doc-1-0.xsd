@@ -61,6 +61,8 @@
 					<xsd:element ref='doc:phrase' />
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -74,6 +76,8 @@
 					<xsd:element ref='doc:phrase' />
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -89,7 +93,9 @@
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 			</xsd:sequence>
-			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />			
+			<xsd:attribute name='border-width' type='xsd:int' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -104,6 +110,8 @@
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -125,7 +133,16 @@
 
 	<xsd:element name='image'>
 		<xsd:complexType mixed='true'>
-			<xsd:attribute name='url' type='xsd:string' use='optional' />
+			<xsd:attribute name='url' type='xsd:string' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>
+						Valid values are :
+						cl://pathinjar (Path inside the class loader, safest way to load the image)
+						http://imageurl (but generating machine should be able to access the url)
+						file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 			<xsd:attribute name='scaling' type='xsd:int' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
