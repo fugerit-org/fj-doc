@@ -5,21 +5,40 @@ import java.net.URL;
 import org.apache.commons.codec.binary.Base64;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.io.helper.StreamHelper;
+import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.model.DocImage;
 
 public class SourceResolverHelper {
 
 	public static final String MODE_CLASSLOADER = StreamHelper.PATH_CLASSLOADER;
 	
-	public static final String MODE_BASE64 = "base64://";
-	
-	public static byte[] resolveByte( String path ) throws Exception {
-		byte[] data = null;
-		if ( path != null ) {
+	public static String resolveImageToBase64( DocImage img ) throws Exception {
+		String path = img.getUrl();
+		String base64 = img.getBase64();
+		if ( StringUtils.isEmpty( base64 ) && path != null ) {
+			byte[] data = null;
 			if ( path.startsWith( StreamHelper.PATH_CLASSLOADER ) ) {
 				data = StreamIO.readBytes( StreamHelper.resolveStream( path ) );
-			} else if ( path.startsWith( MODE_BASE64 ) ) {
-				String base64 = path.substring( MODE_BASE64.length() );
-				data = Base64.decodeBase64( base64 );
+			} else {
+				URL url = new URL( path );
+				data = StreamIO.readBytes( url.openConnection().getInputStream() );
+			}
+			base64 = Base64.encodeBase64String( data );
+		} else {
+			throw new Exception( "Null path and base64 provided!" );
+		}
+		return base64;
+	}
+	
+	public static byte[] resolveImage( DocImage img ) throws Exception {
+		byte[] data = null;
+		String path = img.getUrl();
+		String base64 = img.getBase64();
+		if ( StringUtils.isNotEmpty( base64 ) ) {
+			data = Base64.decodeBase64( base64 );
+		} else if ( path != null ) {
+			if ( path.startsWith( StreamHelper.PATH_CLASSLOADER ) ) {
+				data = StreamIO.readBytes( StreamHelper.resolveStream( path ) );
 			} else {
 				URL url = new URL( path );
 				data = StreamIO.readBytes( url.openConnection().getInputStream() );
