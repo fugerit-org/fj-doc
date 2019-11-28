@@ -20,7 +20,7 @@ public class TestFreeMarker01DataStep extends DocProcessorBasic {
 	 */
 	private static final long serialVersionUID = 5507484422975101443L;
 
-	private static final String TEST_IMG_PATH = "test/img_test.png";
+	private static final String TEST_IMG_PATH = "test/img_test_teal.png";
 	
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {

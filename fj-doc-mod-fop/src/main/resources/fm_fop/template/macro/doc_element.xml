@@ -8,10 +8,22 @@
 	<#elseif elementType = 'DocPara'>
 		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:block>
 	<#elseif elementType = 'DocTable'>
-		<@handleTable docTable=current/>			
+		<@handleTable docTable=current/>
+	<#elseif elementType = 'DocImage'>
+		<@handleImage docImage=current/>					
 	<#else>
 		<fo:block space-after="5mm" font-weight="bold" font-size="${defaultFontSize}pt">Element type non implemented yet : ${elementType}</fo:block>
 	</#if>
+</#macro>
+
+<#macro handleImage docImage>
+	<#if (docImage.scaling)??>
+		<#assign imageScaling="height='${docImage.scaling}%' content-height='${docImage.scaling}%' content-width='scale-to-fit' scaling='uniform' width='${docImage.scaling}%'"/>
+	<#else>
+		<#assign imageScaling=""/>
+	</#if>
+	<fo:external-graphic xmlns:fo="http://www.w3.org/1999/XSL/Format" 
+		src="data:image;base64,${docImage.resolvedBase64}" ${imageScaling}/>
 </#macro>
 
 <#macro handleTable docTable>

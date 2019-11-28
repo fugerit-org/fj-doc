@@ -189,7 +189,7 @@ public class ITextDocHandler {
 		Image image = null;
 		String url = docImage.getUrl();
 		try {
-			byte[] data = SourceResolverHelper.resolveByte( url );
+			byte[] data = SourceResolverHelper.resolveImage( docImage );
 			image = Image.getInstance( data );
 			if ( docImage.getScaling() != null ) {
 				image.scalePercent( docImage.getScaling().floatValue() );

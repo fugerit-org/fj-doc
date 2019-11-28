@@ -25,6 +25,9 @@
  */
 package org.fugerit.java.doc.base.model;
 
+import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.helper.SourceResolverHelper;
+
 /**
  * 
  *
@@ -36,6 +39,8 @@ public class DocImage extends DocElement {
 	private Integer scaling;
 	
 	private String url;
+	
+	private String base64;
 
 	/**
 	 * @return the url
@@ -63,6 +68,22 @@ public class DocImage extends DocElement {
 	 */
 	public void setScaling(Integer scaling) {
 		this.scaling = scaling;
+	}
+
+	public String getBase64() {
+		return base64;
+	}
+
+	public void setBase64(String base64) {
+		this.base64 = base64;
+	}
+	
+	public String getResolvedBase64() throws Exception {
+		String res = this.getBase64();
+		if ( StringUtils.isEmpty( res ) ) {
+			res = SourceResolverHelper.resolveImageToBase64( this );
+		}
+		return res;
 	}
 	
 }

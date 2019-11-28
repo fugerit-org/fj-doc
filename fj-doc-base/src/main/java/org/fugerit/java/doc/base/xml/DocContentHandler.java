@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Properties;
 
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocBorders;
@@ -285,6 +286,10 @@ public class DocContentHandler implements ContentHandler {
 				docImage.setScaling( Integer.valueOf( scaling ) );	
 			} else {
 				docImage.setScaling( null );
+			}
+			String base64 = props.getProperty( "base64" );
+			if ( StringUtils.isNotEmpty( base64 ) ) {
+				docImage.setBase64( base64 );
 			}
 			this.currentElement = docImage;			
 		} else if ( "para".equalsIgnoreCase( qName ) ) {

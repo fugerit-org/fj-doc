@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2019-11-06
-	 * @version    : 1.0.3 (2019-11-27)
+	 * @version    : 1.0.4 (2019-11-29)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -140,10 +140,12 @@
 						cl://pathinjar (Path inside the class loader, safest way to load the image)
 						http://imageurl (but generating machine should be able to access the url)
 						file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)
+						In case of base64 just provide the tyoe (png,jpg etc.)
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name='scaling' type='xsd:int' use='optional' />
+			<xsd:attribute name='base64' type="xsd:string" use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 

@@ -29,9 +29,11 @@
   
   		<phrase>Test template page apache free marker</phrase>
   
-  		<image url="cl://test/img_test.png" scaling="100"/>
+  		<image url="cl://test/img_test_green.png" scaling="100"/>
   
-  		<image url="base64://${testBase64Img}" scaling="25"/>	
+  		<image url="cl://test/img_test_red.png" scaling="50"/>
+  
+  		<image url="png" base64="${testBase64Img}" scaling="25"/>	
   
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
