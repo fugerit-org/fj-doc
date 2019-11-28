@@ -2,7 +2,6 @@ package org.fugerit.java.doc.base.helper;
 
 import java.net.URL;
 
-import org.apache.commons.codec.binary.Base64;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -23,7 +22,7 @@ public class SourceResolverHelper {
 				URL url = new URL( path );
 				data = StreamIO.readBytes( url.openConnection().getInputStream() );
 			}
-			base64 = Base64.encodeBase64String( data );
+			base64 = Base64Helper.encodeBase64String( data );
 		} else {
 			throw new Exception( "Null path and base64 provided!" );
 		}
@@ -35,7 +34,7 @@ public class SourceResolverHelper {
 		String path = img.getUrl();
 		String base64 = img.getBase64();
 		if ( StringUtils.isNotEmpty( base64 ) ) {
-			data = Base64.decodeBase64( base64 );
+			data = Base64Helper.decodeBase64String( base64 );
 		} else if ( path != null ) {
 			if ( path.startsWith( StreamHelper.PATH_CLASSLOADER ) ) {
 				data = StreamIO.readBytes( StreamHelper.resolveStream( path ) );
