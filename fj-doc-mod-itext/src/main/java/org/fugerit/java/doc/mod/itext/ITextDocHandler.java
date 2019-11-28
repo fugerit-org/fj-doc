@@ -27,17 +27,15 @@ package org.fugerit.java.doc.mod.itext;
 
 
 import java.awt.Color;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
-import org.fugerit.java.core.io.StreamIO;
-import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.util.regex.ParamFinder;
+import org.fugerit.java.doc.base.helper.SourceResolverHelper;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocBorders;
@@ -191,11 +189,8 @@ public class ITextDocHandler {
 		Image image = null;
 		String url = docImage.getUrl();
 		try {
-			if ( url.startsWith( StreamHelper.PATH_CLASSLOADER ) ) {
-				image = Image.getInstance( StreamIO.readBytes( StreamHelper.resolveStream( url ) )  );
-			} else {
-				image = Image.getInstance( new URL( url )  );	
-			}
+			byte[] data = SourceResolverHelper.resolveByte( url );
+			image = Image.getInstance( data );
 			if ( docImage.getScaling() != null ) {
 				image.scalePercent( docImage.getScaling().floatValue() );
 			}

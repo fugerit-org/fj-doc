@@ -103,6 +103,12 @@
 			</dependency>
 			
 			<dependency>
+			    <groupId>commons-codec</groupId>
+			    <artifactId>commons-codec</artifactId>
+			    <version>1.13</version>
+			</dependency>				
+			
+			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-base</artifactId>
 				<version>${project.version}</version>
