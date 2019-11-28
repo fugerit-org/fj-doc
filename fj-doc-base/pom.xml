@@ -32,6 +32,11 @@
 			<artifactId>fj-core</artifactId>
 		</dependency>	
 	
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		</dependency>	
+	
 		<!-- java core dependancies -->
 		<dependency>
 			<groupId>javax</groupId>

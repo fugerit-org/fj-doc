@@ -1,6 +1,5 @@
 package org.fugerit.java.doc.freemarker.config;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.fugerit.java.doc.base.process.DocProcessContext;
@@ -17,12 +16,7 @@ public class FreeMarkerMapStep extends DocProcessorBasic {
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {
 		int res = super.process(context, data);
-		@SuppressWarnings("unchecked")
-		Map<String, Object> map = (Map<String, Object>)context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP );
-		if ( map == null ) {
-			map = new HashMap<>();
-			context.setAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP , map );
-		}
+		Map<String, Object> map = FreeMarkerConstants.getFreeMarkerMap( context );
 		for ( Object key : this.getCustomConfig().keySet() ) {
 			String keyFrom = key.toString();
 			String keyTo = this.getCustomConfig().getProperty( keyFrom );
