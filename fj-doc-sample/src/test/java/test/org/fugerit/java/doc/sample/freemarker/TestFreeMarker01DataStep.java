@@ -4,9 +4,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.base.helper.Base64Helper;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.base.process.DocProcessorBasic;
@@ -31,7 +31,7 @@ public class TestFreeMarker01DataStep extends DocProcessorBasic {
 		userList.add( new UserModel( "Strider" , "Aragorn II", null ) );
 		context.setAttribute( "list", userList );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( TEST_IMG_PATH ) )  {
-			String base64Test = Base64.encodeBase64String( StreamIO.readBytes( is ) );
+			String base64Test = Base64Helper.encodeBase64String( StreamIO.readBytes( is ) );
 			context.setAttribute( "testBase64Img" , base64Test );
 		}
 		return res;
