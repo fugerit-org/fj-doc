@@ -1,16 +1,22 @@
 <#global defaultBorderColor='black'>
 <#global defaultFontSize='10'>
 
+<#macro handleElementList elements>
+	<#list elements as item>
+		<@doc_element.handleElement current=item/>			    
+	</#list>	
+</#macro>
+
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
 		<fo:inline   <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:inline>
 	<#elseif elementType = 'DocPara'>
-		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:block>
+		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>
 	<#elseif elementType = 'DocImage'>
-		<@handleImage docImage=current/>					
+		<@handleImage docImage=current/>								
 	<#else>
 		<fo:block space-after="5mm" font-weight="bold" font-size="${defaultFontSize}pt">Element type non implemented yet : ${elementType}</fo:block>
 	</#if>
@@ -22,12 +28,13 @@
 	<#else>
 		<#assign imageScaling=""/>
 	</#if>
-	<fo:external-graphic xmlns:fo="http://www.w3.org/1999/XSL/Format" 
-		src="data:image;base64,${docImage.resolvedBase64}" ${imageScaling}/>
+	<fo:block>
+		<fo:external-graphic  ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format" 
+			src="data:image;base64,${docImage.resolvedBase64}"/>
+	</fo:block>
 </#macro>
 
 <#macro handleTable docTable>
-	<fo:block font-size="10pt">
 		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed">
 			<#list docTable.colWithds as currentColWidth>
 			<fo:table-column column-width="${currentColWidth}%" />	
@@ -36,17 +43,20 @@
 				<#list docTable.elementList as row>	
 				<fo:table-row>
 					<#list row.elementList as cell>
-						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>>
-							<#list cell.elementList as cellElement>
-							<@handleElement current=cellElement/>
-							</#list>
+						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/> number-columns-spanned="${cell.columnSpan}">
+							<#if (cell.elementList?size > 0)>
+								<#list cell.elementList as cellElement>
+								<@handleElement current=cellElement/>
+								</#list>
+							<#else>
+								<fo:block></fo:block>
+							</#if>
 						</fo:table-cell>
 					</#list>
 				</fo:table-row>				
 				</#list>
 			</fo:table-body>
 		</fo:table>
-	</fo:block>
 </#macro>
 
 <#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}='${calcSize}pt solid ${color}' </#if></#macro>

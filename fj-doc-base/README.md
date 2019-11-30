@@ -10,6 +10,7 @@ Basic infrastructure for generation of [fj-doc XML format](http://www.fugerit.or
 *Status* :  
 All basic features are implemented (plus helpers for other modules).
   
+*[ChangeLog](ChangeLog.md)*  
   
 *Quickstart* :
 

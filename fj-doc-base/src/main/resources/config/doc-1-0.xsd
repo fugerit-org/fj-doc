@@ -64,6 +64,7 @@
 			<xsd:attribute name='align' type='doc:alignType' use='optional' />
 			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='expected-size' type="xsd:int" use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -79,6 +80,7 @@
 			<xsd:attribute name='align' type='doc:alignType' use='optional' />
 			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='expected-size' type="xsd:int" use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -212,7 +214,7 @@
 
 	<xsd:element name='cell'>
 		<xsd:complexType>
-			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+			<xsd:sequence minOccurs='1' maxOccurs='unbounded'>
 				<xsd:choice>
 					<xsd:element ref='doc:para' />
 					<xsd:element ref='doc:table' />

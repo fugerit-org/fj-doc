@@ -30,6 +30,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
+
 /**
  * 
  *
@@ -156,8 +158,37 @@ public class DocBase extends DocElement {
 				DocInfo docInfo = (DocInfo) docElement;
 				info.setProperty( docInfo.getName() , docInfo.getContent().toString() );
 			}
-		}	
+		}
 		return info;
 	}
 	
+	private static int getMargin( Properties props, int position ) {
+		String margins = props.getProperty( GenericConsts.INFO_KEY_MARGINS );
+		return Integer.parseInt( margins.split( ";")[position] );
+	}
+	
+	public int getMarginLeft() {
+		return getMargin( this.getInfo() , GenericConsts.POSITION_MARGIN_LEFT );
+	}
+
+	public int getMarginRight() {
+		return getMargin( this.getInfo() , GenericConsts.POSITION_MARGIN_RIGHT );
+	}
+
+	public int getMarginTop() {
+		return getMargin( this.getInfo() , GenericConsts.POSITION_MARGIN_TOP );
+	}
+
+	public int getMarginBottom() {
+		return getMargin( this.getInfo() , GenericConsts.POSITION_MARGIN_BOTTOM );
+	}
+	
+	public boolean isUseHeader() {
+		return this.getDocHeader() != null && this.getDocHeader().isUseHeader();
+	}
+	
+	public boolean isUseFooter() {
+		return this.getDocFooter() != null && this.getDocFooter().isUseFooter();
+	}
+
 }
