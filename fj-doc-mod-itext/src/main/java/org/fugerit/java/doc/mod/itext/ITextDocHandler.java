@@ -35,6 +35,7 @@ import java.util.Properties;
 
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.util.regex.ParamFinder;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.helper.SourceResolverHelper;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -129,11 +130,13 @@ public class ITextDocHandler {
 	
 	private String docType;
 	
-	public final static String DOC_OUTPUT_HTML = "html";
+	public final static String MODULE = "itext";
 	
-	public final static String DOC_OUTPUT_PDF = "pdf";
+	public final static String DOC_OUTPUT_HTML = DocConfig.TYPE_HTML;
 	
-	public final static String DOC_OUTPUT_RTF = "rtf";
+	public final static String DOC_OUTPUT_PDF = DocConfig.TYPE_PDF;
+	
+	public final static String DOC_OUTPUT_RTF = DocConfig.TYPE_RTF;
 	
 	public final static String DOC_DEFAULT_FONT_NAME = "default-font-name";
 	public final static String DOC_DEFAULT_FONT_SIZE = "default-font-size";

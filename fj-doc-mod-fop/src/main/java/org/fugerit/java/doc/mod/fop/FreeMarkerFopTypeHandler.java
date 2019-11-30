@@ -20,6 +20,8 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 	
 	public static DocTypeHandler HANDLER = new FreeMarkerFopTypeHandler();
 	
+	public static final String MODULE = "fop";
+	
 	/**
 	 * 
 	 */
@@ -30,7 +32,7 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 	}
 
 	public FreeMarkerFopTypeHandler(String type) {
-		super(type);
+		super(type, MODULE);
 	}
 
 	@Override

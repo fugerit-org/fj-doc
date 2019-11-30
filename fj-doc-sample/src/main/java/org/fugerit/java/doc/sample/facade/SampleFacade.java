@@ -56,6 +56,8 @@ public class SampleFacade {
 	
 	public static final String ALT_HTML_FM = "alternate-html-fm";
 	
+	public static final String ALT_FULL_FACADE = "full-facade";
+	
 	public static DocHandlerFacade getFacade( String id ) {
 		return FACTORY.get( id );
 	}

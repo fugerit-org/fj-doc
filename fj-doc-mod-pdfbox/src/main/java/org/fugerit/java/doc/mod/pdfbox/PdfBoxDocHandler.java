@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.apache.pdfbox.contentstream.PDContentStream;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -39,6 +38,7 @@ import org.apache.pdfbox.pdmodel.font.PDCIDFont;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.fugerit.java.core.util.regex.ParamFinder;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocPhrase;
@@ -62,7 +62,7 @@ public class PdfBoxDocHandler implements AutoCloseable {
 	
 	private static HashMap<String, PDCIDFont> fonts = new HashMap<>();
 
-	public final static String DOC_OUTPUT_PDF = "pdf";
+	public final static String DOC_OUTPUT_PDF = DocConfig.TYPE_PDF;
 	
 	public final static String DOC_DEFAULT_FONT_NAME = "default-font-name";
 	public final static String DOC_DEFAULT_FONT_SIZE = "default-font-size";

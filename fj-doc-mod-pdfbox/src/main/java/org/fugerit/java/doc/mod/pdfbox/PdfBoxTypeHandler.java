@@ -11,10 +11,17 @@ import org.fugerit.java.doc.base.model.DocBase;
 
 public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7188424476250673707L;
+	
+	public static final String MODULE = "box";
+	
 	public static DocTypeHandler HANDLER = new PdfBoxTypeHandler();
 	
 	public PdfBoxTypeHandler() {
-		super( PdfBoxDocHandler.DOC_OUTPUT_PDF );
+		super( PdfBoxDocHandler.DOC_OUTPUT_PDF, MODULE );
 	}
 
 	@Override

@@ -6,6 +6,8 @@ public interface DocTypeHandler extends KeyString {
 
 	String getType();
 	
+	String getModule();
+	
 	String getMime();
 	
 	void handle( DocInput docInput, DocOutput docOutput ) throws Exception;

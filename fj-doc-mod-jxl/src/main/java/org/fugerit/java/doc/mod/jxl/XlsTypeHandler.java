@@ -53,8 +53,10 @@ public class XlsTypeHandler extends DocTypeHandlerDefault {
 
 	public static DocTypeHandler HANDLER = new XlsTypeHandler();
 	
+	public static final String MODULE = "jxl";
+	
 	public XlsTypeHandler() {
-		super( DocConfig.TYPE_XLS );
+		super( DocConfig.TYPE_XLS, MODULE );
 	}
 
 	@Override
