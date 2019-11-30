@@ -214,6 +214,8 @@ public class DocContentHandler implements ContentHandler {
 		headerFooter.setNumbered( Boolean.valueOf( numbered ).booleanValue() );
 		String borderWidth = atts.getProperty( "border-width", "0" );
 		headerFooter.setBorderWidth( Integer.valueOf( borderWidth ).intValue() );
+		String exepectedSize = atts.getProperty( "expected-size", "15" );
+		headerFooter.setExpectedSize( Integer.parseInt( exepectedSize ) );
 	}
 	
 	private DocBorders createBorders( Properties atts ) {

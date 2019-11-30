@@ -3,17 +3,45 @@
 <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 	<fo:layout-master-set>
 		<fo:simple-page-master 
-			margin-right="5mm" margin-left="5mm" margin-bottom="5mm" margin-top="5mm"
-			page-width="21cm" page-height="29.7cm" master-name="simpleA4">
-			<fo:region-body />
+			page-width="21cm" page-height="29.7cm" 
+			master-name="simpleA4" 
+			margin-left="${docBase.marginLeft}pt"
+			margin-right="${docBase.marginRight}pt"
+			margin-top="${docBase.marginTop}pt"
+			margin-bottom="${docBase.marginBottom}pt">
+			<#assign bodyMarginTop="">
+			<#assign bodyMarginBottom="">
+			<#if (docBase.useHeader)>
+				<#assign headerSize="${docBase.docHeader.expectedSize}mm">
+				<#assign bodyMarginTop=" margin-top='${headerSize}' ">
+			</#if>
+			<#if (docBase.useFooter)>
+				<#assign footerSize="${docBase.docFooter.expectedSize}mm">
+				<#assign bodyMarginBottom=" margin-bottom='${footerSize}' ">
+			</#if>									
+				<fo:region-body region-name="xsl-region-body" ${bodyMarginTop} ${bodyMarginBottom}/>
+			<#if (docBase.useHeader)>
+            	<fo:region-before region-name="xsl-region-before" extent="${headerSize}"/>
+            </#if>
+            <#if (docBase.useFooter)>
+            	<fo:region-after region-name="xsl-region-after" extent="${footerSize}"/>
+            </#if>
 		</fo:simple-page-master>
 	</fo:layout-master-set>
-	<fo:page-sequence master-reference="simpleA4">
+	<fo:page-sequence master-reference="simpleA4" initial-page-number="1">
+		<#if (docBase.useHeader)>
+			<fo:static-content flow-name="xsl-region-before">
+				<@doc_element.handleElementList elements=docBase.docHeader.elementList/>	
+	        </fo:static-content>
+        </#if>
+        <#if (docBase.useFooter)>
+	        <fo:static-content flow-name="xsl-region-after">
+	            <@doc_element.handleElementList elements=docBase.docFooter.elementList/>
+	        </fo:static-content>
+        </#if>			
 		<fo:flow flow-name="xsl-region-body" >
 			<fo:block>
-			<#list docBase.docBody.elementList as item>
-				<@doc_element.handleElement current=item/>			    
-			</#list>	
+				<@doc_element.handleElementList elements=docBase.docBody.elementList/>	
 			</fo:block>	
 		</fo:flow>
 	</fo:page-sequence>

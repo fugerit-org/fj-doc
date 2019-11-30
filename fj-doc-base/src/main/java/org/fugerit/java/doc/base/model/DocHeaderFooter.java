@@ -88,6 +88,15 @@ public class DocHeaderFooter extends DocContainer {
 	public void setNumbered(boolean numbered) {
 		this.numbered = numbered;
 	}
+	
+	private int expectedSize;
 
+	public int getExpectedSize() {
+		return expectedSize;
+	}
+
+	public void setExpectedSize(int expectedSize) {
+		this.expectedSize = expectedSize;
+	}
 	
 }
