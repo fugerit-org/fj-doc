@@ -22,7 +22,7 @@ public class HtmlTypeHandler extends DocTypeHandlerDefault {
 	public static final DocTypeHandler HANDLER = new HtmlTypeHandler();
 	
 	public HtmlTypeHandler() {
-		super( ITextDocHandler.DOC_OUTPUT_HTML );
+		super( ITextDocHandler.DOC_OUTPUT_HTML, ITextDocHandler.MODULE );
 	}
 
 	@Override

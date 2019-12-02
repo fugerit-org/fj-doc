@@ -48,8 +48,10 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	 */
 	private static final long serialVersionUID = 1175953200917290547L;
 
+	public static final String MODULE = "poi";
+	
 	public BasicPoiTypeHandler(String type) {
-		super(type);
+		super(type, MODULE);
 	}
 
 	protected abstract Workbook newWorkbook( DocInput docInput, InputStream is ) throws Exception;

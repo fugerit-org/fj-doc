@@ -23,7 +23,7 @@ public class RtfTypeHandler extends DocTypeHandlerDefault {
 	public static final DocTypeHandler HANDLER = new RtfTypeHandler();
 	
 	public RtfTypeHandler() {
-		super( ITextDocHandler.DOC_OUTPUT_RTF );
+		super( ITextDocHandler.DOC_OUTPUT_RTF, ITextDocHandler.MODULE );
 	}
 
 	@Override

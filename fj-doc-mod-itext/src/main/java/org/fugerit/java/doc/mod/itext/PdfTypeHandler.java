@@ -23,7 +23,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 	public static DocTypeHandler HANDLER = new PdfTypeHandler();
 	
 	public PdfTypeHandler() {
-		super( ITextDocHandler.DOC_OUTPUT_PDF );
+		super( ITextDocHandler.DOC_OUTPUT_PDF, ITextDocHandler.MODULE );
 	}
 
 	@Override

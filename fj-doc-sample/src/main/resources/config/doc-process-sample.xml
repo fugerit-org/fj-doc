@@ -33,6 +33,9 @@
 	</chain>
 
 	<chain id="free-marker-01-fop" extends="free-marker-01">
+	</chain>
+
+	<chain id="full-facade-01" extends="free-marker-01">
 		<step id="step-data" defaultBehaviour="CONTINUE"
 			description="Creates data necessary to FreeMarker" 
 			type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>	

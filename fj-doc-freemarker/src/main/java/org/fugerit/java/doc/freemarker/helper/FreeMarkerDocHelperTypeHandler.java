@@ -14,13 +14,15 @@ public class FreeMarkerDocHelperTypeHandler extends DocTypeHandlerDefault {
 
 	public static final String ATT_DOCBASE = "docBase";
 	
+	public static final String MODULE = "fm";
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7394516771708L;
 
 	public FreeMarkerDocHelperTypeHandler(String type, String fmDocChainId) {
-		super(type);
+		super(type, MODULE);
 		this.fmDocChainId = fmDocChainId;
 	}
 

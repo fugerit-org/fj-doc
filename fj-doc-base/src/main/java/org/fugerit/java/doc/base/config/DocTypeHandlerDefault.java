@@ -13,7 +13,7 @@ public class DocTypeHandlerDefault implements DocTypeHandler, Serializable {
 
 	private String type;
 	
-	private String key;
+	private String module;
 	
 	private String mime;
 	
@@ -28,7 +28,7 @@ public class DocTypeHandlerDefault implements DocTypeHandler, Serializable {
 
 	@Override
 	public String getKey() {
-		return this.key;
+		return createKey( this.getType() , this.getModule() ) ;
 	}
 
 	@Override
@@ -37,23 +37,28 @@ public class DocTypeHandlerDefault implements DocTypeHandler, Serializable {
 	}
 
 	@Override
+	public String getModule() {
+		return module;
+	}
+
+	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
 		
 	}
 
-	public DocTypeHandlerDefault(String type, String key, String mime) {
+	public DocTypeHandlerDefault(String type, String module, String mime) {
 		super();
 		this.type = type;
-		this.key = key;
+		this.module = module;
 		this.mime = mime;
 	}
 
-	public DocTypeHandlerDefault(String type, String mime) {
-		this( type, type, mime );
+	public DocTypeHandlerDefault(String type, String module ) {
+		this( type, module, null );
 	}
 	
-	public DocTypeHandlerDefault(String type) {
-		this( type, type, null );
+	public static final String createKey( String type, String mod ) {
+		return type+"-"+mod;
 	}
 
 }

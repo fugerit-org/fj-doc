@@ -13,8 +13,12 @@ public class DocTypeHandlerXML extends DocTypeHandlerDefault {
 
 	public static final DocTypeHandler HANDLER = new DocTypeHandlerXML();
 	
+	public static final String TYPE = DocConfig.TYPE_XML;
+	
+	public static final String MODULE = "doc";
+	
 	public DocTypeHandlerXML() {
-		super( DocConfig.TYPE_XML );
+		super( TYPE, MODULE );
 	}
 
 	@Override

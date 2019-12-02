@@ -7,11 +7,13 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.util.checkpoint.CheckpointFormatHelper;
 import org.fugerit.java.core.util.checkpoint.Checkpoints;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -80,13 +82,23 @@ public class BasicFacadeTest {
 	}
 	
 	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String type ) throws Exception {
-		File file = new File( outputFolder, baseName + "." + type);
+		DocHandlerFacade facade = SampleFacade.getFacade( facadeId );
+		DocTypeHandler handler = facade.findHandler( type );
+		StringBuilder append = new StringBuilder();
+		if ( handler == null ) {
+			throw new ConfigException( "No handler with id : "+type );
+		} else if ( !handler.getType().equalsIgnoreCase( type ) ) {
+			append.append( "_" );
+			append.append( handler.getModule() );
+		}
+		append.append( "." );
+		append.append( handler.getType() );
+		File file = new File( outputFolder, baseName + append.toString() );
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			long start = System.currentTimeMillis();
 			DocInput input = DocInput.newInput( type , reader );
 			DocOutput output = DocOutput.newOutput( fos );
-			DocHandlerFacade facade = SampleFacade.getFacade( facadeId );
 			facade.handle( input , output );
 			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+type, start );
 		}
