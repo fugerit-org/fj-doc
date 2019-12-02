@@ -1,11 +1,12 @@
 package org.fugerit.java.doc.base.facade;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.cfg.xml.FactoryCatalog;
+import org.fugerit.java.core.util.collection.ListMapStringKey;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -34,15 +35,24 @@ public class DocHandlerFacade implements Serializable {
 	
 	public static final boolean DEFAULT_ERROR_ON_DUPLICATE = false;
 	
-	private Map<String, DocTypeHandler> mapHandlers;
+	private Map<String, DocTypeHandler> mapHandlers; // map handlers registered by id
+	
+	private Map<String, ListMapStringKey<DocTypeHandler>> mapTypeHandlers;	// map handlers registered by type
 	
 	public DocHandlerFacade() {
 		this.mapHandlers = new HashMap<>();
+		this.mapTypeHandlers = new HashMap<>();
 	}
 
 	private void doRegister( DocTypeHandler handler, String id ) {
 		logger.info( "Registering handler with id {} : {}", id, handler.getClass().getName() );
-		this.mapHandlers.put( id, handler );	
+		this.mapHandlers.put( id, handler );
+		ListMapStringKey<DocTypeHandler> list = this.mapTypeHandlers.get( handler.getType() );
+		if ( list == null ) {
+			list = new ListMapStringKey<DocTypeHandler>();
+			this.mapTypeHandlers.put( handler.getType() , list );
+		}
+		list.add( handler );
 	}
 	
 	public void registerHandler( DocTypeHandler handler, boolean registerForType, boolean errorOnDuplicate ) throws Exception {
@@ -60,7 +70,7 @@ public class DocHandlerFacade implements Serializable {
 			doRegister(handler, type);
 		}
 	}
-	
+		
 	public void registerHandler( DocTypeHandler handler ) throws Exception {
 		this.registerHandler( handler, DEFAULT_REGISTER_FOR_TYPE, DEFAULT_ERROR_ON_DUPLICATE );
 	}
@@ -79,12 +89,12 @@ public class DocHandlerFacade implements Serializable {
 		return this.mapHandlers.get( id );
 	}
 	
-	public void register( String factoryCatalogPath ) {
-		
+	public ListMapStringKey<DocTypeHandler> listHandlersForType( String type ) {
+		return this.mapTypeHandlers.get( type ); 
 	}
 	
-	public void register( FactoryCatalog catalog ) {
-		
+	public Collection<DocTypeHandler> handlers() {
+		return this.mapHandlers.values();
 	}
 	
 }
