@@ -1,4 +1,4 @@
-# Fugerit Document Generation Framework (fj-doc)  
+# Venus - Fugerit Document Generation Framework (fj-doc)  
 
 Framework to produce documents in different formats starting from an XML document meta model.  
 
