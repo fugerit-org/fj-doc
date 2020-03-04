@@ -1,0 +1,131 @@
+pre {
+	font-size: 12px; /*todo - move to webknife*/
+}
+
+section blockquote p, section li p {
+	margin: 0;
+}
+
+.w-table {
+	width: 100%;
+}
+
+/******************************** TABLE OF CONTENTS ****************************/
+
+/*Table of contents button to initiate show/hide*/
+#dg-navigator 
+{
+ float: right;
+ background-color: #4d4d4d;
+ color: white;
+ text-align:right;
+ padding: 10px 20px 10px 20px;
+ margin-right: 200px;
+ border-radius: 0 0 10px 10px;
+ cursor: pointer;
+ font-weight: bold;
+}
+
+/*Table of contents container*/ 
+#dg-toc {
+	color: white;
+	background-color: #4d4d4d;
+}
+
+#dg-toc table {
+	table-layout: auto; 
+	width: 100%;
+}
+
+#dg-toc div {
+	padding: 15px 0 15px 0;
+}
+
+/*Columns in table of contents*/
+
+#dg-toc td {
+	border-right: 1px solid #666;
+	vertical-align: top;
+	text-align: left;
+	padding: 0 20px 0 20px;
+}
+
+#dg-toc ul {
+	padding: 0;
+	list-style-type: none;
+}
+
+#dg-toc li {
+	font-weight: bold;
+}
+
+#dg-toc table td a {
+	color: white;
+	font-weight: normal;
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+#dg-toc table td a:hover { 
+	text-decoration: underline;
+}
+
+#dg-tocFixedColumn { 
+	border-right: none; 
+}
+
+#dg-toc table #dg-tocFixedColumn a {
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+.dg-tocGroup {
+	width: 22%;
+}
+
+.dg-tocHeading {
+	font-size: 16px;
+}
+
+.dg-tocIcon {width: 18px; height: 18px; float: left;}
+.dg-tocIcon svg {fill: white;}
+
+/*
+	Page table of contents
+*/
+
+.dg-pageToc {
+	list-style: none;
+	padding: 10px;
+	border: 1px solid #999;
+	background-color: #eee;
+}
+
+/*
+	Class to make a heading look invisible in web page, but still appear in the PDF table of contents
+		- display:none, visibily: hidden, zero dimensions, and offscreen positioning don't work
+		- so instead take it out of the flow and make it small and translucent
+*/
+
+.dg-hiddenTitle {
+	display: block;
+	border: none;
+	margin: 0;
+	padding: 0;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	background-color: transparent;
+}
+
+.dg-fakeHeading { /*todo - move to webknife*/
+	text-decoration:none;
+	font-weight: bold;
+	color: #385691;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #999; 
+	margin: 20px 0 20px 0;
+	font-size: 16px; 
+	padding-bottom: 4px;
+}

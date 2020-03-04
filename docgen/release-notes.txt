@@ -1,0 +1,3 @@
+﻿0.3.4.12
+--------
+Added documentation using [DocGen](http://mtmacdonald.github.io/docgen/docs/index.html).
