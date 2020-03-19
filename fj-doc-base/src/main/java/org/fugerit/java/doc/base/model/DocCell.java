@@ -166,6 +166,14 @@ public class DocCell extends DocContainer implements DocStyle {
 		this.foreColor = foreColor;
 	}
 	
+	public int getRowSpan() {
+		int res = this.getRSpan();
+		if ( this.getRSpan() < 1 ) {
+			res = 1;
+		}
+		return res;
+	}
+	
 	public int getColumnSpan() {
 		int res = this.getCSpan();
 		if ( this.getCSpan() < 1 ) {

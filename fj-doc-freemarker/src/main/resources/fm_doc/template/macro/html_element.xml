@@ -19,7 +19,8 @@
 		<#list docTable.elementList as row>	
 		<tr>
 			<#list row.elementList as cell>
-				<td id="cell_${row?index}_${cell?index}" style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/>">
+				<!-- ${cell.docBorders} -->
+				<td id="cell_${row?index}_${cell?index}" style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
@@ -30,7 +31,7 @@
 	</table>
 </#macro>
 
-<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}='${calcSize}pt solid ${color}' </#if></#macro>
+<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}: ${calcSize}px solid ${color}; </#if></#macro>
 
 <#macro handleBorders docBorders>
 	<#if (docBorders.borderColorTop)??><#assign borderColorTop="${docBorders.borderColorTop}"/><#else><#assign borderColorTop="${defaultBorderColor}"/></#if>
@@ -42,6 +43,10 @@
 	<@handleBorder mode='border-left' size=docBorders.borderWidthLeft color=borderColorLeft/>
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
+
+<#macro handleRowspan rowspanValue> rowspan="${rowspanValue}" </#macro>
+
+<#macro handleColspan colspanValue> colspan="${colspanValue}" </#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;</#if></#macro>
 
