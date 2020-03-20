@@ -20,6 +20,10 @@ public class DocPhrase extends DocElement implements DocStyle {
 	
 	private Float leading;
 	
+	private String link;
+	
+	private String anchor;
+	
 	public Float getLeading() {
 		return leading;
 	}
@@ -95,10 +99,26 @@ public class DocPhrase extends DocElement implements DocStyle {
 		this.text = text;
 	}
 
-
-
 	public String toString() {
 		return super.toString()+"[text:"+this.getText()+"]";
 	}
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
+	public String getAnchor() {
+		return anchor;
+	}
+
+	public void setAnchor(String anchor) {
+		this.anchor = anchor;
+	}
+	
+	
 	
 }

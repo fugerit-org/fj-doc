@@ -33,6 +33,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -55,6 +56,7 @@ import org.fugerit.java.doc.base.model.DocStyle;
 import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
 
+import com.lowagie.text.Anchor;
 import com.lowagie.text.Cell;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
@@ -223,7 +225,18 @@ public class ITextDocHandler {
 		int style = docPhrase.getStyle();
 		String fontName = docPhrase.getFontName();
 		Font f = createFont(fontName, docPhrase.getSize(), style, docHelper, docPhrase.getForeColor() );
-		Phrase p = new Phrase( text, f );
+		Phrase p = null;
+		if ( StringUtils.isNotEmpty( docPhrase.getLink() ) ) {
+			Anchor a = new Anchor( text , f );
+			a.setReference( docPhrase.getLink() );
+			p = a;
+		} else if ( StringUtils.isNotEmpty( docPhrase.getAnchor() ) ) {
+			Anchor a = new Anchor( text , f );
+			a.setName( docPhrase.getAnchor() );
+			p = a;		
+		} else {
+			p = new Phrase( text, f );
+		}
 		if (fontMap != null) {
 			fontMap.add( f );
 		}

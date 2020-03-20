@@ -335,6 +335,14 @@ public class DocContentHandler implements ContentHandler {
 			if ( leading != null ) {
 				docPhrase.setLeading( Float.valueOf( leading ) );
 			}
+			String link = props.getProperty( "link" );
+			if ( link != null ) {
+				docPhrase.setLink( link  );
+			}
+			String anchor = props.getProperty( "anchor" );
+			if ( anchor != null ) {
+				docPhrase.setAnchor( anchor );
+			}
 			this.currentElement = docPhrase;			
 		} else if ( "barcode".equalsIgnoreCase( qName ) ) {
 			DocBarcode barcode = new DocBarcode();

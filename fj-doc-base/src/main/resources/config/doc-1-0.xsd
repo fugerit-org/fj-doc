@@ -181,7 +181,9 @@
 			<xsd:attribute name='id' type='xsd:string' use='optional' />
 			<xsd:attribute name='style' type='doc:styleType' use='optional' />
 			<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
-			<xsd:attribute name='size' type="xsd:int" use='optional' />		
+			<xsd:attribute name='size' type="xsd:int" use='optional' />
+			<xsd:attribute name='link' type="xsd:string" use='optional' />
+			<xsd:attribute name='anchor' type="xsd:string" use='optional' />				
 		</xsd:complexType>
 	</xsd:element>
 

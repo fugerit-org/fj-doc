@@ -1,3 +1,7 @@
+Version 2.2.3.3 (2020-03-20)
+----------------------------
+- Added link and anchor support in freemarker and itext modules
+
 Version 2.2.3.2 (2020-03-19)
 ----------------------------
 - Added rowspan, colspan and borders handling in freemarker html modules
