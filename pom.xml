@@ -10,7 +10,7 @@
 
 	<name>fj-doc</name>
 	<description>Fugerit Document Generation Framework (fj-doc)</description>
-	<url>http://www.fugerit.org/java/</url>
+	<url>https://www.fugerit.org/perm/venus/</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,13 +51,13 @@
 			<name>Matteo a.k.a. Fugerit</name>
 			<email>m@fugerit.org</email>
 			<organization>Fugerit</organization>
-			<organizationUrl>http://www.fugerit.org</organizationUrl>
+			<organizationUrl>https://www.fugerit.org</organizationUrl>
 		</developer>
 		<developer>
 			<name>Daneel</name>
 			<email>d@fugerit.org</email>
 			<organization>Fugerit</organization>
-			<organizationUrl>http://www.fugerit.org</organizationUrl>
+			<organizationUrl>https://www.fugerit.org</organizationUrl>
 		</developer>
 	</developers>
 
@@ -343,7 +343,7 @@
 	</profiles>
 
 	<organization>
-		<url>http://www.fugerit.org</url>
+		<url>https://www.fugerit.org</url>
 		<name>Fugerit</name>
 	</organization>
 	

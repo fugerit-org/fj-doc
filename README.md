@@ -13,7 +13,7 @@ There are five kinds of components (each components README.md contains module st
 
 ### 1. Framework core :
 * [Core library (fj-doc-base)](fj-doc-base/README.md)
-* Doc format XSD [public](http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-0.xsd)
+* Doc format XSD [public](https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-0.xsd)
 
 ### 2. Feature extensions :
 * [FreeMarker template, (fj-doc-freemarker)](fj-doc-freemarker/README.md) (containes a simple renderer for [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) and [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java))
@@ -33,5 +33,5 @@ Basically the same as type handlers but based on libraries non available on Mave
 You can find in them in a dedicated repository [fj-doc-ext](https://gitlab.com/fugerit-org/fj-doc-ext)  
 
 *About javadoc*  
-Javadoc are far from being complete, but you can find latest version at [http://www.fugerit.org](http://www.fugerit.org/data/java/javadoc/)  
+Javadoc are far from being complete, but you can find latest version at [https://www.fugerit.org](https://www.fugerit.org/data/java/javadoc/)  
 Note that, being an open source project hosted on maven central, you can find release javadoc on [javadoc.io](https://javadoc.io/doc/org.fugerit.java/fj-doc-base/)

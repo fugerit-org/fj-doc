@@ -1,8 +1,8 @@
 {
 	"title" : "Venus (Fugerit Document Generation Framework)",
 	"name": "Venus",
-	"version" : "0.2.3.1",
-	"date" : "05/03/2020",
+	"version" : "0.3.0.0",
+	"date" : "31/03/2020",
 	"organization" : {
 		"name" : "Fugerit Org",
 		"url" : "https://www.fugerit.org"

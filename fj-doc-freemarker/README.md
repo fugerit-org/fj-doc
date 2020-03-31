@@ -5,7 +5,7 @@
 [back to fj-doc index](../README.md)
 
 *Description* :  
-Allow generation of [fj-doc XML format](http://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) processing Apache FreeMarker templates.
+Allow generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) processing Apache FreeMarker templates.
 
 *Status* :  
 All basic features are implemented.  
