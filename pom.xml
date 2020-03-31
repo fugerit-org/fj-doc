@@ -5,7 +5,7 @@
 	<groupId>org.fugerit.java</groupId>
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.2-SNAPSHOT</version>
+	<version>0.3.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -14,12 +14,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java-version-compliance>1.7</java-version-compliance>
+		<java-version-compliance>1.8</java-version-compliance>
 		<j2ee-version-compliance>6.0</j2ee-version-compliance>
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 	    <maven.test.skip>true</maven.test.skip>
-		<fj-version>0.6.5.6</fj-version>
+		<fj-version>0.7.0.0</fj-version>
 	    <!-- maven plugin versions -->
 	    <mvn-source-version>3.1.0</mvn-source-version>
 	    <mvn-javadoc-version>3.1.0</mvn-javadoc-version>
