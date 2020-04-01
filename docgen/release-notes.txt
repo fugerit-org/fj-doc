@@ -1,8 +1,11 @@
-﻿0.3.0.1 (2020-04-01)
+﻿0.3.0.2 (2020-04-01)
 --------------------
 + Change of fj-core reference
 
+0.3.0.1 (2020-04-01) [deprecated]
+--------------------
++ Better use 0.3.0.2
 
-0.3.4.12
---------
-+ Added documentation using [DocGen](http://mtmacdonald.github.io/docgen/docs/index.html).
+0.3.0.0 (2020-03-31)
+--------------------
++ Java 8 is the minimum version supported
