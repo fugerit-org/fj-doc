@@ -5,7 +5,7 @@
 	<groupId>org.fugerit.java</groupId>
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.3.0.4</version>
+	<version>0.3.1.0</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -19,23 +19,23 @@
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 	    <maven.test.skip>true</maven.test.skip>
-		<fj-version>0.7.0.3</fj-version>
+		<fj-version>0.7.1.0</fj-version>
 	    <!-- maven plugin versions -->
-	    <mvn-source-version>3.1.0</mvn-source-version>
-	    <mvn-javadoc-version>3.1.0</mvn-javadoc-version>
-	    <mvn-jar-version>3.1.2</mvn-jar-version>
-	    <mvn-shade-version>3.2.1</mvn-shade-version>	    
-	    <!-- dependancy library versions -->    
-	    <slf4j-version>1.7.26</slf4j-version>		
-	    <poi-version>3.17</poi-version>
-	    <dbcp-version>1.4</dbcp-version>
-	    <log4j-version>1.2.17</log4j-version>
+	    <mvn-source-version>3.2.1</mvn-source-version>
+	    <mvn-javadoc-version>3.2.0</mvn-javadoc-version>
+	    <mvn-jar-version>3.2.0</mvn-jar-version>
+	    <mvn-shade-version>3.2.2</mvn-shade-version>		    
+	    <!-- logging dependancies -->    
+	    <slf4j-version>1.7.30</slf4j-version>		
+	    <poi-version>4.1.2</poi-version>
 	    <!-- release dependancies -->
 	    <nexus-version>1.6.8</nexus-version>
 	    <mvn-gpg-version>1.6</mvn-gpg-version>	
 	    <!-- testing dependancies -->
+	    <dbcp-version>1.4</dbcp-version>
+	    <log4j-slf4j-impl-version>2.13.1</log4j-slf4j-impl-version>	    
 	    <junit-version>4.12</junit-version>
-	    <hsqldb-version>2.3.4</hsqldb-version>	   	    
+	    <hsqldb-version>2.5.0</hsqldb-version>	       	    
 	</properties>
 
 	<licenses>
@@ -89,12 +89,6 @@
 	<dependencyManagement>
 	
 		<dependencies>
-
-	        <dependency>
-	            <groupId>org.hsqldb</groupId>
-				<artifactId>hsqldb</artifactId>
-				<version>${hsqldb-version}</version>
-			</dependency>			
 
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
@@ -164,47 +158,10 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<!-- logging -->
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${log4j-version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-api</artifactId>
-				<version>${slf4j-version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>jcl-over-slf4j</artifactId>
-				<version>${slf4j-version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-log4j12</artifactId>
-				<version>${slf4j-version}</version>
-			</dependency>		
-
-			<dependency>
-			    <groupId>commons-dbcp</groupId>
-			    <artifactId>commons-dbcp</artifactId>
-			    <version>${dbcp-version}</version>
-			</dependency>	
-
 			<dependency>
 			    <groupId>org.apache.poi</groupId>
 			    <artifactId>poi-ooxml</artifactId>
 			    <version>${poi-version}</version>
-			</dependency>
-
-			<!-- for testing -->
-			
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit-version}</version>
-				<scope>test</scope>
 			</dependency>
 		
 		</dependencies>
@@ -231,6 +188,39 @@
 	</build>
 
 	<dependencies>
+
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j-version}</version>
+			<scope>test</scope>
+		</dependency>	
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-slf4j-impl</artifactId>
+		    <version>${log4j-slf4j-impl-version}</version>
+		    <scope>test</scope>
+		</dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>${hsqldb-version}</version>
+            <scope>test</scope>
+        </dependency>			
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit-version}</version>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 

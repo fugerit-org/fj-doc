@@ -1,4 +1,18 @@
-﻿0.3.0.4 (2020-04-01)
+﻿0.3.1.0 (2020-04-13)
+--------------------
++ Changed fj-core version from 0.7.0.9 to 0.7.1.0
++ Changed maven-source-plugin version from 3.1.0 to 3.2.1
++ Changed javadoc-source-plugin version from 3.1.0 to 3.2.0
++ Changed jar-source-plugin version from 3.1.2 to 3.2.0
++ Changed shade-source-plugin version from 3.2.1 to 3.2.2
++ Changed apache poi version from 4.1.0 to 4.1.2
++ Changed hsqldb version from 2.3.4 to 2.5.0
++ Changed log4j version from 1.2.17 to 2.13.1
++ Minor update to javadoc
++ Added log4j2 configuration file
++ Added logger test tool
+
+0.3.0.4 (2020-04-01)
 --------------------
 + changed reference to fj-core 0.7.0.4
 
