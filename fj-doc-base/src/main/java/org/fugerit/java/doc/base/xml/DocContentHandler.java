@@ -35,6 +35,7 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocBorders;
+import org.fugerit.java.doc.base.model.DocBr;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.model.DocContainer;
 import org.fugerit.java.doc.base.model.DocElement;
@@ -44,6 +45,7 @@ import org.fugerit.java.doc.base.model.DocHeaderFooter;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.model.DocImage;
 import org.fugerit.java.doc.base.model.DocInfo;
+import org.fugerit.java.doc.base.model.DocNbsp;
 import org.fugerit.java.doc.base.model.DocPageBreak;
 import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.model.DocPhrase;
@@ -235,6 +237,56 @@ public class DocContentHandler implements ContentHandler {
 		return docBorders;
 	}
 	
+	private static void valuePhrase( DocPhrase docPhrase, Properties props ) {
+		// setting phrase size
+		docPhrase.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
+		// setting phrase style
+		String style = props.getProperty( "style" );
+		docPhrase.setStyle( DocPara.parseStyle( style ) );
+		//leading
+		String leading = props.getProperty( "leading" );
+		if ( leading != null ) {
+			docPhrase.setLeading( Float.valueOf( leading ) );
+		}
+		String link = props.getProperty( "link" );
+		if ( link != null ) {
+			docPhrase.setLink( link  );
+		}
+		String anchor = props.getProperty( "anchor" );
+		if ( anchor != null ) {
+			docPhrase.setAnchor( anchor );
+		}
+	}
+	
+	private static void valuePara( DocPara docPara, Properties props ) {
+		// setting paragraph style
+		String style = props.getProperty( "style" );
+		docPara.setStyle( DocPara.parseStyle( style ) );
+		// setting paragraph align
+		String align = props.getProperty( "align" );
+		docPara.setAlign( getAlign( align ) );
+		String fontName = props.getProperty(  "font-name" );
+		docPara.setFontName( fontName );
+		String leading = props.getProperty( "leading" );
+		docPara.setBackColor( props.getProperty( "back-color" ) );
+		docPara.setForeColor( props.getProperty( "fore-color" ) );
+		docPara.setFormat( props.getProperty( "format" ) );
+		docPara.setType( props.getProperty( "type" ) );
+		if ( leading != null ) {
+			docPara.setLeading( Float.valueOf( leading ) );
+		}
+		// setting paragraph size
+		docPara.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
+		String spaceBefore = props.getProperty( "space-before" );
+		String spaceAfter = props.getProperty( "space-after" );
+		if ( spaceBefore != null ) {
+			docPara.setSpaceBefore( Float.valueOf( spaceBefore ) );
+		}
+		if ( spaceAfter != null ) {
+			docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
+		}			
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
@@ -296,53 +348,22 @@ public class DocContentHandler implements ContentHandler {
 			this.currentElement = docImage;			
 		} else if ( "para".equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
-			// setting paragraph style
-			String style = props.getProperty( "style" );
-			docPara.setStyle( DocPara.parseStyle( style ) );
-			// setting paragraph align
-			String align = props.getProperty( "align" );
-			docPara.setAlign( getAlign( align ) );
-			String fontName = props.getProperty(  "font-name" );
-			docPara.setFontName( fontName );
-			String leading = props.getProperty( "leading" );
-			docPara.setBackColor( props.getProperty( "back-color" ) );
-			docPara.setForeColor( props.getProperty( "fore-color" ) );
-			docPara.setFormat( props.getProperty( "format" ) );
-			docPara.setType( props.getProperty( "type" ) );
-			if ( leading != null ) {
-				docPara.setLeading( Float.valueOf( leading ) );
-			}
-			// setting paragraph size
-			docPara.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
-			String spaceBefore = props.getProperty( "space-before" );
-			String spaceAfter = props.getProperty( "space-after" );
-			if ( spaceBefore != null ) {
-				docPara.setSpaceBefore( Float.valueOf( spaceBefore ) );
-			}
-			if ( spaceAfter != null ) {
-				docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
-			}				
+			valuePara(docPara, props);
 			this.currentElement = docPara;
+		} else if ( "br".equalsIgnoreCase( qName ) ) {
+			DocBr docBr = new DocBr();
+			valuePhrase(docBr, props);
+			docBr.setText( "\n" );
+			this.currentElement = docBr;			
+		} else if ( "nbsp".equalsIgnoreCase( qName ) ) {
+			DocNbsp docNbsp = new DocNbsp();
+			valuePhrase(docNbsp, props);
+			int length = Integer.parseInt( props.getProperty( "length", "2" ) );
+			docNbsp.setLength( length );
+			this.currentElement = docNbsp;					
 		} else if ( "phrase".equalsIgnoreCase( qName ) ) {
 			DocPhrase docPhrase = new DocPhrase();
-			// setting phrase size
-			docPhrase.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
-			// setting phrase style
-			String style = props.getProperty( "style" );
-			docPhrase.setStyle( DocPara.parseStyle( style ) );
-			//leading
-			String leading = props.getProperty( "leading" );
-			if ( leading != null ) {
-				docPhrase.setLeading( Float.valueOf( leading ) );
-			}
-			String link = props.getProperty( "link" );
-			if ( link != null ) {
-				docPhrase.setLink( link  );
-			}
-			String anchor = props.getProperty( "anchor" );
-			if ( anchor != null ) {
-				docPhrase.setAnchor( anchor );
-			}
+			valuePhrase(docPhrase, props);
 			this.currentElement = docPhrase;			
 		} else if ( "barcode".equalsIgnoreCase( qName ) ) {
 			DocBarcode barcode = new DocBarcode();

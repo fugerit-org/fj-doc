@@ -126,12 +126,25 @@
 					<xsd:element ref='doc:table' />
 					<xsd:element ref='doc:image' />
 					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:nbsp' />
+					<xsd:element ref='doc:br' />
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 				<xsd:element ref='doc:page-break' />
 			</xsd:choice>
 		</xsd:complexType>
 	</xsd:element>
+
+	<xsd:element name='nbsp'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='length' type='xsd:int' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='br'>
+		<xsd:complexType mixed='true'>
+		</xsd:complexType>
+	</xsd:element>	
 
 	<xsd:element name='image'>
 		<xsd:complexType mixed='true'>
@@ -222,6 +235,8 @@
 					<xsd:element ref='doc:table' />
 					<xsd:element ref='doc:image' />
 					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:nbsp' />
+					<xsd:element ref='doc:br' />
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 			</xsd:sequence>

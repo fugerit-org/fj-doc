@@ -1,4 +1,9 @@
-﻿0.3.1.0 (2020-04-13)
+﻿0.3.1.1 (2020-05-05)
+--------------------
++ Added element br (for nw line) [supported only in mod freemarker and itext]
++ Added element nbsp (for spacer) [supported only in mod freemarker and itext]
+
+0.3.1.0 (2020-04-13)
 --------------------
 + Changed fj-core version from 0.7.0.9 to 0.7.1.0
 + Changed maven-source-plugin version from 3.1.0 to 3.2.1

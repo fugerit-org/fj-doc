@@ -11,6 +11,10 @@
 		<#else>
 		<span style="<@handleStyle styleValue=current.style/>">${current.text}</span>
 		</#if>
+	<#elseif elementType = 'DocNbsp'>
+		&nbsp;
+	<#elseif elementType = 'DocBr'>
+		<br/>		
 	<#elseif elementType = 'DocPara'>
 		<p style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</p>
 	<#elseif elementType = 'DocTable'>
