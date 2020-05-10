@@ -5,7 +5,7 @@
 [back to fj-doc index](../README.md)    
 
 *Description* :  
-Helper for generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) 
+Helper for generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd) 
 though J2EE infrastructure (for example jsp).
 
 *Status* :  

@@ -85,6 +85,16 @@ public class DocBase extends DocElement {
 	
 	private HashMap<String, DocElement> idMap;
 	
+	private String xsdVersion;
+	
+	public String getXsdVersion() {
+		return xsdVersion;
+	}
+
+	public void setXsdVersion(String xsdVersion) {
+		this.xsdVersion = xsdVersion;
+	}
+
 	public void setId( String id, DocElement element ) {
 		this.idMap.put( id , element );
 	}

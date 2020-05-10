@@ -64,6 +64,8 @@ import org.xml.sax.SAXException;
  */
 public class DocContentHandler implements ContentHandler {
 	
+	private static final String XSD_BASE = "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-";
+	
 	private static final String[] ELEMENT_CONTAINER = { "table", 
 														"row", 
 														"cell", 
@@ -299,6 +301,16 @@ public class DocContentHandler implements ContentHandler {
 		}
 		if ( "doc".equalsIgnoreCase( qName ) ) {
 			this.docBase = new DocBase();
+			for ( Object key : props.keySet() ) {
+				String k = String.valueOf( key );
+				if ( k.contains( "schemaLocation" ) ) {
+					String value = props.getProperty( k );
+					if ( value.contains( XSD_BASE ) ) {
+						String xsdVersion = value.substring( XSD_BASE.length(), value.length()-4 );
+						this.docBase.setXsdVersion( xsdVersion );
+					}
+				}
+			}
 		} else if ( "meta".equalsIgnoreCase( qName ) || "metadata".equalsIgnoreCase( qName ) ) {
 			DocContainer docMeta = this.docBase.getDocMeta();
 			this.currentElement = docMeta;

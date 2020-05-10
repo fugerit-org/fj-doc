@@ -1,4 +1,9 @@
-﻿0.3.1.1 (2020-05-05)
+﻿0.3.2.0 (2020-05-10)
+--------------------
++ Added xsd version 1.1
++ Check for maximum supported version
+
+0.3.1.1 (2020-05-05)
 --------------------
 + Added element br (for nw line) [supported only in mod freemarker and itext]
 + Added element nbsp (for spacer) [supported only in mod freemarker and itext]

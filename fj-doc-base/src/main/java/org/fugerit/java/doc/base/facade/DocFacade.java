@@ -37,6 +37,7 @@ import javax.xml.parsers.SAXParser;
 
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.Result;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.XMLValidator;
 import org.fugerit.java.core.xml.sax.XMLFactorySAX;
 import org.fugerit.java.core.xml.sax.XMLValidatorSAX;
@@ -59,6 +60,8 @@ import org.xml.sax.InputSource;
  */
 public class DocFacade {
 
+	public static final String CURRENT_VERSION = "1-1";
+	
 	private static Logger logger = LoggerFactory.getLogger( DocFacade.class );
 	
 	private static final Properties DEFAULT_PARAMS = new Properties();
@@ -83,7 +86,7 @@ public class DocFacade {
 	}
 	
 	private static final String DTD = "/config/doc-1-0.dtd";
-	private static final String XSD = "/config/doc-1-0.xsd";
+	private static final String XSD = "/config/doc-"+CURRENT_VERSION+".xsd";
 	
 	private static byte[] readData( String res, byte[] alreadRead ) {
 		byte[] data = alreadRead;
@@ -142,6 +145,10 @@ public class DocFacade {
 		parser.parse( new InputSource(is), dh);
 		DocBase docBase = dch.getDocBase();
 		is.close();
+		String xsdVersion = docBase.getXsdVersion();
+		if ( StringUtils.isNotEmpty( xsdVersion ) && xsdVersion.compareTo( CURRENT_VERSION ) > 0 ) {
+			logger.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, CURRENT_VERSION  );
+		}
 		return docBase;
 	}	
 	

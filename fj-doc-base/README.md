@@ -5,7 +5,7 @@
 [back to fj-doc index](../README.md)  
 
 *Description* :  
-Basic infrastructure for generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd).
+Basic infrastructure for generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd).
 
 *Status* :  
 All basic features are implemented (plus helpers for other modules).
@@ -26,7 +26,7 @@ You must write a xml meta model using the [fj-doc XML format](../fj-doc-sample/s
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd" > 
   <meta>
 	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info> 

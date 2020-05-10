@@ -2,11 +2,11 @@
 <!--
 
 	/*
-	 * @(#)doc-1-0.xsd
+	 * @(#)doc-1-1.xsd
 	 *
 	 * @project    : org.fugerit.java.doc.base
-	 * @creation   : 2019-11-06
-	 * @version    : 1.0.4 (2019-11-29)
+	 * @creation   : 2020-05-10
+	 * @version    : 1.1.0 (2020-05-10)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -18,7 +18,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd" > 	
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd" > 	
 </doc>	
 	
 -->
@@ -126,12 +126,25 @@
 					<xsd:element ref='doc:table' />
 					<xsd:element ref='doc:image' />
 					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:nbsp' />
+					<xsd:element ref='doc:br' />
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 				<xsd:element ref='doc:page-break' />
 			</xsd:choice>
 		</xsd:complexType>
 	</xsd:element>
+
+	<xsd:element name='nbsp'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='length' type='xsd:int' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='br'>
+		<xsd:complexType mixed='true'>
+		</xsd:complexType>
+	</xsd:element>	
 
 	<xsd:element name='image'>
 		<xsd:complexType mixed='true'>
@@ -222,6 +235,8 @@
 					<xsd:element ref='doc:table' />
 					<xsd:element ref='doc:image' />
 					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:nbsp' />
+					<xsd:element ref='doc:br' />
 					<xsd:element ref='doc:barcode' />
 				</xsd:choice>
 			</xsd:sequence>

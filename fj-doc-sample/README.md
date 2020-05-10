@@ -5,7 +5,7 @@
 [back to fj-doc index](../README.md)  
 
 *Description* :  
-Tutorial for usage of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd).
+Tutorial for usage of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd).
 
 *Status* :  
 Full examples of fj-doc-core, fj-doc-freemarker and most type handler modules.

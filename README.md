@@ -13,7 +13,7 @@ There are five kinds of components (each components README.md contains module st
 
 ### 1. Framework core :
 * [Core library (fj-doc-base)](fj-doc-base/README.md)
-* Doc format XSD [public](https://www.fugerit.org/data/java/doc/xsd/doc-1-0.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-0.xsd)
+* Doc format XSD [public](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-1.xsd)
 
 ### 2. Feature extensions :
 * [FreeMarker template, (fj-doc-freemarker)](fj-doc-freemarker/README.md) (containes a simple renderer for [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) and [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java))
