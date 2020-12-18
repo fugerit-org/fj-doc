@@ -1,4 +1,10 @@
-﻿0.3.2.0 (2020-05-10)
+﻿0.3.3.0 (2020-12-18)
+--------------------
++ Changed free marker template extension from .xml to .ftl
++ Upgrade free marker version from 2.3.29 to 2.3.30
++ Upgrade fj-core version to 0.7.4.0
+
+0.3.2.0 (2020-05-10)
 --------------------
 + Added xsd version 1.1
 + Check for maximum supported version

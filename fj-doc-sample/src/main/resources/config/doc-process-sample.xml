@@ -29,7 +29,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="test_01.xml"/>
+			param01="test_01.ftl"/>
 	</chain>
 
 	<chain id="free-marker-01-fop" extends="free-marker-01">
@@ -47,7 +47,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="test_01.xml"/>
+			param01="test_01.ftl"/>
 	</chain>
 
 	<chain id="free-marker-02" extends="shared">
@@ -62,7 +62,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="test_02.xml"/>
+			param01="test_02.ftl"/>
 	</chain>
 
 	<chain id="free-marker-color-test" extends="shared">
@@ -77,7 +77,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="color_test.xml"/>
+			param01="color_test.ftl"/>
 	</chain>
 
 	<chain id="free-marker-format-test" extends="shared">
@@ -92,7 +92,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="format_test.xml"/>
+			param01="format_test.ftl"/>
 	</chain>
 
 	<chain id="basic" extends="shared">
@@ -107,7 +107,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="basic.xml"/>
+			param01="basic.ftl"/>
 	</chain>
 
 </doc-process>

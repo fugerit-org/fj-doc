@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<#import "/macro/doc_element.xml" as doc_element>
+<#import "/macro/doc_element.ftl" as doc_element>
 <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 	<fo:layout-master-set>
 		<fo:simple-page-master 

@@ -42,7 +42,7 @@
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
 			<#list userList as user>
-				<#include "/include/test_01_row.xml">
+				<#include "/include/test_01_row.ftl">
 			</#list>   		
     	</table>
   </body>
