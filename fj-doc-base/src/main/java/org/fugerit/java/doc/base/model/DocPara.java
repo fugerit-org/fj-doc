@@ -33,6 +33,7 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocPara extends DocElement implements DocStyle {
 
+	public static final int DEFAULT_HEAD_LEVEL = 0;
 
 	public static final int STYLE_NORMAL = 1;
 	public static final int STYLE_BOLD = 2;
@@ -58,14 +59,13 @@ public class DocPara extends DocElement implements DocStyle {
 	
 	private String text;
 
-	
-	
 	private String foreColor;
 	
 	private String backColor;	
 	
-	
 	private String fontName;
+	
+	private int headLevel;
 	
 	public String getFontName() {
 		return fontName;
@@ -169,7 +169,11 @@ public class DocPara extends DocElement implements DocStyle {
 	}
 	
 	public static int parseStyle( String style ) {
-		int result = STYLE_NORMAL;
+		return parseStyle( style, STYLE_NORMAL );
+	}
+	
+	public static int parseStyle( String style, int defaultStype ) {
+		int result = defaultStype;
 		if ( "bold".equalsIgnoreCase( style ) ) {
 			result = STYLE_BOLD;
 		} else if ( "underline".equalsIgnoreCase( style ) ) {
@@ -218,6 +222,13 @@ public class DocPara extends DocElement implements DocStyle {
 		this.align = align;
 	}
 
+	public int getHeadLevel() {
+		return headLevel;
+	}
+
+	public void setHeadLevel(int headLevel) {
+		this.headLevel = headLevel;
+	}
 
 	public String toString() {
 		return super.toString()+"[text:"+this.getText()+"]";

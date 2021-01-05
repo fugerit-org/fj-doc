@@ -1,4 +1,9 @@
-﻿0.3.3.0 (2020-12-18)
+﻿0.3.3.1 (2021-01-05)
+--------------------
++ Upgrade fj-core version to 0.7.4.8
++ Added support for headings level 1/7 (doc-1-2.xsd) [currently supported only on freemarker html renderer) 
+
+0.3.3.0 (2020-12-18)
 --------------------
 + Changed free marker template extension from .xml to .ftl
 + Upgrade free marker version from 2.3.29 to 2.3.30

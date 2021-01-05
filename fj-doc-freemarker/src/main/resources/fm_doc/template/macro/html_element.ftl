@@ -16,7 +16,11 @@
 	<#elseif elementType = 'DocBr'>
 		<br/>		
 	<#elseif elementType = 'DocPara'>
-		<p style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</p>
+		<#if current.headLevel == 0>
+			<p style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</p>
+		<#else>
+			<h${current.headLevel} style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</h${current.headLevel}>
+		</#if>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>			
 	<#else>

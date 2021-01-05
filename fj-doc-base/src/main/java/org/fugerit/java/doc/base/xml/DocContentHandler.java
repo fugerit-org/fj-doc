@@ -260,10 +260,14 @@ public class DocContentHandler implements ContentHandler {
 		}
 	}
 	
-	private static void valuePara( DocPara docPara, Properties props ) {
+	private static void valuePara( DocPara docPara, Properties props, boolean headings ) {
 		// setting paragraph style
 		String style = props.getProperty( "style" );
-		docPara.setStyle( DocPara.parseStyle( style ) );
+		int defaultStyle = DocPara.STYLE_NORMAL;
+		if ( headings ) {
+			defaultStyle = DocPara.STYLE_BOLD;
+		}
+		docPara.setStyle( DocPara.parseStyle( style, defaultStyle ) );
 		// setting paragraph align
 		String align = props.getProperty( "align" );
 		docPara.setAlign( getAlign( align ) );
@@ -286,7 +290,9 @@ public class DocContentHandler implements ContentHandler {
 		}
 		if ( spaceAfter != null ) {
 			docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
-		}			
+		}
+		// setting head level
+		docPara.setHeadLevel( Integer.parseInt( props.getProperty( "head-level", String.valueOf( DocPara.DEFAULT_HEAD_LEVEL ) ) ) );		
 	}
 	
 	/* (non-Javadoc)
@@ -360,8 +366,12 @@ public class DocContentHandler implements ContentHandler {
 			this.currentElement = docImage;			
 		} else if ( "para".equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
-			valuePara(docPara, props);
+			valuePara(docPara, props, false);
 			this.currentElement = docPara;
+		} else if ( "h".equalsIgnoreCase( qName ) ) {
+			DocPara docPara = new DocPara();
+			valuePara(docPara, props, true);
+			this.currentElement = docPara;			
 		} else if ( "br".equalsIgnoreCase( qName ) ) {
 			DocBr docBr = new DocBr();
 			valuePhrase(docBr, props);
