@@ -1,4 +1,8 @@
-﻿0.3.3.1 (2021-01-05)
+﻿0.3.3.2 (2021-01-07)
+--------------------
++ bufix : freemarker html didn't handle right text align
+
+0.3.3.1 (2021-01-05)
 --------------------
 + Upgrade fj-core version to 0.7.4.8
 + Added support for headings level 1/7 (doc-1-2.xsd) [currently supported only on freemarker html renderer) 

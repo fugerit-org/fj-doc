@@ -61,7 +61,7 @@
 
 <#macro handleColspan colspanValue> colspan="${colspanValue}" </#macro>
 
-<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;</#if></#macro>
+<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
 
 <#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;"</#if></#macro>
 

@@ -31,7 +31,7 @@
   		
   		<h head-level="2">Heading test level 2</h>
   		
-  		<h head-level="3">Heading test level 3</h>
+  		<h head-level="3" align="right">Heading test level 3</h>
   
   		<phrase>Test template page apache free marker</phrase>
   

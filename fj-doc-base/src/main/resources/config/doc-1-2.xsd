@@ -2,11 +2,11 @@
 <!--
 
 	/*
-	 * @(#)doc-1-1.xsd
+	 * @(#)doc-1-2.xsd
 	 *
 	 * @project    : org.fugerit.java.doc.base
-	 * @creation   : 2020-05-10
-	 * @version    : 1.1.0 (2020-05-10)
+	 * @creation   : 2021-01-05
+	 * @version    : 1.2.0 (2021-01-05)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
