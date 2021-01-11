@@ -54,13 +54,13 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		super(type, MODULE);
 	}
 
-	protected abstract Workbook newWorkbook( DocInput docInput, InputStream is ) throws Exception;
+	protected abstract WorkbookHelper newWorkbook( DocInput docInput, InputStream is ) throws Exception;
 	
 	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws Exception;
 	
-	protected abstract  void setFormatStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	protected abstract  void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	
-	protected abstract void setFontStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	protected abstract void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	
 	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws Exception {
 		
@@ -112,16 +112,17 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
 	}
 	
-	private void checkFormat( Workbook workbook, Collection<PoiCellStyleModel> styleSet, DocPara currentePara,
+	private void checkFormat( WorkbookHelper helper, Collection<PoiCellStyleModel> styleSet, DocPara currentePara,
 			 DocCell cell, TableMatrix matrix, int rn, int cn, Cell currentCell  ) throws Exception {
+		Workbook workbook = helper.getWorkbook();
 		CellStyle cellStyle = PoiCellStyleModel.find( styleSet , currentePara, cell );
 		if ( cellStyle == null ) {
 			
 			cellStyle = workbook.createCellStyle();
 			Font font = workbook.createFont();
 			
-			this.setFontStyle(workbook, font, cellStyle, cell, currentePara);
-			this.setFormatStyle(workbook, font, cellStyle, cell, currentePara);
+			this.setFontStyle( helper, font, cellStyle, cell, currentePara);
+			this.setFormatStyle( helper, font, cellStyle, cell, currentePara);
 
 			// style
 			if ( currentePara != null ) {
@@ -171,7 +172,8 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		currentCell.setCellStyle( cellStyle );
 	}
 	
-	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, Workbook workbook ) throws Exception {
+	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
+		Workbook workbook = helper.getWorkbook();
 		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
 		Iterator<DocElement> rows = table.docElements();
 		while ( rows.hasNext() ) {
@@ -218,7 +220,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 					currentCell = currentRow.createCell( cn );
 				}
 				if ( cell != null && parent != null && !ignoreFormat ) {
-					this.checkFormat(workbook, styleSet, currentePara, cell, matrix, rn, cn, currentCell);
+					this.checkFormat( helper, styleSet, currentePara, cell, matrix, rn, cn, currentCell );
 				} 
 				this.setCellValue( workbook, currentCell, type, format, text);
 			}
@@ -230,8 +232,8 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		return matrix;
 	}
 	
-	private void handleMerge( DocTable table, boolean ignoreFormat, Sheet dati, Workbook workbook ) throws Exception {
-		TableMatrix matrix = handleMatrix(table, ignoreFormat, dati, workbook);
+	private void handleMerge( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
+		TableMatrix matrix = handleMatrix( table, ignoreFormat, dati, helper );
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
 				DocCell cell = matrix.getCell( rn, cn );
@@ -251,7 +253,8 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		DocBase docBase = docInput.getDoc();
 		InputStream is = ExcelHelperUtils.resoveTemplateStream( docBase );
 		boolean noTemplate = (is == null);
-		Workbook outputXls = this.newWorkbook( docInput, is );
+		WorkbookHelper helper = this.newWorkbook( docInput, is ); 
+		Workbook outputXls = helper.getWorkbook();
 		
 		String excelTableId = docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TABLE_ID );
 		String excelTableSheet[] = excelTableId.split( ";" );		
@@ -277,7 +280,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 //				dati.setColumnView( i , cw );
 //			}
 			
-			handleMerge(table, ignoreFormat, dati, outputXls);
+			handleMerge(table, ignoreFormat, dati, helper);
 			
 		}
 

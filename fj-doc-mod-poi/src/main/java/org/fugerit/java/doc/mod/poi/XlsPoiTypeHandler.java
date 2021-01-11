@@ -11,6 +11,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
@@ -34,14 +35,14 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 
 	@Override
-	protected Workbook newWorkbook(DocInput docInput, InputStream is ) throws Exception {
+	protected WorkbookHelper newWorkbook(DocInput docInput, InputStream is ) throws Exception {
 		Workbook workbook = null;
 		if ( is == null ) {
 			workbook = new HSSFWorkbook();
 		} else {
 			workbook = new HSSFWorkbook( is );
 		}
-		return workbook;
+		return new WorkbookHelper( workbook, new DefaultIndexedColorMap() );
 	}
 
 	@Override
@@ -58,7 +59,8 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 	
 	@Override
-	protected void setFormatStyle(Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+	protected void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+		Workbook workbook = helper.getWorkbook();
 		if ( style instanceof HSSFCellStyle && workbook instanceof HSSFWorkbook ) {
 			HSSFCellStyle realStyle = (HSSFCellStyle) style;
 			if ( cell != null ) {
@@ -72,7 +74,8 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 
 	@Override
-	protected void setFontStyle(Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+		Workbook workbook = helper.getWorkbook();
 		if ( workbook instanceof HSSFWorkbook ) {
 			if ( StringUtils.isNotEmpty( cell.getForeColor() ) ) {
 				font.setColor( findClosestColorIndex( (HSSFWorkbook)workbook , cell.getForeColor() ) );

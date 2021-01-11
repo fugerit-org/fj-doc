@@ -1,4 +1,8 @@
-﻿0.3.3.2 (2021-01-07)
+﻿0.3.3.3 (2021-01-XX)
+--------------------
++ Removed some depecrated call to apache POI
+
+0.3.3.2 (2021-01-07)
 --------------------
 + bufix : freemarker html didn't handle right text align
 
