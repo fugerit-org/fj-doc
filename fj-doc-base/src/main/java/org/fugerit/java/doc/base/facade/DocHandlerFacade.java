@@ -1,5 +1,7 @@
 package org.fugerit.java.doc.base.facade;
 
+import java.io.OutputStream;
+import java.io.Reader;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
@@ -83,6 +85,17 @@ public class DocHandlerFacade implements Serializable {
 		} else {
 			throw new ConfigException( "DocHandlerFacade - No handler defined for type : "+type );
 		}
+	}
+
+	public void direct( Reader xml, String type, DocOutput docOutput ) throws Exception {
+		DocInput docInput = DocInput.newInput( type , xml );
+		this.handle( docInput , docOutput);
+	}
+	
+	public void direct( Reader xml, String type, OutputStream os ) throws Exception {
+		DocInput docInput = DocInput.newInput( type , xml );
+		DocOutput docOutput = DocOutput.newOutput( os );
+		this.handle( docInput , docOutput );
 	}
 	
 	public DocTypeHandler findHandler( String id ) {
