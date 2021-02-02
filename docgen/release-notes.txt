@@ -1,4 +1,8 @@
-﻿0.3.3.4 (2021-02-02)
+﻿0.3.3.5 (2021-02-02)
+--------------------
++ Added support for italic and bold italic style in freemarker html
+
+0.3.3.4 (2021-02-02)
 --------------------
 + Added support for italic and bold italic style in freemarker html
 
