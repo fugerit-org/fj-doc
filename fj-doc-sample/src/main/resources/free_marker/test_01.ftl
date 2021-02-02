@@ -41,6 +41,12 @@
   
   		<image url="png" base64="${testBase64Img}" scaling="25"/>	
   
+  		<para style="bold">italic</para>
+  		
+  		<para style="italic">bold</para>
+  		
+  		<para style="bolditalic">bold italic</para>
+  
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
     			<cell align="center" border-color="#ee0000" border-width="1"><para style="bold">Name</para></cell>

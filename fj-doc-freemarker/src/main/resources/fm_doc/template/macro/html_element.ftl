@@ -17,7 +17,7 @@
 		<br/>		
 	<#elseif elementType = 'DocPara'>
 		<#if current.headLevel == 0>
-			<p style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</p>
+			<p style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">TEST ${current.text}</p>
 		<#else>
 			<h${current.headLevel} style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</h${current.headLevel}>
 		</#if>
@@ -63,5 +63,5 @@
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;"</#if></#macro>
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if> </#macro>
 
