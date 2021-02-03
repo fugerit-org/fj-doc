@@ -5,11 +5,11 @@
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
 		<#if (current.link)??>
-		<a style="<@handleStyle styleValue=current.style/>" href="${current.link}">${current.text}</a>
+		<a <@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
 		<#elseif (current.anchor)??>
-		<a style="<@handleStyle styleValue=current.style/>" name="${current.anchor}">${current.text}</a>
+		<a <@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
 		<#else>
-		<span style="<@handleStyle styleValue=current.style/>">${current.text}</span>
+		<span <@handleStyleOnly styleValue=current.style/>>${current.text}</span>
 		</#if>
 	<#elseif elementType = 'DocNbsp'>
 		&nbsp;
@@ -17,9 +17,9 @@
 		<br/>		
 	<#elseif elementType = 'DocPara'>
 		<#if current.headLevel == 0>
-			<p style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</p>
+			<p <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</p>
 		<#else>
-			<h${current.headLevel} style="<@handleAlign alignValue=current.align/> <@handleStyle styleValue=current.style/>">${current.text}</h${current.headLevel}>
+			<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</h${current.headLevel}>
 		</#if>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>			
@@ -63,5 +63,9 @@
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if> </#macro>
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
+
+<#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
+
+<#macro handleStyleComplete styleValue alignValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#if cStyle != '' || cAlign != '' >style="${cStyle} ${cAlign}"</#if></#macro>
 

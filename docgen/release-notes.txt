@@ -1,4 +1,8 @@
-﻿0.3.3.5 (2021-02-02)
+﻿0.3.3.6 (2021-02-03)
+--------------------
++ fremarker html support now print style attribute only if has values
+
+0.3.3.5 (2021-02-02)
 --------------------
 + Added support for italic and bold italic style in freemarker html
 
