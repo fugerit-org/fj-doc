@@ -6,7 +6,7 @@
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep"
 			param01="DEFAULT_CONFIG">
 			<properties 
-				version="2.3.29"
+				version="2.3.30"
 				path="/free_marker"
 				mode="class" 
 				class="org.fugerit.java.doc.sample.facade.SampleFacade"

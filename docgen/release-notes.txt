@@ -1,4 +1,8 @@
-﻿0.3.3.6 (2021-02-03)
+﻿0.3.3.7 (2021-02-05)
+--------------------
++ Default apache free marker version change (2.3.29 -> 2.3.30)
+
+0.3.3.6 (2021-02-03)
 --------------------
 + fremarker html support now print style attribute only if has values
 
