@@ -33,6 +33,12 @@
   		
   		<h head-level="3" align="right">Heading test level 3</h>
   
+  		<para align="right">Test right</para>
+  
+  		<br/>
+  		<br/>
+  		<br/>
+  
   		<phrase>Test template page apache free marker</phrase>
   
   		<image url="cl://test/img_test_green.png" scaling="100"/>

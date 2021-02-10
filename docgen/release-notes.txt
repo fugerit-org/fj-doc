@@ -1,4 +1,8 @@
-﻿0.3.3.8 (2021-02-10)
+﻿0.3.3.9 (2021-02-11)
+--------------------
++ better mod-fop support for <br/> align and style 
+
+0.3.3.8 (2021-02-10)
 --------------------
 + Changed fop verson from 2.4 to 2.6
 + mod-fop now supports accessibility tags in pdf (h1/h7) 

@@ -5,10 +5,10 @@
 		<fo:simple-page-master 
 			page-width="21cm" page-height="29.7cm" 
 			master-name="simpleA4" 
-			margin-left="${docBase.marginLeft}pt"
-			margin-right="${docBase.marginRight}pt"
-			margin-top="${docBase.marginTop}pt"
-			margin-bottom="${docBase.marginBottom}pt">
+			margin-left="${docBase.marginLeft!'10'}pt"
+			margin-right="${docBase.marginRight!'10'}pt"
+			margin-top="${docBase.marginTop!'10'}pt"
+			margin-bottom="${docBase.marginBottom!'10'}pt">
 			<#assign bodyMarginTop="">
 			<#assign bodyMarginBottom="">
 			<#if (docBase.useHeader)>
