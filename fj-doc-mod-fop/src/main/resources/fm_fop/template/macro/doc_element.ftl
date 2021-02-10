@@ -7,12 +7,14 @@
 	</#list>	
 </#macro>
 
+<#macro handleRole element><#if element.headLevel &gt; 0>role="H${element.headLevel}" </#if></#macro>
+
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
-		<fo:inline   <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:inline>
+		<fo:inline <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:inline>
 	<#elseif elementType = 'DocPara'>
-		<fo:block <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+		<fo:block <@handleRole element=current/><@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>
 	<#elseif elementType = 'DocImage'>

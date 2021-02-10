@@ -1,4 +1,9 @@
-﻿0.3.3.7 (2021-02-05)
+﻿0.3.3.8 (2021-02-10)
+--------------------
++ Changed fop verson from 2.4 to 2.6
++ mod-fop now supports accessibility tags in pdf (h1/h7) 
+
+0.3.3.7 (2021-02-05)
 --------------------
 + Default apache free marker version change (2.3.29 -> 2.3.30)
 
