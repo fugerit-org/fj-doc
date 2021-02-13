@@ -15,6 +15,12 @@
 				wrap-unchecked-exceptions="true"
 				fallback-on-null-loop-variable="false" />
 		</step>
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="Add custom functions" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep">
+			<properties 
+				messageFormat="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun" />
+		</step>		
 	</chain>
 
 	<chain id="free-marker-01" extends="shared">
@@ -24,7 +30,7 @@
 		<step id="step-data" defaultBehaviour="CONTINUE"
 			description="Map items from DocContext to FreeMarker Data" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep">		
-			<properties list="userList" testBase64Img="testBase64Img" />		
+			<properties list="userList" testBase64Img="testBase64Img"/>		
 		</step>			
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 

@@ -34,6 +34,8 @@
   		<h head-level="3" align="right">Heading test level 3</h>
   
   		<para align="right">Test right</para>
+  		
+  		<para align="right">${messageFormat('test format -> {0} {1}', 'param1', 'param2')}</para>
   
   		<br/>
   		<br/>
