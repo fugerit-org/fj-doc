@@ -3,6 +3,7 @@ package org.fugerit.java.doc.mod.pdfbox;
 import java.util.Properties;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
 
 public class PdfBoxHelper {
 
@@ -17,6 +18,16 @@ public class PdfBoxHelper {
 	private String defFontStyle;
 		
 	private Properties params;
+
+	private PDPage currentPage;
+	
+	public PDPage getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(PDPage currentPage) {
+		this.currentPage = currentPage;
+	}
 
 	public Properties getParams() {
 		return params;

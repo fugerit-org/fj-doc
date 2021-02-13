@@ -42,6 +42,8 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocPhrase;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -51,6 +53,7 @@ import org.fugerit.java.doc.base.model.DocPhrase;
  */
 public class PdfBoxDocHandler implements AutoCloseable {
 	
+	private final static Logger logger = LoggerFactory.getLogger( PdfBoxDocHandler.class );
 
 	private static final ParamFinder PARAM_FINDER = ParamFinder.newFinder();
 	
@@ -68,7 +71,7 @@ public class PdfBoxDocHandler implements AutoCloseable {
 	public final static String DOC_DEFAULT_FONT_SIZE = "default-font-size";
 	public final static String DOC_DEFAULT_FONT_STYLE = "default-font-style";
 	
-	private PDDocument pdfWriter;
+	private PDDocument pdfDocument;
 
 	private PDPageContentStream contentStream;
 	
@@ -76,15 +79,10 @@ public class PdfBoxDocHandler implements AutoCloseable {
 	
 	public PdfBoxDocHandler(PDDocument pdfDocument) {
 		super();
-		this.pdfWriter = pdfDocument;
+		this.pdfDocument = pdfDocument;
 	}
 
-	private void handleElements( PDDocument document, Iterator<DocElement> itDoc, PdfBoxHelper docHelper ) throws Exception {
-		while ( itDoc.hasNext() ) {
-			DocElement docElement = (DocElement)itDoc.next();
-			getElement(document, docElement, true, docHelper );
-		}
-	}
+
 
 //	protected static Chunk createChunk( DocPhrase docPhrase, PdfBoxHelper docHelper ) throws Exception {
 //		String text = createText( docHelper.getParams(), docPhrase.getText() );
@@ -150,12 +148,16 @@ public class PdfBoxDocHandler implements AutoCloseable {
 //	}
 	
 	private void getElement( PDDocument document, DocElement docElement, boolean addElement, PdfBoxHelper docHelper ) throws Exception {
-		
+		float ph = docHelper.getCurrentPage().getMediaBox().getUpperRightY();
 		if ( docElement instanceof DocPhrase ) {
-			DocPhrase docPhrase = (DocPhrase) docElement;
+			PDFont font = PDType1Font.HELVETICA_BOLD;
+			DocPhrase current = (DocPhrase) docElement;
 			this.contentStream.beginText();
-			this.contentStream.showText( docPhrase.getText() );
+			this.contentStream.setFont( font , INCH );
+			this.contentStream.showText( current.getText() );
 			this.contentStream.endText();
+		} else {
+			logger.warn( "element not handled yet : {}", docElement.getClass().getSimpleName() );
 		}
 //		Element result = null;
 //		DocumentParent documentParent = new DocumentParent(document);
@@ -192,35 +194,68 @@ public class PdfBoxDocHandler implements AutoCloseable {
 		}
 	}
 	
+	static final float INCH = 72;
+	
+	private void handleElements( PDDocument document, Iterator<DocElement> itDoc, PdfBoxHelper docHelper ) throws Exception {
+		while ( itDoc.hasNext() ) {
+			DocElement docElement = (DocElement)itDoc.next();
+			getElement(document, docElement, true, docHelper );
+		}
+	}
+	
 	/* (non-Javadoc)
 	 * @see org.fugerit.java.doc.base.DocHandler#handleDoc(org.fugerit.java.doc.base.DocBase)
 	 */
 	public void handleDoc( DocBase docBase ) throws Exception {
 		Properties info = docBase.getInfo();
 		
-		String defaultFontName = info.getProperty( DOC_DEFAULT_FONT_NAME, "helvetica" );
-		String defaultFontSize = info.getProperty( DOC_DEFAULT_FONT_SIZE, "10" );
-		String defaultFontStyle = info.getProperty( DOC_DEFAULT_FONT_STYLE, "normal" );
-		PdfBoxHelper docHelper = new PdfBoxHelper();
+		PDPage page1 = new PDPage();
 		
-		if ( this.pdfWriter != null ) {
-			docHelper.setPdfWriter( this.pdfWriter );
-		}
+        float pw = page1.getMediaBox().getUpperRightX();
+        float ph = page1.getMediaBox().getUpperRightY();
 		
-		docHelper.setDefFontName( defaultFontName );
-		docHelper.setDefFontStyle( defaultFontStyle );
-		docHelper.setDefFontSize( defaultFontSize );
-
+        this.pdfDocument.addPage( page1 );
+        
 		PDFont font = PDType1Font.HELVETICA_BOLD;
-//		this.currentPage = new PDPage();
-//		this.pdfWriter.addPage( this.currentPage );
-//		this.contentStream = new PDPageContentStream( this.pdfWriter , this.currentPage );
-//		this.contentStream.setFont( font , 12 );
-//		this.contentStream.set
-		
-		Iterator<DocElement> itDoc = docBase.getDocBody().docElements();
-		handleElements( this.pdfWriter, itDoc, docHelper);
-		
+        try (PDPageContentStream contents = new PDPageContentStream( this.pdfDocument, page1))
+        {
+        	this.contentStream = contents;
+        	PdfBoxHelper docHelper = new PdfBoxHelper();
+        	docHelper.setCurrentPage( page1 );
+            Iterator<DocElement> itDoc = docBase.getDocBody().docElements();
+    		handleElements( this.pdfDocument, itDoc, docHelper );
+        }
+        
+        
+		 
+		 
+//		String defaultFontName = info.getProperty( DOC_DEFAULT_FONT_NAME, "helvetica" );
+//		String defaultFontSize = info.getProperty( DOC_DEFAULT_FONT_SIZE, "10" );
+//		String defaultFontStyle = info.getProperty( DOC_DEFAULT_FONT_STYLE, "normal" );
+//		PdfBoxHelper docHelper = new PdfBoxHelper();
+//		
+//		if ( this.pdfWriter != null ) {
+//			docHelper.setPdfWriter( this.pdfWriter );
+//		}
+//		
+//		docHelper.setDefFontName( defaultFontName );
+//		docHelper.setDefFontStyle( defaultFontStyle );
+//		docHelper.setDefFontSize( defaultFontSize );
+//
+//		PDFont font = PDType1Font.HELVETICA_BOLD;
+////		this.currentPage = new PDPage();
+////		this.pdfWriter.addPage( this.currentPage );
+////		this.contentStream = new PDPageContentStream( this.pdfWriter , this.currentPage );
+////		this.contentStream.setFont( font , 12 );
+////		this.contentStream.set
+//		
+//        
+//		
+//		this.contentStream = 
+//		
+//		Iterator<DocElement> itDoc = docBase.getDocBody().docElements();
+//		handleElements( this.pdfWriter, itDoc, docHelper);
+//		
 //		if ( this.totalPageCount != -1 ) {
 //			docHelper.getParams().setProperty( PARAM_PAGE_TOTAL , String.valueOf( this.totalPageCount ) );
 //		}
