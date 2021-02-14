@@ -18,6 +18,16 @@
 	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info>
 	
+	<info name="default-font-name">Times New Roman</info>
+	<info name="default-font-size">20pt</info>
+	<!--
+	<info name="default-font-style">italic</info>
+	-->
+
+	<!--
+	<info name="default-font-name">Courier New</info>
+	-->  
+	
 	<!-- you need to escape free marker expression for currentPage --> 
 	<footer-ext numbered="true" align="right">
 		<para>${r"${currentPage}"}</para>
@@ -36,6 +46,8 @@
   		<h head-level="3" align="right">Heading test level 3</h>
   
   		<para align="right">Test right</para>
+  		
+  		<para align="center" size="30">Test center</para>
   		
   		<para align="right">${messageFormat('test format -> {0} {1}', 'param1', 'param2')}</para>
   

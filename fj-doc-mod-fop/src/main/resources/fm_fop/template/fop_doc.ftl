@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <#import "/macro/doc_element.ftl" as doc_element>
-<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+<#import "/macro/doc_info.ftl" as doc_info>
+<#assign docInfo=docBase.info/>
+<fo:root
+	<@doc_info.checkDefaultFont info=docInfo/> 
+	xmlns:fo="http://www.w3.org/1999/XSL/Format">
 	<fo:layout-master-set>
-		<fo:simple-page-master 
-			page-width="21cm" page-height="29.7cm" 
+		<fo:simple-page-master
+			page-width="21cm" 
+			page-height="29.7cm" 
 			master-name="simpleA4" 
 			margin-left="${docBase.marginLeft!'10'}pt"
 			margin-right="${docBase.marginRight!'10'}pt"

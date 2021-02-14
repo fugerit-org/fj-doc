@@ -1,5 +1,4 @@
 <#global defaultBorderColor='black'>
-<#global defaultFontSize='10'>
 
 <#macro handleElementList elements>
 	<#list elements as item>
@@ -12,17 +11,17 @@
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
-		<fo:inline <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:inline>
+		<fo:inline <@handleStyle styleValue=current.style/> <@handleFont element=current/>>${current.text}</fo:inline>
 	<#elseif elementType = 'DocPara'>
-		<fo:block <@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/> font-size="${defaultFontSize}pt">${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+		<fo:block <@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 	<#elseif elementType = 'DocBr'>
-		<fo:block white-space-treatment="preserve" font-size="${defaultFontSize}pt">  </fo:block>
+		<fo:block white-space-treatment="preserve" <@handleFont element=current/>>  </fo:block>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>
 	<#elseif elementType = 'DocImage'>
 		<@handleImage docImage=current/>								
 	<#else>
-		<fo:block space-after="5mm" font-weight="bold" font-size="${defaultFontSize}pt">Element type non implemented yet : ${elementType}</fo:block>
+		<fo:block space-after="5mm" <@handleFont element=current/>>Element type non implemented yet : ${elementType}</fo:block>
 	</#if>
 </#macro>
 
@@ -76,8 +75,8 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
-<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}"</#if></#macro>
+<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}" </#if><#if element.size != -1> font-size="${element.size}pt" </#if></#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"</#if> </#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>font-weight="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"</#if> </#macro>
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>font-weight="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#else>font-style="normal" font-weight="normal"</#if> </#macro>
