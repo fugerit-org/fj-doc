@@ -40,7 +40,7 @@ public class ClassLoaderResourceResolver implements ResourceResolver, Serializab
 	@Override
 	public Resource getResource(URI uri) throws IOException {
 		try {
-			String path = "font/"+uri.getPath().substring( uri.getPath().lastIndexOf( "/")+1 );
+			String path = this.defaultFontPath+uri.getPath().substring( uri.getPath().lastIndexOf( "/")+1 );
 			InputStream inputStream = ClassHelper.loadFromDefaultClassLoader( path );
 			return new Resource(inputStream);
 		} catch (Exception e) {

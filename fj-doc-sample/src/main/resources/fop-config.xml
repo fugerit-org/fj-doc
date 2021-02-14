@@ -26,8 +26,10 @@
 	        </font>	        
 			<font embed-url="font/TitilliumWeb-BoldItalic.ttf">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
-	        </font>	        
+	        </font>	     
+	        <!--   
 			<auto-detect/>
+			-->
 		  </fonts>
 	   </renderer> 
 	</renderers>
