@@ -10,6 +10,8 @@
   			(In case check FreeMarker documentation https://freemarker.apache.org/docs/index.html)
    -->
 
+  <#assign baseFontSize='20'>
+
   <meta>
   
   	<!-- Margin for document : left;right;top;bottom -->
@@ -19,7 +21,7 @@
 	<info name="excel-width-multiplier">450</info>
 	
 	<info name="default-font-name">Times New Roman</info>
-	<info name="default-font-size">20pt</info>
+	<info name="default-font-size">${baseFontSize}</info>
 	<!--
 	<info name="default-font-style">italic</info>
 	-->
@@ -47,7 +49,7 @@
   
   		<para align="right">Test right</para>
   		
-  		<para align="center" size="30">Test center</para>
+  		<para align="center" size="${sumLong(baseFontSize, 10)}">Test center</para>
   		
   		<para align="right">${messageFormat('test format -> {0} {1}', 'param1', 'param2')}</para>
   

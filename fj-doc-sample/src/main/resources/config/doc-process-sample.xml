@@ -19,7 +19,8 @@
 			description="Add custom functions" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep">
 			<properties 
-				messageFormat="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun" />
+				messageFormat="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"
+				sumLong="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"  />
 		</step>		
 	</chain>
 

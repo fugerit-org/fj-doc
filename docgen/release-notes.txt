@@ -1,4 +1,8 @@
-﻿0.3.4.3 (2021-02-14)
+﻿0.3.4.4 (2021-02-14)
+--------------------
++ Added simple free marker functions to sum numbers
+
+0.3.4.3 (2021-02-14)
 --------------------
 + Bugfix on Support for default font family/size/style in mod-fop
 
