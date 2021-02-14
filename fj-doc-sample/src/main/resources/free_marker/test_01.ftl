@@ -27,7 +27,9 @@
  
   <body>
   
-  		<h head-level="1">Heading test level 1</h>
+  		<h head-level="1">Heading test level 1 default font</h>
+  		
+  		<h head-level="1" font-name="TitilliumWeb">Heading test level 1 TitilliumWeb</h>
   		
   		<h head-level="2">Heading test level 2</h>
   		

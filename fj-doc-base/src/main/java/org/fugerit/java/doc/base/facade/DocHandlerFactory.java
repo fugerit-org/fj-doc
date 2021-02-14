@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.cfg.xml.FactoryCatalog;
 import org.fugerit.java.core.cfg.xml.FactoryType;
 import org.fugerit.java.core.io.helper.StreamHelper;
@@ -42,6 +43,9 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 			facade = new DocHandlerFacade();
 			for ( FactoryType ft : col ) {
 				DocTypeHandler handler = (DocTypeHandler) ClassHelper.newInstance( ft.getType() );
+				if ( handler instanceof ConfigurableObject ) {
+					((ConfigurableObject)handler).configure( ft.getElement());
+				}
 				facade.registerHandler( handler );
 			}
 		}
@@ -95,3 +99,4 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	}
 
 }
+

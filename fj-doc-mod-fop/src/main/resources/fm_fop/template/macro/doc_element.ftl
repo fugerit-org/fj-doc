@@ -14,7 +14,7 @@
 	<#if elementType = 'DocPhrase'>
 		<fo:inline <@handleStyle styleValue=current.style/> font-size="${defaultFontSize}pt">${current.text}</fo:inline>
 	<#elseif elementType = 'DocPara'>
-		<fo:block <@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/> font-size="${defaultFontSize}pt">${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+		<fo:block <@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/> font-size="${defaultFontSize}pt">${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 	<#elseif elementType = 'DocBr'>
 		<fo:block white-space-treatment="preserve" font-size="${defaultFontSize}pt">  </fo:block>
 	<#elseif elementType = 'DocTable'>
@@ -75,6 +75,8 @@
 	<@handleBorder mode='border-left' size=docBorders.borderWidthLeft color=borderColorLeft/>
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
+
+<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}"</#if></#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"</#if> </#macro>
 
