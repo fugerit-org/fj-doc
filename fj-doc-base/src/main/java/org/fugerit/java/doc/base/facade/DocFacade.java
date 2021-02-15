@@ -60,7 +60,7 @@ import org.xml.sax.InputSource;
  */
 public class DocFacade {
 
-	public static final String CURRENT_VERSION = "1-2";
+	public static final String CURRENT_VERSION = "1-3";
 	
 	private static Logger logger = LoggerFactory.getLogger( DocFacade.class );
 	

@@ -24,6 +24,16 @@ public class DocPhrase extends DocElement implements DocStyle {
 	
 	private String anchor;
 	
+	private String whiteSpaceCollapse;
+	
+	public String getWhiteSpaceCollapse() {
+		return whiteSpaceCollapse;
+	}
+
+	public void setWhiteSpaceCollapse(String whiteSpaceCollapse) {
+		this.whiteSpaceCollapse = whiteSpaceCollapse;
+	}
+
 	public Float getLeading() {
 		return leading;
 	}

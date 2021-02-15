@@ -258,6 +258,11 @@ public class DocContentHandler implements ContentHandler {
 		if ( anchor != null ) {
 			docPhrase.setAnchor( anchor );
 		}
+		// white space collpase
+		String whiteSpaceCollapse = props.getProperty( "white-space-collapse" );
+		if ( StringUtils.isNotEmpty( whiteSpaceCollapse ) ) {
+			docPhrase.setWhiteSpaceCollapse(whiteSpaceCollapse);
+		}
 	}
 	
 	private static void valuePara( DocPara docPara, Properties props, boolean headings ) {
@@ -292,7 +297,12 @@ public class DocContentHandler implements ContentHandler {
 			docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
 		}
 		// setting head level
-		docPara.setHeadLevel( Integer.parseInt( props.getProperty( "head-level", String.valueOf( DocPara.DEFAULT_HEAD_LEVEL ) ) ) );		
+		docPara.setHeadLevel( Integer.parseInt( props.getProperty( "head-level", String.valueOf( DocPara.DEFAULT_HEAD_LEVEL ) ) ) );
+		// white space collpase
+		String whiteSpaceCollapse = props.getProperty( "white-space-collapse" );
+		if ( StringUtils.isNotEmpty( whiteSpaceCollapse ) ) {
+			docPara.setWhiteSpaceCollapse(whiteSpaceCollapse);
+		}
 	}
 	
 	/* (non-Javadoc)

@@ -49,6 +49,10 @@
   
   		<para align="right">Test right</para>
   		
+  		<para align="left" white-space-collapse="false">             Test preserve</para>
+  		
+  		<para align="left" white-space-collapse="true">             Test no preserve</para>
+  		
   		<para align="center" size="${sumLong(baseFontSize, 10)}">Test center</para>
   		
   		<para align="right">${messageFormat('test format -> {0} {1}', 'param1', 'param2')}</para>

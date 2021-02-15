@@ -65,6 +65,8 @@ public class DocPara extends DocElement implements DocStyle {
 	
 	private String fontName;
 	
+	private String whiteSpaceCollapse;
+	
 	private int headLevel;
 	
 	public String getFontName() {
@@ -233,7 +235,13 @@ public class DocPara extends DocElement implements DocStyle {
 	public String toString() {
 		return super.toString()+"[text:"+this.getText()+"]";
 	}
-	
 
-	
+	public String getWhiteSpaceCollapse() {
+		return whiteSpaceCollapse;
+	}
+
+	public void setWhiteSpaceCollapse(String whiteSpaceCollapse) {
+		this.whiteSpaceCollapse = whiteSpaceCollapse;
+	}
+
 }

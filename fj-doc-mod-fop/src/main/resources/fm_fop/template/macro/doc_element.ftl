@@ -11,9 +11,9 @@
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
-		<fo:inline <@handleStyle styleValue=current.style/> <@handleFont element=current/>>${current.text}</fo:inline>
+		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.style/> <@handleFont element=current/>>${current.text}</fo:inline>
 	<#elseif elementType = 'DocPara'>
-		<fo:block <@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+		<fo:block <@handleWhiteSpace element=current/><@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 	<#elseif elementType = 'DocBr'>
 		<fo:block white-space-treatment="preserve" <@handleFont element=current/>>  </fo:block>
 	<#elseif elementType = 'DocTable'>
@@ -74,6 +74,10 @@
 	<@handleBorder mode='border-left' size=docBorders.borderWidthLeft color=borderColorLeft/>
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
+
+white-space-collapse="false"
+
+<#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
 
 <#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}" </#if><#if element.size != -1> font-size="${element.size}pt" </#if></#macro>
 
