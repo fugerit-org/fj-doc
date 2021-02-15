@@ -62,6 +62,8 @@
   		<br/>
   
   		<phrase>Test template page apache free marker</phrase>
+  		
+  		<phrase font-name="Courier">Test template page apache free marker</phrase>
   
   		<image url="cl://test/img_test_green.png" scaling="100"/>
   

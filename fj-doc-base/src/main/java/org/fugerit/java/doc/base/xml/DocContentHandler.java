@@ -245,6 +245,9 @@ public class DocContentHandler implements ContentHandler {
 		// setting phrase style
 		String style = props.getProperty( "style" );
 		docPhrase.setStyle( DocPara.parseStyle( style ) );
+		// font name
+		String fontName = props.getProperty(  "font-name" );
+		docPhrase.setFontName( fontName );
 		//leading
 		String leading = props.getProperty( "leading" );
 		if ( leading != null ) {
