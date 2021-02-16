@@ -27,6 +27,7 @@ package org.fugerit.java.doc.base.model.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocRow;
@@ -68,6 +69,7 @@ public class DocTableUtil extends DocElement {
 				}
 			}
 		}
+		System.out.println( ( headerSeparation && !this.headerRows.isEmpty() ) );
 		if ( headerSeparation && !this.headerRows.isEmpty() ) {
 			this.strictHeader = true;
 		}

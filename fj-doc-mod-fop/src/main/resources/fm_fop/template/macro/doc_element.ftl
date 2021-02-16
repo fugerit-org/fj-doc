@@ -92,7 +92,7 @@
 			<#list docTable.colWithds as currentColWidth>
 			<fo:table-column column-width="${currentColWidth}%" />	
 			</#list>
-			<#if (docTableUtil.strictHeader)??>
+			<#if (docTableUtil.strictHeader)>
 				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='header'/>
 				<@handleRowList docTable=docTable rowList=docTableUtil.dataRows cellType='body'/>
 			<#else>

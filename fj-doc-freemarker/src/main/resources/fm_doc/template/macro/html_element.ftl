@@ -63,7 +63,7 @@
 <#macro handleTable docTable>
 	<#assign docTableUtil=docTable.util/>
 	<table style='width: ${docTable.width}%'>
-		<#if (docTableUtil.strictHeader)??>
+		<#if (docTableUtil.strictHeader)>
 			<thead>
 			<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
 			</thead>
