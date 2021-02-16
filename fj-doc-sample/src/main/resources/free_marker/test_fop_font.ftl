@@ -40,6 +40,16 @@
   <body>
   
   		<h head-level="1">Heading test level 1 default font</h>
+  
+    	<list list-type="ol">
+  			<li><para size="10">item 1</para></li>
+  			<li><para size="10">item 2</para></li>
+  		</list>
+  
+    	<list list-type="ul">
+  			<li><para>item 1</para></li>
+  			<li><para>item 2</para></li>
+  		</list>  		
   		
   		<h head-level="1" font-name="TitilliumWeb">Heading test level 1 TitilliumWeb</h>
   		
@@ -60,18 +70,7 @@
   		<br/>
   		<br/>
   		<br/>
-  
-  		<list>
-  			<li>
-  				<liLabel>&amp;#183;</liLabel>
-  				<liBody>item 1</liBody>
-  			</li>
-  			<li>
-  				<liLabel>&amp;#183;</liLabel>
-  				<liBody>item 2</liBody>
-  			</li>  			
-  		</list>
-  
+    
   		<phrase>Test template page apache free marker</phrase>
   		
   		<phrase font-name="Courier">Test template page apache free marker</phrase>

@@ -1,4 +1,8 @@
-﻿0.3.5.0 (2021-02-16)
+﻿0.3.5.1 (2021-02-16)
+--------------------
++ List support for mod-fop e mod-freemarker html
+
+0.3.5.0 (2021-02-16)
 --------------------
 + List support (currently only for mod-fop)
 

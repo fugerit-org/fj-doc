@@ -23,6 +23,7 @@
 		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 		</data>	
+		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />
 	</factory>	
 	
 	<factory id="alternate-html-fm">

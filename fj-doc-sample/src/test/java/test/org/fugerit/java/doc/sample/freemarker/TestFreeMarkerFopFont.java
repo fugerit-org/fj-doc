@@ -6,7 +6,7 @@ import org.fugerit.java.doc.sample.facade.SampleFacade;
 public class TestFreeMarkerFopFont extends BasicFreeMarkerTest {
 
 	public TestFreeMarkerFopFont() {
-		super( "free-marker-test-fop-font", DocConfig.TYPE_FO, DocConfig.TYPE_PDF );
+		super( "free-marker-test-fop-font", DocConfig.TYPE_FO, DocConfig.TYPE_PDF, DocConfig.TYPE_HTML );
 		this.setFacadeId( SampleFacade.ALT_FOP_FACTORY );
 	}
 

@@ -184,11 +184,6 @@
 
 	<xsd:element name='phrase' type="doc:phraseType"/>
 
-	<xsd:element name='liBody' type="doc:paraType"/>
-
-	<xsd:element name='liLabel' type="doc:phraseType"/>
-
-
 	<xsd:element name='table'>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -258,18 +253,29 @@
 				<xsd:element ref='doc:li' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
 			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='list-type' type='doc:listType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
 	<xsd:element name='li'>
 		<xsd:complexType>
-			<xsd:sequence>
-				<xsd:element ref='doc:liLabel' minOccurs='1' maxOccurs='1' />
-				<xsd:element ref='doc:liBody' minOccurs='1' maxOccurs='1' />
-			</xsd:sequence>
+			<xsd:choice minOccurs='1' maxOccurs='1'>
+				<xsd:element ref='doc:para' />
+				<xsd:element ref='doc:table' />
+				<xsd:element ref='doc:list' />
+				<xsd:element ref='doc:phrase' />
+				<xsd:element ref='doc:h' />
+			</xsd:choice>
 			<xsd:attribute name='id' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
+
+	<xsd:simpleType name="listType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ul"></xsd:enumeration>
+			<xsd:enumeration value="ol"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<xsd:complexType name="paraType" mixed='true'>
 		<xsd:attribute name='id' type='xsd:string' use='optional' />

@@ -303,10 +303,6 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
 	 */
 	public void endElement(String uri, String localName, String qName) throws SAXException {
-		if ( "li".equalsIgnoreCase( qName ) ) {
-			DocLi docLi = (DocLi) this.currentContainer;
-			docLi.endElement();
-		}
 		if ( CONTAINER_LIST.contains( qName ) ) {
 			if ( !this.parents.isEmpty() ) {
 				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
@@ -416,18 +412,12 @@ public class DocContentHandler implements ContentHandler {
 			this.currentElement = barcode;
 		} else if ( "list".equalsIgnoreCase( qName ) ) {
 			DocList docList = new DocList();
+			String listType = props.getProperty( "list-type", DocList.LIST_TYPE_OL );
+			docList.setListType( listType );
 			this.currentElement = docList;
 		} else if ( "li".equalsIgnoreCase( qName ) ) {
 			DocLi docLi = new DocLi();
-			this.currentElement = docLi;
-		} else if ( "liLabel".equalsIgnoreCase( qName ) ) {
-			DocPhrase docPhrase = new DocPhrase();
-			valuePhrase(docPhrase, props);
-			this.currentElement = docPhrase;
-		} else if ( "liBody".equalsIgnoreCase( qName ) ) {
-			DocPara docPara = new DocPara();
-			valuePara(docPara, props, false);
-			this.currentElement = docPara;			
+			this.currentElement = docLi;			
 		} else if ( "table".equalsIgnoreCase( qName ) ) {
 			DocTable docTable = new DocTable();
 			docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );

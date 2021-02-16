@@ -56,10 +56,10 @@
 		<#list docList.elementList as li>
 			<fo:list-item>
 				<fo:list-item-label end-indent="label-end()">
-					<fo:block><@handlePhrase current=li.liLabel/></fo:block>
+					<fo:block><fo:inline font-style="normal" <@handleFont element=li.content/>><#if docList.listType == 'ul'>&#183;<#else>${li?counter}.</#if></fo:inline></fo:block>
 				</fo:list-item-label>
 				<fo:list-item-body start-indent="body-start()">
-					<@handlePara current=li.liBody/>
+					<@handleElement current=li.content/>
 				</fo:list-item-body>
 			</fo:list-item>			
 		</#list>	

@@ -4,28 +4,46 @@
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
-		<#if (current.link)??>
-		<a <@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
-		<#elseif (current.anchor)??>
-		<a <@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
-		<#else>
-		<span <@handleStyleOnly styleValue=current.style/>>${current.text}</span>
-		</#if>
+		<@handlePhrase current=current/>
 	<#elseif elementType = 'DocNbsp'>
 		&nbsp;
 	<#elseif elementType = 'DocBr'>
 		<br/>		
 	<#elseif elementType = 'DocPara'>
-		<#if current.headLevel == 0>
-			<p <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</p>
-		<#else>
-			<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</h${current.headLevel}>
-		</#if>
+		<@handlePara current=current/>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>			
+	<#elseif elementType = 'DocList'>
+		<@handleList docList=current/>			
 	<#else>
 		<span>Element type non implemented yet : ${elementType}</span>
 	</#if>
+</#macro>
+
+<#macro handlePhrase current>
+	<#if (current.link)??>
+		<a <@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
+	<#elseif (current.anchor)??>
+		<a <@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
+	<#else>
+		<span <@handleStyleOnly styleValue=current.style/>>${current.text}</span>
+	</#if>
+</#macro>
+
+<#macro handlePara current>
+	<#if current.headLevel == 0>
+		<p <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</p>
+	<#else>
+		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</h${current.headLevel}>
+	</#if>
+</#macro>
+
+<#macro handleList docList>
+	<${docList.listType}>
+		<#list docList.elementList as li>
+			<li><@handlePara current=li.content/></li>			
+		</#list>	
+	</${docList.listType}>
 </#macro>
 
 <#macro handleTable docTable>
