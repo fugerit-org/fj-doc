@@ -28,11 +28,11 @@
 </#macro>
 
 <#macro handlePhrase current>
-	<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.style/> <@handleFont element=current/>>${current.text}</fo:inline>
+	<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>>${current.text}</fo:inline>
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+	<fo:block <@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -66,13 +66,9 @@
 	</fo:list-block>
 </#macro>
 
-<#macro handleTable docTable>
-		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed">
-			<#list docTable.colWithds as currentColWidth>
-			<fo:table-column column-width="${currentColWidth}%" />	
-			</#list>
-			<fo:table-body>
-				<#list docTable.elementList as row>	
+<#macro handleRowList docTable rowList cellType>
+			<fo:table-${cellType} <#if cellType == 'header'> font-weight="bold" text-align="center"</#if>>
+				<#list rowList as row>	
 				<fo:table-row>
 					<#list row.elementList as cell>
 						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/> number-columns-spanned="${cell.columnSpan}">
@@ -87,7 +83,21 @@
 					</#list>
 				</fo:table-row>				
 				</#list>
-			</fo:table-body>
+			</fo:table-${cellType}>
+</#macro>
+
+<#macro handleTable docTable>
+	<#assign docTableUtil=docTable.util/>
+		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed">
+			<#list docTable.colWithds as currentColWidth>
+			<fo:table-column column-width="${currentColWidth}%" />	
+			</#list>
+			<#if (docTableUtil.strictHeader)>
+				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='header'/>
+				<@handleRowList docTable=docTable rowList=docTableUtil.dataRows cellType='body'/>
+			<#else>
+				<@handleRowList docTable=docTable rowList=docTable.elementList cellType='body'/>
+			</#if>
 		</fo:table>
 </#macro>
 
@@ -112,4 +122,4 @@ white-space-collapse="false"
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"</#if> </#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>font-weight="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#else>font-style="normal" font-weight="normal"</#if> </#macro>
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>font-weight="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#elseif styleValue = 1>font-style="normal" font-weight="normal"</#if> </#macro>

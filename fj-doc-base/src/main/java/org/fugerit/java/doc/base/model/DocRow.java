@@ -37,5 +37,18 @@ public class DocRow extends DocContainer {
 	 * 
 	 */
 	private static final long serialVersionUID = -3031241716805257717L;
+	
+	public static final String TAG_NAME = "row";
+	public static final String ATT_HEADER = "header";
+	
+	private boolean header;
+
+	public boolean isHeader() {
+		return header;
+	}
+
+	public void setHeader(boolean header) {
+		this.header = header;
+	}
 
 }
