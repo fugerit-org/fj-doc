@@ -45,8 +45,6 @@ import org.fugerit.java.doc.base.model.DocHeaderFooter;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.model.DocImage;
 import org.fugerit.java.doc.base.model.DocInfo;
-import org.fugerit.java.doc.base.model.DocLi;
-import org.fugerit.java.doc.base.model.DocList;
 import org.fugerit.java.doc.base.model.DocNbsp;
 import org.fugerit.java.doc.base.model.DocPageBreak;
 import org.fugerit.java.doc.base.model.DocPara;
@@ -64,15 +62,13 @@ import org.xml.sax.SAXException;
  * @author Matteo 
  *
  */
-public class DocContentHandler implements ContentHandler {
+public class DocContentHandler_1_3 implements ContentHandler {
 	
 	private static final String XSD_BASE = "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-";
 	
 	private static final String[] ELEMENT_CONTAINER = { "table", 
 														"row", 
-														"cell",
-														"list",
-														"li",
+														"cell", 
 														"body", 
 														"meta", 
 														"metadata", 
@@ -93,11 +89,11 @@ public class DocContentHandler implements ContentHandler {
 	
 	private DocHelper docHelper;
 	
-	public DocContentHandler( DocHelper docHelper ) {
+	public DocContentHandler_1_3( DocHelper docHelper ) {
 		this.docHelper = docHelper;
 	}
 	
-	public DocContentHandler() {
+	public DocContentHandler_1_3() {
 		this( new DocHelper() );
 	}
 	
@@ -173,6 +169,19 @@ public class DocContentHandler implements ContentHandler {
 		this.currentContainer = null;
 		this.currentElement = null;
 	}
+
+	/* (non-Javadoc)
+	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		if ( CONTAINER_LIST.contains( qName ) ) {
+			if ( !this.parents.isEmpty() ) {
+				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
+			} else {
+				this.currentContainer = null;
+			}
+		}
+	}	
 	
 	private static int getAlign( String align ) {
 		int result = DocPara.ALIGN_UNSET;
@@ -300,23 +309,6 @@ public class DocContentHandler implements ContentHandler {
 	}
 	
 	/* (non-Javadoc)
-	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	public void endElement(String uri, String localName, String qName) throws SAXException {
-		if ( "li".equalsIgnoreCase( qName ) ) {
-			DocLi docLi = (DocLi) this.currentContainer;
-			docLi.endElement();
-		}
-		if ( CONTAINER_LIST.contains( qName ) ) {
-			if ( !this.parents.isEmpty() ) {
-				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
-			} else {
-				this.currentContainer = null;
-			}
-		}
-	}		
-	
-	/* (non-Javadoc)
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
 	public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
@@ -413,21 +405,7 @@ public class DocContentHandler implements ContentHandler {
 			barcode.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
 			barcode.setType( props.getProperty( "type", "EAN" ) );
 			barcode.setText( props.getProperty( "text" ) );
-			this.currentElement = barcode;
-		} else if ( "list".equalsIgnoreCase( qName ) ) {
-			DocList docList = new DocList();
-			this.currentElement = docList;
-		} else if ( "li".equalsIgnoreCase( qName ) ) {
-			DocLi docLi = new DocLi();
-			this.currentElement = docLi;
-		} else if ( "liLabel".equalsIgnoreCase( qName ) ) {
-			DocPhrase docPhrase = new DocPhrase();
-			valuePhrase(docPhrase, props);
-			this.currentElement = docPhrase;
-		} else if ( "liBody".equalsIgnoreCase( qName ) ) {
-			DocPara docPara = new DocPara();
-			valuePara(docPara, props, false);
-			this.currentElement = docPara;			
+			this.currentElement = barcode;	
 		} else if ( "table".equalsIgnoreCase( qName ) ) {
 			DocTable docTable = new DocTable();
 			docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );

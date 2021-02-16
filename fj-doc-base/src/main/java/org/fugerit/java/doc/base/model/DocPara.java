@@ -33,6 +33,11 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocPara extends DocElement implements DocStyle {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4246777398259149367L;
+
 	public static final int DEFAULT_HEAD_LEVEL = 0;
 
 	public static final int STYLE_NORMAL = 1;

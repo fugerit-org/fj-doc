@@ -33,6 +33,11 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocHeader extends DocHeaderFooter {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -141423107669300744L;
+
 	public DocHeader() {
 		this.useHeader = false;
 	}

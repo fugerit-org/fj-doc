@@ -2,6 +2,11 @@ package org.fugerit.java.doc.base.model;
 
 public class DocPhrase extends DocElement implements DocStyle {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -880687263688988196L;
+
 	public DocPhrase() {
 		this.text = "";
 	}

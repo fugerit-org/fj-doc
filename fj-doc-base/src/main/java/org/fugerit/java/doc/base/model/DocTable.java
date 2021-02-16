@@ -34,6 +34,11 @@ package org.fugerit.java.doc.base.model;
 public class DocTable extends DocContainer implements DocStyle {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4708466907819886346L;
+
 	private int padding;
 	
 	private int spacing;

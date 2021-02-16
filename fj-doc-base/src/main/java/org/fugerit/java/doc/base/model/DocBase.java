@@ -40,6 +40,11 @@ import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
  */
 public class DocBase extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8002627421125892032L;
+
 	private static void print( DocContainer docContainer, PrintStream s, int pad ) {
 		String p = "";
 		for ( int k=0; k<pad; k++ ) {

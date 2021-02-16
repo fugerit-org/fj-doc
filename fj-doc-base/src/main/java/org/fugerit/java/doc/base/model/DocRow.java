@@ -33,4 +33,9 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocRow extends DocContainer {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3031241716805257717L;
+
 }

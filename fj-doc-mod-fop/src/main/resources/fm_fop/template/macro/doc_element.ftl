@@ -6,23 +6,37 @@
 	</#list>	
 </#macro>
 
-<#macro handleRole element><#if element.headLevel &gt; 0>role="H${element.headLevel}" </#if></#macro>
+<#macro handleRole role element><#if role != ''>role="${role}" <#elseif element.headLevel &gt; 0>role="H${element.headLevel}" </#if></#macro>
 
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
-		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.style/> <@handleFont element=current/>>${current.text}</fo:inline>
+		<@handlePhrase current=current/>
 	<#elseif elementType = 'DocPara'>
-		<fo:block <@handleWhiteSpace element=current/><@handleRole element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+		<@handlePara current=current/>
 	<#elseif elementType = 'DocBr'>
 		<fo:block white-space-treatment="preserve" <@handleFont element=current/>>  </fo:block>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>
 	<#elseif elementType = 'DocImage'>
-		<@handleImage docImage=current/>								
+		<@handleImage docImage=current/>
+	<#elseif elementType = 'DocList'>
+		<@handleList docList=current/>																				
 	<#else>
-		<fo:block space-after="5mm" <@handleFont element=current/>>Element type non implemented yet : ${elementType}</fo:block>
+		<fo:block space-after="5mm">Element type non implemented yet : ${elementType}</fo:block>
 	</#if>
+</#macro>
+
+<#macro handlePhrase current>
+	<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.style/> <@handleFont element=current/>>${current.text}</fo:inline>
+</#macro>
+
+<#macro handleParaRole current role>
+	<fo:block <@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.style/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+</#macro>
+
+<#macro handlePara current>
+	<@handleParaRole current=current role=''/>
 </#macro>
 
 <#macro handleImage docImage>
@@ -35,6 +49,21 @@
 		<fo:external-graphic  ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format" 
 			src="data:image;base64,${docImage.resolvedBase64}"/>
 	</fo:block>
+</#macro>
+
+<#macro handleList docList>
+	<fo:list-block>
+		<#list docList.elementList as li>
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block><@handlePhrase current=li.liLabel/></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<@handlePara current=li.liBody/>
+				</fo:list-item-body>
+			</fo:list-item>			
+		</#list>	
+	</fo:list-block>
 </#macro>
 
 <#macro handleTable docTable>
@@ -79,7 +108,7 @@ white-space-collapse="false"
 
 <#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
 
-<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}" </#if><#if element.size != -1> font-size="${element.size}pt" </#if></#macro>
+<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}" </#if><#if (element.size)?? && (element.size != -1)> font-size="${element.size}pt" </#if></#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"</#if> </#macro>
 

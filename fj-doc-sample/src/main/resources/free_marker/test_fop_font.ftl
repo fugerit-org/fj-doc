@@ -61,6 +61,17 @@
   		<br/>
   		<br/>
   
+  		<list>
+  			<li>
+  				<liLabel>&amp;#183;</liLabel>
+  				<liBody>item 1</liBody>
+  			</li>
+  			<li>
+  				<liLabel>&amp;#183;</liLabel>
+  				<liBody>item 2</liBody>
+  			</li>  			
+  		</list>
+  
   		<phrase>Test template page apache free marker</phrase>
   		
   		<phrase font-name="Courier">Test template page apache free marker</phrase>

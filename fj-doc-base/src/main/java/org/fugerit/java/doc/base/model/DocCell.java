@@ -33,6 +33,11 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocCell extends DocContainer implements DocStyle {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6769143730899701281L;
+
 	public DocCell() {
 	}
 	

@@ -33,6 +33,11 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocText extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3736722786868057283L;
+
 	private int vAlign;
 	
 	private int hAlign;
