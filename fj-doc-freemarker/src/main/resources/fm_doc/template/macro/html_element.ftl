@@ -32,7 +32,7 @@
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</p>
+		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align/>>${current.text}</p>
 	<#else>
 		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</h${current.headLevel}>
 	</#if>
@@ -46,19 +46,33 @@
 	</${docList.listType}>
 </#macro>
 
-<#macro handleTable docTable>
-	<table style='width: ${docTable.width}%'>
-		<#list docTable.elementList as row>	
+<#macro handleRowList docTable rowList cellType>
+	<#list rowList as row>	
 		<tr>
 			<#list row.elementList as cell>
-				<td id="cell_${row?index}_${cell?index}" style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
+				<${cellType} id="cell_${row?index}_${cell?index}" style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
-				</td>
+				</${cellType}>
 			</#list>
 		</tr>				
-		</#list>
+	</#list>
+</#macro>
+
+<#macro handleTable docTable>
+	<#assign docTableUtil=docTable.util/>
+	<table style='width: ${docTable.width}%'>
+		<#if (docTableUtil.strictHeader)??>
+			<thead>
+			<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
+			</thead>
+			<tbody>
+			<@handleRowList docTable=docTable rowList=docTableUtil.dataRows cellType='td'/>
+			</tbody>
+		<#else>
+			<@handleRowList docTable=docTable rowList=docTable.elementList cellType='td'/>
+		</#if>
 	</table>
 </#macro>
 
@@ -81,7 +95,7 @@
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;<#elseif styleValue = 1>font-weight: normal; font-style: normal;</#if></#macro>
 
 <#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
 

@@ -38,6 +38,9 @@ public class DocPara extends DocElement implements DocStyle {
 	 */
 	private static final long serialVersionUID = -4246777398259149367L;
 
+	public static final String TAG_NAME = "para";
+	public static final String TAG_NAME_H = "h";
+	
 	public static final int DEFAULT_HEAD_LEVEL = 0;
 
 	public static final int STYLE_NORMAL = 1;
@@ -45,6 +48,7 @@ public class DocPara extends DocElement implements DocStyle {
 	public static final int STYLE_UNDERLINE = 3;
 	public static final int STYLE_ITALIC = 4;
 	public static final int STYLE_BOLDITALIC = 5;
+	public static final int STYLE_UNSET = -1;
 	
 	public static final int ALIGN_UNSET = 0;
 	// h align
@@ -58,7 +62,7 @@ public class DocPara extends DocElement implements DocStyle {
 	public static final int ALIGN_MIDDLE = 5;
 	public static final int ALIGN_BOTTOM = 6;	
 	
-	private int style;
+	private int style;		// style with default value
 	
 	private int size;
 	
@@ -73,6 +77,8 @@ public class DocPara extends DocElement implements DocStyle {
 	private String whiteSpaceCollapse;
 	
 	private int headLevel;
+	
+	private int originalStyle;		// style with unset value
 	
 	public String getFontName() {
 		return fontName;
@@ -189,6 +195,8 @@ public class DocPara extends DocElement implements DocStyle {
 			result = STYLE_ITALIC;
 		} else if ( "bolditalic".equalsIgnoreCase( style ) ) {
 			result = STYLE_BOLDITALIC;
+		} else if ( "normal".equalsIgnoreCase( style ) ) {
+			result = STYLE_NORMAL;
 		}
 		return result;
 	}
@@ -248,5 +256,15 @@ public class DocPara extends DocElement implements DocStyle {
 	public void setWhiteSpaceCollapse(String whiteSpaceCollapse) {
 		this.whiteSpaceCollapse = whiteSpaceCollapse;
 	}
+
+	public int getOriginalStyle() {
+		return originalStyle;
+	}
+
+	public void setOriginalStyle(int originalStyle) {
+		this.originalStyle = originalStyle;
+	}
+	
+	
 
 }

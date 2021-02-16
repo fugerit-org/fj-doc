@@ -208,6 +208,7 @@
 				<xsd:element ref='doc:cell' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
 			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='header' type="xsd:boolean" use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 

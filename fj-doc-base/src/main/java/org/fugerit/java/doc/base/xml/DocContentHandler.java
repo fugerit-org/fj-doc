@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Properties;
 
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -68,8 +69,8 @@ public class DocContentHandler implements ContentHandler {
 	
 	private static final String XSD_BASE = "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-";
 	
-	private static final String[] ELEMENT_CONTAINER = { "table", 
-														"row", 
+	private static final String[] ELEMENT_CONTAINER = { DocTable.TAG_NAME, 
+														DocRow.TAG_NAME,
 														"cell",
 														"list",
 														"li",
@@ -236,6 +237,7 @@ public class DocContentHandler implements ContentHandler {
 		// setting phrase style
 		String style = props.getProperty( "style" );
 		docPhrase.setStyle( DocPara.parseStyle( style ) );
+		docPhrase.setOriginalStyle( DocPara.parseStyle( style, DocPara.STYLE_UNSET ) );
 		// font name
 		String fontName = props.getProperty(  "font-name" );
 		docPhrase.setFontName( fontName );
@@ -267,6 +269,7 @@ public class DocContentHandler implements ContentHandler {
 			defaultStyle = DocPara.STYLE_BOLD;
 		}
 		docPara.setStyle( DocPara.parseStyle( style, defaultStyle ) );
+		docPara.setOriginalStyle( DocPara.parseStyle( style, DocPara.STYLE_UNSET ) );
 		// setting paragraph align
 		String align = props.getProperty( "align" );
 		docPara.setAlign( getAlign( align ) );
@@ -381,11 +384,11 @@ public class DocContentHandler implements ContentHandler {
 				docImage.setBase64( base64 );
 			}
 			this.currentElement = docImage;			
-		} else if ( "para".equalsIgnoreCase( qName ) ) {
+		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
 			valuePara(docPara, props, false);
 			this.currentElement = docPara;
-		} else if ( "h".equalsIgnoreCase( qName ) ) {
+		} else if ( DocPara.TAG_NAME_H.equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
 			valuePara(docPara, props, true);
 			this.currentElement = docPara;			
@@ -400,7 +403,7 @@ public class DocContentHandler implements ContentHandler {
 			int length = Integer.parseInt( props.getProperty( "length", "2" ) );
 			docNbsp.setLength( length );
 			this.currentElement = docNbsp;					
-		} else if ( "phrase".equalsIgnoreCase( qName ) ) {
+		} else if ( DocPhrase.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPhrase docPhrase = new DocPhrase();
 			valuePhrase(docPhrase, props);
 			this.currentElement = docPhrase;			
@@ -418,7 +421,7 @@ public class DocContentHandler implements ContentHandler {
 		} else if ( "li".equalsIgnoreCase( qName ) ) {
 			DocLi docLi = new DocLi();
 			this.currentElement = docLi;			
-		} else if ( "table".equalsIgnoreCase( qName ) ) {
+		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocTable docTable = new DocTable();
 			docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
@@ -444,8 +447,9 @@ public class DocContentHandler implements ContentHandler {
 				docTable.setSpaceAfter( Float.valueOf( spaceAfter ) );
 			}			
 			this.currentElement = docTable;
-		} else if ( "row".equalsIgnoreCase( qName ) ) {
+		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocRow docRow = new DocRow();
+			docRow.setHeader( BooleanUtils.isTrue( props.getProperty( DocRow.ATT_HEADER ) ) );
 			this.currentElement = docRow;
 		} else if ( "cell".equalsIgnoreCase( qName ) ) {
 			DocCell docCell = new DocCell();

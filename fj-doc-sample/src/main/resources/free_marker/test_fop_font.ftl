@@ -88,10 +88,10 @@
   		<para style="bolditalic">bold italic</para>
   
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
-    		<row>
-    			<cell align="center" border-color="#ee0000" border-width="1"><para style="bold">Name</para></cell>
-    			<cell align="center"><para style="bold">Surname</para></cell>
-    			<cell align="center"><para style="bold">Title</para></cell>
+    		<row header="true">
+    			<cell border-color="#ee0000" border-width="1"><para>Name</para></cell>
+    			<cell><para>Surname</para></cell>
+    			<cell><para>Title</para></cell>
     		</row>
 			<#list userList as user>
 				<#include "/include/test_01_row.ftl">
