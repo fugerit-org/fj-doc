@@ -33,6 +33,11 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocInfo extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1258119296671751462L;
+
 	public static final String INFO_NAME_CSS_LINK = "html-css-link";
 	
 	public static final String INFO_NAME_CSS_STYLE = "html-css-style";

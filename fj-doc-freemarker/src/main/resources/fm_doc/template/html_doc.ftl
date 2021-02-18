@@ -1,4 +1,4 @@
-<#import "/macro/html_element.xml" as doc_element>
+<#import "/macro/html_element.ftl" as doc_element>
 <html>
 	<head><title>Generated document</title></head>
 	<body>

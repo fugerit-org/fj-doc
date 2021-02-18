@@ -33,4 +33,9 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocBr extends DocPhrase {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6137071958590286108L;
+
 }

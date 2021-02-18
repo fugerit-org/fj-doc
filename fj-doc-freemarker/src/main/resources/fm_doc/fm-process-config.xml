@@ -27,14 +27,14 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="html_doc.xml"/>
+			param01="html_doc.ftl"/>
 	</chain>
 	
 	<chain id="html-fragment-freemarker" extends="base-freemarker">
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="html_fragment.xml"/>
+			param01="html_fragment.ftl"/>
 	</chain>
 
 </doc-process>

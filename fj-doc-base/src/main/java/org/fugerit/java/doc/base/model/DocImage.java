@@ -36,6 +36,11 @@ import org.fugerit.java.doc.base.helper.SourceResolverHelper;
  */
 public class DocImage extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5892416838638462834L;
+
 	private Integer scaling;
 	
 	private String url;

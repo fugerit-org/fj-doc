@@ -33,12 +33,22 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocPara extends DocElement implements DocStyle {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4246777398259149367L;
+
+	public static final String TAG_NAME = "para";
+	public static final String TAG_NAME_H = "h";
+	
+	public static final int DEFAULT_HEAD_LEVEL = 0;
 
 	public static final int STYLE_NORMAL = 1;
 	public static final int STYLE_BOLD = 2;
 	public static final int STYLE_UNDERLINE = 3;
 	public static final int STYLE_ITALIC = 4;
 	public static final int STYLE_BOLDITALIC = 5;
+	public static final int STYLE_UNSET = -1;
 	
 	public static final int ALIGN_UNSET = 0;
 	// h align
@@ -52,20 +62,23 @@ public class DocPara extends DocElement implements DocStyle {
 	public static final int ALIGN_MIDDLE = 5;
 	public static final int ALIGN_BOTTOM = 6;	
 	
-	private int style;
+	private int style;		// style with default value
 	
 	private int size;
 	
 	private String text;
 
-	
-	
 	private String foreColor;
 	
 	private String backColor;	
 	
-	
 	private String fontName;
+	
+	private String whiteSpaceCollapse;
+	
+	private int headLevel;
+	
+	private int originalStyle;		// style with unset value
 	
 	public String getFontName() {
 		return fontName;
@@ -169,7 +182,11 @@ public class DocPara extends DocElement implements DocStyle {
 	}
 	
 	public static int parseStyle( String style ) {
-		int result = STYLE_NORMAL;
+		return parseStyle( style, STYLE_NORMAL );
+	}
+	
+	public static int parseStyle( String style, int defaultStype ) {
+		int result = defaultStype;
 		if ( "bold".equalsIgnoreCase( style ) ) {
 			result = STYLE_BOLD;
 		} else if ( "underline".equalsIgnoreCase( style ) ) {
@@ -178,6 +195,8 @@ public class DocPara extends DocElement implements DocStyle {
 			result = STYLE_ITALIC;
 		} else if ( "bolditalic".equalsIgnoreCase( style ) ) {
 			result = STYLE_BOLDITALIC;
+		} else if ( "normal".equalsIgnoreCase( style ) ) {
+			result = STYLE_NORMAL;
 		}
 		return result;
 	}
@@ -218,11 +237,34 @@ public class DocPara extends DocElement implements DocStyle {
 		this.align = align;
 	}
 
+	public int getHeadLevel() {
+		return headLevel;
+	}
+
+	public void setHeadLevel(int headLevel) {
+		this.headLevel = headLevel;
+	}
 
 	public String toString() {
 		return super.toString()+"[text:"+this.getText()+"]";
 	}
+
+	public String getWhiteSpaceCollapse() {
+		return whiteSpaceCollapse;
+	}
+
+	public void setWhiteSpaceCollapse(String whiteSpaceCollapse) {
+		this.whiteSpaceCollapse = whiteSpaceCollapse;
+	}
+
+	public int getOriginalStyle() {
+		return originalStyle;
+	}
+
+	public void setOriginalStyle(int originalStyle) {
+		this.originalStyle = originalStyle;
+	}
+	
 	
 
-	
 }

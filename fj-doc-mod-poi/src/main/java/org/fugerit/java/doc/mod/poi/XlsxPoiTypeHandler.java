@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -34,14 +35,14 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 
 	@Override
-	protected Workbook newWorkbook( DocInput docInput , InputStream is ) throws Exception {
+	protected WorkbookHelper newWorkbook( DocInput docInput , InputStream is ) throws Exception {
 		Workbook workbook = null;
 		if ( is == null ) {
 			workbook = new XSSFWorkbook();
 		} else {
 			workbook = new XSSFWorkbook( is );
 		}
-		return workbook;
+		return new WorkbookHelper( workbook, new DefaultIndexedColorMap() );
 	}
 
 	@Override
@@ -51,13 +52,13 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 	
 	@Override
-	protected void setFormatStyle( Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception {
+	protected void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception {
 		if ( style instanceof XSSFCellStyle ) {
 			XSSFCellStyle realStyle = (XSSFCellStyle) style;
 			if ( cell != null ) {
 				if ( StringUtils.isNotEmpty( cell.getBackColor() ) ) {
 					Color c = DocModelUtils.parseHtmlColor( cell.getBackColor() );
-					realStyle.setFillForegroundColor( new XSSFColor( c ) );
+					realStyle.setFillForegroundColor( new XSSFColor( c , helper.getIndexedColorMap() ) );
 					realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
 				}
 			}
@@ -65,12 +66,12 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 
 	@Override
-	protected void setFontStyle(Workbook workbook, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
 		if ( font instanceof XSSFFont ) {
 			XSSFFont realFont = (XSSFFont) font;
 			if ( StringUtils.isNotEmpty( cell.getForeColor() ) ) {
 				Color c = DocModelUtils.parseHtmlColor( cell.getForeColor() );
-				realFont.setColor( new XSSFColor( c ) );
+				realFont.setColor( new XSSFColor( c, helper.getIndexedColorMap() ) );
 			}
 		}
 	}	

@@ -2,6 +2,11 @@ package org.fugerit.java.doc.base.model;
 
 public class DocBarcode extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 887515352642661380L;
+
 	private int size;
 	
 	private String text;

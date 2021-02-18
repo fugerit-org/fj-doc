@@ -37,6 +37,11 @@ import java.util.List;
  */
 public class DocContainer extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7804278421835814451L;
+	
 	private List<DocElement> elementList;
 	
 	public DocContainer() {

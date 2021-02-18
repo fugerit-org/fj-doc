@@ -33,4 +33,9 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocPageBreak extends DocElement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -212103864398275796L;
+
 }

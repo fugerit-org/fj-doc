@@ -2,9 +2,12 @@ package org.fugerit.java.doc.base.config;
 
 import java.io.Serializable;
 
+import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.helpers.XMLConfigurableObject;
 import org.fugerit.java.doc.base.helper.DefaultMimeHelper;
+import org.w3c.dom.Element;
 
-public class DocTypeHandlerDefault implements DocTypeHandler, Serializable {
+public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocTypeHandler, Serializable {
 
 	/**
 	 * 
@@ -59,6 +62,10 @@ public class DocTypeHandlerDefault implements DocTypeHandler, Serializable {
 	
 	public static final String createKey( String type, String mod ) {
 		return type+"-"+mod;
+	}
+
+	@Override
+	public void configure(Element tag) throws ConfigException {
 	}
 
 }

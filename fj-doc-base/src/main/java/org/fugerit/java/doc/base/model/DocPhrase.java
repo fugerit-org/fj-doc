@@ -2,11 +2,18 @@ package org.fugerit.java.doc.base.model;
 
 public class DocPhrase extends DocElement implements DocStyle {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -880687263688988196L;
+
+	public static final String TAG_NAME = "phrase";
+	
 	public DocPhrase() {
 		this.text = "";
 	}
 	
-	private int style;
+	private int style;		// style with default value
 	
 	private int size;
 	
@@ -24,6 +31,18 @@ public class DocPhrase extends DocElement implements DocStyle {
 	
 	private String anchor;
 	
+	private String whiteSpaceCollapse;
+	
+	private int originalStyle;		// style with unset value
+	
+	public String getWhiteSpaceCollapse() {
+		return whiteSpaceCollapse;
+	}
+
+	public void setWhiteSpaceCollapse(String whiteSpaceCollapse) {
+		this.whiteSpaceCollapse = whiteSpaceCollapse;
+	}
+
 	public Float getLeading() {
 		return leading;
 	}
@@ -118,7 +137,13 @@ public class DocPhrase extends DocElement implements DocStyle {
 	public void setAnchor(String anchor) {
 		this.anchor = anchor;
 	}
-	
-	
+
+	public int getOriginalStyle() {
+		return originalStyle;
+	}
+
+	public void setOriginalStyle(int originalStyle) {
+		this.originalStyle = originalStyle;
+	}
 	
 }

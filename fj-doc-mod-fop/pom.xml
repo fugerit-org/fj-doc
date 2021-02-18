@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.3.2.0</version>
+		<version>0.3.5.3</version>
 	</parent>
 
 	<name>fj-doc-mod-fop</name>
@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<fop-version>2.4</fop-version>
+		<fop-version>2.6</fop-version>
 	</properties>
 	
 	<build>
@@ -47,6 +47,11 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-freemarker</artifactId>
+		</dependency>
 	
 		<!-- java core dependancies -->
 		<dependency>

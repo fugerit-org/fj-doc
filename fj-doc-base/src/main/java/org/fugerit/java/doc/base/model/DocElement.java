@@ -25,13 +25,20 @@
  */
 package org.fugerit.java.doc.base.model;
 
+import java.io.Serializable;
+
 /**
  * 
  *
  * @author mfranci
  *
  */
-public class DocElement {
+public class DocElement implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1934678965894426319L;
 
 	public String toString() {
 		return this.getClass().getName();

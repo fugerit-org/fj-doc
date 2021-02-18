@@ -32,7 +32,7 @@
     		<#assign x = 0>
 			<#list userList as user>
 				<#assign x = x+1>
-				<#include "/include/test_01_row.xml">
+				<#include "/include/test_01_row.ftl">
 			</#list>  
     		<row>
     			<cell align="center" colspan="2" rowspan="2"><para style="bold">Total</para></cell>

@@ -27,6 +27,22 @@
  
   <body>
   
+  		<h head-level="1">Heading test level 1 default font</h>
+  		
+  		<h head-level="1">Heading test level 1 TitilliumWeb</h>
+  		
+  		<h head-level="2">Heading test level 2</h>
+  		
+  		<h head-level="3" align="right">Heading test level 3</h>
+  
+  		<para align="right">Test right</para>
+  		
+  		<para align="right">${messageFormat('test format -> {0} {1}', 'param1', 'param2')}</para>
+  
+  		<br/>
+  		<br/>
+  		<br/>
+  
   		<phrase>Test template page apache free marker</phrase>
   
   		<image url="cl://test/img_test_green.png" scaling="100"/>
@@ -35,6 +51,12 @@
   
   		<image url="png" base64="${testBase64Img}" scaling="25"/>	
   
+  		<para style="bold">italic</para>
+  		
+  		<para style="italic">bold</para>
+  		
+  		<para style="bolditalic">bold italic</para>
+  
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
     			<cell align="center" border-color="#ee0000" border-width="1"><para style="bold">Name</para></cell>
@@ -42,7 +64,7 @@
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
 			<#list userList as user>
-				<#include "/include/test_01_row.xml">
+				<#include "/include/test_01_row.ftl">
 			</#list>   		
     	</table>
   </body>

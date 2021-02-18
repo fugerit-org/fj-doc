@@ -23,7 +23,7 @@
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
-			param01="fop_doc.xml"/>
+			param01="fop_doc.ftl"/>
 	</chain>
 
 </doc-process>

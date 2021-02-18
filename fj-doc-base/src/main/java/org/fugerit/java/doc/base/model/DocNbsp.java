@@ -33,6 +33,11 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocNbsp extends DocPhrase {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3626274368156597064L;
+	
 	private int length;
 
 	public int getLength() {

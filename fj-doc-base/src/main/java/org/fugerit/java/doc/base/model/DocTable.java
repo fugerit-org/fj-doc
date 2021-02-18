@@ -15,6 +15,7 @@
    The Apache Software Foundation (http://www.apache.org/).
 </copyright>
 *****************************************************************/
+package org.fugerit.java.doc.base.model;
 /*
  * @(#)DocTable.java
  *
@@ -23,7 +24,8 @@
  * @creation   : 06/set/06
  * @license	   : META-INF/LICENSE.TXT
  */
-package org.fugerit.java.doc.base.model;
+
+import org.fugerit.java.doc.base.model.util.DocTableUtil;
 
 /**
  * 
@@ -33,6 +35,17 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocTable extends DocContainer implements DocStyle {
 
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4708466907819886346L;
+
+	public DocTableUtil getUtil() {
+		return new DocTableUtil( this );
+	}
+	
+	public static final String TAG_NAME = "table";
 	
 	private int padding;
 	

@@ -1,4 +1,97 @@
-﻿0.3.2.0 (2020-05-10)
+﻿0.3.5.3 (2021-02-18)
+--------------------
++ Added SimpleDocFacade for simple document handling
++ Added dependancy fj-mod-freemarker for fj-mod-fop
+
+0.3.5.2 (2021-02-16)
+--------------------
++ Handle table header for mod-fop e mod-freemarker html
+
+0.3.5.1 (2021-02-16)
+--------------------
++ List support for mod-fop e mod-freemarker html
+
+0.3.5.0 (2021-02-16)
+--------------------
++ List support (currently only for mod-fop)
+
+0.3.4.7 (2021-02-15)
+--------------------
++ Fix to doc xsd 1.3
+
+0.3.4.4 (2021-02-14)
+--------------------
++ Added simple free marker functions to sum numbers
+
+0.3.4.3 (2021-02-14)
+--------------------
++ Bugfix on Support for default font family/size/style in mod-fop
+
+0.3.4.2 (2021-02-14)
+--------------------
++ Support for default font family/size/style in mod-fop
+
+0.3.4.1 (2021-02-14)
+--------------------
++ Custom configuration of renderers
++ Added support for class loader configuration in mod-fop
+
+0.3.4.0 (2021-02-13)
+--------------------
++ Added free marker extension for formatting in mod-freemarker
++ Added mod-freemarker step for configuring custom functions
+
+0.3.3.10 (2021-02-12)
+--------------------
++ Changed pdfboc version from 2.0.17 to 2.0.12
++ added check pdf utility in mod-pdfbox 
+
+0.3.3.9 (2021-02-11)
+--------------------
++ better mod-fop support for <br/> align and style 
+
+0.3.3.8 (2021-02-10)
+--------------------
++ Changed fop version from 2.4 to 2.6
++ mod-fop now supports accessibility tags in pdf (h1/h7) 
+
+0.3.3.7 (2021-02-05)
+--------------------
++ Default apache free marker version change (2.3.29 -> 2.3.30)
+
+0.3.3.6 (2021-02-03)
+--------------------
++ fremarker html support now print style attribute only if has values
+
+0.3.3.5 (2021-02-02)
+--------------------
++ Added support for italic and bold italic style in freemarker html
+
+0.3.3.4 (2021-02-02)
+--------------------
++ Added support for italic and bold italic style in freemarker html
+
+0.3.3.3 (2021-02-01)
+--------------------
++ Added some dirext xml api call
++ Removed some depecrated call to apache POI
+
+0.3.3.2 (2021-01-07)
+--------------------
++ bufix : freemarker html didn't handle right text align
+
+0.3.3.1 (2021-01-05)
+--------------------
++ Upgrade fj-core version to 0.7.4.8
++ Added support for headings level 1/7 (doc-1-2.xsd) [currently supported only on freemarker html renderer) 
+
+0.3.3.0 (2020-12-18)
+--------------------
++ Changed free marker template extension from .xml to .ftl
++ Upgrade free marker version from 2.3.29 to 2.3.30
++ Upgrade fj-core version to 0.7.4.0
+
+0.3.2.0 (2020-05-10)
 --------------------
 + Added xsd version 1.1
 + Check for maximum supported version

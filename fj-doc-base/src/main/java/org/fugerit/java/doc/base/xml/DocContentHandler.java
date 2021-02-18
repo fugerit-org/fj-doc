@@ -31,6 +31,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Properties;
 
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -45,6 +46,8 @@ import org.fugerit.java.doc.base.model.DocHeaderFooter;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.model.DocImage;
 import org.fugerit.java.doc.base.model.DocInfo;
+import org.fugerit.java.doc.base.model.DocLi;
+import org.fugerit.java.doc.base.model.DocList;
 import org.fugerit.java.doc.base.model.DocNbsp;
 import org.fugerit.java.doc.base.model.DocPageBreak;
 import org.fugerit.java.doc.base.model.DocPara;
@@ -66,9 +69,11 @@ public class DocContentHandler implements ContentHandler {
 	
 	private static final String XSD_BASE = "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-";
 	
-	private static final String[] ELEMENT_CONTAINER = { "table", 
-														"row", 
-														"cell", 
+	private static final String[] ELEMENT_CONTAINER = { DocTable.TAG_NAME, 
+														DocRow.TAG_NAME,
+														"cell",
+														"list",
+														"li",
 														"body", 
 														"meta", 
 														"metadata", 
@@ -169,19 +174,6 @@ public class DocContentHandler implements ContentHandler {
 		this.currentContainer = null;
 		this.currentElement = null;
 	}
-
-	/* (non-Javadoc)
-	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
-	 */
-	public void endElement(String uri, String localName, String qName) throws SAXException {
-		if ( CONTAINER_LIST.contains( qName ) ) {
-			if ( !this.parents.isEmpty() ) {
-				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
-			} else {
-				this.currentContainer = null;
-			}
-		}
-	}	
 	
 	private static int getAlign( String align ) {
 		int result = DocPara.ALIGN_UNSET;
@@ -245,6 +237,10 @@ public class DocContentHandler implements ContentHandler {
 		// setting phrase style
 		String style = props.getProperty( "style" );
 		docPhrase.setStyle( DocPara.parseStyle( style ) );
+		docPhrase.setOriginalStyle( DocPara.parseStyle( style, DocPara.STYLE_UNSET ) );
+		// font name
+		String fontName = props.getProperty(  "font-name" );
+		docPhrase.setFontName( fontName );
 		//leading
 		String leading = props.getProperty( "leading" );
 		if ( leading != null ) {
@@ -258,12 +254,22 @@ public class DocContentHandler implements ContentHandler {
 		if ( anchor != null ) {
 			docPhrase.setAnchor( anchor );
 		}
+		// white space collpase
+		String whiteSpaceCollapse = props.getProperty( "white-space-collapse" );
+		if ( StringUtils.isNotEmpty( whiteSpaceCollapse ) ) {
+			docPhrase.setWhiteSpaceCollapse(whiteSpaceCollapse);
+		}
 	}
 	
-	private static void valuePara( DocPara docPara, Properties props ) {
+	private static void valuePara( DocPara docPara, Properties props, boolean headings ) {
 		// setting paragraph style
 		String style = props.getProperty( "style" );
-		docPara.setStyle( DocPara.parseStyle( style ) );
+		int defaultStyle = DocPara.STYLE_NORMAL;
+		if ( headings ) {
+			defaultStyle = DocPara.STYLE_BOLD;
+		}
+		docPara.setStyle( DocPara.parseStyle( style, defaultStyle ) );
+		docPara.setOriginalStyle( DocPara.parseStyle( style, DocPara.STYLE_UNSET ) );
 		// setting paragraph align
 		String align = props.getProperty( "align" );
 		docPara.setAlign( getAlign( align ) );
@@ -286,8 +292,28 @@ public class DocContentHandler implements ContentHandler {
 		}
 		if ( spaceAfter != null ) {
 			docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
-		}			
+		}
+		// setting head level
+		docPara.setHeadLevel( Integer.parseInt( props.getProperty( "head-level", String.valueOf( DocPara.DEFAULT_HEAD_LEVEL ) ) ) );
+		// white space collpase
+		String whiteSpaceCollapse = props.getProperty( "white-space-collapse" );
+		if ( StringUtils.isNotEmpty( whiteSpaceCollapse ) ) {
+			docPara.setWhiteSpaceCollapse(whiteSpaceCollapse);
+		}
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.xml.sax.ContentHandler#endElement(java.lang.String, java.lang.String, java.lang.String)
+	 */
+	public void endElement(String uri, String localName, String qName) throws SAXException {
+		if ( CONTAINER_LIST.contains( qName ) ) {
+			if ( !this.parents.isEmpty() ) {
+				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
+			} else {
+				this.currentContainer = null;
+			}
+		}
+	}		
 	
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
@@ -358,10 +384,14 @@ public class DocContentHandler implements ContentHandler {
 				docImage.setBase64( base64 );
 			}
 			this.currentElement = docImage;			
-		} else if ( "para".equalsIgnoreCase( qName ) ) {
+		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
-			valuePara(docPara, props);
+			valuePara(docPara, props, false);
 			this.currentElement = docPara;
+		} else if ( DocPara.TAG_NAME_H.equalsIgnoreCase( qName ) ) {
+			DocPara docPara = new DocPara();
+			valuePara(docPara, props, true);
+			this.currentElement = docPara;			
 		} else if ( "br".equalsIgnoreCase( qName ) ) {
 			DocBr docBr = new DocBr();
 			valuePhrase(docBr, props);
@@ -373,7 +403,7 @@ public class DocContentHandler implements ContentHandler {
 			int length = Integer.parseInt( props.getProperty( "length", "2" ) );
 			docNbsp.setLength( length );
 			this.currentElement = docNbsp;					
-		} else if ( "phrase".equalsIgnoreCase( qName ) ) {
+		} else if ( DocPhrase.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPhrase docPhrase = new DocPhrase();
 			valuePhrase(docPhrase, props);
 			this.currentElement = docPhrase;			
@@ -382,8 +412,16 @@ public class DocContentHandler implements ContentHandler {
 			barcode.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
 			barcode.setType( props.getProperty( "type", "EAN" ) );
 			barcode.setText( props.getProperty( "text" ) );
-			this.currentElement = barcode;	
-		} else if ( "table".equalsIgnoreCase( qName ) ) {
+			this.currentElement = barcode;
+		} else if ( "list".equalsIgnoreCase( qName ) ) {
+			DocList docList = new DocList();
+			String listType = props.getProperty( "list-type", DocList.LIST_TYPE_OL );
+			docList.setListType( listType );
+			this.currentElement = docList;
+		} else if ( "li".equalsIgnoreCase( qName ) ) {
+			DocLi docLi = new DocLi();
+			this.currentElement = docLi;			
+		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocTable docTable = new DocTable();
 			docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
@@ -409,8 +447,9 @@ public class DocContentHandler implements ContentHandler {
 				docTable.setSpaceAfter( Float.valueOf( spaceAfter ) );
 			}			
 			this.currentElement = docTable;
-		} else if ( "row".equalsIgnoreCase( qName ) ) {
+		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocRow docRow = new DocRow();
+			docRow.setHeader( BooleanUtils.isTrue( props.getProperty( DocRow.ATT_HEADER ) ) );
 			this.currentElement = docRow;
 		} else if ( "cell".equalsIgnoreCase( qName ) ) {
 			DocCell docCell = new DocCell();
