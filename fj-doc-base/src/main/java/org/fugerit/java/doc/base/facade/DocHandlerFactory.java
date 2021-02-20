@@ -68,13 +68,19 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 		}
 		return facade;
 	}
+
+	
+	public static DocHandlerFactory newInstance( InputStream factoryConfig ) throws Exception {
+		FactoryCatalog catalog = new FactoryCatalog();
+		catalog.configureXML( factoryConfig );
+		DocHandlerFactory map = newInstance( catalog );
+		return map;
+	}
 	
 	public static DocHandlerFactory newInstance( String factoryCatalogPath ) throws Exception {
 		DocHandlerFactory map = null;
 		try ( InputStream is = StreamHelper.resolveStream( factoryCatalogPath ) ) {
-			FactoryCatalog catalog = new FactoryCatalog();
-			catalog.configureXML( is );
-			map = newInstance( catalog );
+			map = newInstance( is );
 		}
 		return map;
 	}

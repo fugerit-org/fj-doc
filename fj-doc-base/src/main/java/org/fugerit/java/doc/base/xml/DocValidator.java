@@ -39,6 +39,14 @@ public class DocValidator {
 		return result;
 	}
 	
+	public static void logResult( SAXParseResult result, Logger logger ) throws XMLException {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		try ( PrintStream ps = new PrintStream( baos ) ) {
+			result.printErrorReport( ps );
+			logger.info( "Validation issues : \n"+new String( baos.toByteArray() ) );
+		}
+	}
+	
 	public static boolean logValidation( Reader xmlData, Logger logger ) throws XMLException {
 		SAXParseResult result = new SAXParseResult();
 		try {
@@ -49,11 +57,7 @@ public class DocValidator {
 		if ( result.isTotalSuccess() ) {
 			logger.info( "Validation completed without errors or warning" );
 		} else {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			try ( PrintStream ps = new PrintStream( baos ) ) {
-				result.printErrorReport( ps );
-				logger.info( "Validation issues : \n"+new String( baos.toByteArray() ) );
-			}	
+			
 		}
 		return result.isPartialSuccess();
 	}
