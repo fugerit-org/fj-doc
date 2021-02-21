@@ -1,4 +1,8 @@
-﻿0.3.5.4 (2021-02-20)
+﻿0.3.5.5 (2021-02-21)
+--------------------
++ Added DocTypeFacadeDefault for inspecting DocBase model in new DocTypeHandler
+
+0.3.5.4 (2021-02-20)
 --------------------
 + Added ProccessDocFacade facility (adding DocHandlerFacade and DocProcessConfig together)
 
