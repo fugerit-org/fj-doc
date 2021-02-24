@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.base.process;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import org.fugerit.java.core.lang.helpers.AttributesHolder;
 import org.fugerit.java.core.util.filterchain.MiniFilterContext;
@@ -17,5 +18,11 @@ public class DocProcessContext extends MiniFilterContext implements Serializable
 		context.setAttribute( key , value);
 		return context;
 	}
-	
+
+	public static DocProcessContext newContext( Map<String, Object> initValues ) {
+		DocProcessContext context = new DocProcessContext();
+		context.setAll( initValues );
+		return context;
+	}
+
 }

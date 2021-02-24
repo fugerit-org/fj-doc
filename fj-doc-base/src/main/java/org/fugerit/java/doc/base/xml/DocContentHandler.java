@@ -368,7 +368,7 @@ public class DocContentHandler implements ContentHandler {
 			DocContainer docBody = this.docBase.getDocBody();
 			this.currentElement = docBody;
 			//Properties info = this.docBase.getInfo();
-		} else if ( "image".equalsIgnoreCase( qName ) ) {
+		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocImage docImage = new DocImage();
 			// setting paragraph style
 			String url = props.getProperty( "url" );
@@ -382,6 +382,14 @@ public class DocContentHandler implements ContentHandler {
 			String base64 = props.getProperty( "base64" );
 			if ( StringUtils.isNotEmpty( base64 ) ) {
 				docImage.setBase64( base64 );
+			}
+			String type = props.getProperty( "type" );
+			if ( StringUtils.isNotEmpty( type ) ) {
+				docImage.setType( type );
+			}
+			String alt = props.getProperty( "alt" );
+			if ( StringUtils.isNotEmpty( alt ) ) {
+				docImage.setAlt( alt );
 			}
 			this.currentElement = docImage;			
 		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
