@@ -28,7 +28,7 @@
 	<#elseif (current.anchor)??>
 		<a <@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
 	<#else>
-		<span <@handleStyleOnly styleValue=current.style/>>${current.text}</span>
+		<span <@handleStyleOnly styleValue=current.style/>${current.text}</span>
 	</#if>
 </#macro>
 

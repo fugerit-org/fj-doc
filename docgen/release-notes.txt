@@ -1,4 +1,8 @@
-﻿0.3.5.8 (2021-02-24)
+﻿0.3.5.9 (2021-02-24)
+--------------------
++ Corrections in link and list handling
+
+0.3.5.8 (2021-02-24)
 --------------------
 + Fix on list item for freemarker html adn fop module
 

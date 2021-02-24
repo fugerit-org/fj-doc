@@ -28,7 +28,14 @@
 </#macro>
 
 <#macro handlePhrase current>
-	<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>>${current.text}</fo:inline>
+	<#if (current.link)??>
+		
+		<fo:basic-link internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
+	<#elseif (current.anchor)??>
+		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>${current.text}</fo:block>
+	<#else>
+		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>>${current.text}</fo:inline>
+	</#if>
 </#macro>
 
 <#macro handleParaRole current role>
@@ -59,7 +66,7 @@
 					<fo:block><fo:inline font-style="normal" <@handleFont element=li.content/>><#if docList.listType == 'ul'>&#183;<#else>${li?counter}.</#if></fo:inline></fo:block>
 				</fo:list-item-label>
 				<fo:list-item-body start-indent="body-start()">
-					<#list li.elementList as element><@handleElement current=element/></#list>
+					<fo:block><#list li.elementList as element><@handleElement current=element/></#list></fo:block>
 				</fo:list-item-body>
 			</fo:list-item>			
 		</#list>	
