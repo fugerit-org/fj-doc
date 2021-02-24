@@ -36,6 +36,8 @@ import org.fugerit.java.doc.base.helper.SourceResolverHelper;
  */
 public class DocImage extends DocElement {
 
+	public static final String TAG_NAME = "image";
+	
 	/**
 	 * 
 	 */
@@ -46,6 +48,10 @@ public class DocImage extends DocElement {
 	private String url;
 	
 	private String base64;
+	
+	private String type;
+	
+	private String alt;
 
 	/**
 	 * @return the url
@@ -66,6 +72,14 @@ public class DocImage extends DocElement {
 	 */
 	public Integer getScaling() {
 		return scaling;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	/**
@@ -89,6 +103,18 @@ public class DocImage extends DocElement {
 			res = SourceResolverHelper.resolveImageToBase64( this );
 		}
 		return res;
+	}
+	
+	public String getResolvedType() {
+		return StringUtils.valueWithDefault( this.getType() , this.getUrl() );
+	}
+
+	public String getAlt() {
+		return alt;
+	}
+
+	public void setAlt(String alt) {
+		this.alt = alt;
 	}
 	
 }

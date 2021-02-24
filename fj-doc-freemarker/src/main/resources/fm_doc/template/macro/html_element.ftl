@@ -12,7 +12,9 @@
 	<#elseif elementType = 'DocPara'>
 		<@handlePara current=current/>
 	<#elseif elementType = 'DocTable'>
-		<@handleTable docTable=current/>			
+		<@handleTable docTable=current/>
+	<#elseif elementType = 'DocImage'>
+		<@handleImage docImage=current/>					
 	<#elseif elementType = 'DocList'>
 		<@handleList docList=current/>			
 	<#else>
@@ -36,6 +38,15 @@
 	<#else>
 		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</h${current.headLevel}>
 	</#if>
+</#macro>
+
+<#macro handleImage docImage>
+	<#if (docImage.scaling)??>
+		<#assign imageScaling="height='${docImage.scaling}%' width='${docImage.scaling}%'"/>
+	<#else>
+		<#assign imageScaling=""/>
+	</#if>
+	<img <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
 </#macro>
 
 <#macro handleList docList>

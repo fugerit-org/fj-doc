@@ -4,7 +4,8 @@
 <#assign docInfo=docBase.info/>
 <fo:root
 	<@doc_info.checkDefaultFont info=docInfo/> 
-	xmlns:fo="http://www.w3.org/1999/XSL/Format">
+	xmlns:fo="http://www.w3.org/1999/XSL/Format"
+	xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
 	<fo:layout-master-set>
 		<fo:simple-page-master
 			page-width="21cm" 

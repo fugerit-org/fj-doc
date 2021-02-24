@@ -165,8 +165,10 @@
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
+			<xsd:attribute name='type' type='doc:imageType' use='optional' />
 			<xsd:attribute name='scaling' type='xsd:int' use='optional' />
 			<xsd:attribute name='base64' type="xsd:string" use='optional' />
+			<xsd:attribute name='alt' type="xsd:string" use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -325,6 +327,14 @@
 	<xsd:element name='page-break'>
 		<xsd:complexType />
 	</xsd:element>
+
+	<xsd:simpleType name="imageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="png"></xsd:enumeration>
+			<xsd:enumeration value="jpg"></xsd:enumeration>
+			<xsd:enumeration value="gif"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<xsd:simpleType name="styleType">
 		<xsd:restriction base="xsd:string">
