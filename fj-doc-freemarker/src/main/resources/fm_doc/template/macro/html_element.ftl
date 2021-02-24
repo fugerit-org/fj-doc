@@ -52,7 +52,7 @@
 <#macro handleList docList>
 	<${docList.listType}>
 		<#list docList.elementList as li>
-			<li><@handlePara current=li.content/></li>			
+			<li><#list li.elementList as element><@handleElement current=element/></#list></li>			
 		</#list>	
 	</${docList.listType}>
 </#macro>

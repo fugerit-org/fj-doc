@@ -1,4 +1,8 @@
-﻿0.3.5.7 (2021-02-24)
+﻿0.3.5.8 (2021-02-24)
+--------------------
++ Fix on list item for freemarker html adn fop module
+
+0.3.5.7 (2021-02-24)
 --------------------
 + Upgraded fj-core version to 0.7.5.2
 + Added FreeMarkerComplexProcessStep (providing a semplified chain step for freemarker, Process + Map Step)
