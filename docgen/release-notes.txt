@@ -1,4 +1,8 @@
-﻿0.3.5.9 (2021-02-24)
+﻿next release
+--------------------
++ Changed fj-core version to 0.7.6.6
+
+0.3.5.9 (2021-02-24)
 --------------------
 + Corrections in link and list handling
 
