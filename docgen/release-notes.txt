@@ -1,5 +1,7 @@
-﻿next release
+﻿0.3.6.0 (2021-09-21)
 --------------------
++ doc-1-5.xsd : added 'render-mode' attribute to 'table' element (supported in freemarker fop)
++ doc-1-5.xsd : added 'align' attribute to 'image' element (supported in freemarker fop)
 + Changed fj-core version to 0.7.6.7
 
 0.3.5.9 (2021-02-24)
@@ -8,12 +10,12 @@
 
 0.3.5.8 (2021-02-24)
 --------------------
-+ Fix on list item for freemarker html adn fop module
++ Fix on list item for freemarker html and fop module
 
 0.3.5.7 (2021-02-24)
 --------------------
 + Upgraded fj-core version to 0.7.5.2
-+ Added FreeMarkerComplexProcessStep (providing a semplified chain step for freemarker, Process + Map Step)
++ Added FreeMarkerComplexProcessStep (providing a simplified chain step for freemarker, Process + Map Step)
 
 0.3.5.6 (2021-02-24)
 --------------------

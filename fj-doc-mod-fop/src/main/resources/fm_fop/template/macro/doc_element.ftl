@@ -52,7 +52,7 @@
 	<#else>
 		<#assign imageScaling=""/>
 	</#if>
-	<fo:block>
+	<fo:block <@handleAlign alignValue=docImage.align/>>
 		<fo:external-graphic <#if (docImage.alt)??> fox:alt-text="${docImage.alt}" </#if> ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format"
 			src="data:image;base64,${docImage.resolvedBase64}"/>
 	</fo:block>
@@ -93,8 +93,27 @@
 			</fo:table-${cellType}>
 </#macro>
 
+<#macro handleRowInline docTable row docTableUtil>
+	<#list row.elementList as cell>
+		<fo:inline-container vertical-align="top" inline-progression-dimension="${docTable.colWithds[cell?index]}%">
+			<#if (cell.elementList?size > 0)>
+				<#list cell.elementList as cellElement>
+					<@handleElement current=cellElement/>
+				</#list>
+			<#else>
+				<fo:block></fo:block>
+			</#if>
+		</fo:inline-container>
+	</#list>
+</#macro>
+
 <#macro handleTable docTable>
 	<#assign docTableUtil=docTable.util/>
+	<#if docTable.renderMode == 'inline'>
+		<#list docTable.elementList as row>
+			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
+		</#list>
+	<#else>
 		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed">
 			<#list docTable.colWithds as currentColWidth>
 			<fo:table-column column-width="${currentColWidth}%" />	
@@ -105,7 +124,8 @@
 			<#else>
 				<@handleRowList docTable=docTable rowList=docTable.elementList cellType='body'/>
 			</#if>
-		</fo:table>
+		</fo:table>		
+	</#if>
 </#macro>
 
 <#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}='${calcSize}pt solid ${color}' </#if></#macro>

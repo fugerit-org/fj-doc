@@ -52,6 +52,8 @@ public class DocImage extends DocElement {
 	private String type;
 	
 	private String alt;
+	
+	private int align;
 
 	/**
 	 * @return the url
@@ -115,6 +117,14 @@ public class DocImage extends DocElement {
 
 	public void setAlt(String alt) {
 		this.alt = alt;
+	}
+
+	public int getAlign() {
+		return align;
+	}
+
+	public void setAlign(int align) {
+		this.align = align;
 	}
 	
 }

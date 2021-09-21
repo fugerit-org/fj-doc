@@ -391,6 +391,8 @@ public class DocContentHandler implements ContentHandler {
 			if ( StringUtils.isNotEmpty( alt ) ) {
 				docImage.setAlt( alt );
 			}
+			String align = props.getProperty( "align" );
+			docImage.setAlign( getAlign( align ) );
 			this.currentElement = docImage;			
 		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
@@ -437,6 +439,7 @@ public class DocContentHandler implements ContentHandler {
 			docTable.setForeColor( props.getProperty( "fore-color" ) );
 			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", "0" ) ) );
 			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", "0" ) ) );
+			docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );
 			String cols = props.getProperty( "colwidths" );
 			if ( cols != null ) {
 				String[] colsParsed = cols.split( ";" );

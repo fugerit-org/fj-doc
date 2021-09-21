@@ -35,6 +35,8 @@ import org.fugerit.java.doc.base.model.util.DocTableUtil;
  */
 public class DocTable extends DocContainer implements DocStyle {
 
+	public static final String RENDER_MODE_NORMAL = "normal";
+	public static final String RENDER_MODE_INLINE = "inline";
 	
 	/**
 	 * 
@@ -50,6 +52,8 @@ public class DocTable extends DocContainer implements DocStyle {
 	private int padding;
 	
 	private int spacing;
+	
+	private String renderMode;
 	
 	public int getPadding() {
 		return padding;
@@ -166,5 +170,13 @@ public class DocTable extends DocContainer implements DocStyle {
 	public void setColWithds(int[] colWithds) {
 		this.colWithds = colWithds;
 	}
-	
+
+	public String getRenderMode() {
+		return renderMode;
+	}
+
+	public void setRenderMode(String renderMode) {
+		this.renderMode = renderMode;
+	}
+
 }

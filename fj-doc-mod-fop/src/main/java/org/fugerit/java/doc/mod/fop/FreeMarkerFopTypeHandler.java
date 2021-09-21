@@ -18,7 +18,7 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 	
 	public static final String ATT_DOCBASE = "docBase";
 	
-	public static DocTypeHandler HANDLER = new FreeMarkerFopTypeHandler();
+	public static final DocTypeHandler HANDLER = new FreeMarkerFopTypeHandler();
 	
 	public static final String MODULE = "fop";
 	

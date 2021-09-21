@@ -17,6 +17,8 @@ import org.xml.sax.InputSource;
 
 public class DocValidator {
 
+	private DocValidator() {}
+	
 	private static XMLSchemaCatalogConfig init() {
 		XMLSchemaCatalogConfig catalog = null;
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/schema-validator-config.xml" ) ) {
@@ -43,7 +45,7 @@ public class DocValidator {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try ( PrintStream ps = new PrintStream( baos ) ) {
 			result.printErrorReport( ps );
-			logger.info( "Validation issues : \n"+new String( baos.toByteArray() ) );
+			logger.info( "Validation issues : \n{}", new String( baos.toByteArray() ) );
 		}
 	}
 	
@@ -57,7 +59,7 @@ public class DocValidator {
 		if ( result.isTotalSuccess() ) {
 			logger.info( "Validation completed without errors or warning" );
 		} else {
-			
+			logResult( result , logger );
 		}
 		return result.isPartialSuccess();
 	}
