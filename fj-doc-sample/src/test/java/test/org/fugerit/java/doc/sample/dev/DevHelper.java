@@ -25,9 +25,24 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.mod.fop.FopConfigDefault;
 import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
+import org.junit.BeforeClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 public class DevHelper {
 
+	private final static Logger logger = LoggerFactory.getLogger( DevHelper.class );
+	
+	@BeforeClass
+	public static void initPath() {
+		File baseOut = new File( BasicFacadeTest.BASIC_OUTPUT_PATH );
+		if ( !baseOut.exists() ) {
+			logger.info( "create base dir -> {} -> {}", baseOut.getAbsolutePath(), baseOut.mkdirs() );
+		}
+	}
+	
 	protected boolean workerFoToPdf( File inputPath,  File outputPath ) throws Exception {
 		boolean ok = false;
 		try ( OutputStream output = new FileOutputStream( outputPath ) ) {
