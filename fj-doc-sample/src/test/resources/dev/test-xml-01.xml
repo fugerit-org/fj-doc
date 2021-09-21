@@ -1,0 +1,13 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "no" ?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-4.xsd" > 	
+    
+	<metadata>
+		<info name="margins">10;10;10;10</info>  
+	</metadata>
+	<body>
+		<h head-level="1" align="center">Header 1</h>
+	</body>
+</doc>
