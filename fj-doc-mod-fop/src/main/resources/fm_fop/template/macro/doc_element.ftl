@@ -39,7 +39,7 @@
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+	<fo:block <@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -141,7 +141,7 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
-white-space-collapse="false"
+<#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if></#macro>
 
 <#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
 

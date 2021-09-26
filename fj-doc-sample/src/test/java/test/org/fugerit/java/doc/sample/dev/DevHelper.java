@@ -25,6 +25,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.xml.DocValidator;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.fugerit.java.doc.mod.fop.FopConfigDefault;
 import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
@@ -78,6 +79,20 @@ public class DevHelper {
 			logger.info( "validation result -> {}", valid );
 			DocBase doc = DocFacade.parse( input );
 			FreeMarkerFopTypeHandler.HANDLER.handle( DocInput.newInput( DocConfig.TYPE_FO , doc) , DocOutput.newOutput( output ) );
+		    ok = valid;
+		}
+		return ok;
+	}
+	
+	protected boolean workerXmlToHtml( File inputPath,  File outputPath ) throws Exception {
+		boolean ok = false;
+		try ( InputStream input = new FileInputStream( inputPath );
+				OutputStream output = new FileOutputStream( outputPath );
+				Reader xmlValidationReader = new FileReader( inputPath ) ) {
+			boolean valid = DocValidator.logValidation( xmlValidationReader , logger );
+			logger.info( "validation result -> {}", valid );
+			DocBase doc = DocFacade.parse( input );
+			FreeMarkerHtmlTypeHandler.HANDLER.handle( DocInput.newInput( DocConfig.TYPE_HTML , doc) , DocOutput.newOutput( output ) );
 		    ok = valid;
 		}
 		return ok;

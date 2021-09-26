@@ -34,9 +34,9 @@
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align/>>${current.text}</p>
+		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}</p>
 	<#else>
-		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align/>>${current.text}</h${current.headLevel}>
+		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}</h${current.headLevel}>
 	</#if>
 </#macro>
 
@@ -46,7 +46,12 @@
 	<#else>
 		<#assign imageScaling=""/>
 	</#if>
-	<img <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
+	<#if (docImage.align)??>
+		<#if docImage.align = 2>
+			<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
+		</#if>
+	</#if>	
+	<img ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
 </#macro>
 
 <#macro handleList docList>
@@ -71,20 +76,38 @@
 	</#list>
 </#macro>
 
+<#macro handleRowInline docTable row docTableUtil>
+	<#list row.elementList as cell>
+		<div style="width: ${docTable.colWithds[cell?index]}%; float: left;">
+			<#if (cell.elementList?size > 0)>
+				<#list cell.elementList as cellElement>
+					<@handleElement current=cellElement/>
+				</#list>
+			</#if>
+		</div>
+	</#list>
+</#macro>
+
 <#macro handleTable docTable>
 	<#assign docTableUtil=docTable.util/>
-	<table style='width: ${docTable.width}%'>
-		<#if (docTableUtil.strictHeader)>
-			<thead>
-			<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
-			</thead>
-			<tbody>
-			<@handleRowList docTable=docTable rowList=docTableUtil.dataRows cellType='td'/>
-			</tbody>
-		<#else>
-			<@handleRowList docTable=docTable rowList=docTable.elementList cellType='td'/>
-		</#if>
-	</table>
+	<#if docTable.renderMode == 'inline'>
+		<#list docTable.elementList as row>
+			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
+		</#list>
+	<#else>	
+		<table style='width: ${docTable.width}%'>
+			<#if (docTableUtil.strictHeader)>
+				<thead>
+				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
+				</thead>
+				<tbody>
+				<@handleRowList docTable=docTable rowList=docTableUtil.dataRows cellType='td'/>
+				</tbody>
+			<#else>
+				<@handleRowList docTable=docTable rowList=docTable.elementList cellType='td'/>
+			</#if>
+		</table>
+	</#if>
 </#macro>
 
 <#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}: ${calcSize}px solid ${color}; </#if></#macro>
@@ -104,11 +127,13 @@
 
 <#macro handleColspan colspanValue> colspan="${colspanValue}" </#macro>
 
+<#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> padding-top: ${spaceBefore}px;</#if><#if (spaceAfter > 0)> padding-bottom: ${spaceAfter}px;</#if></#macro>
+
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
 
 <#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;<#elseif styleValue = 1>font-weight: normal; font-style: normal;</#if></#macro>
 
 <#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
 
-<#macro handleStyleComplete styleValue alignValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#if cStyle != '' || cAlign != '' >style="${cStyle} ${cAlign}"</#if></#macro>
+<#macro handleStyleComplete styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle != '' || cAlign != '' || cSpacing != ''>style="${cStyle} ${cAlign} ${cSpacing}"</#if></#macro>
 

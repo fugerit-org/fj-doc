@@ -1,4 +1,8 @@
-﻿0.3.6.0 (2021-09-21)
+﻿0.3.6.1 (2021-09-26)
+--------------------
++ added support for space-after / space-before in freemarker and fop renderer
+
+0.3.6.0 (2021-09-21)
 --------------------
 + doc-1-5.xsd : added 'render-mode' attribute to 'table' element (supported in freemarker fop)
 + doc-1-5.xsd : added 'align' attribute to 'image' element (supported in freemarker fop)

@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.3.6.0</version>
+		<version>0.3.6.1</version>
 	</parent>
 
 	<name>fj-doc-freemarker</name>
@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<freemarker-version>2.3.30</freemarker-version>	
+		<freemarker-version>2.3.31</freemarker-version>	
 	</properties>
 	
 	<build>
