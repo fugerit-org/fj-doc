@@ -142,7 +142,7 @@
 
 <#macro handleFormat formatValue> <#if formatValue = 'preserve-line'>linefeed-treatment="preserve"</#if> </#macro>
 
-<#macro handleParaSpacing spaceBefore spaceAfter spaceLeft spaceRight> <#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
+<#macro handleParaSpacing spaceBefore spaceAfter spaceLeft spaceRight> <#if (spaceBefore > 0)> margin-top="${spaceBefore}px"</#if><#if (spaceAfter > 0)> margin-bottom="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
 
 <#macro handleWhiteSpace element> <#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
 

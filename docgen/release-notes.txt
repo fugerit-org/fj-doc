@@ -1,4 +1,8 @@
-﻿0.3.6.4 (2021-09-27)
+﻿0.3.6.5 (2021-09-27)
+--------------------
++ fix bug on fop renderer when space-after/before in inline container
+
+0.3.6.4 (2021-09-27)
 --------------------
 + fix bug on fop renderer when spacing and align both present
 
