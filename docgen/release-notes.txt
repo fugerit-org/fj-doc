@@ -1,4 +1,8 @@
-﻿0.3.6.1 (2021-09-26)
+﻿0.3.6.2 (2021-09-27)
+--------------------
++ added para.format="preserve-line" to fop renderer
+
+0.3.6.1 (2021-09-26)
 --------------------
 + added support for space-after / space-before in freemarker and fop renderer
 

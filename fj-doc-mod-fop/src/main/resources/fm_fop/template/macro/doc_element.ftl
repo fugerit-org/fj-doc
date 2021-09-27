@@ -29,7 +29,6 @@
 
 <#macro handlePhrase current>
 	<#if (current.link)??>
-		
 		<fo:basic-link internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
 	<#elseif (current.anchor)??>
 		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>${current.text}</fo:block>
@@ -39,7 +38,7 @@
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+	<fo:block <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -140,6 +139,8 @@
 	<@handleBorder mode='border-left' size=docBorders.borderWidthLeft color=borderColorLeft/>
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
+
+<#macro handleFormat formatValue><#if formatValue = 'preserve-line'>linefeed-treatment="preserve"</#if> </#macro>
 
 <#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if></#macro>
 
