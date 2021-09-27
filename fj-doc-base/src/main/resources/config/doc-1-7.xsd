@@ -312,8 +312,11 @@
 		<xsd:attribute name='type' type='doc:dataType' use='optional' />
 		<xsd:attribute name='format' type='xsd:string' use='optional' />
 		<xsd:attribute name='size' type="xsd:int" use='optional' />
+		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
 		<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
 		<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
+		<xsd:attribute name='space-left' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-right' type='xsd:decimal' use='optional' />
 		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
 		<xsd:attribute name='head-level' type="doc:headLevelType" use='optional' />
 	</xsd:complexType>
