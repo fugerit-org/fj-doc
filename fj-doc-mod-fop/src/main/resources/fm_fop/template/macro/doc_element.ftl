@@ -140,14 +140,14 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
-<#macro handleFormat formatValue><#if formatValue = 'preserve-line'>linefeed-treatment="preserve"</#if> </#macro>
+<#macro handleFormat formatValue> <#if formatValue = 'preserve-line'>linefeed-treatment="preserve"</#if> </#macro>
 
-<#macro handleParaSpacing spaceBefore spaceAfter spaceLeft spaceRight><#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
+<#macro handleParaSpacing spaceBefore spaceAfter spaceLeft spaceRight> <#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
 
-<#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
+<#macro handleWhiteSpace element> <#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
 
-<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}" </#if><#if (element.size)?? && (element.size != -1)> font-size="${element.size}pt" </#if></#macro>
+<#macro handleFont element> <#if (element.fontName??)> font-family="${element.fontName}" </#if><#if (element.size)?? && (element.size != -1)> font-size="${element.size}pt" </#if></#macro>
 
-<#macro handleAlign alignValue><#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"</#if> </#macro>
+<#macro handleAlign alignValue> <#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"</#if> </#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>font-weight="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#elseif styleValue = 1>font-style="normal" font-weight="normal"</#if> </#macro>
+<#macro handleStyle styleValue> <#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>font-weight="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#elseif styleValue = 1>font-style="normal" font-weight="normal"</#if> </#macro>
