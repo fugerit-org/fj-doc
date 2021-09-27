@@ -287,11 +287,19 @@ public class DocContentHandler implements ContentHandler {
 		docPara.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
 		String spaceBefore = props.getProperty( "space-before" );
 		String spaceAfter = props.getProperty( "space-after" );
+		String spaceLeft = props.getProperty( "space-left" );
+		String spaceRight = props.getProperty( "space-right" );
 		if ( spaceBefore != null ) {
 			docPara.setSpaceBefore( Float.valueOf( spaceBefore ) );
 		}
 		if ( spaceAfter != null ) {
 			docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
+		}
+		if ( spaceLeft != null ) {
+			docPara.setSpaceLeft( Float.valueOf( spaceLeft ) );
+		}
+		if ( spaceRight != null ) {
+			docPara.setSpaceRight( Float.valueOf( spaceRight ) );
 		}
 		// setting head level
 		docPara.setHeadLevel( Integer.parseInt( props.getProperty( "head-level", String.valueOf( DocPara.DEFAULT_HEAD_LEVEL ) ) ) );

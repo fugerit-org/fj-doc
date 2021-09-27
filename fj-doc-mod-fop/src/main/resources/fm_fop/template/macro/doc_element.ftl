@@ -38,7 +38,7 @@
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+	<fo:block <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -142,7 +142,7 @@
 
 <#macro handleFormat formatValue><#if formatValue = 'preserve-line'>linefeed-treatment="preserve"</#if> </#macro>
 
-<#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if></#macro>
+<#macro handleParaSpacing spaceBefore spaceAfter spaceLeft spaceRight><#if (spaceBefore > 0)> space-before="${spaceBefore}px"</#if><#if (spaceAfter > 0)> space-after="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
 
 <#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
 

@@ -151,6 +151,10 @@ public class DocPara extends DocElement implements DocStyle {
 	
 	private Float spaceAfter;	
 	
+	private Float spaceLeft;
+	
+	private Float spaceRight;	
+	
 	public Float getSpaceBefore() {
 		return spaceBefore;
 	}
@@ -165,6 +169,22 @@ public class DocPara extends DocElement implements DocStyle {
 
 	public void setSpaceAfter(Float spaceAfter) {
 		this.spaceAfter = spaceAfter;
+	}
+
+	public Float getSpaceLeft() {
+		return spaceLeft;
+	}
+
+	public void setSpaceLeft(Float spaceLeft) {
+		this.spaceLeft = spaceLeft;
+	}
+
+	public Float getSpaceRight() {
+		return spaceRight;
+	}
+
+	public void setSpaceRight(Float spaceRight) {
+		this.spaceRight = spaceRight;
 	}
 
 	private Float leading;

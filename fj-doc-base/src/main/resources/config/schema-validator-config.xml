@@ -25,8 +25,12 @@
 	<schema-list id="version-1-5">
 		<schema id="doc-1-5.xsd"/>
 	</schema-list>	
+	
+	<schema-list id="version-1-6">
+		<schema id="doc-1-6.xsd"/>
+	</schema-list>	
 
-	<schema-list id="current" extends="version-1-5">
+	<schema-list id="current" extends="version-1-6">
 	</schema-list>
 
 </schema-catalog>
