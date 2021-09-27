@@ -1,4 +1,8 @@
-﻿0.3.6.5 (2021-09-27)
+﻿0.3.6.6 (2021-09-27)
+--------------------
++ Added para.text-indent and para.spaceBefore to fop renderer
+
+0.3.6.5 (2021-09-27)
 --------------------
 + fix bug on fop renderer when space-after/before in inline container
 
@@ -8,7 +12,7 @@
 
 0.3.6.3 (2021-09-27)
 --------------------
-+ added para.spaceLeft and para.spaceBefore to fop renderer
++ added para.space-left and para.space-right to fop renderer
 
 0.3.6.2 (2021-09-27)
 --------------------

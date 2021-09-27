@@ -147,6 +147,8 @@ public class DocPara extends DocElement implements DocStyle {
 		this.text = text;
 	}
 	
+	private Float textIndent;
+	
 	private Float spaceBefore;
 	
 	private Float spaceAfter;	
@@ -155,6 +157,14 @@ public class DocPara extends DocElement implements DocStyle {
 	
 	private Float spaceRight;	
 	
+	public Float getTextIndent() {
+		return textIndent;
+	}
+
+	public void setTextIndent(Float textIndent) {
+		this.textIndent = textIndent;
+	}
+
 	public Float getSpaceBefore() {
 		return spaceBefore;
 	}

@@ -285,10 +285,14 @@ public class DocContentHandler implements ContentHandler {
 		}
 		// setting paragraph size
 		docPara.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
+		String textIndent = props.getProperty( "text-indent" );
 		String spaceBefore = props.getProperty( "space-before" );
 		String spaceAfter = props.getProperty( "space-after" );
 		String spaceLeft = props.getProperty( "space-left" );
 		String spaceRight = props.getProperty( "space-right" );
+		if ( textIndent != null ) {
+			docPara.setTextIndent( Float.valueOf( textIndent ) );
+		}
 		if ( spaceBefore != null ) {
 			docPara.setSpaceBefore( Float.valueOf( spaceBefore ) );
 		}
