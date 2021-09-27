@@ -1,4 +1,8 @@
-﻿0.3.6.6 (2021-09-27)
+﻿0.3.6.7 (2021-09-27)
+--------------------
++ Fix on doc-1-7.xsd for <h>
+
+0.3.6.6 (2021-09-27)
 --------------------
 + Added para.text-indent and para.spaceBefore to fop renderer
 
