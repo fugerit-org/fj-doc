@@ -88,6 +88,8 @@ public class DocBase extends DocElement {
 
 	private DocContainer docMeta;
 	
+	private DocBackground docBackground;
+	
 	private HashMap<String, DocElement> idMap;
 	
 	private String xsdVersion;
@@ -206,4 +208,12 @@ public class DocBase extends DocElement {
 		return this.getDocFooter() != null && this.getDocFooter().isUseFooter();
 	}
 
+	public DocBackground getDocBackground() {
+		return docBackground;
+	}
+
+	public void setDocBackground(DocBackground docBackground) {
+		this.docBackground = docBackground;
+	}
+	
 }

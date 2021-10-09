@@ -46,6 +46,13 @@
 	        </fo:static-content>
         </#if>			
 		<fo:flow flow-name="xsl-region-body" >
+		
+	        <#if ( (docBase.docBackground)?? && docBase.docBackground.elementList?size > 0 )>
+				<fo:block-container absolute-position="absolute" top="0cm" left="0cm" width="21cm" height="29.7cm">
+		            <@doc_element.handleElementList elements=docBase.docBackground.elementList/>
+				</fo:block-container>	        
+	        </#if>		
+		
 			<fo:block>
 				<@doc_element.handleElementList elements=docBase.docBody.elementList/>	
 			</fo:block>	

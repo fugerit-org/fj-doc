@@ -33,6 +33,7 @@ import java.util.Properties;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.model.DocBackground;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocBorders;
@@ -80,7 +81,8 @@ public class DocContentHandler implements ContentHandler {
 														"header", 
 														"footer", 
 														"header-ext", 
-														"footer-ext" };
+														"footer-ext",
+														DocBackground.TAG_NAME};
 	
 	private static final Collection<String> CONTAINER_LIST = new HashSet<>( Arrays.asList( ELEMENT_CONTAINER ) );
 	
@@ -375,7 +377,11 @@ public class DocContentHandler implements ContentHandler {
 			} else {
 				docFooter.setBasic( true );
 			}
-			this.currentElement = docFooter;				
+			this.currentElement = docFooter;
+		} else if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			DocBackground docBackground = new DocBackground();
+			this.docBase.setDocBackground( docBackground );
+			this.currentElement = docBackground;
 		} else if ( "body".equalsIgnoreCase( qName ) ) {
 			DocContainer docBody = this.docBase.getDocBody();
 			this.currentElement = docBody;
@@ -523,5 +529,5 @@ public class DocContentHandler implements ContentHandler {
 	public DocBase getDocBase() {
 		return docBase;
 	}
-	
+
 }

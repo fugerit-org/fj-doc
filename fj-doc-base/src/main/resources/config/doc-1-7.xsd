@@ -2,11 +2,11 @@
 <!--
 
 	/*
-	 * @(#)doc-1-5.xsd
+	 * @(#)doc-1-7.xsd
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2021-09-31
-	 * @version    : 1.0.0 (2021-09-31)
+	 * @version    : 1.1.0 (2021-10-09)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -18,7 +18,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-5.xsd" > 	
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-7.xsd" > 	
 </doc>	
 	
 -->
@@ -119,6 +119,16 @@
 			<xsd:attribute name='align' type='doc:alignType' use='optional' />
 			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
 			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='background'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='1' maxOccurs='1'>
+				<xsd:choice>
+					<xsd:element ref='doc:image' />
+				</xsd:choice>
+			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
 
@@ -408,6 +418,7 @@
 			<xsd:element ref='doc:footer' minOccurs='0' maxOccurs='1' />
 			<xsd:element ref='doc:header-ext' minOccurs='0' maxOccurs='1' />
 			<xsd:element ref='doc:footer-ext' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:background' minOccurs='0' maxOccurs='1' />
 		</xsd:sequence>
 	</xsd:complexType>	
 	
