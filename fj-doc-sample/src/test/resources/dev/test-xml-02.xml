@@ -1,0 +1,43 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "no" ?>
+
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-4.xsd" > 	
+ 
+  <metadata>  
+
+		<!--
+		<info name="default-font-name">default-font</info>
+		-->
+
+		<info name="default-font-size">9</info>  
+		 
+		<info name="margins">60;60;20;20</info><!-- destra, sinistra, alto, basso -->	
+		
+		<info name="default-table-padding">2</info>
+		
+		<info name="default-table-spacing">0</info>
+		
+		<header-ext>
+			<table columns="1" width="102">
+				<row>
+					<cell border-width="0" align="right">
+						<para style="bold">AAA</para>
+					</cell>
+				</row>
+			</table>
+		</header-ext>				
+  </metadata>	 
+
+  <body>
+  		<table columns="1" width="102">        
+			<row>
+	        	<cell border-width="0" align="center">
+
+	                <para style="bold">TEST</para>
+	        	</cell>
+	        </row>
+		</table>	  
+  </body>  
+</doc>

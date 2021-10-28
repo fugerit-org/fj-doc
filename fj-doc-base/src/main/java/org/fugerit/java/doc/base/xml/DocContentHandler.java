@@ -55,6 +55,7 @@ import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.model.DocPhrase;
 import org.fugerit.java.doc.base.model.DocRow;
 import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -96,6 +97,9 @@ public class DocContentHandler implements ContentHandler {
 	
 	private DocHelper docHelper;
 	
+	private String defaultTablePadding = GenericConsts.INFO_DEFAULT_TABLE_PADDING_DEF;
+	private String defaultTableSpacing = GenericConsts.INFO_DEFAULT_TABLE_SPACING_DEF;
+	
 	public DocContentHandler( DocHelper docHelper ) {
 		this.docHelper = docHelper;
 	}
@@ -119,6 +123,11 @@ public class DocContentHandler implements ContentHandler {
 		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocInfo ) {
 			DocInfo docInfo = (DocInfo)this.currentElement;
 			docInfo.getContent().append( text );
+			if ( GenericConsts.INFO_DEFAULT_TABLE_PADDING.equalsIgnoreCase( docInfo.getName() ) ) {
+				this.defaultTablePadding = text;
+			} else if ( GenericConsts.INFO_DEFAULT_TABLE_SPACING.equalsIgnoreCase( docInfo.getName() ) ) {
+				this.defaultTableSpacing = text;
+			}
 		}
 	}
 
@@ -126,7 +135,6 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#endDocument()
 	 */
 	public void endDocument() throws SAXException {
-		
 	}
 
 	/* (non-Javadoc)
@@ -455,8 +463,8 @@ public class DocContentHandler implements ContentHandler {
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
 			docTable.setBackColor( props.getProperty( "back-color" ) );
 			docTable.setForeColor( props.getProperty( "fore-color" ) );
-			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", "0" ) ) );
-			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", "0" ) ) );
+			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.defaultTableSpacing ) ) );
+			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.defaultTablePadding ) ) );
 			docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );
 			String cols = props.getProperty( "colwidths" );
 			if ( cols != null ) {
