@@ -37,12 +37,16 @@
 	<fo:page-sequence master-reference="simpleA4" initial-page-number="1">
 		<#if (docBase.useHeader)>
 			<fo:static-content flow-name="xsl-region-before">
-				<@doc_element.handleElementList elements=docBase.docHeader.elementList/>	
+				<fo:block>
+				<@doc_element.handleElementList elements=docBase.docHeader.elementList/>
+				</fo:block>	
 	        </fo:static-content>
         </#if>
         <#if (docBase.useFooter)>
 	        <fo:static-content flow-name="xsl-region-after">
+	        	<fo:block>
 	            <@doc_element.handleElementList elements=docBase.docFooter.elementList/>
+	            </fo:block>
 	        </fo:static-content>
         </#if>			
 		<fo:flow flow-name="xsl-region-body" >

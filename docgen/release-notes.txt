@@ -1,4 +1,8 @@
-﻿0.3.6.9 (2021-10-21)
+﻿0.3.7.0 (2021-11-21)
+--------------------
++ Better header handling for fop
+
+0.3.6.9 (2021-10-21)
 --------------------
 + Metadata for default-table-padding and default-table-spacing
 
