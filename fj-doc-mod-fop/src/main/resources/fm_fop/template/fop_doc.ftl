@@ -34,6 +34,17 @@
             </#if>
 		</fo:simple-page-master>
 	</fo:layout-master-set>
+	
+	<#if (docBase.docBookmarkTree)??>
+		<fo:bookmark-tree>
+			<#list docBase.docBookmarkTree.elementList as docBookmark>	
+		    <fo:bookmark internal-destination="${docBookmark.ref}">
+		    	<fo:bookmark-title>${docBookmark.title}</fo:bookmark-title>
+		    </fo:bookmark>
+		    </#list>
+		</fo:bookmark-tree>
+	</#if>
+	
 	<fo:page-sequence master-reference="simpleA4" initial-page-number="1">
 		<#if (docBase.useHeader)>
 			<fo:static-content flow-name="xsl-region-before">

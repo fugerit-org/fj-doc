@@ -90,6 +90,8 @@ public class DocBase extends DocElement {
 	
 	private DocBackground docBackground;
 	
+	private DocBookmarkTree docBookmarkTree;
+	
 	private HashMap<String, DocElement> idMap;
 	
 	private String xsdVersion;
@@ -214,6 +216,14 @@ public class DocBase extends DocElement {
 
 	public void setDocBackground(DocBackground docBackground) {
 		this.docBackground = docBackground;
+	}
+
+	public DocBookmarkTree getDocBookmarkTree() {
+		return docBookmarkTree;
+	}
+
+	public void setDocBookmarkTree(DocBookmarkTree docBookmarkTree) {
+		this.docBookmarkTree = docBookmarkTree;
 	}
 	
 }
