@@ -36,6 +36,8 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.model.DocBackground;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.model.DocBookmark;
+import org.fugerit.java.doc.base.model.DocBookmarkTree;
 import org.fugerit.java.doc.base.model.DocBorders;
 import org.fugerit.java.doc.base.model.DocBr;
 import org.fugerit.java.doc.base.model.DocCell;
@@ -83,7 +85,8 @@ public class DocContentHandler implements ContentHandler {
 														"footer", 
 														"header-ext", 
 														"footer-ext",
-														DocBackground.TAG_NAME};
+														DocBackground.TAG_NAME,
+														DocBookmarkTree.TAG_NAME};
 	
 	private static final Collection<String> CONTAINER_LIST = new HashSet<>( Arrays.asList( ELEMENT_CONTAINER ) );
 	
@@ -120,6 +123,9 @@ public class DocContentHandler implements ContentHandler {
 		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocPara ) {
 			DocPara docPara = (DocPara)this.currentElement;
 			docPara.setText( docPara.getText()+text );
+		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocBookmark ) {
+			DocBookmark docBookmarkTitle = (DocBookmark)this.currentElement;
+			docBookmarkTitle.setTitle( docBookmarkTitle.getTitle()+text );
 		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocInfo ) {
 			DocInfo docInfo = (DocInfo)this.currentElement;
 			docInfo.getContent().append( text );
@@ -280,6 +286,8 @@ public class DocContentHandler implements ContentHandler {
 		}
 		docPara.setStyle( DocPara.parseStyle( style, defaultStyle ) );
 		docPara.setOriginalStyle( DocPara.parseStyle( style, DocPara.STYLE_UNSET ) );
+		String id = props.getProperty( "id" );
+		docPara.setId( id );
 		// setting paragraph align
 		String align = props.getProperty( "align" );
 		docPara.setAlign( getAlign( align ) );
@@ -506,6 +514,15 @@ public class DocContentHandler implements ContentHandler {
 			this.currentElement = docCell;
 		} else if ( "page-break".equalsIgnoreCase( qName ) ) {
 			this.currentElement = new DocPageBreak();
+		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			DocBookmarkTree docBookmarkTree = new DocBookmarkTree();
+			this.docBase.setDocBookmarkTree(docBookmarkTree);
+			this.currentElement = docBookmarkTree;
+		} else if ( DocBookmark.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			DocBookmark docBookmark = new DocBookmark();
+			String ref = props.getProperty( DocBookmark.ATT_REF );
+			docBookmark.setRef( ref );
+			this.currentElement = docBookmark;
 		}
 		// processamenti finali
 		if ( this.currentContainer != null && this.currentContainer != this.currentElement ) {

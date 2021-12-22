@@ -1,4 +1,8 @@
-﻿0.3.7.0 (2021-11-21)
+﻿0.3.7.1 (2021-12-22)
+--------------------
++ Added bookmark tree support (currently only work with fop renderer) 
+
+0.3.7.0 (2021-11-21)
 --------------------
 + Better header handling for fop
 

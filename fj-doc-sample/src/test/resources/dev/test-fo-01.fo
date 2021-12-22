@@ -2,6 +2,7 @@
 <fo:root
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
+		
 	<fo:layout-master-set>
 		<fo:simple-page-master
 			page-width="21cm" 
@@ -13,11 +14,20 @@
 			margin-bottom="10pt">
 				<fo:region-body region-name="xsl-region-body"  />
 		</fo:simple-page-master>
+		
 	</fo:layout-master-set>
+	
+		<fo:bookmark-tree>
+		    <fo:bookmark internal-destination="B1">
+		        <fo:bookmark-title>Bookmark 1</fo:bookmark-title>
+		    </fo:bookmark>
+		</fo:bookmark-tree>
+	
 	<fo:page-sequence master-reference="simpleA4" initial-page-number="1">
-		<fo:flow flow-name="xsl-region-body" >
+		
+		<fo:flow flow-name="xsl-region-body" >	
 			<fo:block>
-	<fo:block role="H1"  text-align="center" >Header 1</fo:block>
+	<fo:block role="H1"  text-align="center" id="B1" >Header 1</fo:block>
 			</fo:block>	
 		</fo:flow>
 	</fo:page-sequence>
