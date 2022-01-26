@@ -17,6 +17,22 @@
 		
 	</fo:layout-master-set>
 	
+		<fo:declarations>
+		  <x:xmpmeta xmlns:x="adobe:ns:meta/">
+		    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		      <rdf:Description rdf:about=""
+		          xmlns:dc="http://purl.org/dc/elements/1.1/">
+		        <dc:title>Test XML 01 title</dc:title>
+		        <dc:creator>Fugerit</dc:creator>
+		        <dc:description>Test XML 01 subject</dc:description>
+		      </rdf:Description>
+		      <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+		      	<xmp:CreatorTool>fj-doc (Venus) Sample</xmp:CreatorTool>
+		      </rdf:Description>
+		    </rdf:RDF>
+		  </x:xmpmeta>
+		</fo:declarations>	
+	
 		<fo:bookmark-tree>
 		    <fo:bookmark internal-destination="B1">
 		        <fo:bookmark-title>Bookmark 1</fo:bookmark-title>

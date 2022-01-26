@@ -6,6 +6,10 @@
     
 	<metadata>
 		<info name="margins">10;10;10;10</info>
+		<info name="doc-title">Test XML 01 title</info>
+		<info name="doc-subject">Test XML 01 subject</info>
+		<info name="doc-author">Fugerit</info>
+		<info name="doc-creator">fj-doc (Venus) Sample</info>
 		<bookmark-tree>
 			<bookmark ref="b1">Bookmark 1</bookmark>
 			<bookmark ref="b2">Bookmark 2</bookmark>
