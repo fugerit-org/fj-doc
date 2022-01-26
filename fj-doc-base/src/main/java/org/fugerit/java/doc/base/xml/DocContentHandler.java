@@ -141,6 +141,7 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#endDocument()
 	 */
 	public void endDocument() throws SAXException {
+		this.docBase.setStableInfo( this.docBase.getInfo() );
 	}
 
 	/* (non-Javadoc)

@@ -181,6 +181,36 @@ public class DocBase extends DocElement {
 		return info;
 	}
 	
+	private Properties stableInfo;
+	
+	public Properties getStableInfo() {
+		return stableInfo;
+	}
+
+	public void setStableInfo(Properties stableInfo) {
+		this.stableInfo = stableInfo;
+	}
+	
+	public String getInfoDocVersion() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_VERSION );
+	}
+	
+	public String getInfoDocTitle() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_TITLE );
+	}
+	
+	public String getInfoDocSubject() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_SUBJECT );
+	}
+	
+	public String getInfoDocAuthor() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_AUTHOR );
+	}
+	
+	public String getInfoDocCreator() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_CREATOR );
+	}
+
 	private static int getMargin( Properties props, int position ) {
 		String margins = props.getProperty( GenericConsts.INFO_KEY_MARGINS, "10;10;10;10" );
 		return Integer.parseInt( margins.split( ";")[position] );

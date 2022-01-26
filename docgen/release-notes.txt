@@ -1,4 +1,8 @@
-﻿0.3.7.1 (2021-12-22)
+﻿0.3.7.2 (2021-12-22)
+--------------------
++ Added metadata info doc-title, doc-author, doc-subject, doc-creator, doc-version (currently only supported by fop renderer) 
+
+0.3.7.1 (2021-12-22)
 --------------------
 + Added bookmark tree support (currently only work with fop renderer) 
 

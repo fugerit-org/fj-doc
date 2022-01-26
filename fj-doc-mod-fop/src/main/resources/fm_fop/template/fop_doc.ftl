@@ -35,6 +35,24 @@
 		</fo:simple-page-master>
 	</fo:layout-master-set>
 	
+	<#if (docBase.infoDocTitle)?? || (docBase.infoDocSubject)?? || (docBase.infoDocAuthor)??>
+		<fo:declarations>
+		  <x:xmpmeta xmlns:x="adobe:ns:meta/">
+		    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		      <rdf:Description rdf:about=""
+		          xmlns:dc="http://purl.org/dc/elements/1.1/">
+		        <#if (docBase.infoDocTitle)??><dc:title>${docBase.infoDocTitle}</dc:title></#if>
+		        <#if (docBase.infoDocAuthor)??><dc:creator>${docBase.infoDocAuthor}</dc:creator></#if>
+		        <#if (docBase.infoDocSubject)??><dc:description>${docBase.infoDocSubject}</dc:description></#if>
+		      </rdf:Description>
+		      <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
+		      	<xmp:CreatorTool><#if (docBase.infoDocCreator)??>${docBase.infoDocCreator}<#else>Apache FOP over Fugerit DOC</#if></xmp:CreatorTool>
+		      </rdf:Description>
+		    </rdf:RDF>
+		  </x:xmpmeta>
+		</fo:declarations>
+	</#if>
+	
 	<#if (docBase.docBookmarkTree)??>
 		<fo:bookmark-tree>
 			<#list docBase.docBookmarkTree.elementList as docBookmark>	
