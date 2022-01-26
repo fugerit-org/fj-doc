@@ -51,6 +51,7 @@ public class DocInfo extends DocElement {
 	public static final String INFO_DOC_SUBJECT = "doc-subject";
 	public static final String INFO_DOC_VERSION = "doc-version";
 	public static final String INFO_DOC_CREATOR = "doc-creator";
+	public static final String INFO_DOC_LANGUAGE = "doc-language";
 	
 	private String name;
 	

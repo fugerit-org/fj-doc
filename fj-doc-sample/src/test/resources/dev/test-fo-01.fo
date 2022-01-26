@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fo:root
+<fo:root xml:lang="en"
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
 		
@@ -25,6 +25,7 @@
 		        <dc:title>Test XML 01 title</dc:title>
 		        <dc:creator>Fugerit</dc:creator>
 		        <dc:description>Test XML 01 subject</dc:description>
+		        <dc:language><rdf:Bag><rdf:li>en</rdf:li></rdf:Bag></dc:language>
 		      </rdf:Description>
 		      <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
 		      	<xmp:CreatorTool>fj-doc (Venus) Sample</xmp:CreatorTool>

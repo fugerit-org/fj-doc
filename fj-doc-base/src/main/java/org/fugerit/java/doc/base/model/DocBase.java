@@ -211,6 +211,10 @@ public class DocBase extends DocElement {
 		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_CREATOR );
 	}
 
+	public String getInfoDocLanguage() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_LANGUAGE );
+	}
+	
 	private static int getMargin( Properties props, int position ) {
 		String margins = props.getProperty( GenericConsts.INFO_KEY_MARGINS, "10;10;10;10" );
 		return Integer.parseInt( margins.split( ";")[position] );

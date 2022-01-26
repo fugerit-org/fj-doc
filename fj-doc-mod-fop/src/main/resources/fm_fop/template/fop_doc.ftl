@@ -2,7 +2,7 @@
 <#import "/macro/doc_element.ftl" as doc_element>
 <#import "/macro/doc_info.ftl" as doc_info>
 <#assign docInfo=docBase.info/>
-<fo:root
+<fo:root <#if (docBase.infoDocLanguage)??>xml:lang="${docBase.infoDocLanguage}"</#if>
 	<@doc_info.checkDefaultFont info=docInfo/> 
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
@@ -35,7 +35,7 @@
 		</fo:simple-page-master>
 	</fo:layout-master-set>
 	
-	<#if (docBase.infoDocTitle)?? || (docBase.infoDocSubject)?? || (docBase.infoDocAuthor)??>
+	<#if (docBase.infoDocTitle)?? || (docBase.infoDocSubject)?? || (docBase.infoDocAuthor)?? || (docBase.infoDocLanguage)??>
 		<fo:declarations>
 		  <x:xmpmeta xmlns:x="adobe:ns:meta/">
 		    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -44,6 +44,7 @@
 		        <#if (docBase.infoDocTitle)??><dc:title>${docBase.infoDocTitle}</dc:title></#if>
 		        <#if (docBase.infoDocAuthor)??><dc:creator>${docBase.infoDocAuthor}</dc:creator></#if>
 		        <#if (docBase.infoDocSubject)??><dc:description>${docBase.infoDocSubject}</dc:description></#if>
+		        <#if (docBase.infoDocLanguage)??><dc:language><rdf:Bag><rdf:li>${docBase.infoDocLanguage}</rdf:li></rdf:Bag></dc:language></#if>
 		      </rdf:Description>
 		      <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
 		      	<xmp:CreatorTool><#if (docBase.infoDocCreator)??>${docBase.infoDocCreator}<#else>Apache FOP over Fugerit DOC</#if></xmp:CreatorTool>

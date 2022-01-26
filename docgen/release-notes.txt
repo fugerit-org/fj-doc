@@ -1,4 +1,8 @@
-﻿0.3.7.2 (2021-12-22)
+﻿0.3.7.3 (2022-01-26)
+--------------------
++ Added metadata info doc-language for whole document (currently only supported by fop renderer) 
+
+0.3.7.2 (2022-01-26)
 --------------------
 + Added metadata info doc-title, doc-author, doc-subject, doc-creator, doc-version (currently only supported by fop renderer) 
 
