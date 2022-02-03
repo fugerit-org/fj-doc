@@ -1,4 +1,8 @@
-﻿0.3.7.3 (2022-01-26)
+﻿0.3.7.4 (2022-02-03)
+--------------------
++ fj-mode-freemarker : fix in DocPhrase handling
+
+0.3.7.3 (2022-01-26)
 --------------------
 + Added metadata info doc-language for whole document (currently only supported by fop renderer) 
 
