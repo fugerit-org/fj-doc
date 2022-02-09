@@ -1,4 +1,8 @@
-﻿0.3.8.0 (2022-02-09)
+﻿0.3.8.1 (2022-02-09)
+--------------------
++ Added constant for type markdown (md)
+
+0.3.8.0 (2022-02-09)
 --------------------
 + Added simple type handler for Markdown format (basic and extended
 syntax)

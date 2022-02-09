@@ -1,10 +1,11 @@
 package org.fugerit.java.doc.base.typehandler.markdown;
 
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 
 public abstract class AbstractCustomMarkdownTypeHandler extends DocTypeHandlerDefault {
 
-	public static final String TYPE = "md";
+	public static final String TYPE = DocConfig.TYPE_MD;
 	
 	public static final String MODULE = "markdown";
 	
