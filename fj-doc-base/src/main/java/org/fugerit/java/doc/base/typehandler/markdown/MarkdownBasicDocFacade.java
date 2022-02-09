@@ -30,7 +30,7 @@ import org.fugerit.java.doc.base.model.util.DocTableUtil;
  * 
  * @see DocTypeFacadeDefault provides facilities for mapping all DocBase model
  * 
- * @author Matteo a.k.a. Fugerit <m@fugerit.org>
+ * @author Matteo a.k.a. Fugerit
  */
 public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 

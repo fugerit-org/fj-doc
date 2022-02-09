@@ -15,7 +15,7 @@ import org.fugerit.java.doc.base.model.DocBase;
  * 
  * @see MarkdownExtDocFacade
  * 
- * @author Matteo a.k.a. Fugerit <m@fugerit.org>
+ * @author Matteo a.k.a. Fugerit
  *
  */
 public class SimpleMarkdownBasicTypeHandler extends AbstractCustomMarkdownTypeHandler {

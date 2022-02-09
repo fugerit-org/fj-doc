@@ -20,7 +20,7 @@ import org.fugerit.java.doc.base.model.util.DocTableUtil;
  * 
  * @see MarkdownBasicDocFacade
  * 
- * @author Matteo a.k.a. Fugerit <m@fugerit.org>
+ * @author Matteo a.k.a. Fugerit
  */
 public class MarkdownExtDocFacade extends MarkdownBasicDocFacade {
 	
