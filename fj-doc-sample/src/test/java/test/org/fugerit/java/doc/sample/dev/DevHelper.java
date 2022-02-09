@@ -22,6 +22,7 @@ import org.apache.fop.apps.MimeConstants;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.xml.DocValidator;
@@ -93,6 +94,20 @@ public class DevHelper {
 			logger.info( "validation result -> {}", valid );
 			DocBase doc = DocFacade.parse( input );
 			FreeMarkerHtmlTypeHandler.HANDLER.handle( DocInput.newInput( DocConfig.TYPE_HTML , doc) , DocOutput.newOutput( output ) );
+		    ok = valid;
+		}
+		return ok;
+	}
+	
+	protected boolean workerXmlToHandler( File inputPath,  File outputPath, DocTypeHandler handler ) throws Exception {
+		boolean ok = false;
+		try ( InputStream input = new FileInputStream( inputPath );
+				OutputStream output = new FileOutputStream( outputPath );
+				Reader xmlValidationReader = new FileReader( inputPath ) ) {
+			boolean valid = DocValidator.logValidation( xmlValidationReader , logger );
+			logger.info( "validation result -> {}", valid );
+			DocBase doc = DocFacade.parse( input );
+			handler.handle( DocInput.newInput( handler.getType() , doc) , DocOutput.newOutput( output ) );
 		    ok = valid;
 		}
 		return ok;

@@ -1,4 +1,9 @@
-﻿0.3.7.4 (2022-02-03)
+﻿0.3.8.0 (2022-02-09)
+--------------------
++ Added simple type handler for Markdown format (basic and extended
+syntax)
+
+0.3.7.4 (2022-02-03)
 --------------------
 + fj-mode-freemarker : fix in DocPhrase handling
 

@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
-public class TestXml01 extends DevHelper {
+public class TestMarkdown01 extends DevHelper {
 	
 	@Test
 	public void test01() throws Exception {
@@ -21,4 +21,5 @@ public class TestXml01 extends DevHelper {
 				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+"."+handler.getType() ), handler );
 		Assert.assertTrue( res );
 	}
+	
 }

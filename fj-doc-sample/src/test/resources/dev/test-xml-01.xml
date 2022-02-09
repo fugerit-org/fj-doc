@@ -19,7 +19,7 @@
 	<body>
 		<h head-level="1" align="center" id="b1">Header 1</h>
 		<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
-    		<row>
+    		<row header="true">
     			<cell align="center"><para style="bold">Name</para></cell>
     			<cell align="center"><para style="bold">Surname</para></cell>
     			<cell align="center"><para style="bold">Title</para></cell>
@@ -35,6 +35,9 @@
     			<cell><para>King</para></cell>
     		</row>    		
     	</table>
-    	<h head-level="1" align="center" id="b2">Header 2</h>
+    	<h head-level="2" align="center" id="b2">Header 2</h>
+    	<para>sample normal text</para>
+    	<para style="bold">sample bold text</para>
+    	<para style="italic">sample italic text</para>
 	</body>
 </doc>
