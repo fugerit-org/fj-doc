@@ -41,25 +41,36 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 	
 	private PrintWriter writer;
 
+	private boolean printComments;
+	
+	public static final boolean DEFAULT_PRINT_COMMENTS = true;
+	
 	protected PrintWriter getWriter() {
 		return writer;
 	}
 
 	public MarkdownBasicDocFacade(PrintWriter writer) {
+		this( writer, DEFAULT_PRINT_COMMENTS );
+	}
+	
+	public MarkdownBasicDocFacade(PrintWriter writer, boolean printComments) {
 		super();
 		this.writer = writer;
+		this.printComments = printComments;
 	}
 
 	@Override
 	public void handleDoc(DocBase docBase) throws Exception {
-		// just comment to the generated output :
-		this.getWriter().print( "[//]: # (generator : " );
-		this.getWriter().print( this.getClass().getName() );
-		this.getWriter().println( " )" );
-		this.getWriter().print( "[//]: # (generated on " );
-		this.getWriter().print( new Date() );
-		this.getWriter().println( " )  " );
-		this.getWriter().println();
+		if ( this.printComments ) {
+			// just comment to the generated output :
+			this.getWriter().print( "[//]: # (generator : " );
+			this.getWriter().print( this.getClass().getName() );
+			this.getWriter().println( " )" );
+			this.getWriter().print( "[//]: # (generated on " );
+			this.getWriter().print( new Date() );
+			this.getWriter().println( " )  " );
+			this.getWriter().println();			
+		}
 		// actual document handling :we will treat only the body
 		DocTypeFacadeHelper helper = new DocTypeFacadeHelper( docBase );
 		this.handleElements( docBase.getDocBody(), helper );

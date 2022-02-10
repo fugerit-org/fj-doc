@@ -33,6 +33,10 @@ public class MarkdownExtDocFacade extends MarkdownBasicDocFacade {
 		super(writer);
 	}
 
+	public MarkdownExtDocFacade(PrintWriter writer, boolean printComments) {
+		super(writer, printComments);
+	}
+
 	@Override
 	public void handleTable(DocTable docTable, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
 		this.getWriter().println();

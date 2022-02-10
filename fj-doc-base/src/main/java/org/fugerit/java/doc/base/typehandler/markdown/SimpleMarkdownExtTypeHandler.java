@@ -22,10 +22,21 @@ public class SimpleMarkdownExtTypeHandler extends AbstractCustomMarkdownTypeHand
 
 	public static final DocTypeHandler HANDLER = new SimpleMarkdownExtTypeHandler();
 	
+	public static final DocTypeHandler HANDLER_NOCOMMENTS = new SimpleMarkdownExtTypeHandler( false );
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7394541608L;
+
+	public SimpleMarkdownExtTypeHandler() {
+		super();
+	}
+
+	public SimpleMarkdownExtTypeHandler(boolean printComments) {
+		super(printComments);
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
@@ -36,7 +47,7 @@ public class SimpleMarkdownExtTypeHandler extends AbstractCustomMarkdownTypeHand
 		 * the DocBase model in the desired output (DocPara, DocTable, DocList etc).
 		 * Here we created a facade to do so : 
 		 */
-		MarkdownExtDocFacade facade = new MarkdownExtDocFacade( writer );
+		MarkdownExtDocFacade facade = new MarkdownExtDocFacade( writer, this.isPrintComments() );
 		facade.handleDoc( docBase );
 	}
 
