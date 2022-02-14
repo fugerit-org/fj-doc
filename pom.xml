@@ -5,7 +5,7 @@
 	<groupId>org.fugerit.java</groupId>
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.3.8.3</version>
+	<version>0.3.8.4</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
