@@ -58,6 +58,7 @@
 </#macro>
 
 <#macro handleList docList>
+	<#if docList.elementList?size gt 0>
 	<fo:list-block>
 		<#list docList.elementList as li>
 			<fo:list-item>
@@ -70,6 +71,7 @@
 			</fo:list-item>			
 		</#list>	
 	</fo:list-block>
+	</#if>
 </#macro>
 
 <#macro handleRowList docTable rowList cellType>

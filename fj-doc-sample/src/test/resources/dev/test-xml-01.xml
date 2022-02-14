@@ -35,6 +35,8 @@
     			<cell><para>King</para></cell>
     		</row>    		
     	</table>
+		<list list-type="ul">
+		</list>
     	<h head-level="2" align="center" id="b2">Header 2</h>
     	<para>sample normal text</para>
     	<para style="bold">sample bold text</para>
