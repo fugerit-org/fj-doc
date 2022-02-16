@@ -1,4 +1,8 @@
-﻿0.3.8.3 / 0.3.8.4 (2022-02-14)
+﻿0.3.8.5 (2022-02-16)
+--------------------
++ Fix the current doc meta model supported version to 1.8
+
+0.3.8.3 / 0.3.8.4 (2022-02-14)
 --------------------
 + Fix in empty list handling for fop type handler
 
