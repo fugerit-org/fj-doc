@@ -11,4 +11,8 @@ public class DocLi extends DocContainer {
 		return this.getElementList().get( 0 ); 
 	}
 	
+	public boolean isContentList() {
+		return this.getContent().getClass().equals( DocList.class );
+	}
+	
 }

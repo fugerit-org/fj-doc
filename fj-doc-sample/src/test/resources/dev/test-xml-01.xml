@@ -35,7 +35,29 @@
     			<cell><para>King</para></cell>
     		</row>    		
     	</table>
-		<list list-type="ul">
+    	<br/>
+		<list list-type="ulm">
+			<li><para>Element 1</para></li>
+			<li><para>Element 2</para></li>
+			<li>
+				<list list-type="ul">
+					<li><para>Element 2a</para></li>
+					<li><para>Element 2b</para></li>
+					<li>
+						<list list-type="ol">
+							<li><para>Element 2c1</para></li>
+							<li><para>Element 2c2</para></li>
+						</list>
+					</li>
+					<li>
+						<list list-type="oll">
+							<li><para>Element 2da</para></li>
+							<li><para>Element 2db</para></li>
+						</list>
+					</li>
+				</list>
+			</li>
+			
 		</list>
     	<h head-level="2" align="center" id="b2">Header 2</h>
     	<para>sample normal text</para>

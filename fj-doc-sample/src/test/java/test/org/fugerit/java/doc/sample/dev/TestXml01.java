@@ -12,7 +12,7 @@ import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 public class TestXml01 extends DevHelper {
 	
-	@Test
+	//@Test
 	public void test01() throws Exception {
 		Locale.setDefault( Locale.UK );
 		String testCase = "test-xml-01";
@@ -21,4 +21,16 @@ public class TestXml01 extends DevHelper {
 				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+"."+handler.getType() ), handler );
 		Assert.assertTrue( res );
 	}
+	
+	@Test
+	public void test01Alt() throws Exception {
+		Locale.setDefault( Locale.UK );
+		String testCase = "test-xml-01";
+		DocTypeHandler handler = PdfFopTypeHandler.HANDLER;
+		boolean res = this.workerXmlToFoToPdf( new File( "src/test/resources/dev/"+testCase+".xml" ), 
+				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+".fo" ),
+				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+"."+handler.getType() ) );
+		Assert.assertTrue( res );
+	}
+	
 }

@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2021-12-22
-	 * @version    : 1.0.0 (2021-12-22)
+	 * @version    : 1.1.0 (2022-03-05)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -297,8 +297,18 @@
 
 	<xsd:simpleType name="listType">
 		<xsd:restriction base="xsd:string">
+			<!-- default unordered list, same asd 'uld' -->
 			<xsd:enumeration value="ul"></xsd:enumeration>
+			<!-- unordered list, using dot -->
+			<xsd:enumeration value="uld"></xsd:enumeration>
+			<!-- unordered list, using minus -->
+			<xsd:enumeration value="ulm"></xsd:enumeration>
+			<!-- default ordered list, same asd 'oln' -->
 			<xsd:enumeration value="ol"></xsd:enumeration>
+			<!-- ordered list, using numbers -->
+			<xsd:enumeration value="oln"></xsd:enumeration>
+			<!-- ordered list, using letters -->
+			<xsd:enumeration value="oll"></xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
 
