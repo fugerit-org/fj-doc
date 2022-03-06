@@ -41,5 +41,18 @@ public class DocList extends DocContainer {
 		}
 		return clt;
 	}
+	
+	/*
+	 * Return html list type
+	 */
+	public String getHtmlType() {
+		String clt = this.getListType();
+		if ( clt.equalsIgnoreCase( LIST_TYPE_ULM ) || clt.equalsIgnoreCase( LIST_TYPE_ULD ) ) {
+			clt = LIST_TYPE_UL;
+		} else if ( clt == null || clt.equalsIgnoreCase(  LIST_TYPE_OLN ) || clt.equalsIgnoreCase(  LIST_TYPE_OLL ) ) {
+			clt = LIST_TYPE_OL;
+		}
+		return clt;
+	}
 
 }
