@@ -34,7 +34,11 @@
 		<schema id="doc-1-8.xsd"/>
 	</schema-list>	
 
-	<schema-list id="current" extends="version-1-8">
+	<schema-list id="version-1-9">
+		<schema id="doc-1-9.xsd"/>
+	</schema-list>	
+
+	<schema-list id="current" extends="version-1-9">
 	</schema-list>
 
 </schema-catalog>

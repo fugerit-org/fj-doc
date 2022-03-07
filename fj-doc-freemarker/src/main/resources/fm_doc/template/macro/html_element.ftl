@@ -58,7 +58,10 @@
 	<#if docList.elementList?size gt 0>
 	<${docList.htmlType}>
 		<#list docList.elementList as li>
-			<li <#if li.contentList>style="list-style-type: none;"<#elseif docList.listType = 'oll'>style="list-style-type: lower-alpha;"<#elseif docList.listType = 'ulm'>style="list-style-type: square;"<#elseif docList.listType = 'uld'>style="list-style-type: circle;"</#if>> <#list li.elementList as element><@handleElement current=element/></#list></li>			
+			<#if (li?counter > 0)>
+				<li <#if li.contentList>style="list-style-type: none;"<#elseif docList.listType = 'oll'>style="list-style-type: lower-alpha;"<#elseif docList.listType = 'ulm'>style="list-style-type: square;"<#elseif docList.listType = 'uld'>style="list-style-type: circle;"</#if>> <#list li.elementList as element><@handleElement current=element/></#list></li>
+			</#if>			
+			<#assign prevLi=li/>
 		</#list>	
 	</${docList.htmlType}>
 	</#if>

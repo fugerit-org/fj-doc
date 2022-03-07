@@ -1,4 +1,8 @@
-﻿0.3.8.7 / 0.3.8.8 (2022-03-06)
+﻿0.3.8.9 (2022-03-07)
+--------------------
++ Changed doc version to doc-1-9 (deep changes to list handling)
+
+0.3.8.7 / 0.3.8.8 (2022-03-06)
 --------------------
 + Added support for different symbols on FOP/HTML rendered list (dash, minus, letters, numbers)
 

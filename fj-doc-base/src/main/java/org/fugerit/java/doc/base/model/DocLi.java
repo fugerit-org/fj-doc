@@ -11,8 +11,16 @@ public class DocLi extends DocContainer {
 		return this.getElementList().get( 0 ); 
 	}
 	
+	public DocElement getSecondContent() {
+		return this.getElementList().get( 1 ); 
+	}
+	
 	public boolean isContentList() {
 		return this.getContent().getClass().equals( DocList.class );
+	}
+
+	public boolean isSecondList() {
+		return this.getElementList().size() > 1 && this.getSecondContent().getClass().equals( DocList.class );
 	}
 	
 }

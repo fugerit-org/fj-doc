@@ -61,12 +61,13 @@
 	<#if docList.elementList?size gt 0>
 	<fo:list-block>
 		<#list docList.elementList as li>
+			<#assign current=li.content/>
 			<fo:list-item>
 				<fo:list-item-label end-indent="label-end()">
-					<fo:block><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
+					<fo:block <@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/> ><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
 				</fo:list-item-label>
 				<fo:list-item-body start-indent="body-start()">
-					<fo:block><@handleElement current=li.content/></fo:block>
+					<fo:block><@handleElement current=li.content/><#if li.secondList><@handleElement current=li.secondContent/></#if></fo:block>
 				</fo:list-item-body>
 			</fo:list-item>			
 		</#list>	

@@ -2,7 +2,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-8.xsd" > 	
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-9.xsd" > 	
     
 	<metadata>
 		<info name="margins">10;10;10;10</info>
@@ -36,28 +36,36 @@
     		</row>    		
     	</table>
     	<br/>
-		<list list-type="ulm">
-			<li><para>Element 1</para></li>
-			<li><para>Element 2</para></li>
+		<list list-type="oln">
+			<li><para space-before="10">Element 1</para></li>
+			<li><para space-before="10">Element 2</para></li>
 			<li>
+				<para>Element 3</para>
 				<list list-type="ul">
 					<li><para>Element 2a</para></li>
-					<li><para>Element 2b</para></li>
 					<li>
+						<para>Element 2b</para>
 						<list list-type="ol">
 							<li><para>Element 2c1</para></li>
 							<li><para>Element 2c2</para></li>
-						</list>
-					</li>
-					<li>
-						<list list-type="oll">
-							<li><para>Element 2da</para></li>
-							<li><para>Element 2db</para></li>
-						</list>
+						</list>						
 					</li>
 				</list>
 			</li>
-			
+			<li>
+				<para>Element 4</para>
+				<list list-type="ulm">
+					<li><para>Element 4a</para></li>
+					<li>
+						<para>Element 4b</para>
+						<list list-type="ol">
+							<li><para>Element 2c1</para></li>
+							<li><para>Element 2c2</para></li>
+						</list>						
+					</li>
+				</list>
+			</li>			
+			<li><para>Element 5</para></li>
 		</list>
     	<h head-level="2" align="center" id="b2">Header 2</h>
     	<para>sample normal text</para>
