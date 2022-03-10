@@ -21,7 +21,9 @@
 	<#elseif elementType = 'DocImage'>
 		<@handleImage docImage=current/>
 	<#elseif elementType = 'DocList'>
-		<@handleList docList=current/>																				
+		<@handleList docList=current/>
+	<#elseif elementType = 'DocPageBreak'>
+		<fo:block page-break-before="always"></fo:block>																			
 	<#else>
 		<fo:block space-after="5mm">Element type non implemented yet : ${elementType}</fo:block>
 	</#if>

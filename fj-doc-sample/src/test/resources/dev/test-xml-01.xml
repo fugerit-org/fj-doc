@@ -35,7 +35,7 @@
     			<cell><para>King</para></cell>
     		</row>    		
     	</table>
-    	<br/>
+    	<page-break/>
 		<list list-type="oln">
 			<li><para space-before="10">Element 1</para></li>
 			<li><para space-before="10">Element 2</para></li>
