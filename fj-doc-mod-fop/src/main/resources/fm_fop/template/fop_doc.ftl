@@ -8,8 +8,8 @@
 	xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
 	<fo:layout-master-set>
 		<fo:simple-page-master
-			page-width="21cm" 
-			page-height="29.7cm" 
+			page-width="${docBase.infoPageWidth!'21cm'}" 
+			page-height="${docBase.infoPageHeight!'29.7cm'}" 
 			master-name="simpleA4" 
 			margin-left="${docBase.marginLeft!'10'}pt"
 			margin-right="${docBase.marginRight!'10'}pt"

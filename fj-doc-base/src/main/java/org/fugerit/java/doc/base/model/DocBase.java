@@ -191,6 +191,14 @@ public class DocBase extends DocElement {
 		this.stableInfo = stableInfo;
 	}
 	
+	public String getInfoPageWidth() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_NAME_PAGE_WIDTH );
+	}
+	
+	public String getInfoPageHeight() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_NAME_PAGE_HEIGHT );
+	}
+	
 	public String getInfoDocVersion() {
 		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_VERSION );
 	}
