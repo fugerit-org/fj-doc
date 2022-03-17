@@ -78,6 +78,7 @@ public class DocContentHandler implements ContentHandler {
 														"cell",
 														"list",
 														"li",
+														"pl",
 														"body", 
 														"meta", 
 														"metadata", 
@@ -428,7 +429,10 @@ public class DocContentHandler implements ContentHandler {
 			}
 			String align = props.getProperty( "align" );
 			docImage.setAlign( getAlign( align ) );
-			this.currentElement = docImage;			
+			this.currentElement = docImage;		
+		} else if ( "pl".equalsIgnoreCase( qName ) ) {
+			DocContainer container = new DocContainer();
+			this.currentElement = container;
 		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
 			valuePara(docPara, props, false);

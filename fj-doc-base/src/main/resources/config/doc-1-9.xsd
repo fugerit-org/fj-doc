@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2022-03-07
-	 * @version    : 1.9.0 (2022-03-07)
+	 * @version    : 1.9.1 (2022-03-17)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -23,6 +23,7 @@
 	
 	changelog 
 	1-9 - deep change to list handling
+	1-9-1 - added phrase list option to list item
 	
 -->
 <xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
@@ -291,12 +292,21 @@
 				<xsd:choice minOccurs='1' maxOccurs='1'>
 					<xsd:element ref='doc:para' />
 					<xsd:element ref='doc:h' />
+					<xsd:element ref='doc:pl' />
 				</xsd:choice>
 				<xsd:element ref='doc:list' minOccurs="0" maxOccurs="1"/>
 			</xsd:sequence>
 			<xsd:attribute name='id' type='xsd:string' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
+
+	<xsd:element name='pl' type="doc:plType"/>
+
+	<xsd:complexType name="plType">
+		<xsd:sequence minOccurs='1' maxOccurs="unbounded">
+			<xsd:element ref="doc:phrase" />
+		</xsd:sequence>
+	</xsd:complexType>
 
 	<xsd:simpleType name="listType">
 		<xsd:restriction base="xsd:string">

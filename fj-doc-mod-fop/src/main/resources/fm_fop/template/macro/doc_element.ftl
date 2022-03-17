@@ -22,6 +22,8 @@
 		<@handleImage docImage=current/>
 	<#elseif elementType = 'DocList'>
 		<@handleList docList=current/>
+	<#elseif elementType = 'DocContainer'>
+		<#list current.elementList as currentChild><@handleElement current=currentChild/></#list>		
 	<#elseif elementType = 'DocPageBreak'>
 		<fo:block page-break-before="always"></fo:block>																			
 	<#else>
@@ -31,7 +33,11 @@
 
 <#macro handlePhrase current>
 	<#if (current.link)??>
-		<fo:basic-link internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
+		<#if (current.internal)>
+			<fo:basic-link internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
+		<#else>
+			<fo:basic-link external-destination="url('${current.link}')" color="blue" text-decoration="underline">${current.text}</fo:basic-link>
+		</#if>
 	<#elseif (current.anchor)??>
 		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>${current.text}</fo:block>
 	<#else>

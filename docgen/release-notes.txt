@@ -1,4 +1,8 @@
-﻿0.3.9.1 (2022-03-17)
+﻿0.3.9.2 (2022-03-17)
+--------------------
++ Added external link support in mod-fop
+
+0.3.9.1 (2022-03-17)
 --------------------
 + Added page-widht and page-height support in mod-fop
 

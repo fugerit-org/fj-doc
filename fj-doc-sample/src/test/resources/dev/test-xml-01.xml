@@ -48,6 +48,7 @@
 						<list list-type="ol">
 							<li><para>Element 2c1</para></li>
 							<li><para>Element 2c2</para></li>
+							<li><pl><phrase>test</phrase> <phrase link="https://www.fugerit.org">https://www.fugerit.org</phrase> <phrase>test b</phrase></pl></li>
 						</list>						
 					</li>
 				</list>
