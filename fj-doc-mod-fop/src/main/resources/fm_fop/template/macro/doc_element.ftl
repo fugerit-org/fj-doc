@@ -34,9 +34,9 @@
 <#macro handlePhrase current>
 	<#if (current.link)??>
 		<#if (current.internal)>
-			<fo:basic-link internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
+			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
 		<#else>
-			<fo:basic-link external-destination="url('${current.link}')" color="blue" text-decoration="underline">${current.text}</fo:basic-link>
+			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline">${current.text}</fo:basic-link>
 		</#if>
 	<#elseif (current.anchor)??>
 		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>${current.text}</fo:block>
