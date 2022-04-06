@@ -31,7 +31,7 @@ package org.fugerit.java.doc.base.model;
  * @author mfranci
  *
  */
-public class DocPara extends DocElement implements DocStyle {
+public class DocPara extends DocContainer implements DocStyle {
 
 	/**
 	 * 

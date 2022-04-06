@@ -1,4 +1,9 @@
-﻿0.3.9.3 (2022-03-18)
+﻿0.3.9.4 (2022-04-06)
+--------------------
++ para can now contains para and phrases (fop and freemarker mod)
++ Changed fj-core version to 0.7.6.8
+
+0.3.9.3 (2022-03-18)
 --------------------
 + Fix to phrase link style in mod-fop
 

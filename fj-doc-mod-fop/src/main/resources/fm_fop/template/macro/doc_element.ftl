@@ -46,7 +46,7 @@
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}</fo:block>
+	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
 </#macro>
 
 <#macro handlePara current>

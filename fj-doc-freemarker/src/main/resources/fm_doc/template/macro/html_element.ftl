@@ -16,7 +16,9 @@
 	<#elseif elementType = 'DocImage'>
 		<@handleImage docImage=current/>					
 	<#elseif elementType = 'DocList'>
-		<@handleList docList=current/>			
+		<@handleList docList=current/>	
+	<#elseif elementType = 'DocContainer'>
+		<#list current.elementList as currentChild><@handleElement current=currentChild/></#list>
 	<#else>
 		<span>Element type non implemented yet : ${elementType}</span>
 	</#if>
@@ -34,9 +36,9 @@
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}</p>
+		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
 	<#else>
-		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}</h${current.headLevel}>
+		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
 	</#if>
 </#macro>
 
