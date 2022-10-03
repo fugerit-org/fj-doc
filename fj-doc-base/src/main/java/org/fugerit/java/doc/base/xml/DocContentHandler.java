@@ -33,8 +33,11 @@ import java.util.Properties;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.model.DocBackground;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.model.DocBookmark;
+import org.fugerit.java.doc.base.model.DocBookmarkTree;
 import org.fugerit.java.doc.base.model.DocBorders;
 import org.fugerit.java.doc.base.model.DocBr;
 import org.fugerit.java.doc.base.model.DocCell;
@@ -54,6 +57,7 @@ import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.model.DocPhrase;
 import org.fugerit.java.doc.base.model.DocRow;
 import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
@@ -74,13 +78,17 @@ public class DocContentHandler implements ContentHandler {
 														"cell",
 														"list",
 														"li",
+														"pl",
 														"body", 
 														"meta", 
 														"metadata", 
 														"header", 
-														"footer", 
+														"footer",
+														"para", 
 														"header-ext", 
-														"footer-ext" };
+														"footer-ext",
+														DocBackground.TAG_NAME,
+														DocBookmarkTree.TAG_NAME};
 	
 	private static final Collection<String> CONTAINER_LIST = new HashSet<>( Arrays.asList( ELEMENT_CONTAINER ) );
 	
@@ -93,6 +101,9 @@ public class DocContentHandler implements ContentHandler {
 	private LinkedList<DocContainer> parents;
 	
 	private DocHelper docHelper;
+	
+	private String defaultTablePadding = GenericConsts.INFO_DEFAULT_TABLE_PADDING_DEF;
+	private String defaultTableSpacing = GenericConsts.INFO_DEFAULT_TABLE_SPACING_DEF;
 	
 	public DocContentHandler( DocHelper docHelper ) {
 		this.docHelper = docHelper;
@@ -114,9 +125,17 @@ public class DocContentHandler implements ContentHandler {
 		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocPara ) {
 			DocPara docPara = (DocPara)this.currentElement;
 			docPara.setText( docPara.getText()+text );
+		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocBookmark ) {
+			DocBookmark docBookmarkTitle = (DocBookmark)this.currentElement;
+			docBookmarkTitle.setTitle( docBookmarkTitle.getTitle()+text );
 		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocInfo ) {
 			DocInfo docInfo = (DocInfo)this.currentElement;
 			docInfo.getContent().append( text );
+			if ( GenericConsts.INFO_DEFAULT_TABLE_PADDING.equalsIgnoreCase( docInfo.getName() ) ) {
+				this.defaultTablePadding = text;
+			} else if ( GenericConsts.INFO_DEFAULT_TABLE_SPACING.equalsIgnoreCase( docInfo.getName() ) ) {
+				this.defaultTableSpacing = text;
+			}
 		}
 	}
 
@@ -124,7 +143,7 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#endDocument()
 	 */
 	public void endDocument() throws SAXException {
-		
+		this.docBase.setStableInfo( this.docBase.getInfo() );
 	}
 
 	/* (non-Javadoc)
@@ -270,6 +289,8 @@ public class DocContentHandler implements ContentHandler {
 		}
 		docPara.setStyle( DocPara.parseStyle( style, defaultStyle ) );
 		docPara.setOriginalStyle( DocPara.parseStyle( style, DocPara.STYLE_UNSET ) );
+		String id = props.getProperty( "id" );
+		docPara.setId( id );
 		// setting paragraph align
 		String align = props.getProperty( "align" );
 		docPara.setAlign( getAlign( align ) );
@@ -285,13 +306,25 @@ public class DocContentHandler implements ContentHandler {
 		}
 		// setting paragraph size
 		docPara.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
+		String textIndent = props.getProperty( "text-indent" );
 		String spaceBefore = props.getProperty( "space-before" );
 		String spaceAfter = props.getProperty( "space-after" );
+		String spaceLeft = props.getProperty( "space-left" );
+		String spaceRight = props.getProperty( "space-right" );
+		if ( textIndent != null ) {
+			docPara.setTextIndent( Float.valueOf( textIndent ) );
+		}
 		if ( spaceBefore != null ) {
 			docPara.setSpaceBefore( Float.valueOf( spaceBefore ) );
 		}
 		if ( spaceAfter != null ) {
 			docPara.setSpaceAfter( Float.valueOf( spaceAfter ) );
+		}
+		if ( spaceLeft != null ) {
+			docPara.setSpaceLeft( Float.valueOf( spaceLeft ) );
+		}
+		if ( spaceRight != null ) {
+			docPara.setSpaceRight( Float.valueOf( spaceRight ) );
 		}
 		// setting head level
 		docPara.setHeadLevel( Integer.parseInt( props.getProperty( "head-level", String.valueOf( DocPara.DEFAULT_HEAD_LEVEL ) ) ) );
@@ -363,7 +396,11 @@ public class DocContentHandler implements ContentHandler {
 			} else {
 				docFooter.setBasic( true );
 			}
-			this.currentElement = docFooter;				
+			this.currentElement = docFooter;
+		} else if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			DocBackground docBackground = new DocBackground();
+			this.docBase.setDocBackground( docBackground );
+			this.currentElement = docBackground;
 		} else if ( "body".equalsIgnoreCase( qName ) ) {
 			DocContainer docBody = this.docBase.getDocBody();
 			this.currentElement = docBody;
@@ -391,7 +428,12 @@ public class DocContentHandler implements ContentHandler {
 			if ( StringUtils.isNotEmpty( alt ) ) {
 				docImage.setAlt( alt );
 			}
-			this.currentElement = docImage;			
+			String align = props.getProperty( "align" );
+			docImage.setAlign( getAlign( align ) );
+			this.currentElement = docImage;		
+		} else if ( "pl".equalsIgnoreCase( qName ) ) {
+			DocContainer container = new DocContainer();
+			this.currentElement = container;
 		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocPara docPara = new DocPara();
 			valuePara(docPara, props, false);
@@ -435,8 +477,9 @@ public class DocContentHandler implements ContentHandler {
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
 			docTable.setBackColor( props.getProperty( "back-color" ) );
 			docTable.setForeColor( props.getProperty( "fore-color" ) );
-			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", "0" ) ) );
-			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", "0" ) ) );
+			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.defaultTableSpacing ) ) );
+			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.defaultTablePadding ) ) );
+			docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );
 			String cols = props.getProperty( "colwidths" );
 			if ( cols != null ) {
 				String[] colsParsed = cols.split( ";" );
@@ -477,6 +520,15 @@ public class DocContentHandler implements ContentHandler {
 			this.currentElement = docCell;
 		} else if ( "page-break".equalsIgnoreCase( qName ) ) {
 			this.currentElement = new DocPageBreak();
+		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			DocBookmarkTree docBookmarkTree = new DocBookmarkTree();
+			this.docBase.setDocBookmarkTree(docBookmarkTree);
+			this.currentElement = docBookmarkTree;
+		} else if ( DocBookmark.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			DocBookmark docBookmark = new DocBookmark();
+			String ref = props.getProperty( DocBookmark.ATT_REF );
+			docBookmark.setRef( ref );
+			this.currentElement = docBookmark;
 		}
 		// processamenti finali
 		if ( this.currentContainer != null && this.currentContainer != this.currentElement ) {
@@ -508,5 +560,5 @@ public class DocContentHandler implements ContentHandler {
 	public DocBase getDocBase() {
 		return docBase;
 	}
-	
+
 }

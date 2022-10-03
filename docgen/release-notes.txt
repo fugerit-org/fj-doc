@@ -1,7 +1,127 @@
-﻿0.3.5.7 (2021-02-24)
+﻿0.3.9.4 (2022-04-06)
+--------------------
++ para can now contains para and phrases (fop and freemarker mod)
++ Changed fj-core version to 0.7.6.8
+
+0.3.9.3 (2022-03-18)
+--------------------
++ Fix to phrase link style in mod-fop
+
+0.3.9.2 (2022-03-17)
+--------------------
++ Added external link support in mod-fop
+
+0.3.9.1 (2022-03-17)
+--------------------
++ Added page-widht and page-height support in mod-fop
+
+0.3.9.0 (2022-03-10)
+--------------------
++ Added support for page-break in mod-fop
+
+0.3.8.9 (2022-03-07)
+--------------------
++ Changed doc version to doc-1-9 (deep changes to list handling)
+
+0.3.8.7 / 0.3.8.8 (2022-03-06)
+--------------------
++ Added support for different symbols on FOP/HTML rendered list (dash, minus, letters, numbers)
+
+0.3.8.5 / 0.3.8.6 (2022-02-16)
+--------------------
++ Fix the current doc meta model supported version to 1.8
+
+0.3.8.3 / 0.3.8.4 (2022-02-14)
+--------------------
++ Fix in empty list handling for fop type handler
+
+0.3.8.2 (2022-02-10)
+--------------------
++ Added no comments configuration for Markdown handlers
+
+0.3.8.1 (2022-02-09)
+--------------------
++ Added constant for type markdown (md)
+
+0.3.8.0 (2022-02-09)
+--------------------
++ Added simple type handler for Markdown format (basic and extended
+syntax)
+
+0.3.7.4 (2022-02-03)
+--------------------
++ fj-mode-freemarker : fix in DocPhrase handling
+
+0.3.7.3 (2022-01-26)
+--------------------
++ Added metadata info doc-language for whole document (currently only supported by fop renderer) 
+
+0.3.7.2 (2022-01-26)
+--------------------
++ Added metadata info doc-title, doc-author, doc-subject, doc-creator, doc-version (currently only supported by fop renderer) 
+
+0.3.7.1 (2021-12-22)
+--------------------
++ Added bookmark tree support (currently only work with fop renderer) 
+
+0.3.7.0 (2021-11-21)
+--------------------
++ Better header handling for fop
+
+0.3.6.9 (2021-10-21)
+--------------------
++ Metadata for default-table-padding and default-table-spacing
+
+0.3.6.8 (2021-10-09)
+--------------------
++ Added meta/background to doc.xsd
+
+0.3.6.7 (2021-09-27)
+--------------------
++ Fix on doc-1-7.xsd for <h>
+
+0.3.6.6 (2021-09-27)
+--------------------
++ Added para.text-indent and para.spaceBefore to fop renderer
+
+0.3.6.5 (2021-09-27)
+--------------------
++ fix bug on fop renderer when space-after/before in inline container
+
+0.3.6.4 (2021-09-27)
+--------------------
++ fix bug on fop renderer when spacing and align both present
+
+0.3.6.3 (2021-09-27)
+--------------------
++ added para.space-left and para.space-right to fop renderer
+
+0.3.6.2 (2021-09-27)
+--------------------
++ added para.format="preserve-line" to fop renderer
+
+0.3.6.1 (2021-09-26)
+--------------------
++ added support for space-after / space-before in freemarker and fop renderer
+
+0.3.6.0 (2021-09-21)
+--------------------
++ doc-1-5.xsd : added 'render-mode' attribute to 'table' element (supported in freemarker fop)
++ doc-1-5.xsd : added 'align' attribute to 'image' element (supported in freemarker fop)
++ Changed fj-core version to 0.7.6.7
+
+0.3.5.9 (2021-02-24)
+--------------------
++ Corrections in link and list handling
+
+0.3.5.8 (2021-02-24)
+--------------------
++ Fix on list item for freemarker html and fop module
+
+0.3.5.7 (2021-02-24)
 --------------------
 + Upgraded fj-core version to 0.7.5.2
-+ Added FreeMarkerComplexProcessStep (providing a semplified chain step for freemarker, Process + Map Step)
++ Added FreeMarkerComplexProcessStep (providing a simplified chain step for freemarker, Process + Map Step)
 
 0.3.5.6 (2021-02-24)
 --------------------

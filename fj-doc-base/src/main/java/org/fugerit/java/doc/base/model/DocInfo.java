@@ -44,7 +44,18 @@ public class DocInfo extends DocElement {
 	
 	public static final String INFO_NAME_PAGE_ORIENT = "page-orient";
 	
+	public static final String INFO_NAME_PAGE_WIDTH = "page-width";
+	
+	public static final String INFO_NAME_PAGE_HEIGHT = "page-height";
+	
 	public static final String INFO_NAME_PDF_FORMAT = "pdf-format";
+	
+	public static final String INFO_DOC_TITLE = "doc-title";
+	public static final String INFO_DOC_AUTHOR = "doc-author";
+	public static final String INFO_DOC_SUBJECT = "doc-subject";
+	public static final String INFO_DOC_VERSION = "doc-version";
+	public static final String INFO_DOC_CREATOR = "doc-creator";
+	public static final String INFO_DOC_LANGUAGE = "doc-language";
 	
 	private String name;
 	

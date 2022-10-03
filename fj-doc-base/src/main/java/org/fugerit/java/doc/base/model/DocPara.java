@@ -31,7 +31,7 @@ package org.fugerit.java.doc.base.model;
  * @author mfranci
  *
  */
-public class DocPara extends DocElement implements DocStyle {
+public class DocPara extends DocContainer implements DocStyle {
 
 	/**
 	 * 
@@ -147,10 +147,24 @@ public class DocPara extends DocElement implements DocStyle {
 		this.text = text;
 	}
 	
+	private Float textIndent;
+	
 	private Float spaceBefore;
 	
 	private Float spaceAfter;	
 	
+	private Float spaceLeft;
+	
+	private Float spaceRight;	
+	
+	public Float getTextIndent() {
+		return textIndent;
+	}
+
+	public void setTextIndent(Float textIndent) {
+		this.textIndent = textIndent;
+	}
+
 	public Float getSpaceBefore() {
 		return spaceBefore;
 	}
@@ -165,6 +179,22 @@ public class DocPara extends DocElement implements DocStyle {
 
 	public void setSpaceAfter(Float spaceAfter) {
 		this.spaceAfter = spaceAfter;
+	}
+
+	public Float getSpaceLeft() {
+		return spaceLeft;
+	}
+
+	public void setSpaceLeft(Float spaceLeft) {
+		this.spaceLeft = spaceLeft;
+	}
+
+	public Float getSpaceRight() {
+		return spaceRight;
+	}
+
+	public void setSpaceRight(Float spaceRight) {
+		this.spaceRight = spaceRight;
 	}
 
 	private Float leading;

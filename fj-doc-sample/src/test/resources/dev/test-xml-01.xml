@@ -1,0 +1,76 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "no" ?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-1-9.xsd" > 	
+    
+	<metadata>
+		<info name="margins">10;10;10;10</info>
+		<info name="doc-title">Test XML 01 title</info>
+		<info name="doc-subject">Test XML 01 subject</info>
+		<info name="doc-author">Fugerit</info>
+		<info name="doc-creator">fj-doc (Venus) Sample</info>
+		<info name="doc-language">en</info>
+		<bookmark-tree>
+			<bookmark ref="b1">Bookmark 1</bookmark>
+			<bookmark ref="b2">Bookmark 2</bookmark>
+		</bookmark-tree>
+	</metadata>
+	<body>
+		<h head-level="1" align="center" id="b1">Header 1</h>
+		<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
+    		<row header="true">
+    			<cell align="center"><para style="bold">Name</para></cell>
+    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para style="bold">Title</para></cell>
+    		</row>
+       		<row>
+    			<cell><para>Luthien</para></cell>
+    			<cell><para>Tinuviel</para></cell>
+    			<cell><para>Queen</para></cell>
+    		</row>
+       		<row>
+    			<cell><para>Thorin</para></cell>
+    			<cell><para>Oakshield</para></cell>
+    			<cell><para>King</para></cell>
+    		</row>    		
+    	</table>
+    	<page-break/>
+		<list list-type="oln">
+			<li><para space-before="10">Element 1</para></li>
+			<li><para space-before="10">Element 2</para></li>
+			<li>
+				<para>Element 3</para>
+				<list list-type="ul">
+					<li><para>Element 2a</para></li>
+					<li>
+						<para>Element 2b</para>
+						<list list-type="ol">
+							<li><para>Element 2c1</para></li>
+							<li><para>Element 2c2</para></li>
+							<li><pl><phrase>test</phrase> <phrase link="https://www.fugerit.org">https://www.fugerit.org</phrase> <phrase>test b</phrase></pl></li>
+						</list>						
+					</li>
+				</list>
+			</li>
+			<li>
+				<para>Element 4</para>
+				<list list-type="ulm">
+					<li><para>Element 4a</para></li>
+					<li>
+						<para>Element 4b</para>
+						<list list-type="ol">
+							<li><para>Element 2c1</para></li>
+							<li><para>Element 2c2</para></li>
+						</list>						
+					</li>
+				</list>
+			</li>			
+			<li><para>Element 5</para></li>
+		</list>
+    	<h head-level="2" align="center" id="b2">Header 2</h>
+    	<para>sample normal text</para>
+    	<para style="bold">sample bold text</para>
+    	<para style="italic">sample italic text</para>
+	</body>
+</doc>

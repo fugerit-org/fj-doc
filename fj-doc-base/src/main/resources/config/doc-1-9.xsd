@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+
+	/*
+	 * @(#)doc-1-9.xsd
+	 *
+	 * @project    : org.fugerit.java.doc.base
+	 * @creation   : 2022-03-07
+	 * @version    : 1.9.1 (2022-03-17)
+	 *
+	 * XSD for fugerit doc configuration
+	 */
+
+	WARNING!!! - DTD remains just for compatibility, but will not be mantained, use XSD       
+	
+	Sample doc : 	
+	
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-9.xsd" > 	
+</doc>	
+	
+	changelog 
+	1-9 - deep change to list handling
+	1-9-1 - added phrase list option to list item
+	
+-->
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='http://javacoredoc.fugerit.org'
+	xmlns:doc='http://javacoredoc.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name='doc'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:choice>
+					<xsd:element ref='doc:metadata' />
+					<xsd:element ref='doc:meta' />
+				</xsd:choice>
+				<xsd:element ref='doc:body' />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='metadata' type="doc:metaType">
+
+	</xsd:element>
+
+	<xsd:element name='meta' type="doc:metaType">
+
+	</xsd:element>
+
+	<xsd:element name='bookmark-tree' type="doc:bookmarkTreeType">
+
+	</xsd:element>
+	
+	<xsd:element name='bookmark' type="doc:bookmarkType">
+
+	</xsd:element>
+
+	<xsd:element name='info'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='name' type='xsd:string' use='required' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='header'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:h' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='expected-size' type="xsd:int" use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='footer'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:h' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='expected-size' type="xsd:int" use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='header-ext'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:barcode' />
+					<xsd:element ref='doc:h' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />			
+			<xsd:attribute name='border-width' type='xsd:int' use='optional' />
+			<xsd:attribute name='expected-size' type="xsd:int" use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='footer-ext'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:barcode' />
+					<xsd:element ref='doc:h' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='numbered' type='xsd:boolean' use='optional' />					
+			<xsd:attribute name='border-width' type='xsd:string' use='optional' />
+			<xsd:attribute name='expected-size' type="xsd:int" use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='background'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='1' maxOccurs='1'>
+				<xsd:choice>
+					<xsd:element ref='doc:image' />
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='body'>
+		<xsd:complexType>
+			<xsd:choice minOccurs='0' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:list' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:nbsp' />
+					<xsd:element ref='doc:br' />
+					<xsd:element ref='doc:barcode' />
+					<xsd:element ref='doc:h' />
+				</xsd:choice>
+				<xsd:element ref='doc:page-break' />
+			</xsd:choice>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='nbsp'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='length' type='xsd:int' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='br'>
+		<xsd:complexType mixed='true'>
+		</xsd:complexType>
+	</xsd:element>	
+
+	<xsd:element name='image'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='url' type='xsd:string' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>
+						Valid values are :
+						cl://pathinjar (Path inside the class loader, safest way to load the image)
+						http://imageurl (but generating machine should be able to access the url)
+						file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)
+						In case of base64 just provide the tyoe (png,jpg etc.)
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name='type' type='doc:imageType' use='optional' />
+			<xsd:attribute name='scaling' type='xsd:int' use='optional' />
+			<xsd:attribute name='base64' type="xsd:string" use='optional' />
+			<xsd:attribute name='alt' type="xsd:string" use='optional' />
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='barcode'>
+		<xsd:complexType mixed='true'>
+			<xsd:attribute name='size' type='xsd:int' use='optional' />
+			<xsd:attribute name='type' type='xsd:string' use='optional' />
+			<xsd:attribute name='text' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='para' type="doc:paraType"/>
+	
+	<xsd:element name='h' type="doc:hType"/>
+
+	<xsd:element name='phrase' type="doc:phraseType"/>
+
+	<xsd:element name='table'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='doc:row' minOccurs='0' maxOccurs='unbounded' />
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='columns' type='xsd:string' use='optional' />
+			<xsd:attribute name='width' type='xsd:int' use='optional' />
+			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='spacing' type='xsd:int' use='optional' />
+			<xsd:attribute name='padding' type='xsd:int' use='optional' />
+			<xsd:attribute name='colwidths' type='xsd:string' use='optional' />
+			<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
+			<xsd:attribute name='space-after' type='xsd:decimal' use='optional' />
+			<xsd:attribute name='render-mode' type='doc:tableRenderModeType' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='row'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='doc:cell' minOccurs='0' maxOccurs='unbounded' />
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='header' type="xsd:boolean" use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='cell'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='1' maxOccurs='unbounded'>
+				<xsd:choice>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:table' />
+					<xsd:element ref='doc:image' />
+					<xsd:element ref='doc:phrase' />
+					<xsd:element ref='doc:nbsp' />
+					<xsd:element ref='doc:br' />
+					<xsd:element ref='doc:barcode' />
+					<xsd:element ref='doc:h' />
+				</xsd:choice>
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='colspan' type='xsd:string' use='optional' />
+			<xsd:attribute name='rowspan' type='xsd:string' use='optional' />
+			<xsd:attribute name='align' type='doc:alignType' use='optional' />
+			<xsd:attribute name='valign' type='doc:valignType' use='optional' />
+			<xsd:attribute name='header' type="xsd:boolean" use='optional' />
+			<xsd:attribute name='border-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-top' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-bottom' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-left' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-color-right' type='doc:colorType' use='optional' />
+			<xsd:attribute name='border-width' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-top' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-bottom' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-left' type='xsd:int' use='optional' />
+			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />	
+			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+			<xsd:attribute name='type' type='doc:dataType' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='list'>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='doc:li' minOccurs='0' maxOccurs='unbounded' />
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='list-type' type='doc:listType' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='li'>
+		<xsd:complexType>
+			<xsd:sequence minOccurs='1' maxOccurs='2'>
+				<xsd:choice minOccurs='1' maxOccurs='1'>
+					<xsd:element ref='doc:para' />
+					<xsd:element ref='doc:h' />
+					<xsd:element ref='doc:pl' />
+				</xsd:choice>
+				<xsd:element ref='doc:list' minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+			<xsd:attribute name='id' type='xsd:string' use='optional' />
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='pl' type="doc:plType"/>
+
+	<xsd:complexType name="plType">
+		<xsd:sequence minOccurs='1' maxOccurs="unbounded">
+			<xsd:element ref="doc:phrase" />
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:simpleType name="listType">
+		<xsd:restriction base="xsd:string">
+			<!-- default unordered list, same asd 'uld' -->
+			<xsd:enumeration value="ul"></xsd:enumeration>
+			<!-- unordered list, using dot -->
+			<xsd:enumeration value="uld"></xsd:enumeration>
+			<!-- unordered list, using minus -->
+			<xsd:enumeration value="ulm"></xsd:enumeration>
+			<!-- default ordered list, same asd 'oln' -->
+			<xsd:enumeration value="ol"></xsd:enumeration>
+			<!-- ordered list, using numbers -->
+			<xsd:enumeration value="oln"></xsd:enumeration>
+			<!-- ordered list, using letters -->
+			<xsd:enumeration value="oll"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="paraType" mixed='true'>
+		<xsd:attribute name='id' type='xsd:string' use='optional' />
+		<xsd:attribute name='style' type='doc:styleType' use='optional' />
+		<xsd:attribute name='align' type='doc:alignType' use='optional' />
+		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
+		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+		<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+		<xsd:attribute name='type' type='doc:dataType' use='optional' />
+		<xsd:attribute name='format' type='xsd:string' use='optional' />
+		<xsd:attribute name='size' type="xsd:int" use='optional' />
+		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
+		<xsd:attribute name='space-left' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-right' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
+	</xsd:complexType>
+	
+	<xsd:complexType name="hType" mixed='true'>
+		<xsd:attribute name='id' type='xsd:string' use='optional' />
+		<xsd:attribute name='style' type='doc:styleType' use='optional' />
+		<xsd:attribute name='align' type='doc:alignType' use='optional' />
+		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
+		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
+		<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
+		<xsd:attribute name='type' type='doc:dataType' use='optional' />
+		<xsd:attribute name='format' type='xsd:string' use='optional' />
+		<xsd:attribute name='size' type="xsd:int" use='optional' />
+		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
+		<xsd:attribute name='space-left' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-right' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
+		<xsd:attribute name='head-level' type="doc:headLevelType" use='optional' />
+	</xsd:complexType>
+
+	<xsd:complexType name="phraseType" mixed='true'>
+		<xsd:attribute name='id' type='xsd:string' use='optional' />
+		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
+		<xsd:attribute name='style' type='doc:styleType' use='optional' />
+		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='size' type="xsd:int" use='optional' />
+		<xsd:attribute name='link' type="xsd:string" use='optional' />
+		<xsd:attribute name='white-space-collapse' type="xsd:decimal" use='optional' />
+		<xsd:attribute name='anchor' type="xsd:string" use='optional' />				
+	</xsd:complexType>
+
+	<xsd:element name='page-break'>
+		<xsd:complexType />
+	</xsd:element>
+
+	<xsd:simpleType name="imageType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="png"></xsd:enumeration>
+			<xsd:enumeration value="jpg"></xsd:enumeration>
+			<xsd:enumeration value="gif"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="tableRenderModeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="normal"></xsd:enumeration>
+			<xsd:enumeration value="inline"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="styleType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="bold"></xsd:enumeration>
+			<xsd:enumeration value="underline"></xsd:enumeration>
+			<xsd:enumeration value="italic"></xsd:enumeration>
+			<xsd:enumeration value="bolditalic"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="alignType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="center"></xsd:enumeration>
+			<xsd:enumeration value="right"></xsd:enumeration>
+			<xsd:enumeration value="left"></xsd:enumeration>
+			<xsd:enumeration value="justify"></xsd:enumeration>
+			<xsd:enumeration value="justifyall"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	
+	<xsd:simpleType name="valignType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="middle"></xsd:enumeration>
+			<xsd:enumeration value="top"></xsd:enumeration>
+			<xsd:enumeration value="bottom"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>		
+	
+	<xsd:simpleType name="colorType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="#([A-Fa-f0-9]{6})"></xsd:pattern>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="dataType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="string"></xsd:enumeration>
+			<xsd:enumeration value="number"></xsd:enumeration>
+			<xsd:enumeration value="date"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="formatType">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="yyyy-MM-dd"></xsd:enumeration>
+			<xsd:enumeration value="yyyy-MM-dd hh:mm:ss"></xsd:enumeration>
+			<xsd:enumeration value="yyyy-MM-dd'T'HH:mm:ss.SSSZ"></xsd:enumeration>
+			<xsd:enumeration value="iso"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>	
+
+	<xsd:complexType name="metaType">
+		<xsd:sequence>
+			<xsd:element ref='doc:info' minOccurs='0' maxOccurs='unbounded' />
+			<xsd:element ref='doc:header' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:footer' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:header-ext' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:footer-ext' minOccurs='0' maxOccurs='1' />
+			<xsd:element ref='doc:background' minOccurs='0' maxOccurs='1' />	
+			<xsd:element ref='doc:bookmark-tree' minOccurs='0' maxOccurs='1' />
+		</xsd:sequence>
+	</xsd:complexType>	
+		
+	<xsd:simpleType name="headLevelType">
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"></xsd:minInclusive>
+			<xsd:maxInclusive value="7"></xsd:maxInclusive>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:complexType name="bookmarkTreeType">
+		<xsd:sequence>
+			<xsd:element ref='doc:bookmark' minOccurs='0' maxOccurs='unbounded' />
+		</xsd:sequence>
+	</xsd:complexType>	
+
+	<xsd:complexType name="bookmarkType" mixed='true'>
+		<xsd:attribute name='ref' type='xsd:string' use="required" />
+	</xsd:complexType>	
+
+</xsd:schema>

@@ -20,4 +20,6 @@ public class DocConfig {
 	
 	public static final String TYPE_FO = "fo";
 	
+	public static final String TYPE_MD = "md";
+	
 }

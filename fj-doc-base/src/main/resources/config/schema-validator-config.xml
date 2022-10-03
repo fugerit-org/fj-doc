@@ -21,8 +21,28 @@
 	<schema-list id="version-1-4">
 		<schema id="doc-1-4.xsd"/>
 	</schema-list>
+	
+	<schema-list id="version-1-5">
+		<schema id="doc-1-5.xsd"/>
+	</schema-list>	
+	
+	<schema-list id="version-1-7">
+		<schema id="doc-1-7.xsd"/>
+	</schema-list>	
 
-	<schema-list id="current" extends="version-1-4">
+	<schema-list id="version-1-8">
+		<schema id="doc-1-8.xsd"/>
+	</schema-list>	
+
+	<schema-list id="version-1-9">
+		<schema id="doc-1-9.xsd"/>
+	</schema-list>	
+
+	<schema-list id="version-1-10">
+		<schema id="doc-1-10.xsd"/>
+	</schema-list>	
+
+	<schema-list id="current" extends="version-1-10">
 	</schema-list>
 
 </schema-catalog>

@@ -8,4 +8,9 @@ public class GenericConsts {
 	public static final int POSITION_MARGIN_TOP = 2;
 	public static final int POSITION_MARGIN_BOTTOM = 3;
 	
+	public static final String INFO_DEFAULT_TABLE_PADDING = "default-table-padding";
+	public static final String INFO_DEFAULT_TABLE_PADDING_DEF = "0";
+	public static final String INFO_DEFAULT_TABLE_SPACING = "default-table-spacing";
+	public static final String INFO_DEFAULT_TABLE_SPACING_DEF = "0";
+	
 }

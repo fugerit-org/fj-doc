@@ -88,6 +88,10 @@ public class DocBase extends DocElement {
 
 	private DocContainer docMeta;
 	
+	private DocBackground docBackground;
+	
+	private DocBookmarkTree docBookmarkTree;
+	
 	private HashMap<String, DocElement> idMap;
 	
 	private String xsdVersion;
@@ -177,6 +181,48 @@ public class DocBase extends DocElement {
 		return info;
 	}
 	
+	private Properties stableInfo;
+	
+	public Properties getStableInfo() {
+		return stableInfo;
+	}
+
+	public void setStableInfo(Properties stableInfo) {
+		this.stableInfo = stableInfo;
+	}
+	
+	public String getInfoPageWidth() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_NAME_PAGE_WIDTH );
+	}
+	
+	public String getInfoPageHeight() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_NAME_PAGE_HEIGHT );
+	}
+	
+	public String getInfoDocVersion() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_VERSION );
+	}
+	
+	public String getInfoDocTitle() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_TITLE );
+	}
+	
+	public String getInfoDocSubject() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_SUBJECT );
+	}
+	
+	public String getInfoDocAuthor() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_AUTHOR );
+	}
+	
+	public String getInfoDocCreator() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_CREATOR );
+	}
+
+	public String getInfoDocLanguage() {
+		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_LANGUAGE );
+	}
+	
 	private static int getMargin( Properties props, int position ) {
 		String margins = props.getProperty( GenericConsts.INFO_KEY_MARGINS, "10;10;10;10" );
 		return Integer.parseInt( margins.split( ";")[position] );
@@ -206,4 +252,20 @@ public class DocBase extends DocElement {
 		return this.getDocFooter() != null && this.getDocFooter().isUseFooter();
 	}
 
+	public DocBackground getDocBackground() {
+		return docBackground;
+	}
+
+	public void setDocBackground(DocBackground docBackground) {
+		this.docBackground = docBackground;
+	}
+
+	public DocBookmarkTree getDocBookmarkTree() {
+		return docBookmarkTree;
+	}
+
+	public void setDocBookmarkTree(DocBookmarkTree docBookmarkTree) {
+		this.docBookmarkTree = docBookmarkTree;
+	}
+	
 }

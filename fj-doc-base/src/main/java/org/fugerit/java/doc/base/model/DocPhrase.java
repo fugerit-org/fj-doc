@@ -146,4 +146,12 @@ public class DocPhrase extends DocElement implements DocStyle {
 		this.originalStyle = originalStyle;
 	}
 	
+	public String getInternalLink() {
+		return this.getLink().substring( 1 );
+	}
+	
+	public boolean isInternal() {
+		return this.getLink() != null && this.getLink().startsWith( "#" );
+	}
+	
 }
