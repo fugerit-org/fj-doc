@@ -1,4 +1,9 @@
-﻿0.3.9.4 (2022-04-06)
+﻿0.4.0 (2022-11-07)
+--------------------
++ Changed version format to MAJOR.MINOR.PATH
++ Changed fj-core version to 0.7.8
+
+0.3.9.4 (2022-04-06)
 --------------------
 + para can now contains para and phrases (fop and freemarker mod)
 + Changed fj-core version to 0.7.6.8
