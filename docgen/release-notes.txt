@@ -1,4 +1,4 @@
-﻿0.5-RC2 (2022-11-17)
+﻿0.5.0 (2022-11-17) [0.5-RC2]
 ------------------
 + Changed fj-core version to 0.8.0
 + Added parent (fj-bom 0.2.2)
