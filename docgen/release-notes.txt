@@ -1,4 +1,27 @@
-﻿0.3.9.4 (2022-04-06)
+﻿0.5.0 (2022-11-17) [0.5-RC2]
+------------------
++ Changed fj-core version to 0.8.0
++ Added parent (fj-bom 0.2.2)
++ Put in incubator and moved module [fj-doc-mod-pdfbox](https://github.com/fugerit-org/fj-doc-mod-pdfbox.git)
++ Deprecated and moved module [fj-doc-ent](https://github.com/fugerit-org/fj-doc-ent.git)
++ Deprecated and moved module [fj-doc-mod-itext](https://github.com/fugerit-org/fj-doc-mod-itext.git)
++ Deprecated and moved module [fj-doc-mod-jxl](https://github.com/fugerit-org/fj-doc-mod-jxl.git)
++ Updated README.md
+
+0.4.2 (2022-11-07)
+------------------
++ Changed fj-core version to 0.7.9
+
+0.4.1 (2022-11-07)
+------------------
++ Bump hsqldb from 2.5.0 to 2.7.1
+
+0.4.0 (2022-11-07)
+------------------
++ Changed version format to MAJOR.MINOR.PATH
++ Changed fj-core version to 0.7.8
+
+0.3.9.4 (2022-04-06)
 --------------------
 + para can now contains para and phrases (fop and freemarker mod)
 + Changed fj-core version to 0.7.6.8

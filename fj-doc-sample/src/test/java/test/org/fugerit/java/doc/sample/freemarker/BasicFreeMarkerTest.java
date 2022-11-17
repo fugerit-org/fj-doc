@@ -16,7 +16,7 @@ import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 public class BasicFreeMarkerTest extends BasicFacadeTest {
 
 	public BasicFreeMarkerTest() {
-		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_RTF, DocConfig.TYPE_HTML );
+		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML );
 	}
 
 	protected BasicFreeMarkerTest(String nameBase, String... typeList) {

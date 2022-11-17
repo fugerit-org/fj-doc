@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.3.9.4</version>
+		<version>0.5.0</version>
 	</parent>
 
 	<name>fj-doc-sample</name>
@@ -49,36 +49,9 @@
 
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-itext</artifactId>
-		</dependency>	
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-mod-poi</artifactId>
 		</dependency>	
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-jxl</artifactId>
-		</dependency>	
 		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-pdfbox</artifactId>
-		</dependency>			
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-ent</artifactId>
-		</dependency>			
-	
-		<!-- java core dependancies -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
 	</dependencies>
 
 	<organization>

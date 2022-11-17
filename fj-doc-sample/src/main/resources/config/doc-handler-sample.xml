@@ -2,52 +2,30 @@
 
 	<factory id="common">
 		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXML" />
-		<data id="rtf-itext" info="rtf" type="org.fugerit.java.doc.mod.itext.RtfTypeHandler" />
-		<data id="html-itext" info="html" type="org.fugerit.java.doc.mod.itext.HtmlTypeHandler" />
-		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />	
-		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler" />		
-	</factory>
-
-	<factory id="default-complete" extends="common">
-		<data id="pdf-itext" info="pdf" type="org.fugerit.java.doc.mod.itext.PdfTypeHandler" />
 		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
-	</factory>
-
-	<factory id="alternate-complete" extends="common">
-		<data id="pdf-box" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler" />
-		<data id="xls-jxl" info="xls" type="org.fugerit.java.doc.mod.jxl.XlsTypeHandler" />
-	</factory>
-	
-	<factory id="alternate-fop">
+		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
 		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler" />
 		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
-		</data>	
-		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />
+		</data>
+		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
+		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />				
+	</factory>
+
+	<factory id="default-complete" extends="common">
+	</factory>
+
+	<factory id="alternate-complete" extends="common">
+	</factory>
+	
+	<factory id="alternate-fop" extends="common">
 	</factory>	
 	
-	<factory id="alternate-html-fm">
-		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
-		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />	
+	<factory id="alternate-html-fm" extends="common">
 	</factory>		
 	
 	<!-- by default last handler registered for a type will be used by default -->
-	<factory id="full-facade">
-		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXML" />
-		<!-- jxl handlers -->
-		<data id="xls-jxl" info="xls" type="org.fugerit.java.doc.mod.jxl.XlsTypeHandler" />
-		<!-- itext handlers -->
-		<data id="rtf-itext" info="rtf" type="org.fugerit.java.doc.mod.itext.RtfTypeHandler" />
-		<data id="html-itext" info="html" type="org.fugerit.java.doc.mod.itext.HtmlTypeHandler" />
-		<data id="pdf-itext" info="pdf" type="org.fugerit.java.doc.mod.itext.PdfTypeHandler" />
-		<!-- free marker handlers -->
-		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
-		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />		
-		<!-- poi handlers -->
-		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
-		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
-		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler" />	
-		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" />						
+	<factory id="full-facade" extends="common"> 
 	</factory>
 
 </doc-handler-config>
