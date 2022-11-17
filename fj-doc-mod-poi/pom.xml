@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.4.2</version>
+		<version>0.5-RC2</version>
 	</parent>
 
 	<name>fj-doc-mod-poi</name>
@@ -22,7 +22,6 @@
 	</licenses>
 	
 	<properties>
-		<jxl-version>2.6.12</jxl-version>
 	</properties>
 	
 	<build>
@@ -46,13 +45,6 @@
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
 	
-		<!-- java core dependancies -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>				
-
 	</dependencies>
 
 	<organization>

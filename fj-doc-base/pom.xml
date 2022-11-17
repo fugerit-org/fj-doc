@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.4.2</version>
+		<version>0.5-RC2</version>
 	</parent>
 
 	<name>fj-doc-base</name>
@@ -31,13 +31,6 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
 		</dependency>	
-	
-		<!-- java core dependancies -->
-		<dependency>
-			<groupId>javax</groupId>
-			<artifactId>javaee-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
 	</dependencies>
 

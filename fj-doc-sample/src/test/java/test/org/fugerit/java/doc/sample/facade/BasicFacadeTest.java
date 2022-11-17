@@ -37,7 +37,7 @@ public class BasicFacadeTest {
 	protected Checkpoints checkpoints;
 	
 	public BasicFacadeTest() {
-		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_RTF, DocConfig.TYPE_HTML );
+		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML );
 	}
 	
 	protected BasicFacadeTest( String nameBase, String ...typeList ) {

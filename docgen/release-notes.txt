@@ -1,4 +1,14 @@
-﻿0.4.2 (2022-11-07)
+﻿0.5-RC2 (2022-11-17)
+------------------
++ Changed fj-core version to 0.8.0
++ Added parent (fj-bom 0.2.2)
++ Put in incubator and moved module [fj-doc-mod-pdfbox](https://github.com/fugerit-org/fj-doc-mod-pdfbox.git)
++ Deprecated and moved module [fj-doc-ent](https://github.com/fugerit-org/fj-doc-ent.git)
++ Deprecated and moved module [fj-doc-mod-itext](https://github.com/fugerit-org/fj-doc-mod-itext.git)
++ Deprecated and moved module [fj-doc-mod-jxl](https://github.com/fugerit-org/fj-doc-mod-jxl.git)
++ Updated README.md
+
+0.4.2 (2022-11-07)
 ------------------
 + Changed fj-core version to 0.7.9
 
