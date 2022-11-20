@@ -1,4 +1,9 @@
-﻿0.5.0 (2022-11-17) [0.5-RC2]
+﻿0.5.1 (2022-11-20)
+------------------
++ Changed Apahe FOP version from 2.6 to 2.8
++ Fix for bug [FOP-3109](https://github.com/fugerit-org/fj-doc/issues/6)
+
+0.5.0 (2022-11-17) [0.5-RC2]
 ------------------
 + Changed fj-core version to 0.8.0
 + Added parent (fj-bom 0.2.2)
