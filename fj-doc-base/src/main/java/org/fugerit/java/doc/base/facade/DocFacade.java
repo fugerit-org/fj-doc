@@ -43,6 +43,7 @@ import org.fugerit.java.core.xml.sax.XMLFactorySAX;
 import org.fugerit.java.core.xml.sax.XMLValidatorSAX;
 import org.fugerit.java.core.xml.sax.dh.DefaultHandlerComp;
 import org.fugerit.java.core.xml.sax.er.ByteArrayEntityResolver;
+import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocContainer;
 import org.fugerit.java.doc.base.model.DocElement;
@@ -60,7 +61,7 @@ import org.xml.sax.InputSource;
  */
 public class DocFacade {
 
-	public static final String CURRENT_VERSION = "1-10";
+	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION.stringVersion();
 	
 	private static Logger logger = LoggerFactory.getLogger( DocFacade.class );
 	
@@ -146,8 +147,12 @@ public class DocFacade {
 		DocBase docBase = dch.getDocBase();
 		is.close();
 		String xsdVersion = docBase.getXsdVersion();
-		if ( StringUtils.isNotEmpty( xsdVersion ) && xsdVersion.compareTo( CURRENT_VERSION ) > 0 ) {
-			logger.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, CURRENT_VERSION  );
+		try {
+			if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, CURRENT_VERSION ) > 0 ) {
+				logger.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, CURRENT_VERSION  );
+			}	
+		} catch (Exception e) {
+			logger.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, CURRENT_VERSION );
 		}
 		return docBase;
 	}	
