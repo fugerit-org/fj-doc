@@ -1,6 +1,6 @@
 <doc-handler-config user-catalog="default-complete">
 
-	<factory id="common">
+	<factory id="default-complete">
 		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXML" />
 		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
 		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
@@ -9,23 +9,7 @@
 			<config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 		</data>
 		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
-		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />				
-	</factory>
-
-	<factory id="default-complete" extends="common">
-	</factory>
-
-	<factory id="alternate-complete" extends="common">
-	</factory>
-	
-	<factory id="alternate-fop" extends="common">
-	</factory>	
-	
-	<factory id="alternate-html-fm" extends="common">
-	</factory>		
-	
-	<!-- by default last handler registered for a type will be used by default -->
-	<factory id="full-facade" extends="common"> 
+		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />		
 	</factory>
 
 </doc-handler-config>

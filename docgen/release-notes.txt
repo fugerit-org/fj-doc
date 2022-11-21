@@ -1,4 +1,8 @@
-﻿0.5.1 (2022-11-20)
+﻿0.5.2 (2022-11-??)
+------------------
++ fj-doc-sample semplified. (Reduced to only one test facade.)
+
+0.5.1 (2022-11-20)
 ------------------
 + Changed Apahe FOP version from 2.6 to 2.8
 + Fix for bug [FOP-3109](https://github.com/fugerit-org/fj-doc/issues/6)
