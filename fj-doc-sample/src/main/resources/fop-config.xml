@@ -10,21 +10,21 @@
   <base>.</base>
 
   <!-- Font Base URL for resolving relative font URLs -->
-  <font-base>font/</font-base>
+  <font-base>.</font-base>
 
 	<renderers>
 	   <renderer mime="application/pdf">
 		  <fonts>
-			<font embed-url="font/TitilliumWeb-Regular.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf">
 	          <font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
 	        </font>
-			<font embed-url="font/TitilliumWeb-Bold.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-Bold.ttf">
 	          <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
 	        </font>	        
-			<font embed-url="font/TitilliumWeb-Italic.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-Italic.ttf">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
 	        </font>	        
-			<font embed-url="font/TitilliumWeb-BoldItalic.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
 	        </font>	     
 	        <!--   

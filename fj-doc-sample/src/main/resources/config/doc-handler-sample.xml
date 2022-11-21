@@ -6,6 +6,24 @@
 		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
 		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler" />
 		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<!--
+			Starting with fj-doc-mod-fop version 0.5.2 there is a new attribute : 
+			'fop-config-mode'
+			Accepting three possible values :
+			
+			1) fop-config-mode='default' (is optional, if nothing is specified it is the default)
+			
+			2) fop-config-mode='classloader'
+			Example : <config fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml"/>
+			With an optinal attribute : 
+			'fop-config-resover-type' (which default to 'org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper')
+			
+			3) fop-config-mode='classloader-legacy' [deprecated, equal to the previous method of classloading, see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
+			Example 1: <config fop-config-mode='classloader-legacy' fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/> 
+			Note for compatibilty reason, if attributes 'fop-config-classloader-path' and 'font-base-classloader-path' are both set, the mode switch to fop-config-mode='classloader-legacy'
+			Example 2 : <config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
+
+			-->
 			<config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 		</data>
 		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	

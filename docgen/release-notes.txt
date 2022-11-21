@@ -1,6 +1,7 @@
-﻿0.5.2 (2022-11-??)
+﻿0.5.2 (2022-11-21)
 ------------------
 + fj-doc-sample semplified. (Reduced to only one test facade.)
++ Introduce new FopPrtTypeHandler config attribute 'fop-config-mode' (previous mode is deprecated) see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
 
 0.5.1 (2022-11-20)
 ------------------

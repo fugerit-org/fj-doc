@@ -12,7 +12,7 @@ import org.apache.xmlgraphics.io.ResourceResolver;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.mod.fop.FopConfig;
 
-public class FopConfigClassLoader implements FopConfig, Serializable {
+public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class FopConfigClassLoader implements FopConfig, Serializable {
 		return customResourceResolver;
 	}
 
-	public FopConfigClassLoader(String fopConfigPath, ResourceResolver customResourceResolver) {
+	public FopConfigClassLoaderWrapper(String fopConfigPath, ResourceResolver customResourceResolver) {
 		super();
 		this.fopConfigPath = fopConfigPath;
 		this.customResourceResolver = customResourceResolver;

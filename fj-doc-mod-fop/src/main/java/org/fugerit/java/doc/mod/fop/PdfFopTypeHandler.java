@@ -15,14 +15,19 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.MimeConstants;
+import org.apache.xmlgraphics.io.ResourceResolver;
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolver;
+import org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoader;
+import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -30,7 +35,18 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	public static final DocTypeHandler HANDLER = new PdfFopTypeHandler();
 	
+	public static final String ATT_FOP_CONFIG_MODE = "fop-config-mode";
+	public static final String ATT_FOP_CONFIG_MODE_DEFAULT = "default";
+	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER = "classloader";
+	@Deprecated
+	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY = "classloader-legacy";
+	
 	public static final String ATT_FOP_CONFIG_CLASSLOADER_PATH = "fop-config-classloader-path";
+	
+	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resover-type";
+	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = ClassLoaderResourceResolverWrapper.class.getName();
+	
+	@Deprecated
 	public static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";
 	
 	public static final boolean DEFAULT_ACCESSIBILITY = true;
@@ -104,10 +120,26 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		if ( nl.getLength() > 0 ) {
 			Element config = (Element)nl.item( 0 );
 			Properties props = DOMUtils.attributesToProperties( config );
+			String fopConfigMode = props.getProperty( ATT_FOP_CONFIG_MODE );
 			String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
+			String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
 			String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
-			if ( StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
-				FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, fontBaseClassloaderPath);
+			// legacy class loader mode
+			if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
+				fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
+				logger.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, ClassLoaderResourceResolver.MIN_VERSION_NEW_CLASSLOADER_MODE );
+			}
+			if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
+				try {
+					ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
+					FopConfigClassLoaderWrapper fopConfigClassLoaderWrapper = new FopConfigClassLoaderWrapper(fopConfigClassloaderPath, customResourceResolver);
+					this.fopConfig = fopConfigClassLoaderWrapper;	
+				} catch (Exception e) {
+					throw new ConfigException( PdfFopTypeHandler.class.getSimpleName()+" configuration error : "+e, e );
+				}
+			} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
+				ClassLoaderResourceResolver customResourceResolver = new ClassLoaderResourceResolver( fontBaseClassloaderPath );
+				FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, customResourceResolver);
 				this.fopConfig = fopConfigClassLoader;
 			}
 		}
