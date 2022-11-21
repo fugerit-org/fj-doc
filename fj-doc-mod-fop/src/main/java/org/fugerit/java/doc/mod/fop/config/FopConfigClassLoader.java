@@ -30,7 +30,24 @@ public class FopConfigClassLoader implements FopConfig, Serializable {
 	public ResourceResolver getCustomResourceResolver() {
 		return customResourceResolver;
 	}
-
+	
+	/**
+	 * Provided only for compatibility
+	 *
+	 * @param fopConfigPath
+	 * @param defaultFontPath
+	 * 
+	 * @deprecated use instaed the other constructors or the xml configuration, see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
+	 */
+	@Deprecated
+	public FopConfigClassLoader(String fopConfigPath, String defaultFontPath) {
+		this( fopConfigPath, new ClassLoaderResourceResolver( defaultFontPath ) );
+	}
+	
+	public FopConfigClassLoader(String fopConfigPath) {
+		this( fopConfigPath, new ClassLoaderResourceResolverWrapper() );
+	}
+	
 	public FopConfigClassLoader(String fopConfigPath, ResourceResolver customResourceResolver) {
 		super();
 		this.fopConfigPath = fopConfigPath;
