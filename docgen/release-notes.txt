@@ -1,4 +1,8 @@
-﻿0.5.4 (2022-11-24)
+﻿0.5.5 (2022-11-24)
+------------------
++  fj-doc-mod-fop Fixed legacy compatibility of FopConfigClassLoader see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
+
+0.5.4 (2022-11-24)
 ------------------
 + fj-doc-mod-opencsv, added module for handling CSV format [CSV format](https://github.com/fugerit-org/fj-doc/issues/8)
 
