@@ -25,8 +25,6 @@ import org.slf4j.LoggerFactory;
 @Deprecated
 public class ClassLoaderResourceResolver implements ResourceResolver, Serializable {
 
-	public static final String MIN_VERSION_NEW_CLASSLOADER_MODE = "[0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)";
-	
 	private static final Logger logger = LoggerFactory.getLogger( ClassLoaderResourceResolver.class );
 	
 	private String defaultFontPath;
@@ -51,14 +49,14 @@ public class ClassLoaderResourceResolver implements ResourceResolver, Serializab
 
 	@Override
 	public OutputStream getOutputStream(URI uri) throws IOException {
-		logger.warn( "{} is deprecated it is suggested to switch to fop-config-mode='classloader', see: {}", this.getClass().getName(), MIN_VERSION_NEW_CLASSLOADER_MODE );
+		logger.warn( "{} is deprecated it is suggested to switch to fop-config-mode='classloader', see: {}", this.getClass().getName(), FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
 		return Thread.currentThread().getContextClassLoader().getResource(uri.toString()).openConnection().getOutputStream();
 	}
 
 	@Override
 	public Resource getResource(URI uri) throws IOException {
 		try {
-			logger.warn( "{} is deprecated it is suggested to switch to fop-config-mode='classloader', see: {}", this.getClass().getName(), MIN_VERSION_NEW_CLASSLOADER_MODE );
+			logger.warn( "{} is deprecated it is suggested to switch to fop-config-mode='classloader', see: {}", this.getClass().getName(), FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
 			String path = this.defaultFontPath+uri.getPath().substring( uri.getPath().lastIndexOf( "/")+1 );
 			InputStream inputStream = ClassHelper.loadFromDefaultClassLoader( path );
 			return new Resource(inputStream);

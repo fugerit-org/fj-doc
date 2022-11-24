@@ -24,7 +24,6 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolver;
 import org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoader;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
@@ -127,7 +126,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			// legacy class loader mode
 			if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
 				fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
-				logger.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, ClassLoaderResourceResolver.MIN_VERSION_NEW_CLASSLOADER_MODE );
+				logger.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
 			}
 			if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
 				try {
@@ -138,8 +137,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 					throw new ConfigException( PdfFopTypeHandler.class.getSimpleName()+" configuration error : "+e, e );
 				}
 			} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
-				ClassLoaderResourceResolver customResourceResolver = new ClassLoaderResourceResolver( fontBaseClassloaderPath );
-				FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, customResourceResolver);
+				FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, fontBaseClassloaderPath);
 				this.fopConfig = fopConfigClassLoader;
 			}
 		}
