@@ -15,8 +15,11 @@
   	<!-- Margin for document : left;right;top;bottom -->
   	<info name="margins">10;10;10;30</info>  
   
+	<!-- id table to be used for xlsx output -->  
 	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info>
+	<!-- id table to be used for xsv output -->
+	<info name="csv-table-id">excel-table</info> 
 	
 	<!-- you need to escape free marker expression for currentPage --> 
 	<footer-ext numbered="true" align="right">

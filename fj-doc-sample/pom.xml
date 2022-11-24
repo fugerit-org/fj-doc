@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.5.3</version>
+		<version>0.5.4</version>
 	</parent>
 
 	<name>fj-doc-sample</name>
@@ -51,6 +51,11 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-mod-poi</artifactId>
 		</dependency>	
+		
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-opencsv</artifactId>
+		</dependency>			
 		
 	</dependencies>
 

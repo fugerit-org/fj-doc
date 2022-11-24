@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.5.3</version>
+	<version>0.5.4</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -69,6 +69,7 @@
 		<module>fj-doc-freemarker</module>
 		<module>fj-doc-mod-poi</module>
 		<module>fj-doc-mod-fop</module>
+		<module>fj-doc-mod-opencsv</module>
 		<module>fj-doc-sample</module>		
 	</modules>
 
@@ -105,6 +106,12 @@
 				<artifactId>fj-doc-mod-fop</artifactId>
 				<version>${project.version}</version>
 			</dependency>				
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-opencsv</artifactId>
+				<version>${project.version}</version>
+			</dependency>					
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>

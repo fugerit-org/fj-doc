@@ -11,8 +11,11 @@
    -->
 
   <meta>
+	<!-- id table to be used for xlsx output -->  
 	<info name="excel-table-id">excel-table=print</info>
-	<info name="excel-width-multiplier">450</info> 
+	<info name="excel-width-multiplier">450</info>
+	<!-- id table to be used for xsv output -->
+	<info name="csv-table-id">excel-table</info> 
   </meta>
  
   <body>
