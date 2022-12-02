@@ -1,4 +1,8 @@
-﻿0.5.5 (2022-11-24)
+﻿X.X.X (XXXX.XX.XX)
+------------------
++ Changed base path of freemarker config to avoid conflict
+
+0.5.5 (2022-11-24)
 ------------------
 +  fj-doc-mod-fop Fixed legacy compatibility of FopConfigClassLoader see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
 
