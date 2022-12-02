@@ -1,6 +1,7 @@
 ﻿X.X.X (XXXX.XX.XX)
 ------------------
 + Changed base path of freemarker config to avoid conflict
++ Changed base path of mod fop config to avoid conflict
 
 0.5.5 (2022-11-24)
 ------------------
