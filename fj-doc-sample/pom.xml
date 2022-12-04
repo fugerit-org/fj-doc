@@ -57,6 +57,11 @@
 			<artifactId>fj-doc-mod-opencsv</artifactId>
 		</dependency>			
 		
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-lib-simpletable</artifactId>
+		</dependency>		
+		
 	</dependencies>
 
 	<organization>
