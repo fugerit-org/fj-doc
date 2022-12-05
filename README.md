@@ -33,17 +33,20 @@ There are five kinds of components (each components README.md contains module st
 * [FO](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/FreeMarkerFopTypeHandler.java) - (fj-doc-mod-fop) - output as FO using Apache FOP
 * [CSV](fj-doc-mod-opencsv/src/main/java/org/fugerit/java/doc/mod/opencsv/OpenCSVTypeHandler.java) - (fj-doc-mod-opencsv) - output as CSV using OpenCSV
 
-### 4. Tutorial :
+### 4. Bundled libraries :
+* [Simple table (fj-doc-lib-singletable)](fj-doc-lib-simpletable/README.md) - offers a simple API for creating a document made of a table.
+
+### 5. Tutorial :
 * [Samples and Quickstart (fj-doc-sample)](fj-doc-sample/README.md)
 
-### 5. Extension Type Handlers (Extension renders) :
+### 6. Extension Type Handlers (Extension renders) :
 Basically the same as type handlers but based on libraries non available on Maven Repository Central (es. PDFLIB).  
 You can find in them in a dedicated repository [fj-doc-ext](https://gitlab.com/fugerit-org/fj-doc-ext)  
 
-### 5. Incubator Type Handlers (Are too far from being complete) :
+### 7. Incubator Type Handlers (Are too far from being complete) :
 * [Apache PdfBox Renderer (PDF)(fj-doc-mod-pdfbox)](https://github.com/fugerit-org/fj-doc-mod-pdfbox.git) (incubator since version 0.5.0)
 
-### 6. Deprecated Type Handlers (Will not be maintained) :
+### 8. Deprecated Type Handlers (Will not be maintained) :
 * [JXL Renderer (XLS)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-jxl.git) (deprecated as [jexcelapi](https://jexcelapi.sourceforge.net/) is no longer mantained, may be used 'AS IS') (deprecated since version 0.5.0)
 * [Itext 2.X Renderer (PDF/RTF/HTML)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-itext.git) (deprecated as [IText 2.1.X](https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7) is no longer mantained, may be used 'AS IS') (deprecated since version 0.5.0)
 * [Java EE extension (fj-doc-ent)](https://github.com/fugerit-org/fj-doc-ent.git)) (deprecated as not the module fj-mod-freemarker provided mostly the same features, but in a standalone mode) (deprecated since version 0.5.0)

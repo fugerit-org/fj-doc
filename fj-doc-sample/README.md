@@ -1,4 +1,4 @@
-# Fugerit Document Generation Framework (fj-doc)
+fj-doc-lib-singletable# Fugerit Document Generation Framework (fj-doc)
 
 ## Samples and Quickstart (fj-doc-sample)
 
