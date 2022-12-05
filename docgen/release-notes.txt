@@ -1,8 +1,8 @@
-﻿X.X.X (XXXX.XX.XX)
+﻿0.5.6 (2022-12-05)
 ------------------
 + Changed base path of freemarker config to avoid conflict
 + Changed base path of mod fop config to avoid conflict
-+ Added module fj-doc-lib-simpletable (with samples and junit)
++ Added module fj-doc-lib-simpletable (with samples, basic documentation and junit)
 
 0.5.5 (2022-11-24)
 ------------------
