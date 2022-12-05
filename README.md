@@ -7,6 +7,8 @@ The Core library (fj-doc-base) is all you need to start, even though typically y
 * fj-doc-freemarker
 * One or more type handlers modules
 
+Useful resources : [github pages documentation](https://venusdocs.fugerit.org/) | [project home page](https://www.fugerit.org/perm/venus) | docgen [home](https://www.fugerit.org/data/java/doc/venus/index.html) | [release notes](https://www.fugerit.org/data/java/doc/venus/release-notes.html)
+
 A quick start is available in module [fj-doc-sample](fj-doc-sample/README.md)  
 
 There are five kinds of components (each components README.md contains module status) : 
