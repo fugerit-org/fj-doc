@@ -4,7 +4,7 @@
 		<step id="step-01" defaultBehaviour="CONTINUE"
 			description="Apache FreeMarker Configuration" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep"
-			param01="DEFAULT_CONFIG">
+			param01="FJ_DOC_LIB_SIMPLETABLE">
 			<properties 
 				version="2.3.29"
 				path="/fj_doc_lib_simpletable/template/"
