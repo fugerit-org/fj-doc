@@ -20,7 +20,7 @@ This module is already configured, and can be called just creating the model of 
 		DocTypeHandler handler = ...
 
 		// the table model
-		SimpleTable simpleTableModel = new SimpleTable( "30;30;40" );
+		SimpleTable simpleTableModel = SimpleTableFacade.newTable( 30, 30, 40 );
 		SimpleRow headerRow = new SimpleRow( BooleanUtils.BOOLEAN_TRUE );
 		headerRow.addCell( "Name" );
 		headerRow.addCell( "Surname" );

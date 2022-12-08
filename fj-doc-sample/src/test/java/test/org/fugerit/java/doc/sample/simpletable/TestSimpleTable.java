@@ -9,6 +9,7 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
+import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
@@ -37,7 +38,7 @@ public class TestSimpleTable  {
 	
 	@Test
 	public void testSimpleTable01() {
-		SimpleTable simpleTableModel = new SimpleTable( "30;30;40" );
+		SimpleTable simpleTableModel = SimpleTableFacade.newTable( 30, 30, 40 );
 		SimpleRow headerRow = new SimpleRow( BooleanUtils.BOOLEAN_TRUE );
 		headerRow.addCell( "Name" );
 		headerRow.addCell( "Surname" );
