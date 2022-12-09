@@ -1,4 +1,10 @@
-﻿0.5.6 (2022-12-05)
+﻿0.5.7 (2022-12-09)
+------------------
++ Updated fj-core version to 0.8.4
++ Updated fj-bom version to 0.2.3
++ Added facade for creating new SimpleTable
+
+0.5.6 (2022-12-05)
 ------------------
 + Changed base path of freemarker config to avoid conflict
 + Changed base path of mod fop config to avoid conflict

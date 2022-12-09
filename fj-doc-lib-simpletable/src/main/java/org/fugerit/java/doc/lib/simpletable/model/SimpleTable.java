@@ -3,6 +3,8 @@ package org.fugerit.java.doc.lib.simpletable.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
+
 public class SimpleTable {
 
 	public static final String ATT_NAME = "simpleTableModel";
@@ -19,6 +21,13 @@ public class SimpleTable {
 		return rows;
 	}
 	
+	/**
+	 * Creates a new SimpleTable.
+	 * 
+	 * NOTE: betteer using the factory method in {@link SimpleTableFacade}
+	 * 
+	 * @param colwidths	the semicolons separeted columns widh in percentage
+	 */
 	public SimpleTable( String colwidths ) {
 		this.rows = new ArrayList<SimpleRow>();
 		this.columns = String.valueOf( colwidths.split( ";" ).length );
