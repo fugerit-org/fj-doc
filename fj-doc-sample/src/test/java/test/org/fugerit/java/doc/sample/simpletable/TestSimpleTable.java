@@ -39,6 +39,7 @@ public class TestSimpleTable  {
 	@Test
 	public void testSimpleTable01() {
 		SimpleTable simpleTableModel = SimpleTableFacade.newTable( 30, 30, 40 );
+		simpleTableModel.setDefaultBorderWidth( 1 );
 		SimpleRow headerRow = new SimpleRow( BooleanUtils.BOOLEAN_TRUE );
 		headerRow.addCell( "Name" );
 		headerRow.addCell( "Surname" );
