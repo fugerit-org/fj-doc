@@ -9,11 +9,17 @@ public class SimpleTable {
 
 	public static final String ATT_NAME = "simpleTableModel";
 	
+	public static final String DEFAULT_SHEET_NAME = "Table";
+	
+	public static final int DEFAULT_BORDER_WIDTH = 0;
+	
 	private String columns;
 	
 	private String sheetName;
 	
 	private String  colwidths;
+
+	private int defaultBorderWidth;
 	
 	private List<SimpleRow> rows;
 
@@ -32,11 +38,17 @@ public class SimpleTable {
 		this.rows = new ArrayList<SimpleRow>();
 		this.columns = String.valueOf( colwidths.split( ";" ).length );
 		this.colwidths = colwidths;
-		this.sheetName = "decodifica";
+		this.sheetName = DEFAULT_SHEET_NAME;
+		this.defaultBorderWidth = DEFAULT_BORDER_WIDTH;
 	}
 	
 	public void addRow( SimpleRow row ) {
 		this.getRows().add( row );
+		for ( SimpleCell cell : row.getCells() ) {
+			if ( cell.getBorderWidth() == SimpleCell.BORDER_WIDTH_UNSET ) {
+				cell.setBorderWidth( this.defaultBorderWidth );
+			}
+		}
 	}
 
 	public String getColumns() {
@@ -55,5 +67,12 @@ public class SimpleTable {
 		this.sheetName = sheetName;
 	}
 
-	
+	public int getDefaultBorderWidth() {
+		return defaultBorderWidth;
+	}
+
+	public void setDefaultBorderWidth(int defaultBorderWidth) {
+		this.defaultBorderWidth = defaultBorderWidth;
+	}
+
 }
