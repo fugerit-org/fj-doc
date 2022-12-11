@@ -194,37 +194,10 @@ public class DocContentHandler implements ContentHandler {
 		this.currentElement = null;
 	}
 	
-	private static int getAlign( String align ) {
-		int result = DocPara.ALIGN_UNSET;
-		if ( "center".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_CENTER;
-		} else if ( "right".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_RIGHT;
-		} else if ( "left".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_LEFT;
-		} else if ( "justify".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_JUSTIFY;
-		} else if ( "justifyall".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_JUSTIFY_ALL;
-		}
-		return result;
-	}	
-	
-	private static int getValign( String align ) {
-		int result = DocPara.ALIGN_UNSET;
-		if ( "middle".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_MIDDLE;
-		} else if ( "top".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_TOP;
-		} else if ( "bottom".equalsIgnoreCase( align ) ) {
-			result = DocPara.ALIGN_BOTTOM;
-		} 
-		return result;
-	}
-	
+
 	private static void handleHeaderFooter( DocHeaderFooter headerFooter, Properties atts ) {
 		String align = atts.getProperty( "align" );
-		headerFooter.setAlign( getAlign( align ) );
+		headerFooter.setAlign( DocStyleAlignHelper.getAlign( align ) );
 		String numbered = atts.getProperty( "numbered" );
 		headerFooter.setNumbered( Boolean.valueOf( numbered ).booleanValue() );
 		String borderWidth = atts.getProperty( "border-width", "0" );
@@ -293,7 +266,7 @@ public class DocContentHandler implements ContentHandler {
 		docPara.setId( id );
 		// setting paragraph align
 		String align = props.getProperty( "align" );
-		docPara.setAlign( getAlign( align ) );
+		docPara.setAlign( DocStyleAlignHelper.getAlign( align ) );
 		String fontName = props.getProperty(  "font-name" );
 		docPara.setFontName( fontName );
 		String leading = props.getProperty( "leading" );
@@ -429,7 +402,7 @@ public class DocContentHandler implements ContentHandler {
 				docImage.setAlt( alt );
 			}
 			String align = props.getProperty( "align" );
-			docImage.setAlign( getAlign( align ) );
+			docImage.setAlign( DocStyleAlignHelper.getAlign( align ) );
 			this.currentElement = docImage;		
 		} else if ( "pl".equalsIgnoreCase( qName ) ) {
 			DocContainer container = new DocContainer();
@@ -512,10 +485,10 @@ public class DocContentHandler implements ContentHandler {
 			docCell.setHeader( "true".equalsIgnoreCase( props.getProperty( "header" ) ) );
 			// h align
 			String align = props.getProperty( "align" );		
-			docCell.setAlign( getAlign( align ) );
+			docCell.setAlign( DocStyleAlignHelper.getAlign( align ) );
 			// v align
 			String valign = props.getProperty( "valign" );
-			docCell.setValign( getValign( valign ) );
+			docCell.setValign( DocStyleAlignHelper.getValign( valign ) );
 			docCell.setDocBorders( this.createBorders( props ) );
 			this.currentElement = docCell;
 		} else if ( "page-break".equalsIgnoreCase( qName ) ) {

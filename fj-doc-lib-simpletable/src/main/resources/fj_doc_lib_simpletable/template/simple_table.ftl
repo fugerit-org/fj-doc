@@ -20,7 +20,7 @@
 			<#list simpleTableModel.rows as simpleRow>
        		<row header="${simpleRow.head}">
        			<#list simpleRow.cells as simpleCell>
-    			<cell <#if (simpleRow.head == 'true') > align="center" </#if> border-width="${simpleCell.borderWidth}"><para <#if (simpleRow.head == 'true') > style="bold" </#if>  ><#if (simpleCell.content)??>${simpleCell.content}</#if></para></cell>
+    			<cell <#if (simpleCell.align)?? > align="${simpleCell.align}" </#if> border-width="${simpleCell.borderWidth}"><para <#if (simpleCell.style)?? > style="${simpleCell.style}" </#if>  ><#if (simpleCell.content)??>${simpleCell.content}</#if></para></cell>
     			</#list>  
     		</row>
 			</#list>   		
