@@ -1,4 +1,8 @@
-﻿0.5.8 (2022-12-10)
+﻿0.5.9 (2022-12-11)
+------------------
++ Added support for style and align in simpletable module
+
+0.5.8 (2022-12-10)
 ------------------
 + Added support for border width in simpletable module
 

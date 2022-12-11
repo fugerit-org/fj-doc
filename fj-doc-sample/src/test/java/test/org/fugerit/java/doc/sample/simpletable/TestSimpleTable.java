@@ -10,6 +10,7 @@ import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleCell;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
@@ -48,12 +49,12 @@ public class TestSimpleTable  {
 		SimpleRow luthienRow = new SimpleRow();
 		luthienRow.addCell( "Luthien" );
 		luthienRow.addCell( "Tinuviel" );
-		luthienRow.addCell( "Queen" );
+		luthienRow.addCell( SimpleCell.newCell( "Queen" ).bold().center() );
 		simpleTableModel.addRow( luthienRow );
 		SimpleRow thorinRow = new SimpleRow();
 		thorinRow.addCell( "Thorin" );
 		thorinRow.addCell( "Oakshield" );
-		thorinRow.addCell( "King" );
+		thorinRow.addCell( SimpleCell.newCell( "King" ).bold().center() );
 		simpleTableModel.addRow( thorinRow );
 		for ( int k=0; k<HANDLERS.length; k++ ) {
 			DocTypeHandler handler = HANDLERS[k];

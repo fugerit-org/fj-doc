@@ -25,6 +25,8 @@
  */
 package org.fugerit.java.doc.base.model;
 
+import org.fugerit.java.doc.base.xml.DocStyleAlignHelper;
+
 /**
  * 
  *
@@ -216,19 +218,7 @@ public class DocPara extends DocContainer implements DocStyle {
 	}
 	
 	public static int parseStyle( String style, int defaultStype ) {
-		int result = defaultStype;
-		if ( "bold".equalsIgnoreCase( style ) ) {
-			result = STYLE_BOLD;
-		} else if ( "underline".equalsIgnoreCase( style ) ) {
-			result = STYLE_UNDERLINE;
-		} else if ( "italic".equalsIgnoreCase( style ) ) {
-			result = STYLE_ITALIC;
-		} else if ( "bolditalic".equalsIgnoreCase( style ) ) {
-			result = STYLE_BOLDITALIC;
-		} else if ( "normal".equalsIgnoreCase( style ) ) {
-			result = STYLE_NORMAL;
-		}
-		return result;
+		return DocStyleAlignHelper.parseStyle(style, defaultStype);
 	}
 	
 	private int align;

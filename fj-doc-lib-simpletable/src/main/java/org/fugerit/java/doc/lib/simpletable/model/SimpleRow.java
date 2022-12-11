@@ -16,8 +16,12 @@ public class SimpleRow {
 		return cells;
 	}
 	
+	public void addCell( SimpleCell cell ) {
+		this.getCells().add( cell );
+	}
+	
 	public void addCell( String content ) {
-		this.getCells().add( new SimpleCell(content) );
+		this.addCell( new SimpleCell(content) );
 	}
 	
 	public SimpleRow() {

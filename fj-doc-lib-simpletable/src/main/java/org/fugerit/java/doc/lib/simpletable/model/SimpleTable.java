@@ -3,6 +3,7 @@ package org.fugerit.java.doc.lib.simpletable.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 
 public class SimpleTable {
@@ -47,6 +48,9 @@ public class SimpleTable {
 		for ( SimpleCell cell : row.getCells() ) {
 			if ( cell.getBorderWidth() == SimpleCell.BORDER_WIDTH_UNSET ) {
 				cell.setBorderWidth( this.defaultBorderWidth );
+			}
+			if ( BooleanUtils.isTrue( row.getHead() ) ) {
+				cell.bold().center();
 			}
 		}
 	}
