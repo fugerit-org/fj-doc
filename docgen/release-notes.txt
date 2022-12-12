@@ -1,4 +1,8 @@
-﻿0.5.9 (2022-12-11)
+﻿0.5.9 (2022-12-12)
+------------------
++ Added support for maximum table width in simpletable module
+
+0.5.9 (2022-12-11)
 ------------------
 + Added support for style and align in simpletable module
 

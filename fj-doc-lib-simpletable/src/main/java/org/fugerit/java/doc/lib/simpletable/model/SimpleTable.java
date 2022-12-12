@@ -12,7 +12,11 @@ public class SimpleTable {
 	
 	public static final String DEFAULT_SHEET_NAME = "Table";
 	
+	public static final String DEFAULT_TABLE_WIDTH = "100";
+	
 	public static final int DEFAULT_BORDER_WIDTH = 0;
+	
+	private String tableWidth;
 	
 	private String columns;
 	
@@ -41,6 +45,7 @@ public class SimpleTable {
 		this.colwidths = colwidths;
 		this.sheetName = DEFAULT_SHEET_NAME;
 		this.defaultBorderWidth = DEFAULT_BORDER_WIDTH;
+		this.tableWidth = DEFAULT_TABLE_WIDTH;
 	}
 	
 	public void addRow( SimpleRow row ) {
@@ -77,6 +82,20 @@ public class SimpleTable {
 
 	public void setDefaultBorderWidth(int defaultBorderWidth) {
 		this.defaultBorderWidth = defaultBorderWidth;
+	}
+
+	public String getTableWidth() {
+		return tableWidth;
+	}
+	
+	public SimpleTable withTableWidth( String tableWidth ) {
+		this.tableWidth = tableWidth;
+		return this;
+	}
+	
+	public SimpleTable withSheetName( String tableWidth ) {
+		this.tableWidth = tableWidth;
+		return this;
 	}
 
 }
