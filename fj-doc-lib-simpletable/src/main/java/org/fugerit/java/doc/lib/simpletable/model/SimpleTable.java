@@ -2,6 +2,7 @@ package org.fugerit.java.doc.lib.simpletable.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
@@ -14,6 +15,8 @@ public class SimpleTable {
 	
 	public static final String DEFAULT_TABLE_WIDTH = "100";
 	
+	public static final String DEFAULT_DOC_LANGUAGE = Locale.ENGLISH.getLanguage();
+	
 	public static final int DEFAULT_BORDER_WIDTH = 0;
 	
 	private String tableWidth;
@@ -23,6 +26,8 @@ public class SimpleTable {
 	private String sheetName;
 	
 	private String  colwidths;
+	
+	private String  docLanguage;
 
 	private int defaultBorderWidth;
 	
@@ -46,6 +51,7 @@ public class SimpleTable {
 		this.sheetName = DEFAULT_SHEET_NAME;
 		this.defaultBorderWidth = DEFAULT_BORDER_WIDTH;
 		this.tableWidth = DEFAULT_TABLE_WIDTH;
+		this.docLanguage = DEFAULT_DOC_LANGUAGE;
 	}
 	
 	public void addRow( SimpleRow row ) {
@@ -88,6 +94,14 @@ public class SimpleTable {
 		return tableWidth;
 	}
 	
+	public String getDocLanguage() {
+		return docLanguage;
+	}
+
+	public void setDocLanguage(String docLanguage) {
+		this.docLanguage = docLanguage;
+	}
+
 	public SimpleTable withTableWidth( String tableWidth ) {
 		this.tableWidth = tableWidth;
 		return this;
@@ -95,6 +109,11 @@ public class SimpleTable {
 	
 	public SimpleTable withSheetName( String tableWidth ) {
 		this.tableWidth = tableWidth;
+		return this;
+	}
+	
+	public SimpleTable withDocLanguage( String docLanguage ) {
+		this.docLanguage = docLanguage;
 		return this;
 	}
 

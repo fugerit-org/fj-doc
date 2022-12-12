@@ -12,7 +12,9 @@
 		<info name="csv-table-id">simple-table</info>
 		<!-- for fixed size formats, like pdf -->
 		<info name="page-width">29.7cm</info>
-		<info name="page-height">21cm</info> 
+		<info name="page-height">21cm</info>
+		<!-- language -->
+		<info name="doc-language">${simpleTableModel.docLanguage}</info> 		 
 	</metadata>
 	<body>
 		

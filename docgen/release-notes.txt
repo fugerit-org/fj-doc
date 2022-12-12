@@ -1,6 +1,6 @@
 ﻿0.5.9 (2022-12-12)
 ------------------
-+ Added support for maximum table width in simpletable module
++ Added support for maximum table width and doc language in simpletable module
 
 0.5.9 (2022-12-11)
 ------------------
