@@ -6,17 +6,19 @@
 	<metadata>
 		<info name="default-font-size">10</info>
 		<!-- for xlsx format -->
-		<info name="excel-table-id">excel-table=${simpleTableModel.sheetName}</info>
+		<info name="excel-table-id">simple-table=${simpleTableModel.sheetName}</info>
 		<info name="excel-try-autoresize">true</info>
 		<!-- for cvs format -->
-		<info name="csv-table-id">excel-table</info>
+		<info name="csv-table-id">simple-table</info>
 		<!-- for fixed size formats, like pdf -->
 		<info name="page-width">29.7cm</info>
-		<info name="page-height">21cm</info> 
+		<info name="page-height">21cm</info>
+		<!-- language -->
+		<info name="doc-language">${simpleTableModel.docLanguage}</info> 		 
 	</metadata>
 	<body>
 		
-    	<table columns="${simpleTableModel.columns}" colwidths="${simpleTableModel.colwidths}"  width="100" id="excel-table" padding="2">
+    	<table columns="${simpleTableModel.columns}" colwidths="${simpleTableModel.colwidths}"  width="${simpleTableModel.tableWidth}" id="simple-table" padding="2">
 			<#list simpleTableModel.rows as simpleRow>
        		<row header="${simpleRow.head}">
        			<#list simpleRow.cells as simpleCell>
