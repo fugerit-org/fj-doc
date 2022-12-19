@@ -37,6 +37,7 @@ There are five kinds of components (each components README.md contains module st
 
 ### 4. Bundled libraries :
 * [Simple table (fj-doc-lib-singletable)](fj-doc-lib-simpletable/README.md) - offers a simple API for creating a document made of a table.
+* [Doc type validation (fj-doc-val)](fj-doc-val/README.md) - simple utilities for validating file type.
 
 ### 5. Tutorial :
 * [Samples and Quickstart (fj-doc-sample)](fj-doc-sample/README.md)

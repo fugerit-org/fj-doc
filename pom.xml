@@ -71,6 +71,7 @@
 		<module>fj-doc-mod-poi</module>
 		<module>fj-doc-mod-fop</module>
 		<module>fj-doc-mod-opencsv</module>
+		<module>fj-doc-val</module>
 		<module>fj-doc-sample</module>		
 	</modules>
 
