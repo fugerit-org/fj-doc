@@ -31,19 +31,23 @@ public class DocValidatorFacade {
 	}
 	
 	private boolean addValidator( DocTypeValidator validator ) {
-		boolean ok = true;
-		this.validators.add(validator);
-		DocTypeValidator previous = this.mimMapValidator.put( validator.getMimeType(), validator );
-		if ( previous != null ) {
-			ok = false;
-			logger.warn( "Validator {} has been overridden for mimeType {}", previous, validator.getMimeType() );
-		}
-		for ( String ext : validator.getSupportedExtensions() ) {
-			previous = this.extMapValidator.put(ext, validator);
+		boolean ok = validator.checkCompatibility();
+		if ( ok ) {
+			this.validators.add(validator);
+			DocTypeValidator previous = this.mimMapValidator.put( validator.getMimeType(), validator );
 			if ( previous != null ) {
 				ok = false;
-				logger.warn( "Validator {} has been overridden for extension {}", previous, ext );
+				logger.warn( "Validator {} has been overridden for mimeType {}", previous, validator.getMimeType() );
 			}
+			for ( String ext : validator.getSupportedExtensions() ) {
+				previous = this.extMapValidator.put(ext, validator);
+				if ( previous != null ) {
+					ok = false;
+					logger.warn( "Validator {} has been overridden for extension {}", previous, ext );
+				}
+			}	
+		} else {
+			logger.info( "Validator compatibility check failed : {}", validator );
 		}
 		return ok;
 	}
