@@ -35,6 +35,4 @@ public class PdfboxValidator extends AbstractDocTypeValidator {
 		return result;
 	}
 
-	
-	
 }

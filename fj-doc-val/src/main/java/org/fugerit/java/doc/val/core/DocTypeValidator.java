@@ -16,6 +16,8 @@ public interface DocTypeValidator {
 	
 	boolean check( InputStream is ) throws IOException;
 	
+	boolean checkCompatibility();
+	
 	DocTypeValidationResult validate( InputStream is ) throws IOException;
 	
 }

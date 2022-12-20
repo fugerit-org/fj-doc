@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
+import org.fugerit.java.core.lang.helpers.JavaVersionHelper;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
 import org.slf4j.Logger;
@@ -35,12 +36,14 @@ public class ImageValidator extends AbstractDocTypeValidator {
 	/**
 	 * Tiff validator, only supported from java 9+
 	 */
-	public static final DocTypeValidator TIFF_VALIDATOR = new ImageValidator( MIME_TIFF, EXT_TIFF, FORMAT_TIFF );
+	public static final DocTypeValidator TIFF_VALIDATOR = new ImageValidator( MIME_TIFF, EXT_TIFF, FORMAT_TIFF, JavaVersionHelper.MAJOR_VERSION_JAVA_9 );
 	
 	private static final Logger logger = LoggerFactory.getLogger( ImageValidator.class );
 	
 	private String format;
 
+	private int javaMajorVersionRequired;
+	
 	@Override
 	public DocTypeValidationResult validate(InputStream is) throws IOException {
 		DocTypeValidationResult result = DocTypeValidationResult.newFail();
@@ -61,14 +64,25 @@ public class ImageValidator extends AbstractDocTypeValidator {
 		return result;
 	}
 
-	protected ImageValidator(String mimeType, Set<String> supportedExtensions, String format) {
+	protected ImageValidator(String mimeType, Set<String> supportedExtensions, String format, int javaMajorVersionRequired) {
 		super(mimeType, supportedExtensions);
 		this.format = format;
+		this.javaMajorVersionRequired = javaMajorVersionRequired;
+	}
+	
+	protected ImageValidator(String mimeType, Set<String> supportedExtensions, String format) {
+		this(mimeType, supportedExtensions, format, JavaVersionHelper.MAJOR_VERSION_JAVA_8);
 	}
 
-	protected ImageValidator(String mimeType, String extension, String format) {
-		super(mimeType, extension);
-		this.format = format;
+	@Override
+	public boolean checkCompatibility() {
+		boolean ok = super.checkCompatibility();
+		int javaMajorVersionFound =  JavaVersionHelper.parseUniversalJavaMajorVersion() ;
+		if ( javaMajorVersionFound < this.javaMajorVersionRequired ) {
+			ok = false;
+			logger.warn( "java major version found : '{}' lower than required : '{}'", javaMajorVersionFound, this.javaMajorVersionRequired );
+		}
+		return ok;
 	}
 
 }

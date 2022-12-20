@@ -62,6 +62,11 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 	}
 
 	@Override
+	public boolean checkCompatibility() {
+		return true;
+	}
+
+	@Override
 	abstract public DocTypeValidationResult validate(InputStream is) throws IOException;
 	
 }
