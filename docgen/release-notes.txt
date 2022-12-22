@@ -1,6 +1,12 @@
-﻿0.5.20 (2022-12-20)
+﻿﻿0.6.1 (2022-12-22)
+------------------
++ Added doc(x) and xls(x) validators
++ Corrected type in package name
+
+﻿0.6.0 (2022-12-20)
 ------------------
 + Added compatibility check for Tiff Image Validator (required java 9+ at runtime)
++ Now fj-doc requires java9+ at build time (will be build with java 11), java8 at runtime (some functionalities will not works)
 + Updated fj-core version to 0.8.5
 
 0.5.11 (2022-12-19)
