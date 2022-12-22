@@ -1,7 +1,7 @@
 package test.org.fugerit.java.doc.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
-import org.fugerit.java.doc.val.pdf.boc.PdfboxValidator;
+import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
 import org.junit.Test;
 
 public class TestPdfBoxValidator extends TestDocValidatorFacade {

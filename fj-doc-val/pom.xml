@@ -41,6 +41,11 @@
 		    <artifactId>pdfbox</artifactId>
 		    <version>${pdfbox-version}</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
+		</dependency>		
 
 	</dependencies>
 
