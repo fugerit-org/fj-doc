@@ -47,6 +47,12 @@
 		    <artifactId>poi-ooxml</artifactId>
 		</dependency>		
 
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>${poi-version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<organization>
