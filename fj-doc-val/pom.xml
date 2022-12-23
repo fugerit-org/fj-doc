@@ -7,11 +7,11 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.6.1</version>
+		<version>0.6-SNAPSHOT</version>
 	</parent>
 
 	<name>fj-doc-val</name>
-	<description>Common freemarker functionalities and Renderer for HTML using Freemarker</description>
+	<description>Modular doc validator utilities</description>
 
 	<licenses>
 		<license>
@@ -22,7 +22,6 @@
 	</licenses>
 	
 	<properties>
-		<pdfbox-version>2.0.27</pdfbox-version>	
 	</properties>
 	
 	<build>
@@ -35,22 +34,20 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
 		</dependency>
-
-		<dependency>
-		    <groupId>org.apache.pdfbox</groupId>
-		    <artifactId>pdfbox</artifactId>
-		    <version>${pdfbox-version}</version>
-		</dependency>
 		
 		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi-ooxml</artifactId>
-		</dependency>		
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-val-core</artifactId>
+		</dependency>
 
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-scratchpad</artifactId>
-			<version>${poi-version}</version>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-val-pdfbox</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-val-poi</artifactId>
 		</dependency>
 
 	</dependencies>

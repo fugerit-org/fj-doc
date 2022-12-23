@@ -1,4 +1,8 @@
-﻿﻿0.6.1 (2022-12-22)
+﻿﻿0.6.2 (2022-12-23)
+------------------
++ The fj-doc-val has been split in modules, to optimize dependencies 
+
+﻿0.6.1 (2022-12-22)
 ------------------
 + Added doc(x) and xls(x) validators
 + Corrected type in package name

@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.6.1</version>
+	<version>0.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -71,6 +71,9 @@
 		<module>fj-doc-mod-poi</module>
 		<module>fj-doc-mod-fop</module>
 		<module>fj-doc-mod-opencsv</module>
+		<module>fj-doc-val-core</module>
+		<module>fj-doc-val-pdfbox</module>
+		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
 		<module>fj-doc-sample</module>		
 	</modules>
@@ -123,9 +126,32 @@
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val-pdfbox</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val-poi</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-sample</artifactId>
 				<version>${project.version}</version>
-				<type>war</type>
 			</dependency>								
 								
 			<dependency>
