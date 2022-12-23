@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-lib-simpletable</artifactId>
+	<artifactId>fj-doc-val-poi</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,8 @@
 		<version>0.6-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-lib-simpletable</name>
-	<description>Rendered for PDF using Apache FOP</description>
+	<name>fj-doc-val-poi</name>
+	<description>Module for validating Doc, Docx, Xls, Xlsx based on Apache POI</description>
 
 	<licenses>
 		<license>
@@ -22,7 +22,6 @@
 	</licenses>
 	
 	<properties>
-		<fop-version>2.8</fop-version>
 	</properties>
 	
 	<build>
@@ -31,26 +30,25 @@
 
 	<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/fop -->
-		<dependency>
-		    <groupId>org.apache.xmlgraphics</groupId>
-		    <artifactId>fop</artifactId>
-		    <version>${fop-version}</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
-		</dependency>	
-	
+		</dependency>
+		
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-base</artifactId>
+			<artifactId>fj-doc-val-core</artifactId>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi-ooxml</artifactId>
 		</dependency>		
 
 		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-freemarker</artifactId>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-scratchpad</artifactId>
+			<version>${poi-version}</version>
 		</dependency>
 
 	</dependencies>
