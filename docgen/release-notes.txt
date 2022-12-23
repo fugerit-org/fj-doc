@@ -1,4 +1,8 @@
-﻿﻿0.6.2 (2022-12-23)
+﻿0.6.3 (2022-12-XX)
+------------------
++ Better pdf validation handling
+
+﻿0.6.2 (2022-12-23)
 ------------------
 + The fj-doc-val has been split in modules, to optimize dependencies 
 
