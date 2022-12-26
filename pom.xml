@@ -66,6 +66,7 @@
 
 	<modules>
 		<module>fj-doc-base</module>
+		<module>fj-doc-json</module>
 		<module>fj-doc-freemarker</module>
 		<module>fj-doc-lib-simpletable</module>
 		<module>fj-doc-mod-poi</module>
