@@ -1,6 +1,7 @@
 <doc-handler-config user-catalog="default-complete">
 
 	<factory id="default-complete">
+		<data id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
 		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXML" />
 		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
 		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			

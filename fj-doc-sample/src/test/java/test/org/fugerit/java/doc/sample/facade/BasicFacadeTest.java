@@ -17,6 +17,7 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.json.parse.DocJsonFacade;
 import org.fugerit.java.doc.sample.facade.SampleFacade;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -62,20 +63,34 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
+	private boolean isJson() {
+		return this.getNameBase().endsWith( "json" );
+	}
+	
 	private String getXmlPath() {
-		return "src/test/resources/sample_docs/"+this.getNameBase()+".xml";
+		String baseName = this.getNameBase();
+		if ( !this.isJson() ) {
+			baseName+= ".xml";
+		}
+		return "src/test/resources/sample_docs/"+baseName;
 	}
 	
 	protected Reader getXmlReader() throws Exception {
 		return new FileReader( this.getXmlPath() );
 	}
 	
+	
 	protected DocBase getDocBase() throws Exception {
 		// required : parsing the XML for model to be passed to DocFacade
 		DocBase docBase = null;
 		try ( Reader reader = this.getXmlReader() ) {
 			long start = System.currentTimeMillis();
-			docBase = DocFacade.parse( reader );
+			docBase = null;
+			if ( this.isJson() ) {
+				docBase = DocJsonFacade.parse( reader );
+			} else {
+				docBase = DocFacade.parse( reader );
+			}
 			this.checkpoints.addCheckpointFromStartTime( "PARSE", start );
 		}
 		return docBase;
@@ -97,7 +112,12 @@ public class BasicFacadeTest {
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			long start = System.currentTimeMillis();
-			DocInput input = DocInput.newInput( type , reader );
+			DocInput input = null;
+			if ( this.isJson() ) {
+				input = DocInput.newInput( type , DocJsonFacade.parse( reader ) );
+			} else { 
+				DocInput.newInput( type , reader );
+			}
 			DocOutput output = DocOutput.newOutput( fos );
 			facade.handle( input , output );
 			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+type, start );

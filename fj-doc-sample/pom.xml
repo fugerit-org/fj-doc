@@ -39,6 +39,11 @@
 
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-json</artifactId>
+		</dependency>	
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-freemarker</artifactId>
 		</dependency>		
 

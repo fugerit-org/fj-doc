@@ -98,6 +98,12 @@
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-json</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>				
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-freemarker</artifactId>
 				<version>${fj-doc-version}</version>
 			</dependency>				

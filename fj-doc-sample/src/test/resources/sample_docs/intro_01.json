@@ -1,0 +1,68 @@
+{
+	"metadata": {
+		"info": [
+			{
+				"name": "margins",
+				"value": "10;10;10;30"
+			},
+			{
+				"name": "excel-table-id",
+				"value": "excel-table=print"
+			},
+			{
+				"name": "excel-width-multiplier",
+				"value": "450"
+			}
+		],
+		"footer-ext": {
+			"type": "container",
+			"elements": [
+				{
+					"type": "para",
+					"align": "center",
+					"text": "Page ${currentPage}"
+				}
+			]
+		}
+	},
+	"body": {
+		"type": "container",
+		"elements": [
+			{
+				"type": "phrase",
+				"align": "center",
+				"text": "Test phrase 01"
+			},
+			{
+				"type": "phrase",
+				"align": "center",
+				"text": "Test phrase 02"
+			},
+			{
+				"type": "phrase",
+				"align": "center",
+				"text": "Test phrase 03"
+			},
+			{
+				"type": "phrase",
+				"align": "center",
+				"text": "Test phrase 04"
+			},
+			{
+				"type": "image",
+				"url": "cl://test/img_test_red.png",
+				"scaling": "100"
+			},
+			{
+				"type": "image",
+				"url": "cl://test/img_test_green.png",
+				"scaling": "50"
+			},
+			{
+				"type": "image",
+				"url": "cl://test/img_test_blue.png",
+				"scaling": "25"
+			}
+		]
+	}
+}
