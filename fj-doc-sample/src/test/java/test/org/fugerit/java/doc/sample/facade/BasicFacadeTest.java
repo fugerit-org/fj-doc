@@ -116,7 +116,7 @@ public class BasicFacadeTest {
 			if ( this.isJson() ) {
 				input = DocInput.newInput( type , DocJsonFacade.parse( reader ) );
 			} else { 
-				DocInput.newInput( type , reader );
+				input = DocInput.newInput( type , reader );
 			}
 			DocOutput output = DocOutput.newOutput( fos );
 			facade.handle( input , output );

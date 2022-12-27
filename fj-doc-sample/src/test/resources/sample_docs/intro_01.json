@@ -1,68 +1,109 @@
 {
-	"metadata": {
-		"info": [
-			{
-				"name": "margins",
-				"value": "10;10;10;30"
-			},
-			{
-				"name": "excel-table-id",
-				"value": "excel-table=print"
-			},
-			{
-				"name": "excel-width-multiplier",
-				"value": "450"
-			}
-		],
-		"footer-ext": {
-			"type": "container",
-			"elements": [
+	"_t":"doc",
+	"_e":[
+	
+		{
+			"_t": "metadata",
+			"_e": [
+				{ "_t":"info", "name": "margins", "_v": "10;10;10;30" },
+				{ "_t":"info", "name": "excel-table-id", "_v": "excel-table=print" },
+				{ "_t":"info", "name": "excel-width-multiplier", "_v": "450" },
 				{
-					"type": "para",
-					"align": "center",
-					"text": "Page ${currentPage}"
+					"_t": "footer-ext",
+					"_e": [
+						{
+							"_t": "para",
+							"align": "center",
+							"_v": "Page ${currentPage}"
+						}
+					]
 				}
 			]
 		}
-	},
-	"body": {
-		"type": "container",
-		"elements": [
-			{
-				"type": "phrase",
-				"align": "center",
-				"text": "Test phrase 01"
-			},
-			{
-				"type": "phrase",
-				"align": "center",
-				"text": "Test phrase 02"
-			},
-			{
-				"type": "phrase",
-				"align": "center",
-				"text": "Test phrase 03"
-			},
-			{
-				"type": "phrase",
-				"align": "center",
-				"text": "Test phrase 04"
-			},
-			{
-				"type": "image",
-				"url": "cl://test/img_test_red.png",
-				"scaling": "100"
-			},
-			{
-				"type": "image",
-				"url": "cl://test/img_test_green.png",
-				"scaling": "50"
-			},
-			{
-				"type": "image",
-				"url": "cl://test/img_test_blue.png",
-				"scaling": "25"
-			}
-		]
-	}
+		
+		,
+		
+		{
+			"_t": "body",
+			"_e": [
+				{ "_t": "phrase", "align": "center", "_v": "Test phrase 01" },
+				{ "_t": "phrase", "align": "center", "_v": "Test phrase 02" },
+				{ "_t": "phrase", "align": "center", "_v": "Test phrase 03" },
+				{ "_t": "phrase", "align": "center", "_v": "Test phrase 04" },
+				{ "_t": "image", "url": "cl://test/img_test_red.png", "scaling": "100" },
+				{ "_t": "image", "url": "cl://test/img_test_green.png", "scaling": "50" },
+				{ "_t": "image", "url": "cl://test/img_test_blue.png", "scaling": "25" },
+				{
+					"_t":"table",
+					"columns":"3",
+					"colwidths":"30;30;40",
+					"width":"100",
+					"id":"excel-table",
+					"padding":"2",
+					"_e": [
+						{
+							"_t":"row",
+							"_e": [ 
+								{ 
+									"_t":"cell",
+									"align":"center",
+									"border-color":"#000000",
+									"border-width":"1",
+									"_e": [ { "_t":"para", "_v":"Name" } ]
+								},
+								{ 
+									"_t":"cell",
+									"align":"center",
+									"_e": [ { "_t":"para", "_v":"Surname" } ]
+								},
+								{ 
+									"_t":"cell",
+									"align":"center",
+									"_e": [ { "_t":"para", "_v":"Title" } ]
+								}
+							]
+						},
+						{
+							"_t":"row",
+							"_e": [ 
+								{ 
+									"_t":"cell",
+									"_e": [ { "_t":"para", "_v":"Luthien" } ]
+								},
+								{ 
+									"_t":"cell",
+									"_e": [ { "_t":"para", "_v":"Tinuviel" } ]
+								},
+								{ 
+									"_t":"cell",
+									"_e": [ { "_t":"para", "_v":"Queen" } ]
+								}
+							]
+						},
+						{
+							"_t":"row",
+							"_e": [ 
+								{ 
+									"_t":"cell",
+									"_e": [ { "_t":"para", "_v":"Thorin" } ]
+								},
+								{ 
+									"_t":"cell",
+									"_e": [ { "_t":"para", "_v":"Oakshield" } ]
+								},
+								{ 
+									"_t":"cell",
+									"_e": [ { "_t":"para", "_v":"King" } ]
+								}
+							]
+						}
+					]
+				}
+				
+				
+			]
+		}
+
+	]
+	
 }

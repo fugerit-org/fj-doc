@@ -1,21 +1,23 @@
 {
-	"metadata": {},
-	"body": {
-		"type": "container",
-		"elements": [
-			{
-				"type": "para",
-				"style": "bold",
-				"text": "First json text"
-			},
-			{
-				"type": "para",
-				"text": "Second json text"
-			},
-			{
-				"type": "para",
-				"text": "Third json text"
-			}
-		]
-	}
+	"tag":"doc",
+	"elements": [
+		{
+			"tag": "body",
+			"elements": [
+				{
+					"tag": "para",
+					"style": "bold",
+					"text": "First json text"
+				},
+				{
+					"tag": "para",
+					"text": "Second json text"
+				},
+				{
+					"tag": "para",
+					"text": "Third json text"
+				}
+			]
+		}
+	]
 }
