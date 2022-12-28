@@ -1,21 +1,22 @@
 {
-	"tag":"doc",
-	"elements": [
+	"xsd-version":"1-10",
+	"_t":"doc",
+	"_e": [
 		{
-			"tag": "body",
-			"elements": [
+			"_t": "body",
+			"_e": [
 				{
-					"tag": "para",
+					"_t": "para",
 					"style": "bold",
-					"text": "First json text"
+					"_v": "First json text"
 				},
 				{
-					"tag": "para",
-					"text": "Second json text"
+					"_t": "para",
+					"_v": "Second json text"
 				},
 				{
-					"tag": "para",
-					"text": "Third json text"
+					"_t": "para",
+					"_v": "Third json text"
 				}
 			]
 		}

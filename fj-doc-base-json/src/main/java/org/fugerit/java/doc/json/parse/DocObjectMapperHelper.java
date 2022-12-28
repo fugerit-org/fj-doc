@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.slf4j.Logger;
@@ -22,19 +23,24 @@ public class DocObjectMapperHelper {
 
 	private ObjectMapper mapper;
 	
-	public static final String PROPERTY_TAG = "tag";
+	public static final String PROPERTY_TAG = "_t";
 	
-	public static final String PROPERTY_TAG_ALT = "_t";
-	
-	public static final String PROPERTY_TEXT = "text";
-	
-	public static final String PROPERTY_TEXT_ALT = "_v";
+	public static final String PROPERTY_TEXT = "_v";
 
-	public static final String PROPERTY_ELEMENTS = "elements";
+	public static final String PROPERTY_ELEMENTS = "_e";
 	
-	public static final String PROPERTY_ELEMENTS_ALT = "_e";
+	public static final String PROPERTY_XSD_VERSION = "xsd-version";
 	
 	private final static Logger logger = LoggerFactory.getLogger( DocObjectMapperHelper.class );
+	
+	public static String findVersion( JsonNode root, String def ) {
+		String res = def;
+		JsonNode xsdVersion = root.get( PROPERTY_XSD_VERSION );
+		if ( xsdVersion != null ) {
+			res = xsdVersion.asText();
+		}
+		return res;
+	}
 	
 	private void handleElement( JsonNode node, DocParserContext context ) {
 		Iterator<String> fieldsNames = node.fieldNames();
@@ -45,11 +51,11 @@ public class DocObjectMapperHelper {
 		while ( fieldsNames.hasNext() ) {
 			String currentName = fieldsNames.next();
 			JsonNode currentValue = node.get( currentName );
-			if ( PROPERTY_TEXT.equalsIgnoreCase( currentName ) || PROPERTY_TEXT_ALT.equalsIgnoreCase( currentName ) ) {
+			if ( PROPERTY_TEXT.equalsIgnoreCase( currentName ) ) {
 				text = currentValue.asText();
-			} else if ( PROPERTY_TAG.equalsIgnoreCase( currentName ) || PROPERTY_TAG_ALT.equalsIgnoreCase( currentName ) ) {
+			} else if ( PROPERTY_TAG.equalsIgnoreCase( currentName ) ) {
 				qName = currentValue.asText();
-			} else if ( PROPERTY_ELEMENTS.equalsIgnoreCase( currentName ) || PROPERTY_ELEMENTS_ALT.equalsIgnoreCase( currentName ) ) {
+			} else if ( PROPERTY_ELEMENTS.equalsIgnoreCase( currentName ) ) {
 				elements = currentValue.elements();
 			} else {
 				props.setProperty( currentName , currentValue.asText() );
@@ -75,7 +81,9 @@ public class DocObjectMapperHelper {
 		this.handleElement(root, context);
 		context.endDocument();
 		logger.debug( "Parse done!" );
-		return context.getDocBase();
+		DocBase docBase = context.getDocBase();
+		docBase.setXsdVersion( findVersion(root, DocFacade.CURRENT_VERSION) );
+		return docBase;
 	}
 	
 }
