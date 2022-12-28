@@ -8,16 +8,23 @@ import java.util.Properties;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocException;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.parser.AbstractDocParser;
 import org.fugerit.java.doc.base.parser.DocParserContext;
+import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class DocJsonParser {
+public class DocJsonParser extends AbstractDocParser {
 	
+	public DocJsonParser() {
+		super( DocFacadeSource.SOURCE_TYPE_JSON );
+	}
+
 	public static final String PROPERTY_TAG = "tag";
 	
 	public static final String PROPERTY_TAG_ALT = "_t";
@@ -66,19 +73,21 @@ public class DocJsonParser {
 		}
 		context.handleEndElement(qName);
 	}
-	
-	public DocBase parse( Reader r ) throws DocException {
+
+	@Override
+	protected DocValidationResult validateWorker(Reader reader) throws Exception {
+		return DocValidationResult.newDefaultNotSupportedResult();
+	}
+
+	@Override
+	protected DocBase parseWorker(Reader reader) throws Exception {
 		DocParserContext context = new DocParserContext();
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			context.startDocument();
-			JsonNode root = mapper.readTree( r );
-			this.handleElement(root, context);
-			context.endDocument();
-			logger.debug( "Parse done!" );
-		} catch (Exception e) {
-			throw new DocException( "Error parsing json document "+e, e );
-		}
+		context.startDocument();
+		JsonNode root = mapper.readTree( reader );
+		this.handleElement(root, context);
+		context.endDocument();
+		logger.debug( "Parse done!" );
 		return context.getDocBase();
 	}
 	

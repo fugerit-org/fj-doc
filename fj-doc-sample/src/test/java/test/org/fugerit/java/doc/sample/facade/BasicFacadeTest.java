@@ -14,10 +14,9 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.base.facade.DocFacade;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.json.parse.DocJsonFacade;
 import org.fugerit.java.doc.sample.facade.SampleFacade;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -63,13 +62,17 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
-	private boolean isJson() {
-		return this.getNameBase().endsWith( "json" );
+	private int getSourceType() {
+		int sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
+		if ( this.getNameBase().endsWith( "json" ) ) {
+			sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
+		}
+		return sourceType;
 	}
 	
 	private String getXmlPath() {
 		String baseName = this.getNameBase();
-		if ( !this.isJson() ) {
+		if ( this.getSourceType() == DocFacadeSource.SOURCE_TYPE_XML ) {
 			baseName+= ".xml";
 		}
 		return "src/test/resources/sample_docs/"+baseName;
@@ -85,12 +88,7 @@ public class BasicFacadeTest {
 		DocBase docBase = null;
 		try ( Reader reader = this.getXmlReader() ) {
 			long start = System.currentTimeMillis();
-			docBase = null;
-			if ( this.isJson() ) {
-				docBase = DocJsonFacade.parse( reader );
-			} else {
-				docBase = DocFacade.parse( reader );
-			}
+			docBase = DocFacadeSource.getInstance().parse( reader, getSourceType() );
 			this.checkpoints.addCheckpointFromStartTime( "PARSE", start );
 		}
 		return docBase;
@@ -112,12 +110,7 @@ public class BasicFacadeTest {
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			long start = System.currentTimeMillis();
-			DocInput input = null;
-			if ( this.isJson() ) {
-				input = DocInput.newInput( type , DocJsonFacade.parse( reader ) );
-			} else { 
-				input = DocInput.newInput( type , reader );
-			}
+			DocInput input = DocInput.newInput( type , reader, this.getSourceType() );
 			DocOutput output = DocOutput.newOutput( fos );
 			facade.handle( input , output );
 			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+type, start );

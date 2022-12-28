@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-json</artifactId>
+	<artifactId>fj-doc-base-multi</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,7 +10,7 @@
 		<version>0.6-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-json</name>
+	<name>fj-doc-base-multi</name>
 	<description>Module for producting documents from json instead of xml</description>
 
 	<licenses>

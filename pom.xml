@@ -24,7 +24,7 @@
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 	    <!-- fj java versions -->
-	    <fj-version>0.8.5</fj-version>
+	    <fj-version>0.8.6</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	</properties>
 
@@ -66,7 +66,7 @@
 
 	<modules>
 		<module>fj-doc-base</module>
-		<module>fj-doc-json</module>
+		<module>fj-doc-base-json</module>
 		<module>fj-doc-freemarker</module>
 		<module>fj-doc-lib-simpletable</module>
 		<module>fj-doc-mod-poi</module>
@@ -98,9 +98,9 @@
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc-json</artifactId>
+				<artifactId>fj-doc-base-json</artifactId>
 				<version>${fj-doc-version}</version>
-			</dependency>				
+			</dependency>							
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>

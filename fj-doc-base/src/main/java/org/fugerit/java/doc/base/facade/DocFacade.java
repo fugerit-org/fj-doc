@@ -25,7 +25,6 @@
  */
 package org.fugerit.java.doc.base.facade;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -33,25 +32,14 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.Properties;
 
-import javax.xml.parsers.SAXParser;
-
-import org.fugerit.java.core.io.StreamIO;
-import org.fugerit.java.core.lang.helpers.Result;
-import org.fugerit.java.core.lang.helpers.StringUtils;
-import org.fugerit.java.core.xml.XMLValidator;
-import org.fugerit.java.core.xml.sax.XMLFactorySAX;
-import org.fugerit.java.core.xml.sax.XMLValidatorSAX;
-import org.fugerit.java.core.xml.sax.dh.DefaultHandlerComp;
-import org.fugerit.java.core.xml.sax.er.ByteArrayEntityResolver;
+import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocContainer;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocHelper;
-import org.fugerit.java.doc.base.xml.DocContentHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xml.sax.InputSource;
+import org.fugerit.java.doc.base.parser.DocValidationResult;
+import org.fugerit.java.doc.base.xml.DocXmlParser;
 
 /**
  * 
@@ -60,10 +48,8 @@ import org.xml.sax.InputSource;
  *
  */
 public class DocFacade {
-
-	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION.stringVersion();
 	
-	private static Logger logger = LoggerFactory.getLogger( DocFacade.class );
+	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION.stringVersion();
 	
 	private static final Properties DEFAULT_PARAMS = new Properties();
 	
@@ -86,23 +72,6 @@ public class DocFacade {
 		print( s, doc.getDocBody() );
 	}
 	
-	private static final String DTD = "/config/doc-1-0.dtd";
-	private static final String XSD = "/config/doc-"+CURRENT_VERSION+".xsd";
-	
-	private static byte[] readData( String res, byte[] alreadRead ) {
-		byte[] data = alreadRead;
-		if ( data != null ) {
-			try {
-				data = StreamIO.readBytes( DocFacade.class.getResourceAsStream( res ) );	
-			} catch (Exception e) {
-				logger.warn( "Read error", e );
-			}	
-		}
-		return data;
-	}
-	
-	private static final byte[] XSD_DATA = readData( XSD, null );
-	private static final byte[] DTD_DATA = readData( DTD, null );
 	
 	public static final String PARAM_DEFINITION_MODE = "definition-mode";
 	public static final String PARAM_DEFINITION_MODE_XSD = "xsd";
@@ -110,25 +79,19 @@ public class DocFacade {
 	public static final String PARAM_DEFINITION_MODE_DEFAULT = PARAM_DEFINITION_MODE_XSD;
 	
 	public final static String SYSTEM_ID = "http://javacoredoc.fugerit.org";
-	
-	private static ByteArrayEntityResolver newEntityResolver( Properties params ) {
-		byte[] data = null;
-		String validatationMode = params.getProperty( PARAM_DEFINITION_MODE, PARAM_DEFINITION_MODE_DEFAULT ) ;
-		if ( PARAM_DEFINITION_MODE_DTD.equalsIgnoreCase( validatationMode ) ) {
-			data = DTD_DATA;
-		} else {
-			data = XSD_DATA;
-		}
-		logger.debug( PARAM_DEFINITION_MODE+" -> "+validatationMode );
-		ByteArrayEntityResolver er = new ByteArrayEntityResolver( data, null, SYSTEM_ID );
-		return er;
-	}
-	
+		
 	public static boolean validate( Reader is, Properties params ) throws Exception {
-		ByteArrayEntityResolver er = newEntityResolver( params );
-		XMLValidator validator = XMLValidatorSAX.newInstance( er );
-		Result result = validator.validateXML( is );
-		return result.isTotalSuccess();
+		boolean valRes = false;
+		try {
+			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT, params );
+			int result = parser.validate( is );
+			valRes = ( result == DocValidationResult.VALIDATION_OK );
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			StreamHelper.closeSafe( is );
+		}
+		return valRes;
 	}
 	
 	public static DocBase parse( Reader is, DocHelper docHelper ) throws Exception {
@@ -136,23 +99,14 @@ public class DocFacade {
 	}
 	
 	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws Exception {
-		SAXParser parser = XMLFactorySAX.makeSAXParser( false ,  false );
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		StreamIO.pipeStream( DocFacade.class.getResourceAsStream( DTD  ), baos, StreamIO.MODE_CLOSE_BOTH );
-		ByteArrayEntityResolver er = newEntityResolver( params );
-		DocContentHandler dch =  new DocContentHandler( docHelper );
-		DefaultHandlerComp dh = new DefaultHandlerComp( dch );
-		dh.setWrappedEntityResolver( er );
-		parser.parse( new InputSource(is), dh);
-		DocBase docBase = dch.getDocBase();
-		is.close();
-		String xsdVersion = docBase.getXsdVersion();
+		DocBase docBase = null;
 		try {
-			if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, CURRENT_VERSION ) > 0 ) {
-				logger.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, CURRENT_VERSION  );
-			}	
+			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT, params );
+			docBase = parser.parse(is);
 		} catch (Exception e) {
-			logger.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, CURRENT_VERSION );
+			throw e;
+		} finally {
+			StreamHelper.closeSafe( is );
 		}
 		return docBase;
 	}	
@@ -164,6 +118,17 @@ public class DocFacade {
 	public static DocBase parse( Reader is ) throws Exception {
 		return parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 	}
+	
+	public static DocBase parseRE( Reader is, int sourceType ) {
+		DocBase doc = null;
+		try {
+			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
+		} catch (Exception e) {
+			throw new RuntimeException( e );
+		}
+		return doc;
+	}
+	
 	
 	public static DocBase parseRE( Reader is ) {
 		DocBase doc = null;
