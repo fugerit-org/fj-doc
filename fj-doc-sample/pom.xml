@@ -44,6 +44,11 @@
 		
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-yaml</artifactId>
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-freemarker</artifactId>
 		</dependency>		
 

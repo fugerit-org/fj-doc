@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestDocFacadeSource {
+public class TestDocFacadeSourceYaml {
 
-	private static final Logger logger = LoggerFactory.getLogger( TestDocFacadeSource.class );
+	private static final Logger logger = LoggerFactory.getLogger( TestDocFacadeSourceYaml.class );
 	
 	private void textSupportedParser( boolean expected, int sourceType ) {
 		boolean supported;
@@ -38,12 +38,12 @@ public class TestDocFacadeSource {
 	
 	@Test
 	public void testParserJson() {
-		this.textSupportedParser( false, DocFacadeSource.SOURCE_TYPE_JSON );
+		this.textSupportedParser( true, DocFacadeSource.SOURCE_TYPE_JSON );
 	}
 	
 	@Test
 	public void testParserYaml() {
-		this.textSupportedParser( false, DocFacadeSource.SOURCE_TYPE_YAML );
+		this.textSupportedParser( true, DocFacadeSource.SOURCE_TYPE_YAML );
 	}
 	
 }

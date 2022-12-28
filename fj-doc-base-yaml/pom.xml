@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-base-json</artifactId>
+	<artifactId>fj-doc-base-yaml</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,8 @@
 		<version>0.6-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-base-json</name>
-	<description>Module for producting documents from json instead of xml</description>
+	<name>fj-doc-base-yaml</name>
+	<description>Module for producting documents from yaml instead of xml</description>
 
 	<licenses>
 		<license>
@@ -21,7 +21,8 @@
 		</license>
 	</licenses>
 	
-	<properties>	
+	<properties>
+		<jackson-yaml-version>2.14.1</jackson-yaml-version>	
 	</properties>
 	
 	<build>
@@ -41,8 +42,13 @@
 		</dependency>		
 		
 		<dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-json</artifactId>
+		</dependency>	
+		
+		<dependency>
+		    <groupId>com.fasterxml.jackson.dataformat</groupId>
+		    <artifactId>jackson-dataformat-yaml</artifactId>
 		</dependency>
 					
 	</dependencies>

@@ -18,6 +18,8 @@ public class DocFacadeSource {
 	
 	public static final int SOURCE_TYPE_JSON = 2;
 	
+	public static final int SOURCE_TYPE_YAML = 3;
+	
 	public static final int SOURCE_TYPE_DEFAULT = SOURCE_TYPE_XML;
 	
 	private static final Logger logger = LoggerFactory.getLogger( DocFacadeSource.class );
@@ -32,10 +34,13 @@ public class DocFacadeSource {
 	
 	private static final String TYPE_SOURCE_JSON = "org.fugerit.java.doc.json.parse.DocJsonParser";		// json parser may not be in class loader
 	
+	private static final String TYPE_SOURCE_YAML = "org.fugerit.java.doc.yaml.parse.DocYamlParser";		// yaml parser may not be in class loader
+	
 	private static final Properties PARSERS = new Properties();
 	static {
 		PARSERS.setProperty( String.valueOf( SOURCE_TYPE_XML ) , TYPE_SOURCE_XML );
 		PARSERS.setProperty( String.valueOf( SOURCE_TYPE_JSON ) , TYPE_SOURCE_JSON );
+		PARSERS.setProperty( String.valueOf( SOURCE_TYPE_YAML ) , TYPE_SOURCE_YAML );
 	}
 	
 	public DocParser getParserForSource( int sourceType ) {

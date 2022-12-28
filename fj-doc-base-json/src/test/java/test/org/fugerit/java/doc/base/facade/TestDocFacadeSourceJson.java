@@ -41,4 +41,9 @@ public class TestDocFacadeSourceJson {
 		this.textSupportedParser( true, DocFacadeSource.SOURCE_TYPE_JSON );
 	}
 	
+	@Test
+	public void testParserYaml() {
+		this.textSupportedParser( false, DocFacadeSource.SOURCE_TYPE_YAML );
+	}
+	
 }

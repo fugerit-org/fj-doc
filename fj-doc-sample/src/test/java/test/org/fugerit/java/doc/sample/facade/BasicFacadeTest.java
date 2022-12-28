@@ -66,6 +66,8 @@ public class BasicFacadeTest {
 		int sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
 		if ( this.getNameBase().endsWith( "json" ) ) {
 			sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
+		} else if ( this.getNameBase().endsWith( "yaml" ) ) {
+			sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
 		}
 		return sourceType;
 	}

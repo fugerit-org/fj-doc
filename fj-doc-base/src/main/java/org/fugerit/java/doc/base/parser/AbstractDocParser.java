@@ -1,5 +1,7 @@
 package org.fugerit.java.doc.base.parser;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -26,6 +28,11 @@ public abstract class AbstractDocParser implements DocParser {
 		return this.sourceType;
 	}
 
+	@Override
+	public DocBase parse(InputStream is) throws DocException {
+		return this.parse( new InputStreamReader(is) );
+	}
+	
 	@Override
 	public DocBase parse(Reader reader) throws DocException {
 		DocBase docBase = null;

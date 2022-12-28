@@ -1,0 +1,11 @@
+_t: doc
+_e:
+- _t: body
+  _e:
+  - _t: para
+    style: bold
+    _v: First json text
+  - _t: para
+    _v: Second json text
+  - _t: para
+    _v: Third json text
