@@ -1,4 +1,6 @@
-﻿+  Updated quarkus playground version to 2.15.1.Final
+﻿0.7.1 (202X-XX-XX)
+------------------
++ Upgrade playground to quarkus 3.0.0.Alpha2
 
 0.7.0 (2022-12-29)
 ------------------
