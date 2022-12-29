@@ -2,6 +2,8 @@ package org.fugerit.java.doc.base.model;
 
 public class DocList extends DocContainer {
 
+	public static final String TAG_NAME = "list";
+	
 	public final static String LIST_TYPE_UL = "ul";
 	
 	public final static String LIST_TYPE_ULD = "uld";

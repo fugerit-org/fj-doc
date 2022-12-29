@@ -37,6 +37,14 @@ import java.util.List;
  */
 public class DocContainer extends DocElement {
 
+	public static final String TAG_NAME_BODY = "body";
+	
+	public static final String TAG_NAME_META = "meta";
+	
+	public static final String TAG_NAME_METADATA = "metadata";
+	
+	public static final String TAG_NAME_PL = "pl";
+	
 	/**
 	 * 
 	 */

@@ -26,8 +26,7 @@ public class PdfboxValidator extends AbstractDocTypeValidator {
 	@Override
 	public DocTypeValidationResult validate(InputStream is) {
 		DocTypeValidationResult result = DocTypeValidationResult.newFail();
-		try {
-			PDDocument.load( is );
+		try( PDDocument doc = PDDocument.load( is ) ) {
 			result = DocTypeValidationResult.newOk();
 		} catch (Exception e) {
 			logger.warn( "Failed check on pdf : "+e );

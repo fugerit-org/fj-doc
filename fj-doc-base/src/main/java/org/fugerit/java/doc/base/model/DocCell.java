@@ -33,6 +33,8 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocCell extends DocContainer implements DocStyle {
 	
+	public static final String TAG_NAME = "cell";
+	
 	/**
 	 * 
 	 */

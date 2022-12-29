@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.6.2</version>
+	<version>0.7-SNAPHOST</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -24,8 +24,9 @@
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 	    <!-- fj java versions -->
-	    <fj-version>0.8.5</fj-version>
+	    <fj-version>0.8.6</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
+	    <jackson-version>2.14.1</jackson-version>
 	</properties>
 
 	<licenses>
@@ -66,6 +67,8 @@
 
 	<modules>
 		<module>fj-doc-base</module>
+		<module>fj-doc-base-json</module>
+		<module>fj-doc-base-yaml</module>
 		<module>fj-doc-freemarker</module>
 		<module>fj-doc-lib-simpletable</module>
 		<module>fj-doc-mod-poi</module>
@@ -75,7 +78,8 @@
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
-		<module>fj-doc-sample</module>		
+		<module>fj-doc-sample</module>
+		<module>fj-doc-playground-quarkus</module>
 	</modules>
 
 	<dependencyManagement>
@@ -94,6 +98,18 @@
 				<version>${fj-doc-version}</version>
 			</dependency>	
 			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-base-json</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>							
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-base-yaml</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-freemarker</artifactId>
@@ -158,6 +174,18 @@
 			    <groupId>org.apache.poi</groupId>
 			    <artifactId>poi-ooxml</artifactId>
 			    <version>${poi-version}</version>
+			</dependency>
+		
+			<dependency>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>${jackson-version}</version>
+			</dependency>
+		
+			<dependency>
+			    <groupId>com.fasterxml.jackson.dataformat</groupId>
+			    <artifactId>jackson-dataformat-yaml</artifactId>
+			    <version>${jackson-version}</version>
 			</dependency>
 		
 		</dependencies>

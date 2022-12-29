@@ -38,6 +38,10 @@ public class DocFooter extends DocHeaderFooter {
 	 */
 	private static final long serialVersionUID = -522063370024780951L;
 
+	public static final String TAG_NAME = "footer";
+	
+	public static final String TAG_NAME_EXT = "footer-ext";
+	
 	public DocFooter() {
 		this.useFooter = false;
 	}

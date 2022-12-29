@@ -14,7 +14,7 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.base.facade.DocFacade;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.sample.facade.SampleFacade;
@@ -62,20 +62,35 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
+	private int getSourceType() {
+		int sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
+		if ( this.getNameBase().endsWith( "json" ) ) {
+			sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
+		} else if ( this.getNameBase().endsWith( "yaml" ) ) {
+			sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
+		}
+		return sourceType;
+	}
+	
 	private String getXmlPath() {
-		return "src/test/resources/sample_docs/"+this.getNameBase()+".xml";
+		String baseName = this.getNameBase();
+		if ( this.getSourceType() == DocFacadeSource.SOURCE_TYPE_XML ) {
+			baseName+= ".xml";
+		}
+		return "src/test/resources/sample_docs/"+baseName;
 	}
 	
 	protected Reader getXmlReader() throws Exception {
 		return new FileReader( this.getXmlPath() );
 	}
 	
+	
 	protected DocBase getDocBase() throws Exception {
 		// required : parsing the XML for model to be passed to DocFacade
 		DocBase docBase = null;
 		try ( Reader reader = this.getXmlReader() ) {
 			long start = System.currentTimeMillis();
-			docBase = DocFacade.parse( reader );
+			docBase = DocFacadeSource.getInstance().parse( reader, getSourceType() );
 			this.checkpoints.addCheckpointFromStartTime( "PARSE", start );
 		}
 		return docBase;
@@ -97,7 +112,7 @@ public class BasicFacadeTest {
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			long start = System.currentTimeMillis();
-			DocInput input = DocInput.newInput( type , reader );
+			DocInput input = DocInput.newInput( type , reader, this.getSourceType() );
 			DocOutput output = DocOutput.newOutput( fos );
 			facade.handle( input , output );
 			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+type, start );
