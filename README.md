@@ -15,6 +15,8 @@ There are five kinds of components (each components README.md contains module st
 
 ### 1. Framework core :
 * [Core library (fj-doc-base)](fj-doc-base/README.md) (contains a simple renderer for [Markdowm BASIC](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownBasicTypeHandler.java) and [Markdown EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java))
+* [Json extension (fj-doc-base-json)](fj-doc-base-json/README.md) (allow for using json as document generator instead of standard xml generator) [since 0.7.0]
+* [Yaml extension (fj-doc-base-yaml)](fj-doc-base-yaml/README.md) (allow for using yaml as document generator instead of standard xml generator) [since 0.7.0]
 * Doc format XSD [public](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-1.xsd)
 
 ### 2. Modules :
@@ -40,6 +42,7 @@ There are five kinds of components (each components README.md contains module st
 * [Doc type validation (fj-doc-val)](fj-doc-val/README.md) - simple utilities for validating file type.
 
 ### 5. Tutorial :
+* [Playgroundt (fj-doc-playground-quarkus)](fj-doc-playground-quarkus/README.md) [since 0.7.0]
 * [Samples and Quickstart (fj-doc-sample)](fj-doc-sample/README.md)
 
 ### 6. Extension Type Handlers (Extension renders) :

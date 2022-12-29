@@ -1,6 +1,10 @@
-﻿0.6.3 (2022-12-XX)
+﻿0.7.0 (2022-12-29)
 ------------------
++ Added module for using json a document generator [fj-doc-base-json](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-json) (based on jackson)
++ Added module for using yaml a document generator [fj-doc-base-yaml](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-yaml) (based on jackson)
++ Added playground module [fj-doc-playground-quarkus](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus) (based on quarkus)
 + Better pdf validation handling
++ Updated fj-core version to 0.8.6
 
 ﻿0.6.2 (2022-12-23)
 ------------------

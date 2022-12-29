@@ -10,8 +10,6 @@ Basic infrastructure for generation of [fj-doc XML format](https://www.fugerit.o
 *Status* :  
 All basic features are implemented (plus helpers for other modules).
   
-*[ChangeLog](ChangeLog.md)*  
-  
 *Quickstart* :
 
 This module is based on [DocHandlerFacade](src/main/java/org/fugerit/java/doc/base/facade/DocHandlerFacade.java)

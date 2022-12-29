@@ -1,0 +1,3 @@
+quarkus:
+  resteasy:
+    path: /playground/api
