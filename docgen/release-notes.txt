@@ -1,4 +1,6 @@
-﻿0.7.0 (2022-12-29)
+﻿+  Updated quarkus playground version to 2.15.1.Final
+
+0.7.0 (2022-12-29)
 ------------------
 + Added module for using json a document generator [fj-doc-base-json](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-json) (based on jackson)
 + Added module for using yaml a document generator [fj-doc-base-yaml](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-yaml) (based on jackson)
