@@ -1,3 +1,4 @@
+xsd-version: 1-10
 _t: doc
 _e:
 - _t: metadata
@@ -19,16 +20,12 @@ _e:
 - _t: body
   _e:
   - _t: phrase
-    align: center
     _v: Test phrase 01
   - _t: phrase
-    align: center
     _v: Test phrase 02
   - _t: phrase
-    align: center
     _v: Test phrase 03
   - _t: phrase
-    align: center
     _v: Test phrase 04
   - _t: image
     url: cl://test/img_test_red.png

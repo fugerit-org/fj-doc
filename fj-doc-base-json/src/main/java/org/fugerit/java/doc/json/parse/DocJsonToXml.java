@@ -54,6 +54,13 @@ public class DocJsonToXml {
 					throw new ConfigException( "Property must be an array : "+elementsNode );
 				}
 			}
+			Iterator<String> itNames = current.fieldNames();
+			while ( itNames.hasNext() ) {
+				String currentName = itNames.next();
+				if ( !DocObjectMapperHelper.isSpecialProperty( currentName ) ) {
+					tag.setAttribute( currentName , current.get( currentName ).asText() );
+				}
+			}
 		}
 		return tag;
 	}

@@ -1,8 +1,10 @@
 package org.fugerit.java.doc.json.parse;
 
 import java.io.Reader;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.facade.DocFacade;
@@ -32,6 +34,17 @@ public class DocObjectMapperHelper {
 	public static final String PROPERTY_XSD_VERSION = "xsd-version";
 	
 	private final static Logger logger = LoggerFactory.getLogger( DocObjectMapperHelper.class );
+	
+	private final static Set<String> SPECIAL_PROPERTY_NAMES = new HashSet<>();
+	static {
+		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TAG );
+		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TEXT );
+		SPECIAL_PROPERTY_NAMES.add( PROPERTY_ELEMENTS );
+	}
+	
+	public static boolean isSpecialProperty( String propertyName ) {
+		return SPECIAL_PROPERTY_NAMES.contains(propertyName);
+	}
 	
 	public static String findVersion( JsonNode root, String def ) {
 		String res = def;
