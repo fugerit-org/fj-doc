@@ -45,7 +45,7 @@ class DocXmlEditor extends Component {
 				appService.doAjaxJsonToBlob('POST', '/generate/'+this.state.outputFormat, this.state).then(response => {
 					if (response.success) {
 						let contentType = "application/pdf";
-						if ( this.state.outputFormat = 'XLSX' ) {
+						if ( this.state.outputFormat == 'XLSX' ) {
 							contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 						}
 	   				    const file = new Blob([response.result], {
