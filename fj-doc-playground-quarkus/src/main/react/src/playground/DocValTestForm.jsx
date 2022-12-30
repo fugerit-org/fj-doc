@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import axios from "axios";
+import appService from '../common/app-service';
 
 class DocValTestForm extends Component {
 	
@@ -20,34 +20,27 @@ class DocValTestForm extends Component {
 			alert( 'File non provided' );	
 		} else {
 			let formData = new FormData();
+			formData.append('file', this.state.fileToValidate);
 			
 			var reactState = this;
-			
-            formData.append('file', this.state.fileToValidate);
-			axios.post("/playground/api/val/check", formData, {
-  				headers: {
-    				"Content-Type": "multipart/form-data",
-  				},
-			}).then((res) => {
-		        console.log(res);
-		        if ( res.data != null ) {
-					reactState.setState({
-						validationResult: res.data.message
+			appService.doAjaxMultipart('POST', '/val/check', formData).then(response => {
+				console.log( response );
+     		 if (response.success) {
+       			 reactState.setState({
+					validationResult: response.result.message
+				})	
+     		 } else {
+				if ( response.result != null && response.result.message != null ) {
+	       			 reactState.setState({
+						validationResult: response.result.message
+					})	
+				} else {
+	       			 reactState.setState({
+						validationResult: response.status
 					})	
 				}
-		      })
-		      .catch((err) => {
-				 console.log(err);
-				if ( (err.response != null && err.response.data != null) ) {
-					reactState.setState({
-						validationResult: err.response.data.message
-					})					
-				} else {
-					reactState.setState({
-						validationResult: err.message
-					})
-				}
-		      });
+      		 }
+    		})
 		}
     };	
     
