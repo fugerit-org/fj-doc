@@ -16,7 +16,7 @@ import DocXmlEditor from './playground/DocXmlEditor';
 
 function App() {
 
-	const homepage = '/playground/fjdoc';
+	const homepage = '/fj-doc-playground/home';
 
 	let home = <h1>This is a simple playground for Venus (fj-doc)</h1>
 

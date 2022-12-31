@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-const defaultApiPath= '/playground/api';
+const defaultApiPath= '/fj-doc-playground/api';
 
 class FetchService {
   constructor(onRequestConfig, onRequestConfigError, onResponse, onResponseError, onNoServerResponse) {
