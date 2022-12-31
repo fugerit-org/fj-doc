@@ -25,7 +25,7 @@ class DocXmlEditor extends Component {
 		this.state = {
 			outputFormat: null,
 			docContent: placeholterXml,
-			validationResult:null
+			validationResult: null
 		}
 	}
 
@@ -34,44 +34,48 @@ class DocXmlEditor extends Component {
 
 	handleGenerate = (e) => {
 		e.preventDefault();
-			if ( this.state.outputFormat == 'HTML' ) {
-				appService.doAjaxJson('POST', '/generate/'+this.state.outputFormat, this.state).then(response => {
+		if (this.state.outputFormat == null) {
+			this.props.handleOpenDialog("Select an output format");
+		} else {
+			if (this.state.outputFormat == 'HTML') {
+				appService.doAjaxJson('POST', '/generate/' + this.state.outputFormat, this.state).then(response => {
 					if (response.success) {
 						var myWindow = window.open("", "response", "resizable=yes");
-	   				    myWindow.document.write(response.result);
+						myWindow.document.write(response.result);
 					}
 				})
 			} else {
-				appService.doAjaxJsonToBlob('POST', '/generate/'+this.state.outputFormat, this.state).then(response => {
+				appService.doAjaxJsonToBlob('POST', '/generate/' + this.state.outputFormat, this.state).then(response => {
 					if (response.success) {
 						let contentType = "application/pdf";
-						if ( this.state.outputFormat == 'XLSX' ) {
+						if (this.state.outputFormat == 'XLSX') {
 							contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 						}
-	   				    const file = new Blob([response.result], {
-	     					type: contentType,
-	   					 });
-	    				const fileURL = URL.createObjectURL(file);
-	    				window.open(fileURL);
+						const file = new Blob([response.result], {
+							type: contentType,
+						});
+						const fileURL = URL.createObjectURL(file);
+						window.open(fileURL);
 					}
 				})
 			}
+		}
 	};
 
 	handleFormat = (e) => {
 		e.preventDefault();
-		this.state = {
+		this.setState({
 			outputFormat: e.target.value,
 			docContent: this.state.docContent
-		}
+		});
 	};
 
 	handleDoc = (e) => {
 		e.preventDefault();
-		this.state = {
+		this.setState({
 			outputFormat: this.state.outputFormat,
 			docContent: e.target.value
-		}
+		});
 	};
 
 	render() {
@@ -86,7 +90,7 @@ class DocXmlEditor extends Component {
 				</Form.Select>
 				<Form.Group className="mb-3" controlId="xmlarea">
 					<Form.Label>Example textarea</Form.Label>
-					<Form.Control type="text" as="textarea" rows={20} onChange={this.handleDoc} defaultValue={this.state.docContent}  />
+					<Form.Control type="text" as="textarea" rows={20} onChange={this.handleDoc} defaultValue={this.state.docContent} />
 				</Form.Group>
 				<Button variant="primary" onClick={this.handleGenerate}>Generate document</Button>
 			</Form>

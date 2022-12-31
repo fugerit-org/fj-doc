@@ -5,6 +5,11 @@
   "homepage": "/fj-doc-playground/home",
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@material-ui/core": "^4.12.4",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "^5.11.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
