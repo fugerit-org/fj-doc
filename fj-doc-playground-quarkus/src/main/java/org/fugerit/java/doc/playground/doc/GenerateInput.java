@@ -1,25 +1,7 @@
 package org.fugerit.java.doc.playground.doc;
 
-public class GenerateInput {
+import org.fugerit.java.doc.playground.facade.BasicInput;
 
-    private String outputFormat;
-	
-    private String docContent;
-
-	public String getOutputFormat() {
-		return outputFormat;
-	}
-
-	public void setOutputFormat(String outputFormat) {
-		this.outputFormat = outputFormat;
-	}
-
-	public String getDocContent() {
-		return docContent;
-	}
-
-	public void setDocContent(String docContent) {
-		this.docContent = docContent;
-	}
+public class GenerateInput extends BasicInput {
     
 }

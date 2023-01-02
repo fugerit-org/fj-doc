@@ -23,6 +23,7 @@ class DocXmlEditor extends Component {
 		this.handleFormat = this.handleFormat.bind(this);
 		this.handleDoc = this.handleDoc.bind(this);
 		this.state = {
+			inputFormat: 'XML',			
 			outputFormat: null,
 			docContent: placeholterXml,
 			validationResult: null
@@ -62,6 +63,13 @@ class DocXmlEditor extends Component {
 		}
 	};
 
+	handleInputFormat = (e) => {
+		e.preventDefault();
+		this.setState({
+			inputFormat: e.target.value,
+		});
+	};
+
 	handleFormat = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -83,8 +91,20 @@ class DocXmlEditor extends Component {
 
 			<Form>
 				<Row>
+				<Row>
+					<Col>
+						<Form.Label>Source type</Form.Label>
+					</Col>
+					<Col>
+						<Form.Select aria-label="Select output format" onChange={this.handleInputFormat}>
+							<option value="XML">XML</option>
+							<option value="JSON">JSON</option>
+							<option value="YAML">YAML</option>
+						</Form.Select>
+					</Col>
+				</Row>				
 					<Col>				
-						<Form.Label>Convert to</Form.Label>
+						<Form.Label>Output format</Form.Label>
 					</Col>
 					<Col>									
 						<Form.Select aria-label="Select output format" onChange={this.handleFormat}>

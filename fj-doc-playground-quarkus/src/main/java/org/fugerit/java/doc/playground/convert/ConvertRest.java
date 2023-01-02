@@ -5,6 +5,7 @@ import java.io.StringWriter;
 
 import org.fugerit.java.doc.json.parse.DocJsonToXml;
 import org.fugerit.java.doc.json.parse.DocXmlToJson;
+import org.fugerit.java.doc.playground.facade.InputFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,10 +27,6 @@ public class ConvertRest {
 
 	private final static Logger logger = LoggerFactory.getLogger(ConvertRest.class);
 	
-	private final static String FORMAT_XML = "XML";
-	private final static String FORMAT_JSON = "JSON";
-	private final static String FORMAT_YAML = "YAML";
-	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -45,14 +42,14 @@ public class ConvertRest {
 			logger.info( "format input : {} -> output : {}", inputFormat, outputFormat );
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectMapper yamlMapper = new ObjectMapper( new YAMLFactory() );
-			if ( FORMAT_XML.equalsIgnoreCase( inputFormat ) ) {
-				if ( FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
+			if ( InputFacade.FORMAT_XML.equalsIgnoreCase( inputFormat ) ) {
+				if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
 					DocXmlToJson helper = new DocXmlToJson();
 					try ( StringReader reader = new StringReader( docContent ) ) {
 						JsonNode node = helper.convertToJsonNode( reader );
 						docOutput = node.toPrettyString();	
 					}
-				} else if ( FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
+				} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
 					DocXmlToJson helper = new DocXmlToJson( yamlMapper );
 					try ( StringReader reader = new StringReader( docContent ) ) {
 						JsonNode node = helper.convertToJsonNode( reader );
@@ -61,15 +58,15 @@ public class ConvertRest {
 				} else {
 					output.setMessage( "Invalid output format : "+outputFormat );
 				}
-			} else if ( FORMAT_JSON.equalsIgnoreCase( inputFormat ) ) {
-				if ( FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
+			} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( inputFormat ) ) {
+				if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
 					DocJsonToXml helper = new DocJsonToXml();
 					try ( StringReader reader = new StringReader( docContent );
 							StringWriter writer = new StringWriter() ) {
 						helper.writerAsXml(reader, writer);
 						docOutput = writer.toString();
 					}
-				} else if ( FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
+				} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
 					try ( StringReader reader = new StringReader( docContent ) ) {
 						JsonNode node = mapper.readTree( reader );
 						docOutput = yamlMapper.writeValueAsString( node );
@@ -77,15 +74,15 @@ public class ConvertRest {
 				} else {
 					output.setMessage( "Invalid output format : "+outputFormat );
 				}
-			} else if ( FORMAT_YAML.equalsIgnoreCase( inputFormat ) ) {
-				if ( FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
+			} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( inputFormat ) ) {
+				if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
 					DocJsonToXml helper = new DocJsonToXml( yamlMapper );
 					try ( StringReader reader = new StringReader( docContent );
 							StringWriter writer = new StringWriter() ) {
 						helper.writerAsXml(reader, writer);
 						docOutput = writer.toString();
 					}
-				} else if ( FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
+				} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
 					try ( StringReader reader = new StringReader( docContent ) ) {
 						JsonNode node = yamlMapper.readTree( reader );
 						docOutput = mapper.writerWithDefaultPrettyPrinter().writeValueAsString( node );
