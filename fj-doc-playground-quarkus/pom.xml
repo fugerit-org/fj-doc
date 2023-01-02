@@ -202,7 +202,6 @@
 									<executable>npm</executable>
 									<arguments>
 										<argument>install</argument>
-										<argument>--legacy-peer-deps</argument>
 									</arguments>
 									<workingDirectory>${src.react}</workingDirectory>
 								</configuration>
@@ -219,7 +218,6 @@
 									<executable>npm</executable>
 									<arguments>
 										<argument>install</argument>
-										<argument>--legacy-peer-deps</argument>
 									</arguments>
 									<workingDirectory>${src.react}</workingDirectory>
 								</configuration>
