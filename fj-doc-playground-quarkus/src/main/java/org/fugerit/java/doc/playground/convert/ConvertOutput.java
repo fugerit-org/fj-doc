@@ -1,11 +1,11 @@
 package org.fugerit.java.doc.playground.convert;
 
-public class ConvertOutput {
+import org.fugerit.java.doc.playground.facade.BasicOutput;
+
+public class ConvertOutput extends BasicOutput {
 
 	private String docOutput;
 
-	private String message;
-	
 	public String getDocOutput() {
 		return docOutput;
 	}
@@ -14,12 +14,4 @@ public class ConvertOutput {
 		this.docOutput = docOutput;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-	
 }

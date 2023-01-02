@@ -1,23 +1,19 @@
 package org.fugerit.java.doc.playground.val;
 
-public class ValOutput {
+import org.fugerit.java.doc.playground.facade.BasicOutput;
+
+public class ValOutput extends BasicOutput {
 
 	private boolean valid;
 	
-	private String message;
-
 	public ValOutput(boolean valid, String message) {
 		super();
 		this.valid = valid;
-		this.message = message;
+		this.setMessage(message);
 	}
 
 	public boolean isValid() {
 		return valid;
-	}
-
-	public String getMessage() {
-		return message;
 	}
 	
 }

@@ -59,28 +59,20 @@ class DocConversion extends Component {
 		e.preventDefault();
 		this.setState({
 			inputFormat: e.target.value,
-			outputFormat: this.state.outputFormat,			
-			docContent: this.state.docContent,
-			docOutput: this.state.docOutput
 		});
 	};
 
 	handleFormat = (e) => {
 		e.preventDefault();
-		this.setState({
-			inputFormat: this.state.inputFormat,			
+		this.setState({			
 			outputFormat: e.target.value,
-			docContent: this.state.docContent,
-			docOutput: this.state.docOutput
 		});
 	};
 
 	handleDoc = (e) => {
 		e.preventDefault();
 		this.setState({
-			outputFormat: this.state.outputFormat,
-			docContent: e.target.value,
-			docOutput: this.state.docOutput			
+			docContent: e.target.value,			
 		});
 	};
 
