@@ -1,4 +1,4 @@
-package test.org.fugerit.java.doc.yaml.parse;
+package test.org.fugerit.java.doc.json.parse;
 
 import static org.junit.Assert.fail;
 
@@ -13,21 +13,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-public class TestDocYamlToXml {
+public class TestDocXmlToJson {
 
-	private static final Logger logger = LoggerFactory.getLogger( TestDocYamlToXml.class );
+	private static final Logger logger = LoggerFactory.getLogger( TestDocXmlToJson.class );
 	
 	private void worker( String path ) {
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "sample/"+path+".xml" );
-				FileOutputStream fos = new FileOutputStream( "target/"+path+".yaml" )) {
-			ObjectMapper yamlMapper = new ObjectMapper( new YAMLFactory() );
-			DocXmlToJson converter = new DocXmlToJson( yamlMapper );
+				FileOutputStream fos = new FileOutputStream( "target/"+path+".json" )) {
+			DocXmlToJson converter = new DocXmlToJson();
 			JsonNode tree = converter.convertToJsonNode( new InputStreamReader( is ) );
 			logger.info( "xml -> {}", tree);
-			yamlMapper.writeValue( fos , tree );
+			fos.write( tree.toPrettyString().getBytes() );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			logger.error( message, e );

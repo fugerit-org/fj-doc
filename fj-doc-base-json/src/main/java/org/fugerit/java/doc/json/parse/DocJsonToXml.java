@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.doc.base.facade.DocFacade;
+import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -87,8 +88,8 @@ public class DocJsonToXml {
 			root = this.create(doc, null, json);
 			root.setAttribute( "xmlns" , DocFacade.SYSTEM_ID );
 			root.setAttribute( "xmlns:xsi" , "http://www.w3.org/2001/XMLSchema-instance" );
-			String xsdVwersion = DocObjectMapperHelper.findVersion(json, DocFacade.CURRENT_VERSION) ;
-			root.setAttribute( "xsi:schemaLocation" , "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-"+xsdVwersion+".xsd" );
+			String xsdVersion = DocObjectMapperHelper.findVersion(json, DocFacade.CURRENT_VERSION) ;
+			root.setAttribute( "xsi:schemaLocation" , DocParserContext.createXsdVersionXmlns(xsdVersion) );
 		} catch (Exception e) {
 			throw  new ConfigException( "Conversion error : "+e, e );
 		}

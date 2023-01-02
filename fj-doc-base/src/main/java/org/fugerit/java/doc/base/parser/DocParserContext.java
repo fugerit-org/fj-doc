@@ -35,6 +35,10 @@ public class DocParserContext {
 
 	private static final String XSD_BASE = "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-";
 	
+	public static String createXsdVersionXmlns( String xsdVersion ) {
+		return XSD_BASE+xsdVersion+".xsd";
+	}
+	
 	private DocParserHelper parserHelper = DocParserHelper.getInstance();
 	
 	private DocParserNameCheck parserNames = DocParserNameCheck.getInstance();
