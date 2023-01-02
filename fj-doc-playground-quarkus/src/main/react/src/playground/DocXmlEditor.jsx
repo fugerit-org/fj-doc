@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Button, ListGroup } from 'react-bootstrap';
+import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import appService from '../common/app-service';
 
@@ -37,7 +37,7 @@ class DocXmlEditor extends Component {
 		if (this.state.outputFormat == null) {
 			this.props.handleOpenDialog("Select an output format");
 		} else {
-			if (this.state.outputFormat == 'HTML') {
+			if (this.state.outputFormat === 'HTML') {
 				appService.doAjaxJson('POST', '/generate/' + this.state.outputFormat, this.state).then(response => {
 					if (response.success) {
 						var myWindow = window.open("", "response", "resizable=yes");
@@ -48,7 +48,7 @@ class DocXmlEditor extends Component {
 				appService.doAjaxJsonToBlob('POST', '/generate/' + this.state.outputFormat, this.state).then(response => {
 					if (response.success) {
 						let contentType = "application/pdf";
-						if (this.state.outputFormat == 'XLSX') {
+						if (this.state.outputFormat === 'XLSX') {
 							contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 						}
 						const file = new Blob([response.result], {
@@ -82,14 +82,21 @@ class DocXmlEditor extends Component {
 		return <Fragment>
 
 			<Form>
-				<Form.Select aria-label="Default select example" onChange={this.handleFormat}>
-					<option>Select the output format</option>
-					<option value="PDF">PDF</option>
-					<option value="XLSX">XLSX</option>
-					<option value="HTML">HTML</option>
-				</Form.Select>
+				<Row>
+					<Col>				
+						<Form.Label>Convert to</Form.Label>
+					</Col>
+					<Col>									
+						<Form.Select aria-label="Select output format" onChange={this.handleFormat}>
+							<option>Select the output format</option>
+							<option value="PDF">PDF</option>
+							<option value="XLSX">XLSX</option>
+							<option value="HTML">HTML</option>
+						</Form.Select>
+					</Col>
+				</Row>				
 				<Form.Group className="mb-3" controlId="xmlarea">
-					<Form.Label>Example textarea</Form.Label>
+					<Form.Label>Source area</Form.Label>
 					<Form.Control type="text" as="textarea" rows={20} onChange={this.handleDoc} defaultValue={this.state.docContent} />
 				</Form.Group>
 				<Button variant="primary" onClick={this.handleGenerate}>Generate document</Button>

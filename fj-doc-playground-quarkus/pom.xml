@@ -58,6 +58,14 @@
 		</dependency>
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-json</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-yaml</artifactId>
+		</dependency>						
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-val</artifactId>
 		</dependency>
 		<dependency>
@@ -130,6 +138,25 @@
 								<maven.home>${maven.home}</maven.home>
 							</systemPropertyVariables>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<configuration>
+							<shortRevisionLength>10</shortRevisionLength>
+							<attach>true</attach>
+							<!--make it available for jar/war classpath resource -->
+							<addOutputDirectoryToResources>true</addOutputDirectoryToResources>
+						</configuration>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>create-metadata</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>

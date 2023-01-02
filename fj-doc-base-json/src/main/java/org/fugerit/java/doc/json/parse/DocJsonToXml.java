@@ -1,12 +1,14 @@
 package org.fugerit.java.doc.json.parse;
 
 import java.io.Reader;
+import java.io.Writer;
 import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.w3c.dom.Document;
@@ -64,6 +66,15 @@ public class DocJsonToXml {
 			}
 		}
 		return tag;
+	}
+	
+	public void writerAsXml( Reader jsonReader, Writer writer ) throws ConfigException {
+		try {
+			Element root = this.convertToElement(jsonReader);
+			DOMIO.writeDOMIndent( root , writer );
+		} catch (Exception e) {
+			throw new ConfigException( "Errore converting json to xml : "+e, e );
+		}
 	}
 	
 	public Element convertToElement( Reader jsonReader ) throws ConfigException {
