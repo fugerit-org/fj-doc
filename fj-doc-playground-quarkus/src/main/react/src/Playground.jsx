@@ -14,7 +14,7 @@ import Version from './playground/Version';
 import DevValTestForm from './playground/DocValTestForm';
 import DocXmlEditor from './playground/DocXmlEditor';
 import DocConversion from './playground/DocConversion';
-import { Dialog, DialogTitle, Button } from "@material-ui/core";
+import { Dialog, DialogTitle, Button } from "@mui/material";
 
 const homepage = '/fj-doc-playground/home';
 
