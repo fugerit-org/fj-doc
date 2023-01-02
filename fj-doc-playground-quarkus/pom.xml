@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.7.0</version>
+		<version>0.7-SNAPSHOT</version>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>
@@ -14,9 +14,15 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
 		<quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-		<quarkus.platform.version>2.15.0.Final</quarkus.platform.version>
+		<quarkus.platform.version>3.0.0.Alpha2</quarkus.platform.version>
 		<skipITs>true</skipITs>
 		<surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
+		<!-- front end runtime -->
+		<src.react>src/main/react</src.react>
+		<npm.build.script>build</npm.build.script>
+		<fe.dist.dir>src/main/resources/META-INF/resources/fj-doc-playground/home</fe.dist.dir>
+		<exec-plugin.version>3.1.0</exec-plugin.version>
+		<antrun-plugin.version>3.1.0</antrun-plugin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -35,12 +41,8 @@
 			<artifactId>quarkus-config-yaml</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-resteasy-jackson</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-resteasy-multipart</artifactId>
+		    <groupId>io.quarkus</groupId>
+		    <artifactId>quarkus-resteasy-reactive-jackson</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
@@ -56,7 +58,23 @@
 		</dependency>
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-json</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-yaml</artifactId>
+		</dependency>						
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-val</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-fop</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-poi</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
@@ -123,6 +141,25 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<configuration>
+							<shortRevisionLength>10</shortRevisionLength>
+							<attach>true</attach>
+							<!--make it available for jar/war classpath resource -->
+							<addOutputDirectoryToResources>true</addOutputDirectoryToResources>
+						</configuration>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>create-metadata</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<profiles>
@@ -138,5 +175,108 @@
 				<quarkus.package.type>native</quarkus.package.type>
 			</properties>
 		</profile>
+		
+
+		<profile>
+
+			<id>buildreact</id>
+
+			<build>
+
+				<plugins>
+
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>${exec-plugin.version}</version>
+						<executions>
+							<!-- Required: The following will ensure `npm install` is called
+                         before anything else during the 'Default Lifecycle' -->
+							<execution>
+								<id>npm install (initialize)</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>initialize</phase>
+								<configuration>
+									<executable>npm</executable>
+									<arguments>
+										<argument>install</argument>
+									</arguments>
+									<workingDirectory>${src.react}</workingDirectory>
+								</configuration>
+							</execution>
+							<!-- Required: The following will ensure `npm install` is called
+                         before anything else during the 'Clean Lifecycle' -->
+							<execution>
+								<id>npm install (clean)</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>pre-clean</phase>
+								<configuration>
+									<executable>npm</executable>
+									<arguments>
+										<argument>install</argument>
+									</arguments>
+									<workingDirectory>${src.react}</workingDirectory>
+								</configuration>
+							</execution>
+
+							<!-- Required: This following calls `npm run build` where 'build' is
+                         the script name I used in my project, change this if yours is
+                             different -->
+							<execution>
+								<id>npm run build (compile)</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<phase>compile</phase>
+								<configuration>
+									<executable>npm</executable>
+									<arguments>
+										<argument>run</argument>
+										<argument>${npm.build.script}</argument>
+									</arguments>
+									<workingDirectory>${src.react}</workingDirectory>
+								</configuration>
+							</execution>
+
+						</executions>
+
+					</plugin>
+
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>${antrun-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>copy front end</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<target>
+										<delete dir="${fe.dist.dir}" />
+										<mkdir dir="${fe.dist.dir}" />
+										<copy todir="${fe.dist.dir}">
+											<fileset dir="${src.react}/build">
+												<include name="**/*.*" />
+											</fileset>
+										</copy>
+									</target>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+
+				</plugins>
+
+			</build>
+
+		</profile>
+		
 	</profiles>
+	
 </project>

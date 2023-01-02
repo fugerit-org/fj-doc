@@ -1,4 +1,11 @@
-﻿0.7.0 (2022-12-29)
+﻿0.7.1 (2023-01-02)
+------------------
++ Added conversion utility from json/yaml to xml
++ Added xml to [json/yaml conversion conventions](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-json/xml_conversion.md)
++ More functionalities in playground
++ Upgrade playground to quarkus 3.0.0.Alpha2
+
+0.7.0 (2022-12-29)
 ------------------
 + Added module for using json a document generator [fj-doc-base-json](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-json) (based on jackson)
 + Added module for using yaml a document generator [fj-doc-base-yaml](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-yaml) (based on jackson)

@@ -42,7 +42,7 @@ There are five kinds of components (each components README.md contains module st
 * [Doc type validation (fj-doc-val)](fj-doc-val/README.md) - simple utilities for validating file type.
 
 ### 5. Tutorial :
-* [Playgroundt (fj-doc-playground-quarkus)](fj-doc-playground-quarkus/README.md) [since 0.7.0]
+* [Playground (fj-doc-playground-quarkus)](fj-doc-playground-quarkus/README.md) [since 0.7.0]
 * [Samples and Quickstart (fj-doc-sample)](fj-doc-sample/README.md)
 
 ### 6. Extension Type Handlers (Extension renders) :

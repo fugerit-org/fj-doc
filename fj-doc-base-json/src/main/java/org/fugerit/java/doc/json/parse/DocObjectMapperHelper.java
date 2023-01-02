@@ -40,6 +40,7 @@ public class DocObjectMapperHelper {
 		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TAG );
 		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TEXT );
 		SPECIAL_PROPERTY_NAMES.add( PROPERTY_ELEMENTS );
+		SPECIAL_PROPERTY_NAMES.add( PROPERTY_XSD_VERSION );
 	}
 	
 	public static boolean isSpecialProperty( String propertyName ) {

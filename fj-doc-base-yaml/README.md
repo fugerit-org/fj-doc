@@ -9,3 +9,12 @@ Add the option to use a yank as document generator instead of standard xml sourc
 
 *Status* :  
 All basic features are implemented (yaml parsing, conversion from and to xml)
+
+*Doc YAML format*  
+The xml and yaml format have inherent differences. this is why is important to read the [conversion conventions used](../fj-doc-base-json/xml_conversion.md) [note : the conventions refers to the json format, but the same considerations has been used for YAML format).
+
+src/test/resources/sample/doc_test_01.yaml
+
+Examples : 
+* [sample yaml doc](src/test/resources/sample/doc_test_01.yaml)
+* [sample xml doc](src/test/resources/sample/doc_test_01.xml)
