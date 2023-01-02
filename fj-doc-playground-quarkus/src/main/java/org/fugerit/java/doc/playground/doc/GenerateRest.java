@@ -8,6 +8,7 @@ import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
@@ -111,12 +112,12 @@ public class GenerateRest {
 			if ( "XLSX".equalsIgnoreCase( input.getOutputFormat() ) ) {
 				handler = XlsxPoiTypeHandler.HANDLER;
 			} else if ( "HTML".equalsIgnoreCase( input.getOutputFormat() ) ) {
-				handler = FreeMarkerHtmlTypeHandler.HANDLER;
+				handler = FreeMarkerHtmlFragmentTypeHandler.HANDLER;
 			}
 			byte[] data = this.generateHelper(input, handler);
 			GenerateOutput output = new GenerateOutput();
 			output.setDocOutputBase64( Base64.getEncoder().encodeToString( data ) );
-			res = Response.ok().entity( data ).build();
+			res = Response.ok().entity( output ).build();
 		} catch (Exception e) {
 			logger.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

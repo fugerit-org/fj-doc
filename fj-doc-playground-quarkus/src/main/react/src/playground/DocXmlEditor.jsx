@@ -26,7 +26,8 @@ class DocXmlEditor extends Component {
 			inputFormat: 'XML',			
 			outputFormat: null,
 			docContent: placeholterXml,
-			validationResult: null
+			docOutput: null,
+			docFormat: null
 		}
 	}
 
@@ -38,30 +39,22 @@ class DocXmlEditor extends Component {
 		if (this.state.outputFormat == null) {
 			this.props.handleOpenDialog("Select an output format");
 		} else {
-			if (this.state.outputFormat === 'HTML') {
-				appService.doAjaxJson('POST', '/generate/' + this.state.outputFormat, this.state).then(response => {
-					if (response.success) {
-						var myWindow = window.open("", "response", "resizable=yes");
-						myWindow.document.write(response.result);
-					}
-				})
-			} else {
-				appService.doAjaxJsonToBlob('POST', '/generate/' + this.state.outputFormat, this.state).then(response => {
-					if (response.success) {
-						let contentType = "application/pdf";
-						if (this.state.outputFormat === 'XLSX') {
-							contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-						}
-						const file = new Blob([response.result], {
-							type: contentType,
-						});
-						const fileURL = URL.createObjectURL(file);
-						window.open(fileURL);
-					}
-				})
-			}
+			var reactState = this
+			var payload = {}
+			payload.inputFormat = this.state.inputFormat;
+			payload.outputFormat = this.state.outputFormat;
+			payload.docContent = this.state.docContent;
+			appService.doAjaxJson('POST', '/generate/document', payload).then(response => {
+				if (response.success) {
+					reactState.setState({
+						docOutput: response.result.docOutputBase64,
+						docFormat: this.state.outputFormat
+					})
+				} 
+			})
 		}
-	};
+	};	
+	
 
 	handleInputFormat = (e) => {
 		e.preventDefault();
@@ -87,10 +80,24 @@ class DocXmlEditor extends Component {
 	};
 
 	render() {
+		
+		let outputData = <Fragment>Here will be the output</Fragment>
+		if ( this.state.docOutput != null && this.state.docFormat != null ) {
+			if ( this.state.docFormat === 'HTML' ) {
+				var decodedStringAtoB = atob(this.state.docOutput);
+				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: decodedStringAtoB }}></div>
+			}  else if ( this.state.docFormat === 'PDF' ) {
+				let srcData = 'data:application/pdf;base64,'+ this.state.docOutput;
+				outputData = outputData = <embed width="100%" height="600" src={srcData}/>
+			}  else if ( this.state.docFormat === 'XLSX' ) {
+				let srcData = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+ this.state.docOutput;
+				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
+			}
+		}
+		
 		return <Fragment>
 
 			<Form>
-				<Row>
 				<Row>
 					<Col>
 						<Form.Label>Source type</Form.Label>
@@ -102,7 +109,8 @@ class DocXmlEditor extends Component {
 							<option value="YAML">YAML</option>
 						</Form.Select>
 					</Col>
-				</Row>				
+				</Row>
+				<Row>				
 					<Col>				
 						<Form.Label>Output format</Form.Label>
 					</Col>
@@ -114,11 +122,18 @@ class DocXmlEditor extends Component {
 							<option value="HTML">HTML</option>
 						</Form.Select>
 					</Col>
-				</Row>				
+				</Row>		
+				<Row>
+					<Col>						
 				<Form.Group className="mb-3" controlId="xmlarea">
 					<Form.Label>Source area</Form.Label>
 					<Form.Control type="text" as="textarea" rows={20} onChange={this.handleDoc} defaultValue={this.state.docContent} />
 				</Form.Group>
+					</Col>
+					<Col>
+						<div>{outputData}</div>
+					</Col>
+				</Row>					
 				<Button variant="primary" onClick={this.handleGenerate}>Generate document</Button>
 			</Form>
 
