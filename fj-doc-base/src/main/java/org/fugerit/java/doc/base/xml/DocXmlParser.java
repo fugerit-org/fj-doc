@@ -7,10 +7,8 @@ import java.util.Properties;
 import javax.xml.parsers.SAXParser;
 
 import org.fugerit.java.core.io.StreamIO;
-import org.fugerit.java.core.xml.XMLValidator;
 import org.fugerit.java.core.xml.sax.SAXParseResult;
 import org.fugerit.java.core.xml.sax.XMLFactorySAX;
-import org.fugerit.java.core.xml.sax.XMLValidatorSAX;
 import org.fugerit.java.core.xml.sax.dh.DefaultHandlerComp;
 import org.fugerit.java.core.xml.sax.er.ByteArrayEntityResolver;
 import org.fugerit.java.doc.base.facade.DocFacade;
@@ -89,14 +87,12 @@ public class DocXmlParser extends AbstractDocParser {
 	
 	@Override
 	protected DocValidationResult validateWorker(Reader reader) throws Exception {
-		ByteArrayEntityResolver er = newEntityResolver( params );
-		XMLValidator validator = XMLValidatorSAX.newInstance( er );
-		SAXParseResult result = validator.validateXML( reader );
 		DocValidationResult docResult = DocValidationResult.newDefaultNotDefiniedResult();
-		for ( Exception e : result.fatalsAndErrors() )  {
+		SAXParseResult result = DocValidator.validate( reader );
+		for ( Exception e : result.fatalsAndErrors() ) {
 			docResult.getErrorList().add( e.toString() );
 		}
-		for ( Exception e : result.warnings() )  {
+		for ( Exception e : result.warnings() ) {
 			docResult.getInfoList().add( e.toString() );
 		}
 		docResult.evaluateResult();
