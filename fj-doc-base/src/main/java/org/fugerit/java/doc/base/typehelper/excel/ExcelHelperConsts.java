@@ -17,4 +17,9 @@ public class ExcelHelperConsts {
 	public final static String PROP_XLS_TRY_AUTORESIZE_TRUE = "true";
 	public final static String PROP_XLS_TRY_AUTORESIZE_DEFAULT = PROP_XLS_TRY_AUTORESIZE_FALSE;
 	
+	public final static String PROP_XLS_FAIL_ON_AUTORESIZE_ERROR = "excel-fail-on-autoresize-error";
+	public final static String PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_FALSE = "false";
+	public final static String PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_TRUE = "true";
+	public final static String PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_DEFAULT = PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_TRUE;
+	
 }

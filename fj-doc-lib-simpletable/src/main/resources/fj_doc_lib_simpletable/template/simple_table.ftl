@@ -8,6 +8,7 @@
 		<!-- for xlsx format -->
 		<info name="excel-table-id">simple-table=${simpleTableModel.sheetName}</info>
 		<info name="excel-try-autoresize">true</info>
+		<info name="excel-fail-on-autoresize-error">false</info>
 		<!-- for cvs format -->
 		<info name="csv-table-id">simple-table</info>
 		<!-- for fixed size formats, like pdf -->
