@@ -95,7 +95,7 @@ public class DocObjectMapperHelper {
 	}
 
 	public DocValidationResult validateWorkerResult(Reader reader) throws Exception {
-		DocValidationResult result = DocValidationResult.newDefaultNotDefiniedResult();
+		DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
 		DocJsonToXml convert = new DocJsonToXml( this.mapper );
 		Element root = convert.convertToElement( reader );
 		try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() )  {

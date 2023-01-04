@@ -37,3 +37,8 @@ npm run start
 ## modules currently supported in playground : 
 * fj-doc-val (and all its extensions)
 * fj-doc-base (and all its extensions)
+
+## functions available
+* Doc Xml Editor : allow for writing documents in XML/JSON/YAML, validating them and generating some output formats (currently PDF/XLSX/HTML) [covers fj-doc-mod* modules]
+* Doc Conversion : allow source conversion from/to XML/JSON/YAML [convers fj-doc-base* modules]
+* Doc Type Validator : allow validation of documents in various formats [covers fj-doc-val* modules]

@@ -20,6 +20,7 @@ class DocXmlEditor extends Component {
 	constructor(props) {
 		super(props);
 		this.handleGenerate = this.handleGenerate.bind(this);
+		this.handleValidate = this.handleValidate.bind(this);
 		this.handleFormat = this.handleFormat.bind(this);
 		this.handleDoc = this.handleDoc.bind(this);
 		this.state = {
@@ -53,9 +54,29 @@ class DocXmlEditor extends Component {
 				} 
 			})
 		}
-	};	
+	};
 	
-
+	handleValidate = (e) => {
+		e.preventDefault();
+		if (this.state.outputFormat == null) {
+			this.props.handleOpenDialog("Select an output format");
+		} else {
+			var reactState = this
+			var payload = {}
+			payload.inputFormat = this.state.inputFormat;
+			payload.outputFormat = this.state.outputFormat;
+			payload.docContent = this.state.docContent;
+			appService.doAjaxJson('POST', '/generate/validate', payload).then(response => {
+				if (response.success) {
+					reactState.setState({
+						docOutput: response.result.docOutputBase64,
+						docFormat: this.state.outputFormat
+					})
+				} 
+			})
+		}
+	};		
+	
 	handleInputFormat = (e) => {
 		e.preventDefault();
 		this.setState({
@@ -133,8 +154,22 @@ class DocXmlEditor extends Component {
 					<Col>
 						<div>{outputData}</div>
 					</Col>
-				</Row>					
-				<Button variant="primary" onClick={this.handleGenerate}>Generate document</Button>
+				</Row>			
+				<Row>
+					<Col>						
+						<Row>
+							<Col>							
+								<Button variant="primary" onClick={this.handleGenerate}>Generate document</Button> 
+							</Col>
+							<Col>							 
+								<Button variant="primary" onClick={this.handleValidate}>Validate document</Button>
+							</Col>							
+						</Row>							
+					</Col>
+					<Col>
+						
+					</Col>
+				</Row>							
 			</Form>
 
 		</Fragment>
