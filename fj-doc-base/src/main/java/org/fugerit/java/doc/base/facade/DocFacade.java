@@ -38,11 +38,14 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocContainer;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocHelper;
+import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
 
 /**
+ * Better to avoid this implementations, which is left only for compatibility.
  * 
+ * Should be used instande {@link DocFacadeSource} or a {@link DocParser} instance.
  *
  * @author mfranci
  *
@@ -83,7 +86,7 @@ public class DocFacade {
 	public static boolean validate( Reader is, Properties params ) throws Exception {
 		boolean valRes = false;
 		try {
-			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT, params );
+			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
 			int result = parser.validate( is );
 			valRes = ( result == DocValidationResult.VALIDATION_OK );
 		} catch (Exception e) {
@@ -101,7 +104,7 @@ public class DocFacade {
 	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws Exception {
 		DocBase docBase = null;
 		try {
-			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT, params );
+			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
 			docBase = parser.parse(is);
 		} catch (Exception e) {
 			throw e;

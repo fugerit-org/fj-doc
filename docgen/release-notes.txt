@@ -1,4 +1,11 @@
-﻿0.7.1 (2023-01-02)
+﻿0.7.2 (2023-01-04)
+------------------
++ Fixed xml validation in DocXmlParser
++ Added validation in DocJsonParser and DocYamlParser (though conversion to XML)
++ The xml parsing is no namespace aware (experimental)
++ More functionalities in playground
+
+0.7.1 (2023-01-02)
 ------------------
 + Added conversion utility from json/yaml to xml
 + Added xml to [json/yaml conversion conventions](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base-json/xml_conversion.md)

@@ -1,5 +1,8 @@
 package org.fugerit.java.doc.json.parse;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -7,11 +10,15 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParserContext;
+import org.fugerit.java.doc.base.parser.DocValidationResult;
+import org.fugerit.java.doc.base.xml.DocXmlParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -87,6 +94,22 @@ public class DocObjectMapperHelper {
 		context.handleEndElement(qName);
 	}
 
+	public DocValidationResult validateWorkerResult(Reader reader) throws Exception {
+		DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
+		DocJsonToXml convert = new DocJsonToXml( this.mapper );
+		Element root = convert.convertToElement( reader );
+		try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() )  {
+			DOMIO.writeDOMIndent(root, buffer);
+			try ( Reader xmlReader = new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ) ) ) {
+				DocXmlParser parser = new DocXmlParser();
+				result = parser.validateResult(xmlReader);
+				if ( !result.getErrorList().isEmpty() ) {
+					result.getInfoList().add( "This validation is made through conversion to xml, so lines/columns number in errors are to be considered an hint" );
+				}
+			}
+		}
+		return result;
+	}
 	
 	public DocBase parse(Reader reader) throws Exception {
 		DocParserContext context = new DocParserContext();

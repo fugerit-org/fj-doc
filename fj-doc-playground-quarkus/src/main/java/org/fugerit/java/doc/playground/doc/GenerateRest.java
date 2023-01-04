@@ -4,14 +4,21 @@ import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 import java.util.Base64;
 
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.base.parser.DocParser;
+import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
-import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
+import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
+import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
+import org.fugerit.java.doc.playground.facade.BasicInput;
 import org.fugerit.java.doc.playground.facade.InputFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,73 +58,92 @@ public class GenerateRest {
 		}
 		return result;
 	}
-	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	@Path("/PDF")
-	public Response pdf( GenerateInput input) {
-		Response res = Response.status(Response.Status.BAD_REQUEST).build();
-		try {
-			PdfFopTypeHandler handler = new PdfFopTypeHandler();
-			byte[] data = this.generateHelper(input, handler);
-			res = Response.ok().entity( data ).build();
-		} catch (Exception e) {
-			logger.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+
+	private DocTypeHandler findHandler( BasicInput input ) {
+		DocTypeHandler handler = new PdfFopTypeHandler();
+		if ( "XLSX".equalsIgnoreCase( input.getOutputFormat() ) ) {
+			handler = XlsxPoiTypeHandler.HANDLER;
+		} else if ( "HTML".equalsIgnoreCase( input.getOutputFormat() ) ) {
+			handler = FreeMarkerHtmlFragmentTypeHandler.HANDLER;
 		}
-		return res;
+		return handler;
 	}
 	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
-	@Path("/HTML")
-	public Response html( GenerateInput input) {
-		Response res = Response.status(Response.Status.BAD_REQUEST).build();
-		try {
-			byte[] data = this.generateHelper(input, FreeMarkerHtmlTypeHandler.HANDLER);
-			res = Response.ok().entity( data ).build();
-		} catch (Exception e) {
-			logger.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+	private DocParser findParser( BasicInput input ) {
+		int sourceType = DocFacadeSource.SOURCE_TYPE_XML;
+		if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( input.getInputFormat() ) ) {
+			sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
+		} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( input.getInputFormat() ) ) {
+			sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
 		}
-		return res;
-	}
-	
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_HTML)
-	@Path("/XLSX")
-	public Response xlsx( GenerateInput input) {
-		Response res = Response.status(Response.Status.BAD_REQUEST).build();
-		try {
-			byte[] data = this.generateHelper(input, XlsxPoiTypeHandler.HANDLER);
-			res = Response.ok().entity( data ).build();
-		} catch (Exception e) {
-			logger.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-		}
-		return res;
+		return DocFacadeSource.getInstance().getParserForSource( sourceType );
 	}
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/document")
-	public Response output( GenerateInput input) {
+	public Response document( GenerateInput input) {
 		Response res = Response.status(Response.Status.BAD_REQUEST).build();
 		try {
-			DocTypeHandler handler = new PdfFopTypeHandler();;
-			if ( "XLSX".equalsIgnoreCase( input.getOutputFormat() ) ) {
-				handler = XlsxPoiTypeHandler.HANDLER;
-			} else if ( "HTML".equalsIgnoreCase( input.getOutputFormat() ) ) {
-				handler = FreeMarkerHtmlFragmentTypeHandler.HANDLER;
-			}
+			DocTypeHandler handler = this.findHandler(input);
 			byte[] data = this.generateHelper(input, handler);
 			GenerateOutput output = new GenerateOutput();
 			output.setDocOutputBase64( Base64.getEncoder().encodeToString( data ) );
 			res = Response.ok().entity( output ).build();
+		} catch (Exception e) {
+			logger.info("Error : " + e, e);
+			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+		}
+		return res;
+	}
+	
+	private void addRow( SimpleTable simpleTableModel, int count, String level, String message ) {
+		SimpleRow errorRow = new SimpleRow();
+		if ( count > 0 ) {
+			errorRow.addCell( String.valueOf( count ) );	
+		} else {
+			errorRow.addCell( "-" );
+		}
+    	errorRow.addCell( level );
+    	errorRow.addCell( message );
+        simpleTableModel.addRow( errorRow );
+	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/validate")
+	public Response validate( GenerateInput input) {
+		Response res = Response.status(Response.Status.BAD_REQUEST).build();
+		try {
+			DocParser parser = this.findParser(input);
+			try ( StringReader reader = new StringReader( input.getDocContent() );
+					ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
+				DocValidationResult result = parser.validateResult( reader );
+				DocTypeHandler handler = this.findHandler(input);
+				SimpleTable simpleTableModel = SimpleTableFacade.newTable( 15, 20, 65 );
+		        SimpleRow headerRow = new SimpleRow( BooleanUtils.BOOLEAN_TRUE );
+		        headerRow.addCell( "#" );
+		        headerRow.addCell( "level" );
+		        headerRow.addCell( "message" );
+		        simpleTableModel.addRow( headerRow );
+		        int count = 1;
+		        for ( String message : result.getErrorList() ) {
+		        	this.addRow(simpleTableModel, count, "error", message);
+			        count++;
+		        }
+		        for ( String message : result.getInfoList() ) {
+		        	this.addRow(simpleTableModel, count, "info", message);
+			        count++;
+		        }
+		        this.addRow(simpleTableModel, 0, "result", "Document valid? : "+ ( DocValidationResult.RESULT_CODE_OK == result.getResultCode() ) );
+		        SimpleTableDocConfig docConfig = SimpleTableDocConfig.newConfig();
+		        docConfig.processSimpleTable(simpleTableModel, handler, buffer);
+				GenerateOutput output = new GenerateOutput();
+				output.setDocOutputBase64( Base64.getEncoder().encodeToString( buffer.toByteArray() ) );
+				res = Response.ok().entity( output ).build();
+			}
 		} catch (Exception e) {
 			logger.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();

@@ -14,7 +14,7 @@ public class DocValidationResult extends BasicResult {
 	
 	public static final int VALIDATION_NOT_SUPPORTED = VALIDATION_KO-11;
 	
-	public static final int VALIDATION_NOT_DEFINIED = VALIDATION_KO-12;
+	public static final int VALIDATION_NOT_DEFINED = VALIDATION_KO-12;
 	
 	public DocValidationResult( int result ) {
 		super( result );
@@ -46,8 +46,8 @@ public class DocValidationResult extends BasicResult {
 		return new DocValidationResult( VALIDATION_NOT_SUPPORTED );
 	}
 	
-	public static DocValidationResult newDefaultNotDefiniedResult() {
-		return new DocValidationResult( VALIDATION_NOT_DEFINIED );
+	public static DocValidationResult newDefaultNotDefinedResult() {
+		return new DocValidationResult( VALIDATION_NOT_DEFINED );
 	}
 	
 	public int evaluateResult() {
