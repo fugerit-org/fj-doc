@@ -11,19 +11,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DocJsonParser extends AbstractDocParser {
 	
+	private DocObjectMapperHelper helper;
+	
 	public DocJsonParser() {
 		super( DocFacadeSource.SOURCE_TYPE_JSON );
+		this.helper = new DocObjectMapperHelper( new ObjectMapper() );
 	}
 
+	private DocObjectMapperHelper getHelper() {
+		return this.helper;
+	}
+	
 	@Override
 	protected DocValidationResult validateWorker(Reader reader) throws Exception {
-		return DocValidationResult.newDefaultNotSupportedResult();
+		return this.getHelper().validateWorkerResult(reader);
 	}
 
 	@Override
 	protected DocBase parseWorker(Reader reader) throws Exception {
-		DocObjectMapperHelper helper = new DocObjectMapperHelper( new ObjectMapper() );
-		return helper.parse(reader);
+		return this.getHelper().parse(reader);
 	}
 	
 }
