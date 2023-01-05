@@ -194,7 +194,7 @@ public class AutodocModelToSinpleTableFacade {
 				try {
 					List<XsdAttribute> listAtts = complexType.getAllXsdAttributes().collect( Collectors.toList() );
 					if ( !listAtts.isEmpty() ) {
-						simpleTable.addRow( helper.newHeaderRow( xsdElement.getRawName(), "Description", "Note" ) );
+						simpleTable.addRow( helper.newHeaderRow( "Attributes for : "+xsdElement.getRawName(), "Description", "Type" ) );
 						for ( XsdAttribute xsdAttribute : listAtts ) {
 							simpleTable.addRow( helper.newNormalRow( xsdAttribute.getRawName(), element.annotationAsSingleString( xsdAttribute.getAnnotation() ), this.handleAttributeType(xsdAttribute) ) );
 						}
