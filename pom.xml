@@ -71,6 +71,7 @@
 		<module>fj-doc-base-yaml</module>
 		<module>fj-doc-freemarker</module>
 		<module>fj-doc-lib-simpletable</module>
+		<module>fj-doc-lib-autodoc</module>
 		<module>fj-doc-mod-poi</module>
 		<module>fj-doc-mod-fop</module>
 		<module>fj-doc-mod-opencsv</module>
@@ -139,7 +140,13 @@
 				<artifactId>fj-doc-lib-simpletable</artifactId>
 				<version>${project.version}</version>
 			</dependency>	
-			
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-lib-autodoc</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val</artifactId>

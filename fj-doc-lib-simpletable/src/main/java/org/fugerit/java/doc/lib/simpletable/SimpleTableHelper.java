@@ -5,10 +5,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleCell;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 
-public class SimpleTableFacade {
+public class SimpleTableHelper {
+
+	private Integer defaultBorderWidth;
+	
+	public SimpleTableHelper withDefaultBorderWidth( int defaultBorderWidth ) {
+		this.defaultBorderWidth = defaultBorderWidth;
+		return this;
+	}
+
+	public Integer getDefaultBorderWidth() {
+		return defaultBorderWidth;
+	}
 
 	/**
 	 * Creates a new {@link SimpleTable}
@@ -19,7 +33,7 @@ public class SimpleTableFacade {
 	 * @param   colWidths	columns width percentage (minimum column width must be 1, sum must be 100)
 	 * @return	the new table model initialized
 	 */
-	public static SimpleTable newTable( Integer... colWidths ) {
+	public SimpleTable newTable( Integer... colWidths ) {
 		if ( colWidths == null ) {
 			throw new ConfigRuntimeException( "Minimum one colunm must be provided" );
 		}
@@ -35,7 +49,7 @@ public class SimpleTableFacade {
 	 * @param	colWidths	columns width percentage (minimum column width must be 1, sum must be 100)
 	 * @return	the new table model initialized
 	 */
-	public static SimpleTable newTable( List<Integer> colWidths ) {
+	public SimpleTable newTable( List<Integer> colWidths ) {
 		if ( colWidths == null ) {
 			throw new ConfigRuntimeException( "Minimum one colunm must be provided" );
 		} else {
@@ -55,12 +69,34 @@ public class SimpleTableFacade {
 	 * 
 	 * @return	the new table model initialized
 	 */
-	public static SimpleTable newTableSingleColumn() {
+	public SimpleTable newTableSingleColumn() {
 		return newTable( 100 );
 	}
-
-	public static SimpleTableHelper newHelper() {
-		return new SimpleTableHelper();
+	
+	public SimpleCell newCell( String content ) {
+		SimpleCell simpleCell = new SimpleCell( content );
+		if ( this.getDefaultBorderWidth() != null ) {
+			simpleCell.setBorderWidth( this.getDefaultBorderWidth() );	
+		}
+		return simpleCell;
+	}
+	
+	public SimpleRow newHeaderWorker( String isHeader, String... cells ) {
+		SimpleRow row = new SimpleRow( isHeader );
+		if ( cells != null ) {
+			for ( int k=0; k<cells.length; k++ ) {
+				row.addCell( this.newCell( cells[k] ) );
+			}
+		}
+		return row;
+	}
+	
+	public SimpleRow newHeaderRow( String... cells ) {
+		return this.newHeaderWorker( BooleanUtils.BOOLEAN_TRUE , cells );
+	}
+	
+	public SimpleRow newNormalRow( String... cells ) {
+		return this.newHeaderWorker( BooleanUtils.BOOLEAN_FALSE , cells );
 	}
 	
 }
