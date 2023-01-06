@@ -33,10 +33,6 @@ public class AutodocElement implements KeyString, Serializable {
 	public XsdElement getXsdElement() {
 		return xsdElement;
 	}
-
-	public String getAnnotationAsSingleString() {
-		return AutodocUtils.annotationAsSingleStringHelper( this.getXsdElement().getAnnotation() );
-	}
 	
 	@Override
 	public String getKey() {
@@ -51,8 +47,16 @@ public class AutodocElement implements KeyString, Serializable {
 		return complexType;
 	}
 	
+	public AutodocType getAutodocType() {
+		return new AutodocType( this.getComplexType() );
+	}
+	
 	public Collection<XsdAttribute> getXsdAttributes() {
 		return this.getComplexType().getAllXsdAttributes().collect( Collectors.toList() );
+	}
+	
+	public Collection<AutodocAttribute> getAutodocAttributes() {
+		return this.getComplexType().getAllXsdAttributes().map( current -> { return new AutodocAttribute( current ); } ).collect( Collectors.toList() );
 	}
 	
 }

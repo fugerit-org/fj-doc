@@ -175,7 +175,7 @@ public class AutodocModelToSinpleTableFacade {
 		for ( AutodocElement element : autodocModel.getElements() ) {
 			XsdElement xsdElement = element.getXsdElement();
 			String name = xsdElement.getRawName();
-			String description = element.getAnnotationAsSingleString();
+			String description = AutodocUtils.annotationAsSingleStringHelper( xsdElement.getAnnotation() );
 			StringBuilder children = new StringBuilder();
 			XsdComplexType complexType = element.getComplexType();
 			if ( complexType != null ) {

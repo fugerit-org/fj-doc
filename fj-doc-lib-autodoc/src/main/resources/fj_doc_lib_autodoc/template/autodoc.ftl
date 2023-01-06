@@ -1,3 +1,4 @@
+<#import 'autodoc_macro.ftl' as utils>
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -32,10 +33,11 @@
     		</row>
     		<#list autodocModel.elements as autodocElement>
     		<#assign xsdElement=autodocElement.xsdElement>
+    		<#assign autodocType=autodocElement.autodocType>
        		<row>  
      			<cell><phrase link="#${xsdElement.rawName}">${xsdElement.rawName}</phrase></cell>
-    			<cell><phrase>${autodocElement.annotationAsSingleString}!''</phrase></cell>
-    			<cell><phrase></phrase></cell>
+    			<cell><phrase>${annotationAsSingleStringFun(xsdElement.annotation)}</phrase></cell>
+    			<cell><@utils.handleTypeChildren autodocType/></cell>
     		</row>
 			</#list>
     	</table>
@@ -52,13 +54,13 @@
 	    		<row header="true">
 	    			<cell><phrase style="bold">Attribute</phrase></cell>
 	    			<cell><phrase style="bold">Description</phrase></cell>
-	    			<cell><phrase style="bold">Children</phrase></cell>
+	    			<cell><phrase style="bold">Note</phrase></cell>
 	    		</row>
-	    		<#list autodocElement.xsdAttributes as xsdAttribute>
+	    		<#list autodocElement.autodocAttributes as attribute>
 	       		<row>  
-	     			<cell><phrase>${xsdAttribute.rawName}</phrase></cell>
-	    			<cell><phrase>${annotationAsSingleStringFun(xsdAttribute.xsdAnnotation)}</phrase></cell>
-	    			<cell><phrase></phrase></cell>
+	     			<cell><phrase>${attribute.xsdAttribute.rawName}</phrase></cell>
+	    			<cell><phrase>${annotationAsSingleStringFun(attribute.xsdAttribute.annotation)}</phrase></cell>
+	    			<cell><phrase>${attribute.note}</phrase></cell>
 	    		</row>
 	    		</#list>
     		</table>
