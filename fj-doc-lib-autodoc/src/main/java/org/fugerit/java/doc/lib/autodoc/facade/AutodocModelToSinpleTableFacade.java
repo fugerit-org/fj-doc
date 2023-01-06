@@ -10,6 +10,7 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.lang.helpers.reflect.MethodHelper;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocElement;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
+import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocUtils;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableHelper;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
@@ -196,7 +197,7 @@ public class AutodocModelToSinpleTableFacade {
 					if ( !listAtts.isEmpty() ) {
 						simpleTable.addRow( helper.newHeaderRow( "Attributes for : "+xsdElement.getRawName(), "Description", "Type" ) );
 						for ( XsdAttribute xsdAttribute : listAtts ) {
-							simpleTable.addRow( helper.newNormalRow( xsdAttribute.getRawName(), element.annotationAsSingleStringHelper( xsdAttribute.getAnnotation() ), this.handleAttributeType(xsdAttribute) ) );
+							simpleTable.addRow( helper.newNormalRow( xsdAttribute.getRawName(), AutodocUtils.annotationAsSingleStringHelper( xsdAttribute.getAnnotation() ), this.handleAttributeType(xsdAttribute) ) );
 						}
 					}
 				} catch (NullPointerException npe) {

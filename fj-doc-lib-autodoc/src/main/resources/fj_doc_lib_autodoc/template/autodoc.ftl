@@ -57,7 +57,7 @@
 	    		<#list autodocElement.xsdAttributes as xsdAttribute>
 	       		<row>  
 	     			<cell><phrase>${xsdAttribute.rawName}</phrase></cell>
-	    			<cell><phrase></phrase></cell>
+	    			<cell><phrase>${annotationAsSingleStringFun(xsdAttribute.xsdAnnotation)}</phrase></cell>
 	    			<cell><phrase></phrase></cell>
 	    		</row>
 	    		</#list>

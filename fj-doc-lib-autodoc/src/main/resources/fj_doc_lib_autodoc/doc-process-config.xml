@@ -15,6 +15,12 @@
 				wrap-unchecked-exceptions="true"
 				fallback-on-null-loop-variable="false" />
 		</step>
+		<step id="step-02" defaultBehaviour="CONTINUE"
+			description="Add custom functions" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep">
+			<properties 
+				annotationAsSingleStringFun="org.fugerit.java.doc.lib.autodoc.fun.AnnotationAsSingleStringFun" />
+		</step>	
 	</chain>
 
 	<chain id="autodoc" extends="shared">
