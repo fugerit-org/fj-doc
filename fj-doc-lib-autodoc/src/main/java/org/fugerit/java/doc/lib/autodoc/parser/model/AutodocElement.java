@@ -1,9 +1,12 @@
 package org.fugerit.java.doc.lib.autodoc.parser.model;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.fugerit.java.core.util.collection.KeyString;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
+import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 import org.xmlet.xsdparser.xsdelements.XsdDocumentation;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
@@ -33,7 +36,7 @@ public class AutodocElement implements KeyString, Serializable {
 		return xsdElement;
 	}
 
-	public String annotationAsSingleString( XsdAnnotation xsdAnnotation ) {
+	public String annotationAsSingleStringHelper( XsdAnnotation xsdAnnotation ) {
 		StringBuilder annotation = new StringBuilder();
 		if ( xsdAnnotation != null ) {
 			boolean start = false;
@@ -50,7 +53,7 @@ public class AutodocElement implements KeyString, Serializable {
 	}
 	
 	public String getAnnotationAsSingleString() {
-		return this.annotationAsSingleString( this.getXsdElement().getAnnotation() );
+		return this.annotationAsSingleStringHelper( this.getXsdElement().getAnnotation() );
 	}
 	
 	@Override
@@ -64,6 +67,14 @@ public class AutodocElement implements KeyString, Serializable {
 			complexType = this.getXsdElement().getXsdComplexType();
 		}
 		return complexType;
+	}
+	
+	public boolean hasAttributes() {
+		return this.getComplexType() != null && !this.getXsdAttributes().isEmpty();
+	}
+	
+	public Collection<XsdAttribute> getXsdAttributes() {
+		return this.getComplexType().getAllXsdAttributes().collect( Collectors.toList() );
 	}
 	
 }

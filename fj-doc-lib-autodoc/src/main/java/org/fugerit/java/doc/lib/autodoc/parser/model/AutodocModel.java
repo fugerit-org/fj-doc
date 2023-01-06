@@ -10,6 +10,8 @@ import org.xmlet.xsdparser.xsdelements.XsdElement;
 
 public class AutodocModel implements Serializable {
 
+	public static final String ATT_NAME = "autodocModel";
+	
 	/**
 	 * 
 	 */

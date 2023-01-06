@@ -196,7 +196,7 @@ public class AutodocModelToSinpleTableFacade {
 					if ( !listAtts.isEmpty() ) {
 						simpleTable.addRow( helper.newHeaderRow( "Attributes for : "+xsdElement.getRawName(), "Description", "Type" ) );
 						for ( XsdAttribute xsdAttribute : listAtts ) {
-							simpleTable.addRow( helper.newNormalRow( xsdAttribute.getRawName(), element.annotationAsSingleString( xsdAttribute.getAnnotation() ), this.handleAttributeType(xsdAttribute) ) );
+							simpleTable.addRow( helper.newNormalRow( xsdAttribute.getRawName(), element.annotationAsSingleStringHelper( xsdAttribute.getAnnotation() ), this.handleAttributeType(xsdAttribute) ) );
 						}
 					}
 				} catch (NullPointerException npe) {
