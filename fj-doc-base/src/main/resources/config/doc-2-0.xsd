@@ -49,10 +49,6 @@
 	</xsd:element>
 
 	<xsd:element name='metadata' type="doc:metaType">
-		<xsd:annotation>
-			<xsd:documentation>Contains the meta informations of the document</xsd:documentation>
-			<xsd:documentation>(roughly comparable to a HTML 'head' element)</xsd:documentation>
-		</xsd:annotation>
 	</xsd:element>
 
 	<xsd:element name='meta' type="doc:metaType">
@@ -119,11 +115,7 @@
 					<xsd:documentation>'true' is the header should add page number</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>					
-			<xsd:attribute name='border-width' type='xsd:string' use='optional' >
-				<xsd:annotation>
-					<xsd:documentation>Border width</xsd:documentation>
-				</xsd:annotation>
-			</xsd:attribute>
+			<xsd:attribute name='border-width' type='doc:borderWidthType' use='optional'/>
 			<xsd:attribute name='expected-size' type="xsd:int" use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Expected header size</xsd:documentation>
@@ -155,11 +147,7 @@
 					<xsd:documentation>'true' is the footer should add page number</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>					
-			<xsd:attribute name='border-width' type='xsd:string' use='optional' >
-				<xsd:annotation>
-					<xsd:documentation>Border width</xsd:documentation>
-				</xsd:annotation>
-			</xsd:attribute>
+			<xsd:attribute name='border-width' type='doc:borderWidthType' use='optional'/>
 			<xsd:attribute name='expected-size' type="xsd:int" use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Expected footer size</xsd:documentation>
@@ -191,11 +179,7 @@
 					<xsd:documentation>'true' is the header should add page number</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>					
-			<xsd:attribute name='border-width' type='xsd:string' use='optional' >
-				<xsd:annotation>
-					<xsd:documentation>Border width</xsd:documentation>
-				</xsd:annotation>
-			</xsd:attribute>
+			<xsd:attribute name='border-width' type='doc:borderWidthType' use='optional'/>
 			<xsd:attribute name='expected-size' type="xsd:int" use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Expected header size</xsd:documentation>
@@ -229,11 +213,7 @@
 					<xsd:documentation>'true' is the footer should add page number</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>					
-			<xsd:attribute name='border-width' type='xsd:string' use='optional' >
-				<xsd:annotation>
-					<xsd:documentation>Border width</xsd:documentation>
-				</xsd:annotation>
-			</xsd:attribute>
+			<xsd:attribute name='border-width' type='doc:borderWidthType' use='optional'/>
 			<xsd:attribute name='expected-size' type="xsd:int" use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Expected footer size</xsd:documentation>
@@ -283,16 +263,24 @@
 			<xsd:sequence>
 				<xsd:element ref='doc:row' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
-			<xsd:attribute name='id' type='xsd:string' use='optional' />
-			<xsd:attribute name='columns' type='xsd:string' use='optional' />
-			<xsd:attribute name='width' type='xsd:int' use='optional' />
+			<xsd:attribute name='id' type='doc:idType' use='optional' />
+			<xsd:attribute name='columns' type='xsd:int' use='optional' />
+			<xsd:attribute name='width' type='doc:percentageType' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>The width in percentage of the table</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
 			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
-			<xsd:attribute name='spacing' type='xsd:int' use='optional' />
-			<xsd:attribute name='padding' type='xsd:int' use='optional' />
-			<xsd:attribute name='colwidths' type='xsd:string' use='optional' />
-			<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
-			<xsd:attribute name='space-after' type='xsd:decimal' use='optional' />
+			<xsd:attribute name='spacing' type="doc:spaceType" use='optional' />
+			<xsd:attribute name='padding' type='doc:spaceType' use='optional' />
+			<xsd:attribute name='colwidths' type='xsd:string' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>The sizes of the columns of the table, semicolon separated percentages (for instance '30;30;40')</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name='space-before' type='doc:spaceType' use='optional' />
+			<xsd:attribute name='space-after' type='doc:spaceType' use='optional' />
 			<xsd:attribute name='render-mode' type='doc:tableRenderModeType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -306,8 +294,12 @@
 			<xsd:sequence>
 				<xsd:element ref='doc:cell' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
-			<xsd:attribute name='id' type='xsd:string' use='optional' />
-			<xsd:attribute name='header' type="xsd:boolean" use='optional' />
+			<xsd:attribute name='id' type='doc:idType' use='optional' />
+			<xsd:attribute name='header' type="xsd:boolean" use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>Set to 'true' if the row is a header for the table</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
 
@@ -329,22 +321,34 @@
 					<xsd:element ref='doc:h' />
 				</xsd:choice>
 			</xsd:sequence>
-			<xsd:attribute name='id' type='xsd:string' use='optional' />
-			<xsd:attribute name='colspan' type='xsd:string' use='optional' />
-			<xsd:attribute name='rowspan' type='xsd:string' use='optional' />
+			<xsd:attribute name='id' type='doc:idType' use='optional' />
+			<xsd:attribute name='colspan' type='doc:spanType' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>The column span size of the cell (default value is '1')</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name='rowspan' type='doc:spanType' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>The row span size of the cell (default value is '1')</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 			<xsd:attribute name='align' type='doc:alignType' use='optional' />
 			<xsd:attribute name='valign' type='doc:valignType' use='optional' />
-			<xsd:attribute name='header' type="xsd:boolean" use='optional' />
+			<xsd:attribute name='header' type="xsd:boolean" use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>Set to 'true' if the cell is a header for the table</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 			<xsd:attribute name='border-color' type='doc:colorType' use='optional' />
 			<xsd:attribute name='border-color-top' type='doc:colorType' use='optional' />
 			<xsd:attribute name='border-color-bottom' type='doc:colorType' use='optional' />
 			<xsd:attribute name='border-color-left' type='doc:colorType' use='optional' />
 			<xsd:attribute name='border-color-right' type='doc:colorType' use='optional' />
-			<xsd:attribute name='border-width' type='xsd:int' use='optional' />
-			<xsd:attribute name='border-width-top' type='xsd:int' use='optional' />
-			<xsd:attribute name='border-width-bottom' type='xsd:int' use='optional' />
-			<xsd:attribute name='border-width-left' type='xsd:int' use='optional' />
-			<xsd:attribute name='border-width-right' type='xsd:int' use='optional' />	
+			<xsd:attribute name='border-width' type='doc:borderWidthType' use='optional' />
+			<xsd:attribute name='border-width-top' type='doc:borderWidthType' use='optional' />
+			<xsd:attribute name='border-width-bottom' type='doc:borderWidthType' use='optional' />
+			<xsd:attribute name='border-width-left' type='doc:borderWidthType' use='optional' />
+			<xsd:attribute name='border-width-right' type='doc:borderWidthType' use='optional' />	
 			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
 			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
 			<xsd:attribute name='type' type='doc:dataType' use='optional' />
@@ -360,7 +364,7 @@
 			<xsd:sequence>
 				<xsd:element ref='doc:li' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
-			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='id' type='doc:idType' use='optional' />
 			<xsd:attribute name='list-type' type='doc:listType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -379,7 +383,7 @@
 				</xsd:choice>
 				<xsd:element ref='doc:list' minOccurs="0" maxOccurs="1"/>
 			</xsd:sequence>
-			<xsd:attribute name='id' type='xsd:string' use='optional' />
+			<xsd:attribute name='id' type='doc:idType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 
@@ -473,7 +477,7 @@
 				<xsd:element ref="doc:para" />
 			</xsd:choice>
 		</xsd:sequence>	
-		<xsd:attribute name='id' type='xsd:string' use='optional' />
+		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
 		<xsd:attribute name='align' type='doc:alignType' use='optional' />
 		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
@@ -484,15 +488,15 @@
 		<xsd:attribute name='format' type='xsd:string' use='optional' />
 		<xsd:attribute name='size' type="xsd:int" use='optional' />
 		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
-		<xsd:attribute name='space-left' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='space-right' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-before' type='doc:spaceType' use='optional' />
+		<xsd:attribute name='space-after' type="doc:spaceType" use='optional' />
+		<xsd:attribute name='space-left' type='doc:spaceType' use='optional' />
+		<xsd:attribute name='space-right' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
 	</xsd:complexType>
 	
 	<xsd:complexType name="hType" mixed='true'>
-		<xsd:attribute name='id' type='xsd:string' use='optional' />
+		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
 		<xsd:attribute name='align' type='doc:alignType' use='optional' />
 		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
@@ -503,16 +507,16 @@
 		<xsd:attribute name='format' type='xsd:string' use='optional' />
 		<xsd:attribute name='size' type="xsd:int" use='optional' />
 		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='space-before' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='space-after' type="xsd:decimal" use='optional' />
-		<xsd:attribute name='space-left' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='space-right' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='space-before' type='doc:spaceType' use='optional' />
+		<xsd:attribute name='space-after' type="doc:spaceType" use='optional' />
+		<xsd:attribute name='space-left' type='doc:spaceType' use='optional' />
+		<xsd:attribute name='space-right' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
 		<xsd:attribute name='head-level' type="doc:headLevelType" use='optional' />
 	</xsd:complexType>
 
 	<xsd:complexType name="phraseType" mixed='true'>
-		<xsd:attribute name='id' type='xsd:string' use='optional' />
+		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
 		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
@@ -523,6 +527,9 @@
 	</xsd:complexType>
 
 	<xsd:simpleType name="imageType">
+		<xsd:annotation>
+			<xsd:documentation>The type of the image</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="png"></xsd:enumeration>
 			<xsd:enumeration value="jpg"></xsd:enumeration>
@@ -531,6 +538,9 @@
 	</xsd:simpleType>
 
 	<xsd:simpleType name="tableRenderModeType">
+		<xsd:annotation>
+			<xsd:documentation>Table render mode (if 'inline' the handler will try to render the table as a flow of element)</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="normal"></xsd:enumeration>
 			<xsd:enumeration value="inline"></xsd:enumeration>
@@ -538,6 +548,9 @@
 	</xsd:simpleType>
 
 	<xsd:simpleType name="styleType">
+		<xsd:annotation>
+			<xsd:documentation>Font style of the element</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="bold"></xsd:enumeration>
 			<xsd:enumeration value="underline"></xsd:enumeration>
@@ -547,6 +560,9 @@
 	</xsd:simpleType>
 	
 	<xsd:simpleType name="alignType">
+		<xsd:annotation>
+			<xsd:documentation>Horizontal alignment of the element</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="center"></xsd:enumeration>
 			<xsd:enumeration value="right"></xsd:enumeration>
@@ -557,6 +573,9 @@
 	</xsd:simpleType>	
 	
 	<xsd:simpleType name="valignType">
+		<xsd:annotation>
+			<xsd:documentation>Vertical alignment of the element</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="middle"></xsd:enumeration>
 			<xsd:enumeration value="top"></xsd:enumeration>
@@ -565,12 +584,18 @@
 	</xsd:simpleType>		
 	
 	<xsd:simpleType name="colorType">
+		<xsd:annotation>
+			<xsd:documentation>A color representation in HTML RGB format</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:pattern value="#([A-Fa-f0-9]{6})"></xsd:pattern>
 		</xsd:restriction>
 	</xsd:simpleType>
 
 	<xsd:simpleType name="dataType">
+		<xsd:annotation>
+			<xsd:documentation>Data type contained in the element</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="string"></xsd:enumeration>
 			<xsd:enumeration value="number"></xsd:enumeration>
@@ -579,6 +604,9 @@
 	</xsd:simpleType>
 	
 	<xsd:simpleType name="formatType">
+		<xsd:annotation>
+			<xsd:documentation>Date format representations</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="yyyy-MM-dd"></xsd:enumeration>
 			<xsd:enumeration value="yyyy-MM-dd hh:mm:ss"></xsd:enumeration>
@@ -588,6 +616,10 @@
 	</xsd:simpleType>	
 
 	<xsd:complexType name="metaType">
+		<xsd:annotation>
+			<xsd:documentation>Contains the meta informations of the document</xsd:documentation>
+			<xsd:documentation>(roughly comparable to a HTML 'head' element)</xsd:documentation>
+		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element ref='doc:info' minOccurs='0' maxOccurs='unbounded' />
 			<xsd:element ref='doc:header' minOccurs='0' maxOccurs='1' />
@@ -600,9 +632,56 @@
 	</xsd:complexType>	
 		
 	<xsd:simpleType name="headLevelType">
+		<xsd:annotation>
+			<xsd:documentation>The level of the headings, from 1 (most relevant) to 7 (less relevant)</xsd:documentation>
+			<xsd:documentation>(roughly comparable to a HTML 'h1', 'h2' etc.)</xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:int">
 			<xsd:minInclusive value="1"></xsd:minInclusive>
 			<xsd:maxInclusive value="7"></xsd:maxInclusive>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="idType">
+		<xsd:annotation>
+			<xsd:documentation>An element id (should be unique in the document)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="borderWidthType">
+		<xsd:annotation>
+			<xsd:documentation>The size of the border</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="32"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="spaceType">
+		<xsd:annotation>
+			<xsd:documentation>The spacing of the element (possibly in a give direction)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="2000"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="spanType">
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="percentageType">
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="100"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 
@@ -613,10 +692,18 @@
 	</xsd:complexType>	
 
 	<xsd:complexType name="bookmarkType" mixed='true'>
-		<xsd:attribute name='ref' type='xsd:string' use="required" />
+		<xsd:attribute name='ref' type="doc:idType" use="required">
+			<xsd:annotation>
+				<xsd:documentation>The reference to the element id to link</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
 	</xsd:complexType>	
 	
 	<xsd:simpleType name="listType">
+		<xsd:annotation>
+			<xsd:documentation>The type fo the list</xsd:documentation>
+			<xsd:documentation>( 'uld' - unordered with dots, 'ulm' - unordered with mius, 'oln' - ordered with numbers, 'uld' - ordered with letters ) </xsd:documentation>
+		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
 			<!-- default unordered list, same asd 'uld' -->
 			<xsd:enumeration value="ul"></xsd:enumeration>

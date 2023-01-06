@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdRestriction;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
@@ -37,6 +38,14 @@ public class AutodocAttribute {
 		return baseType;
 	}
 	
+	public XsdAnnotation getXsdAnnotationDeep() {
+		XsdAnnotation annotation = this.getXsdAttribute().getAnnotation();
+		if ( annotation == null && this.getXsdAttribute().getXsdSimpleType() != null ) {
+			annotation = this.getXsdAttribute().getXsdSimpleType().getAnnotation();
+		}
+		return annotation;
+	}
+	
 	public String getNote() {
 		StringBuilder builder = new StringBuilder();
 		String type = this.parseBaseType( this.getXsdAttribute().getType() );
@@ -55,6 +64,14 @@ public class AutodocAttribute {
 				if ( xsdRestriction.getMaxLength() != null ) {
 					builder.append( " , maxLength : " );
 					builder.append( xsdRestriction.getMaxLength().getValue() );	
+				}
+				if ( xsdRestriction.getMinInclusive() != null ) {
+					builder.append( " , minInclusive : " );
+					builder.append( xsdRestriction.getMinInclusive().getValue() );	
+				}
+				if ( xsdRestriction.getMaxInclusive() != null ) {
+					builder.append( " , maxInclusive : " );
+					builder.append( xsdRestriction.getMaxInclusive().getValue() );	
 				}
 				if ( xsdRestriction.getMinExclusive() != null ) {
 					builder.append( " , minExclusive : " );

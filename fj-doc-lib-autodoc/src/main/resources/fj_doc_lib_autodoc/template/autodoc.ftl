@@ -36,7 +36,7 @@
     		<#assign autodocType=autodocElement.autodocType>
        		<row>  
      			<cell><phrase link="#${xsdElement.rawName}">${xsdElement.rawName}</phrase></cell>
-    			<cell><phrase>${annotationAsSingleStringFun(xsdElement.annotation)}</phrase></cell>
+    			<cell><phrase>${annotationAsSingleStringFun(autodocElement.xsdAnnotationDeep)}</phrase></cell>
     			<cell><@utils.handleTypeChildren autodocType/></cell>
     		</row>
 			</#list>
@@ -51,6 +51,10 @@
   	    		<row header="true">
 	    			<cell colspan="3"><phrase style="bold" anchor="${xsdElement.rawName}">Element : ${xsdElement.rawName}</phrase></cell>
 	    		</row>
+  	    		<row header="true">
+	    			<cell colspan="3"><phrase style="bold">${annotationAsSingleStringFun(autodocElement.xsdAnnotationDeep)}</phrase></cell>
+	    		</row>
+	    		<#if autodocElement.autodocAttributes?size gt 0>
 	    		<row header="true">
 	    			<cell><phrase style="bold">Attribute</phrase></cell>
 	    			<cell><phrase style="bold">Description</phrase></cell>
@@ -59,10 +63,11 @@
 	    		<#list autodocElement.autodocAttributes as attribute>
 	       		<row>  
 	     			<cell><phrase>${attribute.xsdAttribute.rawName}</phrase></cell>
-	    			<cell><phrase>${annotationAsSingleStringFun(attribute.xsdAttribute.annotation)}</phrase></cell>
+	    			<cell><phrase>${annotationAsSingleStringFun(attribute.xsdAnnotationDeep)}</phrase></cell>
 	    			<cell><phrase>${attribute.note}</phrase></cell>
 	    		</row>
 	    		</#list>
+	    		</#if>
     		</table>
 		</#list>
 		

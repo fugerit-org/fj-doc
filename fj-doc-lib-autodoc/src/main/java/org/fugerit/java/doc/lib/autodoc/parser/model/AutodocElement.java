@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.fugerit.java.core.util.collection.KeyString;
+import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
@@ -49,6 +50,14 @@ public class AutodocElement implements KeyString, Serializable {
 	
 	public AutodocType getAutodocType() {
 		return new AutodocType( this.getComplexType() );
+	}
+	
+	public XsdAnnotation getXsdAnnotationDeep() {
+		XsdAnnotation annotation = this.getXsdElement().getAnnotation();
+		if ( annotation == null && this.getComplexType() != null ) {
+			annotation = this.getComplexType().getAnnotation();
+		}
+		return annotation;
 	}
 	
 	public Collection<XsdAttribute> getXsdAttributes() {
