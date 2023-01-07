@@ -6,10 +6,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
+import org.fugerit.java.doc.lib.autodoc.VenusAutodocFacade;
 import org.fugerit.java.doc.lib.autodoc.facade.AutodocModelToSinpleTableFacade;
-import org.fugerit.java.doc.lib.autodoc.facade.XsdParserFacade;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
@@ -23,12 +22,9 @@ public class TestXsdParserFacade {
 	
 	@Test
 	public void testParseXsdModel() {
-		String path =  "../fj-doc-base/src/main/resources/config/doc-"+DocVersion.CURRENT_VERSION+".xsd";
-		logger.info( "Try parsing xsd : {}", path );
 		DocTypeHandler handler = FreeMarkerHtmlTypeHandler.HANDLER;
 		try ( FileOutputStream fos = new FileOutputStream( new File( "target/autodoc."+handler.getType() ) ) )  {
-			XsdParserFacade xsdParserFacade = new XsdParserFacade();
-			AutodocModel autodocModel = xsdParserFacade.parse( path );
+			AutodocModel autodocModel = VenusAutodocFacade.parseLast();
 			AutodocModelToSinpleTableFacade autodocModelToSinpleTableFacade = new AutodocModelToSinpleTableFacade();
 			SimpleTable simpleTable = autodocModelToSinpleTableFacade.toSimpleTable(autodocModel);
 			SimpleTableDocConfig config = SimpleTableDocConfig.newConfig();

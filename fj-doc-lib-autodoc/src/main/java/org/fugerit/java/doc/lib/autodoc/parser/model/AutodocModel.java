@@ -26,6 +26,46 @@ public class AutodocModel implements Serializable {
 		this.xsdParser = xsdParser;
 	}
 	
+	private String version;
+	
+	private String title;
+	
+	private String xsdPrefix;
+	
+	private String autodocPrefix;
+	
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getXsdPrefix() {
+		return xsdPrefix;
+	}
+
+	public void setXsdPrefix(String xsdPrefix) {
+		this.xsdPrefix = xsdPrefix;
+	}
+
+	public String getAutodocPrefix() {
+		return autodocPrefix;
+	}
+
+	public void setAutodocPrefix(String autodocPrefix) {
+		this.autodocPrefix = autodocPrefix;
+	}
+
 	public XsdParser getXsdParser() {
 		return xsdParser;
 	}

@@ -20,8 +20,10 @@
 	</metadata>
 	<body>
 		
-    	<h head-level="1">Reference configuration for Venus Doc Generation (fj-doc)</h>
-    	
+		<!-- headings -->
+    	<h head-level="1">${autodocModel.title}<#if autodocModel.version??> ${autodocModel.version}</#if></h>
+
+    	<!-- table for element summary -->    	
     	<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-id" padding="2">
       		<row header="true">
     			<cell colspan="3"><phrase style="bold" anchor="begin">Elements configuration reference</phrase></cell>
@@ -37,11 +39,12 @@
        		<row>  
      			<cell><phrase link="#${xsdElement.rawName}">${xsdElement.rawName}</phrase></cell>
     			<cell><phrase>${annotationAsSingleStringFun(autodocElement.xsdAnnotationDeep)}</phrase></cell>
-    			<cell><@utils.handleTypeChildren autodocType/></cell>
+    			<cell><#if autodocElement.complexType.mixed><phrase>mixed </phrase></#if> <@utils.handleTypeChildren autodocType/></cell>
     		</row>
 			</#list>
     	</table>
 		
+		<!-- tables for element detail and attributes -->
     	<#list autodocModel.elements as autodocElement>
 			<br/>
     		<#assign xsdElement=autodocElement.xsdElement>
@@ -52,14 +55,14 @@
 	    			<cell colspan="3"><phrase style="bold" anchor="${xsdElement.rawName}">Element : ${xsdElement.rawName}</phrase></cell>
 	    		</row>
   	    		<row header="true">
-	    			<cell colspan="3"><phrase style="bold">${annotationAsSingleStringFun(autodocElement.xsdAnnotationDeep)}</phrase></cell>
+	    			<cell colspan="3"><phrase>${annotationAsSingleStringFun(autodocElement.xsdAnnotationDeep)}</phrase></cell>
 	    		</row>
-	    		<#if autodocElement.autodocAttributes?size gt 0>
 	    		<row header="true">
 	    			<cell><phrase style="bold">Attribute</phrase></cell>
 	    			<cell><phrase style="bold">Description</phrase></cell>
 	    			<cell><phrase style="bold">Note</phrase></cell>
 	    		</row>
+	    		<#if autodocElement.autodocAttributes?size gt 0>
 	    		<#list autodocElement.autodocAttributes as attribute>
 	       		<row>  
 	     			<cell><phrase>${attribute.xsdAttribute.rawName}</phrase></cell>
@@ -67,6 +70,10 @@
 	    			<cell><phrase>${attribute.note}</phrase></cell>
 	    		</row>
 	    		</#list>
+	    		<#else>
+  	    		<row>
+	    			<cell colspan="3"><phrase>This element does not have attributes</phrase></cell>
+	    		</row>	    		
 	    		</#if>
     		</table>
 		</#list>

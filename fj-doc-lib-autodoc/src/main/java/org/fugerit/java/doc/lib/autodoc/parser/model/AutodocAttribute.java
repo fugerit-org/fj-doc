@@ -13,15 +13,12 @@ public class AutodocAttribute {
 
 	private XsdAttribute xsdAttribute;
 
-	private String xsdPrefix;
+	private AutodocModel autodocModel;
 	
-	private String autodocPrefix;
-	
-	public AutodocAttribute(XsdAttribute xsdAttribute) {
+	public AutodocAttribute(XsdAttribute xsdAttribute, AutodocModel autodocModel) {
 		super();
 		this.xsdAttribute = xsdAttribute;
-		this.xsdPrefix = "xsd:";
-		this.autodocPrefix = "doc:";
+		this.autodocModel = autodocModel;
 	}
 
 	public XsdAttribute getXsdAttribute() {
@@ -30,10 +27,10 @@ public class AutodocAttribute {
 	
 	private String parseBaseType( String type ) {
 		String baseType = type;
-		if ( type.startsWith( this.xsdPrefix ) ) {
-			baseType = type.replace( this.xsdPrefix , "" );
-		} else if ( type.startsWith( this.autodocPrefix ) ) {
-			baseType = type.replace( this.autodocPrefix , "" );
+		if ( type.startsWith( this.autodocModel.getXsdPrefix() ) ) {
+			baseType = type.replace( this.autodocModel.getXsdPrefix() , "" );
+		} else if ( type.startsWith( this.autodocModel.getAutodocPrefix() ) ) {
+			baseType = type.replace( this.autodocModel.getAutodocPrefix() , "" );
 		}
 		return baseType;
 	}

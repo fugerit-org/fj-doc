@@ -2,11 +2,11 @@
 <!--
 
 	/*
-	 * @(#)doc-1-9.xsd
+	 * @(#)doc-2-0.xsd
 	 *
 	 * @project    : org.fugerit.java.doc.base
-	 * @creation   : 2023-01-06
-	 * @version    : 2.0.0 (2023-01-06)
+	 * @creation   : 2023-01-07
+	 * @version    : 2.0.0 (2023-01-07)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -20,12 +20,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 	
 </doc>	
-	
-	changelog 
-	1-9 - deep change to list handling
-	1-9-1 - added phrase list option to list item
-	1-10 - para can now contains para and phrases
-	2-0 - added documentation for autodoc
+		
+	Change log details can be found at the url : https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-base/DocXsdChangelog.md
 	
 -->
 <xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
@@ -97,14 +93,12 @@
 			<xsd:documentation>A header made of a complex elements (not includes tables)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
-			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
-				<xsd:choice>
-					<xsd:element ref='doc:para' />
-					<xsd:element ref='doc:image' />
-					<xsd:element ref='doc:phrase' />
-					<xsd:element ref='doc:h' />
-				</xsd:choice>
-			</xsd:sequence>
+			<xsd:choice minOccurs='0' maxOccurs='unbounded'>
+				<xsd:element ref='doc:para' />
+				<xsd:element ref='doc:image' />
+				<xsd:element ref='doc:phrase' />
+				<xsd:element ref='doc:h' />
+			</xsd:choice>
 			<xsd:attribute name='align' type='doc:alignType' use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Header horizontal alignment</xsd:documentation>
@@ -129,14 +123,12 @@
 			<xsd:documentation>A footer made of  simple elements (not includes tables)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
-			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
-				<xsd:choice>
-					<xsd:element ref='doc:para' />
-					<xsd:element ref='doc:image' />
-					<xsd:element ref='doc:phrase' />
-					<xsd:element ref='doc:h' />
-				</xsd:choice>
-			</xsd:sequence>
+			<xsd:choice minOccurs='0' maxOccurs='unbounded'>
+				<xsd:element ref='doc:para' />
+				<xsd:element ref='doc:image' />
+				<xsd:element ref='doc:phrase' />
+				<xsd:element ref='doc:h' />
+			</xsd:choice>
 			<xsd:attribute name='align' type='doc:alignType' use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Footer horizontal alignment</xsd:documentation>
@@ -193,16 +185,14 @@
 			<xsd:documentation>A footer made of complex elements (includes tables)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
-			<xsd:sequence minOccurs='0' maxOccurs='unbounded'>
-				<xsd:choice>
-					<xsd:element ref='doc:para' />
-					<xsd:element ref='doc:table' />
-					<xsd:element ref='doc:image' />
-					<xsd:element ref='doc:phrase' />
-					<xsd:element ref='doc:barcode' />
-					<xsd:element ref='doc:h' />
-				</xsd:choice>
-			</xsd:sequence>
+			<xsd:choice minOccurs='0' maxOccurs='unbounded'>
+				<xsd:element ref='doc:para' />
+				<xsd:element ref='doc:table' />
+				<xsd:element ref='doc:image' />
+				<xsd:element ref='doc:phrase' />
+				<xsd:element ref='doc:barcode' />
+				<xsd:element ref='doc:h' />
+			</xsd:choice>
 			<xsd:attribute name='align' type='doc:alignType' use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>Footer horizontal alignment</xsd:documentation>
@@ -228,9 +218,7 @@
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence minOccurs='1' maxOccurs='1'>
-				<xsd:choice>
-					<xsd:element ref='doc:image' />
-				</xsd:choice>
+				<xsd:element ref='doc:image' />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
@@ -264,7 +252,11 @@
 				<xsd:element ref='doc:row' minOccurs='0' maxOccurs='unbounded' />
 			</xsd:sequence>
 			<xsd:attribute name='id' type='doc:idType' use='optional' />
-			<xsd:attribute name='columns' type='xsd:int' use='optional' />
+			<xsd:attribute name='columns' type="doc:columnsType" use='optional' >
+				<xsd:annotation>
+					<xsd:documentation>Number of columns in a table</xsd:documentation>
+				</xsd:annotation>			
+			</xsd:attribute>
 			<xsd:attribute name='width' type='doc:percentageType' use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>The width in percentage of the table</xsd:documentation>
@@ -276,7 +268,8 @@
 			<xsd:attribute name='padding' type='doc:spaceType' use='optional' />
 			<xsd:attribute name='colwidths' type='xsd:string' use='optional'>
 				<xsd:annotation>
-					<xsd:documentation>The sizes of the columns of the table, semicolon separated percentages (for instance '30;30;40')</xsd:documentation>
+					<xsd:documentation>The sizes of the columns of the table as percentages separated by semicolons</xsd:documentation>
+					<xsd:documentation>(for instance '30;30;40' are three columns if size 30%, 30% and 40%)</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name='space-before' type='doc:spaceType' use='optional' />
@@ -309,18 +302,16 @@
 			<xsd:documentation>(roughly comparable to a HTML 'th' or 'td' element)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
-			<xsd:sequence minOccurs='1' maxOccurs='unbounded'>
-				<xsd:choice>
-					<xsd:element ref='doc:para' />
-					<xsd:element ref='doc:table' />
-					<xsd:element ref='doc:image' />
-					<xsd:element ref='doc:phrase' />
-					<xsd:element ref='doc:nbsp' />
-					<xsd:element ref='doc:br' />
-					<xsd:element ref='doc:barcode' />
-					<xsd:element ref='doc:h' />
-				</xsd:choice>
-			</xsd:sequence>
+			<xsd:choice minOccurs='1' maxOccurs='unbounded'>
+				<xsd:element ref='doc:para' />
+				<xsd:element ref='doc:table' />
+				<xsd:element ref='doc:image' />
+				<xsd:element ref='doc:phrase' />
+				<xsd:element ref='doc:nbsp' />
+				<xsd:element ref='doc:br' />
+				<xsd:element ref='doc:barcode' />
+				<xsd:element ref='doc:h' />
+			</xsd:choice>
 			<xsd:attribute name='id' type='doc:idType' use='optional' />
 			<xsd:attribute name='colspan' type='doc:spanType' use='optional'>
 				<xsd:annotation>
@@ -398,22 +389,12 @@
 			<xsd:documentation>An image to include in the document</xsd:documentation>
 			<xsd:documentation>(roughly comparable to a HTML 'image' element)</xsd:documentation>
 		</xsd:annotation>
-		<xsd:complexType mixed='true'>
-			<xsd:attribute name='url' type='xsd:string' use='optional'>
-				<xsd:annotation>
-					<xsd:documentation>
-						Valid values are :
-						cl://pathinjar (Path inside the class loader, safest way to load the image)
-						http://imageurl (but generating machine should be able to access the url)
-						file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)
-						In case of base64 just provide the tyoe (png,jpg etc.)
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:attribute>
+		<xsd:complexType>
+			<xsd:attribute name='url' type='doc:urlType' use='optional'/>
 			<xsd:attribute name='type' type='doc:imageType' use='optional' />
-			<xsd:attribute name='scaling' type='xsd:int' use='optional' />
-			<xsd:attribute name='base64' type="xsd:string" use='optional' />
-			<xsd:attribute name='alt' type="xsd:string" use='optional' />
+			<xsd:attribute name='scaling' type='doc:scalingType' use='optional' />
+			<xsd:attribute name='base64' type='doc:base64Type' use='optional' />
+			<xsd:attribute name='alt' type='doc:altType' use='optional' />
 			<xsd:attribute name='align' type='doc:alignType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
@@ -430,8 +411,12 @@
 			<xsd:documentation>Simple spacing</xsd:documentation>
 			<xsd:documentation>(roughly comparable to a HTML 'nbsp' entity)</xsd:documentation>
 		</xsd:annotation>
-		<xsd:complexType mixed='true'>
-			<xsd:attribute name='length' type='xsd:int' use='optional' />
+		<xsd:complexType>
+			<xsd:attribute name='length' type='doc:lengthType' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>The length of the spacing</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
 	
@@ -440,7 +425,7 @@
 			<xsd:documentation>A line break</xsd:documentation>
 			<xsd:documentation>(roughly comparable to a HTML 'br' element)</xsd:documentation>
 		</xsd:annotation>
-		<xsd:complexType mixed='true'>
+		<xsd:complexType>
 		</xsd:complexType>
 	</xsd:element>	
 
@@ -449,10 +434,10 @@
 			<xsd:documentation>Create a barcode</xsd:documentation>
 			<xsd:documentation>(this element is kept for compatibility, but it's better to generate barcode as images)</xsd:documentation>
 		</xsd:annotation>
-		<xsd:complexType mixed='true'>
-			<xsd:attribute name='size' type='xsd:int' use='optional' />
+		<xsd:complexType>
+			<xsd:attribute name='size' type='doc:fontSize' use='optional' />
 			<xsd:attribute name='type' type='xsd:string' use='optional' />
-			<xsd:attribute name='text' type='xsd:string' use='optional' />
+			<xsd:attribute name='text' type='doc:altType' use='optional' />
 		</xsd:complexType>
 	</xsd:element>
 	
@@ -471,58 +456,57 @@
 	</xsd:element>
 	
 	<xsd:complexType name="paraType" mixed='true'>
-		<xsd:sequence minOccurs='0' maxOccurs="unbounded">
-			<xsd:choice>
-				<xsd:element ref="doc:phrase" />
-				<xsd:element ref="doc:para" />
-			</xsd:choice>
-		</xsd:sequence>	
+		<xsd:choice minOccurs='0' maxOccurs="unbounded">
+			<xsd:element ref="doc:phrase" />
+			<xsd:element ref="doc:para" />
+		</xsd:choice>	
 		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
 		<xsd:attribute name='align' type='doc:alignType' use='optional' />
-		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
-		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='font-name' type='doc:fontNameType' use='optional' />
+		<xsd:attribute name='leading' type='doc:leadingType' use='optional' />
 		<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
 		<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
 		<xsd:attribute name='type' type='doc:dataType' use='optional' />
-		<xsd:attribute name='format' type='xsd:string' use='optional' />
-		<xsd:attribute name='size' type="xsd:int" use='optional' />
-		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='format' type="doc:formatType" use='optional'>
+		</xsd:attribute>
+		<xsd:attribute name='size' type='doc:fontSize' use='optional' />
+		<xsd:attribute name='text-indent' type='doc:textIndentType' use='optional' />
 		<xsd:attribute name='space-before' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='space-after' type="doc:spaceType" use='optional' />
 		<xsd:attribute name='space-left' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='space-right' type='doc:spaceType' use='optional' />
-		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
+		<xsd:attribute name='white-space-collapse' type='doc:whiteSpaceCollapsType' use='optional' />
 	</xsd:complexType>
 	
 	<xsd:complexType name="hType" mixed='true'>
 		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
 		<xsd:attribute name='align' type='doc:alignType' use='optional' />
-		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
-		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='font-name' type='doc:fontNameType' use='optional' />
+		<xsd:attribute name='leading' type='doc:leadingType' use='optional' />
 		<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
 		<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
 		<xsd:attribute name='type' type='doc:dataType' use='optional' />
-		<xsd:attribute name='format' type='xsd:string' use='optional' />
-		<xsd:attribute name='size' type="xsd:int" use='optional' />
-		<xsd:attribute name='text-indent' type='xsd:decimal' use='optional' />
+		<xsd:attribute name='format' type='doc:formatType' use='optional' />
+		<xsd:attribute name='size' type='doc:fontSize' use='optional' />
+		<xsd:attribute name='text-indent' type='doc:textIndentType' use='optional' />
 		<xsd:attribute name='space-before' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='space-after' type="doc:spaceType" use='optional' />
 		<xsd:attribute name='space-left' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='space-right' type='doc:spaceType' use='optional' />
-		<xsd:attribute name='white-space-collapse' type="xsd:boolean" use='optional' />
+		<xsd:attribute name='white-space-collapse' type='doc:whiteSpaceCollapsType' use='optional' />
 		<xsd:attribute name='head-level' type="doc:headLevelType" use='optional' />
 	</xsd:complexType>
 
 	<xsd:complexType name="phraseType" mixed='true'>
 		<xsd:attribute name='id' type='doc:idType' use='optional' />
-		<xsd:attribute name='font-name' type='xsd:string' use='optional' />
+		<xsd:attribute name='font-name' type='doc:fontNameType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
-		<xsd:attribute name='leading' type='xsd:decimal' use='optional' />
-		<xsd:attribute name='size' type="xsd:int" use='optional' />
+		<xsd:attribute name='leading' type='doc:leadingType' use='optional' />
+		<xsd:attribute name='size' type='doc:fontSize' use='optional' />
 		<xsd:attribute name='link' type="xsd:string" use='optional' />
-		<xsd:attribute name='white-space-collapse' type="xsd:decimal" use='optional' />
+		<xsd:attribute name='white-space-collapse' type='doc:whiteSpaceCollapsType' use='optional' />
 		<xsd:attribute name='anchor' type="xsd:string" use='optional' />				
 	</xsd:complexType>
 
@@ -603,16 +587,27 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 	
-	<xsd:simpleType name="formatType">
-		<xsd:annotation>
-			<xsd:documentation>Date format representations</xsd:documentation>
-		</xsd:annotation>
+	<xsd:simpleType name="formatDateType">
 		<xsd:restriction base="xsd:string">
 			<xsd:enumeration value="yyyy-MM-dd"></xsd:enumeration>
 			<xsd:enumeration value="yyyy-MM-dd hh:mm:ss"></xsd:enumeration>
 			<xsd:enumeration value="yyyy-MM-dd'T'HH:mm:ss.SSSZ"></xsd:enumeration>
 			<xsd:enumeration value="iso"></xsd:enumeration>
-		</xsd:restriction>
+		</xsd:restriction>		
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="formatType">
+		<xsd:annotation>
+			<xsd:documentation>Data format</xsd:documentation>
+		</xsd:annotation>
+		<xsd:union memberTypes="doc:formatDateType">
+  			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:minLength value="1"/>
+					<xsd:maxLength value="128"/>
+				</xsd:restriction>  			
+  			</xsd:simpleType>  			
+  		</xsd:union>
 	</xsd:simpleType>	
 
 	<xsd:complexType name="metaType">
@@ -652,6 +647,60 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 
+	<xsd:simpleType name="base64Type">
+		<xsd:annotation>
+			<xsd:documentation>Base 64 representation of a resource</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:base64Binary">
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="altType">
+		<xsd:annotation>
+			<xsd:documentation>Alternate description of the element</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	
+	<xsd:simpleType name="urlType">
+		<xsd:annotation>
+			<xsd:documentation>
+				Valid values are :
+				cl://pathinjar (Path inside the class loader, safest way to load the image)
+				http://imageurl (but generating machine should be able to access the url)
+				file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)
+				In case of base64 just provide the type (png,jpg etc.)
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="0"/>
+			<xsd:maxLength value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+
+	<xsd:simpleType name="fontNameType">
+		<xsd:annotation>
+			<xsd:documentation>The name of the font to use</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="64"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="fontSize">
+		<xsd:annotation>
+			<xsd:documentation>The size of the font to use</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="0"></xsd:minInclusive>
+			<xsd:maxInclusive value="256"></xsd:maxInclusive>
+		</xsd:restriction>
+	</xsd:simpleType>
+
 	<xsd:simpleType name="borderWidthType">
 		<xsd:annotation>
 			<xsd:documentation>The size of the border</xsd:documentation>
@@ -662,13 +711,41 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 	
-	<xsd:simpleType name="spaceType">
+	<xsd:simpleType name="textIndentType">
 		<xsd:annotation>
-			<xsd:documentation>The spacing of the element (possibly in a give direction)</xsd:documentation>
+			<xsd:documentation>Text indentation (currently ignored)</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:decimal">
 			<xsd:minInclusive value="0"/>
-			<xsd:maxInclusive value="2000"/>
+			<xsd:maxInclusive value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	
+	<xsd:simpleType name="whiteSpaceCollapsType">
+		<xsd:annotation>
+			<xsd:documentation>Value is 'true' if the white spaces must be trimmed</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:boolean">
+		</xsd:restriction>
+	</xsd:simpleType>		
+	
+	<xsd:simpleType name="leadingType">
+		<xsd:annotation>
+			<xsd:documentation>The leading between lines</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	
+	<xsd:simpleType name="spaceType">
+		<xsd:annotation>
+			<xsd:documentation>The spacing of the element (possibly in a given direction)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:decimal">
+			<xsd:minInclusive value="0"/>
+			<xsd:maxInclusive value="2048"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 
@@ -677,6 +754,19 @@
 			<xsd:minInclusive value="1"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	
+	<xsd:simpleType name="lengthType">
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	
+	<xsd:simpleType name="columnsType">
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+			<xsd:maxInclusive value="2048"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
 
 	<xsd:simpleType name="percentageType">
 		<xsd:restriction base="xsd:int">
@@ -684,6 +774,15 @@
 			<xsd:maxInclusive value="100"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+	
+	<xsd:simpleType name="scalingType">
+			<xsd:annotation>
+				<xsd:documentation>The scaling percentage (can be higher than 100)</xsd:documentation>
+			</xsd:annotation>
+		<xsd:restriction base="xsd:int">
+			<xsd:minInclusive value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
 
 	<xsd:complexType name="bookmarkTreeType">
 		<xsd:sequence>

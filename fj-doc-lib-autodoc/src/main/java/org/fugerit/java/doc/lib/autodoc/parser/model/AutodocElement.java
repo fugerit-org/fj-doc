@@ -65,7 +65,7 @@ public class AutodocElement implements KeyString, Serializable {
 	}
 	
 	public Collection<AutodocAttribute> getAutodocAttributes() {
-		return this.getComplexType().getAllXsdAttributes().map( current -> { return new AutodocAttribute( current ); } ).collect( Collectors.toList() );
+		return this.getComplexType().getAllXsdAttributes().map( current -> { return new AutodocAttribute( current, this.autodocModel ); } ).collect( Collectors.toList() );
 	}
 	
 }
