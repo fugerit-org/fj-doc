@@ -286,7 +286,17 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
 		boolean tryAutoResize = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE, ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE_DEFAULT ) );
 		if ( tryAutoResize ) {
-			PoiUtils.autoSizeColumns( outputXls );
+			boolean failOnAutoResizeError = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_DEFAULT ) );
+			try {
+				logger.info( "try autoresize : {} -> {}", ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, failOnAutoResizeError );
+				PoiUtils.autoSizeColumns( outputXls );
+			} catch (Exception e) {
+				if ( failOnAutoResizeError ) {
+					throw e;
+				} else {
+					logger.warn( "Excel autoresize failed "+e , e );
+				}
+			}
 		}
 		
 		this.closeWorkbook( outputXls , docOutput );
