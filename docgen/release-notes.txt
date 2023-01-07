@@ -1,4 +1,10 @@
-﻿0.7.2 (2023-01-04)
+﻿0.8.0 (2023-01-07)
+------------------
++ Added a new module for generating documentation [fj-doc-lib-autodoc](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-lib-autodoc)
++ Published new version of [doc-2-0.xsd](https://venusdocs.fugerit.org/fj-doc-base/src/main/resources/config/doc-2-0.xsd), [see doc xsd changelog](https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/DocXsdChangelog.md)
++ Created a brand new [xsd reference documentation](https://venusdocs.fugerit.org/fj-doc-lib-autodoc/src/main/docs/doc_xsd_config_ref.html)
+
+0.7.2 (2023-01-04)
 ------------------
 + Fixed xml validation in DocXmlParser
 + Added validation in DocJsonParser and DocYamlParser (though conversion to XML)

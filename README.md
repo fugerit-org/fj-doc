@@ -17,7 +17,7 @@ There are five kinds of components (each components README.md contains module st
 * [Core library (fj-doc-base)](fj-doc-base/README.md) (contains a simple renderer for [Markdowm BASIC](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownBasicTypeHandler.java) and [Markdown EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java))
 * [Json extension (fj-doc-base-json)](fj-doc-base-json/README.md) (allow for using json as document generator instead of standard xml generator) [since 0.7.0]
 * [Yaml extension (fj-doc-base-yaml)](fj-doc-base-yaml/README.md) (allow for using yaml as document generator instead of standard xml generator) [since 0.7.0]
-* Doc format XSD [public](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd) and [private](fj-doc-base/src/main/resources/config/doc-1-1.xsd)
+* Doc format XSD [public](https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd) and [private](fj-doc-base/src/main/resources/config/doc-2-0.xsd)
 
 ### 2. Modules :
 * [FreeMarker template, (fj-doc-freemarker)](fj-doc-freemarker/README.md) (contains a simple renderer for [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) and [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java))
@@ -39,6 +39,7 @@ There are five kinds of components (each components README.md contains module st
 
 ### 4. Bundled libraries :
 * [Simple table (fj-doc-lib-singletable)](fj-doc-lib-simpletable/README.md) - offers a simple API for creating a document made of a table.
+* [XSD Autodoc (fj-doc-lib-autodoc)](fj-doc-lib-autodoc/README.md) - offers a simple api for documenting the Venus library (to a limited extent some features can be used on any xsd).
 * [Doc type validation (fj-doc-val)](fj-doc-val/README.md) - simple utilities for validating file type.
 
 ### 5. Tutorial :
