@@ -23,10 +23,35 @@
 	
 	<properties>
 		<xsd-parser-version>1.2.4</xsd-parser-version>
+		<jajarta-jaxb-version>4.0.0</jajarta-jaxb-version>
 	</properties>
 	
 	<build>
 		
+		<plugins>
+		
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>3.1.0</version>
+				<executions>
+					<execution>
+						<id>xjc</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<packageName>org.fugerit.java.doc.lib.autodoc.detail.model</packageName>
+					<sources>
+                    	<source>src/main/resources/xsd</source>
+                	</sources>
+				</configuration>
+			</plugin>
+		
+		</plugins>
+				
 	</build>
 
 	<dependencies>
@@ -55,6 +80,18 @@
 		    <groupId>com.github.xmlet</groupId>
 		    <artifactId>xsdParser</artifactId>
 		    <version>${xsd-parser-version}</version>
+		</dependency>
+
+		<dependency>
+		  <groupId>jakarta.xml.bind</groupId>
+		  <artifactId>jakarta.xml.bind-api</artifactId>
+		  <version>${jajarta-jaxb-version}</version>
+		</dependency>
+		<dependency>
+		  <groupId>com.sun.xml.bind</groupId>
+		  <artifactId>jaxb-impl</artifactId>
+		  <version>${jajarta-jaxb-version}</version>
+		  <scope>runtime</scope>
 		</dependency>
 
 	</dependencies>

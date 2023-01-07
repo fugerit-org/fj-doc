@@ -43,6 +43,10 @@ public class AutodocAttribute {
 		return annotation;
 	}
 	
+	public String getName() {
+		return this.getXsdAttribute().getRawName();
+	}
+	
 	public String getNote() {
 		StringBuilder builder = new StringBuilder();
 		String type = this.parseBaseType( this.getXsdAttribute().getType() );
