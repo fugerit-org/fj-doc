@@ -68,7 +68,6 @@ public class DocTableUtil extends DocElement {
 				}
 			}
 		}
-		System.out.println( ( headerSeparation && !this.headerRows.isEmpty() ) );
 		if ( headerSeparation && !this.headerRows.isEmpty() ) {
 			this.strictHeader = true;
 		}
