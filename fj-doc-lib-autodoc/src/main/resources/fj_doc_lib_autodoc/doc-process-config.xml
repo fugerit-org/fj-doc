@@ -33,4 +33,14 @@
 		</step>
 	</chain>
 	
+	<chain id="autodoc_detail" extends="shared">
+		<step id="step-process" defaultBehaviour="CONTINUE"
+			description="Apply FreeMarker template to get the full XML" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep">
+			<properties 
+				template-path="${chainId}.ftl" 
+				map-atts="autodocDetailModel"/>		
+		</step>
+	</chain>
+	
 </doc-process>

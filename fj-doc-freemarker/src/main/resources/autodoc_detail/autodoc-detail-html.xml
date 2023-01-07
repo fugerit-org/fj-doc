@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<autodocDetail xmlns="http://autodoc.fugerit.org">
+   <adProperty>
+        <name>output-title</name>
+        <description>Reference for module fj-doc-freemarker, type handler FreeMarkerHtmlTypeHandler</description>
+    </adProperty>
+    <adProperty>
+        <name>doc-xsd-version</name>
+        <description>2-0</description>
+    </adProperty>
+    <adProperty>
+        <name>autodoc-detail-xsd-version</name>
+        <description>1-0</description>
+    </adProperty>
+    <adProperty>
+        <name>autodoc-detail-facade-version</name>
+        <description>1.0.0</description>
+    </adProperty>
+    <adProperty>
+        <name>autodoc-detail-module-name</name>
+        <description>fj-doc-freemarker#org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler</description>
+    </adProperty>
+    <adProperty>
+        <name>autodoc-detail-module-url</name>
+        <description>https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-freemarker</description>
+    </adProperty>
+    <adProperty>
+        <name>autodoc-detail-module-version</name>
+        <description>0.8.0</description>
+    </adProperty>
+    <adChangelog>
+        <date>2023-01-07Z</date>
+        <version>0.8.0</version>
+        <description>First version of this documentation</description>
+    </adChangelog>
+    <adInfo>
+        <name>FILL ME</name>
+        <description>FILL ME</description>
+        <detail>FILL ME</detail>
+    </adInfo>
+    <adElement>
+        <name>doc</name>
+        <description>This is the root element of source doc (consisting in a 'metadata' and a 'body' section)</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>metadata</name>
+        <description>Contains the meta informations of the document (roughly comparable to a HTML 'head' element)</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>meta</name>
+        <description>Contains the meta informations of the document ('meta' is kept for compatibility, better use 'metadata')</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>body</name>
+        <description>The body of the document (roughly comparable to a HTML 'body' element)</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>info</name>
+        <description>This is a key/value element containing informations for document generations</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>name</name>
+            <description>Contains the value of this information</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>header</name>
+        <description>A header made of a complex elements (not includes tables)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>align</name>
+            <description>Header horizontal alignment</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>numbered</name>
+            <description>'true' is the header should add page number</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>expected-size</name>
+            <description>Expected header size</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>footer</name>
+        <description>A footer made of  simple elements (not includes tables)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>align</name>
+            <description>Footer horizontal alignment</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>numbered</name>
+            <description>'true' is the footer should add page number</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>expected-size</name>
+            <description>Expected footer size</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>header-ext</name>
+        <description>A header made of a complex elements (includes tables)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>align</name>
+            <description>Header horizontal alignment</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>numbered</name>
+            <description>'true' is the header should add page number</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>expected-size</name>
+            <description>Expected header size</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>footer-ext</name>
+        <description>A footer made of complex elements (includes tables)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>align</name>
+            <description>Footer horizontal alignment</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>numbered</name>
+            <description>'true' is the footer should add page number</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>expected-size</name>
+            <description>Expected footer size</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>background</name>
+        <description>A background image to use for the document</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>bookmark-tree</name>
+        <description>The root of the bookmark tree for the document</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>bookmark</name>
+        <description>A bookmark for the document</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>ref</name>
+            <description>The reference to the element id to link</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>para</name>
+        <description>A document paragraph (roughly comparable to a HTML 'p' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>style</name>
+            <description>Font style of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>align</name>
+            <description>Horizontal alignment of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>font-name</name>
+            <description>The name of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>leading</name>
+            <description>The leading between lines</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>back-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>fore-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>type</name>
+            <description>Data type contained in the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>format</name>
+            <description>Data format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>size</name>
+            <description>The size of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>text-indent</name>
+            <description>Text indentation (currently ignored)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-before</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-after</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-left</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-right</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>white-space-collapse</name>
+            <description>Value is 'true' if the white spaces must be trimmed</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>table</name>
+        <description>A document table (roughly comparable to a HTML 'table' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>columns</name>
+            <description>Number of columns in a table</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>width</name>
+            <description>The width in percentage of the table</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>back-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>fore-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>spacing</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>padding</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>colwidths</name>
+            <description>The sizes of the columns of the table as percentages separated by semicolons (for instance '30;30;40' are three columns if size 30%, 30% and 40%)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-before</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-after</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>render-mode</name>
+            <description>Table render mode (if 'inline' the handler will try to render the table as a flow of element)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>row</name>
+        <description>A table row (roughly comparable to a HTML 'tr' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>header</name>
+            <description>Set to 'true' if the row is a header for the table</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>cell</name>
+        <description>A row cell (roughly comparable to a HTML 'th' or 'td' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>colspan</name>
+            <description>The column span size of the cell (default value is '1')</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>rowspan</name>
+            <description>The row span size of the cell (default value is '1')</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>align</name>
+            <description>Horizontal alignment of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>valign</name>
+            <description>Vertical alignment of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>header</name>
+            <description>Set to 'true' if the cell is a header for the table</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-color-top</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-color-bottom</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-color-left</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-color-right</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width-top</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width-bottom</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width-left</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>border-width-right</name>
+            <description>The size of the border</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>back-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>fore-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>type</name>
+            <description>Data type contained in the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>list</name>
+        <description>A list in the document (roughly comparable to a HTML 'ul' pr 'ol' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>list-type</name>
+            <description>The type fo the list ( 'uld' - unordered with dots, 'ulm' - unordered with mius, 'oln' - ordered with numbers, 'uld' - ordered with letters )</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>li</name>
+        <description>A item of a list (roughly comparable to a HTML 'li' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>pl</name>
+        <description>A phrase list contained in a list item</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>image</name>
+        <description>An image to include in the document (roughly comparable to a HTML 'image' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>url</name>
+            <description>Valid values are :&#13;
+				cl://pathinjar (Path inside the class loader, safest way to load the image)&#13;
+				http://imageurl (but generating machine should be able to access the url)&#13;
+				file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)&#13;
+				In case of base64 just provide the type (png,jpg etc.)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>type</name>
+            <description>The type of the image</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>scaling</name>
+            <description>The scaling percentage (can be higher than 100)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>base64</name>
+            <description>Base 64 representation of a resource</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>alt</name>
+            <description>Alternate description of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>align</name>
+            <description>Horizontal alignment of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>phrase</name>
+        <description>A phrase of the document (roughly comparable to a HTML 'span' element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>font-name</name>
+            <description>The name of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>style</name>
+            <description>Font style of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>leading</name>
+            <description>The leading between lines</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>size</name>
+            <description>The size of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>link</name>
+            <description></description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>white-space-collapse</name>
+            <description>Value is 'true' if the white spaces must be trimmed</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>anchor</name>
+            <description></description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>nbsp</name>
+        <description>Simple spacing (roughly comparable to a HTML 'nbsp' entity)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>length</name>
+            <description>The length of the spacing</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>br</name>
+        <description>A line break (roughly comparable to a HTML 'br' element)</description>
+        <detail>FILL ME</detail>
+    </adElement>
+    <adElement>
+        <name>barcode</name>
+        <description>Create a barcode (this element is kept for compatibility, but it's better to generate barcode as images)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>size</name>
+            <description>The size of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>type</name>
+            <description></description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>text</name>
+            <description>Alternate description of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>h</name>
+        <description>A document heading (roughly comparable to a HTML 'h1', 'h2' etc. element)</description>
+        <detail>FILL ME</detail>
+        <adAttribute>
+            <name>id</name>
+            <description>An element id (should be unique in the document)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>style</name>
+            <description>Font style of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>align</name>
+            <description>Horizontal alignment of the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>font-name</name>
+            <description>The name of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>leading</name>
+            <description>The leading between lines</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>back-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>fore-color</name>
+            <description>A color representation in HTML RGB format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>type</name>
+            <description>Data type contained in the element</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>format</name>
+            <description>Data format</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>size</name>
+            <description>The size of the font to use</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>text-indent</name>
+            <description>Text indentation (currently ignored)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-before</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-after</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-left</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>space-right</name>
+            <description>The spacing of the element (possibly in a given direction)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>white-space-collapse</name>
+            <description>Value is 'true' if the white spaces must be trimmed</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+        <adAttribute>
+            <name>head-level</name>
+            <description>The level of the headings, from 1 (most relevant) to 7 (less relevant) (roughly comparable to a HTML 'h1', 'h2' etc.)</description>
+            <detail>FILL ME</detail>
+        </adAttribute>
+    </adElement>
+    <adElement>
+        <name>page-break</name>
+        <description>A page break heading</description>
+        <detail>FILL ME</detail>
+    </adElement>
+</autodocDetail>

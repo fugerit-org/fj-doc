@@ -5,11 +5,52 @@
 	
 	<xsd:element name='autodocDetail'>
 		<xsd:annotation>
-			<xsd:documentation>Root of the autodoc detailsc</xsd:documentation>
+			<xsd:documentation>Root of the autodoc details</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
+				<xsd:element ref='autodoc:adProperty' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='autodoc:adChangelog' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='autodoc:adInfo' minOccurs="0" maxOccurs="unbounded" />
 				<xsd:element ref='autodoc:adElement' minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='adProperty'>
+		<xsd:annotation>
+			<xsd:documentation>General properties</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='adChangelog'>
+		<xsd:annotation>
+			<xsd:documentation>General informations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:date' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:version' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='adInfo'>
+		<xsd:annotation>
+			<xsd:documentation>General informations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:detail' minOccurs="1" maxOccurs="1" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
@@ -21,6 +62,8 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:detail' minOccurs="1" maxOccurs="1" />
 				<xsd:element ref='autodoc:adAttribute' minOccurs="0" maxOccurs="unbounded" />
 			</xsd:sequence>
 		</xsd:complexType>
@@ -33,6 +76,8 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:detail' minOccurs="1" maxOccurs="1" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
@@ -43,6 +88,46 @@
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='description'>
+		<xsd:annotation>
+			<xsd:documentation>Description of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='detail'>
+		<xsd:annotation>
+			<xsd:documentation>Description of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='version'>
+		<xsd:annotation>
+			<xsd:documentation>Description of a version</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='date'>
+		<xsd:annotation>
+			<xsd:documentation>Reference date for an information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:date">
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:element>
