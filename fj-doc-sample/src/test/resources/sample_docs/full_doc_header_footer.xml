@@ -43,7 +43,9 @@
 		<br/>
 		<para style="italic">para style="italic"</para>
 		<br/>
-		<para style="underline">para style="underline"</para>		
+		<para style="underline">para style="underline"</para>	
+		<br/>
+		<para size="20" font-name="Arial">Test arial</para>			
 
 	</body>
 

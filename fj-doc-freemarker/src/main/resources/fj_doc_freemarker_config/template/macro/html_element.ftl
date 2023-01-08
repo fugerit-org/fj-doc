@@ -36,9 +36,9 @@
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
+		<p <@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
 	<#else>
-		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
+		<h${current.headLevel} <@handleStyleComplete element=current styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
 	</#if>
 </#macro>
 
@@ -138,9 +138,11 @@
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;<#elseif alignValue = 8 || alignValue = 9>text-align: justify;</#if></#macro>
 
+<#macro handleFont element> <#if (element.fontName??)> font-family: '${element.fontName}'; </#if><#if (element.size)?? && (element.size != -1)> font-size: '${element.size}'; </#if></#macro>
+
 <#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>text-decoration: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
 
 <#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
 
-<#macro handleStyleComplete styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle != '' || cAlign != '' || cSpacing != ''>style="${cStyle} ${cAlign} ${cSpacing}"</#if></#macro>
+<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle != '' || cAlign != '' || cSpacing != ''>style="${cStyle} ${cAlign} ${cSpacing}"</#if></#macro>
 
