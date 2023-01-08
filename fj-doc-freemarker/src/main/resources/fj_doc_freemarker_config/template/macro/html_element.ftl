@@ -138,7 +138,7 @@
 
 <#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;<#elseif alignValue = 8 || alignValue = 9>text-align: justify;</#if></#macro>
 
-<#macro handleFont element> <#if (element.fontName??)> font-family: '${element.fontName}'; </#if><#if (element.size)?? && (element.size != -1)> font-size: '${element.size}'; </#if></#macro>
+<#macro handleFont element> <#if (element.fontName??)> font-family: '${element.fontName}'; </#if><#if (element.size)?? && (element.size != -1)> font-size: '${element.size}'; </#if><#if (element.backColor??)> background-color: ${element.backColor}; </#if><#if (element.foreColor??)> color: ${element.foreColor}; </#if></#macro>
 
 <#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>text-decoration: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
 
