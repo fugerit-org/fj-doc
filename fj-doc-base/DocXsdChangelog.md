@@ -17,6 +17,7 @@
 * Attribute 'base64' has now its own type 'base64Type'
 * Attribute 'url' has now its own type 'urlType'
 * Element 'br', 'barcode', 'image', 'nbsp' are no longer 'mixed'
+* Type styleType as a new possible value : 'normal'
 
 Summary of previous versions : 
 -----------------------------

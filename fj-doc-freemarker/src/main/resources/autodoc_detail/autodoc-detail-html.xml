@@ -33,30 +33,29 @@
         <version>0.8.0</version>
         <description>First version of this documentation</description>
     </adChangelog>
-    <adInfo>
-        <name>FILL ME</name>
-        <description>FILL ME</description>
-        <detail>FILL ME</detail>
-    </adInfo>
     <adElement>
         <name>doc</name>
         <description>This is the root element of source doc (consisting in a 'metadata' and a 'body' section)</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>metadata</name>
         <description>Contains the meta informations of the document (roughly comparable to a HTML 'head' element)</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>meta</name>
         <description>Contains the meta informations of the document ('meta' is kept for compatibility, better use 'metadata')</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>body</name>
         <description>The body of the document (roughly comparable to a HTML 'body' element)</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>info</name>
@@ -66,7 +65,9 @@
             <name>name</name>
             <description>Contains the value of this information</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>header</name>
@@ -76,22 +77,27 @@
             <name>align</name>
             <description>Header horizontal alignment</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>numbered</name>
             <description>'true' is the header should add page number</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>expected-size</name>
             <description>Expected header size</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>footer</name>
@@ -101,22 +107,27 @@
             <name>align</name>
             <description>Footer horizontal alignment</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>numbered</name>
             <description>'true' is the footer should add page number</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>expected-size</name>
             <description>Expected footer size</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>header-ext</name>
@@ -126,22 +137,27 @@
             <name>align</name>
             <description>Header horizontal alignment</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>numbered</name>
             <description>'true' is the header should add page number</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>expected-size</name>
             <description>Expected header size</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>footer-ext</name>
@@ -151,32 +167,39 @@
             <name>align</name>
             <description>Footer horizontal alignment</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>numbered</name>
             <description>'true' is the footer should add page number</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>expected-size</name>
             <description>Expected footer size</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>background</name>
         <description>A background image to use for the document</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>bookmark-tree</name>
         <description>The root of the bookmark tree for the document</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>bookmark</name>
@@ -186,7 +209,9 @@
             <name>ref</name>
             <description>The reference to the element id to link</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>para</name>
@@ -196,82 +221,99 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>style</name>
             <description>Font style of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>align</name>
             <description>Horizontal alignment of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>font-name</name>
             <description>The name of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>leading</name>
             <description>The leading between lines</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>back-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>fore-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>type</name>
             <description>Data type contained in the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>format</name>
             <description>Data format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>size</name>
             <description>The size of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>text-indent</name>
             <description>Text indentation (currently ignored)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-before</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-after</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-left</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-right</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>white-space-collapse</name>
             <description>Value is 'true' if the white spaces must be trimmed</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>table</name>
@@ -281,57 +323,69 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>columns</name>
             <description>Number of columns in a table</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>width</name>
             <description>The width in percentage of the table</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>back-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>fore-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>spacing</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>padding</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>colwidths</name>
             <description>The sizes of the columns of the table as percentages separated by semicolons (for instance '30;30;40' are three columns if size 30%, 30% and 40%)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-before</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-after</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>render-mode</name>
             <description>Table render mode (if 'inline' the handler will try to render the table as a flow of element)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>row</name>
@@ -341,12 +395,15 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>header</name>
             <description>Set to 'true' if the row is a header for the table</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>cell</name>
@@ -356,97 +413,117 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>colspan</name>
             <description>The column span size of the cell (default value is '1')</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>rowspan</name>
             <description>The row span size of the cell (default value is '1')</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>align</name>
             <description>Horizontal alignment of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>valign</name>
             <description>Vertical alignment of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>header</name>
             <description>Set to 'true' if the cell is a header for the table</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-color-top</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-color-bottom</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-color-left</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-color-right</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width-top</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width-bottom</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width-left</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>border-width-right</name>
             <description>The size of the border</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>back-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>fore-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>type</name>
             <description>Data type contained in the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>list</name>
@@ -456,12 +533,15 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>list-type</name>
             <description>The type fo the list ( 'uld' - unordered with dots, 'ulm' - unordered with mius, 'oln' - ordered with numbers, 'uld' - ordered with letters )</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>li</name>
@@ -471,12 +551,15 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>pl</name>
         <description>A phrase list contained in a list item</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>image</name>
@@ -490,32 +573,39 @@
 				file://imagepath (Path should be absolute, but you can use, for instance, free marker templating to make it more generic.)&#13;
 				In case of base64 just provide the type (png,jpg etc.)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>type</name>
             <description>The type of the image</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>scaling</name>
             <description>The scaling percentage (can be higher than 100)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>base64</name>
             <description>Base 64 representation of a resource</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>alt</name>
             <description>Alternate description of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>align</name>
             <description>Horizontal alignment of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>phrase</name>
@@ -525,42 +615,51 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>font-name</name>
             <description>The name of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>style</name>
             <description>Font style of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>leading</name>
             <description>The leading between lines</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>size</name>
             <description>The size of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>link</name>
             <description></description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>white-space-collapse</name>
             <description>Value is 'true' if the white spaces must be trimmed</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>anchor</name>
             <description></description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>nbsp</name>
@@ -570,12 +669,15 @@
             <name>length</name>
             <description>The length of the spacing</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>br</name>
         <description>A line break (roughly comparable to a HTML 'br' element)</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>barcode</name>
@@ -585,17 +687,21 @@
             <name>size</name>
             <description>The size of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>type</name>
             <description></description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>text</name>
             <description>Alternate description of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>h</name>
@@ -605,91 +711,110 @@
             <name>id</name>
             <description>An element id (should be unique in the document)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>style</name>
             <description>Font style of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>align</name>
             <description>Horizontal alignment of the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>font-name</name>
             <description>The name of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>leading</name>
             <description>The leading between lines</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>back-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>fore-color</name>
             <description>A color representation in HTML RGB format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>type</name>
             <description>Data type contained in the element</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>format</name>
             <description>Data format</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>size</name>
             <description>The size of the font to use</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>text-indent</name>
             <description>Text indentation (currently ignored)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-before</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-after</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-left</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>space-right</name>
             <description>The spacing of the element (possibly in a given direction)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>white-space-collapse</name>
             <description>Value is 'true' if the white spaces must be trimmed</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
         <adAttribute>
             <name>head-level</name>
             <description>The level of the headings, from 1 (most relevant) to 7 (less relevant) (roughly comparable to a HTML 'h1', 'h2' etc.)</description>
             <detail>FILL ME</detail>
+            <status>FILL ME</status>
         </adAttribute>
+        <status>FILL ME</status>
     </adElement>
     <adElement>
         <name>page-break</name>
         <description>A page break heading</description>
         <detail>FILL ME</detail>
+        <status>FILL ME</status>
     </adElement>
 </autodocDetail>

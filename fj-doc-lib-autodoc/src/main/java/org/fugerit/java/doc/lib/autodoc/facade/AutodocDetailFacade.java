@@ -86,6 +86,7 @@ public class AutodocDetailFacade {
 		adInfo.setName( PLACEHOLDRE_TOKEN );
 		adInfo.setDescription( PLACEHOLDRE_TOKEN );
 		adInfo.setDetail( PLACEHOLDRE_TOKEN );
+		adInfo.setStatus( PLACEHOLDRE_TOKEN );
 		detail.getAdInfo().add( adInfo );
 		// ad element section
 		for ( AutodocElement autodocElement : autodocModel.getElements() ) {
@@ -93,6 +94,7 @@ public class AutodocDetailFacade {
 			adElement.setName( autodocElement.getName() );
 			adElement.setDescription( AutodocUtils.annotationAsSingleStringHelper( autodocElement.getXsdAnnotationDeep() ) );
 			adElement.setDetail( PLACEHOLDRE_TOKEN );
+			adElement.setStatus( PLACEHOLDRE_TOKEN );
 			detail.getAdElement().add( adElement );
 			// ad attribute of the element
 			for ( AutodocAttribute autodocAttribute : autodocElement.getAutodocAttributes() ) {
@@ -100,6 +102,7 @@ public class AutodocDetailFacade {
 				adAttribute.setName( autodocAttribute.getName() );
 				adAttribute.setDescription( AutodocUtils.annotationAsSingleStringHelper( autodocAttribute.getXsdAnnotationDeep() ) );
 				adAttribute.setDetail( PLACEHOLDRE_TOKEN );
+				adAttribute.setStatus( PLACEHOLDRE_TOKEN );
 				adElement.getAdAttribute().add( adAttribute );
 			}
 		}

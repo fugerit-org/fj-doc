@@ -7,7 +7,7 @@ import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 public class AutodocDetailFullDocHelper extends BasicFacadeTest {
 	
 	public AutodocDetailFullDocHelper() {
-		super( "full_doc_header_footer", DocConfig.TYPE_HTML );
+		super( "full_doc_header_footer", DocConfig.TYPE_HTML, DocConfig.TYPE_PDF, DocConfig.TYPE_FO );
 	}	
 	
 }

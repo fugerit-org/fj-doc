@@ -136,9 +136,9 @@
 
 <#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> padding-top: ${spaceBefore}px;</#if><#if (spaceAfter > 0)> padding-bottom: ${spaceAfter}px;</#if></#macro>
 
-<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
+<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;<#elseif alignValue = 8 || alignValue = 9>text-align: justify;</#if></#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;<#elseif styleValue = 1>font-weight: normal; font-style: normal;</#if></#macro>
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>text-decoration: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
 
 <#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
 
