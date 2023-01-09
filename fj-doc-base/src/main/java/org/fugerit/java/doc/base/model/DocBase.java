@@ -107,6 +107,7 @@ public class DocBase extends DocElement {
 	}
 
 	public void setId( String id, DocElement element ) {
+		element.setId( id );
 		this.idMap.put( id , element );
 	}
 	
