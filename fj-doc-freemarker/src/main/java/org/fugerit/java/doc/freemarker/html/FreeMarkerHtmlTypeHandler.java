@@ -6,8 +6,6 @@ import org.fugerit.java.doc.freemarker.helper.FreeMarkerDocHelperTypeHandler;
 
 public class FreeMarkerHtmlTypeHandler extends FreeMarkerDocHelperTypeHandler {
 
-	public static final String CHAIN_FREEMARKER = "html-freemarker";
-	
 	public static DocTypeHandler HANDLER = new FreeMarkerHtmlTypeHandler();
 	
 	/**
@@ -16,7 +14,7 @@ public class FreeMarkerHtmlTypeHandler extends FreeMarkerDocHelperTypeHandler {
 	private static final long serialVersionUID = -7394516771708L;
 
 	public FreeMarkerHtmlTypeHandler() {
-		super( DocConfig.TYPE_HTML, CHAIN_FREEMARKER );
+		super( DocConfig.TYPE_HTML );
 	}
 	
 }

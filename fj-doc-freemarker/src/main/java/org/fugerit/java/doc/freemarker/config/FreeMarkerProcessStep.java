@@ -29,6 +29,7 @@ public class FreeMarkerProcessStep extends DocProcessorBasic {
 		if ( map == null ) {
 			map = new HashMap<>();
 		}
+		FreemarkerApplyHelper.setupFreemarkerMap(cfg, map);
 		Writer out = new StringWriter();
 		template.process( map, out);
 		data.setCurrentXmlData( out.toString() );

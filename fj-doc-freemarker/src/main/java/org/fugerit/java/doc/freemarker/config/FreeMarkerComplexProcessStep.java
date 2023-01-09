@@ -56,6 +56,7 @@ public class FreeMarkerComplexProcessStep extends FreeMarkerProcessStep {
 				}
 			}
 		}
+		FreemarkerApplyHelper.setupFreemarkerMap(context, map);
 		return super.process(context, data);
 	}
 	

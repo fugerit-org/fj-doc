@@ -1,4 +1,10 @@
-﻿0.8.0 (2023-01-07)
+﻿0.8.1 (2023-01-XX)
+------------------
++ Added methods to DocProcessContext for DocBase and DocType availability.
++ Added access to DocConfig static variables in Freemarker Chain process
++ Added new info doc-version-compatibility for handling behaviours in 1-x e 2-x doc versions. 
+
+0.8.0 (2023-01-07)
 ------------------
 + Added a new module for generating documentation [fj-doc-lib-autodoc](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-lib-autodoc)
 + Published new version of [doc-2-0.xsd](https://venusdocs.fugerit.org/fj-doc-base/src/main/resources/config/doc-2-0.xsd), [see doc xsd changelog](https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/DocXsdChangelog.md)
