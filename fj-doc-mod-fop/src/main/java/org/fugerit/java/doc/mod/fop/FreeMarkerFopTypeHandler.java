@@ -16,7 +16,7 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 
 	public static final String CHAIN_FREEMARKER = "fop-freemarker";
 	
-	public static final String ATT_DOCBASE = "docBase";
+	public static final String ATT_DOCBASE = DocProcessContext.ATT_NAME_DOC_BASE;
 	
 	public static final DocTypeHandler HANDLER = new FreeMarkerFopTypeHandler();
 	
@@ -38,7 +38,7 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
 		MiniFilterChain chain = FreeMarkerFopProcess.getInstance().getChainCache( CHAIN_FREEMARKER );
-		DocProcessContext context = DocProcessContext.newContext( ATT_DOCBASE , docInput.getDoc() );
+		DocProcessContext context = DocProcessContext.newContext().withDocInput( docInput );
 		DocProcessData data = new DocProcessData();
 		chain.apply( context, data );
 		StreamIO.pipeCharCloseBoth( data.getCurrentXmlReader() , new OutputStreamWriter( docOutput.getOs() ) );

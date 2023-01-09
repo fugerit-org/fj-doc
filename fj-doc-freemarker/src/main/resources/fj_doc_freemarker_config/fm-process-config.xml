@@ -18,7 +18,7 @@
 		<step id="step-data" defaultBehaviour="CONTINUE"
 			description="Map items from DocContext to FreeMarker Data" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep">		
-			<properties docBase="docBase" docType="docType" DocConfigBean="DocConfigBean"/>		
+			<properties docBase="docBase" docType="docType"/>		
 		</step>			
 	</chain>
 
