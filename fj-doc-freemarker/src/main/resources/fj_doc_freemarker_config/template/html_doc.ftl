@@ -13,6 +13,7 @@
 		<#if (docBase.infoDocSubject)??><meta name="description" content="${docBase.infoDocSubject}"/></#if>
 		<#if (docBase.infoDocLanguage)??><meta http-equiv="content-language" content="${docBase.infoDocLanguage}"/></#if>		
 		<meta name="doc-version-compatibility" content="${comp}"/>
+		${docBase.stableInfo['html-add-to-head']!''}
 	</head>
 	<body>
 		<div>
