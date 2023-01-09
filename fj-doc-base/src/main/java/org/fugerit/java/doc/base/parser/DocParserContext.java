@@ -33,7 +33,24 @@ import org.fugerit.java.doc.base.xml.DocStyleAlignHelper;
 
 public class DocParserContext {
 
-	private static final String XSD_BASE = "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-";
+	public static String findXsdVersion( Properties props ) {
+		String xsdVersion = null;
+		for ( Object key : props.keySet() ) {
+			String k = String.valueOf( key );
+			if ( k.contains( "schemaLocation" ) ) {
+				String value = props.getProperty( k );
+				int xsdBaseIndex = value.indexOf( XSD_URL_BASE );
+				if ( xsdBaseIndex != -1 ) {
+					xsdVersion = value.substring( xsdBaseIndex+XSD_URL_BASE.length(), value.length()-4 );
+				}
+			}
+		}
+		return xsdVersion;
+	}
+	
+	private static final String XSD_URL_BASE = "www.fugerit.org/data/java/doc/xsd/doc-";
+	
+	private static final String XSD_BASE = "http://javacoredoc.fugerit.org https://"+XSD_URL_BASE;
 	
 	public static String createXsdVersionXmlns( String xsdVersion ) {
 		return XSD_BASE+xsdVersion+".xsd";
@@ -102,16 +119,8 @@ public class DocParserContext {
 	public void handleStartElement( String qName, Properties props ) {
 		if ( this.parserNames.isTypeDoc( qName ) ) {
 			this.docBase = new DocBase();
-			for ( Object key : props.keySet() ) {
-				String k = String.valueOf( key );
-				if ( k.contains( "schemaLocation" ) ) {
-					String value = props.getProperty( k );
-					if ( value.contains( XSD_BASE ) ) {
-						String xsdVersion = value.substring( XSD_BASE.length(), value.length()-4 );
-						this.docBase.setXsdVersion( xsdVersion );
-					}
-				}
-			}
+			String xsdVersion = findXsdVersion(props);
+			this.docBase.setXsdVersion( xsdVersion );
 		} else if ( "meta".equalsIgnoreCase( qName ) || "metadata".equalsIgnoreCase( qName ) ) {
 			DocContainer docMeta = this.docBase.getDocMeta();
 			this.currentElement = docMeta;

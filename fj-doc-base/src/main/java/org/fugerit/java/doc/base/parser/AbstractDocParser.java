@@ -56,7 +56,7 @@ public abstract class AbstractDocParser implements DocParser {
 	public DocValidationResult validateResult(Reader reader) throws DocException {
 		DocValidationResult result = null;
 		try {
-			result = this.validateWorker(reader);
+			result = this.validateWorker(reader, false);
 		} catch (Exception e) {
 			throw new DocException( "Parsing exception : "+e, e );
 		}
@@ -67,8 +67,24 @@ public abstract class AbstractDocParser implements DocParser {
 	public int validate(Reader reader) throws DocException {
 		return this.validateResult(reader).evaluateResult();
 	}
+	
+	@Override
+	public DocValidationResult validateVersionResult(Reader reader) throws DocException {
+		DocValidationResult result = null;
+		try {
+			result = this.validateWorker(reader, true);
+		} catch (Exception e) {
+			throw new DocException( "Parsing exception : "+e, e );
+		}
+		return result;
+	}
 
-	protected abstract DocValidationResult validateWorker( Reader reader ) throws Exception;
+	@Override
+	public int validateVersion(Reader reader) throws DocException {
+		return this.validateVersionResult(reader).evaluateResult();
+	}
+
+	protected abstract DocValidationResult validateWorker( Reader reader, boolean parseVersion ) throws Exception;
 	
 	protected abstract DocBase parseWorker( Reader reader ) throws Exception;
 

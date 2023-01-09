@@ -43,6 +43,16 @@ import org.xml.sax.SAXException;
  */
 public class DocContentHandler implements ContentHandler {
 	
+	public static Properties attsToProperties(Attributes atts) {
+		Properties props =  new Properties();
+		for ( int k=0; k<atts.getLength(); k++ ) {
+			String key = atts.getQName( k );
+			String value = atts.getValue( k );
+			props.setProperty(key, value);
+		}
+		return props;
+	}
+	
 	private DocParserContext context;
 	
 	private DocHelper docHelper;
@@ -130,12 +140,7 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#startElement(java.lang.String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
 	public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-		Properties props =  new Properties();
-		for ( int k=0; k<atts.getLength(); k++ ) {
-			String key = atts.getQName( k );
-			String value = atts.getValue( k );
-			props.setProperty(key, value);
-		}
+		Properties props =  attsToProperties(atts);
 		this.context.handleStartElement(qName, props);
 	}
 

@@ -18,4 +18,8 @@ public interface DocParser {
 	
 	int validate( Reader reader ) throws DocException;
 	
+	DocValidationResult validateVersionResult( Reader reader ) throws DocException;
+	
+	int validateVersion( Reader reader ) throws DocException;
+	
 }
