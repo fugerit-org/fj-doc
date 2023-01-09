@@ -26,10 +26,10 @@
 		{
 			"_t": "body",
 			"_e": [
-				{ "_t": "phrase", "align": "center", "_v": "Test phrase 01" },
-				{ "_t": "phrase", "align": "center", "_v": "Test phrase 02" },
-				{ "_t": "phrase", "align": "center", "_v": "Test phrase 03" },
-				{ "_t": "phrase", "align": "center", "_v": "Test phrase 04" },
+				{ "_t": "para", "align": "center", "_v": "Test phrase 01" },
+				{ "_t": "para", "align": "center", "_v": "Test phrase 02" },
+				{ "_t": "para", "align": "center", "_v": "Test phrase 03" },
+				{ "_t": "para", "align": "center", "_v": "Test phrase 04" },
 				{ "_t": "image", "url": "cl://test/img_test_red.png", "scaling": "100" },
 				{ "_t": "image", "url": "cl://test/img_test_green.png", "scaling": "50" },
 				{ "_t": "image", "url": "cl://test/img_test_blue.png", "scaling": "25" },

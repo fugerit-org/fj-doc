@@ -8,7 +8,6 @@ public class AutodocDetailFullDocHelper extends BasicFacadeTest {
 	
 	public AutodocDetailFullDocHelper() {
 		super( "full_doc_header_footer", DocConfig.TYPE_HTML, DocConfig.TYPE_HTML_FRAGMENT, DocConfig.TYPE_PDF, DocConfig.TYPE_FO );
-		this.setValidate(true);
 	}	
 	
 }

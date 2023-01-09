@@ -2,7 +2,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd" > 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 
 
   <!-- 
   	Sample Apache FreeMarker template for Fugerit Doc.

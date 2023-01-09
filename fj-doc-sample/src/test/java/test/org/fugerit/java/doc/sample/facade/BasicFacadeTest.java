@@ -31,6 +31,8 @@ public class BasicFacadeTest {
 	
 	public static final String BASIC_OUTPUT_PATH = "target/sample_out";
 	
+	private static final boolean VALIDATE_DEFAULT = true;
+	
 	private String nameBase;
 	
 	private String facadeId;
@@ -43,7 +45,7 @@ public class BasicFacadeTest {
 	
 	public BasicFacadeTest() {
 		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML );
-		this.validate = false;
+		this.validate = VALIDATE_DEFAULT;
 	}
 	
 	protected BasicFacadeTest( String nameBase, String ...typeList ) {
@@ -54,7 +56,7 @@ public class BasicFacadeTest {
 			types.add( current );
 		}
 		this.setFacadeId( SampleFacade.MAIN_FACTORY );
-		this.validate = false;
+		this.validate = VALIDATE_DEFAULT;
 	}
 	
 	protected void setValidate(boolean validate) {
