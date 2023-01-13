@@ -53,15 +53,15 @@
 			<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
 		</#if>
 	</#if>	
-	<img <@handleId element=current/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
+	<img <@handleId element=docImage/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
 </#macro>
 
 <#macro handleList docList>
 	<#if docList.elementList?size gt 0>
-	<${docList.htmlType} <@handleId element=current/>>
+	<${docList.htmlType} <@handleId element=docList/>>
 		<#list docList.elementList as li>
 			<#if (li?counter > 0)>
-				<li <@handleId element=current/><#if li.contentList>style="list-style-type: none;"<#elseif docList.listType = 'oll'>style="list-style-type: lower-alpha;"<#elseif docList.listType = 'ulm'>style="list-style-type: square;"<#elseif docList.listType = 'uld'>style="list-style-type: circle;"</#if>> <#list li.elementList as element><@handleElement current=element/></#list></li>
+				<li <@handleId element=li/><#if li.contentList>style="list-style-type: none;"<#elseif docList.listType = 'oll'>style="list-style-type: lower-alpha;"<#elseif docList.listType = 'ulm'>style="list-style-type: square;"<#elseif docList.listType = 'uld'>style="list-style-type: circle;"</#if>> <#list li.elementList as element><@handleElement current=element/></#list></li>
 			</#if>			
 			<#assign prevLi=li/>
 		</#list>	
@@ -130,9 +130,9 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
-<#macro handleIdDef element defId><#if element.id??>id="${element.id}" <#else>id="${defId}"</#if></#macro>
+<#macro handleIdDef element defId><#if (element.id)??>id="${element.id}" <#else>id="${defId}"</#if></#macro>
 
-<#macro handleId element><#if element.id??>id="${element.id}" </#if></#macro>
+<#macro handleId element><#if (element.id)??>id="${element.id}" </#if></#macro>
 
 <#macro handleRowspan rowspanValue> rowspan="${rowspanValue}" </#macro>
 
