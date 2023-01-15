@@ -3,6 +3,7 @@
 + Added methods to DocProcessContext for DocBase and DocType availability.
 + Added access to DocConfig static variables in Freemarker Chain process
 + Added new info doc-version-compatibility for handling behaviours in 1-x e 2-x doc versions. 
++ Added a sample documents catalog to the fj-doc-sample modules (accessible in the playgound application too)
 
 0.8.0 (2023-01-07)
 ------------------

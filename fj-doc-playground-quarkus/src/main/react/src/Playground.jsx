@@ -45,7 +45,6 @@ class Playground extends Component {
 				dialogMessage: message				 
 			}
 		);
-		console.log( this.state );
 	};
 
 	render() {

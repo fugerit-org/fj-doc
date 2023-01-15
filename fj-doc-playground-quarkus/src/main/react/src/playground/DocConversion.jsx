@@ -1,19 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap';
-import axios from 'axios';
+import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
-
-import XMLData from "./samples_doc_xml/default_doc.xml";
-
-let placeholterXml = '';
-
-axios.get(XMLData, {
-	"Content-Type": "application/xml; charset=utf-8"
-})
-	.then((response) => {
-		placeholterXml = response.data;
-	});
-
 
 class DocConversion extends Component {
 
@@ -22,10 +10,10 @@ class DocConversion extends Component {
 		this.handleGenerate = this.handleGenerate.bind(this);
 		this.handleFormat = this.handleFormat.bind(this);
 		this.handleDoc = this.handleDoc.bind(this);
+		this.handleEditorContent = this.handleEditorContent.bind(this);
 		this.state = {
 			inputFormat: 'XML',			
 			outputFormat: null,
-			docContent: placeholterXml,
 			docOutput: ''
 		}
 	}
@@ -76,10 +64,24 @@ class DocConversion extends Component {
 		});
 	};
 
+	handleEditorContent = ( content ) => {
+		this.setState(
+			{ 
+				docContent: content			 
+			}
+		);
+		console.log( this.state );
+	};
+
 	render() {
 		return <Fragment>
 
 			<Form>
+				<Row>
+					<Col>
+						<DocCatalog handleEditorContent={this.handleEditorContent} />
+					</Col>
+				</Row>
 				<Row>
 					<Col>
 						<Form.Label>Convert from</Form.Label>

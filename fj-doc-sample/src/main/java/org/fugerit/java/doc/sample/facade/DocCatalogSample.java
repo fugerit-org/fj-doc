@@ -8,10 +8,13 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.cfg.xml.ListMapCatalogConfig;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.util.collection.ListMapStringKey;
 
 public class DocCatalogSample extends ListMapCatalogConfig<DocCatalogEntry> {
 
 	public static final String ATT_BASE_PATH = "path-base";
+
+	public static final String CATALOG_ID_PLAYGROUND_CORE = "playground-core";
 	
 	private static final long serialVersionUID = -7903871203856880584L;
 
@@ -53,6 +56,10 @@ public class DocCatalogSample extends ListMapCatalogConfig<DocCatalogEntry> {
 		} catch (Exception e) {
 			throw new ConfigException( "Failed to read entry : "+entry+"["+e+"]", e );
 		}
+	}
+	
+	public ListMapStringKey<DocCatalogEntry> getPlaygroundCoreCatalog() {
+		return this.getListMap( CATALOG_ID_PLAYGROUND_CORE );
 	}
 	
 }

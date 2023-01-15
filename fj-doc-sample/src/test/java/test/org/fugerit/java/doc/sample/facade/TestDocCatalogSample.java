@@ -20,7 +20,7 @@ public class TestDocCatalogSample {
 		try {
 			DocCatalogSample catalog = DocCatalogSample.getInstance();
 			assertNotNull( "catalog must exists", catalog );
-			ListMapStringKey<DocCatalogEntry> list = catalog.getListMap( "playground-core" );
+			ListMapStringKey<DocCatalogEntry> list = catalog.getPlaygroundCoreCatalog();
 			DocCatalogEntry entry = list.get( "default" );
 			assertNotNull( "default entry must exists", entry );
 			String content = StreamIO.readString( catalog.entryReader(entry) );
