@@ -1,0 +1,9 @@
+<doc-catalog
+	path-mode="classloader"
+	path-base="sample_docs/">
+
+	<catalog id="playground-core">
+		<doc id="default" path="playground/default_doc.xml" description="Default sample doc"/>
+	</catalog>
+
+</doc-catalog>

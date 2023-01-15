@@ -90,7 +90,7 @@ public class BasicFacadeTest {
 		if ( this.getSourceType() == DocFacadeSource.SOURCE_TYPE_XML ) {
 			baseName+= ".xml";
 		}
-		return "src/test/resources/sample_docs/"+baseName;
+		return "src/main/resources/sample_docs/junit_base/"+baseName;
 	}
 	
 	protected Reader getXmlReader() throws Exception {
