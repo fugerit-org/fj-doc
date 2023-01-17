@@ -3,6 +3,13 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
+import AceEditor from "react-ace";
+
+import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/theme-xcode";
+import "ace-builds/src-noconflict/ext-language_tools";
+
+
 class DocXmlEditor extends Component {
 
 	constructor(props) {
@@ -81,12 +88,11 @@ class DocXmlEditor extends Component {
 		});
 	};
 
-	handleDoc = (e) => {
-		e.preventDefault();
+	handleDoc( newValue ) {
 		this.setState({
 			outputFormat: this.state.outputFormat,
-			docContent: e.target.value
-		});
+			docContent: newValue
+		}); 
 	};
 	
 	handleEditorContent = ( content ) => {
@@ -100,6 +106,11 @@ class DocXmlEditor extends Component {
 
 	render() {
 		
+		let editorInFormat = 'xml';
+		if ( this.state.inputFormat != null ) {
+			editorInFormat = this.state.inputFormat.toLowerCase()
+		}
+
 		let outputData = <Fragment>Here will be the output</Fragment>
 		if ( this.state.docOutput != null && this.state.docFormat != null ) {
 			if ( this.state.docFormat === 'HTML' ) {
@@ -149,10 +160,18 @@ class DocXmlEditor extends Component {
 				</Row>		
 				<Row>
 					<Col>						
-				<Form.Group className="mb-3" controlId="xmlarea">
-					<Form.Label>Source area</Form.Label>
-					<Form.Control type="text" as="textarea" rows={20} onChange={this.handleDoc} defaultValue={this.state.docContent} />
-				</Form.Group>
+						<AceEditor
+							mode={editorInFormat}
+							theme="xcode"
+							name="DOC_ACE_EDITOR"
+							editorProps={{ $blockScrolling: true }}
+							enableBasicAutocompletion={true}
+							enableLiveAutocompletion={true}
+							enableSnippets={true}
+							value={this.state.docContent}
+							onChange={this.handleDoc}
+							width='100%'
+						/>
 					</Col>
 					<Col>
 						<div>{outputData}</div>
