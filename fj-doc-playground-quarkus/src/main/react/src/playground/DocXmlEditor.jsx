@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
@@ -8,7 +9,6 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
-
 
 class DocXmlEditor extends Component {
 
@@ -21,7 +21,7 @@ class DocXmlEditor extends Component {
 		this.handleEditorContent = this.handleEditorContent.bind(this);
 		this.state = {
 			inputFormat: 'XML',			
-			outputFormat: null,
+			outputFormat: 'HTML',
 			docContent: '',
 			docOutput: null,
 			docFormat: null
@@ -138,24 +138,35 @@ class DocXmlEditor extends Component {
 						<Form.Label>Source type</Form.Label>
 					</Col>
 					<Col>
-						<Form.Select aria-label="Select output format" onChange={this.handleInputFormat}>
-							<option value="XML">XML</option>
-							<option value="JSON">JSON</option>
-							<option value="YAML">YAML</option>
-						</Form.Select>
+						<FormControl fullWidth>
+						  <Select
+						    id="input-type-select"
+						    onChange={this.handleInputFormat}
+							value={this.state.inputFormat}
+						  >
+						    <MenuItem value='XML'>XML</MenuItem>
+						    <MenuItem value='JSON'>JSON</MenuItem>
+						    <MenuItem value='YAML'>YAML</MenuItem>
+						  </Select>
+						</FormControl>	
 					</Col>
 				</Row>
 				<Row>				
 					<Col>				
 						<Form.Label>Output format</Form.Label>
 					</Col>
-					<Col>									
-						<Form.Select aria-label="Select output format" onChange={this.handleFormat}>
-							<option>Select the output format</option>
-							<option value="PDF">PDF</option>
-							<option value="XLSX">XLSX</option>
-							<option value="HTML">HTML</option>
-						</Form.Select>
+					<Col>	
+						<FormControl fullWidth>
+						  <Select
+						    id="output-type-select"
+						    onChange={this.handleFormat}
+							value={this.state.outputFormat}
+						  >
+							<MenuItem value='HTML'>HTML</MenuItem>
+						    <MenuItem value='PDF'>PDF</MenuItem>
+						    <MenuItem value='XLSX'>XLSX</MenuItem>
+						  </Select>
+						</FormControl>								
 					</Col>
 				</Row>		
 				<Row>
