@@ -1,4 +1,4 @@
-﻿0.8.2 (2023-01-15)
+﻿0.8.2 (2023-01-22)
 ------------------
 + Updated fj-core version to 0.8.8
 + Improved playground
