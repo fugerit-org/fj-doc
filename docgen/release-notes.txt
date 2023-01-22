@@ -1,4 +1,9 @@
-﻿0.8.1 (2023-01-15)
+﻿0.8.2 (2023-01-15)
+------------------
++ Updated fj-core version to 0.8.8
++ Improved playground
+
+0.8.1 (2023-01-15)
 ------------------
 + Added methods to DocProcessContext for DocBase and DocType availability.
 + Added access to DocConfig static variables in Freemarker Chain process
