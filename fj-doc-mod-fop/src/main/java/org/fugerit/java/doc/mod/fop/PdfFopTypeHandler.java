@@ -43,7 +43,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_CONFIG_CLASSLOADER_PATH = "fop-config-classloader-path";
 	
 	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resover-type";
-	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = ClassLoaderResourceResolverWrapper.class.getName();
+
+	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = FopConfigClassLoaderWrapper.DEFAULT_RESOURCE_RESOLVER.getClass().getName();
 	
 	@Deprecated
 	public static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";

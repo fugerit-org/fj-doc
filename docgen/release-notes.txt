@@ -1,4 +1,8 @@
-﻿0.8.2 (2023-01-22)
+﻿0.8.3 (2023-01-24)
+------------------
++ [fj-doc-mod-fop - need to create FopConfigClassLoaderWrapper with default ResourceResolver]([0.5.2](https://github.com/fugerit-org/fj-doc/issues/15))
+
+0.8.2 (2023-01-22)
 ------------------
 + Updated fj-core version to 0.8.8
 + Improved playground

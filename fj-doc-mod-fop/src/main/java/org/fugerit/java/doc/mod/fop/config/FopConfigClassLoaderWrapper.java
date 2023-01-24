@@ -14,6 +14,8 @@ import org.fugerit.java.doc.mod.fop.FopConfig;
 
 public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 
+	public static final ResourceResolver DEFAULT_RESOURCE_RESOLVER = new ClassLoaderResourceResolverWrapper();
+	
 	/**
 	 * 
 	 */
@@ -31,6 +33,10 @@ public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 		return customResourceResolver;
 	}
 
+	public FopConfigClassLoaderWrapper(String fopConfigPath ) {
+		this( fopConfigPath, DEFAULT_RESOURCE_RESOLVER );
+	}
+	
 	public FopConfigClassLoaderWrapper(String fopConfigPath, ResourceResolver customResourceResolver) {
 		super();
 		this.fopConfigPath = fopConfigPath;
