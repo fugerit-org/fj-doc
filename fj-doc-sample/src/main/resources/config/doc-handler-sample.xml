@@ -2,10 +2,10 @@
 
 	<factory id="default-complete">
 		<data id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
-		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXML" />
+		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
 		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
 		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
-		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler" />
+		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
 		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<!--
 			Starting with fj-doc-mod-fop version 0.5.2 there is a new attribute : 
@@ -25,10 +25,10 @@
 			Example 2 : <config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 
 			-->
-			<config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
+			<config charset="UTF-8" fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 		</data>
-		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler" />	
-		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler" />
+		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
+		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
 		<data id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
 	</factory>
 

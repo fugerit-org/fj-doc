@@ -2,6 +2,8 @@ package org.fugerit.java.doc.base.typehandler.markdown;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -24,6 +26,10 @@ public class SimpleMarkdownExtTypeHandler extends AbstractCustomMarkdownTypeHand
 	
 	public static final DocTypeHandler HANDLER_NOCOMMENTS = new SimpleMarkdownExtTypeHandler( false );
 	
+	public static final DocTypeHandler HANDLER_UTF8 = new SimpleMarkdownExtTypeHandler( StandardCharsets.UTF_8 );
+	
+	public static final DocTypeHandler HANDLER_NOCOMMENTS_UTF8 = new SimpleMarkdownExtTypeHandler( StandardCharsets.UTF_8, false );
+	
 	/**
 	 * 
 	 */
@@ -35,12 +41,19 @@ public class SimpleMarkdownExtTypeHandler extends AbstractCustomMarkdownTypeHand
 
 	public SimpleMarkdownExtTypeHandler(boolean printComments) {
 		super(printComments);
-		// TODO Auto-generated constructor stub
+	}
+
+	public SimpleMarkdownExtTypeHandler(Charset charset, boolean printComments) {
+		super(charset, printComments);
+	}
+
+	public SimpleMarkdownExtTypeHandler(Charset charset) {
+		super(charset);
 	}
 
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-		PrintWriter writer = new PrintWriter( new OutputStreamWriter( docOutput.getOs() ) );
+		PrintWriter writer = new PrintWriter( new OutputStreamWriter( docOutput.getOs(), this.getCharset() ) );
 		DocBase docBase = docInput.getDoc();
 		/*
 		 * The key for building a DocTypeHandler is to correctly renders 

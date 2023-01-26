@@ -1,6 +1,10 @@
-﻿0.8.3 (2023-01-24)
+﻿0.8.4 (2023-01-26)
 ------------------
-+ [fj-doc-mod-fop - need to create FopConfigClassLoaderWrapper with default ResourceResolver]([0.5.2](https://github.com/fugerit-org/fj-doc/issues/15))
++ [fj-doc-base - Enable charset selection for DocTypeHandlerXML](https://github.com/fugerit-org/fj-doc/issues/17)
+
+0.8.3 (2023-01-24)
+------------------
++ [fj-doc-mod-fop - need to create FopConfigClassLoaderWrapper with default ResourceResolver](https://github.com/fugerit-org/fj-doc/issues/15)
 
 0.8.2 (2023-01-22)
 ------------------
