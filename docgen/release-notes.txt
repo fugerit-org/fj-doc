@@ -1,4 +1,4 @@
-﻿0.8.4 (2023-01-26)
+﻿0.8.4 (2023-01-27)
 ------------------
 + [fj-doc-base - Enable charset selection for DocTypeHandlerXML](https://github.com/fugerit-org/fj-doc/issues/17)
 
