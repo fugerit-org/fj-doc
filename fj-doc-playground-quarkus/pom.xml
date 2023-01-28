@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.8.4-utf8</version>
+		<version>0.8.4-b2</version>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>
@@ -168,6 +168,13 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <configuration>
+                <skip>true</skip>
+              </configuration>
+            </plugin>
 		</plugins>
 	</build>
 	<profiles>
