@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.8.4-b2</version>
+	<version>0.8.5</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>

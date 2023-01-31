@@ -29,7 +29,6 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoader;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
@@ -70,11 +69,22 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this.fopConfig = fopConfig;
 		this.accessibility = accessibility;
 		this.keepEmptyTags = keepEmptyTags;
-		
+	}
+	
+	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig ) {
+		this( charset, fopConfig, DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
 	}
 	
 	public PdfFopTypeHandler( FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		this( DocCharsetProvider.getDefaultProvider().resolveCharset( null ), fopConfig, accessibility, keepEmptyTags );
+	}
+	
+	public PdfFopTypeHandler( Charset charset, boolean accessibility, boolean keepEmptyTags ) {
+		this( charset, FopConfigDefault.DEFAULT, accessibility, keepEmptyTags );
+	}
+	
+	public PdfFopTypeHandler( Charset charset ) {
+		this( charset, DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
 	}
 	
 	public PdfFopTypeHandler( boolean accessibility, boolean keepEmptyTags ) {
