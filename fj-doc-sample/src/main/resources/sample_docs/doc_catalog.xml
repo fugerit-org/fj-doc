@@ -5,6 +5,7 @@
 	<catalog id="playground-core">
 		<doc id="default" path="playground/default_doc.xml" description="Default sample doc"/>
 		<doc id="doc-01" path="playground/doc_test_01.xml" description="Image loading (does not work in excel format)"/>
+		<doc id="doc-02" path="playground/full_doc_header_footer.xml" description="Document which contains most tags"/>
 	</catalog>
 
 </doc-catalog>
