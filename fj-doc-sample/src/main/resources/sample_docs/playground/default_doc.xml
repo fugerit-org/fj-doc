@@ -8,6 +8,11 @@
   	<!-- Margin for document : left;right;top;bottom -->
   	<info name="margins">10;10;10;30</info>  
   	<info name="excel-table-id">excel-table=print</info>
+ 	<!-- documenta meta information -->
+	<info name="doc-title">Basci example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
 	<footer-ext numbered="true">
         <para align="center">Page ${currentPage}</para>
 	</footer-ext>	
