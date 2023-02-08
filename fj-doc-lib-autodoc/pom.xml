@@ -126,6 +126,7 @@
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<stylesheetfile>src/main/javadoc/stylesheet.css</stylesheetfile>
+							<excludePackageNames>org.fugerit.java.doc.lib.autodoc.detail.model</excludePackageNames>
 						</configuration>
 						<executions>
 							<execution>
