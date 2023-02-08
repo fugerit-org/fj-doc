@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>0.8.6</version>
+		<version>0.8.7</version>
 	</parent>
 
 	<name>fj-doc-lib-autodoc</name>
@@ -126,6 +126,7 @@
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<stylesheetfile>src/main/javadoc/stylesheet.css</stylesheetfile>
+							<excludePackageNames>org.fugerit.java.doc.lib.autodoc.detail.model</excludePackageNames>
 						</configuration>
 						<executions>
 							<execution>

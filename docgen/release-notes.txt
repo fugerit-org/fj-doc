@@ -1,4 +1,8 @@
-﻿0.8.6 (2023-02-06)
+﻿0.8.7 (2023-02-08)
+------------------
++ [Fix Javadoc generations with older versions of jdk 11 fails](https://github.com/fugerit-org/fj-doc/issues/24)
+
+0.8.6 (2023-02-06)
 ------------------
 + Added meta informations to samples documents
 + Added new sample catalog entry from playground
