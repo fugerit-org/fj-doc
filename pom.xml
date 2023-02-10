@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>0.8.7</version>
+	<version>0.8.8</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -24,9 +24,9 @@
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
 	    <!-- fj java versions -->
-	    <fj-version>0.8.9-b1</fj-version>
+	    <fj-version>0.8.12</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
-	    <jackson-version>2.14.1</jackson-version>
+	    <jackson-version>2.14.2</jackson-version>
 	</properties>
 
 	<licenses>

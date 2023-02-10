@@ -1,6 +1,8 @@
-﻿0.8.8 (2023-02-XX)
+﻿0.8.8 (2023-02-11)
 ------------------
 + [Fix javadoc build for java 17](https://github.com/fugerit-org/fj-doc/issues/26)
++ [Jackson core need to be upgraded 2.14.1](https://github.com/fugerit-org/fj-doc/issues/9)
++ update fj-core version to 0.8.12
 
 
 0.8.7 (2023-02-08)
