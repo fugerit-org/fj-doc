@@ -11,3 +11,5 @@ A quickstart project is also available for info and examples :
 **You can also check :**
 * [Venus (fj-doc) home page](https://www.fugerit.org/wp/index.php/fugerit-coding-org/fugerit-venus)
 * [Github project](https://github.com/fugerit-org/fj-doc)
+* [Venus Playground](https://www.fugerit.org/fj-doc-playground/home/)
+* [Venus Quickstart](https://venusqs.fugerit.org/)
