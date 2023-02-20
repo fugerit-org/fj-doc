@@ -12,6 +12,9 @@ _e:
   - _t: info
     name: excel-width-multiplier
     _v: '450'
+  - _t: info
+    name: doc-language
+    _v: 'en'
   - _t: footer-ext
     _e:
     - _t: para
@@ -30,12 +33,15 @@ _e:
   - _t: image
     url: cl://test/img_test_red.png
     scaling: '100'
+    alt: 'Test image 1'
   - _t: image
     url: cl://test/img_test_green.png
     scaling: '50'
+    alt: 'Test image 2'
   - _t: image
     url: cl://test/img_test_blue.png
     scaling: '25'
+    alt: 'Test image 3'
   - _t: table
     columns: '3'
     colwidths: 30;30;40
