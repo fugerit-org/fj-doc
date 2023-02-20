@@ -94,7 +94,7 @@ public class DocObjectMapperHelper {
 		context.handleEndElement(qName);
 	}
 
-	public DocValidationResult validateWorkerResult(Reader reader) throws Exception {
+	public DocValidationResult validateWorkerResult(Reader reader, boolean parseVersion) throws Exception {
 		DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
 		DocJsonToXml convert = new DocJsonToXml( this.mapper );
 		Element root = convert.convertToElement( reader );
@@ -102,7 +102,12 @@ public class DocObjectMapperHelper {
 			DOMIO.writeDOMIndent(root, buffer);
 			try ( Reader xmlReader = new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ) ) ) {
 				DocXmlParser parser = new DocXmlParser();
-				result = parser.validateResult(xmlReader);
+				result = null;
+				if ( parseVersion ) {
+					result = parser.validateVersionResult(xmlReader);
+				} else {
+					result = parser.validateResult(xmlReader);
+				}
 				if ( !result.getErrorList().isEmpty() ) {
 					result.getInfoList().add( "This validation is made through conversion to xml, so lines/columns number in errors are to be considered an hint" );
 				}

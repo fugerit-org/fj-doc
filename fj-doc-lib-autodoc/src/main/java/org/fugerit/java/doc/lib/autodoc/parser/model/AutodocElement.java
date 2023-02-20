@@ -35,9 +35,13 @@ public class AutodocElement implements KeyString, Serializable {
 		return xsdElement;
 	}
 	
+	public String getName() {
+		return this.getXsdElement().getRawName();
+	}
+	
 	@Override
 	public String getKey() {
-		return this.getXsdElement().getName();
+		return this.getXsdElement().getRawName();
 	}
 	
 	public XsdComplexType getComplexType() {

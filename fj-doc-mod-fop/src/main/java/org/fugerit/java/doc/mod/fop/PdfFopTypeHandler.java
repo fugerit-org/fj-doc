@@ -3,6 +3,7 @@ package org.fugerit.java.doc.mod.fop;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 import javax.xml.transform.Result;
@@ -20,15 +21,14 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMUtils;
+import org.fugerit.java.doc.base.config.DocCharsetProvider;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoader;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
 public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
@@ -43,7 +43,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_CONFIG_CLASSLOADER_PATH = "fop-config-classloader-path";
 	
 	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resover-type";
-	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = ClassLoaderResourceResolverWrapper.class.getName();
+
+	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = FopConfigClassLoaderWrapper.DEFAULT_RESOURCE_RESOLVER.getClass().getName();
 	
 	@Deprecated
 	public static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";
@@ -62,12 +63,28 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	private boolean keepEmptyTags;
 	
 	private FopConfig fopConfig;
-	
-	public PdfFopTypeHandler( FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
-		super( DocConfig.TYPE_PDF );
+
+	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
+		super( DocConfig.TYPE_PDF, charset );
 		this.fopConfig = fopConfig;
 		this.accessibility = accessibility;
 		this.keepEmptyTags = keepEmptyTags;
+	}
+	
+	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig ) {
+		this( charset, fopConfig, DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
+	}
+	
+	public PdfFopTypeHandler( FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
+		this( DocCharsetProvider.getDefaultProvider().resolveCharset( null ), fopConfig, accessibility, keepEmptyTags );
+	}
+	
+	public PdfFopTypeHandler( Charset charset, boolean accessibility, boolean keepEmptyTags ) {
+		this( charset, FopConfigDefault.DEFAULT, accessibility, keepEmptyTags );
+	}
+	
+	public PdfFopTypeHandler( Charset charset ) {
+		this( charset, DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
 	}
 	
 	public PdfFopTypeHandler( boolean accessibility, boolean keepEmptyTags ) {
@@ -84,7 +101,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		DocOutput bufferOutput = DocOutput.newOutput( buffer );
 		super.handle(docInput, bufferOutput);
 		// the XML file which provides the input
-		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ) ) );
+		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ), this.getCharset() ) );
 		// create an instance of fop factory
 		FopFactory fopFactory = this.fopConfig.newFactory();
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
@@ -114,33 +131,31 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	}
 
 	@Override
-	public void configure(Element tag) throws ConfigException {
-		NodeList nl = tag.getElementsByTagName( "config" );
-		if ( nl.getLength() > 0 ) {
-			Element config = (Element)nl.item( 0 );
-			Properties props = DOMUtils.attributesToProperties( config );
-			String fopConfigMode = props.getProperty( ATT_FOP_CONFIG_MODE );
-			String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
-			String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
-			String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
-			// legacy class loader mode
-			if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
-				fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
-				logger.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
-			}
-			if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
-				try {
-					ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
-					FopConfigClassLoaderWrapper fopConfigClassLoaderWrapper = new FopConfigClassLoaderWrapper(fopConfigClassloaderPath, customResourceResolver);
-					this.fopConfig = fopConfigClassLoaderWrapper;	
-				} catch (Exception e) {
-					throw new ConfigException( PdfFopTypeHandler.class.getSimpleName()+" configuration error : "+e, e );
-				}
-			} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
-				FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, fontBaseClassloaderPath);
-				this.fopConfig = fopConfigClassLoader;
-			}
+	protected void handleConfigTag(Element config) throws ConfigException {
+		super.handleConfigTag(config);
+		Properties props = DOMUtils.attributesToProperties( config );
+		String fopConfigMode = props.getProperty( ATT_FOP_CONFIG_MODE );
+		String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
+		String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
+		String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
+		// legacy class loader mode
+		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
+			fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
+			logger.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
 		}
+		if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
+			try {
+				ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
+				FopConfigClassLoaderWrapper fopConfigClassLoaderWrapper = new FopConfigClassLoaderWrapper(fopConfigClassloaderPath, customResourceResolver);
+				this.fopConfig = fopConfigClassLoaderWrapper;	
+			} catch (Exception e) {
+				throw new ConfigException( PdfFopTypeHandler.class.getSimpleName()+" configuration error : "+e, e );
+			}
+		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
+			FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, fontBaseClassloaderPath);
+			this.fopConfig = fopConfigClassLoader;
+		}
+
 	}
 	
 }

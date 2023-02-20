@@ -2,12 +2,17 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-10.xsd" > 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 
 
   <metadata>
   	<!-- Margin for document : left;right;top;bottom -->
   	<info name="margins">10;10;10;30</info>  
   	<info name="excel-table-id">excel-table=print</info>
+ 	<!-- documenta meta information -->
+	<info name="doc-title">Basci example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
 	<footer-ext numbered="true">
         <para align="center">Page ${currentPage}</para>
 	</footer-ext>	

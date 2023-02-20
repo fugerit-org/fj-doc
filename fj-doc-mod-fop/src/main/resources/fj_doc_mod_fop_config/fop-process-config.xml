@@ -18,7 +18,7 @@
 		<step id="step-data" defaultBehaviour="CONTINUE"
 			description="Map items from DocContext to FreeMarker Data" 
 			type="org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep">		
-			<properties docBase="docBase" />		
+			<properties docBase="docBase" docType="docType"/>		
 		</step>			
 		<step id="step-process" defaultBehaviour="CONTINUE"
 			description="Apply FreeMarker template to get the full XML" 

@@ -23,8 +23,8 @@ public class DocJsonParser extends AbstractDocParser {
 	}
 	
 	@Override
-	protected DocValidationResult validateWorker(Reader reader) throws Exception {
-		return this.getHelper().validateWorkerResult(reader);
+	protected DocValidationResult validateWorker(Reader reader, boolean parseVersion) throws Exception {
+		return this.getHelper().validateWorkerResult(reader, parseVersion);
 	}
 
 	@Override

@@ -1,0 +1,20 @@
+<doc xmlns="http://javacoredoc.fugerit.org" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd">
+  <metadata>
+    <info name="margins">10;10;10;30</info>
+    <info name="excel-table-id">excel-table=print</info>
+    <info name="excel-width-multiplier">450</info>
+	<!-- documenta meta information -->
+	<info name="doc-title">Basci example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+    <footer-ext>
+      <para align="center">Page ${currentPage}</para>
+    </footer-ext>
+  </metadata>
+  <body>
+    <image scaling="100" url="png" base64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABmJLR0QAAADwAK8K7nbWAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4wscFhE4Umte9gAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAACrklEQVRYw+2YzUtUURjGf+fOnTt+jI5WmJo5AwpBWoaJWQlCEAlhuJBIoYUaEgRtgvoTIlq1CVTIWkphBkZEVkZln2CFLWrTjKBCg+GMH9PMuXdOC1NRRyOtwcV94G7e8z6X3z0vzzlwBZN3FZtYGptcNqANaAPagDagDWgDbjLAw1o2ylPPVVfJipry1NOeUpbwRdsxiGXUoTz1PE+rTtjjUoKzTh/9aYf47q4lmlHHmPsY79JruJayhwNa1gqP/jdfMx2XNDoLuBAZZlpYS9ZaDC9xIBa3Enq9IpW+9CpKdc+Seh6p5JFKhZ7NeVcRvvBDAiqyvhF3y1HScdBkFCxdUIpWw0uPOUaMeMKd60ubg/tkhjg185b80AOck73khO5THn7CudkPvJITKKXWv4Pf4jM8soK0GT46ZGChflTPocjhpjUyRJ2eu8LXbHgp1T0MygmOzLwgKn5DCAgiCSrJkAxzXfo3HpKOqJ/9ejbl2uKo2gwfX8wpnlkTCT0NznwALv4cXoT7Xym+Z44zbkVoM3wA5GBwQs+lM+Zf1VOqZRKJmwxaP5bUy0TmQvjmn0tG8cYALQFdcoRG5w7SlUazUYgCbsqRVT2ZQiekJEqI5JyDnTE/bnSajJ2cMXz0mGNMIFftDysTj3AilgXgowojQr2IUC+10y//HaBfRei3glxO2U2xw03HGuMFGI6HSdV0Djq2JO8maY/62aq5+GpOMbBKOOZ1R44BcCWlBEOJ5AD2WOOIUC+7Zh7/sbcrFuCzGaLauY037hpO6vnk4cKhIBudSi2L00bh3JG6kZtkvYoKxfHZ1/SlVbFPz6Jbr0zY91QGuRELJB8QIKAiVEwP0GJ4aXDms1fz4BE6P5TkvTXJLTnCbTkKy5Iu7F8fNqANaAPagDagDWgDrqVfdVDxvDFGgDYAAAAASUVORK5CYII=" />
+  </body>
+</doc>

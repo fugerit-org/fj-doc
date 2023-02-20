@@ -1,4 +1,53 @@
-﻿0.8.0 (2023-01-07)
+﻿0.8.9 (2023-02-20)
+------------------
++ [Upgraded quarkus version to 3.0.0.Alpha4](https://github.com/fugerit-org/fj-doc/issues/29)
++ Fix chatset handling for csv type handler
++ Fix to alternate text for json and yaml sample
+
+
+0.8.8 (2023-02-11)
+------------------
++ [Fix javadoc build for java 17](https://github.com/fugerit-org/fj-doc/issues/26)
++ [Jackson core need to be upgraded 2.14.1](https://github.com/fugerit-org/fj-doc/issues/9)
++ update fj-core version to 0.8.12
+
+
+0.8.7 (2023-02-08)
+------------------
++ [Fix Javadoc generations with older versions of jdk 11 fails](https://github.com/fugerit-org/fj-doc/issues/24)
+
+0.8.6 (2023-02-06)
+------------------
++ Added meta informations to samples documents
++ Added new sample catalog entry from playground
++ Playground tests disabled by default
++ Playground not included in release
+
+0.8.5 (2023-01-31)
+------------------
++ [fj-doc-base - Extend charset provider capabilities](https://github.com/fugerit-org/fj-doc/issues/22)
+
+0.8.4 (2023-01-27)
+------------------
++ [fj-doc-base - Enable charset selection for DocTypeHandlerXML](https://github.com/fugerit-org/fj-doc/issues/17)
+
+0.8.3 (2023-01-24)
+------------------
++ [fj-doc-mod-fop - need to create FopConfigClassLoaderWrapper with default ResourceResolver](https://github.com/fugerit-org/fj-doc/issues/15)
+
+0.8.2 (2023-01-22)
+------------------
++ Updated fj-core version to 0.8.8
++ Improved playground
+
+0.8.1 (2023-01-15)
+------------------
++ Added methods to DocProcessContext for DocBase and DocType availability.
++ Added access to DocConfig static variables in Freemarker Chain process
++ Added new info doc-version-compatibility for handling behaviours in 1-x e 2-x doc versions. 
++ Added a sample documents catalog to the fj-doc-sample modules (accessible in the playgound application too)
+
+0.8.0 (2023-01-07)
 ------------------
 + Added a new module for generating documentation [fj-doc-lib-autodoc](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-lib-autodoc)
 + Published new version of [doc-2-0.xsd](https://venusdocs.fugerit.org/fj-doc-base/src/main/resources/config/doc-2-0.xsd), [see doc xsd changelog](https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/DocXsdChangelog.md)

@@ -11,12 +11,15 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.util.checkpoint.CheckpointFormatHelper;
 import org.fugerit.java.core.util.checkpoint.Checkpoints;
 import org.fugerit.java.doc.base.config.DocConfig;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.parser.DocParser;
+import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.sample.facade.SampleFacade;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -28,6 +31,8 @@ public class BasicFacadeTest {
 	
 	public static final String BASIC_OUTPUT_PATH = "target/sample_out";
 	
+	private static final boolean VALIDATE_DEFAULT = true;
+	
 	private String nameBase;
 	
 	private String facadeId;
@@ -36,8 +41,11 @@ public class BasicFacadeTest {
 	
 	protected Checkpoints checkpoints;
 	
+	private boolean validate;
+	
 	public BasicFacadeTest() {
 		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML );
+		this.validate = VALIDATE_DEFAULT;
 	}
 	
 	protected BasicFacadeTest( String nameBase, String ...typeList ) {
@@ -48,8 +56,13 @@ public class BasicFacadeTest {
 			types.add( current );
 		}
 		this.setFacadeId( SampleFacade.MAIN_FACTORY );
+		this.validate = VALIDATE_DEFAULT;
 	}
 	
+	protected void setValidate(boolean validate) {
+		this.validate = validate;
+	}
+
 	protected void setFacadeId(String facadeId) {
 		this.facadeId = facadeId;
 	}
@@ -77,7 +90,7 @@ public class BasicFacadeTest {
 		if ( this.getSourceType() == DocFacadeSource.SOURCE_TYPE_XML ) {
 			baseName+= ".xml";
 		}
-		return "src/test/resources/sample_docs/"+baseName;
+		return "src/main/resources/sample_docs/junit_base/"+baseName;
 	}
 	
 	protected Reader getXmlReader() throws Exception {
@@ -88,6 +101,24 @@ public class BasicFacadeTest {
 	protected DocBase getDocBase() throws Exception {
 		// required : parsing the XML for model to be passed to DocFacade
 		DocBase docBase = null;
+		if ( this.validate ) {
+			try ( Reader reader = this.getXmlReader() ) {
+				DocParser docParser = DocFacadeSource.getInstance().getParserForSource( this.getSourceType() );
+				DocValidationResult result = docParser.validateVersionResult( reader );
+				for ( String message : result.getInfoList() ) {
+					logger.info( "Validation info {}", message );
+				}
+				if ( result.isResultOk() ) {
+					logger.info( "Validation ok {}", result );
+				} else {
+					logger.info( "Validation ko {}", result );
+					for ( String message : result.getErrorList() ) {
+						logger.info( "Validation error {}", message );
+					}
+					throw new DocException( "Validation KO : "+result.getResultCode() );
+				}
+			}
+		}
 		try ( Reader reader = this.getXmlReader() ) {
 			long start = System.currentTimeMillis();
 			docBase = DocFacadeSource.getInstance().parse( reader, getSourceType() );

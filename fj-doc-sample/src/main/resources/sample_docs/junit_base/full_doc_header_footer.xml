@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd">
+
+	<metadata>
+
+		<!-- Margin for document : left;right;top;bottom -->
+		<info name="margins">10;10;10;30</info>
+
+		<!-- documenta meta information -->
+		<info name="doc-title">Full test 01</info>
+		<info name="doc-subject">Test of all possible attributes with normal header and footer</info>
+		<info name="doc-author">fugerit79</info>
+		<info name="doc-language">en</info>
+		
+		<!-- set if you want doc-1-x.xsd output 
+		<info name="doc-version-compatibility">1-x</info>
+		 -->
+
+		<info name="excel-table-id">excel-table=print</info>
+		<info name="excel-width-multiplier">450</info>
+		
+		<info name="html-add-to-head"><![CDATA[
+		<style type="text/css">
+			#paraArial { background-color: red; }
+		</style>
+		]]></info>
+				
+		<header numbered="true">
+			<para align="center">Header, page ${currentPage}</para>
+		</header>
+
+		<footer numbered="true">
+			<para align="center">Footer, page ${currentPage}</para>
+		</footer>
+
+	</metadata>
+
+	<body>
+	
+		<table width="100" columns="3" colwidths="30;40;40">
+			<row>
+				<cell id="test_cell_id_1_1"><para>test 1 1</para></cell>
+				<cell id="testCell_1_2"><para>test 1 2</para></cell>
+				<cell><para>test 1 3</para></cell>
+			</row>
+			<row>
+				<cell><para>test 2 1</para></cell>
+				<cell><para>test 2 2</para></cell>
+				<cell><para>test 2 3</para></cell>
+			</row>
+		</table>
+	
+		<phrase style="normal">para style="normal"</phrase>
+		<br/>
+		<phrase>para style not set (should behaves as style="normal")</phrase>
+		<br/>
+		<phrase style="bold">phrase style="bold"</phrase>
+		<br/>
+		<phrase style="bolditalic">phrase style="bolditalic"</phrase>
+		<br/>
+		<phrase style="italic">phrase style="italic"</phrase>
+		<br/>
+		<phrase style="underline">phrase style="underline"</phrase>
+		<br/>
+	
+		<para back-color="#000000" fore-color="#90ff90">para back-color="#000000" fore-color="#90ff90"</para>		
+		<br/>		
+		<para id="paraArial" size="20" font-name="Arial">para font-name='Arial' size='20'</para>		
+		<br/>
+		<para align="center">para align="center" (Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.)</para>
+		<br/>
+		<para align="left">para align="left" (Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.)</para>
+		<br/>
+		<para align="right">para align="right" (Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.)</para>
+		<br/>
+		<para align="justify">para align="justify" (Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.)</para>
+		<br/>
+		<para align="justifyall">para align="justifyall" (Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.)</para>
+		<br/>
+		<para style="normal">para style="normal"</para>
+		<br/>
+		<para>para style not set (should behaves as style="normal")</para>
+		<br/>
+		<para style="bold">para style="bold"</para>
+		<br/>
+		<para style="bolditalic">para style="bolditalic"</para>
+		<br/>
+		<para style="italic">para style="italic"</para>
+		<br/>
+		<para style="underline">para style="underline"</para>	
+	
+
+	</body>
+
+</doc>

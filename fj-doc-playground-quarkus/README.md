@@ -42,3 +42,5 @@ npm run start
 * Doc Xml Editor : allow for writing documents in XML/JSON/YAML, validating them and generating some output formats (currently PDF/XLSX/HTML) [covers fj-doc-mod* modules]
 * Doc Conversion : allow source conversion from/to XML/JSON/YAML [convers fj-doc-base* modules]
 * Doc Type Validator : allow validation of documents in various formats [covers fj-doc-val* modules]
+
+**NOTE**: A catalog of sample documents has been added to the Doc Xml Editor and Doc Conversion functionalities.

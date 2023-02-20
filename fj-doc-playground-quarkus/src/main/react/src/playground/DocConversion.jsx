@@ -1,19 +1,15 @@
 import React, { Component, Fragment } from 'react';
 import { Form, Button, Col, Row } from 'react-bootstrap';
-import axios from 'axios';
+import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
-import XMLData from "./samples_doc_xml/default_doc.xml";
+import AceEditor from "react-ace";
 
-let placeholterXml = '';
-
-axios.get(XMLData, {
-	"Content-Type": "application/xml; charset=utf-8"
-})
-	.then((response) => {
-		placeholterXml = response.data;
-	});
-
+import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/mode-json";
+import "ace-builds/src-noconflict/mode-yaml";
+import "ace-builds/src-noconflict/theme-xcode";
+import "ace-builds/src-noconflict/ext-language_tools";
 
 class DocConversion extends Component {
 
@@ -22,10 +18,10 @@ class DocConversion extends Component {
 		this.handleGenerate = this.handleGenerate.bind(this);
 		this.handleFormat = this.handleFormat.bind(this);
 		this.handleDoc = this.handleDoc.bind(this);
+		this.handleEditorContent = this.handleEditorContent.bind(this);
 		this.state = {
 			inputFormat: 'XML',			
 			outputFormat: null,
-			docContent: placeholterXml,
 			docOutput: ''
 		}
 	}
@@ -69,17 +65,42 @@ class DocConversion extends Component {
 		});
 	};
 
-	handleDoc = (e) => {
-		e.preventDefault();
+	handleDoc( newValue ) {
 		this.setState({
-			docContent: e.target.value,			
-		});
+			outputFormat: this.state.outputFormat,
+			docContent: newValue
+		}); 
+	};
+
+	handleEditorContent = ( content ) => {
+		this.setState(
+			{ 
+				docContent: content			 
+			}
+		);
+		console.log( this.state );
 	};
 
 	render() {
+
+		let editorInFormat = 'xml';
+		if ( this.state.inputFormat != null ) {
+			editorInFormat = this.state.inputFormat.toLowerCase()
+		}
+
+		let editorOutFormat = 'xml';
+		if ( this.state.outputFormat != null ) {
+			editorOutFormat = this.state.outputFormat.toLowerCase()
+		}
+	
 		return <Fragment>
 
 			<Form>
+				<Row>
+					<Col>
+						<DocCatalog handleEditorContent={this.handleEditorContent} />
+					</Col>
+				</Row>
 				<Row>
 					<Col>
 						<Form.Label>Convert from</Form.Label>
@@ -91,8 +112,7 @@ class DocConversion extends Component {
 							<option value="YAML">YAML</option>
 						</Form.Select>
 					</Col>
-				</Row>
-				<Row>
+				
 					<Col>				
 						<Form.Label>Convert to</Form.Label>
 					</Col>
@@ -105,16 +125,36 @@ class DocConversion extends Component {
 						</Form.Select>
 					</Col>
 				</Row>
-				<Form.Group className="mb-3" controlId="inputarea">
-					<Form.Label>Input area</Form.Label>
-					<Form.Control type="text" as="textarea" rows={20} onChange={this.handleDoc} defaultValue={this.state.docContent} />
-				</Form.Group>
-				<Button variant="primary" onClick={this.handleGenerate}>Convert</Button>
-				<Form.Group className="mb-3" controlId="outputarea">
-					<Form.Label>Output area</Form.Label>
-					<Form.Control type="text" as="textarea" rows={20} readOnly value={this.state.docOutput} />
-				</Form.Group>				
+				<Row>
+					<Col>
+						<AceEditor
+							mode={editorInFormat}
+							theme="xcode"
+							name="DOC_INPUT"
+							editorProps={{ $blockScrolling: true }}
+							enableBasicAutocompletion={true}
+							enableLiveAutocompletion={true}
+							enableSnippets={true}
+							value={this.state.docContent}
+							onChange={this.handleDoc}
+							width='100%'
+						/>
+				</Col>
+				<Col>
+					<AceEditor
+						mode={editorOutFormat}
+						theme="xcode"
+						name="DOC_OUTPUT"
+						editorProps={{ $blockScrolling: true }}
+						readOnly={true}
+						value={this.state.docOutput}
+						width='100%'
+					/>
+					</Col>
+				</Row>
+				<Button variant="primary" onClick={this.handleGenerate}>Convert</Button>			
 			</Form>
+			
 
 		</Fragment>
 	}

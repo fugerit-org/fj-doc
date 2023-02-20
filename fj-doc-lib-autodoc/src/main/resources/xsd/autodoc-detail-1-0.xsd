@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='http://autodoc.fugerit.org'
+	xmlns:autodoc='http://autodoc.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:element name='autodocDetail'>
+		<xsd:annotation>
+			<xsd:documentation>Root of the autodoc details</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:adProperty' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='autodoc:adChangelog' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='autodoc:adInfo' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='autodoc:adElement' minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='adProperty'>
+		<xsd:annotation>
+			<xsd:documentation>General properties</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='adChangelog'>
+		<xsd:annotation>
+			<xsd:documentation>General informations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:date' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:version' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='adInfo'>
+		<xsd:annotation>
+			<xsd:documentation>General informations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:detail' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:status' minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='adElement'>
+		<xsd:annotation>
+			<xsd:documentation>Details of an element</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:detail' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:adAttribute' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='autodoc:status' minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='adAttribute'>
+		<xsd:annotation>
+			<xsd:documentation>Details of an attribute</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='autodoc:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:detail' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='autodoc:status' minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='name'>
+		<xsd:annotation>
+			<xsd:documentation>Name of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='description'>
+		<xsd:annotation>
+			<xsd:documentation>Description of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='detail'>
+		<xsd:annotation>
+			<xsd:documentation>Description of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='status'>
+		<xsd:annotation>
+			<xsd:documentation>Implementation status of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='version'>
+		<xsd:annotation>
+			<xsd:documentation>Description of a version</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='date'>
+		<xsd:annotation>
+			<xsd:documentation>Reference date for an information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:date">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+		
+</xsd:schema>

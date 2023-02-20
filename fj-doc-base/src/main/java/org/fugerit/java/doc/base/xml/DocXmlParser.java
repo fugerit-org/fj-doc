@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
 public class DocXmlParser extends AbstractDocParser {
-
+	
 	private static final Logger logger = LoggerFactory.getLogger( DocXmlParser.class );
 	
 	private DocHelper docHelper;
@@ -41,9 +41,14 @@ public class DocXmlParser extends AbstractDocParser {
 	}
 	
 	@Override
-	protected DocValidationResult validateWorker(Reader reader) throws Exception {
+	protected DocValidationResult validateWorker(Reader reader, boolean parseVersion) throws Exception {
 		DocValidationResult docResult = DocValidationResult.newDefaultNotDefinedResult();
-		SAXParseResult result = DocValidator.validate( reader );
+		SAXParseResult result = null;
+		if ( parseVersion ) {
+			result = DocValidator.validateVersion( reader );
+		} else {
+			result = DocValidator.validate( reader );
+		}
 		for ( Exception e : result.fatalsAndErrors() ) {
 			docResult.getErrorList().add( e.toString() );
 		}

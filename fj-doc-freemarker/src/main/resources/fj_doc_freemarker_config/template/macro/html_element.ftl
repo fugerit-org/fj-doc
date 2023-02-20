@@ -26,19 +26,19 @@
 
 <#macro handlePhrase current>
 	<#if (current.link)??>
-		<a <@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
+		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
 	<#elseif (current.anchor)??>
-		<a <@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
+		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
 	<#else>
-		<span <@handleStyleOnly styleValue=current.style/>>${current.text}</span>
+		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>>${current.text}</span>
 	</#if>
 </#macro>
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p <@handleStyleComplete styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
+		<p <@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
 	<#else>
-		<h${current.headLevel} <@handleStyleComplete styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
+		<h${current.headLevel} <@handleId element=current/><@handleStyleComplete element=current styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
 	</#if>
 </#macro>
 
@@ -53,15 +53,15 @@
 			<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
 		</#if>
 	</#if>	
-	<img ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
+	<img <@handleId element=docImage/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
 </#macro>
 
 <#macro handleList docList>
 	<#if docList.elementList?size gt 0>
-	<${docList.htmlType}>
+	<${docList.htmlType} <@handleId element=docList/>>
 		<#list docList.elementList as li>
 			<#if (li?counter > 0)>
-				<li <#if li.contentList>style="list-style-type: none;"<#elseif docList.listType = 'oll'>style="list-style-type: lower-alpha;"<#elseif docList.listType = 'ulm'>style="list-style-type: square;"<#elseif docList.listType = 'uld'>style="list-style-type: circle;"</#if>> <#list li.elementList as element><@handleElement current=element/></#list></li>
+				<li <@handleId element=li/><#if li.contentList>style="list-style-type: none;"<#elseif docList.listType = 'oll'>style="list-style-type: lower-alpha;"<#elseif docList.listType = 'ulm'>style="list-style-type: square;"<#elseif docList.listType = 'uld'>style="list-style-type: circle;"</#if>> <#list li.elementList as element><@handleElement current=element/></#list></li>
 			</#if>			
 			<#assign prevLi=li/>
 		</#list>	
@@ -71,9 +71,9 @@
 
 <#macro handleRowList docTable rowList cellType>
 	<#list rowList as row>	
-		<tr>
-			<#list row.elementList as cell>
-				<${cellType} id="cell_${row?index}_${cell?index}" style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
+		<tr <@handleId element=row/>>
+			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign>
+				<${cellType} <@handleIdDef element=cell defId=defCellId/>  style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
@@ -130,17 +130,23 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
+<#macro handleIdDef element defId><#if (element.id)??>id="${element.id}" <#else>id="${defId}"</#if></#macro>
+
+<#macro handleId element><#if (element.id)??>id="${element.id}" </#if></#macro>
+
 <#macro handleRowspan rowspanValue> rowspan="${rowspanValue}" </#macro>
 
 <#macro handleColspan colspanValue> colspan="${colspanValue}" </#macro>
 
 <#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> padding-top: ${spaceBefore}px;</#if><#if (spaceAfter > 0)> padding-bottom: ${spaceAfter}px;</#if></#macro>
 
-<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;</#if></#macro>
+<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;<#elseif alignValue = 8 || alignValue = 9>text-align: justify;</#if></#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>font-weight: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;<#elseif styleValue = 1>font-weight: normal; font-style: normal;</#if></#macro>
+<#macro handleFont element> <#if (element.fontName??)> font-family: '${element.fontName}'; </#if><#if (element.size)?? && (element.size != -1)> font-size: '${element.size}'; </#if><#if (element.backColor??)> background-color: ${element.backColor}; </#if><#if (element.foreColor??)> color: ${element.foreColor}; </#if></#macro>
+
+<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>text-decoration: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
 
 <#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
 
-<#macro handleStyleComplete styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle != '' || cAlign != '' || cSpacing != ''>style="${cStyle} ${cAlign} ${cSpacing}"</#if></#macro>
+<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle != '' || cAlign != '' || cSpacing != ''>style="${cStyle} ${cAlign} ${cSpacing}"</#if></#macro>
 

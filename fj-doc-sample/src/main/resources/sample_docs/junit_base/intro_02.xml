@@ -7,6 +7,11 @@
   <meta>
 	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-try-autoresize">true</info> 
+	<!-- documenta meta information -->
+	<info name="doc-title">Basci example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
   </meta>
  
   <body>

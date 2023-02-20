@@ -536,6 +536,7 @@
 			<xsd:documentation>Font style of the element</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="normal"></xsd:enumeration>
 			<xsd:enumeration value="bold"></xsd:enumeration>
 			<xsd:enumeration value="underline"></xsd:enumeration>
 			<xsd:enumeration value="italic"></xsd:enumeration>
