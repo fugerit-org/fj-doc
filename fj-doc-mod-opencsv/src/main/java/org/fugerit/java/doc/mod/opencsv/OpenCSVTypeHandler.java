@@ -1,9 +1,12 @@
 package org.fugerit.java.doc.mod.opencsv;
 
 import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocCell;
@@ -33,14 +36,20 @@ public class OpenCSVTypeHandler extends DocTypeHandlerDefault {
 
 	public static final OpenCSVTypeHandler HANDLER = new OpenCSVTypeHandler();
 	
+	public static final DocTypeHandler HANDLER_UTF8 = new OpenCSVTypeHandler( StandardCharsets.UTF_8 );
+	
+	public OpenCSVTypeHandler( Charset charset ) {
+		super(TYPE_CSV, MODULE, MIME, charset);
+	}
+	
 	public OpenCSVTypeHandler() {
-		super(TYPE_CSV, MODULE, MIME);
+		this(null);
 	}
 	
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
  		DocBase docBase = docInput.getDoc();
-		CSVWriter writer = new CSVWriter( new OutputStreamWriter( docOutput.getOs() ) );
+		CSVWriter writer = new CSVWriter( new OutputStreamWriter( docOutput.getOs(), this.getCharset()  ) );
 		String csvTableId = docBase.getInfo().getProperty( CsvHelperConsts.PROP_CSV_TABLE_ID );
 		DocTable table = (DocTable)docBase.getElementById( csvTableId );
 		if ( table == null ) {
