@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.lib.simpletable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -97,6 +98,21 @@ public class SimpleTableHelper {
 	
 	public SimpleRow newNormalRow( String... cells ) {
 		return this.newHeaderWorker( BooleanUtils.BOOLEAN_FALSE , cells );
+	}
+
+	public List<Integer> newFixedColumns( int columnsNumber ) {
+		List<Integer> list = new ArrayList<>();
+		int length = (100/columnsNumber);
+		int offset = 100-(length*columnsNumber);
+		for ( int k=0; k<columnsNumber; k++ ) {
+			if ( offset > 0 ) {
+				list.add( length+1 );
+				offset--;
+			} else {
+				list.add( length );
+			}
+		}
+		return list;
 	}
 	
 }
