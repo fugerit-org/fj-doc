@@ -31,5 +31,11 @@
 		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
 		<data id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
 	</factory>
+	
+	<factory id="unsafe-test">
+		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
+		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
+		<data id="pdf-unsafe" info="pdf" type="org.fugerit.java.doc.pdf.UnsafeDocHandler" unsafe="true" unsafeMode="log-trace"/>
+	</factory>
 
 </doc-handler-config>
