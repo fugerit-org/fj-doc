@@ -4,12 +4,13 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 
-import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.cfg.xml.FactoryCatalog;
 import org.fugerit.java.core.cfg.xml.FactoryType;
+import org.fugerit.java.core.cfg.xml.FactoryTypeHelper;
 import org.fugerit.java.core.io.helper.StreamHelper;
-import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	
@@ -21,6 +22,10 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	public static final String USE_CATALOG_PROP = "user-catalog";
 	
 	private String useCatalog;
+	
+	private final static Logger logger = LoggerFactory.getLogger( DocHandlerFactory.class );
+	
+	private static final FactoryTypeHelper<DocTypeHandler> HELPER = FactoryTypeHelper.newInstance( DocTypeHandler.class );
 	
 	public static DocHandlerFacade register( String factoryCatalogPath ) throws Exception {
 		return register( factoryCatalogPath, null );
@@ -42,11 +47,12 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 		if ( col != null ) {
 			facade = new DocHandlerFacade();
 			for ( FactoryType ft : col ) {
-				DocTypeHandler handler = (DocTypeHandler) ClassHelper.newInstance( ft.getType() );
-				if ( handler instanceof ConfigurableObject ) {
-					((ConfigurableObject)handler).configure( ft.getElement());
+				DocTypeHandler handler = HELPER.createHelper( ft );
+				if ( handler != null ) {
+					facade.registerHandler( handler );
+				} else {
+					logger.info( "skipped null handler for -> {}", ft );
 				}
-				facade.registerHandler( handler );
 			}
 		}
 		return facade;
