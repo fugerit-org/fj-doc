@@ -1,4 +1,8 @@
-﻿0.8.10 (2023-02-26)
+﻿0.8.11 (2023-02-26)
+------------------
++ Fixed column helper for SimpleTable
+
+0.8.10 (2023-02-26)
 ------------------
 + [Managing of unsafe DocTypeHandler for DocHandlerFactory](https://github.com/fugerit-org/fj-doc/issues/31)
 + update fj-core version to 0.8.13 (DocHandlerFactory would not work with previous versions)
