@@ -10,7 +10,7 @@
 0.8.9 (2023-02-20)
 ------------------
 + [Upgraded quarkus version to 3.0.0.Alpha4](https://github.com/fugerit-org/fj-doc/issues/29)
-+ Fix chatset handling for csv type handler
++ Fix charset handling for csv type handler
 + Fix to alternate text for json and yaml sample
 
 0.8.8 (2023-02-11)
