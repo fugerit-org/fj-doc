@@ -2,7 +2,9 @@
 
 #react
 
-.DS_Store
+*.iml
+
+*.DS_Store
 
 npm
 
