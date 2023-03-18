@@ -1,4 +1,9 @@
-﻿0.8.11 (2023-02-26)
+﻿1.0.0 (2023-03-18)
+------------------
++ [Moving github pages to main branch, dropping 0 version](https://github.com/fugerit-org/fj-doc/issues/33)
++ update fj-core version 8.0.0
+
+0.8.11 (2023-02-26)
 ------------------
 + Fixed column helper for SimpleTable
 
