@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
-		<version>0.2.3</version>
+		<version>1.0.0</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -20,11 +20,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java-version-compliance>1.8</java-version-compliance>
+		<java-version-compliance>8</java-version-compliance>
 	    <maven.compiler.source>${java-version-compliance}</maven.compiler.source>
-	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>
+	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>	
+	    <maven.compiler.release>${java-version-compliance}</maven.compiler.release>
 	    <!-- fj java versions -->
-	    <fj-version>8.0.0</fj-version>
+	    <fj-version>8.0.4</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	    <jackson-version>2.14.2</jackson-version>
 	</properties>
@@ -231,23 +232,28 @@
 
 	<dependencies>
 
-		<!-- logging -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>compile</scope>
+		<dependency> 
+		  <groupId>org.slf4j</groupId>
+		  <artifactId>slf4j-api</artifactId>
+		  <scope>compile</scope>
 		</dependency>
-
+		
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<scope>test</scope>
-		</dependency>	
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-slf4j-impl</artifactId>
+			<groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
 		    <scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-core</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-slf4j2-impl</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>

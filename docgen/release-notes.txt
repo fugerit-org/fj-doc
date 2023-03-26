@@ -1,4 +1,11 @@
-﻿1.0.0 (2023-03-18)
+﻿1.0.1 (2023-03-26)
+------------------
++ update fj-bom version 1.0.0
++ update fj-core version 8.0.4
++ maven.compiler.release property set to '8' (so the project is still compatible with java8+) [except for quarkus playground]
++ [As for the new parent version, building should be done using java11+](https://github.com/fugerit-org/fj-bom/issues/11)
+
+1.0.0 (2023-03-18)
 ------------------
 + [Moving github pages to main branch, dropping 0 version](https://github.com/fugerit-org/fj-doc/issues/33)
 + update fj-core version 8.0.0

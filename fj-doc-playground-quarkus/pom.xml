@@ -4,12 +4,11 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
-		<compiler-plugin.version>3.8.1</compiler-plugin.version>
 		<maven.compiler.release>11</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -115,7 +114,6 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler-plugin.version}</version>
 				<configuration>
 					<compilerArgs>
 						<arg>-parameters</arg>
