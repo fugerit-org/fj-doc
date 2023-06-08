@@ -25,7 +25,7 @@
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
        		<row>
-    			<cell><para>Luthien</para></cell>
+    			<cell><para><![CDATA[Luthien &]]></para></cell>
     			<cell><para>Tinuviel</para></cell>
     			<cell><para>Queen</para></cell>
     		</row>
