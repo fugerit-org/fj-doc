@@ -34,19 +34,19 @@
 <#macro handlePhrase current>
 	<#if (current.link)??>
 		<#if (current.internal)>
-			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
+			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> internal-destination="${current.internalLink}"><![CDATA[${current.text}]]></fo:basic-link>
 		<#else>
-			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline">${current.text}</fo:basic-link>
+			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline"><![CDATA[${current.text}]]></fo:basic-link>
 		</#if>
 	<#elseif (current.anchor)??>
-		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>${current.text}</fo:block>
+		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/><![CDATA[${current.text}]]></fo:block>
 	<#else>
-		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>>${current.text}</fo:inline>
+		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>><![CDATA[${current.text}]]></fo:inline>
 	</#if>
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>>${current.text?replace(r"${currentPage}","<fo:page-number/>")}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
+	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>><![CDATA[${current.text?replace(r"${currentPage}","<fo:page-number/>")}]]><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
 </#macro>
 
 <#macro handlePara current>

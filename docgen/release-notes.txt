@@ -1,4 +1,10 @@
-﻿1.0.2-rc.001 (2023-04-05)
+﻿1.0.3-rc.001 (2023-06-08)
+------------------
++ [[fj-doc-mod-fop] inccorect handling of &](https://github.com/fugerit-org/fj-bom/issues/35)
++ update fj-bom version 1.1.0
++ update fj-core version 8.0.10-rc.003
+
+1.0.2-rc.001 (2023-04-05)
 ------------------
 + Upgrade playground to quarkus 3.0.0.CR1
 
