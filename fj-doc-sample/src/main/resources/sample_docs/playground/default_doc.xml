@@ -26,15 +26,15 @@
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
        		<row>
-    			<cell><para>Luthien</para></cell>
-    			<cell><para>Tinuviel</para></cell>
-    			<cell><para>Queen</para></cell>
+    			<cell><para><![CDATA[Luthien]]></para></cell>
+    			<cell><para><![CDATA[Tinuviel]]></para></cell>
+    			<cell><para><![CDATA[Queen]]></para></cell>
     		</row>
        		<row>
-    			<cell><para>Thorin</para></cell>
-    			<cell><para>Oakshield</para></cell>
-    			<cell><para>King</para></cell>
-    		</row>    	
+    			<cell><para><![CDATA[Thorin]]></para></cell>
+    			<cell><para><![CDATA[Oakshield]]></para></cell>
+    			<cell><para><![CDATA[King]]></para></cell>
+    		</row>     	
     	</table>
   </body>
   
