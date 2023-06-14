@@ -1,4 +1,8 @@
-﻿1.0.3-rc.001 (2023-06-08)
+﻿1.0.3-rc.002 (2023-06-15)
+------------------
++ Upgrade quarkus version to 3.1.1.Final (Apache Maven 3.8.2+ needed to build)
+
+1.0.3-rc.001 (2023-06-08)
 ------------------
 + [[fj-doc-mod-fop] inccorect handling of &](https://github.com/fugerit-org/fj-bom/issues/35)
 + update fj-bom version 1.1.0
