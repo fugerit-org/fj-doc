@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-mod-opencsv</artifactId>
+	<artifactId>fj-doc-bom-core</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,9 @@
 		<version>1.1.0-rc.001</version>
 	</parent>
 
-	<name>fj-doc-mod-opencsv</name>
-	<description>Rendere for CSV using OpenCSV</description>
+	<name>fj-doc-bom-core</name>
+	<description>BOM for importing core dependacies</description>
+	<packaging>pom</packaging>
 
 	<licenses>
 		<license>
@@ -21,21 +22,11 @@
 		</license>
 	</licenses>
 	
-	<properties>
-		<opencsv-version>5.7.1</opencsv-version>
-	</properties>
-	
 	<build>
 		
 	</build>
 
 	<dependencies>
-
-		<dependency>
-		    <groupId>com.opencsv</groupId>
-		    <artifactId>opencsv</artifactId>
-		    <version>${opencsv-version}</version>
-		</dependency>		
 
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
@@ -46,7 +37,12 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
-	
+		
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-freemarker</artifactId>
+		</dependency>		
+		
 	</dependencies>
 
 	<organization>

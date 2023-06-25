@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.0.3-rc.002</version>
+	<version>1.1.0-rc.001</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -81,6 +81,8 @@
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
 		<module>fj-doc-sample</module>
+		<module>fj-doc-bom-core</module>
+		<module>fj-doc-bom-fop</module>
 		<module>fj-doc-playground-quarkus</module>
 	</modules>
 

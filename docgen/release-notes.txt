@@ -1,4 +1,9 @@
-﻿1.0.3-rc.002 (2023-06-15)
+﻿1.1.0-rc.001 (2023-06-25)
+------------------
++ Added bom to make importing core libraries easier (fj-doc-bom-core)
++ Added bom to make importing fop pdf libraries easier (fj-doc-bom-pdf)
+
+1.0.3-rc.002 (2023-06-15)
 ------------------
 + Upgrade quarkus version to 3.1.1.Final (Apache Maven 3.8.2+ needed to build)
 
