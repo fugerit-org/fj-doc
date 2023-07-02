@@ -1,6 +1,7 @@
 ﻿1.1.1-rc.001 (2023-07-02)
 ------------------
 + Added fj-doc bom dependencies for incubator and deprecated modules (fj-doc-ent, fj-doc-mod-pdfbox, fj-doc-mod-itext, fj-doc-mod-jxl)
++ Fix page number handling on footer / header of fj-doc-mod-fop,[[fj-doc-mod-fop] inccorect handling of &](https://github.com/fugerit-org/fj-bom/issues/35)
 
 1.1.0-rc.001 (2023-06-25)
 ------------------

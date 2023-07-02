@@ -11,6 +11,9 @@
 		<info name="doc-author">Fugerit</info>
 		<info name="doc-creator">fj-doc (Venus) Sample</info>
 		<info name="doc-language">en</info>
+		<footer-ext numbered="true">
+	        <para align="center">Page ${currentPage}</para>
+		</footer-ext>
 		<bookmark-tree>
 			<bookmark ref="b1">Bookmark 1</bookmark>
 			<bookmark ref="b2">Bookmark 2</bookmark>
