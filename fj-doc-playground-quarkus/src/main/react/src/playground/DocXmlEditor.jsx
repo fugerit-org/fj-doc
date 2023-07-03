@@ -24,7 +24,8 @@ class DocXmlEditor extends Component {
 			outputFormat: 'HTML',
 			docContent: '',
 			docOutput: null,
-			docFormat: null
+			docFormat: null,
+			generationTime: null
 		}
 	}
 
@@ -45,7 +46,8 @@ class DocXmlEditor extends Component {
 				if (response.success) {
 					reactState.setState({
 						docOutput: response.result.docOutputBase64,
-						docFormat: this.state.outputFormat
+						docFormat: this.state.outputFormat,
+						generationTime:  response.result.generationTime
 					})
 				} 
 			})
@@ -123,6 +125,7 @@ class DocXmlEditor extends Component {
 				let srcData = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+ this.state.docOutput;
 				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
 			}
+			outputData = <Fragment>{outputData}<p>Generation time : {this.state.generationTime}</p></Fragment>
 		}
 		
 		return <Fragment>

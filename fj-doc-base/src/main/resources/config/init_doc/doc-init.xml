@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "UTF-8" standalone = "no" ?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 	
+    
+	<metadata>
+		<info name="margins">10;10;10;10</info>
+		<info name="doc-title">Test XML 01 title</info>
+		<info name="doc-subject">Test XML 01 subject</info>
+		<info name="doc-author">Fugerit</info>
+		<info name="doc-creator">fj-doc (Venus) Sample</info>
+		<info name="doc-language">en</info>
+		<bookmark-tree>
+			<bookmark ref="b1">Bookmark 1</bookmark>
+			<bookmark ref="b2">Bookmark 2</bookmark>
+		</bookmark-tree>
+	</metadata>
+	<body>
+		<h head-level="1" align="center" id="b1">Header 1</h>
+	</body>
+</doc>

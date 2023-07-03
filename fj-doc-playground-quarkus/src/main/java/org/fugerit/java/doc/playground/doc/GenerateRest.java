@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.util.Base64;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
+import org.fugerit.java.core.util.checkpoint.CheckpointUtils;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -16,12 +17,10 @@ import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
-import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
+import org.fugerit.java.doc.playground.config.InitPlayground;
 import org.fugerit.java.doc.playground.facade.BasicInput;
 import org.fugerit.java.doc.playground.facade.InputFacade;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.Consumes;
@@ -30,13 +29,13 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 
 @ApplicationScoped
+@Slf4j
 @Path("/generate")
 public class GenerateRest {
 
-	private final static Logger logger = LoggerFactory.getLogger(GenerateRest.class);
-	
 	private byte[] generateHelper( GenerateInput input, DocTypeHandler handler) throws Exception {
 		byte[] result = null;
 		if ( input.getDocContent() != null ) {
@@ -49,7 +48,7 @@ public class GenerateRest {
 					sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
 				}
 				String type = input.getOutputFormat().toLowerCase();
-				logger.info( "output format : {}", type );
+				log.info( "output format : {}", type );
 				DocInput docInput = DocInput.newInput( type, reader , sourceType );
 				DocOutput docOutput = DocOutput.newOutput( baos );
 				handler.handle(docInput, docOutput);
@@ -60,7 +59,7 @@ public class GenerateRest {
 	}
 
 	private DocTypeHandler findHandler( BasicInput input ) {
-		DocTypeHandler handler = new PdfFopTypeHandler();
+		DocTypeHandler handler = InitPlayground.PDF_FOP_TYPE_HANDLER;
 		if ( "XLSX".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = XlsxPoiTypeHandler.HANDLER;
 		} else if ( "HTML".equalsIgnoreCase( input.getOutputFormat() ) ) {
@@ -86,13 +85,15 @@ public class GenerateRest {
 	public Response document( GenerateInput input) {
 		Response res = Response.status(Response.Status.BAD_REQUEST).build();
 		try {
+			long time = System.currentTimeMillis();
 			DocTypeHandler handler = this.findHandler(input);
 			byte[] data = this.generateHelper(input, handler);
 			GenerateOutput output = new GenerateOutput();
 			output.setDocOutputBase64( Base64.getEncoder().encodeToString( data ) );
+			output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
 			res = Response.ok().entity( output ).build();
 		} catch (Exception e) {
-			logger.info("Error : " + e, e);
+			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return res;
@@ -145,7 +146,7 @@ public class GenerateRest {
 				res = Response.ok().entity( output ).build();
 			}
 		} catch (Exception e) {
-			logger.info("Error : " + e, e);
+			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return res;
