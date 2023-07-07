@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-bom-core</artifactId>
+	<artifactId>fj-doc-lib-simpletable-import</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,9 +10,8 @@
 		<version>1.2.0-rc.001</version>
 	</parent>
 
-	<name>fj-doc-bom-core</name>
-	<description>BOM for importing core dependacies</description>
-	<packaging>pom</packaging>
+	<name>fj-doc-lib-simpletable-import</name>
+	<description>Offers a simple API for importing Excel or CSV as a simpletable</description>
 
 	<licenses>
 		<license>
@@ -21,6 +20,9 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	
+	<properties>
+	</properties>
 	
 	<build>
 		
@@ -37,12 +39,27 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
-		
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-freemarker</artifactId>
-		</dependency>		
-		
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-lib-simpletable</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-poi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-opencsv</artifactId>
+		</dependency>
+
 	</dependencies>
 
 	<organization>
