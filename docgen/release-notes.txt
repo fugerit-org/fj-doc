@@ -1,4 +1,8 @@
-﻿1.2.0-rc.001 (2023-07-07)
+﻿1.3.0-rc.001 (2023-07-09)
+------------------
++ [New freemarker configuration model](https://github.com/fugerit-org/fj-bom/issues/38)
+
+1.2.0-rc.001 (2023-07-07)
 ------------------
 + Added module fj-doc-lib-simpletable-import to convert xlsx or csv to simple table 
 
