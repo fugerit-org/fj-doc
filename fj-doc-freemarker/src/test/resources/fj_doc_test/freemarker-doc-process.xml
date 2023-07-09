@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+>
+
+	<configInit
+		id="FJ_DOC_TEST"
+		version="2.3.31"
+		path="/fj_doc_test/template/"
+		mode="class" 
+		className="org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade"
+		exceptionHandler="RETHROW_HANDLER"
+		logException="false"
+		wrapUncheckedExceptions="true"
+		fallbackOnNullLoopVariable="false"
+	/>
+	
+	<docChain
+		id="sample_chain"
+		templatePath="${chainId}.ftl"/>
+
+</freemarker-doc-process-config>

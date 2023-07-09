@@ -19,8 +19,10 @@ import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
 import org.junit.Before;
 import org.junit.Test;
 
+import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
+@Slf4j
 public class TestSimpleTable  {
 
 	private static final DocTypeHandler[] HANDLERS = { XlsxPoiTypeHandler.HANDLER, OpenCSVTypeHandler.HANDLER, new PdfFopTypeHandler() };
@@ -32,6 +34,7 @@ public class TestSimpleTable  {
 	@Before
 	public void init() throws ConfigException {
 		this.docConfig = SimpleTableDocConfig.newConfig();
+		log.info( "config init ok {}", this.docConfig );
 		if ( !baseDir.exists() ) {
 			this.baseDir.mkdirs();
 		}
@@ -62,7 +65,9 @@ public class TestSimpleTable  {
 			try ( FileOutputStream fos = new FileOutputStream( file ) )  {
 				this.docConfig.processSimpleTable(simpleTableModel, handler, fos);
 			} catch (Exception e) {
-				fail( "Error : "+e );
+				String message = "Error : "+e;
+				log.error( message, e );
+				fail( message );
 			}
 		}
 	}
