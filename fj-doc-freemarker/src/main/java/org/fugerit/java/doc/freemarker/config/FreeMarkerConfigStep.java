@@ -11,6 +11,7 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.base.process.DocProcessorBasic;
+import org.fugerit.java.doc.freemarker.process.ConfigInitModel;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
@@ -21,9 +22,10 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 	public static final String ATT_DEFAULT = "FreeMarkerConfigStep.DEFAULT";
 	
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION = "version";
+	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_31 = ConfigInitModel.VERSION_2_3_31;
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_30 = "2.3.30";
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_29 = "2.3.29";
-	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_DEFAULT = ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_30;
+	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_DEFAULT = ConfigInitModel.DEFAULT_VERSION;
 	
 	public static final String ATT_FREEMARKER_CONFIG_KEY_MODE = "mode";
 	public static final String ATT_FREEMARKER_CONFIG_KEY_MODE_CLASS = "class";
