@@ -1,0 +1,12 @@
+<schema-catalog 
+	path-mode="class-loader"
+	path-base="config_fm_xsd">
+
+	<schema-list id="version-1-0">
+		<schema id="freemarker-doc-process-1-0.xsd"/>
+	</schema-list>
+
+	<schema-list id="current" extends="version-1-0">
+	</schema-list>
+
+</schema-catalog>

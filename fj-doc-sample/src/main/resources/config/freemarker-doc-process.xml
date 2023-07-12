@@ -3,15 +3,20 @@
 	xmlns="https://freemarkerdocprocess.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
->
 
 	<docChain id="shared">
-		<chainStep stepType="config" id="FJ_SAMPLE_TEST" version="2.3.31" path="/free_marker/"/>
-		<chainStep stepType="function" 
-				messageFormat="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"
-				sumLong="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+		<chainStep stepType="config">
+			<config id="FJ_SAMPLE_TEST" version="2.3.31" path="/free_marker/"/>
+		</chainStep>
+		<chainStep stepType="function">
+			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
+			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+		</chainStep>
 		<chainStep stepType="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
-		<chainStep stepType="map" list="userList" testBase64Img="testBase64Img"/>
+		<chainStep stepType="map">
+			<map name="list" value="userList"/>
+			<map name="testBase64Img" value="testBase64Img"/>
+		</chainStep>
 	</docChain>
 
 	<docChain id="free-marker-01" parent="shared">

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+	/*
+	 * @(#)freemarker-doc-process-1-0.xsd 
+	 *
+	 * @project    : org.fugerit.java.doc.base
+	 * @creation   : 2023-07-12
+	 * @version    : 1.0.0 (2023-07-12)
+	 *
+	 * XSD for Freemarker Doc Process Configuration
+	 */
+
+	Sample doc : 	
+	
+<doc
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+</doc>	
+	
+-->
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='https://freemarkerdocprocess.fugerit.org'
+	xmlns:fdp='https://freemarkerdocprocess.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:element name='freemarker-doc-process-config'>
+		<xsd:annotation>
+			<xsd:documentation>This is the root element of freemarker-doc-process configuration file</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='fdp:docChain' minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='docChain' type="fdp:docChainType">
+		<xsd:annotation>
+			<xsd:documentation>A document processing chain</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="docChainType">
+		<xsd:sequence>
+			<xsd:element ref="fdp:chainStep" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>A chain ID</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="parent" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>A chain parent (will inherits all the chainStep)</xsd:documentation>
+			</xsd:annotation>		
+		</xsd:attribute>
+	</xsd:complexType>	
+
+	<xsd:element name='chainStep' type="fdp:chainStepType">
+		<xsd:annotation>
+			<xsd:documentation>A step in a docChain</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+	<xsd:complexType name="chainStepType">
+		<xsd:choice>
+			<xsd:element ref="fdp:config" minOccurs="1" maxOccurs="1"></xsd:element>
+			<xsd:element ref="fdp:function" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+			<xsd:element ref="fdp:map" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:choice>
+		<xsd:attribute name="stepType" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex'</xsd:documentation>
+			</xsd:annotation>		
+		</xsd:attribute>
+		<xsd:attribute name="template-path" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Free marker template path</xsd:documentation>
+			</xsd:annotation>		
+		</xsd:attribute>
+	</xsd:complexType>	
+
+	<xsd:element name='config' type="fdp:configType">
+		<xsd:annotation>
+			<xsd:documentation>Will creates a new free marker configuration</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name='function' type="fdp:propertyType">
+		<xsd:annotation>
+			<xsd:documentation>The data of a freemarker function to map (the 'name' attributes will be the key, and a new instance of the 'value' attribute as value)</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:element name='map' type="fdp:propertyType">
+		<xsd:annotation>
+			<xsd:documentation>An object will be mapped from DocProcessContext to Freemarker Map (the 'name' attributes will be the key, and the 'value' will be used to search in the DocProcessContext attributes)</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>		
+
+	<xsd:complexType name="configType">
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>The new freemarker configuration ID</xsd:documentation>
+			</xsd:annotation>			
+		</xsd:attribute>
+		<xsd:attribute name="path" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>base freemarker template path</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="version" type="xsd:string" use="optional" default="2.3.31">
+			<xsd:annotation>
+				<xsd:documentation>freemarker version to use</xsd:documentation>
+			</xsd:annotation>						
+		</xsd:attribute>
+		<xsd:attribute name="mode" type="xsd:string" use="optional" default="class">
+			<xsd:annotation>
+				<xsd:documentation>The class loading mode</xsd:documentation>
+			</xsd:annotation>								
+		</xsd:attribute>
+		<xsd:attribute name="class" type="xsd:string" use="optional" default="org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig">
+			<xsd:annotation>
+				<xsd:documentation>This class's classloader will be used</xsd:documentation>
+			</xsd:annotation>									
+		</xsd:attribute>
+		<xsd:attribute name="exception-handler" type="xsd:string" use="optional" default="RETHROW_HANDLER">
+			<xsd:annotation>
+				<xsd:documentation>Just a referenced to the relevant freemarker configuration</xsd:documentation>
+			</xsd:annotation>		
+		</xsd:attribute>
+		<xsd:attribute name="log-exception" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>Just a referenced to the relevant freemarker configuration</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="wrap-unchecked-exceptions" type="xsd:boolean" use="optional" default="true">
+			<xsd:annotation>
+				<xsd:documentation>Just a referenced to the relevant freemarker configuration</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="fallback-on-null-loop-variable" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>Just a referenced to the relevant freemarker configuration</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+	</xsd:complexType>	
+	
+	<xsd:complexType name="propertyType">
+		<xsd:attribute name="name" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Name map attribute</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="value" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Value map attribute</xsd:documentation>
+			</xsd:annotation>						
+		</xsd:attribute>
+	</xsd:complexType>		
+
+</xsd:schema>

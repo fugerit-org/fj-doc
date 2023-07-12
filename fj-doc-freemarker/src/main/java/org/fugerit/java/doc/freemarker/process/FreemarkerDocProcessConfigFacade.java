@@ -33,6 +33,12 @@ public class FreemarkerDocProcessConfigFacade {
 	
 	public static final String ATT_CHAIN_STEP = "chainStep";
 	
+	public static final String STEP_TYPE_CONFIG = "config";
+	
+	public static final String STEP_TYPE_FUNCTION = "function";
+	
+	public static final String STEP_TYPE_MAP = "map";
+	
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath ) throws ConfigException {
 		FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
 		config.setDefaultChain(
@@ -77,12 +83,6 @@ public class FreemarkerDocProcessConfigFacade {
 				 Element currentTag = (Element) docChainLisgt.item( k );
 				 DocChainModel model = new DocChainModel();
 				 XmlBeanHelper.setFromElement( model, currentTag );
-				 // attributes mapping
-				 if ( DocChainModel.MAP_ATTS_ENUM.equalsIgnoreCase( model.getMapAtts() ) ) {
-					 Element mapAttsEnumTag = (Element)currentTag.getElementsByTagName( "mapAttsEnum" ).item( 0 );
-					 model.setMapAttsEnum( DOMUtils.attributesToProperties( mapAttsEnumTag ) );
-					 log.debug( "chain att enum {} -> {}", model.getId(), model.getMapAttsEnum() );
-				 }
 				 if ( StringUtils.isNotEmpty( model.getParent() ) ) {
 					 DocChainModel parent = config.getDocChainList().get( model.getParent() );
 					 if ( parent == null ) {
@@ -100,6 +100,24 @@ public class FreemarkerDocProcessConfigFacade {
 					 chainStepModel.setStepType( atts.getProperty( "stepType" ) );
 					 atts.remove( "stepType" );
 					 chainStepModel.setAttributes(atts);
+					 if ( STEP_TYPE_CONFIG.equalsIgnoreCase( chainStepModel.getStepType() ) ) {
+						 NodeList configList = currentChainStepTag.getElementsByTagName( STEP_TYPE_CONFIG );
+						 if ( configList.getLength() != 1 ) {
+							 throw new ConfigException( "Expcted only one config tag : "+configList.getLength() );
+						 } else {
+							 Element configTag = (Element)configList.item( 0 );
+							 atts.putAll( DOMUtils.attributesToProperties( configTag ) );
+						 }
+					 } else if ( STEP_TYPE_FUNCTION.equalsIgnoreCase( chainStepModel.getStepType() ) 
+							 ||  STEP_TYPE_MAP.equalsIgnoreCase( chainStepModel.getStepType() )  ) {
+						 NodeList subList = currentChainStepTag.getElementsByTagName( chainStepModel.getStepType() );
+						 for ( int j=0; j<subList.getLength(); j++ ) {
+							 Element currentFunctionTag = (Element)subList.item(j);
+							 String key = currentFunctionTag.getAttribute( "name" );
+							 String value = currentFunctionTag.getAttribute( "value" );
+							 atts.setProperty(key, value);
+						 }
+					 }
 					 model.getChainStepList().add(chainStepModel);
 				 }
 				 config.getDocChainList().add(model);
@@ -132,8 +150,8 @@ public class FreemarkerDocProcessConfigFacade {
 	
 	private static final Properties BUILT_IN_STEPS = new Properties();
 	static {
-		BUILT_IN_STEPS.setProperty( "config" , FreeMarkerConfigStep.class.getName() );
-		BUILT_IN_STEPS.setProperty( "function" , FreeMarkerFunctionStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_CONFIG , FreeMarkerConfigStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_FUNCTION , FreeMarkerFunctionStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( "complex" , FreeMarkerComplexProcessStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( "map" , FreeMarkerMapStep.class.getName() );
 	}

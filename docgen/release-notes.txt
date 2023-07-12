@@ -1,6 +1,6 @@
-﻿1.3.0-rc.006 (2023-07-12)
+﻿1.3.0-rc.007 (2023-07-12)
 ------------------
-+ [New freemarker configuration model, compatibility mode](https://github.com/fugerit-org/fj-bom/issues/38) [TODO : xsd]
++ [New freemarker configuration model, compatibility mode](https://github.com/fugerit-org/fj-bom/issues/38)
 
 1.3.0-rc.004 (2023-07-11)
 ------------------

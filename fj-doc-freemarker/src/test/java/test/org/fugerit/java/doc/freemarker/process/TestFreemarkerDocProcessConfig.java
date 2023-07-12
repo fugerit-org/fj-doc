@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.junit.Test;
@@ -20,6 +21,17 @@ public class TestFreemarkerDocProcessConfig {
 		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
 			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
 			log.info( "config {}", config.getChain( "sample_chain" ) );
+		} catch (Exception e) {
+			String message = "Error : "+e;
+			log.error( message, e );
+			fail(message);
+		}
+	}
+	
+	@Test
+	public void testConfigValidate001() {
+		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
+			FreemarkerDocProcessConfigValidator.logValidation( xmlReader );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );

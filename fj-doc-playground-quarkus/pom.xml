@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>1.3.0-rc.006</version>
+		<version>1.3.0-rc.007</version>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>

@@ -19,7 +19,6 @@ public class FreeMarkerFunctionStep extends DocProcessorBasic {
 	 */
 	private static final long serialVersionUID = -23134236839366841L;
 	
-	
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {
 		int res = super.process(context, data);
