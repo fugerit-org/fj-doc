@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.freemarker.process;
 
 import java.io.Reader;
+import java.util.Enumeration;
 import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -8,6 +9,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
+import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -49,12 +52,40 @@ public class FreemarkerDocProcessConfigFacade {
 				 XmlBeanHelper.setFromElement( model, currentTag );
 				 config.getConfigInitList().add(model);
 				 addConfiguration(model);
+				 // functions map
+				 NodeList functionsMap = currentTag.getElementsByTagName( "functionsMap" );
+				 if ( functionsMap.getLength() > 0 ) {
+					 for ( int i=0; i<functionsMap.getLength(); i++ ) {
+						 Element currentFM = (Element)functionsMap.item(i);
+						 Properties currentFMProps = DOMUtils.attributesToProperties( currentFM );
+						 Enumeration<Object> efm = currentFMProps.keys();
+						 while ( efm.hasMoreElements() ) {
+							 String key = efm.nextElement().toString();
+							 String value = currentFMProps.getProperty( key );
+							 model.getGeneralContext().put( key , ClassHelper.newInstance(value) );
+						 }
+					 }
+				 }
 			 }
 			 NodeList docChainLisgt = doc.getElementsByTagName( "docChain" );
 			 for ( int k=0; k<docChainLisgt.getLength(); k++ ) {
 				 Element currentTag = (Element) docChainLisgt.item( k );
 				 DocChainModel model = new DocChainModel();
 				 XmlBeanHelper.setFromElement( model, currentTag );
+				 // attributes mapping
+				 if ( DocChainModel.MAP_ATTS_ENUM.equalsIgnoreCase( model.getMapAtts() ) ) {
+					 Element mapAttsEnumTag = (Element)currentTag.getElementsByTagName( "mapAttsEnum" ).item( 0 );
+					 model.setMapAttsEnum( DOMUtils.attributesToProperties( mapAttsEnumTag ) );
+					 log.debug( "chain att enum {} -> {}", model.getId(), model.getMapAttsEnum() );
+				 }
+				 // chain step
+				 NodeList chainStepList = currentTag.getElementsByTagName( "chainStep" );
+				 for ( int i=0; i<chainStepList.getLength(); i++ ) {
+					 Element currentChainStepTag = (Element) chainStepList.item(i);
+					 ChainStepModel chainStepModel = new ChainStepModel();
+					 XmlBeanHelper.setFromElement( chainStepModel, currentChainStepTag );
+					 model.getChainStepList().add(chainStepModel);
+				 }
 				 config.getDocChainList().add(model);
 			 }
 			 result = config;
