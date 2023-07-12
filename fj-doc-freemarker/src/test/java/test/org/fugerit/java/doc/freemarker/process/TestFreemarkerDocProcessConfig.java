@@ -19,7 +19,7 @@ public class TestFreemarkerDocProcessConfig {
 	public void testConfigRead001() {
 		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
 			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
-			log.info( "config -> {}", config.getConfigInitList().get( 0 ).getClassName() );
+			log.info( "config {}", config.getChain( "sample_chain" ) );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );

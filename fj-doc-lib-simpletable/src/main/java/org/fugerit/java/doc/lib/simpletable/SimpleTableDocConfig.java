@@ -3,6 +3,7 @@ package org.fugerit.java.doc.lib.simpletable;
 import java.io.OutputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -38,7 +39,8 @@ public class SimpleTableDocConfig {
 	}
 	
 	private void process( String chainId, DocProcessContext context, DocProcessData data ) throws Exception {
-		this.config.process(CONFIG_ID, CHAIN_ID_SIMPLE_TABLE, context, data);
+		MiniFilterChain chain = this.config.getChainCache( chainId );
+		chain.apply( context , data );
 	}
 		
 	public void processSimpleTable(  SimpleTable simpleTableModel, DocTypeHandler handler, OutputStream os ) throws DocException {

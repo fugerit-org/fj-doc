@@ -42,7 +42,7 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 	public Reader process( String chainId ) throws Exception {
 		DocProcessContext context = new DocProcessContext();
 		DocProcessData data = new DocProcessData();
-		PROCESS_CONFIG.process( "FJ_SAMPLE_TEST" , chainId, context, data );
+		PROCESS_CONFIG.process( chainId, context, data );
 		return data.getCurrentXmlReader();
 	}
 

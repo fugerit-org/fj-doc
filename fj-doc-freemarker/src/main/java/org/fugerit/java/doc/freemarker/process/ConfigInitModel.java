@@ -83,7 +83,7 @@ public class ConfigInitModel implements IdConfigType, KeyString, Serializable {
 		}
 		map.putAll( this.getGeneralContext() );
 		for ( ChainStepModel step : model.getChainStepList() ) {
-			DocProcessorBasic docStep = (DocProcessorBasic) ClassHelper.newInstance( step.getType() );
+			DocProcessorBasic docStep = (DocProcessorBasic) ClassHelper.newInstance( step.getStepType() );
 			int res = docStep.apply(context, data);
 			log.debug( "docStep {} -> {}", docStep, res );
 		}

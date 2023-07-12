@@ -5,53 +5,43 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 >
 
-	<configInit
-		id="FJ_SAMPLE_TEST"
-		version="2.3.31"
-		path="/free_marker/">
-			<functionsMap
+	<docChain id="shared">
+		<chainStep stepType="config" id="FJ_SAMPLE_TEST" version="2.3.31" path="/free_marker/"/>
+		<chainStep stepType="function" 
 				messageFormat="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"
 				sumLong="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
-	</configInit>
-
-	<docChain id="free-marker-01" templatePath="test_01.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
-	</docChain>
-		
-	<docChain id="free-marker-01-fop" templatePath="test_01.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+		<chainStep stepType="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+		<chainStep stepType="map" list="userList" testBase64Img="testBase64Img"/>
 	</docChain>
 
-	<docChain id="free-marker-test-fop-font" templatePath="test_fop_font.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+	<docChain id="free-marker-01" parent="shared">
+		<chainStep stepType="complex" template-path="test_01.ftl"/>
 	</docChain>
 		
-	<docChain id="full-facade-01" templatePath="test_01.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+	<docChain id="free-marker-01-fop" parent="free-marker-01"/>
+
+	<docChain id="free-marker-test-fop-font" parent="shared"> 
+		<chainStep stepType="complex" template-path="test_fop_font.ftl"/>
 	</docChain>
 		
-	<docChain id="free-marker-02" templatePath="test_02.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+	<docChain id="full-facade-01" parent="shared">
+		<chainStep stepType="complex" template-path="test_01.ftl"/>
 	</docChain>
 		
-	<docChain id="free-marker-color-test" templatePath="color_test.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+	<docChain id="free-marker-02" parent="shared">
+		<chainStep stepType="complex" template-path="test_02.ftl"/>
+	</docChain>
+		
+	<docChain id="free-marker-color-test" parent="shared">
+		<chainStep stepType="complex" template-path="color_test.ftl"/>
 	</docChain>
 
-	<docChain id="free-marker-format-test" templatePath="format_test.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+	<docChain id="free-marker-format-test" parent="shared">
+		<chainStep stepType="complex" template-path="format_test.ftl"/>
 	</docChain>
 		
-	<docChain id="basic" templatePath="basic.ftl" mapAtts="enum">
-		<mapAttsEnum list="userList" testBase64Img="testBase64Img"/>
-		<chainStep type="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+	<docChain id="basic" parent="shared">
+		<chainStep stepType="complex" template-path="basic.ftl"/>
 	</docChain>
 
 </freemarker-doc-process-config>
