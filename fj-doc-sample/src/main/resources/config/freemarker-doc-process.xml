@@ -5,12 +5,15 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<docHandlerConfig>
-		<data id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
-		<data id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
-		<data id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
-		<data id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
-		<data id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
-		<data id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+		<docHandler id="PDF/A-1a" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml" pdf-a-mode="PDF/A-1a"/>
+		</docHandler>
+		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+		<docHandler id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
+		<docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
+		<docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
+		<docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<!--
 			Starting with fj-doc-mod-fop version 0.5.2 there is a new attribute : 
 			'fop-config-mode'
@@ -27,13 +30,12 @@
 			Example 1: <config fop-config-mode='classloader-legacy' fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/> 
 			Note for compatibilty reason, if attributes 'fop-config-classloader-path' and 'font-base-classloader-path' are both set, the mode switch to fop-config-mode='classloader-legacy'
 			Example 2 : <config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
-
 			-->
-			<config charset="UTF-8" fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
-		</data>
-		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
-		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
-		<data id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml"/>
+		</docHandler>
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
+		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
+		<docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
 	</docHandlerConfig>
 
 	<docChain id="shared">
@@ -80,5 +82,9 @@
 	<docChain id="basic" parent="shared">
 		<chainStep stepType="complex" template-path="basic.ftl"/>
 	</docChain>
+	
+	<docChain id="pdf_a_test" parent="shared">
+		<chainStep stepType="complex" template-path="pdf_a_test.ftl"/>
+	</docChain>	
 
 </freemarker-doc-process-config>

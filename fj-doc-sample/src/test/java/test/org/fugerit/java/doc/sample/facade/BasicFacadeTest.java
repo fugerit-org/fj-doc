@@ -141,26 +141,29 @@ public class BasicFacadeTest {
 		return docBase;
 	}
 	
-	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String type ) throws Exception {
+	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String format ) throws Exception {
 		DocHandlerFacade facade = PROCESS_CONFIG.getFacade();
-		DocTypeHandler handler = facade.findHandler( type );
+		DocTypeHandler handler = facade.findHandler( format );
 		StringBuilder append = new StringBuilder();
 		if ( handler == null ) {
-			throw new ConfigException( "No handler with id : "+type );
-		} else if ( !handler.getType().equalsIgnoreCase( type ) ) {
+			throw new ConfigException( "No handler with id : "+format );
+		} else if ( !handler.getType().equalsIgnoreCase( format ) ) {
 			append.append( "_" );
 			append.append( handler.getModule() );
 		}
 		append.append( "." );
 		append.append( handler.getType() );
+		if ( !handler.getType().equalsIgnoreCase( handler.getFormat() ) ) {
+			baseName = baseName+"_"+handler.getFormat().replaceAll( "/" , "_");
+		}
 		File file = new File( outputFolder, baseName + append.toString() );
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			long start = System.currentTimeMillis();
-			DocInput input = DocInput.newInput( type , reader, this.getSourceType() );
+			DocInput input = DocInput.newInput( format , reader, this.getSourceType() );
 			DocOutput output = DocOutput.newOutput( fos );
 			facade.handle( input , output );
-			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+type, start );
+			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+format, start );
 		}
 	}
 	
