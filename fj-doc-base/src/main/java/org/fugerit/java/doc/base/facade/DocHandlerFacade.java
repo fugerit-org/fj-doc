@@ -12,8 +12,8 @@ import org.fugerit.java.core.util.collection.ListMapStringKey;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * DocHandlerFacade
@@ -24,10 +24,9 @@ import org.slf4j.LoggerFactory;
  * @author fugerit
  *
  */
+@Slf4j
 public class DocHandlerFacade implements Serializable {
 
-	private static final Logger logger = LoggerFactory.getLogger( DocHandlerFacade.class );
-	
 	/**
 	 * 
 	 */
@@ -47,12 +46,12 @@ public class DocHandlerFacade implements Serializable {
 	}
 
 	private void doRegister( DocTypeHandler handler, String id ) {
-		logger.info( "Registering handler with id {} : {}", id, handler.getClass().getName() );
+		log.info( "Registering handler with id {} : {}", id, handler.getClass().getName() );
 		this.mapHandlers.put( id, handler );
-		ListMapStringKey<DocTypeHandler> list = this.mapTypeHandlers.get( handler.getType() );
+		ListMapStringKey<DocTypeHandler> list = this.mapTypeHandlers.get( handler.getFormat() );
 		if ( list == null ) {
 			list = new ListMapStringKey<DocTypeHandler>();
-			this.mapTypeHandlers.put( handler.getType() , list );
+			this.mapTypeHandlers.put( handler.getFormat() , list );
 		}
 		list.add( handler );
 	}
@@ -60,17 +59,20 @@ public class DocHandlerFacade implements Serializable {
 	public void registerHandler( DocTypeHandler handler, boolean registerForType, boolean errorOnDuplicate ) throws Exception {
 		doRegister( handler, handler.getKey() );
 		if ( registerForType ) {
+			String format = handler.getFormat();
 			String type = handler.getType();
-			DocTypeHandler previous = this.mapHandlers.get( type );
+			DocTypeHandler previous = this.mapHandlers.get( format );
 			if ( previous != null ) {
 				if ( errorOnDuplicate ) {
-					throw new ConfigException( "Duplicate handler for type : "+type );
+					throw new ConfigException( "Duplicate handler for format : "+format+" (type:"+type+")" );
 				} else {
-					logger.warn( "Warning duplicate handler for type, {} will replace {}", type, handler.getKey(), previous.getKey() );
+					log.warn( "Warning duplicate handler for format, {} will replace {}", format, handler.getKey(), previous.getKey() );
 				}
 			}
-			doRegister(handler, type);
+			doRegister(handler, format);
 		}
+		log.info( "list keys current -> {} : list {}", handler, this.mapHandlers.keySet() );
+		log.debug( "test" );
 	}
 		
 	public void registerHandler( DocTypeHandler handler ) throws Exception {

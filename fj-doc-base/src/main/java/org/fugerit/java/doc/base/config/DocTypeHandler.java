@@ -12,6 +12,8 @@ public interface DocTypeHandler extends KeyString {
 	
 	String getMime();
 	
+	String getFormat();
+	
 	Charset getCharset();
 	
 	void handle( DocInput docInput, DocOutput docOutput ) throws Exception;
