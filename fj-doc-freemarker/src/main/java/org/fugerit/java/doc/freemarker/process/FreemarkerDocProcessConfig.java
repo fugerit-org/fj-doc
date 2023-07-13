@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
+import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
@@ -23,10 +24,14 @@ public class FreemarkerDocProcessConfig extends DocProcessConfig implements Seri
 	
 	private Map<String, MiniFilterChain> additionalChans;
 	
+	@Getter
+	private DocHandlerFacade facade;
+	
 	protected FreemarkerDocProcessConfig() {
 		super();
 		this.docChainList = new ListMapConfig<>();
 		this.additionalChans = new HashMap<>();
+		this.facade = new DocHandlerFacade();
 	}
 	
 	private DefaultChainProvider defaultChain;

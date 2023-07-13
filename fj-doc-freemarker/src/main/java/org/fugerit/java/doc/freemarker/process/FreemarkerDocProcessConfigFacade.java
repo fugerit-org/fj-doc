@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.xml.FactoryType;
+import org.fugerit.java.core.cfg.xml.FactoryTypeHelper;
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -14,6 +16,7 @@ import org.fugerit.java.core.util.filterchain.MiniFilterBase;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocException;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep;
@@ -29,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigFacade {
 
+	public static final String ATT_DOC_HANDLER_CONFIG = "docHandlerConfig";
+	
 	public static final String ATT_DOC_CHAIN = "docChain";
 	
 	public static final String ATT_CHAIN_STEP = "chainStep";
@@ -38,6 +43,8 @@ public class FreemarkerDocProcessConfigFacade {
 	public static final String STEP_TYPE_FUNCTION = "function";
 	
 	public static final String STEP_TYPE_MAP = "map";
+	
+	private static final FactoryTypeHelper<DocTypeHandler> HELPER = FactoryTypeHelper.newInstance( DocTypeHandler.class );
 	
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath ) throws ConfigException {
 		FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
@@ -77,6 +84,19 @@ public class FreemarkerDocProcessConfigFacade {
 			 dbf.setNamespaceAware( true );
 			 DocumentBuilder db = dbf.newDocumentBuilder();
 			 Document doc = db.parse( new InputSource( xmlReader ) );
+			 // docHandlerConfig reading
+			 NodeList docHandlerConfigList = doc.getElementsByTagName( ATT_DOC_HANDLER_CONFIG );
+			 if ( docHandlerConfigList.getLength() == 1 ) {
+				 Element docHandlerConfigTag = (Element) docHandlerConfigList.item( 0 );
+				 NodeList docHandlerList = docHandlerConfigTag.getElementsByTagName( "data" );
+				 log.info( "docHandlerList -> {}", docHandlerList.getLength() );
+				 for ( int k=0; k<docHandlerList.getLength(); k++ ) {
+					 FactoryType current = new FactoryType();
+					 XmlBeanHelper.setFromElement( current, (Element)docHandlerList.item( k ) );
+					 config.getFacade().registerHandler( HELPER.createHelper( current ) );
+				 }
+				 
+			 }
 			 // docChain reading
 			 NodeList docChainLisgt = doc.getElementsByTagName( ATT_DOC_CHAIN );
 			 for ( int k=0; k<docChainLisgt.getLength(); k++ ) {

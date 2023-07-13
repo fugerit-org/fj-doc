@@ -3,11 +3,13 @@ package test.org.fugerit.java.doc.sample.facade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.checkpoint.CheckpointFormatHelper;
 import org.fugerit.java.core.util.checkpoint.Checkpoints;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -20,7 +22,8 @@ import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
-import org.fugerit.java.doc.sample.facade.SampleFacade;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +58,6 @@ public class BasicFacadeTest {
 		for ( String current : typeList ) {
 			types.add( current );
 		}
-		this.setFacadeId( SampleFacade.MAIN_FACTORY );
 		this.validate = VALIDATE_DEFAULT;
 	}
 	
@@ -74,6 +76,18 @@ public class BasicFacadeTest {
 	public String getNameBase() {
 		return this.nameBase;
 	}
+	
+	private static FreemarkerDocProcessConfig init() {
+		FreemarkerDocProcessConfig config = null;
+		try ( InputStreamReader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "config/freemarker-doc-process.xml" ) ) ) {
+			config = FreemarkerDocProcessConfigFacade.loadConfig( xmlReader );
+		} catch (Exception e) {
+			throw new RuntimeException( e ); 
+		}
+		return config;
+	}
+	
+	protected static FreemarkerDocProcessConfig PROCESS_CONFIG = init();
 	
 	private int getSourceType() {
 		int sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
@@ -128,7 +142,7 @@ public class BasicFacadeTest {
 	}
 	
 	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String type ) throws Exception {
-		DocHandlerFacade facade = SampleFacade.getFacade( facadeId );
+		DocHandlerFacade facade = PROCESS_CONFIG.getFacade();
 		DocTypeHandler handler = facade.findHandler( type );
 		StringBuilder append = new StringBuilder();
 		if ( handler == null ) {
