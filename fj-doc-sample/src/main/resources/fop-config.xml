@@ -15,16 +15,16 @@
 	<renderers>
 	   <renderer mime="application/pdf">
 		  <fonts>
-			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">
 	          <font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
 	        </font>
-			<font embed-url="classpath://font/TitilliumWeb-Bold.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
 	          <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
 	        </font>	        
-			<font embed-url="classpath://font/TitilliumWeb-Italic.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="subset">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
 	        </font>	        
-			<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf">
+			<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="subset">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
 	        </font>	     
 	        <!--   

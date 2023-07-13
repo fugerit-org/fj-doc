@@ -10,6 +10,11 @@ import org.fugerit.java.doc.base.helper.DefaultMimeHelper;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import lombok.AccessLevel;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocTypeHandler, Serializable {
 
 	/**
@@ -19,6 +24,8 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 
 	public static final String TAG_NAME_CONFIG = "config";
 	
+	public static final String TAG_NAME_CONFIG_ALT = "docHandlerCustomConfig";
+	
 	public static final String ATT_NAME_CHARSET = "charset";
 	
 	private String type;
@@ -26,6 +33,8 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 	private String module;
 	
 	private String mime;
+	
+	@Setter(value = AccessLevel.PROTECTED) private String format;
 	
 	private Charset charset;
 	
@@ -40,7 +49,7 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 
 	@Override
 	public String getKey() {
-		return createKey( this.getType() , this.getModule() ) ;
+		return createKey( this.getFormat() , this.getModule() ) ;
 	}
 
 	@Override
@@ -54,6 +63,11 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 	}
 
 	@Override
+	public String getFormat() {
+		return StringUtils.valueWithDefault( this.format , this.getType() );
+	}
+		
+	@Override
 	public Charset getCharset() {
 		return charset;
 	}
@@ -64,10 +78,15 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 	}
 	
 	public DocTypeHandlerDefault(String type, String module, String mime, Charset charset) {
+		this( type, module, mime, charset, null );
+	}
+	
+	public DocTypeHandlerDefault(String type, String module, String mime, Charset charset, String format) {
 		super();
 		this.type = type;
 		this.module = module;
 		this.mime = mime;
+		this.format = format;
 		this.charset = DocCharsetProvider.getDefaultProvider().resolveCharset(charset);
 	}
 	
@@ -87,17 +106,37 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 		
 	}
 	
-	@Override
-	public void configure(Element tag) throws ConfigException {
-		NodeList nl = tag.getElementsByTagName( TAG_NAME_CONFIG );
+	private Element lookupConfig( Element tag, String tagName ) {
+		Element configTag = null;
+		NodeList nl = tag.getElementsByTagName( tagName );
 		if ( nl.getLength() > 0 ) {
-			Element config = (Element)nl.item( 0 );
-			String charsetAtt = config.getAttribute( ATT_NAME_CHARSET );
+			configTag = (Element)nl.item( 0 );
+			String charsetAtt = configTag.getAttribute( ATT_NAME_CHARSET );
 			if ( StringUtils.isNotEmpty( charsetAtt ) ) {
 				this.charset = Charset.forName( charsetAtt );
 			}
-			this.handleConfigTag(config);
+		}
+		return configTag;
+	}
+	
+	@Override
+	public void configure(Element tag) throws ConfigException {
+		log.info( "configure : {}", tag.getAttribute( "id" ) );
+		Element configTag = this.lookupConfig(tag, TAG_NAME_CONFIG_ALT );
+		if ( configTag == null ) {
+			configTag = this.lookupConfig(tag, TAG_NAME_CONFIG );
+		}
+		if ( configTag != null ) {
+			this.handleConfigTag(configTag);	
 		}
 	}
+
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName()+" [type=" + type + ", module=" + module + ", format=" + format + "]";
+	}
+	
+	
+	
 
 }

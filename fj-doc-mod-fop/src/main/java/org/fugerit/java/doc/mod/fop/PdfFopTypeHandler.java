@@ -4,6 +4,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 
 import javax.xml.transform.Result;
@@ -19,6 +22,7 @@ import org.apache.fop.apps.MimeConstants;
 import org.apache.xmlgraphics.io.ResourceResolver;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.lang.helpers.CollectionUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocCharsetProvider;
@@ -30,6 +34,11 @@ import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoader;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	public static final DocTypeHandler HANDLER = new PdfFopTypeHandler();
@@ -46,24 +55,33 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = FopConfigClassLoaderWrapper.DEFAULT_RESOURCE_RESOLVER.getClass().getName();
 	
+	public static final String ATT_PDF_A_MODE = "pdf-a-mode";
+	public static final String ATT_PDF_A_MODE_PDF_A_1A = DocConfig.FORMAT_PDF_A_1A;
+	public static final String ATT_PDF_A_MODE_PDF_A_1B = DocConfig.FORMAT_PDF_A_1B;
+	
+	private static final String[] VALID_PDF_A = { ATT_PDF_A_MODE_PDF_A_1A, ATT_PDF_A_MODE_PDF_A_1B };
+	public static final List<String> VALID_PDF_A_MODES = Arrays.asList( VALID_PDF_A );
+	
 	@Deprecated
 	public static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";
 	
 	public static final boolean DEFAULT_ACCESSIBILITY = true;
 	
 	public static final boolean DEFAULT_KEEP_EMPTY_TAGS = false;
-		
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7394516771708L;
 
-	private boolean accessibility;
+	@Getter private boolean accessibility;
 	
-	private boolean keepEmptyTags;
+	@Getter private boolean keepEmptyTags;
 	
-	private FopConfig fopConfig;
+	@Setter @Getter private FopConfig fopConfig;
 
+	@Getter @Setter private String pdfAMode;
+	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
 		this.fopConfig = fopConfig;
@@ -95,6 +113,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this( DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
 		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -105,6 +124,9 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		// create an instance of fop factory
 		FopFactory fopFactory = this.fopConfig.newFactory();
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
+			foUserAgent.getRendererOptions().put("pdf-a-mode", this.getPdfAMode() );	
+		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
 		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, foUserAgent, docOutput.getOs());
@@ -112,22 +134,6 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		Transformer transformer = factory.newTransformer();
 		Result res = new SAXResult(fop.getDefaultHandler());
 		transformer.transform(xmlSource, res);
-	}
-
-	public boolean isAccessibility() {
-		return accessibility;
-	}
-
-	public boolean isKeepEmptyTags() {
-		return keepEmptyTags;
-	}
-
-	public FopConfig getFopConfig() {
-		return fopConfig;
-	}
-
-	public void setFopConfig(FopConfig fopConfig) {
-		this.fopConfig = fopConfig;
 	}
 
 	@Override
@@ -138,10 +144,21 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
 		String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
 		String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
+		String pdfAModConfig = props.getProperty( ATT_PDF_A_MODE );
+		// config pdf a
+		if ( StringUtils.isNotEmpty( pdfAModConfig ) ) {
+			log.info( "pdf a mode -> {} : {}", ATT_PDF_A_MODE, pdfAModConfig );
+			if ( VALID_PDF_A_MODES.contains( pdfAModConfig ) ) {
+				this.setPdfAMode( pdfAModConfig );
+				this.setFormat( pdfAModConfig );	
+			} else {
+				throw new ConfigException( ATT_PDF_A_MODE+" not valid : "+pdfAModConfig+"( valid modes are : "+VALID_PDF_A_MODES+")" );
+			}
+		}
 		// legacy class loader mode
 		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
 			fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
-			logger.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
+			log.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
 		}
 		if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
 			try {
@@ -155,7 +172,6 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, fontBaseClassloaderPath);
 			this.fopConfig = fopConfigClassLoader;
 		}
-
 	}
 	
 }

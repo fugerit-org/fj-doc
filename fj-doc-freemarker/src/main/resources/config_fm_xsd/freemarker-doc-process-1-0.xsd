@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0 (2023-07-12)
+	 * @version    : 1.0.0-rc.002 (2023-07-13)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -30,10 +30,71 @@
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
+				<xsd:element ref='fdp:docHandlerConfig' minOccurs="0" maxOccurs="1" />
 				<xsd:element ref='fdp:docChain' minOccurs="0" maxOccurs="unbounded" />
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+	
+	<xsd:element name='docHandlerConfig' type="fdp:docHandlerConfigType">
+		<xsd:annotation>
+			<xsd:documentation>Configuration for DocHandlerFacade containing all needed DocTypeHandlers</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="docHandlerConfigType">
+		<xsd:sequence>
+			<xsd:element ref="fdp:docHandler" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>	
+	
+	<xsd:element name='docHandler' type="fdp:docHandlerType">
+		<xsd:annotation>
+			<xsd:documentation>Configuration of a specific DocTypeHandler as FactoryType</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	
+	<xsd:complexType name="docHandlerType">
+		<xsd:sequence>
+			<xsd:element ref="fdp:docHandlerCustomConfig" minOccurs="0" maxOccurs="1">
+			</xsd:element>			
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Id of the handler</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="info" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Type of the handler</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>				
+		<xsd:attribute name="type" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:documentation>Type of the handler (fully qualified class name implementing DocTypeHandler)</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="unsafe" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>'true' is the handler is too be considered unsafe </xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>
+		<xsd:attribute name="unsafeMode" type="xsd:string" use="optional" default="log-message">
+			<xsd:annotation>
+				<xsd:documentation>Unsafe handling message, ( 'log-message' for simple message or 'log-trace' for full trace) </xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>																						
+	</xsd:complexType>				
+					
+	<xsd:element name='docHandlerCustomConfig' type="fdp:docHandlerCustomConfigType">
+		<xsd:annotation>
+			<xsd:documentation>Custom configuration of a doc handler</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>					
+					
+	<xsd:complexType name="docHandlerCustomConfigType">				
+		<xsd:anyAttribute processContents="skip"/>
+	</xsd:complexType>		
 	
 	<xsd:element name='docChain' type="fdp:docChainType">
 		<xsd:annotation>

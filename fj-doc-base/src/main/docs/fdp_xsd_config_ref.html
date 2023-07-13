@@ -57,6 +57,8 @@
 				</td>
 				<td id="cell_0_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<span >(</span>
+		<a  href="#docHandlerConfig">docHandlerConfig</a>
+		<span > , </span>
 		<a  href="#docChain">docChain</a>
 		<span >)	[1-1]
 </span>
@@ -64,26 +66,64 @@
 		</tr>				
 		<tr >
 				<td id="cell_1_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
-		<a  href="#docChain">docChain</a>
+		<a  href="#docHandlerConfig">docHandlerConfig</a>
 				</td>
 				<td id="cell_1_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
-		<span >A document processing chain</span>
+		<span >Configuration for DocHandlerFacade containing all needed DocTypeHandlers</span>
 				</td>
 				<td id="cell_1_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<span >(</span>
-		<a  href="#chainStep">chainStep</a>
+		<a  href="#docHandler">docHandler</a>
 		<span >)	[1-1]
 </span>
 				</td>
 		</tr>				
 		<tr >
 				<td id="cell_2_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
-		<a  href="#chainStep">chainStep</a>
+		<a  href="#docHandler">docHandler</a>
 				</td>
 				<td id="cell_2_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
-		<span >A step in a docChain</span>
+		<span >Configuration of a specific DocTypeHandler as FactoryType</span>
 				</td>
 				<td id="cell_2_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >(</span>
+		<a  href="#docHandlerCustomConfig">docHandlerCustomConfig</a>
+		<span >)	[1-1]
+</span>
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_3_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<a  href="#docHandlerCustomConfig">docHandlerCustomConfig</a>
+				</td>
+				<td id="cell_3_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >Custom configuration of a doc handler</span>
+				</td>
+				<td id="cell_3_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_4_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<a  href="#docChain">docChain</a>
+				</td>
+				<td id="cell_4_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >A document processing chain</span>
+				</td>
+				<td id="cell_4_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >(</span>
+		<a  href="#chainStep">chainStep</a>
+		<span >)	[1-1]
+</span>
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_5_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<a  href="#chainStep">chainStep</a>
+				</td>
+				<td id="cell_5_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >A step in a docChain</span>
+				</td>
+				<td id="cell_5_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<span >(</span>
 		<a  href="#config">config</a>
 		<span > | </span>
@@ -95,33 +135,33 @@
 				</td>
 		</tr>				
 		<tr >
-				<td id="cell_3_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_6_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<a  href="#config">config</a>
 				</td>
-				<td id="cell_3_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_6_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<span >Will creates a new free marker configuration</span>
 				</td>
-				<td id="cell_3_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_6_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 				</td>
 		</tr>				
 		<tr >
-				<td id="cell_4_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_7_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<a  href="#function">function</a>
 				</td>
-				<td id="cell_4_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_7_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<span >The data of a freemarker function to map (the 'name' attributes will be the key, and a new instance of the 'value' attribute as value)</span>
 				</td>
-				<td id="cell_4_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_7_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 				</td>
 		</tr>				
 		<tr >
-				<td id="cell_5_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_8_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<a  href="#map">map</a>
 				</td>
-				<td id="cell_5_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_8_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 		<span >An object will be mapped from DocProcessContext to Freemarker Map (the 'name' attributes will be the key, and the 'value' will be used to search in the DocProcessContext attributes)</span>
 				</td>
-				<td id="cell_5_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+				<td id="cell_8_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
 				</td>
 		</tr>				
 				</tbody>
@@ -138,6 +178,158 @@
 		<tr >
 				<th id="cell_1_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
 		<span >This is the root element of freemarker-doc-process configuration file</span>
+				</th>
+		</tr>				
+		<tr >
+				<th id="cell_2_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Attribute</span>
+				</th>
+				<th id="cell_2_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Description</span>
+				</th>
+				<th id="cell_2_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Note</span>
+				</th>
+		</tr>				
+				</thead>
+				<tbody>
+		<tr >
+				<td id="cell_0_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<span >This element does not have attributes</span>
+				</td>
+		</tr>				
+				</tbody>
+		</table>
+		<br/>		
+		<a  href="#begin">top</a>
+		<table style='width: 100%'>
+				<thead>
+		<tr >
+				<th id="cell_0_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<a style="font-weight: bold;" name="docHandlerConfig">Element : docHandlerConfig</a>
+				</th>
+		</tr>				
+		<tr >
+				<th id="cell_1_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<span >Configuration for DocHandlerFacade containing all needed DocTypeHandlers</span>
+				</th>
+		</tr>				
+		<tr >
+				<th id="cell_2_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Attribute</span>
+				</th>
+				<th id="cell_2_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Description</span>
+				</th>
+				<th id="cell_2_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Note</span>
+				</th>
+		</tr>				
+				</thead>
+				<tbody>
+		<tr >
+				<td id="cell_0_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<span >This element does not have attributes</span>
+				</td>
+		</tr>				
+				</tbody>
+		</table>
+		<br/>		
+		<a  href="#begin">top</a>
+		<table style='width: 100%'>
+				<thead>
+		<tr >
+				<th id="cell_0_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<a style="font-weight: bold;" name="docHandler">Element : docHandler</a>
+				</th>
+		</tr>				
+		<tr >
+				<th id="cell_1_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<span >Configuration of a specific DocTypeHandler as FactoryType</span>
+				</th>
+		</tr>				
+		<tr >
+				<th id="cell_2_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Attribute</span>
+				</th>
+				<th id="cell_2_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Description</span>
+				</th>
+				<th id="cell_2_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span style="font-weight: bold;">Note</span>
+				</th>
+		</tr>				
+				</thead>
+				<tbody>
+		<tr >
+				<td id="cell_0_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >id</span>
+				</td>
+				<td id="cell_0_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >Id of the handler</span>
+				</td>
+				<td id="cell_0_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >string</span>
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_1_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >info</span>
+				</td>
+				<td id="cell_1_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >Type of the handler</span>
+				</td>
+				<td id="cell_1_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >string</span>
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_2_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >type</span>
+				</td>
+				<td id="cell_2_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >Type of the handler (fully qualified class name implementing DocTypeHandler)</span>
+				</td>
+				<td id="cell_2_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >string</span>
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_3_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >unsafe</span>
+				</td>
+				<td id="cell_3_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >'true' is the handler is too be considered unsafe</span>
+				</td>
+				<td id="cell_3_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >boolean</span>
+				</td>
+		</tr>				
+		<tr >
+				<td id="cell_4_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >unsafeMode</span>
+				</td>
+				<td id="cell_4_1"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >Unsafe handling message, ( 'log-message' for simple message or 'log-trace' for full trace)</span>
+				</td>
+				<td id="cell_4_2"  style="width: 40%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="1"   rowspan="1" > 
+		<span >string</span>
+				</td>
+		</tr>				
+				</tbody>
+		</table>
+		<br/>		
+		<a  href="#begin">top</a>
+		<table style='width: 100%'>
+				<thead>
+		<tr >
+				<th id="cell_0_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<a style="font-weight: bold;" name="docHandlerCustomConfig">Element : docHandlerCustomConfig</a>
+				</th>
+		</tr>				
+		<tr >
+				<th id="cell_1_0"  style="width: 20%;  border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; "   colspan="3"   rowspan="1" > 
+		<span >Custom configuration of a doc handler</span>
 				</th>
 		</tr>				
 		<tr >

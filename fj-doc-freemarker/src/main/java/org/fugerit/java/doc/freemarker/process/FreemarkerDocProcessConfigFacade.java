@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigurableObject;
+import org.fugerit.java.core.cfg.helpers.UnsafeHelper;
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -14,6 +16,7 @@ import org.fugerit.java.core.util.filterchain.MiniFilterBase;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocException;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep;
@@ -29,9 +32,13 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigFacade {
 
+	public static final String ATT_DOC_HANDLER_CONFIG = "docHandlerConfig";
+	
 	public static final String ATT_DOC_CHAIN = "docChain";
 	
 	public static final String ATT_CHAIN_STEP = "chainStep";
+	
+	public static final String ATT_STEP_TYPE = "stepType";
 	
 	public static final String STEP_TYPE_CONFIG = "config";
 	
@@ -69,6 +76,22 @@ public class FreemarkerDocProcessConfigFacade {
 		return config;
 	}
 	
+	private static DocTypeHandler createHelper( Element docHandlerConfig ) throws ConfigException {
+		String type = docHandlerConfig.getAttribute( "type" );
+		log.info( "factoryType : {} , resultType : {}", docHandlerConfig, type );
+		DocTypeHandler res = null;
+		try {
+			res = (DocTypeHandler)ClassHelper.newInstance( type );
+			if ( res instanceof ConfigurableObject ) {
+				log.info( "ConfigurableObject -> try configure()" );
+				((ConfigurableObject)res).configure( (Element)docHandlerConfig );
+			}
+		} catch (Exception | NoClassDefFoundError e) {
+			UnsafeHelper.handleUnsafe( new ConfigException( "Type cannot be loaded : "+e, e ), docHandlerConfig.getAttribute( "unsafe"), docHandlerConfig.getAttribute( "unsafeMode") );
+		}
+		return res;
+	}
+	
 	public static FreemarkerDocProcessConfig loadConfig( Reader xmlReader ) throws ConfigException {
 		FreemarkerDocProcessConfig result = null;
 		 try {
@@ -77,6 +100,19 @@ public class FreemarkerDocProcessConfigFacade {
 			 dbf.setNamespaceAware( true );
 			 DocumentBuilder db = dbf.newDocumentBuilder();
 			 Document doc = db.parse( new InputSource( xmlReader ) );
+			 // docHandlerConfig reading
+			 NodeList docHandlerConfigList = doc.getElementsByTagName( ATT_DOC_HANDLER_CONFIG );
+			 if ( docHandlerConfigList.getLength() == 1 ) {
+				 Element docHandlerConfigTag = (Element) docHandlerConfigList.item( 0 );
+				 NodeList docHandlerList = docHandlerConfigTag.getElementsByTagName( "docHandler" );
+				 log.info( "docHandlerList -> {}", docHandlerList.getLength() );
+				 for ( int k=0; k<docHandlerList.getLength(); k++ ) {
+					 Element currentHandlerTag = (Element)docHandlerList.item( k );
+					 DocTypeHandler handler = createHelper( currentHandlerTag );
+					 config.getFacade().registerHandler( handler );
+				 }
+				 
+			 }
 			 // docChain reading
 			 NodeList docChainLisgt = doc.getElementsByTagName( ATT_DOC_CHAIN );
 			 for ( int k=0; k<docChainLisgt.getLength(); k++ ) {
@@ -97,8 +133,8 @@ public class FreemarkerDocProcessConfigFacade {
 					 Element currentChainStepTag = (Element) chainStepList.item(i);
 					 ChainStepModel chainStepModel = new ChainStepModel();
 					 Properties atts = DOMUtils.attributesToProperties( currentChainStepTag );
-					 chainStepModel.setStepType( atts.getProperty( "stepType" ) );
-					 atts.remove( "stepType" );
+					 chainStepModel.setStepType( atts.getProperty( ATT_STEP_TYPE ) );
+					 atts.remove( ATT_STEP_TYPE );
 					 chainStepModel.setAttributes(atts);
 					 if ( STEP_TYPE_CONFIG.equalsIgnoreCase( chainStepModel.getStepType() ) ) {
 						 NodeList configList = currentChainStepTag.getElementsByTagName( STEP_TYPE_CONFIG );
@@ -158,14 +194,22 @@ public class FreemarkerDocProcessConfigFacade {
 	
 	private static Properties convertConfiguration( Properties props ) {
 		 Properties params = new Properties();
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION, ConfigInitModel.DEFAULT_VERSION ) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE, ConfigInitModel.DEFAULT_MODE) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH ) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS, ConfigInitModel.DEFAULT_CLASS_NAME) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER, ConfigInitModel.DEFAULT_EXCEPTION_HANDLER) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION, ConfigInitModel.DEFAULT_LOG_EXCEPTION) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION, ConfigInitModel.DEFAULT_WRAP_UNCHECKED_EXCEPTION) );
-		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE , props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE, ConfigInitModel.DEFAULT_FALL_BACK_ON_NULL_LOOP_VARIABLE) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_DEFAULT ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE_CLASS ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS, FreemarkerDocProcessConfigFacade.class.getName() ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_DEFAULT ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION_DEFAULT ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION_DEFAULT ) );
+		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE , 
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE_DEFAULT ) );
 		 return params;
 	}
 	
