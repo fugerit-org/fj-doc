@@ -87,7 +87,7 @@ public class FreemarkerDocProcessConfigFacade {
 				((ConfigurableObject)res).configure( (Element)docHandlerConfig );
 			}
 		} catch (Exception | NoClassDefFoundError e) {
-			UnsafeHelper.handleUnsafe( new ConfigException( "Type cannot be loaded : "+e, e ), docHandlerConfig.getAttribute( "unsafe"), docHandlerConfig.getAttribute( "unsafeMode") );
+			UnsafeHelper.handleUnsafe( new ConfigException( "Type cannot be loaded : "+e, e ), docHandlerConfig.getAttribute( "unsafe"), docHandlerConfig.getAttribute( "unsafeMode") );	
 		}
 		return res;
 	}
@@ -109,7 +109,9 @@ public class FreemarkerDocProcessConfigFacade {
 				 for ( int k=0; k<docHandlerList.getLength(); k++ ) {
 					 Element currentHandlerTag = (Element)docHandlerList.item( k );
 					 DocTypeHandler handler = createHelper( currentHandlerTag );
-					 config.getFacade().registerHandler( handler );
+					 if ( handler != null ) {
+						 config.getFacade().registerHandler( handler );
+					 }
 				 }
 				 
 			 }
@@ -176,7 +178,7 @@ public class FreemarkerDocProcessConfigFacade {
 					 step.setChainId( chain.getChainId() );
 					 chain.getFilterChain().add( step );
 				 }
-				 config.addAdditionalChain(chain);
+				 config.setChain(chain.getChainId(), chain);
 			 }
 		 } catch (Exception e) {
 			 throw new ConfigException( "Error configuring FreemarkerDocProcessConfig : "+e , e );

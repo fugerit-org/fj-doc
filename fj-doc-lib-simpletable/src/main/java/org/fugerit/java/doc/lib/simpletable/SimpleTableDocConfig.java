@@ -4,13 +4,13 @@ import java.io.OutputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
+import org.fugerit.java.core.util.filterchain.MiniFilterMap;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
@@ -34,7 +34,7 @@ public class SimpleTableDocConfig {
 
 	public static final String CHAIN_ID_SIMPLE_TABLE = "simple_table";
 	
-	public DocProcessConfig getConfig() {
+	public MiniFilterMap getConfig() {
 		return this.config;
 	}
 	

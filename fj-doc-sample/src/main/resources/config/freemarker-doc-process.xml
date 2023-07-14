@@ -6,7 +6,7 @@
 
 	<docHandlerConfig>
 		<docHandler id="PDF/A-1a" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
-			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml" pdf-a-mode="PDF/A-1a"/>
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa.xml" pdf-a-mode="PDF/A-1a"/>
 		</docHandler>
 		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
 		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
@@ -36,6 +36,7 @@
 		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
 		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
 		<docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
+		<docHandler id="pdf-unsafe" info="pdf" type="org.fugerit.java.doc.pdf.UnsafeDocHandler" unsafe="true" unsafeMode="log-trace"/>
 	</docHandlerConfig>
 
 	<docChain id="shared">

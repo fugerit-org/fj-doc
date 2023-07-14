@@ -12,19 +12,27 @@
   <!-- Font Base URL for resolving relative font URLs -->
   <font-base>.</font-base>
 
+	<!--
+		NOTE: for PDF/A format all fonts, even the basic ones, myst be fully embdedded.
+		https://xmlgraphics.apache.org/fop/2.8/pdfa.htm
+	-->
 	<renderers>
 	   <renderer mime="application/pdf">
+	   	  <!-- In this configuration the pdf-a-mode has been set via the freemarker-doc-process.xml
+	   	  <pdf-a-mode>PDF/A-1a</pdf-a-mode>
+      	  <version>1.4</version>
+      	  -->
 		  <fonts>
-			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="subset">
+			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">
 	          <font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
 	        </font>
-			<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="subset">
+			<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
 	          <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
 	        </font>	        
-			<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="subset">
+			<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="full">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
 	        </font>	        
-			<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="subset">
+			<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="full">
 	          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
 	        </font>	     
 	        <!--   
