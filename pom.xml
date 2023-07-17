@@ -88,6 +88,7 @@
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
+		<module>fj-doc-tool</module>
 		<module>fj-doc-sample</module>
 		<module>fj-doc-bom-core</module>
 		<module>fj-doc-bom-fop</module>

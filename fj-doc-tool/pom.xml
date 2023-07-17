@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>fj-doc-tool</artifactId>
+
+	<parent>
+		<groupId>org.fugerit.java</groupId>
+		<artifactId>fj-doc</artifactId>
+		<version>1.3.1-rc.002</version>
+	</parent>
+
+	<name>fj-doc-tool</name>
+	<description>Fugerit Venus doc tool</description>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<properties>
+		<freemarker-version>2.3.31</freemarker-version>	
+	</properties>
+	
+	<build>
+		
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-core</artifactId>
+		</dependency>	
+	
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base</artifactId>
+		</dependency>	
+		
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-freemarker</artifactId>
+		</dependency>			
+		
+	</dependencies>
+
+	<organization>
+		<url>https://www.fugerit.org</url>
+		<name>Fugerit</name>
+	</organization>
+	
+	<url>https://www.fugerit.org/perm/venus/</url>
+	
+	<profiles>
+	
+		<profile>
+			<id>singlepackage</id>
+			<dependencies>
+				<dependency> 
+				  <groupId>org.slf4j</groupId>
+				  <artifactId>slf4j-api</artifactId>
+				</dependency>		
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+				    <artifactId>log4j-api</artifactId>
+				</dependency>
+				<dependency>
+				    <groupId>org.apache.logging.log4j</groupId>
+				    <artifactId>log4j-core</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.logging.log4j</groupId>
+				    <artifactId>log4j-slf4j2-impl</artifactId>
+				</dependency>	
+			</dependencies>		
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-jar-plugin</artifactId>
+						<configuration>
+							<archive>
+								<manifest>
+									<addClasspath>true</addClasspath>
+									<mainClass>org.fugerit.java.doc.tool.DocTool</mainClass>
+								</manifest>
+							</archive>
+						</configuration>
+					</plugin>				
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-shade-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>shade</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<finalName>dist-${project.artifactId}-${project.version}</finalName>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>	
+	
+	</profiles>
+	
+</project>
