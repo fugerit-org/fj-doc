@@ -8,6 +8,9 @@
 		Configuration stub version : 002 (2023-07-18)
 	-->
 
+	<#assign stubHandler=stubParams['stub-handler']!'1'>
+	<#if stubHandler == '1'>
+	
 	<docHandlerConfig>
 
 		<!-- Type handler for markdown format -->
@@ -74,7 +77,10 @@
 		<#if enableOpencsv != '1'>--> </#if>
 				
 	</docHandlerConfig>
+	</#if>
 
+	<#assign stubChain=stubParams['stub-chain']!'0'>
+	<#if stubChain == '1'>
 	<#assign configId=stubParams['config-id']!'FJ_DOC_STUB'>
 	<#assign fmVersion=stubParams['fm-version']!'2.3.29'>
 	<#assign fmTemplatePath=stubParams['fm-template-path']!'/free_marker/'>
@@ -99,5 +105,32 @@
 		-->
 		<chainStep stepType="complex" template-path="sample-chain.ftl"/>
 	</docChain>
+	</#if>
+
+	<#if (configModel)??>
+		<#list configModel.chainList as chainModel>
+	<docChain id="${chainModel.id}">
+			<#list chainModel.stepList as stepModel>
+		<chainStep stepType="${stepModel.type}"<#if stepModel.type == 'complex'><#list stepModel.attNames as currentAttName> ${currentAttName}="${stepModel.atts[currentAttName]}"</#list></#if>>
+			<#if stepModel.type == 'map'>
+			<#list stepModel.attNames as currentAttName>
+			<map name="${currentAttName}" value="${stepModel.atts[currentAttName]}"/>
+			</#list>
+			<#elseif stepModel.type == 'config'>
+			<config
+				<#list stepModel.attNames as currentAttName>
+				${currentAttName}="${stepModel.atts[currentAttName]}"
+				</#list>
+			/>
+			<#elseif stepModel.type == 'complex'>
+			<#else>
+			<!-- custom step, additional configuration may be needed -->
+			</#if>
+		</chainStep>
+			</#list> 
+	</docChain>
+
+		</#list>   
+	</#if>
 		
 </freemarker-doc-process-config>

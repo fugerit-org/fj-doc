@@ -10,6 +10,7 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cli.ArgUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.PropsIO;
+import org.fugerit.java.doc.tool.handler.ConvertConfigHandler;
 import org.fugerit.java.doc.tool.handler.GenerateStubHandler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,8 @@ public class DocTool {
 	
 	public static final String ARG_TOOL_GENERATE_STUB = "generate-stub";
 	
+	public static final String ARG_TOOL_CONVERT_CONFIG = "convert-config";
+	
 	public static void handle( Properties params ) throws Exception {
 		String toolHandler = params.getProperty( ARG_TOOL );
 		if ( StringUtils.isEmpty( toolHandler ) ) {
@@ -31,6 +34,8 @@ public class DocTool {
 		Consumer<Properties> handler = null;
 		if ( ARG_TOOL_GENERATE_STUB.equalsIgnoreCase( toolHandler ) ) {
 			handler = new GenerateStubHandler();
+		} else 		if ( ARG_TOOL_CONVERT_CONFIG.equalsIgnoreCase( toolHandler ) ) {
+			handler = new ConvertConfigHandler();
 		} else {
 			throw new ConfigException( "Unknown tool : "+toolHandler );
 		}

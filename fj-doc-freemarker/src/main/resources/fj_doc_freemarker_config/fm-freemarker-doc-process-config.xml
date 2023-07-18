@@ -36,6 +36,7 @@
 	<docChain id="freemarker-doc-process-config-stub" parent="base-freemarker">
 		<chainStep stepType="map">
 			<map name="stubParams" value="stubParams"/>
+			<map name="configModel" value="configModel"/>
 		</chainStep>
 		<chainStep stepType="complex" template-path="freemarker-doc-process-config-stub.ftl"/>
 	</docChain>

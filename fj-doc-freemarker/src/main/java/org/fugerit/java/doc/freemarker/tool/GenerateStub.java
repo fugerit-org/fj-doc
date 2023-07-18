@@ -13,6 +13,16 @@ public class GenerateStub {
 	public static final String CONFIG_STUB_CHAIN_ID = "freemarker-doc-process-config-stub";
 	
 	public static final String ATT_STUB_PARAMS = "stubParams";
+
+	/**
+	 * Generate the docHandlerConfig stub ('1' = enabled, default = '1')
+	 */
+	public static final String PARAM_STUB_HANDLER = "stub-handler";
+	
+	/**
+	 * Generate the docChain stub ('0' = enabled, default = '1')
+	 */
+	public static final String PARAM_STUB_CHAIN = "stub-chain";
 	
 	/**
 	 * Enable FOP basic type handler in stub ('1' = enabled, default = '0')

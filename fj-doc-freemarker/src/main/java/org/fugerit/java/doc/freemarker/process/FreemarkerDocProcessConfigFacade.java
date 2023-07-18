@@ -47,6 +47,8 @@ public class FreemarkerDocProcessConfigFacade {
 	
 	public static final String STEP_TYPE_FUNCTION = "function";
 	
+	public static final String STEP_TYPE_COMPLEX = "complex";
+	
 	public static final String STEP_TYPE_MAP = "map";
 	
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath ) throws ConfigException {
@@ -200,11 +202,13 @@ public class FreemarkerDocProcessConfigFacade {
 	}
 	
 	private static final Properties BUILT_IN_STEPS = new Properties();
+	public static final Properties BUILT_IN_STEPS_REVERSE = new Properties();
 	static {
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_CONFIG , FreeMarkerConfigStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_FUNCTION , FreeMarkerFunctionStep.class.getName() );
-		BUILT_IN_STEPS.setProperty( "complex" , FreeMarkerComplexProcessStep.class.getName() );
-		BUILT_IN_STEPS.setProperty( "map" , FreeMarkerMapStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_COMPLEX , FreeMarkerComplexProcessStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_MAP , FreeMarkerMapStep.class.getName() );
+		BUILT_IN_STEPS.keySet().stream().forEach( k -> BUILT_IN_STEPS_REVERSE.put( BUILT_IN_STEPS.get( k ) , k ) );
 	}
 	
 	private static Properties convertConfiguration( Properties props ) {
