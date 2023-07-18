@@ -23,7 +23,7 @@ mvn clean install -P singlepackage
 Run (sample) :
 
 ```
-java -jar target/dist-fj-doc-tool-1.3.1-rc.002.jar \
+java -jar target/dist-fj-doc-tool-XXX.jar \
 	--tool generate-stub \
 	--input src/test/resources/convert-config-test/doc-process-sample.xml \
 	--output target/new-config.xml
