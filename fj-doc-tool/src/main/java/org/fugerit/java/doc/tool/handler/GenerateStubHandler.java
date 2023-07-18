@@ -23,9 +23,9 @@ public class GenerateStubHandler implements Consumer<Properties> {
 		if ( StringUtils.isEmpty( output ) ) {
 			throw new ConfigRuntimeException( "Required parameter : "+ARG_OUTPUT_FILE );
 		}
-		log.info( "output file path {}", output );
+		log.info( "output file path : {}", output );
 		try ( Writer w = new FileWriter( new File( output ) ) ) {
-			GenerateStub.generate( w, t);
+			GenerateStub.generate( w, t );
 		} catch (Exception e) {
 			throw new ConfigRuntimeException( "Error generating stub "+e, e );
 		}

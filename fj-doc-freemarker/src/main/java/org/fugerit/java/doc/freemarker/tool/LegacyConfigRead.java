@@ -1,17 +1,11 @@
 package org.fugerit.java.doc.freemarker.tool;
 
 import java.io.InputStream;
-import java.io.Writer;
-import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.fugerit.java.core.io.StreamIO;
-import org.fugerit.java.doc.base.process.DocProcessContext;
-import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep;
-import org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.freemarker.tool.model.ChainModel;
 import org.fugerit.java.doc.freemarker.tool.model.ConfigModel;
@@ -25,11 +19,9 @@ import org.w3c.dom.NodeList;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ConvertConfig {
-	
-	public static final String ATT_CONFIG_MODEL = "configModel";
-	
-	public static void generate( InputStream is, Writer out, Properties params ) throws Exception {
+public class LegacyConfigRead {
+
+	public static ConfigModel readConfig( InputStream is ) throws Exception {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware( true );
 		DocumentBuilder parser = dbf.newDocumentBuilder();
@@ -68,10 +60,7 @@ public class ConvertConfig {
 				}
 			}
 		}
-		DocProcessData data = new DocProcessData();
-		DocProcessContext context = DocProcessContext.newContext( GenerateStub.ATT_STUB_PARAMS, params ).withAtt( ATT_CONFIG_MODEL , configModel );
-		FreeMarkerDocProcess.getInstance().process( GenerateStub.CONFIG_STUB_CHAIN_ID, context, data );
-		StreamIO.pipeChar( data.getCurrentXmlReader() , out, StreamIO.MODE_CLOSE_IN_ONLY );
+		return configModel;
 	}
 	
 }

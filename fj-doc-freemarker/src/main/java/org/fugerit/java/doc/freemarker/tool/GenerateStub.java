@@ -1,15 +1,25 @@
 package org.fugerit.java.doc.freemarker.tool;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.Writer;
 import java.util.Properties;
 
 import org.fugerit.java.core.io.StreamIO;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess;
+import org.fugerit.java.doc.freemarker.tool.model.ConfigModel;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class GenerateStub {
-
+	
+	public static final String ATT_CONFIG_MODEL = "configModel";
+	
 	public static final String CONFIG_STUB_CHAIN_ID = "freemarker-doc-process-config-stub";
 	
 	public static final String ATT_STUB_PARAMS = "stubParams";
@@ -59,10 +69,30 @@ public class GenerateStub {
 	 */
 	public static final String PARAM_FM_TEMPLATE_PATH = "fm-template-path";
 	
-	public static void generate( Writer w, Properties params ) throws Exception {
+	public static final String ARG_INPUT_FILE = "input";
+	
+	public static void generate( Writer out, Properties params ) throws Exception {
+		String input = params.getProperty(ARG_INPUT_FILE);
+		if ( StringUtils.isNotEmpty( input ) ) {
+			try ( InputStream is = new FileInputStream( new File( input ) ) ) {
+				generate(out, params, is);
+			}
+		} else {
+			generate(out, params, null);
+		}
+	}
+	
+	public static void generate( Writer out, Properties params, InputStream is ) throws Exception {
+		ConfigModel configModel = null;
 		DocProcessData data = new DocProcessData();
-		FreeMarkerDocProcess.getInstance().process( CONFIG_STUB_CHAIN_ID, DocProcessContext.newContext( ATT_STUB_PARAMS, params ), data );
-		StreamIO.pipeChar( data.getCurrentXmlReader() , w, StreamIO.MODE_CLOSE_IN_ONLY );
+		DocProcessContext context = DocProcessContext.newContext( ATT_STUB_PARAMS, params );
+		if ( is != null ) {
+			log.info( "read legacy config model" );
+			configModel = LegacyConfigRead.readConfig(is);
+			context = context.withAtt( ATT_CONFIG_MODEL , configModel );
+		}
+		FreeMarkerDocProcess.getInstance().process( CONFIG_STUB_CHAIN_ID, context, data );
+		StreamIO.pipeChar( data.getCurrentXmlReader() , out, StreamIO.MODE_CLOSE_IN_ONLY );
 	}
 	
 }
