@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.3.1-rc.002</version>
+	<version>1.3.1-rc.003</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -88,6 +88,7 @@
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
+		<module>fj-doc-tool</module>
 		<module>fj-doc-sample</module>
 		<module>fj-doc-bom-core</module>
 		<module>fj-doc-bom-fop</module>

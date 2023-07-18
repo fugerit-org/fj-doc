@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.freemarker.process;
 
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
 
@@ -7,9 +8,11 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.cfg.helpers.UnsafeHelper;
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
+import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.filterchain.MiniFilterBase;
@@ -43,6 +46,8 @@ public class FreemarkerDocProcessConfigFacade {
 	public static final String STEP_TYPE_CONFIG = "config";
 	
 	public static final String STEP_TYPE_FUNCTION = "function";
+	
+	public static final String STEP_TYPE_COMPLEX = "complex";
 	
 	public static final String STEP_TYPE_MAP = "map";
 	
@@ -90,6 +95,16 @@ public class FreemarkerDocProcessConfigFacade {
 			UnsafeHelper.handleUnsafe( new ConfigException( "Type cannot be loaded : "+e, e ), docHandlerConfig.getAttribute( "unsafe"), docHandlerConfig.getAttribute( "unsafeMode") );	
 		}
 		return res;
+	}
+	
+	public static FreemarkerDocProcessConfig loadConfigSafe( String configPath ) {
+		FreemarkerDocProcessConfig config = null;
+		try ( Reader xmlReader = new InputStreamReader(StreamHelper.resolveStream( configPath ) ) ) {
+			config = loadConfig(xmlReader);
+		} catch (Exception e) {
+			throw new ConfigRuntimeException( e );
+		}
+		return config;
 	}
 	
 	public static FreemarkerDocProcessConfig loadConfig( Reader xmlReader ) throws ConfigException {
@@ -187,11 +202,13 @@ public class FreemarkerDocProcessConfigFacade {
 	}
 	
 	private static final Properties BUILT_IN_STEPS = new Properties();
+	public static final Properties BUILT_IN_STEPS_REVERSE = new Properties();
 	static {
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_CONFIG , FreeMarkerConfigStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_FUNCTION , FreeMarkerFunctionStep.class.getName() );
-		BUILT_IN_STEPS.setProperty( "complex" , FreeMarkerComplexProcessStep.class.getName() );
-		BUILT_IN_STEPS.setProperty( "map" , FreeMarkerMapStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_COMPLEX , FreeMarkerComplexProcessStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_MAP , FreeMarkerMapStep.class.getName() );
+		BUILT_IN_STEPS.keySet().stream().forEach( k -> BUILT_IN_STEPS_REVERSE.put( BUILT_IN_STEPS.get( k ) , k ) );
 	}
 	
 	private static Properties convertConfiguration( Properties props ) {

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<docChain id="base-freemarker">
+		<chainStep stepType="config">
+			<config id="FJDOC_MOD_FREEMARKER_HTML_CONFIG" 
+				version="2.3.29"
+				path="/fj_doc_freemarker_config/template/"
+				mode="class" 
+				class="org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess"
+				exception-handler="RETHROW_HANDLER"
+				log-exception="false"
+				wrap-unchecked-exceptions="true"
+				fallback-on-null-loop-variable="false"/>
+		</chainStep>
+	</docChain>
+
+	<docChain id="base-freemarker-html" parent="base-freemarker">
+		<chainStep stepType="map">
+			<map name="docBase" value="docBase"/>
+			<map name="docType" value="docType"/>
+		</chainStep>
+	</docChain>
+
+	<docChain id="html-freemarker" parent="base-freemarker-html">
+		<chainStep stepType="complex" template-path="html_doc.ftl"/>
+	</docChain>
+		
+	<docChain id="html-fragment-freemarker" parent="base-freemarker-html">
+		<chainStep stepType="complex" template-path="html_fragment.ftl"/>
+	</docChain>
+
+	<docChain id="freemarker-doc-process-config-stub" parent="base-freemarker">
+		<chainStep stepType="map">
+			<map name="stubParams" value="stubParams"/>
+			<map name="configModel" value="configModel"/>
+		</chainStep>
+		<chainStep stepType="complex" template-path="freemarker-doc-process-config-stub.ftl"/>
+	</docChain>
+
+</freemarker-doc-process-config>
