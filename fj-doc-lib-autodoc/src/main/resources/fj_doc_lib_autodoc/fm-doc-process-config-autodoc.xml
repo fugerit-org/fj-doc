@@ -7,18 +7,6 @@
 	<!--
 		Configuration stub version : 003 (2023-07-19)
 	-->
-		
-	<docHandlerConfig>
-		<!-- Type handler for markdown format -->
-		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
-		<!-- Type henalder for xml format, generates the source xml:doc -->
-		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
-		<!-- Type handlers for html using freemarker --> 
-		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
-		<!-- Type handlers for html using freemarker (fragment version, only generates body content no html or head part --> 
-		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />	
-	</docHandlerConfig>
-
 
 	<docChain id="shared">
 		<chainStep stepType="config">
