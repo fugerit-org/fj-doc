@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.002 (2023-07-13)
+	 * @version    : 1.0.0-rc.003 (2023-07-19)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -133,6 +133,11 @@
 		<xsd:attribute name="stepType" type="xsd:string" use="required">
 			<xsd:annotation>
 				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex'</xsd:documentation>
+			</xsd:annotation>		
+		</xsd:attribute>
+		<xsd:attribute name="map-atts" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Comma separated list of attributes to map or 'map-all' to map all attributes</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
 		<xsd:attribute name="template-path" type="xsd:string" use="optional">

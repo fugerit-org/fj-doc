@@ -5,7 +5,7 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<!--
-		Configuration stub version : 002 (2023-07-18)
+		Configuration stub version : 003 (2023-07-19)
 	-->
 
 	<#assign stubHandler=stubParams['stub-handler']!'1'>
@@ -109,7 +109,7 @@
 
 	<#if (configModel)??>
 		<#list configModel.chainList as chainModel>
-	<docChain id="${chainModel.id}">
+	<docChain id="${chainModel.id}"<#if (chainModel.parent)??> parent="${chainModel.parent}"</#if>>
 			<#list chainModel.stepList as stepModel>
 		<chainStep stepType="${stepModel.type}"<#if stepModel.type == 'complex'><#list stepModel.attNames as currentAttName> ${currentAttName}="${stepModel.atts[currentAttName]}"</#list></#if>>
 			<#if stepModel.type == 'map'>
@@ -122,6 +122,10 @@
 				${currentAttName}="${stepModel.atts[currentAttName]}"
 				</#list>
 			/>
+			<#elseif stepModel.type == 'function'>
+			<#list stepModel.attNames as currentAttName>
+			<function name="${currentAttName}" value="${stepModel.atts[currentAttName]}"/>
+			</#list>			
 			<#elseif stepModel.type == 'complex'>
 			<#else>
 			<!-- custom step, additional configuration may be needed -->

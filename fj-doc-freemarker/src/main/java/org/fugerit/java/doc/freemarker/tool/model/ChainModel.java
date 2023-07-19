@@ -15,6 +15,8 @@ public class ChainModel implements Serializable {
 	
 	private String id;
 	
+	private String parent;
+	
 	public ChainModel( String id ) {
 		this.setId( id );
 		this.stepList = new ArrayList<>();
