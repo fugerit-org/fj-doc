@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<!--
+		Configuration stub version : 003 (2023-07-19)
+	-->
+
+	
+
+	<docChain id="fop-freemarker">
+		<chainStep stepType="config">
+			<config
+				id="FJDOC_MOD_FOP_FREEMARKER_CONFIG"
+				class="org.fugerit.java.doc.mod.fop.FreeMarkerFopProcess"
+				exception-handler="RETHROW_HANDLER"
+				fallback-on-null-loop-variable="false"
+				log-exception="false"
+				mode="class"
+				path="/fj_doc_mod_fop_config/template/"
+				version="2.3.29"
+				wrap-unchecked-exceptions="true"
+			/>
+		</chainStep>
+		<chainStep stepType="map">
+			<map name="docBase" value="docBase"/>
+			<map name="docType" value="docType"/>
+		</chainStep>
+		<chainStep stepType="complex" template-path="fop_doc.ftl">
+		</chainStep>
+	</docChain>
+
+		
+</freemarker-doc-process-config>
