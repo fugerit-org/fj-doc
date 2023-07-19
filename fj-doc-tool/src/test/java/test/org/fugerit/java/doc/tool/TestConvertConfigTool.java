@@ -15,6 +15,11 @@ public class TestConvertConfigTool extends TestDocTool {
 	}
 
 	@Test
+	public void testConvertConfigAutodoc() {
+		this.docToolWorker( "src/test/resources/params-test/convert-config-autodoc.properties" );
+	}
+	
+	@Test
 	public void testConvertConfigHelp() {
 		this.docToolWorker( "src/test/resources/params-test/convert-config-help.properties" );
 	}

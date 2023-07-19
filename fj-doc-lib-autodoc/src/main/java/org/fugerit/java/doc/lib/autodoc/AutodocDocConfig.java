@@ -14,40 +14,34 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.lib.autodoc.detail.AutodocDetailModel;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 
 public class AutodocDocConfig {
 
 
-	private final static String CONFIG_PATH = "fj_doc_lib_autodoc/doc-process-config.xml";
+	private final static String CONFIG_PATH = "cl://fj_doc_lib_autodoc/fm-doc-process-config-autodoc.xml";
 	
-	private DocProcessConfig config;
+	private FreemarkerDocProcessConfig config;
 	
-	private AutodocDocConfig( DocProcessConfig config ) {
+	private AutodocDocConfig( FreemarkerDocProcessConfig config ) {
 		this.config = config;
 	}
 	
 	public static AutodocDocConfig newConfig() throws ConfigException {
-		AutodocDocConfig autodocDocConfig = null;
-		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader(CONFIG_PATH) )  {
-			DocProcessConfig config = DocProcessConfig.loadConfig( is );
-			autodocDocConfig = new AutodocDocConfig( config );
-		} catch (Exception e) {
-			throw new ConfigException( "Error creating configuration : "+e, e );
-		}
-		return autodocDocConfig;
+		return new AutodocDocConfig( FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH) );
 	}
 
 	public static final String CHAIN_ID_AUTODOC = "autodoc";
 	
 	public static final String CHAIN_ID_AUTODOC_DETAIL = "autodoc_detail";
 	
-	public DocProcessConfig getConfig() {
+	public FreemarkerDocProcessConfig getConfig() {
 		return config;
 	}
 	

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<!--
+		Configuration stub version : 003 (2023-07-19)
+	-->
+		
+	<docHandlerConfig>
+		<!-- Type handler for markdown format -->
+		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+		<!-- Type henalder for xml format, generates the source xml:doc -->
+		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+		<!-- Type handlers for html using freemarker --> 
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
+		<!-- Type handlers for html using freemarker (fragment version, only generates body content no html or head part --> 
+		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />	
+	</docHandlerConfig>
+
+
+	<docChain id="shared">
+		<chainStep stepType="config">
+			<config
+				id="FJ_DOC_LIB_AUTODOC"
+				class="org.fugerit.java.doc.lib.autodoc.AutodocModule"
+				exception-handler="RETHROW_HANDLER"
+				fallback-on-null-loop-variable="false"
+				log-exception="false"
+				mode="class"
+				path="/fj_doc_lib_autodoc/template/"
+				version="2.3.29"
+				wrap-unchecked-exceptions="true"
+			/>
+		</chainStep>
+		<chainStep stepType="function">
+			<function name="annotationAsSingleStringFun" value="org.fugerit.java.doc.lib.autodoc.fun.AnnotationAsSingleStringFun"/>
+		</chainStep>
+	</docChain>
+
+	<docChain id="autodoc" parent="shared">
+		<chainStep stepType="complex" map-atts="autodocModel" template-path="${chainId}.ftl">
+		</chainStep>
+	</docChain>
+
+	<docChain id="autodoc_detail" parent="shared">
+		<chainStep stepType="complex" map-atts="autodocDetailModel" template-path="${chainId}.ftl">
+		</chainStep>
+	</docChain>
+
+		
+</freemarker-doc-process-config>
