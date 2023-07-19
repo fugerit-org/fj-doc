@@ -5,6 +5,7 @@ import java.io.InputStream;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.freemarker.tool.model.ChainModel;
@@ -31,8 +32,12 @@ public class LegacyConfigRead {
 		for ( int k=0; k<chainTagList.getLength(); k++ ) {
 			Element currentChainTag = (Element) chainTagList.item( k );
 			String chainId = currentChainTag.getAttribute( "id" );
+			String extendsAtt = currentChainTag.getAttribute( "extends" );
 			log.info( "current chain id {}", chainId );
 			ChainModel chainModel = new ChainModel(chainId);
+			if ( StringUtils.isNotEmpty( extendsAtt ) ) {
+				chainModel.setParent( extendsAtt );
+			}
 			configModel.getChainList().add(chainModel);
 			NodeList stepTagList = currentChainTag.getElementsByTagName( "step" );
 			for ( int i=0; i<stepTagList.getLength(); i++ ) {
