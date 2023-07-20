@@ -1,4 +1,8 @@
-﻿1.3.1-rc.006 (2023-07-20)
+﻿1.3.2-rc.001 (2023-07-20)
+------------------
++ [New module fj-doc-mod-poi5 based on Apache Poi 5+ (java 11+ needed)](https://github.com/fugerit-org/fj-doc/issues/45)
+
+1.3.1-rc.006 (2023-07-20)
 ------------------
 + Autodoc configuration review
 + AutodocDocConfig converted to new configuration model
