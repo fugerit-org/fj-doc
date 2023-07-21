@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<#assign comp=docBase.stableInfo['doc-version-compatibility']!DocConfig.DOC_VERSION_COMPATIBILITY_DEFAULT ><#if (comp = DocConfig.DOC_VERSION_COMPATIBILITY_1_X) ><!-- 1 --><#import "/macro/doc_element_1-x.ftl" as doc_element><#else><!-- 2 --><#import "/macro/doc_element.ftl" as doc_element></#if>
+<#assign comp=docBase.stableInfo['doc-version-compatibility']!'2-x' ><#if (comp = '1-x') ><!-- 1 --><#import "/macro/doc_element_1-x.ftl" as doc_element><#else><!-- 2 --><#import "/macro/doc_element.ftl" as doc_element></#if>
 <#import "/macro/doc_info.ftl" as doc_info>
 <#assign docInfo=docBase.info/>
 <fo:root <#if (docBase.infoDocLanguage)??>xml:lang="${docBase.infoDocLanguage}"</#if>

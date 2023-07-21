@@ -1,0 +1,119 @@
+[
+  {
+    "name": "org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessValidator",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.process.DocChainModel",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [ "java.lang.String" ] },
+      { "name" : "setId", "parameterTypes" : ["java.lang.String"] },
+      { "name" : "setParent", "parameterTypes" : ["java.lang.String"] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.process.StepChainModel",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [ "java.lang.String" ] },
+      { "name" : "setType", "parameterTypes" : ["java.lang.String"] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.process.DefaultChainProvider",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep",
+ 	"methods": [
+     { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep",
+ 	"methods": [
+     { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun",
+ 	"methods": [
+     { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.fun.SimpleMessageFun",
+ 	"methods": [
+     { "name": "<init>", "parameterTypes": [] }
+    ]
+  }, 
+  {
+    "name": "org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun",
+ 	"methods": [
+     { "name": "<init>", "parameterTypes": [] }
+    ]
+  }
+]
