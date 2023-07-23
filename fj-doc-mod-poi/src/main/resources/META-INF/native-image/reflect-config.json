@@ -1,0 +1,14 @@
+[
+  {
+    "name": "org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.mod.poi.XlxsPoiTypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }
+]

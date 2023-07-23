@@ -1,0 +1,35 @@
+[
+  {
+    "name": "org.fugerit.java.doc.mod.poi5.XlsPoi5TypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.mod.poi5.XlxsPoi5TypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.apache.xmlbeans.impl.schema.SchemaTypeLoaderImpl",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.apache.xmlbeans.impl.store.Locale",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] },
+      { "name": "nodeToCursor", "parameterTypes": [ "org.w3c.dom.Node" ] },
+      { "name": "nodeToXmlObject", "parameterTypes": [ "org.w3c.dom.Node" ] }
+    ]
+  },
+  {
+    "name": "org.apache.xmlbeans.XmlBeans",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  }
+]
+

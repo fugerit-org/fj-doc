@@ -187,6 +187,12 @@
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val-poi5</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-sample</artifactId>
 				<version>${project.version}</version>
 			</dependency>								
