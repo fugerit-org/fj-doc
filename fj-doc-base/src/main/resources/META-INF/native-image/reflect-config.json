@@ -417,6 +417,14 @@
       ,{ "name": "getId", "parameterTypes": [] }
       ,{ "name": "getClass", "parameterTypes": [] }
     ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.util.DocTableUtil",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [ "org.fugerit.java.doc.base.model.DocTable" ] }
+      ,{ "name": "getHeaderRows", "parameterTypes": [] }
+      ,{ "name": "getDataRows", "parameterTypes": [] }
+      ,{ "name": "isStrictHeader", "parameterTypes": [] }
+    ]
 }
-  
 ]
