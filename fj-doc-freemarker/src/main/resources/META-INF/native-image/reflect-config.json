@@ -50,13 +50,13 @@
   {
     "name": "org.fugerit.java.doc.freemarker.process.DocChainModel",
  	"methods": [
-      { "name": "<init>", "parameterTypes": [ "java.lang.String" ] },
+      { "name": "<init>", "parameterTypes": [] },
       { "name" : "setId", "parameterTypes" : ["java.lang.String"] },
       { "name" : "setParent", "parameterTypes" : ["java.lang.String"] }
     ]
   }, 
   {
-    "name": "org.fugerit.java.doc.freemarker.process.StepChainModel",
+    "name": "org.fugerit.java.doc.freemarker.process.StepModel",
  	"methods": [
       { "name": "<init>", "parameterTypes": [ "java.lang.String" ] },
       { "name" : "setType", "parameterTypes" : ["java.lang.String"] }
