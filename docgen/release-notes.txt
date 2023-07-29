@@ -1,4 +1,8 @@
-﻿1.4.0-rc.001 (2023-07-29)
+﻿1.X.X-rc.001 (2023-XX-XX)
+------------------
++ Added PDFA output format in playground 
+
+1.4.0-rc.001 (2023-07-29)
 ------------------
 + [Added native support for GraalVM in core modules (fj-doc-base and fj-doc-freemarker)](https://github.com/fugerit-org/fj-doc/issues/39)
 + [[fj-doc-mod-fop] support for last page constant ${pageCount}](https://github.com/fugerit-org/fj-doc/issues/47)

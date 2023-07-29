@@ -98,6 +98,7 @@ public class FreemarkerDocProcessConfigFacade {
 	}
 	
 	public static FreemarkerDocProcessConfig loadConfigSafe( String configPath ) {
+		log.info( "loadConfigSafe config path : {}", configPath );
 		FreemarkerDocProcessConfig config = null;
 		try ( Reader xmlReader = new InputStreamReader(StreamHelper.resolveStream( configPath ) ) ) {
 			config = loadConfig(xmlReader);

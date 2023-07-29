@@ -64,6 +64,8 @@ public class GenerateRest {
 			handler = XlsxPoiTypeHandler.HANDLER;
 		} else if ( "HTML".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = FreeMarkerHtmlFragmentTypeHandler.HANDLER;
+		} else if ( "PDFA".equalsIgnoreCase( input.getOutputFormat() ) ) {
+			handler = InitPlayground.PDFA_FOP_TYPE_HANDLER;
 		}
 		return handler;
 	}

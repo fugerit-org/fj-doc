@@ -118,7 +118,7 @@ class DocXmlEditor extends Component {
 			if ( this.state.docFormat === 'HTML' ) {
 				var decodedStringAtoB = atob(this.state.docOutput);
 				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: decodedStringAtoB }}></div>
-			}  else if ( this.state.docFormat === 'PDF' ) {
+			}  else if ( this.state.docFormat === 'PDF' || this.state.docFormat === 'PDFA' ) {
 				let srcData = 'data:application/pdf;base64,'+ this.state.docOutput;
 				outputData = outputData = <embed width="100%" height="600" src={srcData}/>
 			}  else if ( this.state.docFormat === 'XLSX' ) {
@@ -167,6 +167,7 @@ class DocXmlEditor extends Component {
 						  >
 							<MenuItem value='HTML'>HTML</MenuItem>
 						    <MenuItem value='PDF'>PDF</MenuItem>
+						    <MenuItem value='PDFA'>PDF/A</MenuItem>
 						    <MenuItem value='XLSX'>XLSX</MenuItem>
 						  </Select>
 						</FormControl>								
