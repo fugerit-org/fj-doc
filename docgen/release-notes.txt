@@ -1,6 +1,7 @@
-﻿1.X.X-rc.001 (2023-XX-XX)
+﻿1.4.0-rc.002 (2023-07-29)
 ------------------
 + Added PDFA output format in playground 
++ fj-doc-mod-fop fix to pdf-a metadata, changed structure of title and creator tag
 
 1.4.0-rc.001 (2023-07-29)
 ------------------
