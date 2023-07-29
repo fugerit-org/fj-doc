@@ -10,6 +10,10 @@ Allow generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xs
 *Status* :  
 All basic features are implemented.  
   
+*Since* : fj-doc 0.1
+  
+*Native support* :  
+Enabled since version 1.4.0-rc.001, This module should fully support native image. (*reflect-config.json* and *resources-config.json* have been added and there is no dependent library without native support)
   
 *Quickstart* :
 

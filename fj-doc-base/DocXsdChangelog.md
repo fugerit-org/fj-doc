@@ -1,4 +1,8 @@
-2.0.0 (2023-01-XX)
+2.0.0.rc.002 (2023-07-29)
+------------------
+* Added documentation for ${currentPage} and ${pageCount} constatns
+
+2.0.0-rc.001 (2023-01-17)
 ------------------
 * Refactor of type order with documentation for the new [fj-doc-lib-autodoc](https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-lib-autodoc) feature.
 * Attributes 'id' are now typed as 'idType'

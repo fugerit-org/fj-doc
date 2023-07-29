@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2023-01-07
-	 * @version    : 2.0.0 (2023-01-07)
+	 * @version    : 2.0.0-rc.002 (2023-07-29)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -239,6 +239,9 @@
 		<xsd:annotation>
 			<xsd:documentation>A document paragraph</xsd:documentation>
 			<xsd:documentation>(roughly comparable to a HTML 'p' element)</xsd:documentation>
+			<xsd:documentation>, Depending on type handler support it is possible to use some constants (usually in header or footer)</xsd:documentation>
+			<xsd:documentation>, ${currentPage} to display the current page (starts at 1)</xsd:documentation>
+			<xsd:documentation>, ${pageCount} to display the last page number</xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
 

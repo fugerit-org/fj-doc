@@ -8,6 +8,11 @@
 Most basic features implemented. (proper color and font handling missing).  
 For the intrinsic limitations of the XLS/XLSX format, it is possible to choose a some tables in the document and output it as excel sheets.  
   
+*Since* : fj-doc 0.1
+  
+*Native support*  :  
+Disabled, native support will be added in a future release. Apache POI 4.X native support must be verified.
+  
 *Quickstart* :  
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md). 
  

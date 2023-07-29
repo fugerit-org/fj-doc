@@ -1,4 +1,11 @@
-﻿1.3.2-rc.001 (2023-07-20)
+﻿1.4.0-rc.001 (2023-07-29)
+------------------
++ [Added native support for GraalVM in core modules (fj-doc-base and fj-doc-freemarker)](https://github.com/fugerit-org/fj-doc/issues/39)
++ [[fj-doc-mod-fop] support for last page constant ${pageCount}](https://github.com/fugerit-org/fj-doc/issues/47)
++ Added documentation for native support status
++ Added "since" in readme of most modules 
+
+1.3.2-rc.001 (2023-07-20)
 ------------------
 + [New module fj-doc-mod-poi5 based on Apache Poi 5+ (java 11+ needed)](https://github.com/fugerit-org/fj-doc/issues/45)
 

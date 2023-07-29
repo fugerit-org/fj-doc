@@ -10,6 +10,8 @@ This module offer validation utilities to check content of files and streams bas
 *Status* :  
 Offer basic support for validating jpg, png, tiff and pdf
   
+*Since* : fj-doc 0.8
+  
 *[ChangeLog](ChangeLog.md)*  
   
 *Quickstart* :

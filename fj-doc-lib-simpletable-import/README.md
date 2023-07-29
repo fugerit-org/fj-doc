@@ -10,7 +10,12 @@ This is a simple library to convert xlsx or csv document to SimpleTable
 *Status* :  
 All basic features are implemented.  
   
+*Since* : fj-doc 1.3
   
+*Native support*  :  
+Disabled, native support will be added in a future release.
+  
+ 
 *Quickstart* :
 
 For CSV : 

@@ -10,6 +10,8 @@ Tutorial for usage of [fj-doc XML format](https://www.fugerit.org/data/java/doc/
 *Status* :  
 Full examples of fj-doc-core, fj-doc-freemarker and most type handler modules.
   
+*Since* : fj-doc 0.1
+  
   
 *Quickstart* :  
 More documentations will follows, but JUnit examples are already available :

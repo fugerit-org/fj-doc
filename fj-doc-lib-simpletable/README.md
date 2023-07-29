@@ -10,7 +10,12 @@ This is the first of a series of bundled libraries using fj-doc framework for sp
 *Status* :  
 All basic features are implemented.  
   
+*Since* : fj-doc 0.6
   
+*Native support*  :  
+Disabled, native support will be added in a future release.
+  
+ 
 *Quickstart* :
 This module is already configured, and can be called just creating the model of the table to be rendered and providing a TypeHandler.
 
