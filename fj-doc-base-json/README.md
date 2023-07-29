@@ -10,6 +10,11 @@ Add the option to use a json as document generator instead of standard xml sourc
 *Status* :  
 All basic features are implemented (json parsing, conversion from and to xml)
 
+*Since* : fj-doc 0.7
+
+*Native support*  :  
+Disabled, native support will be added in a future release.
+
 *Doc Json format*  
 The xml and json format have inherent differences. this is why is important to read the [conversion conventions used](xml_conversion.md)
 

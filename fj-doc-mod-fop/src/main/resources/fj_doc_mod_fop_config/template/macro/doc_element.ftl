@@ -46,7 +46,7 @@
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>><![CDATA[${current.text?replace(r"${currentPage}","]]><fo:page-number/><![CDATA[")}]]><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
+	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -162,3 +162,5 @@
 <#macro handleAlign alignValue> <#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"<#elseif alignValue = 8 || alignValue = 9>text-align="justify"</#if> </#macro>
 
 <#macro handleStyle styleValue> <#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>text-decoration="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#elseif styleValue = 1>font-style="normal" font-weight="normal"</#if> </#macro>
+
+<#macro handleTextSubstitution text><![CDATA[${text?replace(r"${currentPage}","]]><fo:page-number/><![CDATA[")?replace(r"${pageCount}","]]><fo:page-number-citation ref-id='EndOfDocument'/><![CDATA[")}]]></#macro>

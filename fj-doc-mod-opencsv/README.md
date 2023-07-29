@@ -6,7 +6,12 @@
 
 *Status* :  
 Basic features implemented. (Sample JUnit [TestFreeMarker01](../fj-doc-sample/src/test/java/test/org/fugerit/java/doc/sample/freemarker/TestFreeMarker01.java) is now working).  
-For the intrinsic limitations of the CSV format, is possibile to choose a sinlge table in the document and outputs it as CSV.  
+For the intrinsic limitations of the CSV format, is possible to choose a sinlge table in the document and outputs it as CSV.  
+  
+*Since* : fj-doc 0.6
+  
+*Native support*  :  
+Disabled, native support will be added in a future release. OpenCSV native support must be verified.
   
 *Quickstart* :  
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md).  

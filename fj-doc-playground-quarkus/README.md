@@ -1,5 +1,6 @@
 # fj-doc-playground-quarkus Project
 
+*Since* : fj-doc 0.7
 
 ## Running the application in dev mode as a single package
 

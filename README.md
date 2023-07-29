@@ -61,6 +61,12 @@ You can find in them in a dedicated repository [fj-doc-ext](https://gitlab.com/f
 * [Itext 2.X Renderer (PDF/RTF/HTML)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-itext.git) (deprecated as [IText 2.1.X](https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7) is no longer mantained, may be used 'AS IS') (deprecated since version 0.5.0)
 * [Java EE extension (fj-doc-ent)](https://github.com/fugerit-org/fj-doc-ent.git)) (deprecated as not the module fj-mod-freemarker provided mostly the same features, but in a standalone mode) (deprecated since version 0.5.0)
 
+### 9. GraalVM native support  
+Beginning with version 1.4.0-rc.001, *GraalVM* metadata started to be added (*reflect-config.json* and *resources-config.json*). Initially only the *fj-doc-base* and *fj-doc-freemarker* have full support.
+Actual support for other module will be added as soon as possible, but somtimes is dependant on underlying depandancies support (for example *Apache FOP* for *fj-doc-mod-fop*).
+It is possible to check the current status on the module documentation, in the section *native support*
+
+
 *About javadoc*  
 Javadoc are far from being complete, but you can find latest version at [https://www.fugerit.org](https://www.fugerit.org/data/java/javadoc/)  
 Note that, being an open source project hosted on maven central, you can find release javadoc on [javadoc.io](https://javadoc.io/doc/org.fugerit.java/fj-doc-base/)

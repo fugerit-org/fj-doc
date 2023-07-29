@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.4.0-native.001</version>
+	<version>1.4.0-rc.001</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>

@@ -10,6 +10,8 @@ This modules contains useful tools for the Venus Doc Generation Framework
 *Status* :  
 generate-stub tool implemented (allows generation of stub configuration of the new freemarker doc process config)
 
+*Since* : fj-doc 1.3
+
 *[ChangeLog](CHANGELOG.md)*  
   
 *Quickstart* :
