@@ -1,5 +1,5 @@
-<#assign comp=docBase.stableInfo['doc-version-compatibility']!DocConfig.DOC_VERSION_COMPATIBILITY_DEFAULT ><#if (comp = DocConfig.DOC_VERSION_COMPATIBILITY_1_X) ><#import "/macro/html_element_1-x.ftl" as doc_element><#else><#import "/macro/html_element.ftl" as doc_element></#if>
-<#if docType=='${DocConfig.TYPE_HTML_FRAGMENT}'>
+<#assign comp=docBase.stableInfo['doc-version-compatibility']!'2-x' ><#if (comp = '1-x') ><#import "/macro/html_element_1-x.ftl" as doc_element><#else><#import "/macro/html_element.ftl" as doc_element></#if>
+<#if docType=='fhtml'>
 <div>
 	<#list docBase.docBody.elementList as item>
 		<@doc_element.handleElement current=item/>			    

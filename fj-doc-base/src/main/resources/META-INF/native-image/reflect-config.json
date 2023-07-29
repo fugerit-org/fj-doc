@@ -1,0 +1,430 @@
+[
+  {
+    "name": "java.lang.Class",
+ 	"methods": [
+      { "name": "getSimpleName", "parameterTypes": [] },
+      { "name": "getName", "parameterTypes": [] },
+      { "name": "getCanonicalName", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.base.config.DocConfig",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.base.config.DocTypeHandlerXML",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.base.process.DocProcessConfig",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+  {
+    "name": "org.fugerit.java.doc.base.xml.DocXmlParser",
+ 	"methods": [
+      { "name": "<init>", "parameterTypes": [] }
+    ]
+  },
+ {
+  "name": "org.fugerit.java.doc.base.model.DocBackground",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocBarcode",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getType", "parameterTypes": [] }
+      ,{ "name": "getSize", "parameterTypes": [] }
+      ,{ "name": "getText", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocBase",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getInfo", "parameterTypes": [] }
+      ,{ "name": "getXsdVersion", "parameterTypes": [] }
+      ,{ "name": "getDocMeta", "parameterTypes": [] }
+      ,{ "name": "getDocBody", "parameterTypes": [] }
+      ,{ "name": "getDocFooter", "parameterTypes": [] }
+      ,{ "name": "getDocHeader", "parameterTypes": [] }
+      ,{ "name": "getStableInfo", "parameterTypes": [] }
+      ,{ "name": "getInfoPageWidth", "parameterTypes": [] }
+      ,{ "name": "getInfoPageHeight", "parameterTypes": [] }
+      ,{ "name": "getInfoDocVersion", "parameterTypes": [] }
+      ,{ "name": "getInfoDocTitle", "parameterTypes": [] }
+      ,{ "name": "getInfoDocSubject", "parameterTypes": [] }
+      ,{ "name": "getInfoDocAuthor", "parameterTypes": [] }
+      ,{ "name": "getInfoDocCreator", "parameterTypes": [] }
+      ,{ "name": "getInfoDocLanguage", "parameterTypes": [] }
+      ,{ "name": "getMarginLeft", "parameterTypes": [] }
+      ,{ "name": "getMarginRight", "parameterTypes": [] }
+      ,{ "name": "getMarginTop", "parameterTypes": [] }
+      ,{ "name": "getMarginBottom", "parameterTypes": [] }
+      ,{ "name": "isUseHeader", "parameterTypes": [] }
+      ,{ "name": "isUseFooter", "parameterTypes": [] }
+      ,{ "name": "getDocBackground", "parameterTypes": [] }
+      ,{ "name": "getDocBookmarkTree", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocBookmark",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getRef", "parameterTypes": [] }
+      ,{ "name": "getTitle", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocBookmarkTree",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocBorders",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getBorderWidthBottom", "parameterTypes": [] }
+      ,{ "name": "getBorderWidthTop", "parameterTypes": [] }
+      ,{ "name": "getBorderWidthLeft", "parameterTypes": [] }
+      ,{ "name": "getBorderWidthRight", "parameterTypes": [] }
+      ,{ "name": "getBorderColorBottom", "parameterTypes": [] }
+      ,{ "name": "getBorderColorLeft", "parameterTypes": [] }
+      ,{ "name": "getBorderColorRight", "parameterTypes": [] }
+      ,{ "name": "getBorderColorTop", "parameterTypes": [] }
+      ,{ "name": "getPaddingBottom", "parameterTypes": [] }
+      ,{ "name": "getPaddingLeft", "parameterTypes": [] }
+      ,{ "name": "getPaddingRight", "parameterTypes": [] }
+      ,{ "name": "getPaddingTop", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocBr",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getSize", "parameterTypes": [] }
+      ,{ "name": "getText", "parameterTypes": [] }
+      ,{ "name": "getWhiteSpaceCollapse", "parameterTypes": [] }
+      ,{ "name": "getLeading", "parameterTypes": [] }
+      ,{ "name": "getFontName", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+      ,{ "name": "getStyle", "parameterTypes": [] }
+      ,{ "name": "getLink", "parameterTypes": [] }
+      ,{ "name": "getAnchor", "parameterTypes": [] }
+      ,{ "name": "getOriginalStyle", "parameterTypes": [] }
+      ,{ "name": "getInternalLink", "parameterTypes": [] }
+      ,{ "name": "isInternal", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocCell",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getType", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+      ,{ "name": "isHeader", "parameterTypes": [] }
+      ,{ "name": "getValign", "parameterTypes": [] }
+      ,{ "name": "getDocBorders", "parameterTypes": [] }
+      ,{ "name": "getCSpan", "parameterTypes": [] }
+      ,{ "name": "getRSpan", "parameterTypes": [] }
+      ,{ "name": "getAlign", "parameterTypes": [] }
+      ,{ "name": "getRowSpan", "parameterTypes": [] }
+      ,{ "name": "getColumnSpan", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocContainer",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocElement",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocFooter",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "isUseFooter", "parameterTypes": [] }
+      ,{ "name": "isBasic", "parameterTypes": [] }
+      ,{ "name": "getBorderWidth", "parameterTypes": [] }
+      ,{ "name": "isNumbered", "parameterTypes": [] }
+      ,{ "name": "getExpectedSize", "parameterTypes": [] }
+      ,{ "name": "getAlign", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocHeader",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "isUseHeader", "parameterTypes": [] }
+      ,{ "name": "isBasic", "parameterTypes": [] }
+      ,{ "name": "getBorderWidth", "parameterTypes": [] }
+      ,{ "name": "isNumbered", "parameterTypes": [] }
+      ,{ "name": "getExpectedSize", "parameterTypes": [] }
+      ,{ "name": "getAlign", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocHeaderFooter",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "isBasic", "parameterTypes": [] }
+      ,{ "name": "getBorderWidth", "parameterTypes": [] }
+      ,{ "name": "isNumbered", "parameterTypes": [] }
+      ,{ "name": "getExpectedSize", "parameterTypes": [] }
+      ,{ "name": "getAlign", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocHelper",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocImage",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getType", "parameterTypes": [] }
+      ,{ "name": "getUrl", "parameterTypes": [] }
+      ,{ "name": "getScaling", "parameterTypes": [] }
+      ,{ "name": "getBase64", "parameterTypes": [] }
+      ,{ "name": "getAlign", "parameterTypes": [] }
+      ,{ "name": "getResolvedBase64", "parameterTypes": [] }
+      ,{ "name": "getResolvedType", "parameterTypes": [] }
+      ,{ "name": "getAlt", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocInfo",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getName", "parameterTypes": [] }
+      ,{ "name": "getContent", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocLi",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getContent", "parameterTypes": [] }
+      ,{ "name": "getSecondContent", "parameterTypes": [] }
+      ,{ "name": "isContentList", "parameterTypes": [] }
+      ,{ "name": "isSecondList", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocList",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getListType", "parameterTypes": [] }
+      ,{ "name": "getClt", "parameterTypes": [] }
+      ,{ "name": "getHtmlType", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocNbsp",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getLength", "parameterTypes": [] }
+      ,{ "name": "getSize", "parameterTypes": [] }
+      ,{ "name": "getText", "parameterTypes": [] }
+      ,{ "name": "getWhiteSpaceCollapse", "parameterTypes": [] }
+      ,{ "name": "getLeading", "parameterTypes": [] }
+      ,{ "name": "getFontName", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+      ,{ "name": "getStyle", "parameterTypes": [] }
+      ,{ "name": "getLink", "parameterTypes": [] }
+      ,{ "name": "getAnchor", "parameterTypes": [] }
+      ,{ "name": "getOriginalStyle", "parameterTypes": [] }
+      ,{ "name": "getInternalLink", "parameterTypes": [] }
+      ,{ "name": "isInternal", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocPageBreak",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocPara",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getType", "parameterTypes": [] }
+      ,{ "name": "getSize", "parameterTypes": [] }
+      ,{ "name": "getText", "parameterTypes": [] }
+      ,{ "name": "getFormat", "parameterTypes": [] }
+      ,{ "name": "getWhiteSpaceCollapse", "parameterTypes": [] }
+      ,{ "name": "getLeading", "parameterTypes": [] }
+      ,{ "name": "getFontName", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+      ,{ "name": "getStyle", "parameterTypes": [] }
+      ,{ "name": "getOriginalStyle", "parameterTypes": [] }
+      ,{ "name": "getAlign", "parameterTypes": [] }
+      ,{ "name": "getTextIndent", "parameterTypes": [] }
+      ,{ "name": "getSpaceBefore", "parameterTypes": [] }
+      ,{ "name": "getSpaceAfter", "parameterTypes": [] }
+      ,{ "name": "getSpaceLeft", "parameterTypes": [] }
+      ,{ "name": "getSpaceRight", "parameterTypes": [] }
+      ,{ "name": "getHeadLevel", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocPhrase",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getSize", "parameterTypes": [] }
+      ,{ "name": "getText", "parameterTypes": [] }
+      ,{ "name": "getWhiteSpaceCollapse", "parameterTypes": [] }
+      ,{ "name": "getLeading", "parameterTypes": [] }
+      ,{ "name": "getFontName", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+      ,{ "name": "getStyle", "parameterTypes": [] }
+      ,{ "name": "getLink", "parameterTypes": [] }
+      ,{ "name": "getAnchor", "parameterTypes": [] }
+      ,{ "name": "getOriginalStyle", "parameterTypes": [] }
+      ,{ "name": "getInternalLink", "parameterTypes": [] }
+      ,{ "name": "isInternal", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocRow",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "isHeader", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocStyle",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocTable",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getForeColor", "parameterTypes": [] }
+      ,{ "name": "getBackColor", "parameterTypes": [] }
+      ,{ "name": "getUtil", "parameterTypes": [] }
+      ,{ "name": "getPadding", "parameterTypes": [] }
+      ,{ "name": "getSpacing", "parameterTypes": [] }
+      ,{ "name": "getColumns", "parameterTypes": [] }
+      ,{ "name": "getWidth", "parameterTypes": [] }
+      ,{ "name": "getColWithds", "parameterTypes": [] }
+      ,{ "name": "getSpaceBefore", "parameterTypes": [] }
+      ,{ "name": "getSpaceAfter", "parameterTypes": [] }
+      ,{ "name": "getRenderMode", "parameterTypes": [] }
+      ,{ "name": "getElementList", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.DocText",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [] }
+      ,{ "name": "getHAlign", "parameterTypes": [] }
+      ,{ "name": "getVAlign", "parameterTypes": [] }
+      ,{ "name": "getId", "parameterTypes": [] }
+      ,{ "name": "getClass", "parameterTypes": [] }
+    ]
+},
+{
+  "name": "org.fugerit.java.doc.base.model.util.DocTableUtil",
+    "methods": [
+      { "name": "<init>", "parameterTypes": [ "org.fugerit.java.doc.base.model.DocTable" ] }
+      ,{ "name": "getHeaderRows", "parameterTypes": [] }
+      ,{ "name": "getDataRows", "parameterTypes": [] }
+      ,{ "name": "isStrictHeader", "parameterTypes": [] }
+    ]
+}
+]

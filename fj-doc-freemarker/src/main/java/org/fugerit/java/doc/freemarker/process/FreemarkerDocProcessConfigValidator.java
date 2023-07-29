@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigValidator {
 
-	private FreemarkerDocProcessConfigValidator() {}
+	public FreemarkerDocProcessConfigValidator() {}
 	
 	private static XMLSchemaCatalogConfig init() {
 		XMLSchemaCatalogConfig catalog = null;

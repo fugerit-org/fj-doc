@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.3.2-rc.001</version>
+	<version>1.4.0-native.001</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -182,6 +182,12 @@
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val-poi</artifactId>
+				<version>${project.version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val-poi5</artifactId>
 				<version>${project.version}</version>
 			</dependency>	
 			

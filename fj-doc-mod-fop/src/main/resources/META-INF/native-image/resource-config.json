@@ -1,0 +1,22 @@
+{
+  "bundles": [],
+  "resources": {
+    "includes": [
+      {
+        "pattern": "fj_doc_mod_fop_config/fm-fop-process-config.xml"
+      },
+      {
+        "pattern": "fj_doc_mod_fop_config/template/fop_doc.ftl"
+      },
+      {
+        "pattern": "fj_doc_mod_fop_config/template/macro/doc_info.ftl"
+      },
+      {
+        "pattern": "fj_doc_mod_fop_config/template/macro/doc_element.ftl"
+      },
+      {
+        "pattern": "fj_doc_mod_fop_config/template/macro/doc_element_1-x.ftl"
+      }
+    ]
+  }
+}

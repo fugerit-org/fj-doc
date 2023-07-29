@@ -1,0 +1,10 @@
+{
+  "bundles": [],
+  "resources": {
+    "includes": [
+      {
+        "pattern": "config/default_mime.xml"
+      }
+    ]
+  }
+}
