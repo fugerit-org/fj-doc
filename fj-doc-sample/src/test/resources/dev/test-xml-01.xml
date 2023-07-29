@@ -12,7 +12,7 @@
 		<info name="doc-creator">fj-doc (Venus) Sample</info>
 		<info name="doc-language">en</info>
 		<footer-ext numbered="true">
-	        <para align="center">Page ${currentPage}</para>
+	        <para align="center">Page ${currentPage} of ${pageCount}</para>
 		</footer-ext>
 		<bookmark-tree>
 			<bookmark ref="b1">Bookmark 1</bookmark>

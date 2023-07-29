@@ -90,6 +90,6 @@
 			<fo:block>
 				<@doc_element.handleElementList elements=docBase.docBody.elementList/>	
 			</fo:block>	
-		</fo:flow>
+		<fo:block id="EndOfDocument"></fo:block></fo:flow>
 	</fo:page-sequence>
 </fo:root>
