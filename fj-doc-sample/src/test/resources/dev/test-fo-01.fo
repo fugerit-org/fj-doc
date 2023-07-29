@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 2 -->
 <fo:root xml:lang="en"
 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 	xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
-		
 	<fo:layout-master-set>
-		<fo:simple-page-master
+		<fo:simple-page-master 
 			page-width="21cm" 
 			page-height="29.7cm" 
 			master-name="simpleA4" 
@@ -12,9 +12,9 @@
 			margin-right="10pt"
 			margin-top="10pt"
 			margin-bottom="10pt">
-				<fo:region-body region-name="xsl-region-body"  />
+				<fo:region-body region-name="xsl-region-body"   margin-bottom='15mm' />
+            	<fo:region-after region-name="xsl-region-after" extent="15mm"/>
 		</fo:simple-page-master>
-		
 	</fo:layout-master-set>
 	
 		<fo:declarations>
@@ -32,20 +32,230 @@
 		      </rdf:Description>
 		    </rdf:RDF>
 		  </x:xmpmeta>
-		</fo:declarations>	
+		</fo:declarations>
 	
 		<fo:bookmark-tree>
-		    <fo:bookmark internal-destination="B1">
-		        <fo:bookmark-title>Bookmark 1</fo:bookmark-title>
+		    <fo:bookmark internal-destination="b1">
+		    	<fo:bookmark-title>Bookmark 1</fo:bookmark-title>
+		    </fo:bookmark>
+		    <fo:bookmark internal-destination="b2">
+		    	<fo:bookmark-title>Bookmark 2</fo:bookmark-title>
 		    </fo:bookmark>
 		</fo:bookmark-tree>
 	
+	<!-- 
+		<fo:block text-align="end">
+Page <fo:page-number/> of 
+
+</fo:block>
+	 -->
+	
 	<fo:page-sequence master-reference="simpleA4" initial-page-number="1">
+	
+	        <fo:static-content flow-name="xsl-region-after">
+	        	<fo:block>
+	<fo:block         text-align="center"  ><![CDATA[Page ]]><fo:page-number/><![CDATA[]]> / <fo:page-number-citation ref-id="EndOfDocument"/></fo:block>
+	            </fo:block>
+	        </fo:static-content>
+		<fo:flow flow-name="xsl-region-body" >
 		
-		<fo:flow flow-name="xsl-region-body" >	
+		
 			<fo:block>
-	<fo:block role="H1"  text-align="center" id="B1" >Header 1</fo:block>
+	<fo:block  id="b1"     role="H1"     text-align="center"  ><![CDATA[Header 1]]></fo:block>
+	
+	
+		<fo:table border-collapse="separate" width="100%" table-layout="fixed">
+			<fo:table-column column-width="30%" />	
+			<fo:table-column column-width="30%" />	
+			<fo:table-column column-width="40%" />	
+			<fo:table-header  font-weight="bold" text-align="center">
+				<fo:table-row>
+						<fo:table-cell padding="2mm"  text-align="center"  border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block      font-weight="bold"     ><![CDATA[Name]]></fo:block>
+						</fo:table-cell>
+						<fo:table-cell padding="2mm"  text-align="center"  border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block      font-weight="bold"     ><![CDATA[Surname]]></fo:block>
+						</fo:table-cell>
+						<fo:table-cell padding="2mm"  text-align="center"  border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block      font-weight="bold"     ><![CDATA[Title]]></fo:block>
+						</fo:table-cell>
+				</fo:table-row>				
+			</fo:table-header>
+			<fo:table-body >
+				<fo:table-row>
+						<fo:table-cell padding="2mm"    border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block           ><![CDATA[Luthien &]]></fo:block>
+						</fo:table-cell>
+						<fo:table-cell padding="2mm"    border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block           ><![CDATA[Tinuviel]]></fo:block>
+						</fo:table-cell>
+						<fo:table-cell padding="2mm"    border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block           ><![CDATA[Queen]]></fo:block>
+						</fo:table-cell>
+				</fo:table-row>				
+				<fo:table-row>
+						<fo:table-cell padding="2mm"    border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block           ><![CDATA[Thorin]]></fo:block>
+						</fo:table-cell>
+						<fo:table-cell padding="2mm"    border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block           ><![CDATA[Oakshield]]></fo:block>
+						</fo:table-cell>
+						<fo:table-cell padding="2mm"    border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'  number-columns-spanned="1">
+	<fo:block           ><![CDATA[King]]></fo:block>
+						</fo:table-cell>
+				</fo:table-row>				
+			</fo:table-body>
+		</fo:table>	
+		
+		<fo:block page-break-before="always"></fo:block>																			
+	<fo:list-block>
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   margin-top="10px" ><fo:inline font-style="normal"  >1.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block         margin-top="10px"   ><![CDATA[Element 1]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   margin-top="10px" ><fo:inline font-style="normal"  >2.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block         margin-top="10px"   ><![CDATA[Element 2]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >3.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 3]]></fo:block>
+	<fo:list-block>
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >&#183;</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 2a]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >&#183;</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 2b]]></fo:block>
+	<fo:list-block>
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >1.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 2c1]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >2.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 2c2]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >3.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>		<fo:inline      ><![CDATA[test]]></fo:inline>
+			<fo:basic-link      external-destination="url('https://www.fugerit.org')" color="blue" text-decoration="underline"><![CDATA[https://www.fugerit.org]]></fo:basic-link>
+		<fo:inline      ><![CDATA[test b]]></fo:inline>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+	</fo:list-block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+	</fo:list-block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >4.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 4]]></fo:block>
+	<fo:list-block>
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >-</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 4a]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >-</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 4b]]></fo:block>
+	<fo:list-block>
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >1.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 2c1]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >2.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 2c2]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+	</fo:list-block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+	</fo:list-block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+			<fo:list-item>
+				<fo:list-item-label end-indent="label-end()">
+					<fo:block   ><fo:inline font-style="normal"  >5.</fo:inline></fo:block>
+				</fo:list-item-label>
+				<fo:list-item-body start-indent="body-start()">
+					<fo:block>	<fo:block           ><![CDATA[Element 5]]></fo:block>
+</fo:block>
+				</fo:list-item-body>
+			</fo:list-item>			
+	</fo:list-block>
+	<fo:block  id="b2"     role="H2"     text-align="center"  ><![CDATA[Header 2]]></fo:block>
+	<fo:block           ><![CDATA[sample normal text]]></fo:block>
+	<fo:block      font-weight="bold"     ><![CDATA[sample bold text]]></fo:block>
+	<fo:block      font-style="italic"     ><![CDATA[sample italic text]]></fo:block>
+
 			</fo:block>	
-		</fo:flow>
+
+<fo:block id="EndOfDocument"></fo:block></fo:flow>
+		
 	</fo:page-sequence>
+
+	
 </fo:root>
