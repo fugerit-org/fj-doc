@@ -22,8 +22,8 @@
 	<info name="csv-table-id">excel-table</info> 
 	
 	<!-- you need to escape free marker expression for currentPage --> 
-	<footer-ext numbered="true" align="right">
-		<para>${r"${currentPage}"}</para>
+	<footer-ext>
+		<para align="right">${r"${currentPage}"} / ${r"${pageCount}"}</para>
 	</footer-ext>
 	 
   </meta>

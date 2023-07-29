@@ -15,9 +15,9 @@
 	<info name="doc-language">en</info>
 	<!-- font must be loaded -->
 	<info name="default-font-name">TitilliumWeb</info>
-	<footer-ext numbered="true">
-        <para align="center">Page ${currentPage}</para>
-	</footer-ext>	
+	<footer-ext>
+		<para align="right">${r"${currentPage}"} / ${r"${pageCount}"}</para>
+	</footer-ext>
   </metadata>
   <body>
   		<para>My sample title</para>
