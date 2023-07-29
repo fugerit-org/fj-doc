@@ -15,6 +15,12 @@
   	<!-- Margin for document : left;right;top;bottom -->
   	<info name="margins">10;10;10;30</info>  
   
+ 	<!-- documenta meta information -->
+	<info name="doc-title">Basic example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+  
 	<!-- id table to be used for xlsx output -->  
 	<info name="excel-table-id">excel-table=print</info>
 	<info name="excel-width-multiplier">450</info>
