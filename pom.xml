@@ -140,61 +140,61 @@
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-mod-fop</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>				
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-poi5</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-mod-opencsv</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>					
 		
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-lib-simpletable</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>	
 
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-lib-autodoc</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>
 
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>	
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val-core</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>	
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val-pdfbox</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>	
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val-poi</artifactId>
-				<version>${project.version}</version>
-			</dependency>	
-			
-			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc-val-poi5</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>	
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-sample</artifactId>
-				<version>${project.version}</version>
+				<version>${fj-doc-version}</version>
 			</dependency>								
 								
 			<dependency>
