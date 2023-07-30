@@ -28,6 +28,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.Getter;
+
 public class BasicFacadeTest {
 
 	protected final static Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
@@ -87,7 +89,7 @@ public class BasicFacadeTest {
 		return config;
 	}
 	
-	protected static FreemarkerDocProcessConfig PROCESS_CONFIG = init();
+	@Getter protected static FreemarkerDocProcessConfig PROCESSCONFIG = init();
 	
 	private int getSourceType() {
 		int sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
@@ -142,7 +144,7 @@ public class BasicFacadeTest {
 	}
 	
 	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String format ) throws Exception {
-		DocHandlerFacade facade = PROCESS_CONFIG.getFacade();
+		DocHandlerFacade facade = PROCESSCONFIG.getFacade();
 		DocTypeHandler handler = facade.findHandler( format );
 		StringBuilder append = new StringBuilder();
 		if ( handler == null ) {

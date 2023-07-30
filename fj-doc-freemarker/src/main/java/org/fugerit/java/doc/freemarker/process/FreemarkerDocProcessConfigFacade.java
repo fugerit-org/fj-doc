@@ -13,6 +13,7 @@ import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.cfg.helpers.UnsafeHelper;
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
 import org.fugerit.java.core.io.helper.StreamHelper;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.filterchain.MiniFilterBase;
@@ -120,16 +121,23 @@ public class FreemarkerDocProcessConfigFacade {
 			 NodeList docHandlerConfigList = doc.getElementsByTagName( ATT_DOC_HANDLER_CONFIG );
 			 if ( docHandlerConfigList.getLength() == 1 ) {
 				 Element docHandlerConfigTag = (Element) docHandlerConfigList.item( 0 );
+				 boolean registerById = BooleanUtils.isTrue( docHandlerConfigTag.getAttribute( "registerById" ) );
+				 boolean allowDuplicatedId = BooleanUtils.isTrue( docHandlerConfigTag.getAttribute( "allowDuplicatedId" ) );
 				 NodeList docHandlerList = docHandlerConfigTag.getElementsByTagName( "docHandler" );
 				 log.info( "docHandlerList -> {}", docHandlerList.getLength() );
 				 for ( int k=0; k<docHandlerList.getLength(); k++ ) {
 					 Element currentHandlerTag = (Element)docHandlerList.item( k );
 					 DocTypeHandler handler = createHelper( currentHandlerTag );
 					 if ( handler != null ) {
-						 config.getFacade().registerHandler( handler );
+						 String id = currentHandlerTag.getAttribute( "id" );
+						 log.info( "register handler id {}, handler {}", id, handler );
+						 if ( registerById ) {
+							 config.getFacade().registerHandlerAndId( id, handler, allowDuplicatedId );
+						 } else {
+							 config.getFacade().registerHandler( handler); 
+						 }
 					 }
 				 }
-				 
 			 }
 			 // docChain reading
 			 NodeList docChainLisgt = doc.getElementsByTagName( ATT_DOC_CHAIN );

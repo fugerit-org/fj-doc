@@ -6,6 +6,9 @@ import java.util.Set;
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.util.filterchain.MiniFilterMap;
+import org.fugerit.java.doc.base.config.DocInput;
+import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
@@ -48,6 +51,11 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 		MiniFilterChain chain = this.getChainCache( chainId );
 		log.info( "chain list {}", this.docProcessConfig.getIdSet() );
 		chain.apply( context , data );
+	}
+	
+	public void process( String chainId, DocProcessContext context, DocProcessData data, DocTypeHandler handler, DocOutput docOutput ) throws Exception {
+		this.process(chainId, context, data);
+		handler.handle( DocInput.newInput( handler.getType() , data.getCurrentXmlReader() ) , docOutput );
 	}
 	
 	@Override

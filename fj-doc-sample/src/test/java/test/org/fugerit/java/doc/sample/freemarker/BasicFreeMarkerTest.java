@@ -26,7 +26,7 @@ public class BasicFreeMarkerTest extends BasicFacadeTest {
 	public Reader process( String chainId ) throws Exception {
 		DocProcessContext context = new DocProcessContext();
 		DocProcessData data = new DocProcessData();
-		PROCESS_CONFIG.process( chainId, context, data );
+		PROCESSCONFIG.process( chainId, context, data );
 		return data.getCurrentXmlReader();
 	}
 

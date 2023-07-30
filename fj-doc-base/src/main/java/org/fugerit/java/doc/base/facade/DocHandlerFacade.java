@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.util.collection.ListMapStringKey;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -74,7 +75,23 @@ public class DocHandlerFacade implements Serializable {
 		log.info( "list keys current -> {} : list {}", handler, this.mapHandlers.keySet() );
 		log.debug( "test" );
 	}
-		
+	
+	public void registerHandlerAndId( String id, DocTypeHandler handler ) throws Exception {
+		this.registerHandlerAndId(id, handler, false);
+	}
+	
+	public void registerHandlerAndId( String id, DocTypeHandler handler, boolean allowDuplicatedId ) throws Exception {
+		if ( this.mapHandlers.containsKey( id ) ) {
+			if ( allowDuplicatedId ) {
+				log.warn( "duplicated id for : id {}, handler : {}", id, handler );
+			} else {
+				throw new ConfigRuntimeException( "Duplicate handler id not allowd : "+id );
+			}
+		}
+		this.mapHandlers.put( id , handler);
+		this.registerHandler( handler, DEFAULT_REGISTER_FOR_TYPE, DEFAULT_ERROR_ON_DUPLICATE );
+	}
+	
 	public void registerHandler( DocTypeHandler handler ) throws Exception {
 		this.registerHandler( handler, DEFAULT_REGISTER_FOR_TYPE, DEFAULT_ERROR_ON_DUPLICATE );
 	}

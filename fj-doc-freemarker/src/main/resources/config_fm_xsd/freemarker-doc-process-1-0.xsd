@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.003 (2023-07-19)
+	 * @version    : 1.0.0-rc.004 (2023-07-30)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -46,6 +46,16 @@
 		<xsd:sequence>
 			<xsd:element ref="fdp:docHandler" minOccurs="0" maxOccurs="unbounded"></xsd:element>
 		</xsd:sequence>
+		<xsd:attribute name="registerById" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>If set to true, the handlers will be registered by id</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>	
+		<xsd:attribute name="allowDuplicatedId" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>If set to true, duplicated id will be allowed (the last one will overwrite the others)</xsd:documentation>
+			</xsd:annotation>				
+		</xsd:attribute>		
 	</xsd:complexType>	
 	
 	<xsd:element name='docHandler' type="fdp:docHandlerType">
