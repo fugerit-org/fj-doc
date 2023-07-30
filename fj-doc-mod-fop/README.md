@@ -15,3 +15,5 @@ Disabled, native support will be added in a future release. Apache FOP native su
 *Quickstart* :  
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md).  
 NOTE: If you have any special need you can open a pull request or create your own handler based on this.
+
+[Useful resources on Apache FOP](src/main/docs/apache-fop-ref.md)
