@@ -36,6 +36,7 @@
 		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
 		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
 		<docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
+		<!-- test for unsafe DocTypeHandler: this class does not exist, the error will be traced but the initialization will end -->
 		<docHandler id="pdf-unsafe" info="pdf" type="org.fugerit.java.doc.pdf.UnsafeDocHandler" unsafe="true" unsafeMode="log-trace"/>
 	</docHandlerConfig>
 

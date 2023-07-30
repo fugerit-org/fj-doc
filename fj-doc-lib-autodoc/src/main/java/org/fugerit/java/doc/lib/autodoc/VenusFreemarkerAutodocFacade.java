@@ -12,7 +12,7 @@ import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
  */
 public class VenusFreemarkerAutodocFacade {
 
-	public static final String CURRENT_VERSION = "1.0.0";
+	public static final String CURRENT_VERSION = "1.0.0-rc.004";
 	
 	public static final String TITLE = "Reference xsd documentation for Venus - Fugerit Document Generation Framework (fj-doc) - Freemarker Configuration";
 	

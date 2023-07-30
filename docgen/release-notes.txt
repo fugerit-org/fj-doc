@@ -1,4 +1,12 @@
-﻿1.4.0-rc.002 (2023-07-29)
+﻿1.4.1-rc.001 (2023-07-30)
+------------------
++ Add more unit test for PDF/A format
++ Handler registration allowed by id (freemarker-doc-process-1-0.xsd updated)
++ Added some Useful resources on Apache FOP
++ Fix to version import
++ Added sample for ${pageCount}
+
+1.4.0-rc.002 (2023-07-29)
 ------------------
 + Added PDFA output format in playground 
 + fj-doc-mod-fop fix to pdf-a metadata, changed structure of title and creator tag
