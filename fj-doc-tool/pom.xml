@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>1.4.1-rc.001</version>
+		<version>1.4.1-rc.002</version>
 	</parent>
 
 	<name>fj-doc-tool</name>
