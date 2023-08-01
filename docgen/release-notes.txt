@@ -1,6 +1,6 @@
-﻿1.4.2-rc.001 (2023-08-01)
+﻿1.4.2-rc.002 (2023-08-01)
 ------------------
-+ [fj-doc-mode-fop] Fix spacing handling for table
++ Updated fj-core version to 8.0.13-rc.001
 
 1.4.1-rc.002 (2023-07-31)
 ------------------
