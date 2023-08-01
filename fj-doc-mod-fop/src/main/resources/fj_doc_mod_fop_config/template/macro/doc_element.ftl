@@ -124,7 +124,7 @@
 			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
 		</#list>
 	<#else>
-		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed">
+		<fo:table border-collapse="separate" width="${docTable.width}%" table-layout="fixed"  <#if (docTable.spacing)??>border-separation="${docTable.spacing}px"</#if>>
 			<#list docTable.colWithds as currentColWidth>
 			<fo:table-column column-width="${currentColWidth}%" />	
 			</#list>

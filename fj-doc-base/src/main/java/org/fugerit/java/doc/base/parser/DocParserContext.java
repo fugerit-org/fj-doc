@@ -121,28 +121,28 @@ public class DocParserContext {
 			this.docBase = new DocBase();
 			String xsdVersion = findXsdVersion(props);
 			this.docBase.setXsdVersion( xsdVersion );
-		} else if ( "meta".equalsIgnoreCase( qName ) || "metadata".equalsIgnoreCase( qName ) ) {
+		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
 			DocContainer docMeta = this.docBase.getDocMeta();
 			this.currentElement = docMeta;
-		} else if ( "info".equalsIgnoreCase( qName ) ) {
+		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocInfo docInfo = new DocInfo();
 			docInfo.setName( props.getProperty( "name" ) );
 			this.currentElement = docInfo;
-		} else if ( "header".equalsIgnoreCase( qName ) || "header-ext".equalsIgnoreCase( qName )  ) {
+		} else if ( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) || DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName )  ) {
 			DocHeader docHeader = this.docBase.getDocHeader();
 			handleHeaderFooter( docHeader , props );
 			docHeader.setUseHeader( true );
-			if ( "header-ext".equalsIgnoreCase( qName ) ) {
+			if ( DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
 				docHeader.setBasic( false );
 			} else {
 				docHeader.setBasic( true );
 			}
 			this.currentElement = docHeader;		
-		} else if ( "footer".equalsIgnoreCase( qName ) || "footer-ext".equalsIgnoreCase( qName ) ) {
+		} else if ( DocFooter.TAG_NAME.equalsIgnoreCase( qName ) || DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
 			DocFooter docFooter = this.docBase.getDocFooter();
 			handleHeaderFooter( docFooter , props );
 			docFooter.setUseFooter( true );
-			if ( "footer-ext".equalsIgnoreCase( qName ) ) {
+			if ( DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
 				docFooter.setBasic( false );
 			} else {
 				docFooter.setBasic( true );
