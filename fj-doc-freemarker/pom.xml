@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<freemarker-version>2.3.31</freemarker-version>	
+		<freemarker-version>2.3.32</freemarker-version>	
 	</properties>
 	
 	<build>

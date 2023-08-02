@@ -5,7 +5,7 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<!--
-		Configuration stub version : 003 (2023-07-19)
+		Configuration stub version : 004 (2023-08-02)
 	-->
 
 	<#assign stubHandler=stubParams['stub-handler']!'1'>
@@ -82,7 +82,7 @@
 	<#assign stubChain=stubParams['stub-chain']!'0'>
 	<#if stubChain == '1'>
 	<#assign configId=stubParams['config-id']!'FJ_DOC_STUB'>
-	<#assign fmVersion=stubParams['fm-version']!'2.3.29'>
+	<#assign fmVersion=stubParams['fm-version']!'2.3.32'>
 	<#assign fmTemplatePath=stubParams['fm-template-path']!'/free_marker/'>
 	<docChain id="shared">
 		<!-- configurations -->
