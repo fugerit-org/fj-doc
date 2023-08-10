@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.config.DocTypeHandlerXML;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleCell;
@@ -25,7 +26,7 @@ import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 @Slf4j
 public class TestSimpleTable  {
 
-	private static final DocTypeHandler[] HANDLERS = { XlsxPoiTypeHandler.HANDLER, OpenCSVTypeHandler.HANDLER, new PdfFopTypeHandler() };
+	private static final DocTypeHandler[] HANDLERS = { DocTypeHandlerXML.HANDLER_UTF8, XlsxPoiTypeHandler.HANDLER, OpenCSVTypeHandler.HANDLER, new PdfFopTypeHandler() };
 	
 	private SimpleTableDocConfig docConfig;
 	
@@ -58,7 +59,11 @@ public class TestSimpleTable  {
 		thorinRow.addCell( "Thorin" );
 		thorinRow.addCell( "Oakshield" );
 		thorinRow.addCell( SimpleCell.newCell( "King" ).bold().center() );
-		simpleTableModel.addRow( thorinRow );
+		SimpleRow lastRow = new SimpleRow();
+		lastRow.addCell( "Bilbo" );
+		lastRow.addCell( "Baggins" );
+		lastRow.addCell( SimpleCell.newCell( "<Hero>" ).bold().center() );
+		simpleTableModel.addRow( lastRow );
 		for ( int k=0; k<HANDLERS.length; k++ ) {
 			DocTypeHandler handler = HANDLERS[k];
 			File file = new File( this.baseDir, "simple_table_01."+handler.getType() );

@@ -48,8 +48,7 @@ public class SimpleTableDocConfig {
 			DocProcessData data = new DocProcessData();
 			DocProcessContext context = DocProcessContext.newContext( SimpleTable.ATT_NAME, simpleTableModel );
 			process( CHAIN_ID_SIMPLE_TABLE , context, data );
-			DocBase docBase = DocFacade.parse( data.getCurrentXmlReader() );
-			DocInput docInput = DocInput.newInput( handler.getType() , docBase );
+			DocInput docInput = DocInput.newInput( handler.getType() , data.getCurrentXmlReader() );
 			DocOutput docOutput = DocOutput.newOutput( os );
 			handler.handle( docInput , docOutput );
 		} catch (Exception e) {

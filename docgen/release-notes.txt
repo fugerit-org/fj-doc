@@ -1,4 +1,9 @@
-﻿1.4.3-rc.001 (2023-08-02)
+﻿1.4.4-rc.001 (2023-08-10)
+------------------
++ [fj-doc-lib-simpletable] Fix on simple table special characters
++ [fj-doc-lib-simpletable] Fix DocTypeHandlerXML rendering for simple table
+
+1.4.3-rc.001 (2023-08-02)
 ------------------
 + Updated freemarker version to 2.3.32
 

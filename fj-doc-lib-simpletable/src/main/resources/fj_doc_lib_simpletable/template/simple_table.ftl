@@ -23,7 +23,7 @@
 			<#list simpleTableModel.rows as simpleRow>
        		<row header="${simpleRow.head}">
        			<#list simpleRow.cells as simpleCell>
-    			<cell <#if (simpleCell.align)?? > align="${simpleCell.align}" </#if> border-width="${simpleCell.borderWidth}"><para <#if (simpleCell.style)?? > style="${simpleCell.style}" </#if>  ><#if (simpleCell.content)??>${simpleCell.content}</#if></para></cell>
+    			<cell <#if (simpleCell.align)?? > align="${simpleCell.align}" </#if> border-width="${simpleCell.borderWidth}"><para <#if (simpleCell.style)?? > style="${simpleCell.style}" </#if>  ><#if (simpleCell.content)??><![CDATA[${simpleCell.content}]]></#if></para></cell>
     			</#list>  
     		</row>
 			</#list>   		
