@@ -88,7 +88,7 @@
 				<#list rowList as row>	
 				<fo:table-row>
 					<#list row.elementList as cell>
-						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/> number-columns-spanned="${cell.columnSpan}">
+						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/> <@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
 							<#if (cell.elementList?size > 0)>
 								<#list cell.elementList as cellElement>
 								<@handleElement current=cellElement/>
@@ -160,6 +160,10 @@
 <#macro handleFont element> <#if (element.fontName??)> font-family="${element.fontName}" </#if><#if (element.size)?? && (element.size != -1)> font-size="${element.size}pt" </#if><#if (element.backColor??)> background-color="${element.backColor}" </#if><#if (element.foreColor??)> color="${element.foreColor}" </#if></#macro>
 
 <#macro handleAlign alignValue> <#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"<#elseif alignValue = 8 || alignValue = 9>text-align="justify"</#if> </#macro>
+
+<#macro handleCellSpan cell><#if cell.columnSpan != 1> number-columns-spanned="${cell.columnSpan}"</#if><#if cell.rowSpan != 1> number-rows-spanned="${cell.rowSpan}"</#if></#macro>
+
+<#macro handleVerticalAlign valignValue><#if valignValue = 5> vertical-align="middle"<#elseif valignValue = 4> vertical-align="top"<#elseif valignValue = 6> vertical-align="bottom"</#if></#macro>
 
 <#macro handleStyle styleValue> <#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>text-decoration="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#elseif styleValue = 1>font-style="normal" font-weight="normal"</#if> </#macro>
 
