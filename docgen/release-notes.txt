@@ -1,4 +1,8 @@
-﻿1.4.4-rc.001 (2023-08-10)
+﻿[next]
+------------------
++ Updated fj-core version to 8.0.13
+
+1.4.4-rc.001 (2023-08-10)
 ------------------
 + [fj-doc-lib-simpletable] Fix on simple table special characters
 + [fj-doc-lib-simpletable] Fix DocTypeHandlerXML rendering for simple table
