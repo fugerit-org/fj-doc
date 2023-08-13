@@ -3,8 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.fugerit.java</groupId>
-		<artifactId>fj-doc</artifactId>
+		<artifactId>fj-doc-bom</artifactId>
 		<version>1.4.4</version>
+		<relativePath></relativePath>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>

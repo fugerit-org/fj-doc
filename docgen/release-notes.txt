@@ -1,6 +1,8 @@
 ﻿[next]
 ------------------
 + Updated fj-core version to 8.0.13
++ Updated fj-doc-mod-openpdf version to 0.1.0
++ Added module fj-doc-bom (dependency management for incubator and deprecated projects is here now, fj-mod-doc-openpdf, fj-mod-doc-pdfbox etc)
 
 1.4.4-rc.001 (2023-08-10)
 ------------------

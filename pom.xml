@@ -31,6 +31,7 @@
 	    <!-- deprecated and incubator modules version -->
 	    <fj-doc-ent-version>0.5.0-rc.001</fj-doc-ent-version>
 	    <fj-doc-mod-pdfbox-version>0.5.0-rc.001</fj-doc-mod-pdfbox-version>
+	    <fj-doc-mod-openpdf-version>0.1.0</fj-doc-mod-openpdf-version>
 	    <fj-doc-mod-itext-version>0.5.0-rc.001</fj-doc-mod-itext-version>
 	    <fj-doc-mod-jxl-version>0.5.0-rc.001</fj-doc-mod-jxl-version>
 	    <!-- other dependencies -->
@@ -91,9 +92,10 @@
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
 		<module>fj-doc-tool</module>
-		<module>fj-doc-sample</module>
+		<module>fj-doc-bom</module>
 		<module>fj-doc-bom-core</module>
 		<module>fj-doc-bom-fop</module>
+		<module>fj-doc-sample</module>
 		<module>fj-doc-playground-quarkus</module>
 	</modules>
 
@@ -214,31 +216,7 @@
 			    <artifactId>jackson-dataformat-yaml</artifactId>
 			    <version>${jackson-version}</version>
 			</dependency>
-		
-			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc-ent</artifactId>
-				<version>${fj-doc-ent-version}</version>
-			</dependency>	
-		
-			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc-mod-pdfbox</artifactId>
-				<version>${fj-doc-mod-pdfbox-version}</version>
-			</dependency>	
-		
-			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc-mod-itext</artifactId>
-				<version>${fj-doc-mod-itext-version}</version>
-			</dependency>	
-
-			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc-mod-jxl</artifactId>
-				<version>${fj-doc-mod-jxl-version}</version>
-			</dependency>	
-		
+				
 			<dependency>
 			  <groupId>jakarta.xml.bind</groupId>
 			  <artifactId>jakarta.xml.bind-api</artifactId>

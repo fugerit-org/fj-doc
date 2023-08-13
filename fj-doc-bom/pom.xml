@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>fj-doc-bom</artifactId>
+
+	<parent>
+		<groupId>org.fugerit.java</groupId>
+		<artifactId>fj-doc</artifactId>
+		<version>1.4.4</version>
+	</parent>
+
+	<name>fj-doc-bom</name>
+	<description>Main bom dependancies handling</description>
+	<packaging>pom</packaging>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<dependencyManagement>
+		
+		<dependencies>
+
+			<!-- incubator or additiona modules -->
+		
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-pdfbox</artifactId>
+				<version>${fj-doc-mod-pdfbox-version}</version>
+			</dependency>	
+		
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-openpdf</artifactId>
+				<version>${fj-doc-mod-openpdf-version}</version>
+			</dependency>			
+		
+			<!-- deprecated modules -->
+		
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-ent</artifactId>
+				<version>${fj-doc-ent-version}</version>
+			</dependency>			
+		
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-itext</artifactId>
+				<version>${fj-doc-mod-itext-version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-jxl</artifactId>
+				<version>${fj-doc-mod-jxl-version}</version>
+			</dependency>	
+			
+		
+		</dependencies>
+
+	</dependencyManagement>	
+	
+	<build>
+		
+	</build>
+
+	<dependencies>
+		
+	</dependencies>
+
+	<organization>
+		<url>https://www.fugerit.org</url>
+		<name>Fugerit</name>
+	</organization>
+	
+	<url>https://www.fugerit.org/perm/venus/</url>
+	
+</project>

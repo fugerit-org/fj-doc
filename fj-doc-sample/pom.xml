@@ -6,8 +6,9 @@
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
-		<artifactId>fj-doc</artifactId>
+		<artifactId>fj-doc-bom</artifactId>
 		<version>1.4.4</version>
+		<relativePath></relativePath>
 	</parent>
 
 	<name>fj-doc-sample</name>
