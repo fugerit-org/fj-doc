@@ -14,6 +14,14 @@
 		<#if (docBase.infoDocLanguage)??><meta http-equiv="content-language" content="${docBase.infoDocLanguage}"/></#if>		
 		<meta name="doc-version-compatibility" content="${comp}"/>
 		${docBase.stableInfo['html-add-to-head']!''}
+		<#if (docBase.stableInfo['html-css-style'])??>
+		<style type="text/css">
+			${docBase.stableInfo['html-css-style']}
+		</style>
+		</#if>
+		<#if (docBase.stableInfo['html-css-link'])??>
+		<link rel="stylesheet" href="${docBase.stableInfo['html-css-link']}"/>
+		</#if>
 	</head>
 	<body>
 		<div>
