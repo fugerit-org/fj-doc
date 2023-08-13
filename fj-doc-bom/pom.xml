@@ -28,6 +28,11 @@
 
 			<!-- incubator or additiona modules -->
 		
+			<!-- Note 1: dependency for openpdf module.
+				ad OpenPDF is an IText  fork, 
+				you should avoid including both modules.
+				Doing so could lead to unpredictable
+				behaviours. -->
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-mod-pdfbox</artifactId>
@@ -48,6 +53,8 @@
 				<version>${fj-doc-ent-version}</version>
 			</dependency>			
 		
+		
+			<!-- Note 1 ref : read note one above -->
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-mod-itext</artifactId>

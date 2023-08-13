@@ -16,7 +16,7 @@ Just add to dependencies section in your POM :
 ```
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-bom-core</artifactId>
+			<artifactId>fj-doc-bom-fop</artifactId>
 			<version>${fj-doc-version}</version>
 			<type>pom</type>
 		</dependency>	
