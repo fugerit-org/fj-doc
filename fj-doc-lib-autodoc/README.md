@@ -35,5 +35,13 @@ This module can be used by adapting this sample code :
 		
 ```
 
+*Autodoc Detail*
+
+The autodoc detail, provides handler specific information on the document format.
+
+It is possible to generate a stub using the test class : 
+[TestAutodocDetailFacade](src/test/java/test/org/fugerit/java/doc/lib/autodoc/facade/TestAutodocDetailFacade.java),
+output will be in **target/autodoc-detail.xml**
+
 *Dependencies* :  
 This library currently relies on [xmlet/XsdParser](https://github.com/xmlet/XsdParser)
