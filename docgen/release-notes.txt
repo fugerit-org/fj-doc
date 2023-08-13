@@ -3,6 +3,7 @@
 + Added documentation to [fj-doc-lib-autodoc]
 + Added sample xml as helper for writing autodoc detail
 + [fj-doc-freemarker] added support for html-css-style and html-css-link meta info
++ Added meta informations documentation
 
 1.4.5-rc.1 (2023-08-13)
 ------------------

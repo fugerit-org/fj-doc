@@ -25,10 +25,12 @@
  */
 package org.fugerit.java.doc.base.model;
 
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
+
 /**
  * 
  *
- * @author mfranci
+ * @author Matteo Franci a.k.a. Fugerit
  *
  */
 public class DocInfo extends DocElement {
@@ -39,19 +41,8 @@ public class DocInfo extends DocElement {
 	private static final long serialVersionUID = 1258119296671751462L;
 
 	public static final String TAG_NAME = "info";
-	
-	public static final String INFO_NAME_CSS_LINK = "html-css-link";
-	
-	public static final String INFO_NAME_CSS_STYLE = "html-css-style";
-	
-	public static final String INFO_NAME_PAGE_ORIENT = "page-orient";
-	
-	public static final String INFO_NAME_PAGE_WIDTH = "page-width";
-	
-	public static final String INFO_NAME_PAGE_HEIGHT = "page-height";
-	
-	public static final String INFO_NAME_PDF_FORMAT = "pdf-format";
-	
+
+	// properties for document meta informations
 	public static final String INFO_DOC_TITLE = "doc-title";
 	public static final String INFO_DOC_AUTHOR = "doc-author";
 	public static final String INFO_DOC_SUBJECT = "doc-subject";
@@ -59,6 +50,20 @@ public class DocInfo extends DocElement {
 	public static final String INFO_DOC_CREATOR = "doc-creator";
 	public static final String INFO_DOC_LANGUAGE = "doc-language";
 	
+	// properties specific for HTML format
+	public static final String INFO_NAME_CSS_LINK = "html-css-link";
+	public static final String INFO_NAME_CSS_STYLE = "html-css-style";
+	public static final String INFO_NAME_HTML_ADD_TO_HEAD = "html-add-to-head";
+	
+	// properties specific for fixed size formats (like PDF)
+	public static final String INFO_NAME_MARGINS = GenericConsts.INFO_KEY_MARGINS;
+	public static final String INFO_NAME_PAGE_ORIENT = "page-orient";
+	public static final String INFO_VALUE_PAGE_ORIENT_PORTRAIT = "vertical";
+	public static final String INFO_VALUE_PAGE_ORIENT_LANDSCAPE = "horizontal";
+	public static final String INFO_NAME_PAGE_WIDTH = "page-width";
+	public static final String INFO_NAME_PAGE_HEIGHT = "page-height";
+	public static final String INFO_NAME_PDF_FORMAT = "pdf-format";
+
 	public static final String INFO_DOC_VERSION_COMPATIBILITY = "doc-version-compatibility";
 	
 	private String name;
