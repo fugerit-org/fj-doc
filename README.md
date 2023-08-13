@@ -7,7 +7,7 @@ The Core library (fj-doc-base) is all you need to start, even though typically y
 * fj-doc-freemarker
 * One or more type handlers modules
 
-Useful resources : [github pages documentation](https://venusdocs.fugerit.org/) | [project home page](https://www.fugerit.org/perm/venus) | docgen [home](https://www.fugerit.org/data/java/doc/venus/index.html) | [release notes](https://www.fugerit.org/data/java/doc/venus/release-notes.html) | [Doc XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html) | [freemarker-doc-process-config XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html)
+Useful resources : [github pages documentation](https://venusdocs.fugerit.org/) | [project home page](https://www.fugerit.org/perm/venus) | docgen [home](https://www.fugerit.org/data/java/doc/venus/index.html) | [release notes](https://www.fugerit.org/data/java/doc/venus/release-notes.html) | [Doc XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html) | [freemarker-doc-process-config XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html) | [Venus Doc Meta Informations reference](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html) | [Venus Guides](https://venusguides.fugerit.org/)
 
 A quick start is available in module [fj-doc-sample](fj-doc-sample/README.md)  
 

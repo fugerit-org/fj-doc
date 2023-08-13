@@ -1,4 +1,4 @@
-﻿[next]
+﻿1.4.5-rc.2 (2023-08-13)
 ------------------
 + Added documentation to [fj-doc-lib-autodoc]
 + Added sample xml as helper for writing autodoc detail

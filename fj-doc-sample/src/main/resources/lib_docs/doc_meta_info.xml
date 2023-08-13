@@ -24,6 +24,10 @@
   	
   	<phrase anchor="top"></phrase><h head-level="1">Documentation for Venus Doc Format meta informations</h>
   	
+  	<para>Version : 1 (2023-08-13)</para>
+  	
+  	<para><![CDATA[This section contains documentation for most &lt;info name="key"&gt;value&lt;/info&gt; of Venus Doc Format]]></para>
+  	
   	<list>
   		<li><pl><phrase link="#metadata">Properties for document metadata</phrase></pl></li>
   		<li><pl><phrase link="#html">Properties specific to HTML format</phrase></pl></li>
