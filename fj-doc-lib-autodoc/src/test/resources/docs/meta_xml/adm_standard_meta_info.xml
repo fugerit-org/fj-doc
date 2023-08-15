@@ -43,6 +43,77 @@
       <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>doc-author</admeta:name>
+      <admeta:description>Set the document author, should be usually supported in document formats like html or pdf</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>doc-creator</admeta:name>
+      <admeta:description>Set the document creator tool (es. Venus Doc), should be usually supported in document formats like html or pdf</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>doc-language</admeta:name>
+      <admeta:description>Set the document language, should be usually supported in document formats like html or pdf</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+     <admeta:admMetaInfo>
+      <admeta:name>doc-subject</admeta:name>
+      <admeta:description>Set the document subject, should be usually supported in document formats like html or pdf</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+     <admeta:admMetaInfo>
+      <admeta:name>doc-version</admeta:name>
+      <admeta:description>A custom property to track meta model version</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+  </admeta:admSection>
+
+  <admeta:admSection>
+    <admeta:name>meta_html</admeta:name>
+    <admeta:description>Properties specific to HTML formata</admeta:description>
+    <admeta:admMetaInfo>
+      <admeta:name>html-css-link</admeta:name>
+      <admeta:description>Link to css for the html document</admeta:description>
+      <admeta:since>1.4.5</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>html-css-style</admeta:name>
+      <admeta:description>Inline CSS style definition to be added to the document</admeta:description>
+      <admeta:since>1.4.5</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>html-add-to-head</admeta:name>
+      <admeta:description>Custom HTML code to be added directly in the head section</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
   </admeta:admSection>
 
   <admeta:admSection>
