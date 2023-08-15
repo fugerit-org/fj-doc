@@ -146,11 +146,14 @@ public class FreemarkerDocProcessConfigFacade {
 				 DocChainModel model = new DocChainModel();
 				 XmlBeanHelper.setFromElement( model, currentTag );
 				 if ( StringUtils.isNotEmpty( model.getParent() ) ) {
-					 DocChainModel parent = config.getDocChainList().get( model.getParent() );
-					 if ( parent == null ) {
-						 throw new DocException( "No parent found : "+model.getParent() );
-					 } else {
-						 model.getChainStepList().addAll( parent.getChainStepList() );
+					 String[] parentList = model.getParent().split( "," );
+					 for ( int p=0; p<parentList.length; p++) {
+						 DocChainModel parent = config.getDocChainList().get( parentList[p] );
+						 if ( parent == null ) {
+							 throw new DocException( "No parent found : "+model.getParent() );
+						 } else {
+							 model.getChainStepList().addAll( parent.getChainStepList() );
+						 }	 
 					 }
 				 }
 				 // chain step

@@ -1,4 +1,8 @@
-﻿1.4.6-rc.1 (2023-08-15)
+﻿1.4.6-rc.2 (2023-08-15)
+------------------
++ [fj-doc-freemarker] fixed multiple parents loading for FreemarkerDocProcessConfig
+
+1.4.6-rc.1 (2023-08-15)
 ------------------
 + [fj-doc-lib-autodoc]Some fix in meta info generation
 + [fj-doc-lib-autodoc]Added anchor to specific meta info
