@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<autodocDetail xmlns="http://autodoc.fugerit.org">
+<autodocDetail xmlns="https://autodoc.fugerit.org">
    <adProperty>
         <name>output-title</name>
         <description>Reference for module fj-doc-freemarker, type handler FreeMarkerHtmlTypeHandler</description>
