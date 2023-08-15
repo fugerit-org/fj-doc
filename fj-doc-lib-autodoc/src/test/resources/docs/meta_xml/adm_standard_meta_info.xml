@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<admeta:autodocMeta 
+	xmlns:admeta="https://autodocmeta.fugerit.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="https://autodocmeta.fugerit.org autodoc-meta-1-0.xsd ">
+
+  <admeta:admProperty>
+    <admeta:name>admeta:name</admeta:name>
+    <admeta:description>admeta:description</admeta:description>
+  </admeta:admProperty>
+  
+  <admeta:admChangelog>
+    <admeta:date>2001-01-01</admeta:date>
+    <admeta:version>admeta:version</admeta:version>
+    <admeta:description>admeta:description</admeta:description>
+  </admeta:admChangelog>
+  
+  <admeta:admSection>
+    <admeta:name>meta_general</admeta:name>
+    <admeta:description>Properties for generic metadata</admeta:description>
+    <admeta:admMetaInfo>
+      <admeta:name>doc-title</admeta:name>
+      <admeta:description>Set the document title, should be usually supported in document formats like html or pdf</admeta:description>
+      <!--
+      <admeta:defaultValue></admeta:defaultValue>
+      -->
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+  </admeta:admSection>
+
+</admeta:autodocMeta>

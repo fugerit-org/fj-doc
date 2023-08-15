@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
-	targetNamespace='http://autodoc.fugerit.org'
-	xmlns:autodoc='http://autodoc.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	targetNamespace='https://autodoc.fugerit.org'
+	xmlns:autodoc='https://autodoc.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	
 	<xsd:element name='autodocDetail'>
 		<xsd:annotation>
