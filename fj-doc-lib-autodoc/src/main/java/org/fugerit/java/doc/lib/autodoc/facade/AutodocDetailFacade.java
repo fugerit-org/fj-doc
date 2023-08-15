@@ -119,7 +119,7 @@ public class AutodocDetailFacade {
 	    marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
 	    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, format);
 	    if ( addSchemaLocation ) {
-	    	 marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://autodoc.fugerit.org, https://www.fugerit.org/data/java/doc/xsd/autodoc-detail-1-0.xsd");
+	    	 marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "https://autodoc.fugerit.org, https://www.fugerit.org/data/java/doc/xsd/autodoc-detail-1-0.xsd");
 	    }
 		marshaller.marshal( autodocDetail , os );
 	}

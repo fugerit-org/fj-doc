@@ -4,14 +4,31 @@
 	xsi:schemaLocation="https://autodocmeta.fugerit.org autodoc-meta-1-0.xsd ">
 
   <admeta:admProperty>
-    <admeta:name>admeta:name</admeta:name>
-    <admeta:description>admeta:description</admeta:description>
+    <admeta:name>doc-title</admeta:name>
+    <admeta:description>Documentation for Venus Doc Format standard meta informations</admeta:description>
+  </admeta:admProperty>
+  <admeta:admProperty>
+    <admeta:name>doc-author</admeta:name>
+    <admeta:description>Matteo Franci a.k.a. Fugerit</admeta:description>
+  </admeta:admProperty>
+  <admeta:admProperty>
+    <admeta:name>doc-version</admeta:name>
+    <admeta:description>1 (2023-08-13)</admeta:description>
+  </admeta:admProperty>
+  <admeta:admProperty>
+    <admeta:name>doc-subject</admeta:name>
+    <admeta:description><![CDATA[This section contains documentation for most &lt;info name="key"&gt;value&lt;/info&gt; of Venus Doc Format]]></admeta:description>
+  </admeta:admProperty>
+  	  
+  <admeta:admProperty>
+    <admeta:name>html-css-link</admeta:name>
+    <admeta:description>https://venusguides.fugerit.org/src/css/default_venus_docs_style.css</admeta:description>
   </admeta:admProperty>
   
   <admeta:admChangelog>
-    <admeta:date>2001-01-01</admeta:date>
-    <admeta:version>admeta:version</admeta:version>
-    <admeta:description>admeta:description</admeta:description>
+    <admeta:date>2023-08-15</admeta:date>
+    <admeta:version>1.0.0</admeta:version>
+    <admeta:description>First version of this document</admeta:description>
   </admeta:admChangelog>
   
   <admeta:admSection>
@@ -20,14 +37,49 @@
     <admeta:admMetaInfo>
       <admeta:name>doc-title</admeta:name>
       <admeta:description>Set the document title, should be usually supported in document formats like html or pdf</admeta:description>
-      <!--
-      <admeta:defaultValue></admeta:defaultValue>
-      -->
       <admeta:since>1.0.0</admeta:since>
       <admeta:supportedType>html</admeta:supportedType>
       <admeta:supportedType>pdf</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+  </admeta:admSection>
+
+  <admeta:admSection>
+    <admeta:name>meta_fixed</admeta:name>
+    <admeta:description>Properties specific to fixed size formats (like PDF)</admeta:description>
+    <admeta:admMetaInfo>
+      <admeta:name>margins</admeta:name>
+      <admeta:description>Document page margins, in pixels, in the format LEFT;RIGHT;TOP;BOTTOM</admeta:description>
+      <admeta:defaultValue>10;10;10;10</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>page-width</admeta:name>
+      <admeta:description>Page width, in cm, for example 21cm for A4 portrait or 29.7cm for A4 landscape</admeta:description>
+      <admeta:defaultValue>21cm</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>page-height</admeta:name>
+      <admeta:description>Page height, in cm, for example 29.7cm for A4  or 21cm for A4 landscape</admeta:description>
+      <admeta:defaultValue>29.7cm</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>page-orient</admeta:name>
+      <admeta:description>Page orientation, 'vertical' for portrait or 'horizontal' for landscape</admeta:description>
+      <admeta:defaultValue>vertical</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-openpdf(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
   </admeta:admSection>
 

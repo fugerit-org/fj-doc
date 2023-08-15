@@ -1,0 +1,1 @@
+<#macro printMetaInfo props info><#if (props[info])??><info name="${info}"><![CDATA[${props[info]}]]></info></#if></#macro>
