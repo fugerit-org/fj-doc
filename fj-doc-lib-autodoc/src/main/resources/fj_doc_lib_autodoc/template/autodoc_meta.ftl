@@ -61,7 +61,7 @@
 	      </row>
 	  	  <#list admSection.admMetaInfo as admMetaInfo>
 	      <row>
-	        <cell style="italic"><para><![CDATA[${admMetaInfo.name}]]></para></cell>
+	        <cell><para style="italic"><![CDATA[${admMetaInfo.name}]]></para><phrase anchor="${admMetaInfo.name}"></phrase></cell>
 	        <cell><para><![CDATA[${admMetaInfo.description}]]></para></cell>
 	        <cell><para><![CDATA[<#list admMetaInfo.supportedHandler as handler>${handler}, </#list>]]></para></cell>
 	        <cell><para><![CDATA[${admMetaInfo.defaultValue!''}]]></para></cell>

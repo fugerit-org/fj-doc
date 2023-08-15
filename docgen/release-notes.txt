@@ -1,4 +1,10 @@
-﻿1.4.5 (2023-08-15)
+﻿1.4.6-rc.1 (2023-08-XX)
+------------------
++ [fj-doc-lib-autodoc]Some fix in meta info generation
++ [fj-doc-lib-autodoc]Added anchor to specific meta info
++ [fj-doc-base]Improved javadoc
+
+1.4.5 (2023-08-15)
 ------------------
 + [fj-doc-lib-autodoc]Added new chain for meta informations processing
 + [fj-doc-lib-autodoc]Autodoc detail namespace changed from http://autodoc.fugerit.org to https://autodoc.fugerit.org
