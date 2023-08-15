@@ -20,6 +20,7 @@ import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.lib.autodoc.detail.AutodocDetailModel;
+import org.fugerit.java.doc.lib.autodoc.meta.AutodocMetaModel;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 
 public class AutodocDocConfig {
@@ -33,13 +34,21 @@ public class AutodocDocConfig {
 		this.config = config;
 	}
 	
+	private static final AutodocDocConfig INSTANCE = new AutodocDocConfig( FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH) );
+	
+	public static AutodocDocConfig getInstance() {
+		return INSTANCE;
+	}
+	
 	public static AutodocDocConfig newConfig() throws ConfigException {
-		return new AutodocDocConfig( FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH) );
+		return getInstance();
 	}
 
 	public static final String CHAIN_ID_AUTODOC = "autodoc";
 	
 	public static final String CHAIN_ID_AUTODOC_DETAIL = "autodoc_detail";
+	
+	public static final String CHAIN_ID_AUTODOC_META = "autodoc_meta";
 	
 	public FreemarkerDocProcessConfig getConfig() {
 		return config;
@@ -75,7 +84,7 @@ public class AutodocDocConfig {
 			throw new DocException( "Autodoc generation error : "+e, e );
 		}
 	}
-	
+
 	public void processAutodocDetail(  AutodocDetailModel autoDetailModel, DocTypeHandler handler, OutputStream os ) throws DocException {
 		try {
 			DocProcessData data = new DocProcessData();
@@ -99,6 +108,20 @@ public class AutodocDocConfig {
 			os.write( htmlContent.getBytes() );
 		} catch (Exception e) {
 			throw new DocException( "Autodoc detail generation error : "+e, e );
+		}
+	}
+
+	public void processAutodocMeta(  AutodocMetaModel autodocMetaModel, DocTypeHandler handler, OutputStream os ) throws DocException {
+		try {
+			DocProcessData data = new DocProcessData();
+			DocProcessContext context = DocProcessContext.newContext( AutodocMetaModel.ATT_NAME, autodocMetaModel );
+			process( CHAIN_ID_AUTODOC_META , context, data );
+			DocBase docBase = DocFacade.parse( data.getCurrentXmlReader() );
+			DocInput docInput = DocInput.newInput( handler.getType() , docBase );
+			DocOutput docOutput = DocOutput.newOutput( os );
+			handler.handle( docInput , docOutput );
+		} catch (Exception e) {
+			throw new DocException( "Autodoc meta generation error : "+e, e );
 		}
 	}
 	

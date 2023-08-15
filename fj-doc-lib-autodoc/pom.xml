@@ -23,6 +23,8 @@
 	
 	<properties>
 		<xsd-parser-version>1.2.4</xsd-parser-version>
+		<autodoc-detail-package-name>org.fugerit.java.doc.lib.autodoc.detail.model</autodoc-detail-package-name>
+		<autodoc-meta-package-name>org.fugerit.java.doc.lib.autodoc.meta.model</autodoc-meta-package-name>
 	</properties>
 	
 	<build>
@@ -34,18 +36,32 @@
 				<artifactId>jaxb2-maven-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>xjc</id>
+						<id>xjc-autodoc-main</id>
 						<goals>
 							<goal>xjc</goal>
 						</goals>
+						<configuration>
+							<packageName>${autodoc-detail-package-name}</packageName>
+							<outputDirectory>${project.build.directory}/generated-sources/jaxb-ad</outputDirectory>
+							<sources>
+		                    	<source>src/main/resources/xsd/autodoc-detail-1-0.xsd</source>
+		                	</sources>
+						</configuration>
 					</execution>
+					<execution>
+						<id>xjc-autodoc-metan</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<packageName>${autodoc-meta-package-name}</packageName>
+							<outputDirectory>${project.build.directory}/generated-sources/jaxb-am</outputDirectory>
+							<sources>
+		                    	<source>src/main/resources/xsd/autodoc-meta-1-0.xsd</source>
+		                	</sources>
+						</configuration>
+					</execution>					
 				</executions>
-				<configuration>
-					<packageName>org.fugerit.java.doc.lib.autodoc.detail.model</packageName>
-					<sources>
-                    	<source>src/main/resources/xsd</source>
-                	</sources>
-				</configuration>
 			</plugin>
 		
 		</plugins>
@@ -110,7 +126,7 @@
 						<artifactId>maven-javadoc-plugin</artifactId>
 						<configuration>
 							<stylesheetfile>src/main/javadoc/stylesheet.css</stylesheetfile>
-							<excludePackageNames>org.fugerit.java.doc.lib.autodoc.detail.model</excludePackageNames>
+							<excludePackageNames>${autodoc-detail-package-name},${autodoc-meta-package-name}</excludePackageNames>
 						</configuration>
 						<executions>
 							<execution>

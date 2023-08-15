@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='https://autodocmeta.fugerit.org'
+	xmlns:admeta='https://autodocmeta.fugerit.org' xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	
+	<xsd:element name='autodocMeta'>
+		<xsd:annotation>
+			<xsd:documentation>Root of the autodoc details</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='admeta:admProperty' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='admeta:admChangelog' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref='admeta:admSection' minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='admProperty'>
+		<xsd:annotation>
+			<xsd:documentation>General properties</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='admeta:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:description' minOccurs="1" maxOccurs="1" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='admChangelog'>
+		<xsd:annotation>
+			<xsd:documentation>General informations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='admeta:date' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:version' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:description' minOccurs="1" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:element name='admSection'>
+		<xsd:annotation>
+			<xsd:documentation>General informations</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='admeta:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:admMetaInfo' minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='admMetaInfo'>
+		<xsd:annotation>
+			<xsd:documentation>Details of an meta information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref='admeta:name' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:description' minOccurs="1" maxOccurs="1" />
+				<xsd:element ref='admeta:defaultValue' minOccurs="0" maxOccurs="1" />
+				<xsd:element ref='admeta:since' minOccurs="0" maxOccurs="1" />
+				<xsd:element ref='admeta:supportedType' minOccurs="0" maxOccurs="unbounded" />
+				<xsd:element ref="admeta:supportedHandler" minOccurs="0" maxOccurs="unbounded" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	
+	<xsd:element name='name'>
+		<xsd:annotation>
+			<xsd:documentation>Name of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='description'>
+		<xsd:annotation>
+			<xsd:documentation>Description of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='defaultValue'>
+		<xsd:annotation>
+			<xsd:documentation>The default value for the meta information, if any</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='status'>
+		<xsd:annotation>
+			<xsd:documentation>Implementation status of an object (Element, Attribute etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='version'>
+		<xsd:annotation>
+			<xsd:documentation>Description of a version</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='date'>
+		<xsd:annotation>
+			<xsd:documentation>Reference date for an information</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:date">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	
+	<xsd:element name='since'>
+		<xsd:annotation>
+			<xsd:documentation>Description of a version the feature is supported</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>	
+
+	<xsd:element name='supportedType'>
+		<xsd:annotation>
+			<xsd:documentation>A supported type (pdf, xml, html, xlsx etc.)</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>	
+	
+	<xsd:element name='supportedHandler'>
+		<xsd:annotation>
+			<xsd:documentation>A list of known supporting handlers (for instance : fj-doc-freemarker[html] or fj-doc-mod-fop[pdf])</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>		
+		
+</xsd:schema>

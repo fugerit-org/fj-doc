@@ -28,14 +28,15 @@
 	</docChain>
 
 	<docChain id="autodoc" parent="shared">
-		<chainStep stepType="complex" map-atts="autodocModel" template-path="${chainId}.ftl">
-		</chainStep>
+		<chainStep stepType="complex" map-atts="autodocModel" template-path="${chainId}.ftl"/>
 	</docChain>
 
 	<docChain id="autodoc_detail" parent="shared">
-		<chainStep stepType="complex" map-atts="autodocDetailModel" template-path="${chainId}.ftl">
-		</chainStep>
+		<chainStep stepType="complex" map-atts="autodocDetailModel" template-path="${chainId}.ftl"/>
 	</docChain>
 
+	<docChain id="autodoc_meta" parent="shared">
+		<chainStep stepType="complex" map-atts="autodocMetaModel" template-path="${chainId}.ftl"/>
+	</docChain>
 		
 </freemarker-doc-process-config>
