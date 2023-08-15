@@ -1,8 +1,9 @@
-﻿1.4.6-rc.1 (2023-08-XX)
+﻿1.4.6-rc.1 (2023-08-15)
 ------------------
 + [fj-doc-lib-autodoc]Some fix in meta info generation
 + [fj-doc-lib-autodoc]Added anchor to specific meta info
 + [fj-doc-base]Improved javadoc
++ [fj-doc-freemarker] added compatibility process() + validation method to FreemarkerDocProcessConfig
 
 1.4.5 (2023-08-15)
 ------------------

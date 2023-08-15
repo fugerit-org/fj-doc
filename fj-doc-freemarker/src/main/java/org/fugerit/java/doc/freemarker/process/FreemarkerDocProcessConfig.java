@@ -1,18 +1,24 @@
 package org.fugerit.java.doc.freemarker.process;
 
+import java.io.OutputStream;
+import java.io.Reader;
 import java.io.Serializable;
 import java.util.Set;
 
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.util.filterchain.MiniFilterMap;
+import org.fugerit.java.core.xml.sax.SAXParseResult;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
+import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
+import org.fugerit.java.doc.base.xml.DocValidator;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -56,6 +62,27 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	public void process( String chainId, DocProcessContext context, DocProcessData data, DocTypeHandler handler, DocOutput docOutput ) throws Exception {
 		this.process(chainId, context, data);
 		handler.handle( DocInput.newInput( handler.getType() , data.getCurrentXmlReader() ) , docOutput );
+	}
+	
+	public SAXParseResult process( String chainId, String type, DocProcessContext context, OutputStream os, boolean validate ) throws Exception {
+		SAXParseResult result = null;
+		MiniFilterChain chain = this.getChainCache( chainId );
+		DocProcessData data = new DocProcessData();
+		chain.apply(context, data);
+		if ( validate ) {
+			result = DocValidator.validate( data.getCurrentXmlReader() );
+			if ( !result.isPartialSuccess() ) {
+				DocValidator.logResult(result, log );
+			}
+		}
+		DocBase docBase = null;
+		try ( Reader reader = data.getCurrentXmlReader() ) {
+			docBase = DocFacade.parse( reader );
+		}
+		DocInput input = DocInput.newInput( type, docBase, data.getCurrentXmlReader() );
+		DocOutput output = DocOutput.newOutput( os );
+		this.getFacade().handle(input, output);
+		return result;
 	}
 	
 	@Override
