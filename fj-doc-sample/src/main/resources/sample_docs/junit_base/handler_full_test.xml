@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 
+
+  <!--
+  	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
+  	For documentation on how to write a valid Venus Doc XML Meta Model refer to : 
+  	https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html
+  -->
+
+  <metadata>
+	<!-- Margin for document : left;right;top;bottom -->
+	<info name="margins">10;10;10;30</info>  
+	<!-- documenta meta information -->
+	<info name="doc-title">Hello World</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+	
+  	<info name="excel-table-id">excel-table=print</info>
+	
+  </metadata>
+  <body>
+	
+		<h head-level="1">Header level 1</h>
+		
+		<h head-level="2">Header level 2</h>
+		
+		<h head-level="3">Header level 3</h>
+		
+		<h head-level="4">Header level 4</h>
+	
+		<h head-level="5">Header level 5</h>
+	
+		<h head-level="6">Header level 6</h>
+	
+		<para>Hello World!</para>
+	
+    	<table columns="5" colwidths="20;20;30;30"  width="100" id="excel-table" padding="2">
+    		<row>
+    			<cell align="center"><para style="bold" back-color="#000000" fore-color="#ffffff">Head Cell 1</para></cell>
+    			<cell align="center"><para style="bold">Head Cell 2</para></cell>
+    			<cell align="center"><para style="bold">Head Cell 3</para></cell>
+    			<cell align="center"><para style="bold">Head Cell 4</para></cell>
+    		</row>
+       		<row>
+    			<cell><para>Filler cell, with some long text. (no alignment)</para></cell>
+    			<cell valign="middle"><para>Cell valign middle</para></cell>
+    			<cell valign="bottom"><para>Cell valign bottom</para></cell>
+    			<cell valign="top"><para style="bold">Cell valign top</para></cell>
+    		</row>
+       		<row>
+    			<cell align="center"><para>Cell align center</para></cell>
+    			<cell align="left"><para>Cell align left</para></cell>
+    			<cell align="right"><para>Cell align right</para></cell>
+    			<cell align="justify"><para>Cell align justify</para></cell>
+    		</row>    	
+    	</table>
+	
+  </body>
+
+</doc>
+  
