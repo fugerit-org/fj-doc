@@ -19,7 +19,11 @@
 	<info name="doc-language">en</info>
 	
   	<info name="excel-table-id">excel-table=print</info>
-	
+  	
+  	<!--
+  	<info name="default-cell-border-width">-1</info>
+  	-->
+  	
   </metadata>
   <body>
 	
@@ -56,6 +60,21 @@
     			<cell align="right"><para>Cell align right</para></cell>
     			<cell align="justify"><para>Cell align justify</para></cell>
     		</row>    	
+        	<row>
+    			<cell rowspan="2"><para>Row cell no style or align (rowpan 2)</para></cell>
+    			<cell><para>Row cell no style or align</para></cell>
+    			<cell><para>Row cell no style or align</para></cell>
+    			<cell><para>Row cell no style or align</para></cell>
+    		</row> 
+           	<row>
+    			<cell colspan="3"><para>Row cell no style or align (colspan 3)</para></cell>
+    		</row> 
+        	<row>
+    			<cell border-width="0"><para>Cell no borders</para></cell>
+    			<cell border-width="0"><para>Cell no borders</para></cell>
+    			<cell border-width="0"><para>Cell no borders</para></cell>
+    			<cell border-width="0"><para>Cell no borders</para></cell>
+    		</row>  
     	</table>
 	
   </body>

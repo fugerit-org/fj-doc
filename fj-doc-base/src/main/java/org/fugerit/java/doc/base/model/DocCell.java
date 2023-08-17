@@ -34,7 +34,11 @@ package org.fugerit.java.doc.base.model;
 public class DocCell extends DocContainer implements DocStyle {
 	
 	public static final String TAG_NAME = "cell";
-	
+
+	public static final String ATTRIBUTE_NAME_COLSPAN = "colspan";
+
+	public static final String ATTRIBUTE_NAME_ROWSPAN = "rowspan";
+
 	/**
 	 * 
 	 */

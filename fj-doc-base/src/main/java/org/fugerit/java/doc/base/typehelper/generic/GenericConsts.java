@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.base.typehelper.generic;
 
+import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocInfo;
 
 /**
@@ -15,35 +16,66 @@ public class GenericConsts {
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-title">See 'doc-title' documentation</a>
+	 * 
+	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_TITLE = "doc-title";
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-author">See 'doc-author' documentation</a>
+	 * 
+	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_AUTHOR = "doc-author";
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-subject">See 'doc-subject' documentation</a>
+	 * 
+	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_SUBJECT = "doc-subject";
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-version">See 'doc-version' documentation</a>
+	 * 
+	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_VERSION = "doc-version";
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-creator">See 'doc-creator' documentation</a>
+	 * 
+	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_CREATOR = "doc-creator";
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-language">See 'doc-language' documentation</a>
+	 * 
+	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_LANGUAGE = "doc-language";
 
 	// Generic properties for all (or most) documents - END
+	
+
+	// Generic properties for tables - START
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-cell-border-width">See 'default-cell-border-width' documentation</a>
+	 * 
+	 * @since 1.5
+	 */
+	public static final String INFO_KEY_DEFAULT_CELL_BORDER_WIDTH = "default-cell-border-width";
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-cell-border-width">See 'default-cell-border-width' documentation, default value is '-1' (unset)</a>
+	 * 
+	 * @since 1.5
+	 */
+	public static final String INFO_VALUE_DEFAULT_CELL_BORDER_WIDTH = DocElement.UNSET;
+	
+	// Generic properties for tables - END
 	
 	
 	// Generic properties for fixed size documents (like PDF) - START

@@ -73,7 +73,7 @@
 	<#list rowList as row>	
 		<tr<@handleId element=row/>>
 			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign>
-				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
+				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleBorders docBorders=cell.docBorders/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>> 
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
@@ -117,7 +117,7 @@
 	</#if>
 </#macro>
 
-<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}: ${calcSize}px solid ${color}; </#if></#macro>
+<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if> ${mode}: ${calcSize}px solid ${color};</#if></#macro>
 
 <#macro handleBorders docBorders>
 	<#if (docBorders.borderColorTop)??><#assign borderColorTop="${docBorders.borderColorTop}"/><#else><#assign borderColorTop="${defaultBorderColor}"/></#if>
@@ -134,19 +134,21 @@
 
 <#macro handleId element><#if (element.id)??> id="${element.id}" </#if></#macro>
 
-<#macro handleRowspan rowspanValue> rowspan="${rowspanValue}" </#macro>
+<#macro handleRowspan rowspanValue><#if (rowspanValue != 1)> rowspan="${rowspanValue}"</#if></#macro>
 
-<#macro handleColspan colspanValue> colspan="${colspanValue}" </#macro>
+<#macro handleColspan colspanValue><#if (colspanValue != 1)> colspan="${colspanValue}"</#if></#macro>
 
 <#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> padding-top: ${spaceBefore}px;</#if><#if (spaceAfter > 0)> padding-bottom: ${spaceAfter}px;</#if></#macro>
 
-<#macro handleAlign alignValue><#if alignValue = 1>text-align: left;<#elseif alignValue = 2>text-align: center;<#elseif alignValue = 3>text-align: right;<#elseif alignValue = 8 || alignValue = 9>text-align: justify;</#if></#macro>
+<#macro handleAlign alignValue><#if alignValue = 1> text-align: left;<#elseif alignValue = 2> text-align: center;<#elseif alignValue = 3> text-align: right;<#elseif alignValue = 8 || alignValue = 9> text-align: justify;</#if></#macro>
 
 <#macro handleFont element> <#if (element.fontName??)> font-family: '${element.fontName}'; </#if><#if (element.size)?? && (element.size != -1)> font-size: '${element.size}'; </#if><#if (element.backColor??)> background-color: ${element.backColor}; </#if><#if (element.foreColor??)> color: ${element.foreColor}; </#if></#macro>
 
-<#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>text-decoration: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
+<#macro handleStyle styleValue><#if styleValue = 2> font-weight: bold;<#elseif styleValue = 3> text-decoration: underline;<#elseif styleValue = 4> font-style: italic;<#elseif styleValue = 5> font-weight: bold; font-style: italic;</#if></#macro>
 
-<#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle?trim?has_content >style="${cStyle}"</#if></#macro>
+<#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
-<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle?trim?has_content || cAlign?trim?has_content || cSpacing?trim?has_content >style="${cStyle?trim} ${cAlign?trim} ${cSpacing?trim}"</#if></#macro>
+<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
+
+<#macro handleStylePrint cStyle><#assign tStyle=cStyle?trim><#if tStyle?has_content> style="${tStyle}"</#if></#macro>
 

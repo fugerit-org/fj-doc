@@ -9,8 +9,6 @@ import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.base.facade.DocFacade;
-import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;

@@ -1,13 +1,12 @@
-﻿1.4.6-rc.2 (2023-08-15)
+﻿1.5.0-rc.1 (2023-08-17)
 ------------------
-+ [fj-doc-freemarker] fixed multiple parents loading for FreemarkerDocProcessConfig
-
-1.4.6-rc.1 (2023-08-15)
-------------------
-+ [fj-doc-lib-autodoc]Some fix in meta info generation
-+ [fj-doc-lib-autodoc]Added anchor to specific meta info
-+ [fj-doc-base]Improved javadoc
-+ [fj-doc-freemarker] added compatibility process() + validation method to FreemarkerDocProcessConfig
++ [fj-doc-base] Added generic meta information 'default-cell-border-width'
++ [fj-doc-freemarker] optimization in style rendering for HTML Type Handler
++ [fj-doc-freemarker] fixed multiple parents loading for FreemarkerDocProcessConfig [1.4.6-rc.2]
++ [fj-doc-lib-autodoc]Some fix in meta info generation [1.4.6-rc.1]
++ [fj-doc-lib-autodoc]Added anchor to specific meta info [1.4.6-rc.1]
++ [fj-doc-base]Improved javadoc [1.4.6-rc.1]
++ [fj-doc-freemarker] added compatibility process() + validation method to FreemarkerDocProcessConfig [1.4.6-rc.1]
 
 1.4.5 (2023-08-15)
 ------------------

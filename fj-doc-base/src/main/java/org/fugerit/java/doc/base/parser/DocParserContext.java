@@ -70,6 +70,7 @@ public class DocParserContext {
 
 	private String defaultTablePadding = GenericConsts.INFO_DEFAULT_TABLE_PADDING_DEF;
 	private String defaultTableSpacing = GenericConsts.INFO_DEFAULT_TABLE_SPACING_DEF;
+	private String defaultCellBorderWidth = GenericConsts.INFO_VALUE_DEFAULT_CELL_BORDER_WIDTH;
 	
 	public DocBase getDocBase() {
 		return docBase;
@@ -102,6 +103,8 @@ public class DocParserContext {
 				this.defaultTablePadding = text;
 			} else if ( GenericConsts.INFO_DEFAULT_TABLE_SPACING.equalsIgnoreCase( docInfo.getName() ) ) {
 				this.defaultTableSpacing = text;
+			} else if ( GenericConsts.INFO_KEY_DEFAULT_CELL_BORDER_WIDTH.equalsIgnoreCase( docInfo.getName() ) ) {
+				this.defaultCellBorderWidth = text;
 			}
 		}
 	}
@@ -253,10 +256,10 @@ public class DocParserContext {
 			DocRow docRow = new DocRow();
 			docRow.setHeader( BooleanUtils.isTrue( props.getProperty( DocRow.ATT_HEADER ) ) );
 			this.currentElement = docRow;
-		} else if ( "cell".equalsIgnoreCase( qName ) ) {
+		} else if ( DocCell.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			DocCell docCell = new DocCell();
-			docCell.setCSpan( Integer.parseInt( props.getProperty( "colspan", "1" ) ) );
-			docCell.setRSpan( Integer.parseInt( props.getProperty( "rowspan", "1" ) ) );
+			docCell.setCSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_COLSPAN, DocElement.STRING_1 ) ) );
+			docCell.setRSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_ROWSPAN, DocElement.STRING_1 ) ) );
 			docCell.setBackColor( props.getProperty( "back-color" ) );
 			docCell.setForeColor( props.getProperty( "fore-color" ) );
 			docCell.setType( props.getProperty( "type" ) );
@@ -267,7 +270,7 @@ public class DocParserContext {
 			// v align
 			String valign = props.getProperty( "valign" );
 			docCell.setValign( DocStyleAlignHelper.getValign( valign ) );
-			docCell.setDocBorders( this.createBorders( props ) );
+			docCell.setDocBorders( DocBorders.createBorders( props, this.defaultCellBorderWidth ) );
 			this.currentElement = docCell;
 		} else if ( "page-break".equalsIgnoreCase( qName ) ) {
 			this.currentElement = new DocPageBreak();
@@ -308,23 +311,6 @@ public class DocParserContext {
 		headerFooter.setBorderWidth( Integer.valueOf( borderWidth ).intValue() );
 		String exepectedSize = atts.getProperty( "expected-size", "15" );
 		headerFooter.setExpectedSize( Integer.parseInt( exepectedSize ) );
-	}
-	
-	private DocBorders createBorders( Properties atts ) {
-		DocBorders docBorders = new DocBorders();
-		docBorders.setBorderColorBottom( atts.getProperty( "border-color-bottom", atts.getProperty( "border-color" ) ) );
-		docBorders.setBorderColorTop( atts.getProperty( "border-color-top", atts.getProperty( "border-color" ) ) );
-		docBorders.setBorderColorLeft( atts.getProperty( "border-color-left", atts.getProperty( "border-color" ) ) );
-		docBorders.setBorderColorRight( atts.getProperty( "border-color-right", atts.getProperty( "border-color" ) ) );
-		docBorders.setBorderWidthBottom( Integer.parseInt( atts.getProperty( "border-width-bottom", atts.getProperty( "border-width", "-1" ) ) ) );
-		docBorders.setBorderWidthTop( Integer.parseInt( atts.getProperty( "border-width-top", atts.getProperty( "border-width", "-1" ) ) ) );
-		docBorders.setBorderWidthLeft( Integer.parseInt( atts.getProperty( "border-width-left", atts.getProperty( "border-width", "-1" ) ) ) );
-		docBorders.setBorderWidthRight( Integer.parseInt( atts.getProperty( "border-width-right", atts.getProperty( "border-width", "-1" ) ) ) );
-		docBorders.setPaddingBottom( Integer.parseInt( atts.getProperty( "padding-bottom", atts.getProperty( "padding", "-1" ) ) ) );
-		docBorders.setPaddingTop( Integer.parseInt( atts.getProperty( "padding-top", atts.getProperty( "padding", "-1" ) ) ) );
-		docBorders.setPaddingLeft( Integer.parseInt( atts.getProperty( "padding-left", atts.getProperty( "padding", "-1" ) ) ) );
-		docBorders.setPaddingRight( Integer.parseInt( atts.getProperty( "padding-right", atts.getProperty( "padding", "-1" ) ) ) );
-		return docBorders;
 	}
 	
 	private static void valuePhrase( DocPhrase docPhrase, Properties props ) {
