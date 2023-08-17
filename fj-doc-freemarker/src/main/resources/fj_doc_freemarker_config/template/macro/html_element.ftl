@@ -36,7 +36,7 @@
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p <@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
+		<p<@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
 	<#else>
 		<h${current.headLevel} <@handleId element=current/><@handleStyleComplete element=current styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
 	</#if>
@@ -71,9 +71,9 @@
 
 <#macro handleRowList docTable rowList cellType>
 	<#list rowList as row>	
-		<tr <@handleId element=row/>>
+		<tr<@handleId element=row/>>
 			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign>
-				<${cellType} <@handleIdDef element=cell defId=defCellId/>  style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
+				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="width: ${docTable.colWithds[cell?index]}%; <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/>"  <@handleColspan colspanValue=cell.columnSpan/> <@handleRowspan rowspanValue=cell.rowSpan/>> 
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
@@ -130,9 +130,9 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
-<#macro handleIdDef element defId><#if (element.id)??>id="${element.id}" <#else>id="${defId}"</#if></#macro>
+<#macro handleIdDef element defId><#if (element.id)??> id="${element.id}" <#else> id="${defId}" </#if></#macro>
 
-<#macro handleId element><#if (element.id)??>id="${element.id}" </#if></#macro>
+<#macro handleId element><#if (element.id)??> id="${element.id}" </#if></#macro>
 
 <#macro handleRowspan rowspanValue> rowspan="${rowspanValue}" </#macro>
 
@@ -146,7 +146,7 @@
 
 <#macro handleStyle styleValue><#if styleValue = 2>font-weight: bold;<#elseif styleValue = 3>text-decoration: underline;<#elseif styleValue = 4>font-style: italic;<#elseif styleValue = 5>font-weight: bold; font-style: italic;</#if></#macro>
 
-<#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle != '' >style="${cStyle}"</#if></#macro>
+<#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><#if cStyle?trim?has_content >style="${cStyle}"</#if></#macro>
 
-<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle != '' || cAlign != '' || cSpacing != ''>style="${cStyle} ${cAlign} ${cSpacing}"</#if></#macro>
+<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cAlign><@handleAlign alignValue=alignValue/></#assign><#assign cSpacing><@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><#if cStyle?trim?has_content || cAlign?trim?has_content || cSpacing?trim?has_content >style="${cStyle?trim} ${cAlign?trim} ${cSpacing?trim}"</#if></#macro>
 
