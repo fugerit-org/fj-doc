@@ -73,7 +73,7 @@
 	<#list rowList as row>	
 		<tr<@handleId element=row/>>
 			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign>
-				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleBorders docBorders=cell.docBorders/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>> 
+				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleBorders docBorders=cell.docBorders/><@addCssValue name='padding' value=docTable.padding def=0 unit='px'/><@addCssValue name='margin' value=docTable.spacing def=0 unit='px'/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>> 
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
@@ -152,3 +152,12 @@
 
 <#macro handleStylePrint cStyle><#assign tStyle=cStyle?trim><#if tStyle?has_content> style="${tStyle}"</#if></#macro>
 
+
+<#--
+	macro : addCssValue
+	name : name of the css property to add
+	value : value of the css property to add
+	def : comparisong value (if the value equals the default, the property will be skipped)
+	unit : to add to the value (if any)
+-->
+<#macro addCssValue name value def unit><#if (value != def)> ${name}: ${value}${unit};</#if></#macro>

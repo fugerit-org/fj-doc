@@ -3,6 +3,7 @@ package org.fugerit.java.doc.base.parser;
 import java.util.LinkedList;
 import java.util.Properties;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.model.DocBackground;
@@ -31,6 +32,9 @@ import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.base.xml.DocStyleAlignHelper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class DocParserContext {
 
 	public static String findXsdVersion( Properties props ) {
@@ -66,12 +70,10 @@ public class DocParserContext {
 	
 	private DocContainer currentContainer;
 	
+	private Properties infos;
+	
 	private LinkedList<DocContainer> parents;
 
-	private String defaultTablePadding = GenericConsts.INFO_DEFAULT_TABLE_PADDING_DEF;
-	private String defaultTableSpacing = GenericConsts.INFO_DEFAULT_TABLE_SPACING_DEF;
-	private String defaultCellBorderWidth = GenericConsts.INFO_VALUE_DEFAULT_CELL_BORDER_WIDTH;
-	
 	public DocBase getDocBase() {
 		return docBase;
 	}
@@ -80,10 +82,16 @@ public class DocParserContext {
 		this.parents = new LinkedList<>();
 		this.currentContainer = null;
 		this.currentElement = null;
+		this.infos = new Properties();
 	}
 	
 	public void endDocument() {
-		this.docBase.setStableInfo( this.docBase.getInfo() );
+		if ( this.infos.size() != this.docBase.getInfo().size() ) {
+			throw new ConfigRuntimeException( "Parsing error, wrong info size : "+this.infos.size() );
+		} else {
+			this.docBase.setStableInfo( this.infos );
+			log.debug( "info {}", this.infos );
+		}
 	}
 	
 	public void handleText( String text ) {
@@ -99,17 +107,14 @@ public class DocParserContext {
 		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocInfo ) {
 			DocInfo docInfo = (DocInfo)this.currentElement;
 			docInfo.getContent().append( text );
-			if ( GenericConsts.INFO_DEFAULT_TABLE_PADDING.equalsIgnoreCase( docInfo.getName() ) ) {
-				this.defaultTablePadding = text;
-			} else if ( GenericConsts.INFO_DEFAULT_TABLE_SPACING.equalsIgnoreCase( docInfo.getName() ) ) {
-				this.defaultTableSpacing = text;
-			} else if ( GenericConsts.INFO_KEY_DEFAULT_CELL_BORDER_WIDTH.equalsIgnoreCase( docInfo.getName() ) ) {
-				this.defaultCellBorderWidth = text;
-			}
 		}
 	}
 	
 	public void handleEndElement( String qName ) {
+		if ( DocInfo.TAG_NAME.equals( qName ) ) {
+			DocInfo docInfo = (DocInfo) this.currentElement;
+			this.infos.setProperty( docInfo.getName(), docInfo.getContent().toString() );
+		}
 		if ( this.parserHelper.isContainerElement( qName ) ) {
 			if ( !this.parents.isEmpty() ) {
 				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
@@ -231,8 +236,8 @@ public class DocParserContext {
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
 			docTable.setBackColor( props.getProperty( "back-color" ) );
 			docTable.setForeColor( props.getProperty( "fore-color" ) );
-			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.defaultTableSpacing ) ) );
-			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.defaultTablePadding ) ) );
+			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_SPACING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_SPACING ) ) ) );
+			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_PADDING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_PADDING ) ) ) );
 			docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );
 			String cols = props.getProperty( "colwidths" );
 			if ( cols != null ) {
@@ -270,7 +275,7 @@ public class DocParserContext {
 			// v align
 			String valign = props.getProperty( "valign" );
 			docCell.setValign( DocStyleAlignHelper.getValign( valign ) );
-			docCell.setDocBorders( DocBorders.createBorders( props, this.defaultCellBorderWidth ) );
+			docCell.setDocBorders( DocBorders.createBorders( props, this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_CELL_BORDER_WIDTH, GenericConsts.INFO_VALUE_DEFAULT_CELL_BORDER_WIDTH ) ) );
 			this.currentElement = docCell;
 		} else if ( "page-break".equalsIgnoreCase( qName ) ) {
 			this.currentElement = new DocPageBreak();

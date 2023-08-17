@@ -13,7 +13,7 @@
   </admeta:admProperty>
   <admeta:admProperty>
     <admeta:name>doc-version</admeta:name>
-    <admeta:description>2 (2023-08-15)</admeta:description>
+    <admeta:description>3 (2023-08-17)</admeta:description>
   </admeta:admProperty>
   <admeta:admProperty>
     <admeta:name>doc-subject</admeta:name>
@@ -24,10 +24,22 @@
     <admeta:name>html-css-link</admeta:name>
     <admeta:description>https://venusguides.fugerit.org/src/css/default_venus_docs_style.css</admeta:description>
   </admeta:admProperty>
-  
+
+  <admeta:admChangelog>
+    <admeta:date>2023-08-17</admeta:date>
+    <admeta:version>3</admeta:version>
+    <admeta:description>Added 'default-table-padding', 'default-table-spacing' and 'default-cell-border-width' properties</admeta:description>
+  </admeta:admChangelog>
+
   <admeta:admChangelog>
     <admeta:date>2023-08-15</admeta:date>
-    <admeta:version>1.0.0</admeta:version>
+    <admeta:version>2</admeta:version>
+    <admeta:description>Added fixed size layout and HTML properties</admeta:description>
+  </admeta:admChangelog>
+  
+  <admeta:admChangelog>
+    <admeta:date>2023-08-12</admeta:date>
+    <admeta:version>1</admeta:version>
     <admeta:description>First version of this document</admeta:description>
   </admeta:admChangelog>
   
@@ -87,6 +99,38 @@
       <admeta:supportedType>pdf</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>default-table-padding</admeta:name>
+      <admeta:description>Set default table padding, default '-1' means 'unset' (shoud be inherited by all cells, in HTML it is handled by 'padding')</admeta:description>
+      <admeta:defaultValue>-1</admeta:defaultValue>
+      <admeta:since>1.5.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-poi(xlsx)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openpdf(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>default-table-spacing</admeta:name>
+      <admeta:description>Set default table spacing, default '-1' means 'unset' (shoud be inherited by all cells, in HTML it is handled by 'margin')</admeta:description>
+      <admeta:defaultValue>-1</admeta:defaultValue>
+      <admeta:since>1.5.0</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-poi(xlsx)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openpdf(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
     <admeta:admMetaInfo>
       <admeta:name>default-cell-border-width</admeta:name>

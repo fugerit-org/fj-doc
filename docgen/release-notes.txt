@@ -1,6 +1,11 @@
-﻿1.5.0-rc.2 (2023-XX-XX)
+﻿1.5.0-rc.2 (2023-08-17)
 ------------------
-+ [enhancement][fj-doc-playground-quarkus] updated quarkus version to 3.2.4.Final
++ [documentation][fj-doc-base]Added documentation to the doc-2-0.xsd [1.5.0-rc.2]
++ [enhancement][fj-doc-mod-fop] optimization in style rendering for FO/PDF Type Handler [1.5.0-rc.2]
++ [enhancement][fj-doc-mod-fop] added support for table 'padding' and 'spacing' (convert to fo cell padding and margin) [1.5.0-rc.2]
++ [enhancement][fj-doc-freemarker] added support for table 'padding' and 'spacing' (convert to html cell padding and margin) [1.5.0-rc.2]
++ [enhancement][fj-doc-base] Added generic meta information 'default-table-spacing' and 'default-table-padding' [1.5.0-rc.2]
++ [enhancement][fj-doc-playground-quarkus] updated quarkus version to 3.2.4.Final [1.5.0-rc.2]
 + [enhancement][fj-doc-base] Added generic meta information 'default-cell-border-width' [1.5.0-rc.1]
 + [enhancement][fj-doc-freemarker] optimization in style rendering for HTML Type Handler [1.5.0-rc.1]
 + [fix][fj-doc-freemarker] fixed multiple parents loading for FreemarkerDocProcessConfig [1.4.6-rc.2]

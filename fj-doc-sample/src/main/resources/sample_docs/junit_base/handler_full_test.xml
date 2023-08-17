@@ -20,10 +20,10 @@
 	
   	<info name="excel-table-id">excel-table=print</info>
   	
-  	<!--
-  	<info name="default-cell-border-width">-1</info>
-  	-->
-  	
+  	<info name="default-table-spacing">1</info>
+  	<info name="default-table-padding">1</info>
+  	<info name="default-cell-border-width">2</info>
+
   </metadata>
   <body>
 	
@@ -41,7 +41,7 @@
 	
 		<para>Hello World!</para>
 	
-    	<table columns="5" colwidths="20;20;30;30"  width="100" id="excel-table" padding="2">
+    	<table columns="5" colwidths="20;20;30;30"  width="100" id="excel-table">
     		<row>
     			<cell align="center"><para style="bold" back-color="#000000" fore-color="#ffffff">Head Cell 1</para></cell>
     			<cell align="center"><para style="bold">Head Cell 2</para></cell>

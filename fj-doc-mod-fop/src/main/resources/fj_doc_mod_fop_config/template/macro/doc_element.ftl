@@ -6,7 +6,7 @@
 	</#list>	
 </#macro>
 
-<#macro handleRole role element><#if role != ''>role="${role}" <#elseif element.headLevel &gt; 0>role="H${element.headLevel}" </#if></#macro>
+<#macro handleRole role element><#if role != ''> role="${role}"<#elseif element.headLevel &gt; 0> role="H${element.headLevel}"</#if></#macro>
 
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
@@ -15,7 +15,7 @@
 	<#elseif elementType = 'DocPara'>
 		<@handlePara current=current/>
 	<#elseif elementType = 'DocBr'>
-		<fo:block white-space-treatment="preserve" <@handleFont element=current/>>  </fo:block>
+		<fo:block white-space-treatment="preserve"<@handleFont element=current/>>  </fo:block>
 	<#elseif elementType = 'DocTable'>
 		<@handleTable docTable=current/>
 	<#elseif elementType = 'DocImage'>
@@ -39,14 +39,14 @@
 			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline"><![CDATA[${current.text}]]></fo:basic-link>
 		</#if>
 	<#elseif (current.anchor)??>
-		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/><![CDATA[${current.text}]]></fo:block>
+		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/><@handleFont element=current/><![CDATA[${current.text}]]></fo:block>
 	<#else>
 		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>><![CDATA[${current.text}]]></fo:inline>
 	</#if>
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block <#if (current.id)??> id="${current.id}" </#if> <@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
+	<fo:block<#if (current.id)??> id="${current.id}"</#if><@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -72,7 +72,7 @@
 			<#assign current=li.content/>
 			<fo:list-item>
 				<fo:list-item-label end-indent="label-end()">
-					<fo:block <@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/> ><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
+					<fo:block<@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/> ><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
 				</fo:list-item-label>
 				<fo:list-item-body start-indent="body-start()">
 					<fo:block><@handleElement current=li.content/><#if li.secondList><@handleElement current=li.secondContent/></#if></fo:block>
@@ -88,7 +88,7 @@
 				<#list rowList as row>	
 				<fo:table-row>
 					<#list row.elementList as cell>
-						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/> <@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
+						<fo:table-cell<@addCssValue name='padding' value=docTable.padding def=0 unit='mm'/><@addCssValue name='margin' value=docTable.padding def=0 unit='mm'/><@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/><@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
 							<#if (cell.elementList?size > 0)>
 								<#list cell.elementList as cellElement>
 								<@handleElement current=cellElement/>
@@ -138,7 +138,7 @@
 	</#if>
 </#macro>
 
-<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if>${mode}='${calcSize}pt solid ${color}' </#if></#macro>
+<#macro handleBorder mode size color><#if size != 0><#if size = -1><#assign calcSize="1"/><#else><#assign calcSize="${size}"/></#if> ${mode}='${calcSize}pt solid ${color}'</#if></#macro>
 
 <#macro handleBorders docBorders>
 	<#if (docBorders.borderColorTop)??><#assign borderColorTop="${docBorders.borderColorTop}"/><#else><#assign borderColorTop="${defaultBorderColor}"/></#if>
@@ -151,20 +151,29 @@
 	<@handleBorder mode='border-right' size=docBorders.borderWidthRight color=borderColorRight/>
 </#macro>
 
-<#macro handleFormat formatValue> <#if formatValue = 'preserve-line'>linefeed-treatment="preserve"</#if> </#macro>
+<#macro handleFormat formatValue><#if formatValue = 'preserve-line'> linefeed-treatment="preserve"</#if></#macro>
 
-<#macro handleParaSpacing textIndent spaceBefore spaceAfter spaceLeft spaceRight> <#if (textIndent > 0)> text-indent="${textIndent}px"</#if><#if (spaceBefore > 0)> margin-top="${spaceBefore}px"</#if><#if (spaceAfter > 0)> margin-bottom="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
+<#macro handleParaSpacing textIndent spaceBefore spaceAfter spaceLeft spaceRight><#if (textIndent > 0)> text-indent="${textIndent}px"</#if><#if (spaceBefore > 0)> margin-top="${spaceBefore}px"</#if><#if (spaceAfter > 0)> margin-bottom="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
 
-<#macro handleWhiteSpace element> <#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')>white-space="pre" </#if></#macro>
+<#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')> white-space="pre"</#if></#macro>
 
-<#macro handleFont element> <#if (element.fontName??)> font-family="${element.fontName}" </#if><#if (element.size)?? && (element.size != -1)> font-size="${element.size}pt" </#if><#if (element.backColor??)> background-color="${element.backColor}" </#if><#if (element.foreColor??)> color="${element.foreColor}" </#if></#macro>
+<#macro handleFont element><#if (element.fontName??)> font-family="${element.fontName}"</#if><#if (element.size)?? && (element.size != -1)> font-size="${element.size}pt"</#if><#if (element.backColor??)> background-color="${element.backColor}"</#if><#if (element.foreColor??)> color="${element.foreColor}"</#if></#macro>
 
-<#macro handleAlign alignValue> <#if alignValue = 1>text-align="left"<#elseif alignValue = 2>text-align="center"<#elseif alignValue = 3>text-align="right"<#elseif alignValue = 8 || alignValue = 9>text-align="justify"</#if> </#macro>
+<#macro handleAlign alignValue><#if alignValue = 1> text-align="left"<#elseif alignValue = 2> text-align="center"<#elseif alignValue = 3> text-align="right"<#elseif alignValue = 8 || alignValue = 9> text-align="justify"</#if></#macro>
 
 <#macro handleCellSpan cell><#if cell.columnSpan != 1> number-columns-spanned="${cell.columnSpan}"</#if><#if cell.rowSpan != 1> number-rows-spanned="${cell.rowSpan}"</#if></#macro>
 
 <#macro handleVerticalAlign valignValue><#if valignValue = 5> vertical-align="middle"<#elseif valignValue = 4> vertical-align="top"<#elseif valignValue = 6> vertical-align="bottom"</#if></#macro>
 
-<#macro handleStyle styleValue> <#if styleValue = 2>font-weight="bold"<#elseif styleValue = 3>text-decoration="underline"<#elseif styleValue = 4>font-style="italic"<#elseif styleValue = 5>font-style="italic" font-weight="bold"<#elseif styleValue = 1>font-style="normal" font-weight="normal"</#if> </#macro>
+<#macro handleStyle styleValue><#if styleValue = 2> font-weight="bold"<#elseif styleValue = 3> text-decoration="underline"<#elseif styleValue = 4> font-style="italic"<#elseif styleValue = 5> font-style="italic" font-weight="bold"<#elseif styleValue = 1> font-style="normal" font-weight="normal"</#if></#macro>
 
 <#macro handleTextSubstitution text><![CDATA[${text?replace(r"${currentPage}","]]><fo:page-number/><![CDATA[")?replace(r"${pageCount}","]]><fo:page-number-citation ref-id='EndOfDocument'/><![CDATA[")}]]></#macro>
+
+<#--
+	macro : addCssValue
+	name : name of the css property to add
+	value : value of the css property to add
+	def : comparisong value (if the value equals the default, the property will be skipped)
+	unit : to add to the value (if any)
+-->
+<#macro addCssValue name value def unit><#if (value != def)> ${name}="${value}${unit}"</#if></#macro>

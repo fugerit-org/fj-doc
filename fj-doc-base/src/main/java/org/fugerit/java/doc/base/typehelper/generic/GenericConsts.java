@@ -60,9 +60,37 @@ public class GenericConsts {
 	
 
 	// Generic properties for tables - START
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-padding">See 'default-table-padding' documentation</a>
+	 * 
+	 * @since 1.5
+	 */
+	public static final String INFO_KEY_DEFAULT_TABLE_PADDING = "default-table-padding";
 	
 	/**
-	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-cell-border-width">See 'default-cell-border-width' documentation</a>
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-padding">See 'default-table-padding' documentation, default value is '0' (no padding)</a>
+	 * 
+	 * @since 1.5
+	 */
+	public static final String INFO_VALUE_DEFAULT_TABLE_PADDING = DocElement.STRING_0;
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-padding">See 'default-table-padding' documentation</a>
+	 * 
+	 * @since 1.5
+	 */
+	public static final String INFO_KEY_DEFAULT_TABLE_SPACING = "default-table-spacing";
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-spacing">See 'default-table-spacing' documentation, default value is '0' (no padding)</a>
+	 * 
+	 * @since 1.5
+	 */
+	public static final String INFO_VALUE_DEFAULT_TABLE_SPACING = DocElement.STRING_0;
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-spacing">See 'default-table-spacing' documentation</a>
 	 * 
 	 * @since 1.5
 	 */
@@ -85,17 +113,52 @@ public class GenericConsts {
 	 */
 	public static final String INFO_KEY_MARGINS = "margins";
 	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#margins">See 'margins' documentation, this is the index of the left position in margins [left];[right];[top];[bottom]</a>
+	 */
 	public static final int POSITION_MARGIN_LEFT = 0;
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#margins">See 'margins' documentation, this is the index of the right position in margins [left];[right];[top];[bottom]</a>
+	 */
 	public static final int POSITION_MARGIN_RIGHT = 1;
+	
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#margins">See 'margins' documentation, this is the index of the top position in margins [left];[right];[top];[bottom]</a>
+	 */
 	public static final int POSITION_MARGIN_TOP = 2;
+	
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#margins">See 'margins' documentation, this is the index of the bottom position in margins [left];[right];[top];[bottom]</a>
+	 */
 	public static final int POSITION_MARGIN_BOTTOM = 3;
 	
 	// Generic properties for fixed size documents (like PDF) - END
 	
 	
-	public static final String INFO_DEFAULT_TABLE_PADDING = "default-table-padding";
-	public static final String INFO_DEFAULT_TABLE_PADDING_DEF = "0";
-	public static final String INFO_DEFAULT_TABLE_SPACING = "default-table-spacing";
-	public static final String INFO_DEFAULT_TABLE_SPACING_DEF = "0";
+	/**
+	 * Same as {@link GenericConsts#INFO_KEY_DEFAULT_TABLE_PADDING} (left for compatibility)
+	 */
+	public static final String INFO_DEFAULT_TABLE_PADDING = INFO_KEY_DEFAULT_TABLE_PADDING;
+	
+
+	/**
+	 * Same as {@link GenericConsts#INFO_VALUE_DEFAULT_TABLE_PADDING} (left for compatibility)
+	 */
+	public static final String INFO_DEFAULT_TABLE_PADDING_DEF = INFO_VALUE_DEFAULT_TABLE_PADDING;
+	
+
+	/**
+	 * Same as {@link GenericConsts#INFO_KEY_DEFAULT_TABLE_SPACING} (left for compatibility)
+	 */
+	public static final String INFO_DEFAULT_TABLE_SPACING = INFO_KEY_DEFAULT_TABLE_SPACING;
+	
+
+	/**
+	 * Same as {@link GenericConsts#INFO_VALUE_DEFAULT_TABLE_PADDING} (left for compatibility)
+	 */
+	public static final String INFO_DEFAULT_TABLE_SPACING_DEF = INFO_VALUE_DEFAULT_TABLE_PADDING;
 	
 }

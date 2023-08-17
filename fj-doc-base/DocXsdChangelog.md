@@ -1,6 +1,10 @@
+2.0.0.rc.3 (2023-08-17)
+------------------
+* Added documentation for table 'padding', 'spacing' attributes and info element values 
+
 2.0.0.rc.002 (2023-07-29)
 ------------------
-* Added documentation for ${currentPage} and ${pageCount} constatns
+* Added documentation for ${currentPage} and ${pageCount} constant.
 
 2.0.0-rc.001 (2023-01-17)
 ------------------

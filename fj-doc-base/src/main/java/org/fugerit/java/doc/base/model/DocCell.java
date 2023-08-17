@@ -64,7 +64,7 @@ public class DocCell extends DocContainer implements DocStyle {
 	private int align;
 	
 	private int valign;
-
+	
 	private String type;
 	
 	public String getType() {

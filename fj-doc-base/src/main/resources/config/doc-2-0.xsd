@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2023-01-07
-	 * @version    : 2.0.0-rc.002 (2023-07-29)
+	 * @version    : 2.0.0-rc.3 (2023-08-17)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -77,12 +77,12 @@
 
 	<xsd:element name='info'>
 		<xsd:annotation>
-			<xsd:documentation>This is a key/value element containing informations for document generations</xsd:documentation>
+			<xsd:documentation>This is a key/value element containing informations for document generations, the attribute 'name' is the key, while the text content is the value.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType mixed='true'>
 			<xsd:attribute name='name' type='xsd:string' use='required'>
 				<xsd:annotation>
-					<xsd:documentation>Contains the value of this information</xsd:documentation>
+					<xsd:documentation>Contains the value of this document information (see the link https://venusdocs.fugerit.org/docs/html/doc_meta_info.html for possible values)</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 		</xsd:complexType>
@@ -267,8 +267,18 @@
 			</xsd:attribute>
 			<xsd:attribute name='back-color' type='doc:colorType' use='optional' />
 			<xsd:attribute name='fore-color' type='doc:colorType' use='optional' />
-			<xsd:attribute name='spacing' type="doc:spaceType" use='optional' />
-			<xsd:attribute name='padding' type='doc:spaceType' use='optional' />
+			<xsd:attribute name='spacing' type="doc:spaceType" use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>This should be a integer value representing the table cell spacing (for some format like fo/pdf and html, it represents the margin)</xsd:documentation>
+					<xsd:documentation>(Is it possible to set a default for the document : https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-spacing)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name='padding' type='doc:spaceType' use='optional'>
+				<xsd:annotation>
+					<xsd:documentation>This should be a integer value representing the table cell padding</xsd:documentation>
+					<xsd:documentation>(Is it possible to set a default for the document : https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-table-padding)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 			<xsd:attribute name='colwidths' type='xsd:string' use='optional'>
 				<xsd:annotation>
 					<xsd:documentation>The sizes of the columns of the table as percentages separated by semicolons</xsd:documentation>
