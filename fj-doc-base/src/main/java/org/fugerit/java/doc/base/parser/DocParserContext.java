@@ -37,6 +37,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DocParserContext {
 
+	private static boolean FAIL_WHEN_ELEMENT_NOT_FOUND = false;
+	
 	public static String findXsdVersion( Properties props ) {
 		String xsdVersion = null;
 		for ( Object key : props.keySet() ) {
@@ -353,53 +355,108 @@ public class DocParserContext {
 	
 	// start tag handlers - END
 	
-	public void handleStartElement( String qName, Properties props ) {
-		if ( this.parserNames.isTypeDoc( qName ) ) {
-			this.handleStartDoc(qName, props);
-		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
-			this.handleStartMeta( qName, props );
-		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartInfo( qName, props );
-		} else if ( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) || DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName )  ) {
-			this.handleStartHeader( qName, props);
-		} else if ( DocFooter.TAG_NAME.equalsIgnoreCase( qName ) || DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-			this.handleStartFooter(qName, props);
-		} else if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBackground(qName, props);
-		} else if ( DocContainer.TAG_NAME_BODY.equalsIgnoreCase( qName ) ) {
-			this.handleStartBody(qName, props);
-		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartImage(qName, props);
-		} else if (  DocContainer.TAG_NAME_PL.equalsIgnoreCase( qName ) ) {
-			this.handleStartPl(qName, props);
-		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
+	private boolean handleStartElementPriorityOne( String qName, Properties props ) {
+		boolean ok = false;
+		if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartPara(qName, props);
+			ok = true;
 		} else if ( DocPara.TAG_NAME_H.equalsIgnoreCase( qName ) ) {
 			this.handleStartH(qName, props);
-		} else if ( DocBr.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBr(qName, props);
-		} else if ( DocNbsp.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartNbsp(qName, props);
+			ok = true;
 		} else if ( DocPhrase.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartPhrase(qName, props);
-		} else if ( DocBarcode.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBarcode(qName, props);
+			ok = true;
 		} else if ( DocList.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartList(qName, props);
+			ok = true;
 		} else if ( DocLi.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartLi(qName, props);
+			ok = true;
 		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartTable(qName, props);
+			ok = true;
 		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartRow(qName, props);
+			ok = true;
 		} else if ( DocCell.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartCell(qName, props);
+			ok = true;
 		} else if ( DocPageBreak.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartPageBreak(qName, props);
+			ok = true;
+		}
+		return ok;
+	}
+	
+	private boolean handleStartElementPriorityTwo( String qName, Properties props ) {
+		boolean ok = false;
+		if ( this.parserNames.isTypeDoc( qName ) ) {
+			this.handleStartDoc(qName, props);
+			ok = true;
+		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
+			this.handleStartMeta( qName, props );
+			ok = true;
+		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartInfo( qName, props );
+			ok = true;
+		} else if ( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) || DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName )  ) {
+			this.handleStartHeader( qName, props);
+			ok = true;
+		} else if ( DocFooter.TAG_NAME.equalsIgnoreCase( qName ) || DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
+			this.handleStartFooter(qName, props);
+			ok = true;
+		} else if ( DocBr.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartBr(qName, props);
+			ok = true;
+		} else if ( DocNbsp.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartNbsp(qName, props);
+			ok = true;
+		}
+		return ok;
+	}
+	
+	private boolean handleStartElementPriorityThree( String qName, Properties props ) {
+		boolean ok = false;
+		if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartBackground(qName, props);
+			ok = true;
+		} else if ( DocContainer.TAG_NAME_BODY.equalsIgnoreCase( qName ) ) {
+			this.handleStartBody(qName, props);
+			ok = true;
+		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartImage(qName, props);
+			ok = true;
+		} else if (  DocContainer.TAG_NAME_PL.equalsIgnoreCase( qName ) ) {
+			this.handleStartPl(qName, props);
+			ok = true;
+		}  else if ( DocBarcode.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartBarcode(qName, props);
+			ok = true;
 		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartBookmarkTree(qName, props);
+			ok = true;
 		} else if ( DocBookmark.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartBookmark(qName, props);
+			ok = true;
+		}
+		return ok;
+	}
+	
+	public void handleStartElement( String qName, Properties props ) {
+		boolean ok = this.handleStartElementPriorityOne(qName, props);
+		if ( !ok ) {
+			ok = this.handleStartElementPriorityTwo(qName, props);
+			if ( !ok ) {
+				ok = this.handleStartElementPriorityThree(qName, props);
+				if ( !ok ) {
+					String message = "Element not found : "+qName;
+					if ( FAIL_WHEN_ELEMENT_NOT_FOUND ) {
+						throw new ConfigRuntimeException( message );
+					} else {
+						log.warn( message );
+					}
+				}
+			}
 		}
 		this.handleStartFinalJob(qName, props);
 	}
