@@ -22,6 +22,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LegacyConfigRead {
 
+	private static void readStepList( ChainModel chainModel, Element currentStepTag ) {
+		
+		String type = currentStepTag.getAttribute( "type" );
+		String convertType = FreemarkerDocProcessConfigFacade.BUILT_IN_STEPS_REVERSE.getProperty( type, type );
+		StepModel stepModel = new StepModel(convertType);
+		chainModel.getStepList().add(stepModel);
+		if ( FreemarkerDocProcessConfigFacade.STEP_TYPE_CONFIG.equalsIgnoreCase( convertType ) ) {
+			stepModel.getAtts().put( "id" , currentStepTag.getAttribute( "param01" ) );
+		} else if ( FreeMarkerProcessStep.class.getName().equalsIgnoreCase( convertType ) ) {
+			stepModel.setType( FreemarkerDocProcessConfigFacade.STEP_TYPE_COMPLEX );
+			stepModel.getAtts().put( "template-path" , currentStepTag.getAttribute( "param01" ) );
+		}
+		log.info( "current step type {}", stepModel.getType() );
+		NodeList propertiesTagList = currentStepTag.getElementsByTagName( "properties" );
+		if ( propertiesTagList.getLength() > 0 ) {
+			Element propertyTag = (Element) propertiesTagList.item( 0 );
+			NamedNodeMap attMap = propertyTag.getAttributes();
+			for ( int j=0; j<attMap.getLength(); j++ ) {
+				Attr currentAtt = (Attr)attMap.item( j );
+				log.info( "current att {} -> {}", currentAtt.getName() , currentAtt.getValue() );
+				stepModel.getAtts().put( currentAtt.getName() , currentAtt.getValue() );
+			}
+		}
+	}
+	
 	public static ConfigModel readConfig( InputStream is ) throws Exception {
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 		dbf.setNamespaceAware( true );
@@ -42,27 +67,7 @@ public class LegacyConfigRead {
 			NodeList stepTagList = currentChainTag.getElementsByTagName( "step" );
 			for ( int i=0; i<stepTagList.getLength(); i++ ) {
 				Element currentStepTag = (Element) stepTagList.item(i);
-				String type = currentStepTag.getAttribute( "type" );
-				String convertType = FreemarkerDocProcessConfigFacade.BUILT_IN_STEPS_REVERSE.getProperty( type, type );
-				StepModel stepModel = new StepModel(convertType);
-				chainModel.getStepList().add(stepModel);
-				if ( FreemarkerDocProcessConfigFacade.STEP_TYPE_CONFIG.equalsIgnoreCase( convertType ) ) {
-					stepModel.getAtts().put( "id" , currentStepTag.getAttribute( "param01" ) );
-				} else if ( FreeMarkerProcessStep.class.getName().equalsIgnoreCase( convertType ) ) {
-					stepModel.setType( FreemarkerDocProcessConfigFacade.STEP_TYPE_COMPLEX );
-					stepModel.getAtts().put( "template-path" , currentStepTag.getAttribute( "param01" ) );
-				}
-				log.info( "current step type {}", stepModel.getType() );
-				NodeList propertiesTagList = currentStepTag.getElementsByTagName( "properties" );
-				if ( propertiesTagList.getLength() > 0 ) {
-					Element propertyTag = (Element) propertiesTagList.item( 0 );
-					NamedNodeMap attMap = propertyTag.getAttributes();
-					for ( int j=0; j<attMap.getLength(); j++ ) {
-						Attr currentAtt = (Attr)attMap.item( j );
-						log.info( "current att {} -> {}", currentAtt.getName() , currentAtt.getValue() );
-						stepModel.getAtts().put( currentAtt.getName() , currentAtt.getValue() );
-					}
-				}
+				readStepList(chainModel, currentStepTag);
 			}
 		}
 		return configModel;

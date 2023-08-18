@@ -45,7 +45,8 @@ public class AutodocDetailFacade {
 	public static final String AUTODOC_DETAIL_XSD_CURRENT_VERSION = "1-0";
 	
 	public static final String PROP_AUTODOC_DETAIL_FACACE_VERSION = "autodoc-detail-facade-version";
-	public static final String AUTODOC_DETAIL_FACADE_CURRENT_VERSION = "1.0.0";
+	public static final String AUTODOC_DETAIL_FACADE_1_0_0_VERSION = "1.0.0";
+	public static final String AUTODOC_DETAIL_FACADE_CURRENT_VERSION = AUTODOC_DETAIL_FACADE_1_0_0_VERSION;
 	
 	public static final String PROP_AUTODOC_DETAIL_MODULE_NAME = "autodoc-detail-module-name";
 	public static final String PROP_AUTODOC_DETAIL_MODULE_VERSION = "autodoc-detail-module-version";
@@ -78,7 +79,7 @@ public class AutodocDetailFacade {
 		} catch (DatatypeConfigurationException e) {
 			throw new ConfigRuntimeException( e );
 		}
-		adChangelog.setVersion( "1.0.0" );
+		adChangelog.setVersion( AUTODOC_DETAIL_FACADE_1_0_0_VERSION );
 		adChangelog.getDescription().add( "Sample changelog entry (can be 1+)" );
 		detail.getAdChangelog().add( adChangelog );
 		// ad info section

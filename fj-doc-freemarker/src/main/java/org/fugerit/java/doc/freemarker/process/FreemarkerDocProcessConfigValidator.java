@@ -33,6 +33,8 @@ public class FreemarkerDocProcessConfigValidator {
 
 	public FreemarkerDocProcessConfigValidator() {}
 	
+	private static final String CURRENT = "current";
+	
 	private static XMLSchemaCatalogConfig init() {
 		XMLSchemaCatalogConfig catalog = null;
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config_fm_xsd/schema-validator-config-freemarker.xml" ) ) {
@@ -51,7 +53,7 @@ public class FreemarkerDocProcessConfigValidator {
 			String buffer = StreamIO.readString( xmlData );	
 			String xsdVersion = getXsdVersion( new StringReader( buffer ) );
 			log.info( "xsdVersion -> '{}'", xsdVersion );
-			String validateVersion = "current";
+			String validateVersion = CURRENT;
 			if ( StringUtils.isNotEmpty( xsdVersion ) ) {
 				validateVersion = "version-"+xsdVersion;
 			}
@@ -91,7 +93,7 @@ public class FreemarkerDocProcessConfigValidator {
 	public static SAXParseResult validate( Reader xmlData ) throws XMLException {
 		SAXParseResult result = new SAXParseResult();
 		try {
-			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), "current" );	
+			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), CURRENT );	
 		} catch (Exception e) {
 			throw new XMLException( e );
 		}
@@ -109,7 +111,7 @@ public class FreemarkerDocProcessConfigValidator {
 	public static boolean logValidation( Reader xmlData ) throws XMLException {
 		SAXParseResult result = new SAXParseResult();
 		try {
-			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), "current" );	
+			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), CURRENT );	
 		} catch (Exception e) {
 			throw new XMLException( e );
 		}
