@@ -46,6 +46,20 @@ public class OpenCSVTypeHandler extends DocTypeHandlerDefault {
 		this(null);
 	}
 	
+	private String handleCell( DocCell cell ) {
+		StringBuilder currentContent = new StringBuilder();
+		for ( DocElement contentElement : cell.getElementList() ) {
+			if ( contentElement instanceof DocPara ) {
+				DocPara para = (DocPara) contentElement;
+				currentContent.append( para.getText() );
+			} else if ( contentElement instanceof DocPhrase ) {
+				DocPhrase para = (DocPhrase) contentElement;
+				currentContent.append( para.getText() );
+			}
+		}
+		return currentContent.toString();
+	}
+	
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
  		DocBase docBase = docInput.getDoc();
@@ -62,17 +76,7 @@ public class OpenCSVTypeHandler extends DocTypeHandlerDefault {
 				int count = 0;
 				for ( DocElement currentCell : row.getElementList() ) {
 					DocCell cell = (DocCell) currentCell;
-					StringBuilder currentContent = new StringBuilder();
-					for ( DocElement contentElement : cell.getElementList() ) {
-						if ( contentElement instanceof DocPara ) {
-							DocPara para = (DocPara) contentElement;
-							currentContent.append( para.getText() );
-						} else if ( contentElement instanceof DocPhrase ) {
-							DocPhrase para = (DocPhrase) contentElement;
-							currentContent.append( para.getText() );
-						}
-					}
-					currentRow[count] = currentContent.toString();
+					currentRow[count] = this.handleCell(cell);
 					count++;
 				}
 				writer.writeNext( currentRow );
