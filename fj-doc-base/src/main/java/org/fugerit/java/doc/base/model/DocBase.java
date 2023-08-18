@@ -44,7 +44,7 @@ public class DocBase extends DocElement implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8002627421125892032L;
+	private static final long serialVersionUID = 80026421125892032L;
 
 	public static final String TAG_NAME = "doc";
 	
@@ -74,14 +74,7 @@ public class DocBase extends DocElement implements Serializable {
 		this.docHeader = new DocHeader();
 		this.docFooter = new DocFooter();
 		this.idMap = new HashMap<>();
-		//this.additionalData = new HashMap<>();
 	}
-	
-//	private Map additionalData;
-//	
-//	public Map getAdditionalData() {
-//		return additionalData;
-//	}
 
 	private DocHeader docHeader;
 	
