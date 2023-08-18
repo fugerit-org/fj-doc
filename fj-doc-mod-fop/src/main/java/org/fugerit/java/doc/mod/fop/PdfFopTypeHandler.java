@@ -3,6 +3,7 @@ package org.fugerit.java.doc.mod.fop;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
@@ -76,7 +77,15 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	
 	@Getter private boolean keepEmptyTags;
 	
-	@Setter @Getter private FopConfig fopConfig;
+	private Serializable fopConfig;
+
+	public FopConfig getFopConfig() {
+		return (FopConfig)fopConfig;
+	}
+
+	public void setFopConfig(FopConfig fopConfig) {
+		this.fopConfig = fopConfig;
+	}
 
 	@Getter @Setter private String pdfAMode;
 	
@@ -120,7 +129,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		// the XML file which provides the input
 		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ), this.getCharset() ) );
 		// create an instance of fop factory
-		FopFactory fopFactory = this.fopConfig.newFactory();
+		FopFactory fopFactory = this.getFopConfig().newFactory();
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
 		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
 			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );	

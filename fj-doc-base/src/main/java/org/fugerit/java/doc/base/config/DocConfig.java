@@ -4,10 +4,10 @@ import lombok.Getter;
 
 public class DocConfig {
 	
-	@Getter private String version;
+	@Getter private String versionConfig;
 	
 	public DocConfig() {
-		this.version = VERSION;
+		this.versionConfig = VERSION;
 	}
 	
 	public static final String VERSION = " FUGERIT DOC Version 2.1 (2023-08-19) ";

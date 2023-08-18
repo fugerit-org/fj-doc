@@ -33,6 +33,7 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.fugerit.java.core.io.helper.StreamHelper;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocContainer;
@@ -83,13 +84,13 @@ public class DocFacade {
 	
 	public final static String SYSTEM_ID = "http://javacoredoc.fugerit.org";
 		
-	public static boolean validate( Reader is, Properties params ) throws Exception {
+	public static boolean validate( Reader is, Properties params ) throws DocException {
 		boolean valRes = false;
 		try {
 			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
 			int result = parser.validate( is );
 			valRes = ( result == DocValidationResult.VALIDATION_OK );
-		} catch (Exception e) {
+		} catch (DocException e) {
 			throw e;
 		} finally {
 			StreamHelper.closeSafe( is );
@@ -97,11 +98,11 @@ public class DocFacade {
 		return valRes;
 	}
 	
-	public static DocBase parse( Reader is, DocHelper docHelper ) throws Exception {
+	public static DocBase parse( Reader is, DocHelper docHelper ) throws DocException {
 		return parse( is, docHelper, DEFAULT_PARAMS );
 	}
 	
-	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws Exception {
+	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws DocException {
 		DocBase docBase = null;
 		try {
 			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
@@ -114,11 +115,11 @@ public class DocFacade {
 		return docBase;
 	}	
 	
-	public static DocBase parse( InputStream is, DocHelper docHelper, Properties params ) throws Exception {
+	public static DocBase parse( InputStream is, DocHelper docHelper, Properties params ) throws DocException {
 		return parse( new InputStreamReader( is ), docHelper, params );
 	}	
 	
-	public static DocBase parse( Reader is ) throws Exception {
+	public static DocBase parse( Reader is ) throws DocException {
 		return parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 	}
 	
@@ -143,7 +144,7 @@ public class DocFacade {
 		return doc;
 	}
 	
-	public static DocBase parse( InputStream is ) throws Exception {
+	public static DocBase parse( InputStream is ) throws DocException {
 		return parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 	}
 		
