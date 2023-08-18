@@ -1,8 +1,16 @@
 package org.fugerit.java.doc.base.config;
 
-public class DocConfig {
+import lombok.Getter;
 
-	public static final String VERSION = " FUGERIT DOC Version 0.8 (2023-01-09) ";
+public class DocConfig {
+	
+	@Getter private String version;
+	
+	public DocConfig() {
+		this.version = VERSION;
+	}
+	
+	public static final String VERSION = " FUGERIT DOC Version 2.1 (2023-08-19) ";
 	
 	public static final String TYPE_XML = "xml";
 	
