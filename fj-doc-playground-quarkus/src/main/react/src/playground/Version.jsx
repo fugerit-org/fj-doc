@@ -11,7 +11,7 @@ class Version extends Component {
 	}
 
 	componentDidMount() {
-		var reactState = this;
+		let reactState = this;
 		appService.doAjaxMultipart('GET', '/meta/version', null).then(response => {
 			if (response.success) {
 				reactState.setState({

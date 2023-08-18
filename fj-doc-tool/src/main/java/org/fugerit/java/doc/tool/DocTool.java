@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DocTool {
 
+	private static final String LINE = "----------------------------------------------------------";
+	
 	public static final String ARG_TOOL = "tool";
 	
 	public static final String ARG_HELP = "help";
@@ -40,13 +42,13 @@ public class DocTool {
 			Properties helpProps = PropsIO.loadFromClassLoader( path );
 			List<String> keySet = helpProps.keySet().stream().map( m -> String.valueOf( m ) ).collect( Collectors.toList() );
 			Collections.sort( keySet );
-			log.info( "----------------------------------------------------------" );
+			log.info( LINE );
 			log.info( "help params for tool : {}", toolHandler );
-			log.info( "----------------------------------------------------------" );
+			log.info( LINE );
 			for ( String k : keySet ) {
 				log.info( "param : {} -> {}", k, helpProps.getProperty( k ) );
 			}
-			log.info( "----------------------------------------------------------" );
+			log.info( LINE );
 		} else {
 			handler.accept(params);	
 		}
