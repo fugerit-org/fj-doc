@@ -110,6 +110,104 @@ public class FreemarkerDocProcessConfigFacade {
 		return config;
 	}
 	
+	private static void handleNodeList( FreemarkerDocProcessConfig config, Document doc ) throws Exception {
+		 NodeList docHandlerConfigList = doc.getElementsByTagName( ATT_DOC_HANDLER_CONFIG );
+		 if ( docHandlerConfigList.getLength() == 1 ) {
+			 Element docHandlerConfigTag = (Element) docHandlerConfigList.item( 0 );
+			 boolean registerById = BooleanUtils.isTrue( docHandlerConfigTag.getAttribute( "registerById" ) );
+			 boolean allowDuplicatedId = BooleanUtils.isTrue( docHandlerConfigTag.getAttribute( "allowDuplicatedId" ) );
+			 NodeList docHandlerList = docHandlerConfigTag.getElementsByTagName( "docHandler" );
+			 log.info( "docHandlerList -> {}", docHandlerList.getLength() );
+			 for ( int k=0; k<docHandlerList.getLength(); k++ ) {
+				 Element currentHandlerTag = (Element)docHandlerList.item( k );
+				 DocTypeHandler handler = createHelper( currentHandlerTag );
+				 if ( handler != null ) {
+					 String id = currentHandlerTag.getAttribute( "id" );
+					 log.info( "register handler id {}, handler {}", id, handler );
+					 if ( registerById ) {
+						 config.getFacade().registerHandlerAndId( id, handler, allowDuplicatedId );
+					 } else {
+						 config.getFacade().registerHandler( handler); 
+					 }
+				 }
+			 }
+		 }
+	}
+	
+	private static void handleChainStepList( DocChainModel model, Element currentTag ) throws Exception {
+		NodeList chainStepList = currentTag.getElementsByTagName( ATT_CHAIN_STEP );
+		 for ( int i=0; i<chainStepList.getLength(); i++ ) {
+			 Element currentChainStepTag = (Element) chainStepList.item(i);
+			 ChainStepModel chainStepModel = new ChainStepModel();
+			 Properties atts = DOMUtils.attributesToProperties( currentChainStepTag );
+			 chainStepModel.setStepType( atts.getProperty( ATT_STEP_TYPE ) );
+			 atts.remove( ATT_STEP_TYPE );
+			 chainStepModel.setAttributes(atts);
+			 if ( STEP_TYPE_CONFIG.equalsIgnoreCase( chainStepModel.getStepType() ) ) {
+				 NodeList configList = currentChainStepTag.getElementsByTagName( STEP_TYPE_CONFIG );
+				 if ( configList.getLength() != 1 ) {
+					 throw new ConfigException( "Expcted only one config tag : "+configList.getLength() );
+				 } else {
+					 Element configTag = (Element)configList.item( 0 );
+					 atts.putAll( DOMUtils.attributesToProperties( configTag ) );
+				 }
+			 } else if ( STEP_TYPE_FUNCTION.equalsIgnoreCase( chainStepModel.getStepType() ) 
+					 ||  STEP_TYPE_MAP.equalsIgnoreCase( chainStepModel.getStepType() )  ) {
+				 NodeList subList = currentChainStepTag.getElementsByTagName( chainStepModel.getStepType() );
+				 for ( int j=0; j<subList.getLength(); j++ ) {
+					 Element currentFunctionTag = (Element)subList.item(j);
+					 String key = currentFunctionTag.getAttribute( "name" );
+					 String value = currentFunctionTag.getAttribute( "value" );
+					 atts.setProperty(key, value);
+				 }
+			 }
+			 model.getChainStepList().add(chainStepModel);
+		 }
+	}
+	
+	private static void handleStepList( FreemarkerDocProcessConfig config, Document doc ) throws Exception {
+		 NodeList docChainLisgt = doc.getElementsByTagName( ATT_DOC_CHAIN );
+		 for ( int k=0; k<docChainLisgt.getLength(); k++ ) {
+			 Element currentTag = (Element) docChainLisgt.item( k );
+			 DocChainModel model = new DocChainModel();
+			 XmlBeanHelper.setFromElement( model, currentTag );
+			 if ( StringUtils.isNotEmpty( model.getParent() ) ) {
+				 String[] parentList = model.getParent().split( "," );
+				 for ( int p=0; p<parentList.length; p++) {
+					 DocChainModel parent = config.getDocChainList().get( parentList[p] );
+					 if ( parent == null ) {
+						 throw new DocException( "No parent found : "+model.getParent() );
+					 } else {
+						 model.getChainStepList().addAll( parent.getChainStepList() );
+					 }	 
+				 }
+			 }
+			 // chain step
+			 handleChainStepList(model, currentTag);
+			 config.getDocChainList().add(model);
+		 }
+	}
+	
+	private static void handleMiniFilter( FreemarkerDocProcessConfig config ) throws Exception {
+		for ( DocChainModel docChainModel : config.getDocChainList() ) {
+			 MiniFilterChain chain = new MiniFilterChain( docChainModel.getId(), MiniFilter.CONTINUE );
+			 chain.setChainId( docChainModel.getId() );
+			 for ( ChainStepModel chainStepModel : docChainModel.getChainStepList() ) {
+				 String type = BUILT_IN_STEPS.getProperty( chainStepModel.getStepType(), chainStepModel.getStepType() );
+				 MiniFilterBase step = (MiniFilterBase) ClassHelper.newInstance( type );
+				 step.setCustomConfig( chainStepModel.getAttributes() );
+				 if ( FreeMarkerConfigStep.class.getName().equalsIgnoreCase( type ) ) {
+					step.setParam01( chainStepModel.getAttributes().getProperty( "id" ) );
+					Properties configProps = convertConfiguration( chainStepModel.getAttributes() ) ;
+					step.setCustomConfig( configProps );
+				 }
+				 step.setChainId( chain.getChainId() );
+				 chain.getFilterChain().add( step );
+			 }
+			 config.setChain(chain.getChainId(), chain);
+		 }
+	}
+	
 	public static FreemarkerDocProcessConfig loadConfig( Reader xmlReader ) throws ConfigException {
 		FreemarkerDocProcessConfig result = null;
 		 try {
@@ -119,95 +217,13 @@ public class FreemarkerDocProcessConfigFacade {
 			 DocumentBuilder db = dbf.newDocumentBuilder();
 			 Document doc = db.parse( new InputSource( xmlReader ) );
 			 // docHandlerConfig reading
-			 NodeList docHandlerConfigList = doc.getElementsByTagName( ATT_DOC_HANDLER_CONFIG );
-			 if ( docHandlerConfigList.getLength() == 1 ) {
-				 Element docHandlerConfigTag = (Element) docHandlerConfigList.item( 0 );
-				 boolean registerById = BooleanUtils.isTrue( docHandlerConfigTag.getAttribute( "registerById" ) );
-				 boolean allowDuplicatedId = BooleanUtils.isTrue( docHandlerConfigTag.getAttribute( "allowDuplicatedId" ) );
-				 NodeList docHandlerList = docHandlerConfigTag.getElementsByTagName( "docHandler" );
-				 log.info( "docHandlerList -> {}", docHandlerList.getLength() );
-				 for ( int k=0; k<docHandlerList.getLength(); k++ ) {
-					 Element currentHandlerTag = (Element)docHandlerList.item( k );
-					 DocTypeHandler handler = createHelper( currentHandlerTag );
-					 if ( handler != null ) {
-						 String id = currentHandlerTag.getAttribute( "id" );
-						 log.info( "register handler id {}, handler {}", id, handler );
-						 if ( registerById ) {
-							 config.getFacade().registerHandlerAndId( id, handler, allowDuplicatedId );
-						 } else {
-							 config.getFacade().registerHandler( handler); 
-						 }
-					 }
-				 }
-			 }
+			 handleNodeList(config, doc);
 			 // docChain reading
-			 NodeList docChainLisgt = doc.getElementsByTagName( ATT_DOC_CHAIN );
-			 for ( int k=0; k<docChainLisgt.getLength(); k++ ) {
-				 Element currentTag = (Element) docChainLisgt.item( k );
-				 DocChainModel model = new DocChainModel();
-				 XmlBeanHelper.setFromElement( model, currentTag );
-				 if ( StringUtils.isNotEmpty( model.getParent() ) ) {
-					 String[] parentList = model.getParent().split( "," );
-					 for ( int p=0; p<parentList.length; p++) {
-						 DocChainModel parent = config.getDocChainList().get( parentList[p] );
-						 if ( parent == null ) {
-							 throw new DocException( "No parent found : "+model.getParent() );
-						 } else {
-							 model.getChainStepList().addAll( parent.getChainStepList() );
-						 }	 
-					 }
-				 }
-				 // chain step
-				 NodeList chainStepList = currentTag.getElementsByTagName( ATT_CHAIN_STEP );
-				 for ( int i=0; i<chainStepList.getLength(); i++ ) {
-					 Element currentChainStepTag = (Element) chainStepList.item(i);
-					 ChainStepModel chainStepModel = new ChainStepModel();
-					 Properties atts = DOMUtils.attributesToProperties( currentChainStepTag );
-					 chainStepModel.setStepType( atts.getProperty( ATT_STEP_TYPE ) );
-					 atts.remove( ATT_STEP_TYPE );
-					 chainStepModel.setAttributes(atts);
-					 if ( STEP_TYPE_CONFIG.equalsIgnoreCase( chainStepModel.getStepType() ) ) {
-						 NodeList configList = currentChainStepTag.getElementsByTagName( STEP_TYPE_CONFIG );
-						 if ( configList.getLength() != 1 ) {
-							 throw new ConfigException( "Expcted only one config tag : "+configList.getLength() );
-						 } else {
-							 Element configTag = (Element)configList.item( 0 );
-							 atts.putAll( DOMUtils.attributesToProperties( configTag ) );
-						 }
-					 } else if ( STEP_TYPE_FUNCTION.equalsIgnoreCase( chainStepModel.getStepType() ) 
-							 ||  STEP_TYPE_MAP.equalsIgnoreCase( chainStepModel.getStepType() )  ) {
-						 NodeList subList = currentChainStepTag.getElementsByTagName( chainStepModel.getStepType() );
-						 for ( int j=0; j<subList.getLength(); j++ ) {
-							 Element currentFunctionTag = (Element)subList.item(j);
-							 String key = currentFunctionTag.getAttribute( "name" );
-							 String value = currentFunctionTag.getAttribute( "value" );
-							 atts.setProperty(key, value);
-						 }
-					 }
-					 model.getChainStepList().add(chainStepModel);
-				 }
-				 config.getDocChainList().add(model);
-			 }
+			 handleStepList(config, doc);
 			 result = config;
 			 log.info( "loadConfig ok : {}", result );
 			 // populate mini filter chain model
-			 for ( DocChainModel docChainModel : config.getDocChainList() ) {
-				 MiniFilterChain chain = new MiniFilterChain( docChainModel.getId(), MiniFilter.CONTINUE );
-				 chain.setChainId( docChainModel.getId() );
-				 for ( ChainStepModel chainStepModel : docChainModel.getChainStepList() ) {
-					 String type = BUILT_IN_STEPS.getProperty( chainStepModel.getStepType(), chainStepModel.getStepType() );
-					 MiniFilterBase step = (MiniFilterBase) ClassHelper.newInstance( type );
-					 step.setCustomConfig( chainStepModel.getAttributes() );
-					 if ( FreeMarkerConfigStep.class.getName().equalsIgnoreCase( type ) ) {
-						step.setParam01( chainStepModel.getAttributes().getProperty( "id" ) );
-						Properties configProps = convertConfiguration( chainStepModel.getAttributes() ) ;
-						step.setCustomConfig( configProps );
-					 }
-					 step.setChainId( chain.getChainId() );
-					 chain.getFilterChain().add( step );
-				 }
-				 config.setChain(chain.getChainId(), chain);
-			 }
+			 handleMiniFilter(config);
 		 } catch (Exception e) {
 			 throw new ConfigException( "Error configuring FreemarkerDocProcessConfig : "+e , e );
 		 }
