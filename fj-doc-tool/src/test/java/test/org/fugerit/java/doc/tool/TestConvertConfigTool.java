@@ -1,27 +1,32 @@
 package test.org.fugerit.java.doc.tool;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestConvertConfigTool extends TestDocTool {
 	
 	@Test
 	public void testConvertConfigFop() {
-		this.docToolWorker( "src/test/resources/params-test/convert-config-fop.properties" );
+		boolean ok = this.docToolWorker( "src/test/resources/params-test/convert-config-fop.properties" );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testConvertConfigSample() {
-		this.docToolWorker( "src/test/resources/params-test/convert-config-sample.properties" );
+		boolean ok = this.docToolWorker( "src/test/resources/params-test/convert-config-sample.properties" );
+		Assert.assertTrue( ok );
 	}
 
 	@Test
 	public void testConvertConfigAutodoc() {
-		this.docToolWorker( "src/test/resources/params-test/convert-config-autodoc.properties" );
+		boolean ok = this.docToolWorker( "src/test/resources/params-test/convert-config-autodoc.properties" );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testConvertConfigHelp() {
-		this.docToolWorker( "src/test/resources/params-test/convert-config-help.properties" );
+		boolean ok = this.docToolWorker( "src/test/resources/params-test/convert-config-help.properties" );
+		Assert.assertTrue( ok );
 	}
 	
 }

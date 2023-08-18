@@ -12,15 +12,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TestDocTool {
 
-	protected void docToolWorker( String paramsPath ) {
+	protected boolean docToolWorker( String paramsPath ) {
+		boolean ok = false;
 		try {
 			Properties params = PropsIO.loadFromFile( paramsPath );
-			DocTool.handle( params );	
+			DocTool.handle( params );
+			ok = true;
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );
 			fail( message );
 		}
+		return ok;
 	}
 	
 }
