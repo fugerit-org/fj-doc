@@ -6,6 +6,7 @@ import java.util.Base64;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.util.checkpoint.CheckpointUtils;
+import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -140,7 +141,7 @@ public class GenerateRest {
 		        	this.addRow(simpleTableModel, count, "info", message);
 			        count++;
 		        }
-		        this.addRow(simpleTableModel, 0, "result", "Document valid? : "+ ( DocValidationResult.RESULT_CODE_OK == result.getResultCode() ) );
+		        this.addRow(simpleTableModel, 0, "result", "Document valid? : "+ ( Result.RESULT_CODE_OK == result.getResultCode() ) );
 		        SimpleTableDocConfig docConfig = SimpleTableDocConfig.newConfig();
 		        docConfig.processSimpleTable(simpleTableModel, handler, buffer);
 				GenerateOutput output = new GenerateOutput();

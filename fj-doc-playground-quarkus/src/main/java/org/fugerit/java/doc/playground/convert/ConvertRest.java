@@ -6,8 +6,6 @@ import java.io.StringWriter;
 import org.fugerit.java.doc.json.parse.DocJsonToXml;
 import org.fugerit.java.doc.json.parse.DocXmlToJson;
 import org.fugerit.java.doc.playground.facade.InputFacade;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -20,12 +18,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @ApplicationScoped
 @Path("/convert")
 public class ConvertRest {
 
-	private final static Logger logger = LoggerFactory.getLogger(ConvertRest.class);
+	private final static String INVALID_FORMAT_MESSAGE = "Invalid output format : ";
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -39,7 +39,7 @@ public class ConvertRest {
 			String outputFormat = input.getOutputFormat();
 			String docContent = input.getDocContent();
 			String docOutput = null;
-			logger.info( "format input : {} -> output : {}", inputFormat, outputFormat );
+			log.info( "format input : {} -> output : {}", inputFormat, outputFormat );
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectMapper yamlMapper = new ObjectMapper( new YAMLFactory() );
 			if ( InputFacade.FORMAT_XML.equalsIgnoreCase( inputFormat ) ) {
@@ -56,7 +56,7 @@ public class ConvertRest {
 						docOutput = yamlMapper.writeValueAsString( node );	
 					}
 				} else {
-					output.setMessage( "Invalid output format : "+outputFormat );
+					output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
 				}
 			} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( inputFormat ) ) {
 				if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
@@ -72,7 +72,7 @@ public class ConvertRest {
 						docOutput = yamlMapper.writeValueAsString( node );
 					}
 				} else {
-					output.setMessage( "Invalid output format : "+outputFormat );
+					output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
 				}
 			} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( inputFormat ) ) {
 				if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
@@ -88,7 +88,7 @@ public class ConvertRest {
 						docOutput = mapper.writerWithDefaultPrettyPrinter().writeValueAsString( node );
 					}
 				} else {
-					output.setMessage( "Invalid output format : "+outputFormat );
+					output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
 				}
 			}
 			if ( docOutput != null ) {
@@ -98,7 +98,7 @@ public class ConvertRest {
 				res = Response.status(Response.Status.BAD_REQUEST).entity( output ).build();
 			}
 		} catch (Exception e) {
-			logger.info("Error : " + e, e);
+			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return res;

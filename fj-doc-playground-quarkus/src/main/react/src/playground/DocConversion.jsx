@@ -26,9 +26,6 @@ class DocConversion extends Component {
 		}
 	}
 
-	componentDidMount() {
-	}
-
 	handleGenerate = (e) => {
 		e.preventDefault();
 		if (this.state.outputFormat == null) {

@@ -25,10 +25,6 @@ class Playground extends Component {
 		this.state =  {  dialogMessage: null }
 	}
 
-	componentDidMount() {
-	
-	}
-
 	handleCloseDialog = () => {
 		this.setState(
 			{ 
