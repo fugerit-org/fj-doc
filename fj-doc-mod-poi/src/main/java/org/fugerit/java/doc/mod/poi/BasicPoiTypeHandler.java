@@ -111,60 +111,68 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
 	}
 	
+	private void setFontCommonStyle( CellStyle cellStyle, DocPara currentePara, Font font ) {
+		// style
+		if ( currentePara != null ) {
+			if ( currentePara.getStyle() == DocPara.STYLE_BOLD ) {
+				font.setBold( true );
+			} else if ( currentePara.getStyle() == DocPara.STYLE_ITALIC ) {
+				font.setItalic( true );
+			} else if ( currentePara.getStyle() == DocPara.STYLE_BOLDITALIC ) {	
+				font.setBold( true );
+				font.setItalic( true );
+			} else if ( currentePara.getStyle() == DocPara.STYLE_UNDERLINE ) {
+				font.setUnderline( Font.U_SINGLE );
+			}	
+		}
+		cellStyle.setFont( font );		
+	}
+	
+	private void setCommonBorders( CellStyle cellStyle, DocBorders borders ) {
+		cellStyle.setBorderBottom( getBorderWidth( borders.getBorderWidthBottom() ) );
+		cellStyle.setBorderTop( getBorderWidth( borders.getBorderWidthTop() ) );
+		cellStyle.setBorderRight( getBorderWidth( borders.getBorderWidthRight() ) );
+		cellStyle.setBorderLeft( getBorderWidth( borders.getBorderWidthLeft() ) );
+	}
+	
+	private void setCommonAlign( DocCell cell, CellStyle cellStyle ) {
+		if ( cell != null ) {
+			// alignment
+			if ( cell.getAlign() == DocPara.ALIGN_CENTER ) {
+				cellStyle.setAlignment( HorizontalAlignment.CENTER );
+			} else if ( cell.getAlign() == DocPara.ALIGN_RIGHT ) {
+				cellStyle.setAlignment( HorizontalAlignment.RIGHT );
+			} else if ( cell.getAlign() == DocPara.ALIGN_LEFT ) {
+				cellStyle.setAlignment( HorizontalAlignment.LEFT );
+			}
+			// vertical alignment
+			if ( cell.getValign() == DocPara.ALIGN_MIDDLE ) {
+				cellStyle.setVerticalAlignment( VerticalAlignment.CENTER );
+			} else if ( cell.getValign() == DocPara.ALIGN_BOTTOM ) {
+				cellStyle.setVerticalAlignment( VerticalAlignment.BOTTOM );
+			} else if ( cell.getValign() == DocPara.ALIGN_TOP ) {
+				cellStyle.setVerticalAlignment( VerticalAlignment.TOP );
+			} 
+		}
+	}
+	
 	private void checkFormat( WorkbookHelper helper, Collection<PoiCellStyleModel> styleSet, DocPara currentePara,
 			 DocCell cell, TableMatrix matrix, int rn, int cn, Cell currentCell  ) throws Exception {
 		Workbook workbook = helper.getWorkbook();
 		CellStyle cellStyle = PoiCellStyleModel.find( styleSet , currentePara, cell );
 		if ( cellStyle == null ) {
-			
 			cellStyle = workbook.createCellStyle();
 			Font font = workbook.createFont();
-			
 			this.setFontStyle( helper, font, cellStyle, cell, currentePara);
 			this.setFormatStyle( helper, font, cellStyle, cell, currentePara);
-
-			// style
-			if ( currentePara != null ) {
-				if ( currentePara.getStyle() == DocPara.STYLE_BOLD ) {
-					font.setBold( true );
-				} else if ( currentePara.getStyle() == DocPara.STYLE_ITALIC ) {
-					font.setItalic( true );
-				} else if ( currentePara.getStyle() == DocPara.STYLE_BOLDITALIC ) {	
-					font.setBold( true );
-					font.setItalic( true );
-				} else if ( currentePara.getStyle() == DocPara.STYLE_UNDERLINE ) {
-					font.setUnderline( Font.U_SINGLE );
-				}
-				
-			}
-			cellStyle.setFont( font );
-
-			//bordi
+			// common style
+			this.setFontCommonStyle(cellStyle, currentePara, font);
+			//borders
 			DocBorders borders = matrix.getBorders( rn, cn );
-			
-			cellStyle.setBorderBottom( getBorderWidth( borders.getBorderWidthBottom() ) );
-			cellStyle.setBorderTop( getBorderWidth( borders.getBorderWidthTop() ) );
-			cellStyle.setBorderRight( getBorderWidth( borders.getBorderWidthRight() ) );
-			cellStyle.setBorderLeft( getBorderWidth( borders.getBorderWidthLeft() ) );
-			
-			if ( cell != null ) {
-				// alignment
-				if ( cell.getAlign() == DocPara.ALIGN_CENTER ) {
-					cellStyle.setAlignment( HorizontalAlignment.CENTER );
-				} else if ( cell.getAlign() == DocPara.ALIGN_RIGHT ) {
-					cellStyle.setAlignment( HorizontalAlignment.RIGHT );
-				} else if ( cell.getAlign() == DocPara.ALIGN_LEFT ) {
-					cellStyle.setAlignment( HorizontalAlignment.LEFT );
-				}
-				// vertical alignment
-				if ( cell.getValign() == DocPara.ALIGN_MIDDLE ) {
-					cellStyle.setVerticalAlignment( VerticalAlignment.CENTER );
-				} else if ( cell.getValign() == DocPara.ALIGN_BOTTOM ) {
-					cellStyle.setVerticalAlignment( VerticalAlignment.BOTTOM );
-				} else if ( cell.getValign() == DocPara.ALIGN_TOP ) {
-					cellStyle.setVerticalAlignment( VerticalAlignment.TOP );
-				} 
-			}
+			this.setCommonBorders(cellStyle, borders);
+			//allignment (vertical and horizzontal)
+			this.setCommonAlign(cell, cellStyle);
+			// final setup
 			cellStyle.setFont( font );
 			styleSet.add( new PoiCellStyleModel( cellStyle , currentePara, cell ) );
 		}
