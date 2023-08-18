@@ -34,10 +34,10 @@ public class MatrixCell implements Serializable {
 		this.cell = cell;
 	}
 	
-	public DocBorders getBorders() throws CloneNotSupportedException {
+	public DocBorders getBorders() {
 		DocBorders borders = new DocBorders();
 		if ( this.getParent() == this.getCell() ) {
-			borders = (DocBorders)this.cell.getDocBorders().clone();
+			borders = new DocBorders( this.cell.getDocBorders() );
 			if ( this.getCell().getRSpan() > 1 ) {
 				borders.setBorderWidthBottom( 0 );
 			}
@@ -45,7 +45,7 @@ public class MatrixCell implements Serializable {
 				borders.setBorderWidthRight( 0 );
 			}
 		} else {
-			borders = (DocBorders)this.parent.getDocBorders().clone();
+			borders = new DocBorders( this.parent.getDocBorders() );
 			if ( this.parent.getRSpan() > 1 ) {
 				borders.setBorderWidthTop( 0 );
 				borders.setBorderWidthBottom( 0 );

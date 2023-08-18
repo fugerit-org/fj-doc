@@ -2,6 +2,7 @@ package test.org.fugerit.java.doc.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestTiffValidator extends TestDocValidatorFacade {
@@ -13,11 +14,13 @@ public class TestTiffValidator extends TestDocValidatorFacade {
 	// note : only supported for java 9+
 	@Test
 	public void testTiffAsTiff() {
-		this.worker(FACADE, "tiff_as_tiff.tiff", true );
+		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
+		Assert.assertTrue( ok );
 	}
 	@Test
 	public void testTiffAsTiffExtTif() {
-		this.worker(FACADE, "tiff_as_tiff.tif", true );
+		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", true );
+		Assert.assertTrue( ok );
 	}
 	
 }

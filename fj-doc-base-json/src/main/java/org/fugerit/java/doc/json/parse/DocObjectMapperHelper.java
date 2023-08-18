@@ -16,13 +16,14 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class DocObjectMapperHelper {
 	
 	public DocObjectMapperHelper(ObjectMapper mapper) {
@@ -40,9 +41,7 @@ public class DocObjectMapperHelper {
 	
 	public static final String PROPERTY_XSD_VERSION = "xsd-version";
 	
-	private final static Logger logger = LoggerFactory.getLogger( DocObjectMapperHelper.class );
-	
-	private final static Set<String> SPECIAL_PROPERTY_NAMES = new HashSet<>();
+	private static final Set<String> SPECIAL_PROPERTY_NAMES = new HashSet<>();
 	static {
 		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TAG );
 		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TEXT );
@@ -122,7 +121,7 @@ public class DocObjectMapperHelper {
 		JsonNode root = this.mapper.readTree( reader );
 		this.handleElement(root, context);
 		context.endDocument();
-		logger.debug( "Parse done!" );
+		log.debug( "Parse done!" );
 		DocBase docBase = context.getDocBase();
 		docBase.setXsdVersion( findVersion(root, DocFacade.CURRENT_VERSION) );
 		return docBase;

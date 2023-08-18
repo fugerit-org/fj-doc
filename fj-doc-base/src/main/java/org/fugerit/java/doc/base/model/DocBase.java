@@ -26,6 +26,7 @@
 package org.fugerit.java.doc.base.model;
 
 import java.io.PrintStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
@@ -38,7 +39,7 @@ import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
  * @author mfranci
  *
  */
-public class DocBase extends DocElement {
+public class DocBase extends DocElement implements Serializable {
 
 	/**
 	 * 

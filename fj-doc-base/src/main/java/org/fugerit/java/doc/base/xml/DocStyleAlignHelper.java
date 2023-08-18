@@ -4,7 +4,16 @@ import org.fugerit.java.doc.base.config.DocConstants;
 import org.fugerit.java.doc.base.model.DocPara;
 
 public class DocStyleAlignHelper {
-
+ 
+	private DocStyleAlignHelper() {} // java:S1118
+	
+	public static final String ATTRIBUTE_NAME_ALIGN = "align";
+	
+	public static final String ATTRIBUTE_NAME_BACK_COLOR = "back-color";
+	
+	public static final String ATTRIBUTE_NAME_FORE_COLOR = "fore-color";
+	
+	
 	public static int parseStyle( String style, int defaultStype ) {
 		int result = defaultStype;
 		if ( DocConstants.STYLE_BOLD.equalsIgnoreCase( style ) ) {

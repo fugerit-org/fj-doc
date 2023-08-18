@@ -30,6 +30,31 @@ public class DocJsonToXml {
 
 	private ObjectMapper mapper;
 
+	private void iterateElement( JsonNode current, Document doc, Element tag ) throws Exception {
+		JsonNode elementsNode = current.get( DocObjectMapperHelper.PROPERTY_ELEMENTS );
+		if ( elementsNode != null ) {
+			if ( elementsNode.isArray() ) {
+				Iterator<JsonNode> itElements = elementsNode.elements();
+				while ( itElements.hasNext() ) {
+					JsonNode currentElement = itElements.next();
+					this.create(doc, tag, currentElement);
+				}
+			} else {
+				throw new ConfigException( "Property must be an array : "+elementsNode );
+			}
+		}
+	}
+	
+	private void iterateAttribute( JsonNode current, Element tag ) throws Exception {
+		Iterator<String> itNames = current.fieldNames();
+		while ( itNames.hasNext() ) {
+			String currentName = itNames.next();
+			if ( !DocObjectMapperHelper.isSpecialProperty( currentName ) ) {
+				tag.setAttribute( currentName , current.get( currentName ).asText() );
+			}
+		}
+	}
+	
 	private Element create( Document doc, Element parent, JsonNode current ) throws Exception {
 		Element tag = null;
 		JsonNode tagNode = current.get( DocObjectMapperHelper.PROPERTY_TAG );
@@ -45,25 +70,8 @@ public class DocJsonToXml {
 			if ( textNode != null ) {
 				tag.appendChild( doc.createTextNode( textNode.asText() ) );
 			}
-			JsonNode elementsNode = current.get( DocObjectMapperHelper.PROPERTY_ELEMENTS );
-			if ( elementsNode != null ) {
-				if ( elementsNode.isArray() ) {
-					Iterator<JsonNode> itElements = elementsNode.elements();
-					while ( itElements.hasNext() ) {
-						JsonNode currentElement = itElements.next();
-						this.create(doc, tag, currentElement);
-					}
-				} else {
-					throw new ConfigException( "Property must be an array : "+elementsNode );
-				}
-			}
-			Iterator<String> itNames = current.fieldNames();
-			while ( itNames.hasNext() ) {
-				String currentName = itNames.next();
-				if ( !DocObjectMapperHelper.isSpecialProperty( currentName ) ) {
-					tag.setAttribute( currentName , current.get( currentName ).asText() );
-				}
-			}
+			this.iterateElement(current, doc, tag);
+			this.iterateAttribute(current, tag);
 		}
 		return tag;
 	}

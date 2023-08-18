@@ -187,7 +187,7 @@ public class DocParserContext {
 			if ( StringUtils.isNotEmpty( alt ) ) {
 				docImage.setAlt( alt );
 			}
-			String align = props.getProperty( "align" );
+			String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
 			docImage.setAlign( DocStyleAlignHelper.getAlign( align ) );
 			this.currentElement = docImage;		
 		} else if ( "pl".equalsIgnoreCase( qName ) ) {
@@ -234,8 +234,8 @@ public class DocParserContext {
 			DocTable docTable = new DocTable();
 			docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
-			docTable.setBackColor( props.getProperty( "back-color" ) );
-			docTable.setForeColor( props.getProperty( "fore-color" ) );
+			docTable.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
+			docTable.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
 			docTable.setAlt( props.getProperty( DocTable.ATTRIBUTE_NAME_ALT ) );
 			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_SPACING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_SPACING ) ) ) );
 			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_PADDING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_PADDING ) ) ) );
@@ -266,12 +266,12 @@ public class DocParserContext {
 			DocCell docCell = new DocCell();
 			docCell.setCSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_COLSPAN, DocElement.STRING_1 ) ) );
 			docCell.setRSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_ROWSPAN, DocElement.STRING_1 ) ) );
-			docCell.setBackColor( props.getProperty( "back-color" ) );
-			docCell.setForeColor( props.getProperty( "fore-color" ) );
+			docCell.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
+			docCell.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
 			docCell.setType( props.getProperty( "type" ) );
 			docCell.setHeader( "true".equalsIgnoreCase( props.getProperty( "header" ) ) );
 			// h align
-			String align = props.getProperty( "align" );		
+			String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );		
 			docCell.setAlign( DocStyleAlignHelper.getAlign( align ) );
 			// v align
 			String valign = props.getProperty( "valign" );
@@ -309,7 +309,7 @@ public class DocParserContext {
 	}
 
 	private static void handleHeaderFooter( DocHeaderFooter headerFooter, Properties atts ) {
-		String align = atts.getProperty( "align" );
+		String align = atts.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
 		headerFooter.setAlign( DocStyleAlignHelper.getAlign( align ) );
 		String numbered = atts.getProperty( "numbered" );
 		headerFooter.setNumbered( Boolean.valueOf( numbered ).booleanValue() );
@@ -361,13 +361,13 @@ public class DocParserContext {
 		String id = props.getProperty( "id" );
 		docPara.setId( id );
 		// setting paragraph align
-		String align = props.getProperty( "align" );
+		String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
 		docPara.setAlign( DocStyleAlignHelper.getAlign( align ) );
 		String fontName = props.getProperty(  "font-name" );
 		docPara.setFontName( fontName );
 		String leading = props.getProperty( "leading" );
-		docPara.setBackColor( props.getProperty( "back-color" ) );
-		docPara.setForeColor( props.getProperty( "fore-color" ) );
+		docPara.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
+		docPara.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
 		docPara.setFormat( props.getProperty( "format" ) );
 		docPara.setType( props.getProperty( "type" ) );
 		if ( leading != null ) {

@@ -36,12 +36,11 @@ import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperConsts;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperUtils;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
 import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
-
-	private final static Logger logger = LoggerFactory.getLogger( BasicPoiTypeHandler.class );  
 	
 	/**
 	 * 
@@ -106,7 +105,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				currentCell.setCellValue( text );
 			}
 		} catch (Exception e) {
-			logger.warn( "Format conversion errot for text '{}', type '{}', format '{}'", text, type, format, e );
+			log.warn( "Format conversion errot for text '{}', type '{}', format '{}'", text, type, format, e );
 			currentCell.setCellValue( text );
 		}
 
@@ -172,21 +171,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		currentCell.setCellStyle( cellStyle );
 	}
 	
-	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
-		Workbook workbook = helper.getWorkbook();
-		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
-		Iterator<DocElement> rows = table.docElements();
-		while ( rows.hasNext() ) {
-			DocRow row = (DocRow)rows.next();
-			Iterator<DocElement> cells = row.docElements();
-			while ( cells.hasNext() ) {
-				DocCell cell = (DocCell)cells.next();
-				matrix.setNext( cell, cell.getRSpan() , cell.getCSpan() );
-			}
-		}
-		
-		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
-		
+	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook ) throws Exception {
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			Row currentRow = dati.getRow( rn );
 			if ( currentRow == null ) {
@@ -226,9 +211,23 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			}
 			 
 		}
-		
-		logger.info( "TOTAL STYLES : {}", styleSet.size() );
-		
+	}
+	
+	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
+		Workbook workbook = helper.getWorkbook();
+		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
+		Iterator<DocElement> rows = table.docElements();
+		while ( rows.hasNext() ) {
+			DocRow row = (DocRow)rows.next();
+			Iterator<DocElement> cells = row.docElements();
+			while ( cells.hasNext() ) {
+				DocCell cell = (DocCell)cells.next();
+				matrix.setNext( cell, cell.getRSpan() , cell.getCSpan() );
+			}
+		}
+		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
+		this.handleSubmatrix(matrix, ignoreFormat, dati, helper, styleSet, workbook);
+		log.info( "TOTAL STYLES : {}", styleSet.size() );
 		return matrix;
 	}
 	
@@ -270,31 +269,21 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				dati = outputXls.createSheet( sheetName );
 			} else {
 				dati = outputXls.getSheet( sheetName );
-			}
-			
-//			int[] colW = table.getColWithds();
-//			for ( int i=0; i<colW.length; i++ ) {
-//				CellView cw = new CellView( dati.getColumnView( i ) );
-//				int mul = Integer.parseInt( docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_WIDTH_MULTIPLIER, ExcelHelperConsts.PROP_XLS_WIDTH_MULTIPLIER_DEFAULT ) );
-//				cw.setSize( colW[i]* mul );
-//				dati.setColumnView( i , cw );
-//			}
-			
+			}			
 			handleMerge(table, ignoreFormat, dati, helper);
-			
 		}
 
 		boolean tryAutoResize = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE, ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE_DEFAULT ) );
 		if ( tryAutoResize ) {
 			boolean failOnAutoResizeError = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_DEFAULT ) );
 			try {
-				logger.info( "try autoresize : {} -> {}", ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, failOnAutoResizeError );
+				log.info( "try autoresize : {} -> {}", ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, failOnAutoResizeError );
 				PoiUtils.autoSizeColumns( outputXls );
 			} catch (Exception e) {
 				if ( failOnAutoResizeError ) {
 					throw e;
 				} else {
-					logger.warn( "Excel autoresize failed "+e , e );
+					log.warn( "Excel autoresize failed "+e , e );
 				}
 			}
 		}

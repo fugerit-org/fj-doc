@@ -9,12 +9,13 @@ import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class AbstractDocParser implements DocParser {
 
-	private static final Logger logger = LoggerFactory.getLogger( AbstractDocParser.class );
+	private static final String PARSING_EXCEPTION_BASE_MESSAGE = "Parsing exception : ";
 	
 	private int sourceType;
 	
@@ -41,13 +42,13 @@ public abstract class AbstractDocParser implements DocParser {
 			String xsdVersion = docBase.getXsdVersion();
 			try {
 				if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, DocFacade.CURRENT_VERSION ) > 0 ) {
-					logger.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, DocFacade.CURRENT_VERSION  );
+					log.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, DocFacade.CURRENT_VERSION  );
 				}	
 			} catch (Exception e) {
-				logger.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, DocFacade.CURRENT_VERSION );
+				log.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, DocFacade.CURRENT_VERSION );
 			}
 		} catch (Exception e) {
-			throw new DocException( "Parsing exception : "+e, e );
+			throw new DocException( PARSING_EXCEPTION_BASE_MESSAGE+e, e );
 		}
 		return docBase;
 	}
@@ -58,7 +59,7 @@ public abstract class AbstractDocParser implements DocParser {
 		try {
 			result = this.validateWorker(reader, false);
 		} catch (Exception e) {
-			throw new DocException( "Parsing exception : "+e, e );
+			throw new DocException( PARSING_EXCEPTION_BASE_MESSAGE+e, e );
 		}
 		return result;
 	}
@@ -74,7 +75,7 @@ public abstract class AbstractDocParser implements DocParser {
 		try {
 			result = this.validateWorker(reader, true);
 		} catch (Exception e) {
-			throw new DocException( "Parsing exception : "+e, e );
+			throw new DocException( PARSING_EXCEPTION_BASE_MESSAGE+e, e );
 		}
 		return result;
 	}

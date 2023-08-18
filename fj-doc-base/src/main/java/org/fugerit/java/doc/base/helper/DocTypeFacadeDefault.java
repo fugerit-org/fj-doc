@@ -17,26 +17,32 @@ public class DocTypeFacadeDefault extends DocTypeFacadeAbstract {
 
 	@Override
 	public void handleDoc(DocBase docBase) throws Exception {
+		// do nothing implementation : subclass must implements this method if they want a different behavior
 	}
 
 	@Override
 	public void handlePara(DocPara docPara, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+		// do nothing implementation : subclass must implements this method if they want a different behavior
 	}
 
 	@Override
 	public void handlePhrase(DocPhrase docPhrase, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+		// do nothing implementation : subclass must implements this method if they want a different behavior
 	}
 
 	@Override
 	public void handleList(DocList docList, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+		// do nothing implementation : subclass must implements this method if they want a different behavior
 	}
 
 	@Override
 	public void handleImage(DocImage docImage, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+		// do nothing implementation : subclass must implements this method if they want a different behavior
 	}
 
 	@Override
 	public void handleTable(DocTable docTable, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+		// do nothing implementation : subclass must implements this method if they want a different behavior
 	}
 	
 }

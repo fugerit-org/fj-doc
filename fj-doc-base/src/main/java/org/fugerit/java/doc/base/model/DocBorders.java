@@ -45,13 +45,24 @@ public class DocBorders {
 	
 	public static final String ATTRIBUTE_NAME_PADDING_RIGHT = "padding-right";
 	
-	public Object clone() throws CloneNotSupportedException {
-		DocBorders borders = new DocBorders();
-		borders.setBorderWidthBottom( this.getBorderWidthBottom() );
-		borders.setBorderWidthTop( this.getBorderWidthTop() );
-		borders.setBorderWidthRight( this.getBorderWidthRight() );
-		borders.setBorderWidthLeft( this.getBorderWidthLeft() );
-		return borders;
+	public DocBorders() {
+	}
+	
+	public DocBorders( DocBorders from ) {
+		if ( from != null ) {
+			this.setBorderWidthBottom( from.getBorderWidthBottom() );
+			this.setBorderWidthTop( from.getBorderWidthTop() );
+			this.setBorderWidthRight( from.getBorderWidthRight() );
+			this.setBorderWidthLeft( from.getBorderWidthLeft() );
+			this.setBorderColorBottom( from.getBorderColorBottom() );
+			this.setBorderColorTop( from.getBorderColorTop() );
+			this.setBorderColorRight( from.getBorderColorRight() );
+			this.setBorderColorLeft( from.getBorderColorLeft() );
+			this.setPaddingBottom( from.getPaddingBottom() );
+			this.setPaddingTop( from.getPaddingTop() );
+			this.setPaddingLeft( from.getPaddingLeft() );
+			this.setPaddingRight( from.getPaddingRight() );
+		}
 	}
 
 	private int paddingBottom;

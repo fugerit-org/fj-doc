@@ -16,6 +16,7 @@ import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.util.filterchain.MiniFilter;
 import org.fugerit.java.core.util.filterchain.MiniFilterBase;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.xml.dom.DOMUtils;
@@ -58,7 +59,7 @@ public class FreemarkerDocProcessConfigFacade {
 				new  DefaultChainProvider() {
 					@Override
 					public MiniFilterChain newDefaultChain(String id) {
-						MiniFilterChain defaultChain = new MiniFilterChain( "DEFAULT_CHAIN_"+id+"_"+System.currentTimeMillis(), MiniFilterChain.CONTINUE );
+						MiniFilterChain defaultChain = new MiniFilterChain( "DEFAULT_CHAIN_"+id+"_"+System.currentTimeMillis(), MiniFilter.CONTINUE );
 						defaultChain.setChainId( defaultChain.getKey() );
 						// config step
 						FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
@@ -191,7 +192,7 @@ public class FreemarkerDocProcessConfigFacade {
 			 log.info( "loadConfig ok : {}", result );
 			 // populate mini filter chain model
 			 for ( DocChainModel docChainModel : config.getDocChainList() ) {
-				 MiniFilterChain chain = new MiniFilterChain( docChainModel.getId(), MiniFilterChain.CONTINUE );
+				 MiniFilterChain chain = new MiniFilterChain( docChainModel.getId(), MiniFilter.CONTINUE );
 				 chain.setChainId( docChainModel.getId() );
 				 for ( ChainStepModel chainStepModel : docChainModel.getChainStepList() ) {
 					 String type = BUILT_IN_STEPS.getProperty( chainStepModel.getStepType(), chainStepModel.getStepType() );

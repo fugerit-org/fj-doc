@@ -30,7 +30,7 @@ public abstract class DocCharsetProvider {
 				return ObjectUtils.objectWithDefault( charset , useDefault );
 			}
 		};
-	}; 
+	}
 	
 	
 }

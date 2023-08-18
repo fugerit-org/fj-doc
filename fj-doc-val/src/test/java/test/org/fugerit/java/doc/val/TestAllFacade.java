@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.val;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
 import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestAllFacade extends TestDocValidatorFacade {
@@ -16,42 +17,50 @@ public class TestAllFacade extends TestDocValidatorFacade {
 	
 	@Test
 	public void testPdfAsPdf() {
-		this.worker(FACADE, "pdf_as_pdf.pdf", true );
+		boolean ok = this.worker(FACADE, "pdf_as_pdf.pdf", true );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testPngAsPdf() {
-		this.worker(FACADE, "png_as_pdf.pdf", false );
+		boolean ok = this.worker(FACADE, "png_as_pdf.pdf", false );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testJpgAsJpg() {
-		this.worker(FACADE, "jpg_as_jpg.jpg", true );
+		boolean ok = this.worker(FACADE, "jpg_as_jpg.jpg", true );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testJpgAsJpgExtJpeg() {
-		this.worker(FACADE, "jpg_as_jpg.jpeg", true );
+		boolean ok = this.worker(FACADE, "jpg_as_jpg.jpeg", true );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testPdfAsJpg() {
-		this.worker(FACADE, "pdf_as_jpg.jpg", false );
+		boolean ok = this.worker(FACADE, "pdf_as_jpg.jpg", false );
+		Assert.assertTrue( ok );
 	}
 
 	@Test
 	public void testPngAsPng() {
-		this.worker(FACADE, "png_as_png.png", true );
+		boolean ok = this.worker(FACADE, "png_as_png.png", true );
+		Assert.assertTrue( ok );
 	}
 
 	// note : only supported for java 9+
 	@Test
 	public void testTiffAsTiff() {
-		this.worker(FACADE, "tiff_as_tiff.tiff", true );
+		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
+		Assert.assertTrue( ok );
 	}
 	@Test
 	public void testTiffAsTiffExtTif() {
-		this.worker(FACADE, "tiff_as_tiff.tif", true );
+		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", true );
+		Assert.assertTrue( ok );
 	}
 	
 }

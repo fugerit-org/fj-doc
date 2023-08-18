@@ -2,6 +2,7 @@ package test.org.fugerit.java.doc.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestPdfBoxValidator extends TestDocValidatorFacade {
@@ -12,12 +13,14 @@ public class TestPdfBoxValidator extends TestDocValidatorFacade {
 	
 	@Test
 	public void testPdfAsPdf() {
-		this.worker(FACADE, "pdf_as_pdf.pdf", true );
+		boolean ok = this.worker(FACADE, "pdf_as_pdf.pdf", true );
+		Assert.assertTrue( ok );
 	}
 	
 	@Test
 	public void testPngAsPdf() {
-		this.worker(FACADE, "png_as_pdf.pdf", false );
+		boolean ok = this.worker(FACADE, "png_as_pdf.pdf", false );
+		Assert.assertTrue( ok );
 	}
 	
 }

@@ -16,17 +16,20 @@ public class TestDocValidatorFacade {
 	
 	private static final String BASE_PATH = "sample";
 	
-	protected void worker( DocValidatorFacade facade, String fileName, boolean result ) {
+	protected boolean  worker( DocValidatorFacade facade, String fileName, boolean result ) {
+		boolean ok = false;
 		String path = BASE_PATH+"/"+fileName;
 		logger.info( "test path {}, expected result {}", path, result );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( path ) ) {
 			boolean check = facade.check(fileName, is);
 			Assert.assertEquals( "File check failed", result, check );
+			ok = ( result == check );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			logger.error( message, e );
 			fail( message );
 		}
+		return ok;
 	}
 
 	

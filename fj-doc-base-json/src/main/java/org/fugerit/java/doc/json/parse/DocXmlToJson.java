@@ -37,7 +37,7 @@ public class DocXmlToJson {
 		// mapping normal properties
 		Properties props = DOMUtils.attributesToProperties( currentTag );
 		for ( Object k : props.keySet() ) {
-			String key = String.valueOf( k );;
+			String key = String.valueOf( k );
 			currentNode.put( key , props.getProperty( key ));
 		}
 		// adding special properties

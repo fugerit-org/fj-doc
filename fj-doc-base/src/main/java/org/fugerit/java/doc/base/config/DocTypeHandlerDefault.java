@@ -36,7 +36,7 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 	
 	@Setter(value = AccessLevel.PROTECTED) private String format;
 	
-	private Charset charset;
+	private transient Charset charset;
 	
 	@Override
 	public String getMime() {
@@ -74,7 +74,8 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-		
+		// this is a do nothing implementation
+		// sub classes should always override it
 	}
 	
 	public DocTypeHandlerDefault(String type, String module, String mime, Charset charset) {

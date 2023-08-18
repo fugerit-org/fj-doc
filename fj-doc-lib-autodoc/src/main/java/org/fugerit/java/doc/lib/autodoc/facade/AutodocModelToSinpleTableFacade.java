@@ -166,12 +166,7 @@ public class AutodocModelToSinpleTableFacade {
 		return type;
 	}
 	
-	public SimpleTable toSimpleTable( AutodocModel autodocModel ) {
-		SimpleTableHelper helper = SimpleTableFacade.newHelper().withDefaultBorderWidth( 1 );
-		SimpleTable simpleTable = helper.newTable( 20, 40, 40 );
-		// elements start
-		// header
-		simpleTable.addRow( helper.newHeaderRow( "Element", "Description", "Children" ) );
+	private void iterateElements( SimpleTableHelper helper, SimpleTable simpleTable, AutodocModel autodocModel ) {
 		for ( AutodocElement element : autodocModel.getElements() ) {
 			XsdElement xsdElement = element.getXsdElement();
 			String name = xsdElement.getRawName();
@@ -187,7 +182,9 @@ public class AutodocModelToSinpleTableFacade {
 			}
 			simpleTable.addRow( helper.newNormalRow( name, description, children.toString() ) );
 		}
-		// attributes start
+	}
+	
+	private void iterateAttributes( SimpleTableHelper helper, SimpleTable simpleTable, AutodocModel autodocModel ) {
 		for ( AutodocElement element : autodocModel.getElements() ) {
 			XsdElement xsdElement = element.getXsdElement();
 			XsdComplexType complexType = element.getComplexType();
@@ -206,6 +203,17 @@ public class AutodocModelToSinpleTableFacade {
 				
 			}
 		}
+	}
+	
+	public SimpleTable toSimpleTable( AutodocModel autodocModel ) {
+		SimpleTableHelper helper = SimpleTableFacade.newHelper().withDefaultBorderWidth( 1 );
+		SimpleTable simpleTable = helper.newTable( 20, 40, 40 );
+		// elements start
+		// header
+		simpleTable.addRow( helper.newHeaderRow( "Element", "Description", "Children" ) );
+		this.iterateElements(helper, simpleTable, autodocModel);
+		// attributes start
+		this.iterateAttributes(helper, simpleTable, autodocModel);
 		return simpleTable;
 	}
 	

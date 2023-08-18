@@ -21,17 +21,19 @@ import org.fugerit.java.core.xml.sax.eh.ResultErrorHandler;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class DocValidator {
 
 	private DocValidator() {}
 	
-	private static final Logger logger = LoggerFactory.getLogger( DocValidator.class );
+	private static final String CURRENT = "current";
 	
 	private static XMLSchemaCatalogConfig init() {
 		XMLSchemaCatalogConfig catalog = null;
@@ -48,7 +50,7 @@ public class DocValidator {
 	public static SAXParseResult validate( Reader xmlData ) throws XMLException {
 		SAXParseResult result = new SAXParseResult();
 		try {
-			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), "current" );	
+			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), CURRENT );	
 		} catch (Exception e) {
 			throw new XMLException( e );
 		}
@@ -60,12 +62,12 @@ public class DocValidator {
 		try {
 			String buffer = StreamIO.readString( xmlData );	
 			String xsdVersion = getXsdVersion( new StringReader( buffer ) );
-			logger.info( "xsdVersion -> '{}'", xsdVersion );
-			String validateVersion = "current";
+			log.info( "xsdVersion -> '{}'", xsdVersion );
+			String validateVersion = CURRENT;
 			if ( StringUtils.isNotEmpty( xsdVersion ) ) {
 				validateVersion = "version-"+xsdVersion;
 			}
-			logger.info( "validateVersion -> '{}'", validateVersion );
+			log.info( "validateVersion -> '{}'", validateVersion );
 			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( new StringReader( buffer ) )  ), validateVersion );	
 		} catch (Exception e) {
 			throw new XMLException( e );
@@ -109,7 +111,7 @@ public class DocValidator {
 	public static boolean logValidation( Reader xmlData, Logger logger ) throws XMLException {
 		SAXParseResult result = new SAXParseResult();
 		try {
-			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), "current" );	
+			SCHEMA_CATALOG.validateCacheSchema( new ResultErrorHandler( result ) , new SAXSource( new InputSource( xmlData )  ), CURRENT );	
 		} catch (Exception e) {
 			throw new XMLException( e );
 		}
