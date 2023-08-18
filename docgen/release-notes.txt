@@ -1,5 +1,7 @@
 ﻿1.5.0-rc.3 (2023-08-XX)
 ------------------
++ [enhancement][fj-doc-lib-autodoc] now the default html does not use a template but the standard html generation [1.5.0-rc.3]
++ [enhancement][fj-doc-freemarker] html type handler automatically add doctype and xml lang (default to 'en') [1.5.0-rc.3]
 + [enhancement][fj-doc-base] doc-2-1.xsd (added new 'alt' attribute for table) [1.5.0-rc.3]
 + [enhancement][fj-doc-freemarker] added doctype definition to html type handler [1.5.0-rc.3]
 + [documentation][fj-doc-base]Added documentation to the doc-2-0.xsd [1.5.0-rc.2]

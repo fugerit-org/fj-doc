@@ -17,6 +17,7 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.lib.autodoc.detail.AutodocDetailModel;
@@ -24,7 +25,6 @@ import org.fugerit.java.doc.lib.autodoc.meta.AutodocMetaModel;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 
 public class AutodocDocConfig {
-
 
 	private final static String CONFIG_PATH = "cl://fj_doc_lib_autodoc/fm-doc-process-config-autodoc.xml";
 	
@@ -74,12 +74,8 @@ public class AutodocDocConfig {
 	}
 	
 	public void processAutodocHtmlDefault(  AutodocModel autodocModel, OutputStream os ) throws DocException {
-		try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream(); 
-				InputStream templateStream = ClassHelper.loadFromDefaultClassLoader( "fj_doc_lib_autodoc/html_template/main_template.html" ) ) {
-			this.processAutodoc( autodocModel, FreeMarkerHtmlFragmentTypeHandler.HANDLER, buffer );
-			String templateText = StreamIO.readString( templateStream );
-			String htmlContent = templateText.replace( "[CONTENT_AREA_TOKEN]" , new String( buffer.toByteArray() ) );
-			os.write( htmlContent.getBytes() );
+		try  {
+			this.processAutodoc( autodocModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
 		} catch (Exception e) {
 			throw new DocException( "Autodoc generation error : "+e, e );
 		}

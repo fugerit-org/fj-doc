@@ -6,8 +6,8 @@
 	</#list>
 </div>
 <#else>
-<!doctype html>
-<html>
+<!doctype html>	
+<html lang="${docBase.infoDocLanguage!'en'}">
 	<head>
 		<title>${docBase.infoDocTitle!'Generated document'}</title>
 		<#if (docBase.infoDocAuthor)??><meta name="author" content="${docBase.infoDocAuthor}"/></#if>
