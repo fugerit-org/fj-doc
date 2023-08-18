@@ -171,6 +171,38 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		currentCell.setCellStyle( cellStyle );
 	}
 	
+	private void iterateCellMatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook, int rn, int cn, Row currentRow ) throws Exception {
+		String type = null;
+		String format = null;
+		DocCell cell = matrix.getCell( rn, cn );
+		DocCell parent = matrix.getParent( rn, cn );
+		String text = "";
+		DocPara currentePara = null;
+		if ( cell != null ) {
+			Iterator<DocElement> it1 = cell.docElements();
+			DocElement current = (DocElement)it1.next();
+			if ( current instanceof DocPara ) {
+				currentePara = ((DocPara)current);
+				text = currentePara.getText();
+				type = currentePara.getType();
+				format = currentePara.getFormat();
+			} else {
+				text = String.valueOf( current );
+				currentePara = null;
+			}
+		} else {
+			currentePara = null;
+		}
+		Cell currentCell = currentRow.getCell( cn );
+		if ( currentCell == null ) {
+			currentCell = currentRow.createCell( cn );
+		}
+		if ( cell != null && parent != null && !ignoreFormat ) {
+			this.checkFormat( helper, styleSet, currentePara, cell, matrix, rn, cn, currentCell );
+		} 
+		this.setCellValue( workbook, currentCell, type, format, text);
+	}
+	
 	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook ) throws Exception {
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			Row currentRow = dati.getRow( rn );
@@ -178,38 +210,8 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				currentRow = dati.createRow( rn );
 			}
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
-				String type = null;
-				String format = null;
-				DocCell cell = matrix.getCell( rn, cn );
-				DocCell parent = matrix.getParent( rn, cn );
-				String text = "";
-				DocPara currentePara = null;
-				if ( cell != null ) {
-					Iterator<DocElement> it1 = cell.docElements();
-					DocElement current = (DocElement)it1.next();
-					if ( current instanceof DocPara ) {
-						currentePara = ((DocPara)current);
-						text = currentePara.getText();
-						type = currentePara.getType();
-						format = currentePara.getFormat();
-					} else {
-						text = String.valueOf( current );
-						currentePara = null;
-					}
-				} else {
-					currentePara = null;
-				}
-				
-				Cell currentCell = currentRow.getCell( cn );
-				if ( currentCell == null ) {
-					currentCell = currentRow.createCell( cn );
-				}
-				if ( cell != null && parent != null && !ignoreFormat ) {
-					this.checkFormat( helper, styleSet, currentePara, cell, matrix, rn, cn, currentCell );
-				} 
-				this.setCellValue( workbook, currentCell, type, format, text);
+				this.iterateCellMatrix(matrix, ignoreFormat, dati, helper, styleSet, workbook, rn, cn, currentRow);
 			}
-			 
 		}
 	}
 	
