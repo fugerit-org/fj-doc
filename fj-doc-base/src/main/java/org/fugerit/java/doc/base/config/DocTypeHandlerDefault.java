@@ -104,7 +104,8 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 	}
 
 	protected void handleConfigTag( Element config ) throws ConfigException {
-		
+		// this is a do nothing implementation
+		// sub classes should override it if needed
 	}
 	
 	private Element lookupConfig( Element tag, String tagName ) {
@@ -137,7 +138,4 @@ public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocT
 		return this.getClass().getSimpleName()+" [type=" + type + ", module=" + module + ", format=" + format + "]";
 	}
 	
-	
-	
-
 }

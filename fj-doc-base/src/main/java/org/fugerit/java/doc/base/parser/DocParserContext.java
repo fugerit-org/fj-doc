@@ -123,6 +123,152 @@ public class DocParserContext {
 			}
 		}
 	}
+
+	private void handleStartMeta( String qName, Properties props ) {
+		DocContainer docMeta = this.docBase.getDocMeta();
+		this.currentElement = docMeta;
+	}
+	
+	private void handleStartInfo( String qName, Properties props ) {
+		DocInfo docInfo = new DocInfo();
+		docInfo.setName( props.getProperty( "name" ) );
+		this.currentElement = docInfo;
+	}
+	
+	private void handleStartHeader( String qName, Properties props ) {
+		DocHeader docHeader = this.docBase.getDocHeader();
+		handleHeaderFooter( docHeader , props );
+		docHeader.setUseHeader( true );
+		if ( DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
+			docHeader.setBasic( false );
+		} else {
+			docHeader.setBasic( true );
+		}
+		this.currentElement = docHeader;	
+	}
+	
+	private void handleStartFooter( String qName, Properties props ) {
+		DocFooter docFooter = this.docBase.getDocFooter();
+		handleHeaderFooter( docFooter , props );
+		docFooter.setUseFooter( true );
+		if ( DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
+			docFooter.setBasic( false );
+		} else {
+			docFooter.setBasic( true );
+		}
+		this.currentElement = docFooter;
+	}
+	
+	private void handleStartBackground( String qName, Properties props ) {
+		DocBackground docBackground = new DocBackground();
+		this.docBase.setDocBackground( docBackground );
+		this.currentElement = docBackground;	
+	}
+	
+	private void handleStartBody( String qName, Properties props ) {
+		DocContainer docBody = this.docBase.getDocBody();
+		this.currentElement = docBody;
+	}
+	
+	private void handleStartImage( String qName, Properties props ) {
+		DocImage docImage = new DocImage();
+		// setting paragraph style
+		String url = props.getProperty( "url" );
+		docImage.setUrl( url );
+		String scaling = props.getProperty( "scaling" );
+		if ( scaling != null ) {
+			docImage.setScaling( Integer.valueOf( scaling ) );	
+		} else {
+			docImage.setScaling( null );
+		}
+		String base64 = props.getProperty( "base64" );
+		if ( StringUtils.isNotEmpty( base64 ) ) {
+			docImage.setBase64( base64 );
+		}
+		String type = props.getProperty( "type" );
+		if ( StringUtils.isNotEmpty( type ) ) {
+			docImage.setType( type );
+		}
+		String alt = props.getProperty( "alt" );
+		if ( StringUtils.isNotEmpty( alt ) ) {
+			docImage.setAlt( alt );
+		}
+		String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
+		docImage.setAlign( DocStyleAlignHelper.getAlign( align ) );
+		this.currentElement = docImage;	
+	}
+	
+	private void handleStartTable( String qName, Properties props ) {
+		DocTable docTable = new DocTable();
+		docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );
+		docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
+		docTable.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
+		docTable.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
+		docTable.setAlt( props.getProperty( DocTable.ATTRIBUTE_NAME_ALT ) );
+		docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_SPACING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_SPACING ) ) ) );
+		docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_PADDING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_PADDING ) ) ) );
+		docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );
+		String cols = props.getProperty( "colwidths" );
+		if ( cols != null ) {
+			String[] colsParsed = cols.split( ";" );
+			int[] withds = new int[colsParsed.length];
+			for ( int k=0; k<withds.length; k++ ) {
+				withds[k] = Integer.parseInt( colsParsed[k] );
+			}
+			docTable.setColWithds( withds );
+		}
+		String spaceBefore = props.getProperty( "space-before" );
+		String spaceAfter = props.getProperty( "space-after" );
+		if ( spaceBefore != null ) {
+			docTable.setSpaceBefore( Float.valueOf( spaceBefore ) );
+		}
+		if ( spaceAfter != null ) {
+			docTable.setSpaceAfter( Float.valueOf( spaceAfter ) );
+		}			
+		this.currentElement = docTable;
+	}
+	
+	private void handleStartRow( String qName, Properties props ) {
+		DocRow docRow = new DocRow();
+		docRow.setHeader( BooleanUtils.isTrue( props.getProperty( DocRow.ATT_HEADER ) ) );
+		this.currentElement = docRow;
+	}
+	
+	private void handleStartCell( String qName, Properties props ) {
+		DocCell docCell = new DocCell();
+		docCell.setCSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_COLSPAN, DocElement.STRING_1 ) ) );
+		docCell.setRSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_ROWSPAN, DocElement.STRING_1 ) ) );
+		docCell.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
+		docCell.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
+		docCell.setType( props.getProperty( "type" ) );
+		docCell.setHeader( "true".equalsIgnoreCase( props.getProperty( "header" ) ) );
+		// h align
+		String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );		
+		docCell.setAlign( DocStyleAlignHelper.getAlign( align ) );
+		// v align
+		String valign = props.getProperty( "valign" );
+		docCell.setValign( DocStyleAlignHelper.getValign( valign ) );
+		docCell.setDocBorders( DocBorders.createBorders( props, this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_CELL_BORDER_WIDTH, GenericConsts.INFO_VALUE_DEFAULT_CELL_BORDER_WIDTH ) ) );
+		this.currentElement = docCell;
+	}
+	
+	private void handleStartFinalJob( String qName, Properties props ) {
+		// finishing touch
+		if ( this.currentContainer != null && this.currentContainer != this.currentElement ) {
+			this.currentContainer.addElement( this.currentElement );
+		}
+		if ( this.parserHelper.isContainerElement( qName ) ) {
+			//if ( !qName.equals( "header-ext" ) && !qName.equals( "footer-ext" ) ) {
+				this.parents.add( this.currentContainer );
+			//}
+			this.currentContainer = (DocContainer)this.currentElement;
+		}
+		// setting id
+		String id = props.getProperty( "id" );
+		if ( id != null ) {
+			this.docBase.setId(id, this.currentElement );
+		}
+	}
 	
 	public void handleStartElement( String qName, Properties props ) {
 		if ( this.parserNames.isTypeDoc( qName ) ) {
@@ -130,66 +276,19 @@ public class DocParserContext {
 			String xsdVersion = findXsdVersion(props);
 			this.docBase.setXsdVersion( xsdVersion );
 		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
-			DocContainer docMeta = this.docBase.getDocMeta();
-			this.currentElement = docMeta;
+			this.handleStartMeta( qName, props );
 		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocInfo docInfo = new DocInfo();
-			docInfo.setName( props.getProperty( "name" ) );
-			this.currentElement = docInfo;
+			this.handleStartInfo( qName, props );
 		} else if ( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) || DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName )  ) {
-			DocHeader docHeader = this.docBase.getDocHeader();
-			handleHeaderFooter( docHeader , props );
-			docHeader.setUseHeader( true );
-			if ( DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-				docHeader.setBasic( false );
-			} else {
-				docHeader.setBasic( true );
-			}
-			this.currentElement = docHeader;		
+			this.handleStartHeader( qName, props);
 		} else if ( DocFooter.TAG_NAME.equalsIgnoreCase( qName ) || DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-			DocFooter docFooter = this.docBase.getDocFooter();
-			handleHeaderFooter( docFooter , props );
-			docFooter.setUseFooter( true );
-			if ( DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-				docFooter.setBasic( false );
-			} else {
-				docFooter.setBasic( true );
-			}
-			this.currentElement = docFooter;
+			this.handleStartFooter(qName, props);
 		} else if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocBackground docBackground = new DocBackground();
-			this.docBase.setDocBackground( docBackground );
-			this.currentElement = docBackground;
-		} else if ( "body".equalsIgnoreCase( qName ) ) {
-			DocContainer docBody = this.docBase.getDocBody();
-			this.currentElement = docBody;
-			//Properties info = this.docBase.getInfo();
+			this.handleStartBackground(qName, props);
+		} else if ( DocContainer.TAG_NAME_BODY.equalsIgnoreCase( qName ) ) {
+			this.handleStartBody(qName, props);
 		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocImage docImage = new DocImage();
-			// setting paragraph style
-			String url = props.getProperty( "url" );
-			docImage.setUrl( url );
-			String scaling = props.getProperty( "scaling" );
-			if ( scaling != null ) {
-				docImage.setScaling( Integer.valueOf( scaling ) );	
-			} else {
-				docImage.setScaling( null );
-			}
-			String base64 = props.getProperty( "base64" );
-			if ( StringUtils.isNotEmpty( base64 ) ) {
-				docImage.setBase64( base64 );
-			}
-			String type = props.getProperty( "type" );
-			if ( StringUtils.isNotEmpty( type ) ) {
-				docImage.setType( type );
-			}
-			String alt = props.getProperty( "alt" );
-			if ( StringUtils.isNotEmpty( alt ) ) {
-				docImage.setAlt( alt );
-			}
-			String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
-			docImage.setAlign( DocStyleAlignHelper.getAlign( align ) );
-			this.currentElement = docImage;		
+			this.handleStartImage(qName, props);
 		} else if ( "pl".equalsIgnoreCase( qName ) ) {
 			DocContainer container = new DocContainer();
 			this.currentElement = container;
@@ -231,53 +330,11 @@ public class DocParserContext {
 			DocLi docLi = new DocLi();
 			this.currentElement = docLi;			
 		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocTable docTable = new DocTable();
-			docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );
-			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
-			docTable.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
-			docTable.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
-			docTable.setAlt( props.getProperty( DocTable.ATTRIBUTE_NAME_ALT ) );
-			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_SPACING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_SPACING ) ) ) );
-			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_PADDING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_PADDING ) ) ) );
-			docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );
-			String cols = props.getProperty( "colwidths" );
-			if ( cols != null ) {
-				String[] colsParsed = cols.split( ";" );
-				int[] withds = new int[colsParsed.length];
-				for ( int k=0; k<withds.length; k++ ) {
-					withds[k] = Integer.parseInt( colsParsed[k] );
-				}
-				docTable.setColWithds( withds );
-			}
-			String spaceBefore = props.getProperty( "space-before" );
-			String spaceAfter = props.getProperty( "space-after" );
-			if ( spaceBefore != null ) {
-				docTable.setSpaceBefore( Float.valueOf( spaceBefore ) );
-			}
-			if ( spaceAfter != null ) {
-				docTable.setSpaceAfter( Float.valueOf( spaceAfter ) );
-			}			
-			this.currentElement = docTable;
+			this.handleStartTable(qName, props);
 		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocRow docRow = new DocRow();
-			docRow.setHeader( BooleanUtils.isTrue( props.getProperty( DocRow.ATT_HEADER ) ) );
-			this.currentElement = docRow;
+			this.handleStartRow(qName, props);
 		} else if ( DocCell.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocCell docCell = new DocCell();
-			docCell.setCSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_COLSPAN, DocElement.STRING_1 ) ) );
-			docCell.setRSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_ROWSPAN, DocElement.STRING_1 ) ) );
-			docCell.setBackColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_BACK_COLOR ) );
-			docCell.setForeColor( props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_FORE_COLOR ) );
-			docCell.setType( props.getProperty( "type" ) );
-			docCell.setHeader( "true".equalsIgnoreCase( props.getProperty( "header" ) ) );
-			// h align
-			String align = props.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );		
-			docCell.setAlign( DocStyleAlignHelper.getAlign( align ) );
-			// v align
-			String valign = props.getProperty( "valign" );
-			docCell.setValign( DocStyleAlignHelper.getValign( valign ) );
-			docCell.setDocBorders( DocBorders.createBorders( props, this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_CELL_BORDER_WIDTH, GenericConsts.INFO_VALUE_DEFAULT_CELL_BORDER_WIDTH ) ) );
-			this.currentElement = docCell;
+			this.handleStartCell(qName, props);
 		} else if ( "page-break".equalsIgnoreCase( qName ) ) {
 			this.currentElement = new DocPageBreak();
 		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
@@ -290,22 +347,7 @@ public class DocParserContext {
 			docBookmark.setRef( ref );
 			this.currentElement = docBookmark;
 		}
-		// processamenti finali
-		if ( this.currentContainer != null && this.currentContainer != this.currentElement ) {
-			this.currentContainer.addElement( this.currentElement );
-		}
-		if ( this.parserHelper.isContainerElement( qName ) ) {
-			//if ( !qName.equals( "header-ext" ) && !qName.equals( "footer-ext" ) ) {
-				this.parents.add( this.currentContainer );
-			//}
-			this.currentContainer = (DocContainer)this.currentElement;
-		}
-		// setting id
-		String id = props.getProperty( "id" );
-		if ( id != null ) {
-			this.docBase.setId(id, this.currentElement );
-		}
-		
+		this.handleStartFinalJob(qName, props);
 	}
 
 	private static void handleHeaderFooter( DocHeaderFooter headerFooter, Properties atts ) {
