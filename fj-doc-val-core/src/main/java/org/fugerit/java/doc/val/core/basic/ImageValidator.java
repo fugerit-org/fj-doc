@@ -10,11 +10,13 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import org.fugerit.java.core.lang.helpers.JavaVersionHelper;
+import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ImageValidator extends AbstractDocTypeValidator {
 	
 	public static final String FORMAT_JPG = "JPG";
@@ -38,8 +40,6 @@ public class ImageValidator extends AbstractDocTypeValidator {
 	 */
 	public static final DocTypeValidator TIFF_VALIDATOR = new ImageValidator( MIME_TIFF, EXT_TIFF, FORMAT_TIFF, JavaVersionHelper.MAJOR_VERSION_JAVA_9 );
 	
-	private static final Logger logger = LoggerFactory.getLogger( ImageValidator.class );
-	
 	private String format;
 
 	private int javaMajorVersionRequired;
@@ -54,10 +54,10 @@ public class ImageValidator extends AbstractDocTypeValidator {
 			        ImageReader reader = readers.next();
 			        reader.setInput(iis);
 			        reader.read(0);
-			        result.setResultCode( DocTypeValidationResult.RESULT_CODE_OK );
+			        result.setResultCode( Result.RESULT_CODE_OK );
 			        break;
 			    } catch (IOException exp) {
-			    	logger.debug( "checkImage {}", exp.getMessage() );
+			    	log.debug( "checkImage {}", exp.getMessage() );
 			    }
 			}			
 		}
@@ -80,7 +80,7 @@ public class ImageValidator extends AbstractDocTypeValidator {
 		int javaMajorVersionFound =  JavaVersionHelper.parseUniversalJavaMajorVersion() ;
 		if ( javaMajorVersionFound < this.javaMajorVersionRequired ) {
 			ok = false;
-			logger.warn( "java major version found : '{}' lower than required : '{}'", javaMajorVersionFound, this.javaMajorVersionRequired );
+			log.warn( "java major version found : '{}' lower than required : '{}'", javaMajorVersionFound, this.javaMajorVersionRequired );
 		}
 		return ok;
 	}
