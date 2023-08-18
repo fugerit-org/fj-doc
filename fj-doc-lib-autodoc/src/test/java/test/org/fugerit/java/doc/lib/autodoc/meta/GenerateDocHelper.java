@@ -19,7 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GenerateDocHelper {
 
-	protected void docWorker( String sourcePath, String destPath, DocTypeHandler handler ) {
+	protected boolean docWorker( String sourcePath, String destPath, DocTypeHandler handler ) {
+		boolean ok = false;
 		File destFile = new File( destPath );
 		log.info( "handler {}, sourcePath : {}, destFile : {}", handler, sourcePath, destFile );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( sourcePath );
@@ -27,11 +28,13 @@ public class GenerateDocHelper {
 			AutodocMeta autodocMeta = AutodocMetaFacade.getInstance().unmarshal( is );
 			AutodocMetaModel autodocMetaModel = new AutodocMetaModel(autodocMeta);
 			AutodocDocConfig.getInstance().processAutodocMeta( autodocMetaModel , handler, os);
+			ok = true;
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );
 			fail( message );
 		}
+		return ok;
 	}
 	
 }
