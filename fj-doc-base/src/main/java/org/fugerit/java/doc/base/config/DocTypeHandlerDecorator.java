@@ -1,5 +1,7 @@
 package org.fugerit.java.doc.base.config;
 
+import java.io.Serializable;
+
 import org.fugerit.java.core.cfg.ConfigException;
 import org.w3c.dom.Element;
 
@@ -7,7 +9,7 @@ public class DocTypeHandlerDecorator extends DocTypeHandlerDefault {
 
 	private static final long serialVersionUID = 5531355008187717238L;
 	
-	private DocTypeHandler handler;
+	private Serializable handler;
 	
 	public DocTypeHandlerDecorator( DocTypeHandler handler ) {
 		super( handler.getType(), handler.getModule(), handler.getMime(), handler.getCharset() );
@@ -15,12 +17,12 @@ public class DocTypeHandlerDecorator extends DocTypeHandlerDefault {
 	}
 
 	public DocTypeHandler unwrap() {
-		return handler;
+		return (DocTypeHandler)handler;
 	}
 
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-		this.handler.handle(docInput, docOutput);
+		((DocTypeHandler)this.handler).handle(docInput, docOutput);
 	}
 
 	@Override

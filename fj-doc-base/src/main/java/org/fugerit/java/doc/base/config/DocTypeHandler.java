@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 
 import org.fugerit.java.core.util.collection.KeyString;
 
-public interface DocTypeHandler extends KeyString, Serializable {
+public interface DocTypeHandler extends Serializable, KeyString  {
 
 	String getType();
 	
