@@ -27,6 +27,66 @@ public class ConvertRest {
 
 	private final static String INVALID_FORMAT_MESSAGE = "Invalid output format : ";
 	
+	private String handleXml( ConvertOutput output, String docContent, String outputFormat, ObjectMapper mapper, ObjectMapper yamlMapper ) throws Exception {
+		String docOutput = null;
+		if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
+			DocXmlToJson helper = new DocXmlToJson();
+			try ( StringReader reader = new StringReader( docContent ) ) {
+				JsonNode node = helper.convertToJsonNode( reader );
+				docOutput = node.toPrettyString();	
+			}
+		} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
+			DocXmlToJson helper = new DocXmlToJson( yamlMapper );
+			try ( StringReader reader = new StringReader( docContent ) ) {
+				JsonNode node = helper.convertToJsonNode( reader );
+				docOutput = yamlMapper.writeValueAsString( node );	
+			}
+		} else {
+			output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
+		}
+		return docOutput;
+	}
+	
+	private String handleJson( ConvertOutput output, String docContent, String outputFormat, ObjectMapper mapper, ObjectMapper yamlMapper ) throws Exception {
+		String docOutput = null;
+		if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
+			DocJsonToXml helper = new DocJsonToXml();
+			try ( StringReader reader = new StringReader( docContent );
+					StringWriter writer = new StringWriter() ) {
+				helper.writerAsXml(reader, writer);
+				docOutput = writer.toString();
+			}
+		} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
+			try ( StringReader reader = new StringReader( docContent ) ) {
+				JsonNode node = mapper.readTree( reader );
+				docOutput = yamlMapper.writeValueAsString( node );
+			}
+		} else {
+			output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
+		}
+		return docOutput;
+	}
+	
+	private String handleYaml( ConvertOutput output, String docContent, String outputFormat, ObjectMapper mapper, ObjectMapper yamlMapper ) throws Exception {
+		String docOutput = null;
+		if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
+			DocJsonToXml helper = new DocJsonToXml( yamlMapper );
+			try ( StringReader reader = new StringReader( docContent );
+					StringWriter writer = new StringWriter() ) {
+				helper.writerAsXml(reader, writer);
+				docOutput = writer.toString();
+			}
+		} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
+			try ( StringReader reader = new StringReader( docContent ) ) {
+				JsonNode node = yamlMapper.readTree( reader );
+				docOutput = mapper.writerWithDefaultPrettyPrinter().writeValueAsString( node );
+			}
+		} else {
+			output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
+		}
+		return docOutput;
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -43,53 +103,11 @@ public class ConvertRest {
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectMapper yamlMapper = new ObjectMapper( new YAMLFactory() );
 			if ( InputFacade.FORMAT_XML.equalsIgnoreCase( inputFormat ) ) {
-				if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
-					DocXmlToJson helper = new DocXmlToJson();
-					try ( StringReader reader = new StringReader( docContent ) ) {
-						JsonNode node = helper.convertToJsonNode( reader );
-						docOutput = node.toPrettyString();	
-					}
-				} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
-					DocXmlToJson helper = new DocXmlToJson( yamlMapper );
-					try ( StringReader reader = new StringReader( docContent ) ) {
-						JsonNode node = helper.convertToJsonNode( reader );
-						docOutput = yamlMapper.writeValueAsString( node );	
-					}
-				} else {
-					output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
-				}
+				docOutput = this.handleXml(output, docContent, outputFormat, mapper, yamlMapper);
 			} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( inputFormat ) ) {
-				if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
-					DocJsonToXml helper = new DocJsonToXml();
-					try ( StringReader reader = new StringReader( docContent );
-							StringWriter writer = new StringWriter() ) {
-						helper.writerAsXml(reader, writer);
-						docOutput = writer.toString();
-					}
-				} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( outputFormat ) ) {
-					try ( StringReader reader = new StringReader( docContent ) ) {
-						JsonNode node = mapper.readTree( reader );
-						docOutput = yamlMapper.writeValueAsString( node );
-					}
-				} else {
-					output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
-				}
+				docOutput = this.handleJson(output, docContent, outputFormat, mapper, yamlMapper);
 			} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( inputFormat ) ) {
-				if ( InputFacade.FORMAT_XML.equalsIgnoreCase( outputFormat ) ) {
-					DocJsonToXml helper = new DocJsonToXml( yamlMapper );
-					try ( StringReader reader = new StringReader( docContent );
-							StringWriter writer = new StringWriter() ) {
-						helper.writerAsXml(reader, writer);
-						docOutput = writer.toString();
-					}
-				} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
-					try ( StringReader reader = new StringReader( docContent ) ) {
-						JsonNode node = yamlMapper.readTree( reader );
-						docOutput = mapper.writerWithDefaultPrettyPrinter().writeValueAsString( node );
-					}
-				} else {
-					output.setMessage( INVALID_FORMAT_MESSAGE+outputFormat );
-				}
+				docOutput = this.handleYaml(output, docContent, outputFormat, mapper, yamlMapper);
 			}
 			if ( docOutput != null ) {
 				output.setDocOutput(docOutput);
