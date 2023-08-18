@@ -5,7 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,11 +17,10 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
-import org.apache.fop.apps.MimeConstants;
 import org.apache.xmlgraphics.io.ResourceResolver;
+import org.apache.xmlgraphics.util.MimeConstants;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
-import org.fugerit.java.core.lang.helpers.CollectionUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocCharsetProvider;
@@ -125,7 +123,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		FopFactory fopFactory = this.fopConfig.newFactory();
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
 		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
-			foUserAgent.getRendererOptions().put("pdf-a-mode", this.getPdfAMode() );	
+			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );	
 		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );

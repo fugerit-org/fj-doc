@@ -14,8 +14,6 @@ import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocUtils;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableHelper;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xmlet.xsdparser.xsdelements.XsdAbstractElement;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdBuiltInDataType;
@@ -24,13 +22,11 @@ import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
 import org.xmlet.xsdparser.xsdelements.XsdSequence;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AutodocModelToSinpleTableFacade {
 
-	private final static Logger logger = LoggerFactory.getLogger( AutodocModelToSinpleTableFacade.class );
-	
-	public AutodocModelToSinpleTableFacade() {
-	}
-	
 	private void handleOccurs( final StringBuilder builder, XsdAbstractElement xsdObject ) {
 		try {
 			Integer minOccurs = (Integer) MethodHelper.invokeGetter( xsdObject , "minOccurs" );
@@ -88,7 +84,7 @@ public class AutodocModelToSinpleTableFacade {
 			} ).collect( Collectors.toList() ); 
 			res = StringUtils.concat(separator, list );
 		} catch (NullPointerException npe) {
-			logger.warn( "npe "+npe );
+			log.warn( "npe "+npe );
 		}
 		return res;
 	}
@@ -103,7 +99,7 @@ public class AutodocModelToSinpleTableFacade {
 			} ).collect( Collectors.toList() ); 
 			res = StringUtils.concat( separator, list );
 		} catch (NullPointerException npe) {
-			logger.warn( "npe "+npe );
+			log.warn( "npe "+npe );
 		}
 		return res;
 	}
@@ -146,12 +142,12 @@ public class AutodocModelToSinpleTableFacade {
 		try {
 			this.handleSequence(builder, complexType.getChildAsSequence());
 		} catch (NullPointerException npe) {
-			logger.warn( "npe 1 "+npe+" -> "+complexType.getRawName() );
+			log.warn( "npe 1 "+npe+" -> "+complexType.getRawName() );
 		}
 		try {
 			this.handleChoice(builder, complexType.getChildAsChoice());
 		} catch (NullPointerException npe) {
-			logger.warn( "npe 2 "+npe+" -> "+complexType.getRawName() );
+			log.warn( "npe 2 "+npe+" -> "+complexType.getRawName() );
 		}
 	}
 	
@@ -198,7 +194,7 @@ public class AutodocModelToSinpleTableFacade {
 						}
 					}
 				} catch (NullPointerException npe) {
-					logger.warn( "Exception on attributes {}", npe.toString() );;
+					log.warn( "Exception on attributes {}", npe.toString() );;
 				}
 				
 			}
