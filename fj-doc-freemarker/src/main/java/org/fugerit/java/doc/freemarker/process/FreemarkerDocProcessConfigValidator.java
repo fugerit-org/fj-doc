@@ -73,7 +73,7 @@ public class FreemarkerDocProcessConfigValidator {
 			DefaultHandler versionHandler = new DefaultHandler() {
 				@Override
 				public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-					if ( DocBase.TAG_NAME.equalsIgnoreCase( qName ) || DocBase.TAG_NAME.equalsIgnoreCase( qName ) ) {
+					if ( DocBase.TAG_NAME.equalsIgnoreCase( qName ) || DocBase.TAG_NAME.equalsIgnoreCase( localName ) ) {
 						Properties props = DocContentHandler.attsToProperties(attributes);
 						String xsdVersion = DocParserContext.findXsdVersion(props);
 						infos.setProperty( "xsdVersion" , xsdVersion );
