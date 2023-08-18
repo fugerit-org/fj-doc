@@ -37,8 +37,8 @@ class DocXmlEditor extends Component {
 		if (this.state.outputFormat == null) {
 			this.props.handleOpenDialog("Select an output format");
 		} else {
-			var reactState = this
-			var payload = {}
+			let reactState = this
+			let payload = {}
 			payload.inputFormat = this.state.inputFormat;
 			payload.outputFormat = this.state.outputFormat;
 			payload.docContent = this.state.docContent;
@@ -59,8 +59,8 @@ class DocXmlEditor extends Component {
 		if (this.state.outputFormat == null) {
 			this.props.handleOpenDialog("Select an output format");
 		} else {
-			var reactState = this
-			var payload = {}
+			let reactState = this
+			let payload = {}
 			payload.inputFormat = this.state.inputFormat;
 			payload.outputFormat = this.state.outputFormat;
 			payload.docContent = this.state.docContent;
@@ -116,7 +116,7 @@ class DocXmlEditor extends Component {
 		let outputData = <Fragment>Here will be the output</Fragment>
 		if ( this.state.docOutput != null && this.state.docFormat != null ) {
 			if ( this.state.docFormat === 'HTML' ) {
-				var decodedStringAtoB = atob(this.state.docOutput);
+				let decodedStringAtoB = atob(this.state.docOutput);
 				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: decodedStringAtoB }}></div>
 			}  else if ( this.state.docFormat === 'PDF' || this.state.docFormat === 'PDFA' ) {
 				let srcData = 'data:application/pdf;base64,'+ this.state.docOutput;
