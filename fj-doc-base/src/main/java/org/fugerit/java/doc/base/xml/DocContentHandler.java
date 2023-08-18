@@ -85,8 +85,7 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#endPrefixMapping(java.lang.String)
 	 */
 	public void endPrefixMapping(String prefix) throws SAXException {
-		
-		
+		// this SAX event is not used for parsing doc xsd
 	}
 
 	/* (non-Javadoc)
@@ -100,24 +99,21 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#processingInstruction(java.lang.String, java.lang.String)
 	 */
 	public void processingInstruction(String target, String data) throws SAXException {
-		
-		
+		// this SAX event is not used for parsing doc xsd
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ContentHandler#setDocumentLocator(org.xml.sax.Locator)
 	 */
 	public void setDocumentLocator(Locator locator) {
-		
-		
+		// this SAX event is not used for parsing doc xsd
 	}
 
 	/* (non-Javadoc)
 	 * @see org.xml.sax.ContentHandler#skippedEntity(java.lang.String)
 	 */
 	public void skippedEntity(String name) throws SAXException {
-	
-		
+		// this SAX event is not used for parsing doc xsd
 	}
 
 	/* (non-Javadoc)
@@ -148,6 +144,7 @@ public class DocContentHandler implements ContentHandler {
 	 * @see org.xml.sax.ContentHandler#startPrefixMapping(java.lang.String, java.lang.String)
 	 */
 	public void startPrefixMapping(String prefix, String uri) throws SAXException {
+		// this SAX event is not used for parsing doc xsd
 	}
 
 	/**

@@ -43,9 +43,6 @@ public class DocCell extends DocContainer implements DocStyle {
 	 * 
 	 */
 	private static final long serialVersionUID = -6769143730899701281L;
-
-	public DocCell() {
-	}
 	
 	public String toString() {
 		return super.toString()+"[align:"+this.getAlign()+"]";

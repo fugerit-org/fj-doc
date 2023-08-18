@@ -40,7 +40,4 @@ public class DocBackground extends DocContainer {
 	 */
 	private static final long serialVersionUID = -5220633704780951L;
 
-	public DocBackground() {
-	}
-	
 }

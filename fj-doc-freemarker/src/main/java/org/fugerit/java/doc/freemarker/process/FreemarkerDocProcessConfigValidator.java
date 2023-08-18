@@ -31,8 +31,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigValidator {
 
-	public FreemarkerDocProcessConfigValidator() {}
-	
 	private static final String CURRENT = "current";
 	
 	private static XMLSchemaCatalogConfig init() {
