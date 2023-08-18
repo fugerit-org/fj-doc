@@ -33,6 +33,8 @@ package org.fugerit.java.doc.base.model;
  */
 public class DocBr extends DocPhrase {
 
+	public static final String TAG_NAME = "br";
+	
 	/**
 	 * 
 	 */

@@ -123,6 +123,14 @@ public class DocParserContext {
 			}
 		}
 	}
+	
+	// start tag handlers - BEGIN
+	
+	private void handleStartDoc( String qName, Properties props ) {
+		this.docBase = new DocBase();
+		String xsdVersion = findXsdVersion(props);
+		this.docBase.setXsdVersion( xsdVersion );
+	}
 
 	private void handleStartMeta( String qName, Properties props ) {
 		DocContainer docMeta = this.docBase.getDocMeta();
@@ -252,15 +260,88 @@ public class DocParserContext {
 		this.currentElement = docCell;
 	}
 	
+	private void handleStartPl( String qName, Properties props ) {
+		DocContainer container = new DocContainer();
+		this.currentElement = container;
+	}
+	
+	private void handleStartPara( String qName, Properties props ) {
+		DocPara docPara = new DocPara();
+		valuePara(docPara, props, false);
+		this.currentElement = docPara;
+	}
+
+	private void handleStartH( String qName, Properties props ) {
+		DocPara docPara = new DocPara();
+		valuePara(docPara, props, true);
+		this.currentElement = docPara;	
+	}
+	
+	private void handleStartBr( String qName, Properties props ) {
+		DocBr docBr = new DocBr();
+		valuePhrase(docBr, props);
+		docBr.setText( "\n" );
+		this.currentElement = docBr;	
+	}
+	
+	private void handleStartNbsp( String qName, Properties props ) {
+		DocNbsp docNbsp = new DocNbsp();
+		valuePhrase(docNbsp, props);
+		int length = Integer.parseInt( props.getProperty( "length", "2" ) );
+		docNbsp.setLength( length );
+		this.currentElement = docNbsp;		
+	}
+	
+	private void handleStartPhrase( String qName, Properties props ) {
+		DocPhrase docPhrase = new DocPhrase();
+		valuePhrase(docPhrase, props);
+		this.currentElement = docPhrase;	
+	}
+	
+	private void handleStartBarcode( String qName, Properties props ) {
+		DocBarcode barcode = new DocBarcode();
+		barcode.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
+		barcode.setType( props.getProperty( "type", "EAN" ) );
+		barcode.setText( props.getProperty( "text" ) );
+		this.currentElement = barcode;
+	}
+	
+	private void handleStartList( String qName, Properties props ) {
+		DocList docList = new DocList();
+		String listType = props.getProperty( "list-type", DocList.LIST_TYPE_OL );
+		docList.setListType( listType );
+		this.currentElement = docList;
+	}
+	
+	private void handleStartLi( String qName, Properties props ) {
+		DocLi docLi = new DocLi();
+		this.currentElement = docLi;	
+	}
+
+	private void handleStartPageBreak( String qName, Properties props ) {
+		this.currentElement = new DocPageBreak();
+	}
+
+	private void handleStartBookmarkTree( String qName, Properties props ) {
+		DocBookmarkTree docBookmarkTree = new DocBookmarkTree();
+		this.docBase.setDocBookmarkTree(docBookmarkTree);
+		this.currentElement = docBookmarkTree;
+	}
+	
+	private void handleStartBookmark( String qName, Properties props ) {
+		DocBookmark docBookmark = new DocBookmark();
+		String ref = props.getProperty( DocBookmark.ATT_REF );
+		docBookmark.setRef( ref );
+		this.currentElement = docBookmark;
+	}
+	
 	private void handleStartFinalJob( String qName, Properties props ) {
 		// finishing touch
 		if ( this.currentContainer != null && this.currentContainer != this.currentElement ) {
 			this.currentContainer.addElement( this.currentElement );
 		}
 		if ( this.parserHelper.isContainerElement( qName ) ) {
-			//if ( !qName.equals( "header-ext" ) && !qName.equals( "footer-ext" ) ) {
 				this.parents.add( this.currentContainer );
-			//}
 			this.currentContainer = (DocContainer)this.currentElement;
 		}
 		// setting id
@@ -270,11 +351,11 @@ public class DocParserContext {
 		}
 	}
 	
+	// start tag handlers - END
+	
 	public void handleStartElement( String qName, Properties props ) {
 		if ( this.parserNames.isTypeDoc( qName ) ) {
-			this.docBase = new DocBase();
-			String xsdVersion = findXsdVersion(props);
-			this.docBase.setXsdVersion( xsdVersion );
+			this.handleStartDoc(qName, props);
 		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
 			this.handleStartMeta( qName, props );
 		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
@@ -289,63 +370,36 @@ public class DocParserContext {
 			this.handleStartBody(qName, props);
 		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartImage(qName, props);
-		} else if ( "pl".equalsIgnoreCase( qName ) ) {
-			DocContainer container = new DocContainer();
-			this.currentElement = container;
+		} else if (  DocContainer.TAG_NAME_PL.equalsIgnoreCase( qName ) ) {
+			this.handleStartPl(qName, props);
 		} else if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocPara docPara = new DocPara();
-			valuePara(docPara, props, false);
-			this.currentElement = docPara;
+			this.handleStartPara(qName, props);
 		} else if ( DocPara.TAG_NAME_H.equalsIgnoreCase( qName ) ) {
-			DocPara docPara = new DocPara();
-			valuePara(docPara, props, true);
-			this.currentElement = docPara;			
-		} else if ( "br".equalsIgnoreCase( qName ) ) {
-			DocBr docBr = new DocBr();
-			valuePhrase(docBr, props);
-			docBr.setText( "\n" );
-			this.currentElement = docBr;			
-		} else if ( "nbsp".equalsIgnoreCase( qName ) ) {
-			DocNbsp docNbsp = new DocNbsp();
-			valuePhrase(docNbsp, props);
-			int length = Integer.parseInt( props.getProperty( "length", "2" ) );
-			docNbsp.setLength( length );
-			this.currentElement = docNbsp;					
+			this.handleStartH(qName, props);
+		} else if ( DocBr.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartBr(qName, props);
+		} else if ( DocNbsp.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartNbsp(qName, props);
 		} else if ( DocPhrase.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocPhrase docPhrase = new DocPhrase();
-			valuePhrase(docPhrase, props);
-			this.currentElement = docPhrase;			
-		} else if ( "barcode".equalsIgnoreCase( qName ) ) {
-			DocBarcode barcode = new DocBarcode();
-			barcode.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
-			barcode.setType( props.getProperty( "type", "EAN" ) );
-			barcode.setText( props.getProperty( "text" ) );
-			this.currentElement = barcode;
-		} else if ( "list".equalsIgnoreCase( qName ) ) {
-			DocList docList = new DocList();
-			String listType = props.getProperty( "list-type", DocList.LIST_TYPE_OL );
-			docList.setListType( listType );
-			this.currentElement = docList;
-		} else if ( "li".equalsIgnoreCase( qName ) ) {
-			DocLi docLi = new DocLi();
-			this.currentElement = docLi;			
+			this.handleStartPhrase(qName, props);
+		} else if ( DocBarcode.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartBarcode(qName, props);
+		} else if ( DocList.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartList(qName, props);
+		} else if ( DocLi.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartLi(qName, props);
 		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartTable(qName, props);
 		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartRow(qName, props);
 		} else if ( DocCell.TAG_NAME.equalsIgnoreCase( qName ) ) {
 			this.handleStartCell(qName, props);
-		} else if ( "page-break".equalsIgnoreCase( qName ) ) {
-			this.currentElement = new DocPageBreak();
+		} else if ( DocPageBreak.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			this.handleStartPageBreak(qName, props);
 		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocBookmarkTree docBookmarkTree = new DocBookmarkTree();
-			this.docBase.setDocBookmarkTree(docBookmarkTree);
-			this.currentElement = docBookmarkTree;
+			this.handleStartBookmarkTree(qName, props);
 		} else if ( DocBookmark.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			DocBookmark docBookmark = new DocBookmark();
-			String ref = props.getProperty( DocBookmark.ATT_REF );
-			docBookmark.setRef( ref );
-			this.currentElement = docBookmark;
+			this.handleStartBookmark(qName, props);
 		}
 		this.handleStartFinalJob(qName, props);
 	}

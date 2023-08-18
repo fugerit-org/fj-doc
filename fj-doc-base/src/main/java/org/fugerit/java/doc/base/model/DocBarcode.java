@@ -1,6 +1,8 @@
 package org.fugerit.java.doc.base.model;
 
 public class DocBarcode extends DocElement {
+	
+	public static final String TAG_NAME = "barcode";
 
 	/**
 	 * 

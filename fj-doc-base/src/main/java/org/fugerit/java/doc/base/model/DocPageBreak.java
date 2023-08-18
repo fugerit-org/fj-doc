@@ -32,6 +32,8 @@ package org.fugerit.java.doc.base.model;
  *
  */
 public class DocPageBreak extends DocElement {
+	
+	public static final String TAG_NAME = "page-break";
 
 	/**
 	 * 

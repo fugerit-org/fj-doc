@@ -32,6 +32,8 @@ package org.fugerit.java.doc.base.model;
  *
  */
 public class DocNbsp extends DocPhrase {
+	
+	public static final String TAG_NAME = "nbsp";
 
 	/**
 	 * 
