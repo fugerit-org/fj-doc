@@ -16,7 +16,7 @@ class DocValTestForm extends Component {
 	}
 
 	componentDidMount() {
-		var reactState = this;
+		let reactState = this;
 		appService.doAjaxMultipart('GET', '/val/supported_extensions', null).then(response => {
 			if (response.success) {
 				reactState.setState({
@@ -38,7 +38,7 @@ class DocValTestForm extends Component {
 			let formData = new FormData();
 			formData.append('file', this.state.fileToValidate);
 
-			var reactState = this;
+			let reactState = this;
 			appService.doAjaxMultipart('POST', '/val/check', formData).then(response => {
 				if (response.success) {
 					reactState.setState({

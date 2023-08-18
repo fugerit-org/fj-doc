@@ -14,7 +14,7 @@ class DocCatalog extends Component {
 	}
 
 	componentDidMount() {
-		var reactState = this;
+		let reactState = this;
 		appService.doAjaxMultipart('GET', '/catalog/list', null).then(response => {
 			if (response.success) {
 				reactState.setState({
@@ -30,7 +30,7 @@ class DocCatalog extends Component {
 	}
 	
 	loadDocument( id ) {
-		var reactState = this;
+		let reactState = this;
 		appService.doAjaxMultipart('GET', '/catalog/entry/'+id, null).then(response => {
 			if (response.success) {
 				reactState.props.handleEditorContent( response.result.docOutput );

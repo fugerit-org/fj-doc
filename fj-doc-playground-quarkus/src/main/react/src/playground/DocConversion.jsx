@@ -34,7 +34,7 @@ class DocConversion extends Component {
 		if (this.state.outputFormat == null) {
 			this.props.handleOpenDialog("Select an output format");
 		} else {
-			var reactState = this;
+			let reactState = this;
 				appService.doAjaxJson('POST', '/convert/doc', this.state).then(response => {
 					if (response.success) {
 						reactState.setState({
