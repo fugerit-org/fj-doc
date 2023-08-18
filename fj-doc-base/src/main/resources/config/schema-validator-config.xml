@@ -45,8 +45,12 @@
 	<schema-list id="version-2-0">
 		<schema id="doc-2-0.xsd"/>
 	</schema-list>	
+	
+	<schema-list id="version-2-1">
+		<schema id="doc-2-1.xsd"/>
+	</schema-list>		
 
-	<schema-list id="current" extends="version-2-0">
+	<schema-list id="current" extends="version-2-1">
 	</schema-list>
 
 </schema-catalog>

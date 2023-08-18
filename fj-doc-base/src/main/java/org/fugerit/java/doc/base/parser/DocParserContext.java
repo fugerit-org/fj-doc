@@ -236,6 +236,7 @@ public class DocParserContext {
 			docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
 			docTable.setBackColor( props.getProperty( "back-color" ) );
 			docTable.setForeColor( props.getProperty( "fore-color" ) );
+			docTable.setAlt( props.getProperty( DocTable.ATTRIBUTE_NAME_ALT ) );
 			docTable.setSpacing( Integer.parseInt( props.getProperty( "spacing", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_SPACING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_SPACING ) ) ) );
 			docTable.setPadding( Integer.parseInt( props.getProperty( "padding", this.infos.getProperty( GenericConsts.INFO_KEY_DEFAULT_TABLE_PADDING, GenericConsts.INFO_VALUE_DEFAULT_TABLE_PADDING ) ) ) );
 			docTable.setRenderMode( props.getProperty( "render-mode", DocTable.RENDER_MODE_NORMAL ) );

@@ -21,8 +21,9 @@ public final class DocVersion implements Serializable, Comparable<DocVersion> {
 	public static final DocVersion VERSION_1_9 = DocVersion.newVersion( "1-9" );
 	public static final DocVersion VERSION_1_10 = DocVersion.newVersion( "1-10" );
 	public static final DocVersion VERSION_2_0 = DocVersion.newVersion( "2-0" );
+	public static final DocVersion VERSION_2_1 = DocVersion.newVersion( "2-1" );
 	
-	public static final DocVersion CURRENT_VERSION = VERSION_2_0;
+	public static final DocVersion CURRENT_VERSION = VERSION_2_1;
 	
 	public static final String VERSION_SEPARATOR ="-";
 	
@@ -75,3 +76,4 @@ public final class DocVersion implements Serializable, Comparable<DocVersion> {
 	}
 	
 }
+

@@ -1,7 +1,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 	
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 	
     
 	<metadata>
 		<info name="default-font-size">10</info>
@@ -28,7 +28,7 @@
 		<!-- tables for element detail and attributes -->
     	<#list autodocDetail.adElement as adElement>
 			<br/>
-    		<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-${adElement.name}" padding="2">
+    		<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-${adElement.name}" padding="2" caption="Documentation for element ${adElement.name}">
   	    		<row header="true">
 	    			<cell colspan="3"><phrase style="bold" anchor="${adElement.name}">Element : ${adElement.name}</phrase></cell>
 	    		</row>

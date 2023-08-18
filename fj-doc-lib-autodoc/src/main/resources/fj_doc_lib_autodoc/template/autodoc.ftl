@@ -2,7 +2,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 	
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 	
     
 	<metadata>
 		<info name="default-font-size">10</info>
@@ -24,7 +24,7 @@
     	<h head-level="1">${autodocModel.title}<#if autodocModel.version??> ${autodocModel.version}</#if></h>
 
     	<!-- table for element summary -->    	
-    	<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-id" padding="2">
+    	<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-id" padding="2" alt="${autodocModel.title}">
       		<row header="true">
     			<cell colspan="3"><phrase style="bold" anchor="begin">Elements configuration reference</phrase></cell>
     		</row>
@@ -50,7 +50,7 @@
     		<#assign xsdElement=autodocElement.xsdElement>
     		<#assign complexType=autodocElement.complexType>
     		<phrase link="#begin">top</phrase>
-    		<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-${xsdElement.rawName}" padding="2">
+    		<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-${xsdElement.rawName}" padding="2" alt="Documentation for element ${xsdElement.rawName}">
   	    		<row header="true">
 	    			<cell colspan="3"><phrase style="bold" anchor="${xsdElement.rawName}">Element : ${xsdElement.rawName}</phrase></cell>
 	    		</row>

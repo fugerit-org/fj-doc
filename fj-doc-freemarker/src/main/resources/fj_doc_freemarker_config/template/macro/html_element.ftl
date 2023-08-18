@@ -28,7 +28,7 @@
 	<#if (current.link)??>
 		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
 	<#elseif (current.anchor)??>
-		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> name="${current.anchor}">${current.text}</a>
+		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>>${current.text}</span>
 	<#else>
 		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>>${current.text}</span>
 	</#if>
@@ -102,7 +102,7 @@
 			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
 		</#list>
 	<#else>	
-		<table style='width: ${docTable.width}%'>
+		<table style='width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
 			<#if (docTableUtil.strictHeader)>
 				<thead>
 				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
@@ -132,7 +132,7 @@
 
 <#macro handleIdDef element defId><#if (element.id)??> id="${element.id}" <#else> id="${defId}" </#if></#macro>
 
-<#macro handleId element><#if (element.id)??> id="${element.id}" </#if></#macro>
+<#macro handleId element><#if (element.id)??> id="${element.id}"<#elseif (element.anchor)??> id="${element.anchor}"</#if></#macro>
 
 <#macro handleRowspan rowspanValue><#if (rowspanValue != 1)> rowspan="${rowspanValue}"</#if></#macro>
 

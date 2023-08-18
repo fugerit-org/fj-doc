@@ -6,6 +6,7 @@
 	</#list>
 </div>
 <#else>
+<!doctype html>
 <html>
 	<head>
 		<title>${docBase.infoDocTitle!'Generated document'}</title>

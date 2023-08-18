@@ -1,3 +1,7 @@
+2.1.0.rc.1 (2023-08-18)
+------------------
+* Added 'caption' attribute for 'table' element.
+
 2.0.0.rc.3 (2023-08-17)
 ------------------
 * Added documentation for table 'padding', 'spacing' attributes and info element values 

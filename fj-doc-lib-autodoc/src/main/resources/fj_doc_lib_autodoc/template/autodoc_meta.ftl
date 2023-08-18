@@ -2,7 +2,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 	
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 	
     
   <#--
   	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
@@ -51,7 +51,7 @@
 	  		
 	  	<phrase anchor="${admSection.name}"></phrase><h head-level="2">${admSection.description}</h>
   	
-	    <table columns="5" colwidths="20;40;25;10;5" id="excel-table" padding="2" width="100">
+	    <table columns="5" colwidths="20;40;25;10;5" id="excel-table" padding="2" width="100" caption="${admSection.description}">
 	      <row header="true">
 	        <cell align="center"><para style="bold">Name</para></cell>
 	        <cell align="center"><para style="bold">Description</para></cell>
