@@ -10,6 +10,8 @@ import org.fugerit.java.doc.base.config.InitHandler;
  */
 public class InitFopHandler {
 
+	private InitFopHandler() {}
+	
 	public static final PdfFopTypeHandler HANDLER = new PdfFopTypeHandler();
 	
 	public static boolean initDoc() throws ConfigException {

@@ -7,6 +7,8 @@ import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 
 public class AutodocUtils {
 
+	private AutodocUtils() {}
+	
 	public static String annotationAsSingleStringHelper( XsdAnnotation xsdAnnotation ) {
 		String annotation = null;
 		if ( xsdAnnotation != null ) {

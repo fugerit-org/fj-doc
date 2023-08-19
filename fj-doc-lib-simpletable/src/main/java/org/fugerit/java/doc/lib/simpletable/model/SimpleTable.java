@@ -107,8 +107,8 @@ public class SimpleTable {
 		return this;
 	}
 	
-	public SimpleTable withSheetName( String tableWidth ) {
-		this.tableWidth = tableWidth;
+	public SimpleTable withSheetName( String sheetName ) {
+		this.sheetName = sheetName;
 		return this;
 	}
 	

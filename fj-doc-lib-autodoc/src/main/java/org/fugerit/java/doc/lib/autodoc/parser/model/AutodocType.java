@@ -2,10 +2,11 @@ package org.fugerit.java.doc.lib.autodoc.parser.model;
 
 import java.io.Serializable;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class AutodocType implements Serializable {
 
 	/**
@@ -13,8 +14,6 @@ public class AutodocType implements Serializable {
 	 */
 	private static final long serialVersionUID = 1549582953481172034L;
 
-	private final static Logger logger = LoggerFactory.getLogger( AutodocType.class );
-	
 	private XsdComplexType xsdComplexType;
 
 	public XsdComplexType getXsdComplexType() {
@@ -31,7 +30,7 @@ public class AutodocType implements Serializable {
 		try {
 			result = new AutodocChoice( this.getXsdComplexType().getChildAsChoice() );
 		} catch (NullPointerException npe) {
-			logger.warn( "Null pointer exception getting choice for type "+this.getXsdComplexType() );
+			log.warn( "Null pointer exception getting choice for type {}", this.getXsdComplexType() );
 		}
 		return result;
 	}
@@ -41,7 +40,7 @@ public class AutodocType implements Serializable {
 		try {
 			result = new AutodocSequence( this.getXsdComplexType().getChildAsSequence() );
 		} catch (NullPointerException npe) {
-			logger.warn( "Null pointer exception getting sequence for type "+this.getXsdComplexType() );
+			log.warn( "Null pointer exception getting sequence for type {}", this.getXsdComplexType() );
 		}
 		return result;
 	}

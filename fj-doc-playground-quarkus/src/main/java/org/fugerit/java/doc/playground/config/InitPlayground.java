@@ -21,7 +21,7 @@ public class InitPlayground {
 	public static final DocTypeHandler PDFA_FOP_TYPE_HANDLER = PROCESS_CONFIG.getFacade().findHandler( "PDF/A-1a" );
 	
 	void onStart(@Observes StartupEvent ev) {
-		log.info( "InitPlayground start" );
+		log.info( "InitPlayground start {}", ev );
 		InitHandler.initDocAsync( PDF_FOP_TYPE_HANDLER );
 		log.info( "InitPlayground PDF_FOP_TYPE_HANDLER  -> {}", PDF_FOP_TYPE_HANDLER );
 		log.info( "InitPlayground PDFA_FOP_TYPE_HANDLER -> {}", PDFA_FOP_TYPE_HANDLER );

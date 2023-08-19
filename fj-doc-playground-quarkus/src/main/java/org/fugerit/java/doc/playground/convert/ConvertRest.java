@@ -27,7 +27,7 @@ public class ConvertRest {
 
 	private final static String INVALID_FORMAT_MESSAGE = "Invalid output format : ";
 	
-	private String handleXml( ConvertOutput output, String docContent, String outputFormat, ObjectMapper mapper, ObjectMapper yamlMapper ) throws Exception {
+	private String handleXml( ConvertOutput output, String docContent, String outputFormat,  ObjectMapper yamlMapper ) throws Exception {
 		String docOutput = null;
 		if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( outputFormat ) ) {
 			DocXmlToJson helper = new DocXmlToJson();
@@ -103,7 +103,7 @@ public class ConvertRest {
 			ObjectMapper mapper = new ObjectMapper();
 			ObjectMapper yamlMapper = new ObjectMapper( new YAMLFactory() );
 			if ( InputFacade.FORMAT_XML.equalsIgnoreCase( inputFormat ) ) {
-				docOutput = this.handleXml(output, docContent, outputFormat, mapper, yamlMapper);
+				docOutput = this.handleXml(output, docContent, outputFormat, yamlMapper);
 			} else if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( inputFormat ) ) {
 				docOutput = this.handleJson(output, docContent, outputFormat, mapper, yamlMapper);
 			} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( inputFormat ) ) {

@@ -60,8 +60,8 @@ public class FreemarkerDocProcessConfigFacade {
 		config.setDefaultChain(
 				new  DefaultChainProvider() {
 					@Override
-					public MiniFilterChain newDefaultChain(String id) {
-						MiniFilterChain defaultChain = new MiniFilterChain( "DEFAULT_CHAIN_"+id+"_"+System.currentTimeMillis(), MiniFilter.CONTINUE );
+					public MiniFilterChain newDefaultChain(String idChain) {
+						MiniFilterChain defaultChain = new MiniFilterChain( "DEFAULT_CHAIN_"+idChain+"_"+System.currentTimeMillis(), MiniFilter.CONTINUE );
 						defaultChain.setChainId( defaultChain.getKey() );
 						// config step
 						FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
@@ -76,7 +76,7 @@ public class FreemarkerDocProcessConfigFacade {
 						processAtts.setProperty( "template-path" , "${chainId}.ftl" );
 						processAtts.setProperty( "map-atts" , "simpleTableModel" );
 						processStep.setCustomConfig( processAtts );
-						processStep.setChainId( id );
+						processStep.setChainId( idChain );
 						defaultChain.getFilterChain().add( processStep );
 						return defaultChain;
 					}

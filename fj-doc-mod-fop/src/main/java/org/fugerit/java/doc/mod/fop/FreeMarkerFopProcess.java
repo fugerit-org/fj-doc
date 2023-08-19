@@ -7,6 +7,8 @@ import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 
 public class FreeMarkerFopProcess implements Serializable {
 
+	private FreeMarkerFopProcess() {}
+	
 	/**
 	 * 
 	 */

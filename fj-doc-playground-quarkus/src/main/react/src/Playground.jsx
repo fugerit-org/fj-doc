@@ -44,7 +44,7 @@ class Playground extends Component {
 	render() {
 		
 		let dialog = <Fragment></Fragment>;
-		if ( this.state != null && this.state.dialogMessage != null ) {
+		if ( this.state?.dialogMessage != null) {
 			dialog = <Dialog open={true}>
         		<DialogTitle>{this.state.dialogMessage}</DialogTitle>
 				<Button  color="primary" onClick={this.handleCloseDialog} autoFocus>Close</Button>        		

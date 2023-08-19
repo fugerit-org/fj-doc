@@ -10,6 +10,8 @@ import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 
 public class SimpleTableFacade {
 
+	private SimpleTableFacade() {}
+	
 	/**
 	 * Creates a new {@link SimpleTable}
 	 * 

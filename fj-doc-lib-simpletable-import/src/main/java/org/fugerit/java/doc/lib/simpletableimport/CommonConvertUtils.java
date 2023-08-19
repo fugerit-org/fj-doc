@@ -20,7 +20,7 @@ public class CommonConvertUtils {
 	private CommonConvertUtils() {}
 	
 	protected static SimpleTable handleConvertException( SimpleTable table, Exception e, Properties props ) throws ConfigException {
-		SimpleTable result = null;
+		SimpleTable result = table;
 		Properties params = ObjectUtils.objectWithDefault( props, DEFAULT_PARAMS );
 		if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_RETHROW_EXCEPTION, PARAM_VALUE_RETHROW_EXCEPTION_DEFAULT ) ) ) {
 			throw new ConfigException( e );	
