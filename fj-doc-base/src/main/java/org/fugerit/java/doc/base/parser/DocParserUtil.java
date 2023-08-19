@@ -4,6 +4,8 @@ import java.util.Properties;
 
 public class DocParserUtil {
 
+	private DocParserUtil() {}
+	
 	public static String doubleNested( Properties atts, String key1, String key2 ) {
 		return atts.getProperty( key1, atts.getProperty( key2 ) );
 	}

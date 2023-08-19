@@ -63,12 +63,10 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 		Workbook workbook = helper.getWorkbook();
 		if ( style instanceof HSSFCellStyle && workbook instanceof HSSFWorkbook ) {
 			HSSFCellStyle realStyle = (HSSFCellStyle) style;
-			if ( cell != null ) {
-				if ( StringUtils.isNotEmpty( cell.getBackColor() ) ) {
-					short index = findClosestColorIndex( (HSSFWorkbook) workbook , cell.getBackColor() );
-					realStyle.setFillForegroundColor( index );
-					realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
-				}
+			if ( cell != null && StringUtils.isNotEmpty( cell.getBackColor() ) ) {
+				short index = findClosestColorIndex( (HSSFWorkbook) workbook , cell.getBackColor() );
+				realStyle.setFillForegroundColor( index );
+				realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
 			}
 		}
 	}
@@ -76,10 +74,8 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	@Override
 	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
 		Workbook workbook = helper.getWorkbook();
-		if ( workbook instanceof HSSFWorkbook ) {
-			if ( StringUtils.isNotEmpty( cell.getForeColor() ) ) {
-				font.setColor( findClosestColorIndex( (HSSFWorkbook)workbook , cell.getForeColor() ) );
-			}	
+		if ( workbook instanceof HSSFWorkbook && StringUtils.isNotEmpty( cell.getForeColor() ) ) {
+			font.setColor( findClosestColorIndex( (HSSFWorkbook)workbook , cell.getForeColor() ) );	
 		}
 	}
 

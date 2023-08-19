@@ -57,12 +57,10 @@ public class XlsxPoi5TypeHandler extends BasicPoiTypeHandler {
 	protected void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception {
 		if ( style instanceof XSSFCellStyle ) {
 			XSSFCellStyle realStyle = (XSSFCellStyle) style;
-			if ( cell != null ) {
-				if ( StringUtils.isNotEmpty( cell.getBackColor() ) ) {
-					Color c = DocModelUtils.parseHtmlColor( cell.getBackColor() );
-					realStyle.setFillForegroundColor( new XSSFColor( c , helper.getIndexedColorMap() ) );
-					realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
-				}
+			if ( cell != null && StringUtils.isNotEmpty( cell.getBackColor() ) ) {
+				Color c = DocModelUtils.parseHtmlColor( cell.getBackColor() );
+				realStyle.setFillForegroundColor( new XSSFColor( c , helper.getIndexedColorMap() ) );
+				realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
 			}
 		}
 	}

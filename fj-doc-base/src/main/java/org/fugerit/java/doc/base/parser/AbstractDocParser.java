@@ -15,11 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AbstractDocParser implements DocParser {
 
-	private static final String PARSING_EXCEPTION_BASE_MESSAGE = "Parsing exception : ";
-	
 	private int sourceType;
 	
-	public AbstractDocParser(int sourceType) {
+	protected AbstractDocParser(int sourceType) {
 		super();
 		this.sourceType = sourceType;
 	}
@@ -34,21 +32,25 @@ public abstract class AbstractDocParser implements DocParser {
 		return this.parse( new InputStreamReader(is) );
 	}
 	
+	private void handleVersion( String xsdVersion ) {
+		try {
+			if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, DocFacade.CURRENT_VERSION ) > 0 ) {
+				log.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, DocFacade.CURRENT_VERSION  );
+			}	
+		} catch (Exception e) {
+			log.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, DocFacade.CURRENT_VERSION );
+		}
+	}
+	
 	@Override
 	public DocBase parse(Reader reader) throws DocException {
 		DocBase docBase = null;
 		try {
 			docBase = this.parseWorker(reader);
 			String xsdVersion = docBase.getXsdVersion();
-			try {
-				if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, DocFacade.CURRENT_VERSION ) > 0 ) {
-					log.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, DocFacade.CURRENT_VERSION  );
-				}	
-			} catch (Exception e) {
-				log.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, DocFacade.CURRENT_VERSION );
-			}
+			this.handleVersion(xsdVersion);
 		} catch (Exception e) {
-			throw new DocException( PARSING_EXCEPTION_BASE_MESSAGE+e, e );
+			throw DocException.convertExMethod( "parse", e);
 		}
 		return docBase;
 	}
@@ -59,7 +61,7 @@ public abstract class AbstractDocParser implements DocParser {
 		try {
 			result = this.validateWorker(reader, false);
 		} catch (Exception e) {
-			throw new DocException( PARSING_EXCEPTION_BASE_MESSAGE+e, e );
+			throw DocException.convertExMethod( "validateResult", e);
 		}
 		return result;
 	}
@@ -75,7 +77,7 @@ public abstract class AbstractDocParser implements DocParser {
 		try {
 			result = this.validateWorker(reader, true);
 		} catch (Exception e) {
-			throw new DocException( PARSING_EXCEPTION_BASE_MESSAGE+e, e );
+			throw DocException.convertExMethod( "validateVersionResult", e);
 		}
 		return result;
 	}
@@ -85,8 +87,8 @@ public abstract class AbstractDocParser implements DocParser {
 		return this.validateVersionResult(reader).evaluateResult();
 	}
 
-	protected abstract DocValidationResult validateWorker( Reader reader, boolean parseVersion ) throws Exception;
+	protected abstract DocValidationResult validateWorker( Reader reader, boolean parseVersion ) throws DocException;
 	
-	protected abstract DocBase parseWorker( Reader reader ) throws Exception;
+	protected abstract DocBase parseWorker( Reader reader ) throws DocException;
 
 }

@@ -7,18 +7,18 @@ import javax.xml.parsers.SAXParser;
 import org.fugerit.java.core.xml.sax.SAXParseResult;
 import org.fugerit.java.core.xml.sax.XMLFactorySAX;
 import org.fugerit.java.core.xml.sax.dh.DefaultHandlerComp;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.parser.AbstractDocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class DocXmlParser extends AbstractDocParser {
-	
-	private static final Logger logger = LoggerFactory.getLogger( DocXmlParser.class );
 	
 	private DocHelper docHelper;
 
@@ -32,22 +32,30 @@ public class DocXmlParser extends AbstractDocParser {
 	}
 
 	@Override
-	protected DocBase parseWorker(Reader reader) throws Exception {
-		SAXParser parser = XMLFactorySAX.makeSAXParser( false ,  true );
+	protected DocBase parseWorker(Reader reader) throws DocException {
 		DocContentHandler dch =  new DocContentHandler( this.docHelper );
-		DefaultHandlerComp dh = new DefaultHandlerComp( dch );
-		parser.parse( new InputSource(reader), dh);
+		try {
+			SAXParser parser = XMLFactorySAX.makeSAXParser( false ,  true );
+			DefaultHandlerComp dh = new DefaultHandlerComp( dch );
+			parser.parse( new InputSource(reader), dh);
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "parseWorker" , e );
+		}
 		return dch.getDocBase();
 	}
 	
 	@Override
-	protected DocValidationResult validateWorker(Reader reader, boolean parseVersion) throws Exception {
+	protected DocValidationResult validateWorker(Reader reader, boolean parseVersion) throws DocException {
 		DocValidationResult docResult = DocValidationResult.newDefaultNotDefinedResult();
 		SAXParseResult result = null;
-		if ( parseVersion ) {
-			result = DocValidator.validateVersion( reader );
-		} else {
-			result = DocValidator.validate( reader );
+		try {
+			if ( parseVersion ) {
+				result = DocValidator.validateVersion( reader );
+			} else {
+				result = DocValidator.validate( reader );
+			}
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "validateWorker" , e );
 		}
 		for ( Exception e : result.fatalsAndErrors() ) {
 			docResult.getErrorList().add( e.toString() );
@@ -56,7 +64,7 @@ public class DocXmlParser extends AbstractDocParser {
 			docResult.getInfoList().add( e.toString() );
 		}
 		docResult.evaluateResult();
-		logger.debug( "Validation result {}", docResult );
+		log.debug( "Validation result {}", docResult );
 		return docResult;
 	}
 
