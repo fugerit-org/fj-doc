@@ -1,26 +1,41 @@
 package test.org.fugerit.java.doc.tool;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
+@RunWith(Parameterized.class)
 public class TestGenerateStubTool extends TestDocTool {
 	
-	@Test
-	public void testGenerateStub001() {
-		boolean ok = this.docToolWorker( "src/test/resources/params-test/generate-stub-001.properties" );
-		Assert.assertTrue( ok );
+	private static final Object[][] PARAMS = {
+			{ "src/test/resources/params-test/generate-stub-001.properties", true },
+			{ "src/test/resources/params-test/generate-stub-002.properties", true },
+			{ "src/test/resources/params-test/generate-stub-help.properties", true }
+	};
+	
+	@SuppressWarnings("rawtypes")
+	@Parameterized.Parameters
+	public static Collection primeNumbers() {
+		return Arrays.asList( PARAMS );
+	}
+
+	private String path;
+	
+	private boolean expectedResult;
+	
+	public TestGenerateStubTool(String path, boolean exptectedResult ) {
+		this.path = path;
+		this.expectedResult = exptectedResult;
 	}
 	
 	@Test
-	public void testGenerateStub002() {
-		boolean ok = this.docToolWorker( "src/test/resources/params-test/generate-stub-002.properties" );
-		Assert.assertTrue( ok );
-	}
-	
-	@Test
-	public void testGenerateStubHelp() {
-		boolean ok = this.docToolWorker( "src/test/resources/params-test/generate-stub-help.properties" );
-		Assert.assertTrue( ok );
+	public void testCurrent() {
+		boolean ok = this.docToolWorker(this.path);
+		Assert.assertEquals( this.expectedResult , ok );
 	}
 	
 }

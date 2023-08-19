@@ -117,7 +117,7 @@ class DocXmlEditor extends Component {
 				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: decodedStringAtoB }}></div>
 			}  else if ( this.state.docFormat === 'PDF' || this.state.docFormat === 'PDFA' ) {
 				let srcData = 'data:application/pdf;base64,'+ this.state.docOutput;
-				outputData = outputData = <embed width="100%" height="600" src={srcData}/>
+				outputData = <embed width="100%" height="600" src={srcData}/>
 			}  else if ( this.state.docFormat === 'XLSX' ) {
 				let srcData = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+ this.state.docOutput;
 				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
