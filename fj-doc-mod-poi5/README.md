@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+*Description* :
+This module is used for using importing Apache POI 5+, but at core it still use the normal [fj-doc-mod-poi module](../fj-doc-mod-poi/README.md). 
+
 *Status* :  
 Most basic features implemented. (proper color and font handling missing).  
 For the intrinsic limitations of the XLS/XLSX format, it is possible to choose a some tables in the document and output it as excel sheets.   

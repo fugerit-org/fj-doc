@@ -20,6 +20,8 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
+import org.fugerit.java.doc.mod.poi.BasicPoiTypeHandler;
+import org.fugerit.java.doc.mod.poi.WorkbookHelper;
 
 public class XlsxPoi5TypeHandler extends BasicPoiTypeHandler {
 	
