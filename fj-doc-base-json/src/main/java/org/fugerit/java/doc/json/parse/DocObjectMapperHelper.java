@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMIO;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParserContext;
@@ -93,37 +94,46 @@ public class DocObjectMapperHelper {
 		context.handleEndElement(qName);
 	}
 
-	public DocValidationResult validateWorkerResult(Reader reader, boolean parseVersion) throws Exception {
+	public DocValidationResult validateWorkerResult(Reader reader, boolean parseVersion) throws DocException {
 		DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
-		DocJsonToXml convert = new DocJsonToXml( this.mapper );
-		Element root = convert.convertToElement( reader );
-		try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() )  {
-			DOMIO.writeDOMIndent(root, buffer);
-			try ( Reader xmlReader = new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ) ) ) {
-				DocXmlParser parser = new DocXmlParser();
-				result = null;
-				if ( parseVersion ) {
-					result = parser.validateVersionResult(xmlReader);
-				} else {
-					result = parser.validateResult(xmlReader);
-				}
-				if ( !result.getErrorList().isEmpty() ) {
-					result.getInfoList().add( "This validation is made through conversion to xml, so lines/columns number in errors are to be considered an hint" );
+		try {
+			DocJsonToXml convert = new DocJsonToXml( this.mapper );
+			Element root = convert.convertToElement( reader );
+			try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() )  {
+				DOMIO.writeDOMIndent(root, buffer);
+				try ( Reader xmlReader = new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ) ) ) {
+					DocXmlParser parser = new DocXmlParser();
+					result = null;
+					if ( parseVersion ) {
+						result = parser.validateVersionResult(xmlReader);
+					} else {
+						result = parser.validateResult(xmlReader);
+					}
+					if ( !result.getErrorList().isEmpty() ) {
+						result.getInfoList().add( "This validation is made through conversion to xml, so lines/columns number in errors are to be considered an hint" );
+					}
 				}
 			}
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "validateWorkerResult" , e );
 		}
 		return result;
 	}
 	
-	public DocBase parse(Reader reader) throws Exception {
-		DocParserContext context = new DocParserContext();
-		context.startDocument();
-		JsonNode root = this.mapper.readTree( reader );
-		this.handleElement(root, context);
-		context.endDocument();
-		log.debug( "Parse done!" );
-		DocBase docBase = context.getDocBase();
-		docBase.setXsdVersion( findVersion(root, DocFacade.CURRENT_VERSION) );
+	public DocBase parse(Reader reader) throws DocException {
+		DocBase docBase = null;
+		try {
+			DocParserContext context = new DocParserContext();
+			context.startDocument();
+			JsonNode root = this.mapper.readTree( reader );
+			this.handleElement(root, context);
+			context.endDocument();
+			log.debug( "Parse done!" );
+			docBase = context.getDocBase();
+			docBase.setXsdVersion( findVersion(root, DocFacade.CURRENT_VERSION) );
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "parse" , e );
+		}
 		return docBase;
 	}
 	
