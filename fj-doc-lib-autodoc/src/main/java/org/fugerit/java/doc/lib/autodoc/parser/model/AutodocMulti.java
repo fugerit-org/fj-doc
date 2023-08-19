@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xmlet.xsdparser.xsdelements.XsdChoice;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
 import org.xmlet.xsdparser.xsdelements.XsdSequence;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class AutodocMulti implements Serializable {
 
 	/**
@@ -19,8 +20,6 @@ public abstract class AutodocMulti implements Serializable {
 	 */
 	private static final long serialVersionUID = 5741209190264158477L;
 
-	private final static Logger logger = LoggerFactory.getLogger( AutodocMulti.class );
-	
 	protected abstract Stream<XsdElement> getElementsStream();
 	
 	protected abstract Stream<XsdChoice> getChoiceStream();
@@ -32,7 +31,7 @@ public abstract class AutodocMulti implements Serializable {
 		try {
 			result = this.getElementsStream().collect( Collectors.toList() );
 		} catch (NullPointerException npe) {
-			logger.warn( "Null pointer exception getting elements "+npe );
+			log.warn( "Null pointer exception getting elements {}", npe.toString() );
 		}
 		return result;
 	}
@@ -42,7 +41,7 @@ public abstract class AutodocMulti implements Serializable {
 		try {
 			result = this.getChoiceStream().map( current -> { return new AutodocChoice( current ); } ).collect( Collectors.toList() );
 		} catch (NullPointerException npe) {
-			logger.warn( "Null pointer exception getting choices "+npe );
+			log.warn( "Null pointer exception getting choices {}", npe.toString() );
 		}
 		return result;
 	}
@@ -52,7 +51,7 @@ public abstract class AutodocMulti implements Serializable {
 		try {
 			result = this.getSequencesStream().map( current -> { return new AutodocSequence( current ); } ).collect( Collectors.toList() );
 		} catch (NullPointerException npe) {
-			logger.warn( "Null pointer exception getting sequences "+npe );
+			log.warn( "Null pointer exception getting sequences {}", npe.toString() );
 		}
 		return result;
 	}

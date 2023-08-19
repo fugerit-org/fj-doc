@@ -3,6 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 	
     
+    <#assign adProps=autodocDetailModel.adProperties>
+	<#assign autodocDetail=autodocDetailModel.autodocDetail>
+
 	<metadata>
 		<info name="default-font-size">10</info>
 		<!-- for xlsx format -->
@@ -15,12 +18,12 @@
 		<info name="page-width">29.7cm</info>
 		<info name="page-height">21cm</info>
 		<!-- language -->
-		<info name="doc-language">en</info> 		 
+		<info name="doc-title">${adProps['output-title']}</info>
+		<info name="doc-language">en</info> 
+		<!-- style -->
+		<info name="html-css-link">https://venusguides.fugerit.org/src/css/default_venus_docs_style.css</info> 		 
 	</metadata>
 	<body>
-		
-		<#assign adProps=autodocDetailModel.adProperties>
-		<#assign autodocDetail=autodocDetailModel.autodocDetail>
 		
 		<!-- headings -->
     	<h head-level="1">${adProps['output-title']}</h>
