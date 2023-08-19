@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.checkpoint.CheckpointFormatHelper;
 import org.fugerit.java.core.util.checkpoint.Checkpoints;
@@ -84,7 +85,7 @@ public class BasicFacadeTest {
 		try ( InputStreamReader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "config/freemarker-doc-process.xml" ) ) ) {
 			config = FreemarkerDocProcessConfigFacade.loadConfig( xmlReader );
 		} catch (Exception e) {
-			throw new RuntimeException( e ); 
+			throw new ConfigRuntimeException( "Exception on init : "+e, e );
 		}
 		return config;
 	}

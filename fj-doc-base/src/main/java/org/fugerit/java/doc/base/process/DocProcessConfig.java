@@ -3,6 +3,7 @@ package org.fugerit.java.doc.base.process;
 import java.io.InputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.util.filterchain.MiniFilterConfig;
 import org.fugerit.java.core.util.filterchain.MiniFilterConfigEntry;
@@ -28,7 +29,7 @@ public class DocProcessConfig extends MiniFilterConfig {
 		try ( InputStream is = StreamHelper.resolveStream( configPath ) ) {
 			config = loadConfig( is );
 		} catch (Exception e) {
-			throw new RuntimeException( e );
+			throw new ConfigRuntimeException( "Exception on loadConfigSafe : "+e, e );
 		}
 		return config;
 	}

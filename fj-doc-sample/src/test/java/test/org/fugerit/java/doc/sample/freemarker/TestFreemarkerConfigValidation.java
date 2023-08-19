@@ -2,6 +2,7 @@ package test.org.fugerit.java.doc.sample.freemarker;
 
 import java.io.InputStreamReader;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator;
 import org.junit.Assert;
@@ -15,7 +16,7 @@ public class TestFreemarkerConfigValidation  {
 			boolean valid = FreemarkerDocProcessConfigValidator.logValidation( xmlReader );
 			Assert.assertTrue( "Xml non valido", valid );
 		} catch (Exception e) {
-			throw new RuntimeException( e ); 
+			throw new ConfigRuntimeException( "Exception on testValidation : "+e, e );
 		}
 	}
 	

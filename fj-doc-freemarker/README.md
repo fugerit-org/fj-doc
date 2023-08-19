@@ -74,7 +74,7 @@ And here is sample code to put all together up to XML composition :
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/doc-process-sample.xml" ) ) {
 			config = DocProcessConfig.loadConfig( is );
 		} catch (Exception e) {
-			throw new RuntimeException( e ); 
+			throw new ConfigRuntimeException( "Exception on init : "+e, e );
 		}
 		return config;
 	}

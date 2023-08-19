@@ -13,6 +13,8 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 
 public class SimpleDocFacade {
 
+	private SimpleDocFacade() {} // java:S1118
+	
 	public static void produce( DocTypeHandler th, Reader xml, OutputStream dest ) throws Exception {
 		DocInput input = DocInput.newInput( th.getType() , xml );
 		DocOutput output = DocOutput.newOutput( dest );

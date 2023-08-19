@@ -3,6 +3,7 @@ package org.fugerit.java.doc.base.helper;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 
 public class DefaultMimeHelper {
@@ -14,7 +15,7 @@ public class DefaultMimeHelper {
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/default_mime.xml" ) ) {
 			props.loadFromXML( is );
 		} catch (Exception e) {
-			throw new RuntimeException( e );
+			throw new ConfigRuntimeException( "Exception on init : "+e, e );
 		}
 	}
 	

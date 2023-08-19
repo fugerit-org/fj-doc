@@ -76,7 +76,7 @@ Which can be used this configured this way (see also [SampleFacade](../fj-doc-sa
 		try {
 			facade = DocHandlerFactory.register( path, name );
 		} catch (Exception e) {
-			throw new RuntimeException( e );
+			throw new ConfigRuntimeException( "Exception on init : "+e, e );
 		}
 		return facade;
 	}

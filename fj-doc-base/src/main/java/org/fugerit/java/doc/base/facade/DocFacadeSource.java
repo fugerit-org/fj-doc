@@ -53,7 +53,7 @@ public class DocFacadeSource {
 				parser = (DocParser) ClassHelper.newInstance( type );
 			}
 		} catch (Exception e) {
-			logger.warn( "Failed to load parser for source type : "+sourceType+" ("+e+")" );
+			logger.warn( "Failed to load parser for source type : {} ({})", sourceType, e.toString() );
 		}
 		return parser;
 	}

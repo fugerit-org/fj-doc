@@ -11,6 +11,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.sax.SAXSource;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -38,7 +39,7 @@ public class FreemarkerDocProcessConfigValidator {
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config_fm_xsd/schema-validator-config-freemarker.xml" ) ) {
 			catalog = XMLSchemaCatalogConfig.loadConfigSchema( is );
 		} catch (Exception e) {
-			throw new RuntimeException( e ); 
+			throw new ConfigRuntimeException( "Exception on init : "+e, e );
 		}
 		return catalog;
 	}

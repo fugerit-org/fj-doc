@@ -32,6 +32,7 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.Properties;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.log.LogFacade;
@@ -154,7 +155,7 @@ public class DocFacade {
 		try {
 			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 		} catch (Exception e) {
-			throw new RuntimeException( e );
+			throw new ConfigRuntimeException( "Exception on parseRE : "+e, e );
 		}
 		return doc;
 	}
@@ -165,7 +166,7 @@ public class DocFacade {
 		try {
 			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 		} catch (Exception e) {
-			throw new RuntimeException( e );
+			throw new ConfigRuntimeException( "Exception on parseRE : "+e, e );
 		}
 		return doc;
 	}
