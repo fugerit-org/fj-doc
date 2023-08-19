@@ -128,18 +128,18 @@ public class DocParserContext {
 	
 	// start tag handlers - BEGIN
 	
-	private void handleStartDoc( String qName, Properties props ) {
+	private void handleStartDoc(Properties props ) {
 		this.docBase = new DocBase();
 		String xsdVersion = findXsdVersion(props);
 		this.docBase.setXsdVersion( xsdVersion );
 	}
 
-	private void handleStartMeta( String qName, Properties props ) {
+	private void handleStartMeta() {
 		DocContainer docMeta = this.docBase.getDocMeta();
 		this.currentElement = docMeta;
 	}
 	
-	private void handleStartInfo( String qName, Properties props ) {
+	private void handleStartInfo(Properties props ) {
 		DocInfo docInfo = new DocInfo();
 		docInfo.setName( props.getProperty( "name" ) );
 		this.currentElement = docInfo;
@@ -169,18 +169,18 @@ public class DocParserContext {
 		this.currentElement = docFooter;
 	}
 	
-	private void handleStartBackground( String qName, Properties props ) {
+	private void handleStartBackground() {
 		DocBackground docBackground = new DocBackground();
 		this.docBase.setDocBackground( docBackground );
 		this.currentElement = docBackground;	
 	}
 	
-	private void handleStartBody( String qName, Properties props ) {
+	private void handleStartBody() {
 		DocContainer docBody = this.docBase.getDocBody();
 		this.currentElement = docBody;
 	}
 	
-	private void handleStartImage( String qName, Properties props ) {
+	private void handleStartImage( Properties props ) {
 		DocImage docImage = new DocImage();
 		// setting paragraph style
 		String url = props.getProperty( "url" );
@@ -208,7 +208,7 @@ public class DocParserContext {
 		this.currentElement = docImage;	
 	}
 	
-	private void handleStartTable( String qName, Properties props ) {
+	private void handleStartTable( Properties props ) {
 		DocTable docTable = new DocTable();
 		docTable.setColumns( Integer.parseInt( props.getProperty( "columns" ) )  );
 		docTable.setWidth( Integer.parseInt( props.getProperty( "width", "-1" ) )  );
@@ -238,13 +238,13 @@ public class DocParserContext {
 		this.currentElement = docTable;
 	}
 	
-	private void handleStartRow( String qName, Properties props ) {
+	private void handleStartRow( Properties props ) {
 		DocRow docRow = new DocRow();
 		docRow.setHeader( BooleanUtils.isTrue( props.getProperty( DocRow.ATT_HEADER ) ) );
 		this.currentElement = docRow;
 	}
 	
-	private void handleStartCell( String qName, Properties props ) {
+	private void handleStartCell( Properties props ) {
 		DocCell docCell = new DocCell();
 		docCell.setCSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_COLSPAN, DocElement.STRING_1 ) ) );
 		docCell.setRSpan( Integer.parseInt( props.getProperty( DocCell.ATTRIBUTE_NAME_ROWSPAN, DocElement.STRING_1 ) ) );
@@ -262,31 +262,31 @@ public class DocParserContext {
 		this.currentElement = docCell;
 	}
 	
-	private void handleStartPl( String qName, Properties props ) {
+	private void handleStartPl( ) {
 		DocContainer container = new DocContainer();
 		this.currentElement = container;
 	}
 	
-	private void handleStartPara( String qName, Properties props ) {
+	private void handleStartPara(Properties props ) {
 		DocPara docPara = new DocPara();
 		valuePara(docPara, props, false);
 		this.currentElement = docPara;
 	}
 
-	private void handleStartH( String qName, Properties props ) {
+	private void handleStartH(Properties props ) {
 		DocPara docPara = new DocPara();
 		valuePara(docPara, props, true);
 		this.currentElement = docPara;	
 	}
 	
-	private void handleStartBr( String qName, Properties props ) {
+	private void handleStartBr( Properties props ) {
 		DocBr docBr = new DocBr();
 		valuePhrase(docBr, props);
 		docBr.setText( "\n" );
 		this.currentElement = docBr;	
 	}
 	
-	private void handleStartNbsp( String qName, Properties props ) {
+	private void handleStartNbsp( Properties props ) {
 		DocNbsp docNbsp = new DocNbsp();
 		valuePhrase(docNbsp, props);
 		int length = Integer.parseInt( props.getProperty( "length", "2" ) );
@@ -294,13 +294,13 @@ public class DocParserContext {
 		this.currentElement = docNbsp;		
 	}
 	
-	private void handleStartPhrase( String qName, Properties props ) {
+	private void handleStartPhrase( Properties props ) {
 		DocPhrase docPhrase = new DocPhrase();
 		valuePhrase(docPhrase, props);
 		this.currentElement = docPhrase;	
 	}
 	
-	private void handleStartBarcode( String qName, Properties props ) {
+	private void handleStartBarcode( Properties props ) {
 		DocBarcode barcode = new DocBarcode();
 		barcode.setSize( Integer.parseInt( props.getProperty( "size", "-1" ) ) );
 		barcode.setType( props.getProperty( "type", "EAN" ) );
@@ -308,29 +308,29 @@ public class DocParserContext {
 		this.currentElement = barcode;
 	}
 	
-	private void handleStartList( String qName, Properties props ) {
+	private void handleStartList( Properties props ) {
 		DocList docList = new DocList();
 		String listType = props.getProperty( "list-type", DocList.LIST_TYPE_OL );
 		docList.setListType( listType );
 		this.currentElement = docList;
 	}
 	
-	private void handleStartLi( String qName, Properties props ) {
+	private void handleStartLi( ) {
 		DocLi docLi = new DocLi();
 		this.currentElement = docLi;	
 	}
 
-	private void handleStartPageBreak( String qName, Properties props ) {
+	private void handleStartPageBreak() {
 		this.currentElement = new DocPageBreak();
 	}
 
-	private void handleStartBookmarkTree( String qName, Properties props ) {
+	private void handleStartBookmarkTree( ) {
 		DocBookmarkTree docBookmarkTree = new DocBookmarkTree();
 		this.docBase.setDocBookmarkTree(docBookmarkTree);
 		this.currentElement = docBookmarkTree;
 	}
 	
-	private void handleStartBookmark( String qName, Properties props ) {
+	private void handleStartBookmark(Properties props ) {
 		DocBookmark docBookmark = new DocBookmark();
 		String ref = props.getProperty( DocBookmark.ATT_REF );
 		docBookmark.setRef( ref );
@@ -358,31 +358,31 @@ public class DocParserContext {
 	private boolean handleStartElementPriorityOne( String qName, Properties props ) {
 		boolean ok = false;
 		if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartPara(qName, props);
+			this.handleStartPara(props);
 			ok = true;
 		} else if ( DocPara.TAG_NAME_H.equalsIgnoreCase( qName ) ) {
-			this.handleStartH(qName, props);
+			this.handleStartH(props);
 			ok = true;
 		} else if ( DocPhrase.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartPhrase(qName, props);
+			this.handleStartPhrase(props);
 			ok = true;
 		} else if ( DocList.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartList(qName, props);
+			this.handleStartList(props);
 			ok = true;
 		} else if ( DocLi.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartLi(qName, props);
+			this.handleStartLi();
 			ok = true;
 		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartTable(qName, props);
+			this.handleStartTable(props);
 			ok = true;
 		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartRow(qName, props);
+			this.handleStartRow(props);
 			ok = true;
 		} else if ( DocCell.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartCell(qName, props);
+			this.handleStartCell(props);
 			ok = true;
 		} else if ( DocPageBreak.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartPageBreak(qName, props);
+			this.handleStartPageBreak();
 			ok = true;
 		}
 		return ok;
@@ -391,13 +391,16 @@ public class DocParserContext {
 	private boolean handleStartElementPriorityTwo( String qName, Properties props ) {
 		boolean ok = false;
 		if ( this.parserNames.isTypeDoc( qName ) ) {
-			this.handleStartDoc(qName, props);
+			this.handleStartDoc(props);
 			ok = true;
 		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
-			this.handleStartMeta( qName, props );
+			this.handleStartMeta();
+			ok = true;
+		} else if ( DocContainer.TAG_NAME_BODY.equalsIgnoreCase( qName ) ) {
+			this.handleStartBody();
 			ok = true;
 		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartInfo( qName, props );
+			this.handleStartInfo( props );
 			ok = true;
 		} else if ( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) || DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName )  ) {
 			this.handleStartHeader( qName, props);
@@ -406,10 +409,10 @@ public class DocParserContext {
 			this.handleStartFooter(qName, props);
 			ok = true;
 		} else if ( DocBr.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBr(qName, props);
+			this.handleStartBr( props);
 			ok = true;
 		} else if ( DocNbsp.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartNbsp(qName, props);
+			this.handleStartNbsp( props);
 			ok = true;
 		}
 		return ok;
@@ -418,25 +421,22 @@ public class DocParserContext {
 	private boolean handleStartElementPriorityThree( String qName, Properties props ) {
 		boolean ok = false;
 		if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBackground(qName, props);
-			ok = true;
-		} else if ( DocContainer.TAG_NAME_BODY.equalsIgnoreCase( qName ) ) {
-			this.handleStartBody(qName, props);
+			this.handleStartBackground();
 			ok = true;
 		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartImage(qName, props);
+			this.handleStartImage(props);
 			ok = true;
 		} else if (  DocContainer.TAG_NAME_PL.equalsIgnoreCase( qName ) ) {
-			this.handleStartPl(qName, props);
+			this.handleStartPl();
 			ok = true;
 		}  else if ( DocBarcode.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBarcode(qName, props);
+			this.handleStartBarcode( props);
 			ok = true;
 		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBookmarkTree(qName, props);
+			this.handleStartBookmarkTree();
 			ok = true;
 		} else if ( DocBookmark.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBookmark(qName, props);
+			this.handleStartBookmark(props);
 			ok = true;
 		}
 		return ok;

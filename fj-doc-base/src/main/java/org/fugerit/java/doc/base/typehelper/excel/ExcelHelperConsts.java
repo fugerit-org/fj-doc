@@ -2,6 +2,8 @@ package org.fugerit.java.doc.base.typehelper.excel;
 
 public class ExcelHelperConsts {
 
+	private ExcelHelperConsts() {} // java:S1118
+	
 	public final static String PROP_XLS_WIDTH_MULTIPLIER = "excel-width-multiplier";
 	
 	public final static String PROP_XLS_IGNORE_FORMAT = "excel-ignore-format";

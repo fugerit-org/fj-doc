@@ -1,21 +1,27 @@
 package org.fugerit.java.doc.base.typehelper.excel;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 
-import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.doc.base.model.DocBase;
 
 public class ExcelHelperUtils {
 
-	public static InputStream resoveTemplateStream( DocBase docBase ) throws Exception {
+	private ExcelHelperUtils() {} // java:S1118
+	
+	public static InputStream resoveTemplateStream( DocBase docBase ) throws IOException {
 		String excelTemplate = docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TEMPLATE );
 		InputStream is = null;
 		if ( excelTemplate != null ) {
-			is = StreamHelper.resolveStream( excelTemplate );
-			if ( is == null ) {
-				throw new ConfigException( "Cannot find template at path : "+excelTemplate );
+			try {
+				is = StreamHelper.resolveStream( excelTemplate );
+				if ( is == null ) {
+					throw new IOException( "Cannot find template at path : "+excelTemplate );
+				}	
+			} catch (Exception e) {
+				throw new IOException( "Exception on resoveTemplateStream : "+e, e );
 			}
 		}
 		return is;			
