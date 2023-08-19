@@ -265,6 +265,7 @@ public class DocPara extends DocContainer implements DocStyle {
 		this.headLevel = headLevel;
 	}
 
+	@Override
 	public String toString() {
 		return super.toString()+"[text:"+this.getText()+"]";
 	}

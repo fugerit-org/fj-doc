@@ -40,6 +40,7 @@ public class DocElement implements Serializable {
 	 */
 	private static final long serialVersionUID = 1934678965894426319L;
 
+	@Override
 	public String toString() {
 		return this.getClass().getName()+"[id:"+this.getId()+"]";
 	}

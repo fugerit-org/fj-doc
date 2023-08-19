@@ -55,6 +55,7 @@ public class DocNbsp extends DocPhrase {
 		this.setText( buffer.toString() );
 	}
 
+	@Override
 	public String toString() {
 		return super.toString()+"[size:"+this.getSize()+"]";
 	}

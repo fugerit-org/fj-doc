@@ -25,6 +25,9 @@
  */
 package org.fugerit.java.doc.base.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 
  *
@@ -44,6 +47,7 @@ public class DocCell extends DocContainer implements DocStyle {
 	 */
 	private static final long serialVersionUID = -6769143730899701281L;
 	
+	@Override
 	public String toString() {
 		return super.toString()+"[align:"+this.getAlign()+"]";
 	}
@@ -58,121 +62,21 @@ public class DocCell extends DocContainer implements DocStyle {
 
 	private boolean header;
 	
-	private int align;
+	@Setter @Getter private int align;
 	
-	private int valign;
+	@Setter @Getter private int valign;
 	
-	private String type;
+	@Setter @Getter private String type;
 	
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public int getValign() {
-		return valign;
-	}
-
-	public void setValign(int valign) {
-		this.valign = valign;
-	}
-
-	private int cSpan;
+	@Setter @Getter private int cSpan;
 	
-	private int rSpan;
+	@Setter @Getter private int rSpan;
 	
-	private String foreColor;
+	@Setter @Getter private String foreColor;
 	
-	private String backColor;
+	@Setter @Getter private String backColor;
 	
-	private DocBorders docBorders;
-
-	/**
-	 * @return the docBorders
-	 */
-	public DocBorders getDocBorders() {
-		return docBorders;
-	}
-
-	/**
-	 * @param docBorders the docBorders to set
-	 */
-	public void setDocBorders(DocBorders docBorders) {
-		this.docBorders = docBorders;
-	}
-
-	/**
-	 * @return the cSpan
-	 */
-	public int getCSpan() {
-		return cSpan;
-	}
-
-	/**
-	 * @param span the cSpan to set
-	 */
-	public void setCSpan(int span) {
-		cSpan = span;
-	}
-
-	/**
-	 * @return the rSpan
-	 */
-	public int getRSpan() {
-		return rSpan;
-	}
-
-	/**
-	 * @param span the rSpan to set
-	 */
-	public void setRSpan(int span) {
-		rSpan = span;
-	}
-
-	/**
-	 * @return the align
-	 */
-	public int getAlign() {
-		return align;
-	}
-
-	/**
-	 * @param align the align to set
-	 */
-	public void setAlign(int align) {
-		this.align = align;
-	}
-
-	/**
-	 * @return the backColor
-	 */
-	public String getBackColor() {
-		return backColor;
-	}
-
-	/**
-	 * @param backColor the backColor to set
-	 */
-	public void setBackColor(String backColor) {
-		this.backColor = backColor;
-	}
-
-	/**
-	 * @return the foreColor
-	 */
-	public String getForeColor() {
-		return foreColor;
-	}
-
-	/**
-	 * @param foreColor the foreColor to set
-	 */
-	public void setForeColor(String foreColor) {
-		this.foreColor = foreColor;
-	}
+	@Setter @Getter private DocBorders docBorders;
 	
 	public int getRowSpan() {
 		int res = this.getRSpan();

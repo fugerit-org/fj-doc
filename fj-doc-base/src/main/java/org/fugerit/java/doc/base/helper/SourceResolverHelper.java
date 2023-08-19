@@ -10,6 +10,8 @@ import org.fugerit.java.doc.base.model.DocImage;
 
 public class SourceResolverHelper {
 
+	private SourceResolverHelper() {} // java:S1118
+	
 	public static final String MODE_CLASSLOADER = StreamHelper.PATH_CLASSLOADER;
 	
 	public static String resolveImageToBase64( DocImage img ) throws IOException {

@@ -26,7 +26,7 @@ public class DocFacadeSource {
 	
 	private static final Logger logger = LoggerFactory.getLogger( DocFacadeSource.class );
 	
-	private static DocFacadeSource INSTANCE = new DocFacadeSource();
+	private static final DocFacadeSource INSTANCE = new DocFacadeSource();
 	
 	public static DocFacadeSource getInstance() {
 		return INSTANCE;

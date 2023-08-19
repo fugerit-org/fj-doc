@@ -118,6 +118,7 @@ public class DocPhrase extends DocElement implements DocStyle {
 		this.text = text;
 	}
 
+	@Override
 	public String toString() {
 		return super.toString()+"[text:"+this.getText()+"]";
 	}

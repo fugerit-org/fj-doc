@@ -7,6 +7,8 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 
 public class DefaultMimeHelper {
 
+	private DefaultMimeHelper() {} // java:S1118
+	
 	private static Properties props = new Properties();
 	static {
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/default_mime.xml" ) ) {
