@@ -22,6 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
@@ -49,7 +50,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
 	public static final String MODULE = "poi";
 	
-	public BasicPoiTypeHandler(String type) {
+	protected BasicPoiTypeHandler(String type) {
 		super(type, MODULE);
 	}
 
@@ -61,7 +62,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	
 	protected abstract void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	
-	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws Exception {
+	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws DocException {
 		
 	}
 	
@@ -179,7 +180,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		currentCell.setCellStyle( cellStyle );
 	}
 	
-	private void iterateCellMatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook, int rn, int cn, Row currentRow ) throws Exception {
+	private void iterateCellMatrix( TableMatrix matrix, boolean ignoreFormat, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook, int rn, int cn, Row currentRow ) throws Exception {
 		String type = null;
 		String format = null;
 		DocCell cell = matrix.getCell( rn, cn );
@@ -218,7 +219,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 				currentRow = dati.createRow( rn );
 			}
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
-				this.iterateCellMatrix(matrix, ignoreFormat, dati, helper, styleSet, workbook, rn, cn, currentRow);
+				this.iterateCellMatrix(matrix, ignoreFormat, helper, styleSet, workbook, rn, cn, currentRow);
 			}
 		}
 	}
@@ -266,10 +267,10 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		Workbook outputXls = helper.getWorkbook();
 		
 		String excelTableId = docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TABLE_ID );
-		String excelTableSheet[] = excelTableId.split( ";" );		
+		String[] excelTableSheet = excelTableId.split( ";" );		
 		boolean ignoreFormat = "true".equalsIgnoreCase( docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_IGNORE_FORMAT ) );
 		for ( int k=0; k<excelTableSheet.length; k++ ) {
-			String currentSheetData[] = excelTableSheet[k].split( "=" );
+			String[] currentSheetData = excelTableSheet[k].split( "=" );
 			String sheetId = currentSheetData[0];
 			String sheetName = currentSheetData[1];
 			DocTable table = (DocTable)docBase.getElementById( sheetId );

@@ -47,7 +47,7 @@ public class ClassLoaderResourceResolverWrapper extends ResourceResolverWrapper 
 			boolean canHandle = this.canHandle( path );
 			logger.debug( "getResource() canHandle?:{}, uri:{}", canHandle, uri );
 			if ( canHandle ) {
-				path = path.substring( CLASSPATH_SCHEMA.length() ); ;
+				path = path.substring( CLASSPATH_SCHEMA.length() );
 				return new Resource( ClassHelper.loadFromDefaultClassLoader( path ) );
 			} else {
 				return this.unwrap().getResource(uri);

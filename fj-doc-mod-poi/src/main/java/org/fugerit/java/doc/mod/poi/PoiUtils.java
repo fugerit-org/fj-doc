@@ -9,6 +9,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class PoiUtils {
 
+	private PoiUtils() {}
+	
     public static void resizeSheet( Sheet s ) {
         Row row = s.getRow( 0 );
         Iterator<Cell> cells = row.cellIterator();

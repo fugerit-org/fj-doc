@@ -45,6 +45,11 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_CONFIG_MODE = "fop-config-mode";
 	public static final String ATT_FOP_CONFIG_MODE_DEFAULT = "default";
 	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER = "classloader";
+	
+
+	/**
+	 * @deprecated planned for removal in version 1.6 (see https://github.com/fugerit-org/fj-doc/issues/7)
+	 */
 	@Deprecated
 	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY = "classloader-legacy";
 	
@@ -61,6 +66,9 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	private static final String[] VALID_PDF_A = { ATT_PDF_A_MODE_PDF_A_1A, ATT_PDF_A_MODE_PDF_A_1B };
 	public static final List<String> VALID_PDF_A_MODES = Arrays.asList( VALID_PDF_A );
 	
+	/**
+	 * @deprecated planned for removal in version 1.6 (see https://github.com/fugerit-org/fj-doc/issues/7)
+	 */
 	@Deprecated
 	public static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";
 	

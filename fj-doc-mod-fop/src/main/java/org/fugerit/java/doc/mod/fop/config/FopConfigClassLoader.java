@@ -1,7 +1,7 @@
 package org.fugerit.java.doc.mod.fop.config;
 
-/*
- * Left only for compatibility with versions previous of 0.5.2
+/**
+ * @deprecated planned for removal in version 1.6 (see https://github.com/fugerit-org/fj-doc/issues/7)
  */
 @Deprecated
 public class FopConfigClassLoader extends FopConfigClassLoaderWrapper {
