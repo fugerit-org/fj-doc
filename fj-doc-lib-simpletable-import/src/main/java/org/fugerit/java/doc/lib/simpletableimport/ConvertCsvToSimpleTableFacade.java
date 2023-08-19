@@ -18,12 +18,6 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class ConvertCsvToSimpleTableFacade {
-
-	private static final ConvertCsvToSimpleTableFacade INSTANCE = new ConvertCsvToSimpleTableFacade();
-	
-	public static ConvertCsvToSimpleTableFacade getInstance() {
-		return INSTANCE;
-	}
 	
 	public SimpleTable convertCsv( InputStream csvStream, Properties params ) throws ConfigException {
 		SimpleTable table = null;
@@ -45,7 +39,7 @@ public class ConvertCsvToSimpleTableFacade {
 				currentLine = reader.readNext();
 			}
 		} catch (IOException | CsvValidationException e) {
-			throw new ConfigException( e );
+			table = CommonConvertUtils.handleConvertException(table, e, params);
 		}
 		return table;
 	}

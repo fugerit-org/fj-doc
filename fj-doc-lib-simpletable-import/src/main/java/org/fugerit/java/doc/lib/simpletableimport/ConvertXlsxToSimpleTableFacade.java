@@ -13,8 +13,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.lang.helpers.BooleanUtils;
-import org.fugerit.java.core.util.ObjectUtils;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
@@ -22,23 +20,8 @@ import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableHelper;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class ConvertXlsxToSimpleTableFacade {
 
-	private static final ConvertXlsxToSimpleTableFacade INSTANCE = new ConvertXlsxToSimpleTableFacade();
-	
-	private static final Properties DEFAULT_PARAMS = new Properties();
-	
-	public static final String PARAM_KEY_RETHROW_EXCEPTION = "rethrow-exception";
-	public static final String PARAM_VALUE_RETHROW_EXCEPTION_DEFAULT = BooleanUtils.BOOLEAN_1;
-	
-	
-	public static ConvertXlsxToSimpleTableFacade getInstance() {
-		return INSTANCE;
-	}
-	
 	private SimpleTable handleRows( SimpleTableHelper helper, Iterator<Row> itRows ) throws ConfigException {
 		SimpleTable table = null;
 		short columnCount = -1;
@@ -75,19 +58,13 @@ public class ConvertXlsxToSimpleTableFacade {
 	
 	public SimpleTable convertXlsx( InputStream xlsxStream, Properties params ) throws ConfigException {
 		SimpleTable table = null;
-		params = ObjectUtils.objectWithDefault( params, DEFAULT_PARAMS );
 		try ( Workbook workbook = new XSSFWorkbook( xlsxStream ) ) {
 			Sheet sheet = workbook.getSheetAt( 0 );
 			Iterator<Row> itRows = sheet.iterator();
 			SimpleTableHelper helper = SimpleTableFacade.newHelper();
 			table = this.handleRows(helper, itRows);
 		} catch (IOException e) {
-			if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_RETHROW_EXCEPTION, PARAM_VALUE_RETHROW_EXCEPTION_DEFAULT ) ) ) {
-				throw new ConfigException( e );	
-			} else {
-				table = null;
-				log.warn( "Returning null table on exception : "+e, e );
-			}
+			table = CommonConvertUtils.handleConvertException(table, e, params);
 		}
 		return table;
 	}

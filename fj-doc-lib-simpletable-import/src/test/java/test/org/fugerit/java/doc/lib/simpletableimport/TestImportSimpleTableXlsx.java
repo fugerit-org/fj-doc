@@ -22,7 +22,8 @@ public class TestImportSimpleTableXlsx {
 		log.info( "inputPath -> {}, outputPath -> {}", inputPath, outputPath );
 		try ( FileInputStream is = new FileInputStream( inputFile );
 				FileOutputStream os = new FileOutputStream( outputFile )) {
-			ConvertXlsxToSimpleTableFacade.getInstance().processXlsx(is, os, XlsxPoiTypeHandler.HANDLER, new Properties());
+			ConvertXlsxToSimpleTableFacade facade = new ConvertXlsxToSimpleTableFacade();
+			facade.processXlsx(is, os, XlsxPoiTypeHandler.HANDLER, new Properties());
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );

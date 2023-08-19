@@ -22,7 +22,8 @@ public class TestImportSimpleTableCsv {
 		log.info( "inputPath -> {}, outputPath -> {}", inputPath, outputPath );
 		try ( FileInputStream is = new FileInputStream( inputFile );
 				FileOutputStream os = new FileOutputStream( outputFile )) {
-			ConvertCsvToSimpleTableFacade.getInstance().processCsv(is, os, XlsxPoiTypeHandler.HANDLER, new Properties());
+			ConvertCsvToSimpleTableFacade facade = new ConvertCsvToSimpleTableFacade();
+			facade.processCsv(is, os, XlsxPoiTypeHandler.HANDLER, new Properties());
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );
