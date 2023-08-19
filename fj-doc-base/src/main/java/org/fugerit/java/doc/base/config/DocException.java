@@ -31,6 +31,18 @@ public class DocException extends Exception {
 		return code;
 	}
 
+	public static DocException convertExMethod( String method, Exception e ) {
+		return convertEx( "Exception during "+method, e );
+	}
+	
+	public static DocException convertEx( String baseMessage, Exception e ) {
+		return new DocException( baseMessage+" : "+e, e );
+	}
+	
+	public static DocException convertEx( Exception e ) {
+		return convertEx( "DocException cause is", e );
+	}
+	
 	/**
 	 * 
 	 */

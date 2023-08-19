@@ -9,6 +9,7 @@ import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.lib.autodoc.detail.model.AdAttribute;
 import org.fugerit.java.doc.lib.autodoc.detail.model.AdChangelog;
@@ -110,25 +111,35 @@ public class AutodocDetailFacade {
 		return detail;
 	}
 	
-	public void marshal( AutodocDetail autodocDetail, OutputStream os ) throws Exception {
+	public void marshal( AutodocDetail autodocDetail, OutputStream os ) throws DocException {
 		this.marshal( autodocDetail, os, true, true );
 	}
 	
-	public void marshal( AutodocDetail autodocDetail, OutputStream os, boolean format, boolean addSchemaLocation ) throws Exception {
-		JAXBContext jc = JAXBContext.newInstance( AutodocDetail.class );
-		Marshaller marshaller = jc.createMarshaller();
-	    marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
-	    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, format);
-	    if ( addSchemaLocation ) {
-	    	 marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "https://autodoc.fugerit.org, https://www.fugerit.org/data/java/doc/xsd/autodoc-detail-1-0.xsd");
-	    }
-		marshaller.marshal( autodocDetail , os );
+	public void marshal( AutodocDetail autodocDetail, OutputStream os, boolean format, boolean addSchemaLocation ) throws DocException {
+		try {
+			JAXBContext jc = JAXBContext.newInstance( AutodocDetail.class );
+			Marshaller marshaller = jc.createMarshaller();
+		    marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+		    marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, format);
+		    if ( addSchemaLocation ) {
+		    	 marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "https://autodoc.fugerit.org, https://www.fugerit.org/data/java/doc/xsd/autodoc-detail-1-0.xsd");
+		    }
+			marshaller.marshal( autodocDetail , os );
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "marshal" , e );
+		}
 	}
 	
-	public AutodocDetail unmarshal(InputStream is) throws Exception {
-		JAXBContext jc = JAXBContext.newInstance(AutodocDetail.class);
-		Unmarshaller unmarshaller = jc.createUnmarshaller();
-		return (AutodocDetail) unmarshaller.unmarshal(is);
+	public AutodocDetail unmarshal(InputStream is) throws DocException {
+		AutodocDetail model = null;
+		try {
+			JAXBContext jc = JAXBContext.newInstance(AutodocDetail.class);
+			Unmarshaller unmarshaller = jc.createUnmarshaller();
+			model = (AutodocDetail) unmarshaller.unmarshal(is);
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "unmarshal" , e );
+		}
+		return model;
 	}
 	
 }
