@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 
 public class DocFacadeSource {
 
+	private DocFacadeSource() {} // java:S1118
+	
 	public static final int SOURCE_TYPE_XML = 1;
 	
 	public static final int SOURCE_TYPE_JSON = 2;

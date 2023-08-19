@@ -53,6 +53,8 @@ import org.fugerit.java.doc.base.xml.DocXmlParser;
  */
 public class DocFacade {
 	
+	private DocFacade() {} // java:S1118
+	
 	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION.stringVersion();
 	
 	private static final Properties DEFAULT_PARAMS = new Properties();
@@ -83,7 +85,11 @@ public class DocFacade {
 	public static final String PARAM_DEFINITION_MODE_DEFAULT = PARAM_DEFINITION_MODE_XSD;
 	
 	public final static String SYSTEM_ID = "http://javacoredoc.fugerit.org";
-		
+	
+	public static boolean validate( Reader is) throws DocException {
+		return validate( is, DEFAULT_PARAMS );
+	}
+	
 	public static boolean validate( Reader is, Properties params ) throws DocException {
 		boolean valRes = false;
 		try {
