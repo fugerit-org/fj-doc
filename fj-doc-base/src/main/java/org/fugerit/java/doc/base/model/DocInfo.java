@@ -3,6 +3,9 @@ package org.fugerit.java.doc.base.model;
 
 import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Object representing a <code>info</code> tag in the Venus Doc XML Format.
  * 
@@ -21,6 +24,10 @@ public class DocInfo extends DocElement {
 	private static final long serialVersionUID = 1258119296671751462L;
 
 	public static final String TAG_NAME = "info";
+	
+	public DocInfo() {
+		this.content = new StringBuilder();
+	}
 	
 	/*
 	 * Properties constants have been moved to specific classes (see above).
@@ -74,36 +81,8 @@ public class DocInfo extends DocElement {
 
 	public static final String INFO_DOC_VERSION_COMPATIBILITY = "doc-version-compatibility";
 	
-	private String name;
+	@Getter @Setter private String name;
 	
-	private StringBuffer content = new StringBuffer();
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return the content
-	 */
-	public StringBuffer getContent() {
-		return content;
-	}
-
-	/**
-	 * @param content the content to set
-	 */
-	public void setContent(StringBuffer content) {
-		this.content = content;
-	}
+	@Getter @Setter private StringBuilder content;
 	
 }

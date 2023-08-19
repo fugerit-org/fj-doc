@@ -47,6 +47,8 @@ import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Better to avoid this implementations, which is left only for compatibility.
  * 
@@ -55,6 +57,7 @@ import org.fugerit.java.doc.base.xml.DocXmlParser;
  * @author mfranci
  *
  */
+@Slf4j
 public class DocFacade {
 	
 	private DocFacade() {} // java:S1118
@@ -153,6 +156,7 @@ public class DocFacade {
 	public static DocBase parseRE( Reader is, int sourceType ) {
 		DocBase doc = null;
 		try {
+			log.debug( "sourceType : {}", sourceType );
 			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
 		} catch (Exception e) {
 			throw new ConfigRuntimeException( "Exception on parseRE : "+e, e );

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.StringTokenizer;
 
+import org.fugerit.java.core.io.helper.HelperIOException;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.doc.base.model.DocBase;
 
@@ -21,7 +22,7 @@ public class ExcelHelperUtils {
 					throw new IOException( "Cannot find template at path : "+excelTemplate );
 				}	
 			} catch (Exception e) {
-				throw new IOException( "Exception on resoveTemplateStream : "+e, e );
+				throw HelperIOException.convertExMethod( "resoveTemplateStream" , e);
 			}
 		}
 		return is;			

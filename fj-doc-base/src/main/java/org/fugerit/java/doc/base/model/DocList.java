@@ -1,5 +1,8 @@
 package org.fugerit.java.doc.base.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class DocList extends DocContainer {
 
 	public static final String TAG_NAME = "list";
@@ -21,24 +24,16 @@ public class DocList extends DocContainer {
 	 */
 	private static final long serialVersionUID = -8555789702608296306L;
 
-	private String listType;
-
-	public String getListType() {
-		return listType;
-	}
-
-	public void setListType(String listType) {
-		this.listType = listType;
-	}
+	@Getter @Setter private String listType;
 	
 	/*
 	 * Return canonical list type
 	 */
 	public String getClt() {
 		String clt = this.getListType();
-		if (clt.equalsIgnoreCase( LIST_TYPE_UL ) ) {
+		if ( LIST_TYPE_UL.equalsIgnoreCase( clt ) ) {
 			clt = LIST_TYPE_ULD;
-		} else if ( clt == null || clt.equalsIgnoreCase(  LIST_TYPE_OL) ) {
+		} else if ( LIST_TYPE_OL.equalsIgnoreCase( clt ) ) {
 			clt = LIST_TYPE_OLN;
 		}
 		return clt;
@@ -49,9 +44,9 @@ public class DocList extends DocContainer {
 	 */
 	public String getHtmlType() {
 		String clt = this.getListType();
-		if ( clt.equalsIgnoreCase( LIST_TYPE_ULM ) || clt.equalsIgnoreCase( LIST_TYPE_ULD ) ) {
+		if ( LIST_TYPE_ULM.equalsIgnoreCase( clt ) ||  LIST_TYPE_ULD.equalsIgnoreCase( clt ) ) {
 			clt = LIST_TYPE_UL;
-		} else if ( clt == null || clt.equalsIgnoreCase(  LIST_TYPE_OLN ) || clt.equalsIgnoreCase(  LIST_TYPE_OLL ) ) {
+		} else if ( LIST_TYPE_OLN.equalsIgnoreCase( clt ) ||  LIST_TYPE_OLL.equalsIgnoreCase( clt ) ) {
 			clt = LIST_TYPE_OL;
 		}
 		return clt;
