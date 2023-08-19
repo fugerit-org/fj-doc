@@ -33,6 +33,8 @@ import java.util.Iterator;
 import java.util.Properties;
 
 import org.fugerit.java.core.io.helper.StreamHelper;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
+import org.fugerit.java.core.util.ObjectUtils;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -56,6 +58,16 @@ public class DocFacade {
 	private DocFacade() {} // java:S1118
 	
 	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION.stringVersion();
+	
+	/**
+	 * 
+	 */
+	public static final String PARAM_KEY_CLOSE_STREAM = "close-stream";
+	
+	/**
+	 * 
+	 */
+	public static final String PARAM_VALUE_CLOSE_STREAM_DEFAULT = BooleanUtils.BOOLEAN_1;
 	
 	private static final Properties DEFAULT_PARAMS = new Properties();
 	
@@ -84,7 +96,7 @@ public class DocFacade {
 	public static final String PARAM_DEFINITION_MODE_DTD = "dtd";
 	public static final String PARAM_DEFINITION_MODE_DEFAULT = PARAM_DEFINITION_MODE_XSD;
 	
-	public final static String SYSTEM_ID = "http://javacoredoc.fugerit.org";
+	public static final String SYSTEM_ID = "http://javacoredoc.fugerit.org";
 	
 	public static boolean validate( Reader is) throws DocException {
 		return validate( is, DEFAULT_PARAMS );
@@ -93,13 +105,16 @@ public class DocFacade {
 	public static boolean validate( Reader is, Properties params ) throws DocException {
 		boolean valRes = false;
 		try {
+			params = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
 			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
 			int result = parser.validate( is );
 			valRes = ( result == DocValidationResult.VALIDATION_OK );
-		} catch (DocException e) {
-			DocException.convertEx( e );
+		} catch (Exception e) {
+			throw DocException.convertExMethod( "validate", e );
 		} finally {
-			StreamHelper.closeSafe( is );
+			if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_CLOSE_STREAM, PARAM_VALUE_CLOSE_STREAM_DEFAULT ) ) ) {
+				StreamHelper.closeSafe( is );	
+			}
 		}
 		return valRes;
 	}
@@ -111,12 +126,15 @@ public class DocFacade {
 	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws DocException {
 		DocBase docBase = null;
 		try {
+			params = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
 			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
 			docBase = parser.parse(is);
 		} catch (Exception e) {
-			throw e;
+			throw DocException.convertExMethod( "parse", e );
 		} finally {
-			StreamHelper.closeSafe( is );
+			if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_CLOSE_STREAM, PARAM_VALUE_CLOSE_STREAM_DEFAULT ) ) ) {
+				StreamHelper.closeSafe( is );	
+			}
 		}
 		return docBase;
 	}	
