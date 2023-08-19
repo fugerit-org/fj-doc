@@ -4,10 +4,11 @@ public class DocException extends Exception {
 
 	public static final String DEFAULT_CODE = "DOC001";
 	
-	private String code;
+	private final String code;
 	
 	public DocException() {
 		super();
+		this.code = DEFAULT_CODE;
 	}
 
 	public DocException(String message, Throwable cause) {
@@ -25,7 +26,7 @@ public class DocException extends Exception {
 		this.code = DEFAULT_CODE;
 	}
 
-	public DocException(String code, String message, Throwable cause) {
+	public DocException(final String code, String message, Throwable cause) {
 		super(message, cause);
 		this.code = code;
 	}

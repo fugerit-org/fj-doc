@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DocParserContext {
 
-	private static boolean FAIL_WHEN_ELEMENT_NOT_FOUND = false;
+	private static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND = false;
 	
 	public static String findXsdVersion( Properties props ) {
 		String xsdVersion = null;
@@ -149,11 +149,7 @@ public class DocParserContext {
 		DocHeader docHeader = this.docBase.getDocHeader();
 		handleHeaderFooter( docHeader , props );
 		docHeader.setUseHeader( true );
-		if ( DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-			docHeader.setBasic( false );
-		} else {
-			docHeader.setBasic( true );
-		}
+		docHeader.setBasic( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) );
 		this.currentElement = docHeader;	
 	}
 	
@@ -161,11 +157,7 @@ public class DocParserContext {
 		DocFooter docFooter = this.docBase.getDocFooter();
 		handleHeaderFooter( docFooter , props );
 		docFooter.setUseFooter( true );
-		if ( DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-			docFooter.setBasic( false );
-		} else {
-			docFooter.setBasic( true );
-		}
+		docFooter.setBasic( DocFooter.TAG_NAME.equalsIgnoreCase( qName ) );
 		this.currentElement = docFooter;
 	}
 	

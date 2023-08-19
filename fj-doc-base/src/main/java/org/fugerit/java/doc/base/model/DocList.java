@@ -7,17 +7,17 @@ public class DocList extends DocContainer {
 
 	public static final String TAG_NAME = "list";
 	
-	public final static String LIST_TYPE_UL = "ul";
+	public static final String LIST_TYPE_UL = "ul";
 	
-	public final static String LIST_TYPE_ULD = "uld";
+	public static final String LIST_TYPE_ULD = "uld";
 	
-	public final static String LIST_TYPE_ULM = "ulm";
+	public static final String LIST_TYPE_ULM = "ulm";
 	
-	public final static String LIST_TYPE_OL = "ol";
+	public static final String LIST_TYPE_OL = "ol";
 	
-	public final static String LIST_TYPE_OLN = "oln";
+	public static final String LIST_TYPE_OLN = "oln";
 	
-	public final static String LIST_TYPE_OLL = "oll";
+	public static final String LIST_TYPE_OLL = "oll";
 	
 	/**
 	 * 
