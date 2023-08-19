@@ -10,7 +10,7 @@
 				version="2.3.29"
 				path="/fj_doc_freemarker_config/template/"
 				mode="class" 
-				class="org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess"
+				class="org.fugerit.java.doc.freemarker.process.DocChainModel"
 				exception-handler="RETHROW_HANDLER"
 				log-exception="false"
 				wrap-unchecked-exceptions="true"

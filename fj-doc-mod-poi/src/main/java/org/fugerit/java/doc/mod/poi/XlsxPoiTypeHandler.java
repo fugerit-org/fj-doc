@@ -28,7 +28,7 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 	 */
 	private static final long serialVersionUID = 4886914985225735861L;
 
-	public static DocTypeHandler HANDLER = new XlsxPoiTypeHandler();
+	public static final DocTypeHandler HANDLER = new XlsxPoiTypeHandler();
 	
 	public XlsxPoiTypeHandler() {
 		super( DocConfig.TYPE_XLSX );

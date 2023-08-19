@@ -40,7 +40,7 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 		super();
 		this.docChainList = new ListMapConfig<>();
 		this.facade = new DocHandlerFacade();
-		this.docProcessConfig = new DocProcessConfig();
+		this.docProcessConfig = new DocProcessConfig();	
 	}
 	
 	private DefaultChainProvider defaultChain;

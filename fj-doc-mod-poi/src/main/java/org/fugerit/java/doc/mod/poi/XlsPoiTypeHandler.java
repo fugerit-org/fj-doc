@@ -23,7 +23,7 @@ import org.fugerit.java.doc.base.xml.DocModelUtils;
 
 public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 
-	public static DocTypeHandler HANDLER = new XlsPoiTypeHandler();
+	public static final DocTypeHandler HANDLER = new XlsPoiTypeHandler();
 	
 	/**
 	 * 

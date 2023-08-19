@@ -85,7 +85,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 		}
 	}
 	
-	private void handleText( DocTypeFacadeHelper helper, String text, int textStyle) throws Exception {
+	private void handleText( String text, int textStyle) throws Exception {
 		this.addStyle( textStyle);
 		this.writer.print( text );
 		this.addStyle(textStyle);
@@ -103,7 +103,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 			this.writer.print( " " );
 		}
 		// test
-		this.handleText(helper, docPara.getText(), docPara.getStyle() );
+		this.handleText(docPara.getText(), docPara.getStyle() );
 		if ( body ) {
 			this.writer.println( "  " );	// endline with two white spaces	
 		} else {
@@ -113,7 +113,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 
 	@Override
 	public void handlePhrase(DocPhrase docPhrase, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
-		this.handleText(helper, docPhrase.getText(), docPhrase.getStyle() );
+		this.handleText(docPhrase.getText(), docPhrase.getStyle() );
 		this.writer.print( " " );
 	}
 

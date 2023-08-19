@@ -37,9 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigFacade {
 
-	public FreemarkerDocProcessConfigFacade() {
-		// this constructor must be kept as this is the default class for template loading
-	}
+	private FreemarkerDocProcessConfigFacade() {}
 	
 	public static final String ATT_DOC_HANDLER_CONFIG = "docHandlerConfig";
 	
@@ -253,7 +251,7 @@ public class FreemarkerDocProcessConfigFacade {
 		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH , 
 				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH ) );
 		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS , 
-				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS, FreemarkerDocProcessConfigFacade.class.getName() ) );
+				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_CLASS, DocChainModel.class.getName() ) );
 		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER , 
 				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_DEFAULT ) );
 		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION , 

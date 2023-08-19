@@ -25,7 +25,7 @@ import org.fugerit.java.doc.mod.poi.WorkbookHelper;
 
 public class XlsPoi5TypeHandler extends BasicPoiTypeHandler {
 
-	public static DocTypeHandler HANDLER = new XlsPoi5TypeHandler();
+	public static final DocTypeHandler HANDLER = new XlsPoi5TypeHandler();
 	
 	/**
 	 * 

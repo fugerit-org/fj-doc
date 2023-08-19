@@ -7,9 +7,7 @@ import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 
 public class FreeMarkerDocProcess implements Serializable {
 
-	public FreeMarkerDocProcess() {
-		// this constructor must be kept as this is the default class for template loading
-	}
+	private FreeMarkerDocProcess() {}
 	
 	/**
 	 * 
