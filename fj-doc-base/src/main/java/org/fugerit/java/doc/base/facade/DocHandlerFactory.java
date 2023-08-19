@@ -23,7 +23,7 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	
 	private String useCatalog;
 	
-	private final static Logger logger = LoggerFactory.getLogger( DocHandlerFactory.class );
+	private static final Logger logger = LoggerFactory.getLogger( DocHandlerFactory.class );
 	
 	private static final FactoryTypeHelper<DocTypeHandler> HELPER = FactoryTypeHelper.newInstance( DocTypeHandler.class );
 	

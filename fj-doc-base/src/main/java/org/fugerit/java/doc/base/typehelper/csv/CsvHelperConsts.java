@@ -4,6 +4,6 @@ public class CsvHelperConsts {
 
 	private CsvHelperConsts() {} // java:S1118
 	 
-	public final static String PROP_CSV_TABLE_ID = "csv-table-id";
+	public static final String PROP_CSV_TABLE_ID = "csv-table-id";
 	
 }

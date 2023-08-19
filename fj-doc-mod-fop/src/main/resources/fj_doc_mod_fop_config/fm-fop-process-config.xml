@@ -14,7 +14,7 @@
 		<chainStep stepType="config">
 			<config
 				id="FJDOC_MOD_FOP_FREEMARKER_CONFIG"
-				class="org.fugerit.java.doc.mod.fop.FreeMarkerFopProcess"
+				class="org.fugerit.java.doc.mod.fop.FopConfigDefault"
 				exception-handler="RETHROW_HANDLER"
 				fallback-on-null-loop-variable="false"
 				log-exception="false"

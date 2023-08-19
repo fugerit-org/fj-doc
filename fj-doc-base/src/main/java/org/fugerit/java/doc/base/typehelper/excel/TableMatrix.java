@@ -14,7 +14,9 @@ public class TableMatrix implements Serializable {
 
 	private MatrixCell[][] text;
 	
-	private int cn, rn;
+	private int cn;
+	
+	private int rn;
 	
 	public TableMatrix( int rows, int columns ) {
 		this.text = new MatrixCell[ rows ][ columns ];

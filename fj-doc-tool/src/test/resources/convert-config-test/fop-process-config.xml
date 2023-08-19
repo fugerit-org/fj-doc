@@ -9,7 +9,7 @@
 				version="2.3.29"
 				path="/fj_doc_mod_fop_config/template/"
 				mode="class" 
-				class="org.fugerit.java.doc.mod.fop.FreeMarkerFopProcess"
+				class="org.fugerit.java.doc.mod.fop.FopConfigDefault"
 				exception-handler="RETHROW_HANDLER"
 				log-exception="false"
 				wrap-unchecked-exceptions="true"
