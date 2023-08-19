@@ -13,20 +13,20 @@ public abstract class AbstractCustomMarkdownTypeHandler extends DocTypeHandlerDe
 	
 	public static final String MIME = "text/x-markdown";
 	
-	public AbstractCustomMarkdownTypeHandler( Charset charset, boolean printComments ) {
+	protected AbstractCustomMarkdownTypeHandler( Charset charset, boolean printComments ) {
 		super(TYPE, MODULE, MIME, charset);
 		this.printComments = printComments;
 	}
 	
-	public AbstractCustomMarkdownTypeHandler( Charset charset ) {
+	protected AbstractCustomMarkdownTypeHandler( Charset charset ) {
 		this( charset, MarkdownBasicDocFacade.DEFAULT_PRINT_COMMENTS );
 	}
 	
-	public AbstractCustomMarkdownTypeHandler( boolean printComments ) {
+	protected AbstractCustomMarkdownTypeHandler( boolean printComments ) {
 		this( null, printComments );
 	}
 	
-	public AbstractCustomMarkdownTypeHandler() {
+	protected AbstractCustomMarkdownTypeHandler() {
 		this( MarkdownBasicDocFacade.DEFAULT_PRINT_COMMENTS );
 	}
 

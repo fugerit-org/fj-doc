@@ -22,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class LegacyConfigRead {
 
+	private LegacyConfigRead() {}
+	
 	private static void readStepList( ChainModel chainModel, Element currentStepTag ) {
 		
 		String type = currentStepTag.getAttribute( "type" );

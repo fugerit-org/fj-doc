@@ -18,6 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class GenerateStub {
 	
+	private GenerateStub() {}
+	
 	public static final String ATT_CONFIG_MODEL = "configModel";
 	
 	public static final String CONFIG_STUB_CHAIN_ID = "freemarker-doc-process-config-stub";

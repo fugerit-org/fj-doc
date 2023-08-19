@@ -37,7 +37,7 @@ public class ExcelHelperUtils {
 	}	
 	
 	public static String removeDots( String s ) {
-		StringBuffer r = new StringBuffer();
+		StringBuilder r = new StringBuilder();
 		StringTokenizer st = new StringTokenizer( s, "." );
 		while (st.hasMoreTokens()) {
 			r.append( st.nextToken() );

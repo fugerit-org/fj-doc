@@ -100,7 +100,7 @@ public class AutodocDocConfig {
 				InputStream templateStream = ClassHelper.loadFromDefaultClassLoader( "fj_doc_lib_autodoc/html_template/main_template.html" ) ) {
 			this.processAutodocDetail( autoDetailModel, FreeMarkerHtmlFragmentTypeHandler.HANDLER, buffer );
 			String templateText = StreamIO.readString( templateStream );
-			String htmlContent = templateText.replace( "[CONTENT_AREA_TOKEN]" , new String( buffer.toByteArray() ) );
+			String htmlContent = templateText.replace( "[CONTENT_AREA_TOKEN]" , String.valueOf( buffer.toByteArray() ) );
 			os.write( htmlContent.getBytes() );
 		} catch (Exception e) {
 			throw new DocException( "Autodoc detail generation error : "+e, e );

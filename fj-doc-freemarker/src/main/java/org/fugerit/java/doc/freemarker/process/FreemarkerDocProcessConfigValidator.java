@@ -32,6 +32,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigValidator {
 
+	private FreemarkerDocProcessConfigValidator() {}
+	
 	private static final String CURRENT = "current";
 	
 	private static XMLSchemaCatalogConfig init() {
@@ -103,7 +105,7 @@ public class FreemarkerDocProcessConfigValidator {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try ( PrintStream ps = new PrintStream( baos ) ) {
 			result.printErrorReport( ps );
-			log.info( "Validation issues : \n{}", new String( baos.toByteArray() ) );
+			log.info( "Validation issues : \n{}", String.valueOf( baos.toByteArray() ) );
 		}
 	}
 	

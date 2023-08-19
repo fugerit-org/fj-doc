@@ -37,6 +37,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class FreemarkerDocProcessConfigFacade {
 
+	private FreemarkerDocProcessConfigFacade() {}
+	
 	public static final String ATT_DOC_HANDLER_CONFIG = "docHandlerConfig";
 	
 	public static final String ATT_DOC_CHAIN = "docChain";
