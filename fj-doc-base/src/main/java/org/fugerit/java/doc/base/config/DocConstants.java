@@ -2,12 +2,16 @@ package org.fugerit.java.doc.base.config;
 
 public class DocConstants {
 
-	public final String EURO = "€";
+	public static final String EURO_CONST = "€";
 	
-	public static final DocConstants DEF = new DocConstants();
+	private static final DocConstants DEF = new DocConstants();
+	
+	public static DocConstants getInstance() {
+		return DEF;
+	}
 	
 	public String getEuro() {
-		return EURO;
+		return EURO_CONST;
 	}
 
 	public static final String STYLE_BOLD = "bold";

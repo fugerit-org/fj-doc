@@ -1,5 +1,6 @@
 ﻿1.5.0-rc.3 (2023-08-XX)
 ------------------
++ [enhancement][fj-doc-base] DocConstants refactor to conform to singleton pattern [1.5.0-rc.3]
 + [removed][fj-doc-val-pdfbox] removed deprecated class org.fugerit.java.doc.val.pdf.boc.PdfboxValidator [1.5.0-rc.3] 
 + [enhancement] added sonar cloud quality gate [1.5.0-rc.3] 
 + [enhancement][fj-doc-lib-autodoc] now the default html does not use a template but the standard html generation [1.5.0-rc.3]

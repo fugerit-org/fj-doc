@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class InitHandler {
 
+	private InitHandler() {} 	// java:S1118
+	
 	public static final String PATH_INIT_DOC = "config/init_doc/doc-init.xml";
 	
 	public static boolean initDoc( DocTypeHandler handler ) throws ConfigException {
