@@ -234,25 +234,6 @@ Page header and footer styles
 /*
 Heading styles
 */
-div.details ul.blockList ul.blockList ul.blockList li.blockList h4, div.details ul.blockList ul.blockList ul.blockListLast li.blockList h4 {
-    background-color:#dee3e9;
-    border:1px solid #d0d9e0;
-    margin:0 0 6px -8px;
-    padding:7px 5px;
-}
-ul.blockList ul.blockList ul.blockList li.blockList h3 {
-    background-color:#dee3e9;
-    border:1px solid #d0d9e0;
-    margin:0 0 6px -8px;
-    padding:7px 5px;
-}
-ul.blockList ul.blockList li.blockList h3 {
-    padding:0;
-    margin:15px 0;
-}
-ul.blockList li.blockList h2 {
-    padding:0px 0 20px 0;
-}
 /*
 Page layout container styles
 */

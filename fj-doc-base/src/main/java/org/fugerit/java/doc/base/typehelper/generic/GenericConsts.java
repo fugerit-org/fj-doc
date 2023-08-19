@@ -12,6 +12,8 @@ import org.fugerit.java.doc.base.model.DocInfo;
  */
 public class GenericConsts {
 
+	private GenericConsts() {}
+	
 	// Generic properties for all (or most) documents - START
 	
 	/**

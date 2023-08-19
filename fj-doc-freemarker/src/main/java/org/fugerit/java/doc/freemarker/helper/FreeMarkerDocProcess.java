@@ -14,7 +14,7 @@ public class FreeMarkerDocProcess implements Serializable {
 
 	public static final String CONFIG_PATH = "cl://fj_doc_freemarker_config/fm-freemarker-doc-process-config.xml";
 	
-	private static FreemarkerDocProcessConfig INSTANCE = FreemarkerDocProcessConfigFacade.loadConfigSafe( CONFIG_PATH );
+	private static final FreemarkerDocProcessConfig INSTANCE = FreemarkerDocProcessConfigFacade.loadConfigSafe( CONFIG_PATH );
 
 	public static FreemarkerDocProcessConfig getInstance() {
 		return INSTANCE;

@@ -5,7 +5,7 @@ import org.fugerit.java.doc.base.config.DocTypeHandlerDecorator;
 
 public class FreeMarkerHtmlFragmentTypeHandlerUTF8 extends DocTypeHandlerDecorator {
 
-	public static DocTypeHandler HANDLER = new FreeMarkerHtmlFragmentTypeHandlerUTF8();
+	public static final DocTypeHandler HANDLER = new FreeMarkerHtmlFragmentTypeHandlerUTF8();
 	
 	/**
 	 * 

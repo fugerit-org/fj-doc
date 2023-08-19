@@ -13,6 +13,8 @@ import freemarker.template.TemplateModelException;
 
 public class FreemarkerApplyHelper {
 
+	private FreemarkerApplyHelper() {}
+	
 	public static void setupFreemarkerMap( DocProcessContext context, Map<String, Object> map ) throws TemplateModelException {
 		setupFreemarkerMap( (Configuration) context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_CONFIG ), map);
 	}

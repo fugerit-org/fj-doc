@@ -4,6 +4,10 @@ import org.fugerit.java.core.util.format.TimeFormatDefault;
 
 public class FormatTypeConsts {
 
+	private FormatTypeConsts() {}
+	
+	public static final String TYPE_STRING = "string";
+	
 	public static final String TYPE_NUMBER = "number";
 	
 	public static final String TYPE_DATE = "date";

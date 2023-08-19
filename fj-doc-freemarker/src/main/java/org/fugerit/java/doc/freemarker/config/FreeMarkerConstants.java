@@ -7,6 +7,8 @@ import org.fugerit.java.doc.base.process.DocProcessContext;
 
 public class FreeMarkerConstants {
 
+	private FreeMarkerConstants() {}
+	
 	public static final String ATT_FREEMARKER_CONFIG = "FreeMarkerConfig";
 	
 	public static final String ATT_FREEMARKER_MAP = "FreeMarkerMap";

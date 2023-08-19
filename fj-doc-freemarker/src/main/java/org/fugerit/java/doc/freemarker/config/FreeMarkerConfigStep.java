@@ -62,7 +62,7 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 
 	private static Map<String, Configuration> mapConfig = new HashMap<String, Configuration>();
 	
-	private static HashMap<String, TemplateExceptionHandler> DEF_TEH = new HashMap<String, TemplateExceptionHandler>();
+	private static final HashMap<String, TemplateExceptionHandler> DEF_TEH = new HashMap<String, TemplateExceptionHandler>();
 	static {
 		DEF_TEH.put( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_RETHROW , TemplateExceptionHandler.RETHROW_HANDLER );
 		DEF_TEH.put( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_IGNORE , TemplateExceptionHandler.IGNORE_HANDLER );
@@ -102,7 +102,6 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 			} else {
 				throw new ConfigException( "provide valid value for parameter "+ATT_FREEMARKER_CONFIG_KEY_MODE+"(used:"+mode+")" );
 			}
-			//cfg.setDirectoryForTemplateLoading( new File( "src/test/resources/free_marker" ) );
 			// Set the preferred charset template files are stored in. UTF-8 is
 			// a good choice in most applications:
 			freeMarkerConfig.setDefaultEncoding( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_ENCODING, ATT_FREEMARKER_CONFIG_KEY_ENCODING_DEFAULT ) );

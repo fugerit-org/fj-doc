@@ -80,7 +80,7 @@ public class DocValidator {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		try ( PrintStream ps = new PrintStream( baos ) ) {
 			result.printErrorReport( ps );
-			logger.info( "Validation issues : \n{}", new String( baos.toByteArray() ) );
+			logger.info( "Validation issues : \n{}", String.valueOf( baos.toByteArray() ) );
 		}
 	}
 	

@@ -9,9 +9,9 @@ import org.fugerit.java.doc.freemarker.helper.FreeMarkerDocHelperTypeHandler;
 
 public class FreeMarkerHtmlFragmentTypeHandler extends FreeMarkerDocHelperTypeHandler {
 
-	public static DocTypeHandler HANDLER = new FreeMarkerHtmlFragmentTypeHandler();
+	public static final DocTypeHandler HANDLER = new FreeMarkerHtmlFragmentTypeHandler();
 	
-	public static DocTypeHandler HANDLER_UTF8 = new FreeMarkerHtmlFragmentTypeHandler( StandardCharsets.UTF_8 );
+	public static final DocTypeHandler HANDLER_UTF8 = new FreeMarkerHtmlFragmentTypeHandler( StandardCharsets.UTF_8 );
 	
 	/**
 	 * 

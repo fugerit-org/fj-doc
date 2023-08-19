@@ -46,7 +46,7 @@ public class FreeMarkerComplexProcessStep extends FreeMarkerProcessStep {
 		} else {
 			String mapAtts = atts.getProperty( ATT_MAP_ATTS );
 			if ( StringUtils.isNotEmpty( mapAtts ) ) {
-				String keys[] = mapAtts.split( "," );
+				String[] keys = mapAtts.split( "," );
 				for ( int k=0; k<keys.length; k++ ) {
 					String key = keys[k];
 					Object value = context.getAttribute( key );
