@@ -29,7 +29,7 @@ public class PdfboxValidator extends AbstractDocTypeValidator {
 		try( PDDocument doc = PDDocument.load( is ) ) {
 			result = DocTypeValidationResult.newOk();
 		} catch (Exception e) {
-			logger.warn( "Failed check on pdf : "+e );
+			logger.warn( "Failed check on pdf : {}", e.toString() );
 		}
 		return result;
 	}

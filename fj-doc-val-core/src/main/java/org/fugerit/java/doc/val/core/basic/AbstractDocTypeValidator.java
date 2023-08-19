@@ -22,11 +22,11 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 		return new HashSet<>( Arrays.asList( s ) );
 	}
 	
-	public AbstractDocTypeValidator(String mimeType, String extension) {
+	protected AbstractDocTypeValidator(String mimeType, String extension) {
 		this( mimeType, createSet(extension) );
 	}
 
-	public AbstractDocTypeValidator(String mimeType, Set<String> supportedExtensions) {
+	protected AbstractDocTypeValidator(String mimeType, Set<String> supportedExtensions) {
 		super();
 		this.mimeType = mimeType;
 		this.supportedExtensions = Collections.unmodifiableSet( supportedExtensions.stream().map( s -> s.toUpperCase() ).collect( Collectors.toSet() ) );

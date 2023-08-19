@@ -37,12 +37,10 @@ class DocConversion extends Component {
 						reactState.setState({
 							docOutput: response.result.docOutput
 						})
+					} else if ( response.result.message != null ) {
+						this.props.handleOpenDialog( response.result.message + ' (' + response.status+")" );
 					} else {
-						if ( response.result.message != null ) {
-							this.props.handleOpenDialog( response.result.message + ' (' + response.status+")" );
-						} else {
-							this.props.handleOpenDialog( 'Generic error (' + response.status+")" );
-						}
+						this.props.handleOpenDialog( 'Generic error (' + response.status+")" );
 					}
 				})
 		}

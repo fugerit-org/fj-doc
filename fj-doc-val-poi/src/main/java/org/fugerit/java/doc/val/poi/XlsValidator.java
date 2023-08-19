@@ -29,7 +29,7 @@ public class XlsValidator extends AbstractDocTypeValidator {
 		try ( HSSFWorkbook workbook = new HSSFWorkbook( is ) ) {
 			result = DocTypeValidationResult.newOk();
 		} catch (Exception e) {
-			logger.warn( "Failed check on pdf : {}", e );
+			logger.warn( "Failed check on pdf : {}", e.toString() );
 		}
 		return result;
 	}

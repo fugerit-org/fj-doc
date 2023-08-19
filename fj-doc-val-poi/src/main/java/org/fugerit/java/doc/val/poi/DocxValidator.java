@@ -11,25 +11,25 @@ import org.slf4j.LoggerFactory;
 
 public class DocxValidator extends AbstractDocTypeValidator {
 
-	private static final Logger logger = LoggerFactory.getLogger( DocxValidator.class );
-	
+	private static final Logger logger = LoggerFactory.getLogger(DocxValidator.class);
+
 	public static final String EXTENSION = "DOCX";
-	
+
 	public static final String MIME_TYPE = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
-	
+
 	public static final DocTypeValidator DEFAULT = new DocxValidator();
-	
+
 	public DocxValidator() {
-		super( MIME_TYPE, EXTENSION );
+		super(MIME_TYPE, EXTENSION);
 	}
-	
+
 	@Override
 	public DocTypeValidationResult validate(InputStream is) {
 		DocTypeValidationResult result = DocTypeValidationResult.newFail();
-		try ( XWPFDocument workbook = new XWPFDocument( is ) ) {
+		try (XWPFDocument workbook = new XWPFDocument(is)) {
 			result = DocTypeValidationResult.newOk();
 		} catch (Exception e) {
-			logger.warn( "Failed check on pdf : {}", e );
+			logger.warn("Failed check on pdf : {}", e.toString());
 		}
 		return result;
 	}
