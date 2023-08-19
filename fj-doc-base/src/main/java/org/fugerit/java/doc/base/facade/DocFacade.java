@@ -97,7 +97,7 @@ public class DocFacade {
 			int result = parser.validate( is );
 			valRes = ( result == DocValidationResult.VALIDATION_OK );
 		} catch (DocException e) {
-			throw e;
+			DocException.convertEx( e );
 		} finally {
 			StreamHelper.closeSafe( is );
 		}

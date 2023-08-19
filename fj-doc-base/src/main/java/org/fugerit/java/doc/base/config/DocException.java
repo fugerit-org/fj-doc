@@ -36,7 +36,13 @@ public class DocException extends Exception {
 	}
 	
 	public static DocException convertEx( String baseMessage, Exception e ) {
-		return new DocException( baseMessage+" : "+e, e );
+		DocException res = null;
+		if ( e instanceof DocException ) {
+			res = (DocException)e;
+		} else {
+			res = new DocException( baseMessage+" : "+e, e );
+		}
+		return res;
 	}
 	
 	public static DocException convertEx( Exception e ) {
