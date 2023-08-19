@@ -33,6 +33,9 @@ import java.util.Properties;
 
 import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 
  *
@@ -49,11 +52,12 @@ public class DocBase extends DocElement implements Serializable {
 	public static final String TAG_NAME = "doc";
 	
 	private static void print( DocContainer docContainer, PrintStream s, int pad ) {
-		String p = "";
+		StringBuilder builder = new StringBuilder();
 		for ( int k=0; k<pad; k++ ) {
-			p+= "  ";
+			builder.append( "  " );
 		}
 		Iterator<DocElement> it = docContainer.docElements();
+		String p = builder.toString();
 		while ( it.hasNext() ) {
 			DocElement docElement = (DocElement)it.next();
 			s.println( p+docElement );
@@ -76,17 +80,17 @@ public class DocBase extends DocElement implements Serializable {
 		this.idMap = new HashMap<>();
 	}
 
-	private DocHeader docHeader;
+	@Getter @Setter private DocHeader docHeader;
 	
-	private DocFooter docFooter;
+	@Getter @Setter private DocFooter docFooter;
 	
-	private DocContainer docBody;
+	@Getter @Setter private DocContainer docBody;
 
-	private DocContainer docMeta;
+	@Getter @Setter private DocContainer docMeta;
 	
-	private DocBackground docBackground;
+	@Getter @Setter private DocBackground docBackground;
 	
-	private DocBookmarkTree docBookmarkTree;
+	@Getter @Setter private DocBookmarkTree docBookmarkTree;
 	
 	private HashMap<String, DocElement> idMap;
 	
@@ -108,63 +112,7 @@ public class DocBase extends DocElement implements Serializable {
 	public DocElement getElementById( String id ) {
 		return (DocElement)this.idMap.get( id );
 	}
-	
-	/**
-	 * @return the docMeta
-	 */
-	public DocContainer getDocMeta() {
-		return docMeta;
-	}
-
-	/**
-	 * @param docMeta the docMeta to set
-	 */
-	public void setDocMeta(DocContainer docMeta) {
-		this.docMeta = docMeta;
-	}
-
-	/**
-	 * @return the docBody
-	 */
-	public DocContainer getDocBody() {
-		return docBody;
-	}
-
-	/**
-	 * @param docBody the docBody to set
-	 */
-	public void setDocBody(DocContainer docBody) {
-		this.docBody = docBody;
-	}
-
-	/**
-	 * @return the docFooter
-	 */
-	public DocFooter getDocFooter() {
-		return docFooter;
-	}
-
-	/**
-	 * @param docFooter the docFooter to set
-	 */
-	public void setDocFooter(DocFooter docFooter) {
-		this.docFooter = docFooter;
-	}
-
-	/**
-	 * @return the docHeader
-	 */
-	public DocHeader getDocHeader() {
-		return docHeader;
-	}
-
-	/**
-	 * @param docHeader the docHeader to set
-	 */
-	public void setDocHeader(DocHeader docHeader) {
-		this.docHeader = docHeader;
-	}
-	
+		
 	public Properties getInfo() {
 		Properties info = new Properties();
 		Iterator<DocElement> itInfo = this.getDocMeta().docElements();
@@ -247,22 +195,6 @@ public class DocBase extends DocElement implements Serializable {
 	
 	public boolean isUseFooter() {
 		return this.getDocFooter() != null && this.getDocFooter().isUseFooter();
-	}
-
-	public DocBackground getDocBackground() {
-		return docBackground;
-	}
-
-	public void setDocBackground(DocBackground docBackground) {
-		this.docBackground = docBackground;
-	}
-
-	public DocBookmarkTree getDocBookmarkTree() {
-		return docBookmarkTree;
-	}
-
-	public void setDocBookmarkTree(DocBookmarkTree docBookmarkTree) {
-		this.docBookmarkTree = docBookmarkTree;
 	}
 	
 }

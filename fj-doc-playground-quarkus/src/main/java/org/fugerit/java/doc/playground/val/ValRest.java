@@ -11,8 +11,6 @@ import org.fugerit.java.doc.val.poi.DocxValidator;
 import org.fugerit.java.doc.val.poi.XlsValidator;
 import org.fugerit.java.doc.val.poi.XlsxValidator;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.Consumes;
@@ -22,12 +20,12 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @ApplicationScoped
 @Path("/val")
 public class ValRest {
-
-	private final static Logger logger = LoggerFactory.getLogger(ValRest.class);
 
 	private static final DocValidatorFacade facade = DocValidatorFacade.newFacadeStrict(ImageValidator.JPG_VALIDATOR,
 			ImageValidator.PNG_VALIDATOR, ImageValidator.TIFF_VALIDATOR, PdfboxValidator.DEFAULT, DocxValidator.DEFAULT,
@@ -43,7 +41,7 @@ public class ValRest {
 			ValOutput output = null;
 			FileUpload file = input.getFile();
 			if ( file != null) {
-				logger.info( "file -> {} -> {}", file.fileName(), file.uploadedFile() );
+				log.info( "file -> {} -> {}", file.fileName(), file.uploadedFile() );
 				try ( FileInputStream fis = new FileInputStream( file.uploadedFile().toFile() ) ) {
 					DocTypeValidationResult result = facade.validate( file.fileName(), fis );
 					if (result.isResultOk()) {
@@ -63,7 +61,7 @@ public class ValRest {
 				}
 			}
 		} catch (Exception e) {
-			logger.info("Error : " + e, e);
+			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return res;

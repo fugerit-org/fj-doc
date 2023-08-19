@@ -10,7 +10,7 @@ public class DocHelperEuro extends DocHelper {
 		StringBuilder text = new StringBuilder();
 		for ( int k=0; k<temp.length(); k++ ) {
 			char c = temp.charAt( k );
-			int i = (int)c;
+			int i = c;
 			if ( i == 164 ) {
 				text.append( DocConstants.getInstance().getEuro() );
 			} else {

@@ -50,7 +50,7 @@ class DocCatalog extends Component {
 	render() {
 		let catalogSelection = <Fragment>Loading</Fragment>;
 		if ( this.state.entryList != null ) {
-			let options = this.state.entryList.map( (current) =>  <option value={current.key}>{current.label}</option>)
+			let options = this.state.entryList.map( (current) =>  <option key={current.key} value={current.key}>{current.label}</option>)
 			catalogSelection = <Fragment>
 				<Form>
 				<Row>
