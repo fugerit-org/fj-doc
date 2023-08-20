@@ -62,9 +62,15 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_PDF_A_MODE = "pdf-a-mode";
 	public static final String ATT_PDF_A_MODE_PDF_A_1A = DocConfig.FORMAT_PDF_A_1A;
 	public static final String ATT_PDF_A_MODE_PDF_A_1B = DocConfig.FORMAT_PDF_A_1B;
+
+	public static final String ATT_PDF_UA_MODE = "pdf-ua-mode";
+	public static final String ATT_PDF_UA_MODE_PDF_UA_1 = DocConfig.FORMAT_PDF_UA_1;
 	
 	private static final String[] VALID_PDF_A = { ATT_PDF_A_MODE_PDF_A_1A, ATT_PDF_A_MODE_PDF_A_1B };
 	public static final List<String> VALID_PDF_A_MODES = Arrays.asList( VALID_PDF_A );
+	
+	private static final String[] VALID_PDF_UA = { ATT_PDF_UA_MODE_PDF_UA_1 };
+	public static final List<String> VALID_PDF_UA_MODES = Arrays.asList( VALID_PDF_UA );
 	
 	/**
 	 * @deprecated planned for removal in version 1.6 (see https://github.com/fugerit-org/fj-doc/issues/7)
@@ -96,6 +102,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	}
 
 	@Getter @Setter private String pdfAMode;
+	
+	@Getter @Setter private String pdfUAMode;
 	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
@@ -142,6 +150,9 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
 			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );	
 		}
+		if ( StringUtils.isNotEmpty( this.getPdfUAMode() ) ) {
+			foUserAgent.getRendererOptions().put( ATT_PDF_UA_MODE, this.getPdfAMode() );	
+		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
 		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, foUserAgent, docOutput.getOs());
@@ -159,6 +170,17 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
 		String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
 		String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
+		String pdfUAModConfig = props.getProperty( ATT_PDF_UA_MODE );
+		// config pdf ua
+		if ( StringUtils.isNotEmpty( pdfUAModConfig ) ) {
+			log.info( "pdf ua mode -> {} : {}", ATT_PDF_UA_MODE, pdfUAModConfig );
+			if ( VALID_PDF_UA_MODES.contains( pdfUAModConfig ) ) {
+				this.setPdfUAMode( pdfUAModConfig );
+				this.setFormat( pdfUAModConfig );	
+			} else {
+				throw new ConfigException( ATT_PDF_UA_MODE+" not valid : "+pdfUAModConfig+"( valid modes are : "+VALID_PDF_A_MODES+")" );
+			}
+		}
 		String pdfAModConfig = props.getProperty( ATT_PDF_A_MODE );
 		// config pdf a
 		if ( StringUtils.isNotEmpty( pdfAModConfig ) ) {

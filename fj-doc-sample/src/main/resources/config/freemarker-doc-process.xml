@@ -5,8 +5,11 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<docHandlerConfig registerById="true">
-		<docHandler id="pdfa-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
-			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa.xml" pdf-a-mode="PDF/A-1a"/>
+		<docHandler id="pdf_ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua.xml" pdf-ua-mode="PDF/UA-1"/>
+		</docHandler>
+		<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa.xml" pdf-a-mode="PDF/A-1b"/>
 		</docHandler>
 		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
 		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />

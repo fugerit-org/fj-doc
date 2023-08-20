@@ -3,14 +3,11 @@ package test.org.fugerit.java.doc.sample.facade;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
-import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.checkpoint.CheckpointFormatHelper;
 import org.fugerit.java.core.util.checkpoint.Checkpoints;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -33,6 +30,11 @@ import lombok.Getter;
 
 public class BasicFacadeTest {
 
+	public static final String PDF_A_FOP = "pdf_a-fop";
+	
+	public static final String PDF_UA_FOP = "pdf_ua-fop";
+	
+	
 	protected final static Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
 	
 	public static final String BASIC_OUTPUT_PATH = "target/sample_out";
@@ -80,17 +82,8 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
-	private static FreemarkerDocProcessConfig init() {
-		FreemarkerDocProcessConfig config = null;
-		try ( InputStreamReader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "config/freemarker-doc-process.xml" ) ) ) {
-			config = FreemarkerDocProcessConfigFacade.loadConfig( xmlReader );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Exception on init : "+e, e );
-		}
-		return config;
-	}
-	
-	@Getter protected static FreemarkerDocProcessConfig PROCESSCONFIG = init();
+	@Getter protected static FreemarkerDocProcessConfig PROCESSCONFIG =
+			FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://config/freemarker-doc-process.xml" );
 	
 	private int getSourceType() {
 		int sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
@@ -144,29 +137,30 @@ public class BasicFacadeTest {
 		return docBase;
 	}
 	
-	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String format ) throws Exception {
+	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String handleID ) throws Exception {
 		DocHandlerFacade facade = PROCESSCONFIG.getFacade();
-		DocTypeHandler handler = facade.findHandler( format );
+		DocTypeHandler handler = facade.findHandler( handleID );
+		logger.info( "handler -> {} : {}", handleID, handler );
 		StringBuilder append = new StringBuilder();
 		if ( handler == null ) {
-			throw new ConfigException( "No handler with id : "+format );
-		} else if ( !handler.getType().equalsIgnoreCase( format ) ) {
+			throw new ConfigException( "No handler with id : "+handleID );
+		} else if ( !handler.getType().equalsIgnoreCase( handleID ) ) {
 			append.append( "_" );
 			append.append( handler.getModule() );
 		}
 		append.append( "." );
 		append.append( handler.getType() );
 		if ( !handler.getType().equalsIgnoreCase( handler.getFormat() ) ) {
-			baseName = baseName+"_"+handler.getFormat().replaceAll( "/" , "_");
+			baseName = baseName+"_"+handleID.replaceAll( "/" , "_");
 		}
 		File file = new File( outputFolder, baseName + append.toString() );
 		logger.info("Create file {}", file.getCanonicalPath());
 		try (FileOutputStream fos = new FileOutputStream(file)) {
 			long start = System.currentTimeMillis();
-			DocInput input = DocInput.newInput( format , reader, this.getSourceType() );
+			DocInput input = DocInput.newInput( handler.getFormat() , reader, this.getSourceType() );
 			DocOutput output = DocOutput.newOutput( fos );
 			facade.handle( input , output );
-			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+format, start );
+			this.checkpoints.addCheckpointFromStartTime( "PRODUCE-"+handleID, start );
 		}
 	}
 	
@@ -177,8 +171,8 @@ public class BasicFacadeTest {
 			logger.info("Create base path : {} ({})", baseFile.mkdirs(), baseFile.getCanonicalPath());
 		}
 		DocBase doc = this.getDocBase();
-		for (String type : this.types) {
-			produce( baseFile, this.getFacadeId(), doc, this.getXmlReader(), this.getNameBase(), type);
+		for (String handleID : this.types) {
+			produce( baseFile, this.getFacadeId(), doc, this.getXmlReader(), this.getNameBase(), handleID);
 		}
 		this.checkpoints.printInfo();
 	}

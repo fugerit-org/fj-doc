@@ -17,6 +17,7 @@ public class DocConfig {
 	public static final String TYPE_PDF = "pdf";
 	public static final String FORMAT_PDF_A_1A = "PDF/A-1a";
 	public static final String FORMAT_PDF_A_1B = "PDF/A-1b";
+	public static final String FORMAT_PDF_UA_1 = "PDF/UA-1";
 	
 	public static final String TYPE_RTF = "rtf";
 	

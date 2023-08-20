@@ -18,15 +18,7 @@
 	-->
 	<renderers>
 	   <renderer mime="application/pdf">
-	   	  <!-- 
-	   	  	It seems setting both PDF/A and PDF/UA profile leads to this error on PDF/A validation : 
-	   	  	"XMP property pdfuaid:part not defined in current schema."
-	   	  	Where PDF/UA validation succeds
 	   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode> 
-	   	  
-	   	  PDF/A checked with : https://avepdf.com/en/pdfa-validation ( and Adobe )
-	   	  PDF/UA checked with : https://check.axes4.com/en/
-	   	  -->
 	   	  <pdf-a-mode>PDF/A-1b</pdf-a-mode>
       	  <version>1.4</version>
 		  <fonts>
