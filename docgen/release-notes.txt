@@ -1,7 +1,7 @@
 ﻿1.5.1 (next)
 ------------------
 + [enhancement][fj-doc-mod-fop] Added format for PDF/UA-1 (user accessibility standard)
-
++ [enhancement][fj-doc-mod-fop] Added constants for PDF/A-2a and PDF/A-3a formats (user accessibility standard)
 
 1.5.0 (2023-08-20)
 ------------------

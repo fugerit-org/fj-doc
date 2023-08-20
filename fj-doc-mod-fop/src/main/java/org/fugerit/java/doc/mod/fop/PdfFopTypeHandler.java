@@ -62,11 +62,13 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_PDF_A_MODE = "pdf-a-mode";
 	public static final String ATT_PDF_A_MODE_PDF_A_1A = DocConfig.FORMAT_PDF_A_1A;
 	public static final String ATT_PDF_A_MODE_PDF_A_1B = DocConfig.FORMAT_PDF_A_1B;
+	public static final String ATT_PDF_A_MODE_PDF_A_2A = DocConfig.FORMAT_PDF_A_2A;
+	public static final String ATT_PDF_A_MODE_PDF_A_3A = DocConfig.FORMAT_PDF_A_3A;
 
 	public static final String ATT_PDF_UA_MODE = "pdf-ua-mode";
 	public static final String ATT_PDF_UA_MODE_PDF_UA_1 = DocConfig.FORMAT_PDF_UA_1;
 	
-	private static final String[] VALID_PDF_A = { ATT_PDF_A_MODE_PDF_A_1A, ATT_PDF_A_MODE_PDF_A_1B };
+	private static final String[] VALID_PDF_A = { ATT_PDF_A_MODE_PDF_A_1A, ATT_PDF_A_MODE_PDF_A_1B, ATT_PDF_A_MODE_PDF_A_2A };
 	public static final List<String> VALID_PDF_A_MODES = Arrays.asList( VALID_PDF_A );
 	
 	private static final String[] VALID_PDF_UA = { ATT_PDF_UA_MODE_PDF_UA_1 };
