@@ -218,7 +218,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		this.setCellValue( workbook, currentCell, type, format, text);
 	}
 	
-	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook ) throws Exception {
+	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet ) throws Exception {
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			Row currentRow = dati.getRow( rn );
 			if ( currentRow == null ) {
@@ -232,7 +232,6 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	}
 	
 	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
-		Workbook workbook = helper.getWorkbook();
 		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
 		Iterator<DocElement> rows = table.docElements();
 		while ( rows.hasNext() ) {
@@ -244,7 +243,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			}
 		}
 		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
-		this.handleSubmatrix(matrix, ignoreFormat, dati, helper, styleSet, workbook);
+		this.handleSubmatrix(matrix, ignoreFormat, dati, helper, styleSet);
 		log.info( "TOTAL STYLES : {}", styleSet.size() );
 		return matrix;
 	}

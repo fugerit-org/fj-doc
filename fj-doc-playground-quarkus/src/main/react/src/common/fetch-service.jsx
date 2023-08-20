@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 
-const defaultApiPath= '/fj-doc-playground/api';
+const basePath= '';
+const apiPath= '/fj-doc-playground/api';
 
 class FetchService {
   constructor(onRequestConfig, onRequestConfigError, onResponse, onResponseError, onNoServerResponse) {
@@ -19,39 +20,31 @@ class FetchService {
 
 
   doAjaxMultipart(method, path, data) {
-    let basePath = ''
-    let apiPath = defaultApiPath;
      let headers = {
        	"Content-Type": "multipart/form-data"
       } 
-    return this.doAjaxWorker(method, path, basePath, apiPath, headers, false, false, data, '');
+    return this.doAjaxWorker(method, path, headers, false, false, data, '');
   }
 
   doAjaxJson(method, path, data) {
-    let basePath = ''
-    let apiPath = defaultApiPath;
     let headers = {
         "Content-Type": "application/json"
       } 
-    return this.doAjaxWorker(method, path, basePath, apiPath, headers, true, false, data, '');
+    return this.doAjaxWorker(method, path, headers, true, false, data, '');
   }
   
   doAjaxJsonToBlob(method, path, data) {
-    let basePath = ''
-    let apiPath = defaultApiPath;
     let headers = {
         "Content-Type": "application/json"
       } 
-    return this.doAjaxWorker(method, path, basePath, apiPath, headers, true, true, data, '');
+    return this.doAjaxWorker(method, path, headers, true, true, data, '');
   }
 
   doAjax(method, path, headers, json, responseBlob, data) {
-    let basePath = ''
-    let apiPath = defaultApiPath;
-    return this.doAjaxWorker(method, path, basePath, apiPath, headers, json, data, headers, '');
+    return this.doAjaxWorker(method, path, headers, json, data, headers, '');
   }
 
-  doAjaxWorker(method, path, basePath, apiPath, headers, json, responseBlob, data, queryParams) {
+  doAjaxWorker(method, path, headers, json, responseBlob, data, queryParams) {
     const uri = `${basePath}${apiPath}${path}?v=${Date.now()}${queryParams}`
     let config = {
       method: method,

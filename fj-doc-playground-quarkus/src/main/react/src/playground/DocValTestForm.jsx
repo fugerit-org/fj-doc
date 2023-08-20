@@ -42,11 +42,7 @@ class DocValTestForm extends Component {
 			appService.doAjaxMultipart('POST', '/val/check', formData).then(response => {
 				if (response.success) {
 					reactState.setState({
-						validationResult: response.result.message
-					})
-				} else if (response.result?.message != null) {
-					reactState.setState({
-						validationResult: response.result.message
+						validationResult: response.result?.message
 					})
 				} else {
 					reactState.setState({
