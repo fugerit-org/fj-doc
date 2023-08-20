@@ -1,11 +1,15 @@
 package org.fugerit.java.doc.base.config;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.charset.Charset;
+import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.cfg.helpers.XMLConfigurableObject;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.helper.DefaultMimeHelper;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -15,7 +19,26 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class DocTypeHandlerDefault extends XMLConfigurableObject implements DocTypeHandler, Serializable {
+public class DocTypeHandlerDefault implements DocTypeHandler, ConfigurableObject, Serializable {
+
+	@Override
+	public void configureProperties(InputStream source) throws ConfigException {
+		XMLConfigurableObject.DO_NOTHING.configureProperties( source );
+	}
+
+	@Override
+	public void configureXML(InputStream source) throws ConfigException {
+		try {
+			this.configure( DOMIO.loadDOMDoc( source ).getDocumentElement() );
+		} catch (Exception e) {
+			throw new ConfigException( e );
+		}
+	}
+
+	@Override
+	public void configure(Properties props) throws ConfigException {
+		XMLConfigurableObject.DO_NOTHING.configure( props );
+	}
 
 	/**
 	 * 
