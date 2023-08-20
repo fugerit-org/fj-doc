@@ -6,7 +6,9 @@ import java.util.Collection;
 import java.util.Properties;
 import java.util.Set;
 
+import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.cfg.xml.GenericListCatalogConfig;
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
@@ -38,10 +40,14 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 		return config;
 	}
 	
-	public static DocProcessConfig loadConfig( InputStream is ) throws Exception {
+	public static DocProcessConfig loadConfig( InputStream is ) throws ConfigException {
 		DocProcessConfig config = new DocProcessConfig();
-		config.miniFilterConfig.getGeneralProps().setProperty( MiniFilterConfig.ATT_TYPE , MiniFilterConfigEntry.class.getName() );
-		MiniFilterConfig.loadConfigMap(is, config.miniFilterConfig);
+		config.miniFilterConfig.getGeneralProps().setProperty( GenericListCatalogConfig.ATT_TYPE , MiniFilterConfigEntry.class.getName() );
+		try {
+			MiniFilterConfig.loadConfigMap(is, config.miniFilterConfig);
+		} catch (Exception e) {
+			throw new ConfigException( e );
+		}
 		return config;
 	}
 
