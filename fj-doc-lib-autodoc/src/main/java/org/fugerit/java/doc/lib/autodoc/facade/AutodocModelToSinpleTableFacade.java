@@ -194,7 +194,7 @@ public class AutodocModelToSinpleTableFacade {
 						}
 					}
 				} catch (NullPointerException npe) {
-					log.warn( "Exception on attributes {}", npe.toString() );;
+					log.warn( "Exception on attributes {}", npe.toString() );
 				}
 				
 			}

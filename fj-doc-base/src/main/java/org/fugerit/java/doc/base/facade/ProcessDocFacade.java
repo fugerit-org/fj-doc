@@ -53,8 +53,7 @@ public class ProcessDocFacade {
 		DocHandlerFactory docHandlerFatory = DocHandlerFactory.newInstance( configDocHandlerFaactory );
 		DocHandlerFacade docHandlerFacade = docHandlerFatory.get( useCatalog );
 		DocProcessConfig docProcessConfig = DocProcessConfig.loadConfig( configDocProcessConfig );
-		ProcessDocFacade facade = new ProcessDocFacade(docHandlerFacade, docProcessConfig);
-		return facade;
+		return new ProcessDocFacade(docHandlerFacade, docProcessConfig);
 	}
 	
 	public void process( String chainId, String type, DocProcessContext context, File dest ) throws Exception {

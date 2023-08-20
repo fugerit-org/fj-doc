@@ -21,15 +21,14 @@ import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 
 public class AutodocDocConfig {
 
-	private final static String CONFIG_PATH = "cl://fj_doc_lib_autodoc/fm-doc-process-config-autodoc.xml";
-	
 	private FreemarkerDocProcessConfig config;
 	
 	private AutodocDocConfig( FreemarkerDocProcessConfig config ) {
 		this.config = config;
 	}
 	
-	private static final AutodocDocConfig INSTANCE = new AutodocDocConfig( FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH) );
+	private static final AutodocDocConfig INSTANCE = 
+			new AutodocDocConfig( FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_lib_autodoc/fm-doc-process-config-autodoc.xml" ) );
 	
 	public static AutodocDocConfig getInstance() {
 		return INSTANCE;

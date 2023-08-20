@@ -14,7 +14,7 @@ public class DocTypeFacadeHelper extends AttributeHolderDefault {
 
 	private Serializable docBase;
 
-	public final static int ROOT_DEPTH = 0;
+	public static final int ROOT_DEPTH = 0;
 	
 	public DocBase getDocBase() {
 		return (DocBase)docBase;
