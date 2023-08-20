@@ -12,14 +12,18 @@ import org.fugerit.java.core.util.collection.ListMapStringKey;
 
 public class DocCatalogSample extends ListMapCatalogConfig<DocCatalogEntry> {
 
+	public static final String ATT_TAG_DATA_LIST = "catalog";
+	
+	public static final String ATT_TAG_DATA = "doc";
+	
 	public static final String ATT_BASE_PATH = "path-base";
 
 	public static final String CATALOG_ID_PLAYGROUND_CORE = "playground-core";
 	
-	private static final long serialVersionUID = -7903871203856880584L;
+	private static final long serialVersionUID = -79003856880584L;
 
 	public DocCatalogSample() {
-		super( "catalog", "doc" );
+		super( ATT_TAG_DATA_LIST, ATT_TAG_DATA );
 		this.getGeneralProps().setProperty( ATT_TYPE,DocCatalogEntry.class.getCanonicalName() );
 	}
 	
