@@ -38,6 +38,9 @@ import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperUtils;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
 import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -157,9 +160,10 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		}
 	}
 	
-	private void checkFormat( WorkbookHelper helper, Collection<PoiCellStyleModel> styleSet, DocPara currentePara,
-			 DocCell cell, TableMatrix matrix, int rn, int cn, Cell currentCell  ) throws Exception {
-		Workbook workbook = helper.getWorkbook();
+	private void checkFormat( WorkbookDataWrapper wrapper, Collection<PoiCellStyleModel> styleSet, DocPara currentePara, DocCell cell, int rn, int cn, Cell currentCell  ) throws Exception {
+		TableMatrix matrix = wrapper.getTableMatrix();
+		Workbook workbook = wrapper.getWorkbook();
+		WorkbookHelper helper = wrapper.getWorkbookHelper();
 		CellStyle cellStyle = PoiCellStyleModel.find( styleSet , currentePara, cell );
 		if ( cellStyle == null ) {
 			cellStyle = workbook.createCellStyle();
@@ -180,7 +184,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		currentCell.setCellStyle( cellStyle );
 	}
 	
-	private void iterateCellMatrix( TableMatrix matrix, boolean ignoreFormat, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet , Workbook workbook, int rn, int cn, Row currentRow ) throws Exception {
+	private void iterateCellMatrix( WorkbookDataWrapper wrapper , boolean ignoreFormat, HashSet<PoiCellStyleModel> styleSet , int rn, int cn, Row currentRow ) throws Exception {
+		TableMatrix matrix = wrapper.getTableMatrix();
+		Workbook workbook = wrapper.getWorkbook();
 		String type = null;
 		String format = null;
 		DocCell cell = matrix.getCell( rn, cn );
@@ -207,7 +213,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			currentCell = currentRow.createCell( cn );
 		}
 		if ( cell != null && parent != null && !ignoreFormat ) {
-			this.checkFormat( helper, styleSet, currentePara, cell, matrix, rn, cn, currentCell );
+			this.checkFormat( wrapper, styleSet, currentePara, cell, rn, cn, currentCell );
 		} 
 		this.setCellValue( workbook, currentCell, type, format, text);
 	}
@@ -218,8 +224,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			if ( currentRow == null ) {
 				currentRow = dati.createRow( rn );
 			}
+			WorkbookDataWrapper wrapper = new WorkbookDataWrapper( matrix, helper );
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
-				this.iterateCellMatrix(matrix, ignoreFormat, helper, styleSet, workbook, rn, cn, currentRow);
+				this.iterateCellMatrix(wrapper, ignoreFormat, styleSet, rn, cn, currentRow);
 			}
 		}
 	}
@@ -302,4 +309,19 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		this.closeWorkbook( outputXls , docOutput );
 	}
 
+}
+
+@Data
+@AllArgsConstructor
+@RequiredArgsConstructor
+class WorkbookDataWrapper {
+	
+	private TableMatrix tableMatrix;
+	
+	private WorkbookHelper workbookHelper;
+	
+	public Workbook getWorkbook() {
+		return this.getWorkbookHelper().getWorkbook();
+	}
+	
 }

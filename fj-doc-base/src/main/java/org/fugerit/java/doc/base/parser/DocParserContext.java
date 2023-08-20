@@ -457,9 +457,9 @@ public class DocParserContext {
 		String align = atts.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
 		headerFooter.setAlign( DocStyleAlignHelper.getAlign( align ) );
 		String numbered = atts.getProperty( "numbered" );
-		headerFooter.setNumbered( Boolean.valueOf( numbered ).booleanValue() );
+		headerFooter.setNumbered( BooleanUtils.isTrue( numbered ) );
 		String borderWidth = atts.getProperty( "border-width", "0" );
-		headerFooter.setBorderWidth( Integer.valueOf( borderWidth ).intValue() );
+		headerFooter.setBorderWidth( Integer.parseInt( borderWidth ) );
 		String exepectedSize = atts.getProperty( "expected-size", "15" );
 		headerFooter.setExpectedSize( Integer.parseInt( exepectedSize ) );
 	}

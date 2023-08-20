@@ -2,7 +2,6 @@ package org.fugerit.java.doc.base.process;
 
 import java.io.InputStream;
 
-import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.util.filterchain.MiniFilterConfig;
@@ -40,11 +39,6 @@ public class DocProcessConfig extends MiniFilterConfig {
 		Element root = doc.getDocumentElement();
 		config.configure( root );
 		return config;
-	}
-
-	@Override
-	protected MiniFilterConfigEntry customEntryHandling(MiniFilterConfigEntry current, Element element) throws ConfigException {
-		return super.customEntryHandling(current, element);
 	}
 	
 }

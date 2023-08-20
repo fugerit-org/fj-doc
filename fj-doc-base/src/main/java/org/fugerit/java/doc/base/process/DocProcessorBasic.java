@@ -16,8 +16,7 @@ public class DocProcessorBasic extends MiniFilterBase implements MiniFilter, Doc
 
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {
-		int res = CONTINUE;
-		return res;
+		return CONTINUE;
 	}
 
 	@Override

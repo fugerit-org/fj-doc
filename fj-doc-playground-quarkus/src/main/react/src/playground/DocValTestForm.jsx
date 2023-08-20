@@ -44,7 +44,7 @@ class DocValTestForm extends Component {
 					reactState.setState({
 						validationResult: response.result.message
 					})
-				} else if (response.result != null && response.result.message != null) {
+				} else if (response.result?.message != null) {
 					reactState.setState({
 						validationResult: response.result.message
 					})
