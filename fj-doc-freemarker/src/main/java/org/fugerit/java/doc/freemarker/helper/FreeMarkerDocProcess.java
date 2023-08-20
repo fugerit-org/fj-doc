@@ -10,11 +10,6 @@ public class FreeMarkerDocProcess implements Serializable {
 	private FreeMarkerDocProcess() {}
 	
 	/**
-	 * Default configuration path
-	 */
-	public static final String CONFIG_PATH = "cl://fj_doc_freemarker_config/fm-freemarker-doc-process-config.xml";
-	
-	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1277168639030295400L;
@@ -22,7 +17,8 @@ public class FreeMarkerDocProcess implements Serializable {
 	/*
 	 * Default implemnentation
 	 */
-	private static final FreemarkerDocProcessConfig INSTANCE = newInstance( CONFIG_PATH );
+	private static final FreemarkerDocProcessConfig 
+		INSTANCE = newInstance( "cl://fj_doc_freemarker_config/fm-freemarker-doc-process-config.xml" );
 
 	public static FreemarkerDocProcessConfig newInstance( String configPath ) {
 		return FreemarkerDocProcessConfigFacade.loadConfigSafe( configPath );
