@@ -46,7 +46,7 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 		try {
 			MiniFilterConfig.loadConfigMap(is, config.miniFilterConfig);
 		} catch (Exception e) {
-			throw new ConfigException( e );
+			throw ConfigException.stadardExceptionWrapping(e);
 		}
 		return config;
 	}
