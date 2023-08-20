@@ -15,3 +15,17 @@ A guides project is also available for documentation and examples :
 * [Github project](https://github.com/fugerit-org/fj-doc)
 * [Venus Playground](https://www.fugerit.org/fj-doc-playground/home/)
 * [Venus Quickstart](https://venusqs.fugerit.org/)
+
+<table style="background-color: white; with: 600px">
+	<tr>
+		<td rowspan="2" style="background-color: white; border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo."></td>
+		<td style="background-color: white; border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA.png" alt="IntelliJ IDEA logo."></td>
+	</tr>
+	<tr>
+        <td style="background-color: white; border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm.png" alt="WebStorm logo."></td>
+   </tr>
+</table>
+
+Special thanks to **Sonar Cloud** too for their code review software : 
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=fugerit-org_fj-doc)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)

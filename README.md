@@ -66,7 +66,25 @@ Beginning with version 1.4.0-rc.001, *GraalVM* metadata started to be added (*re
 Actual support for other module will be added as soon as possible, but somtimes is dependant on underlying depandancies support (for example *Apache FOP* for *fj-doc-mod-fop*).
 It is possible to check the current status on the module documentation, in the section *native support*
 
-
 *About javadoc*  
 Javadoc are far from being complete, but you can find latest version at [https://www.fugerit.org](https://www.fugerit.org/data/java/javadoc/)  
 Note that, being an open source project hosted on maven central, you can find release javadoc on [javadoc.io](https://javadoc.io/doc/org.fugerit.java/fj-doc-base/)
+
+*Special thanks*
+
+Special thanks to **JetBrains** for accepting this project in the [Licenses for Open Source Development - Community Support](https://jb.gg/OpenSourceSupport) program.
+
+<table style="background-color:#F6F6F6; with: 600px">
+	<tr>
+		<td rowspan="2" style="border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo."></td>
+		<td style="border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA.png" alt="IntelliJ IDEA logo."></td>
+	</tr>
+	<tr>
+        <td style="border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm.png" alt="WebStorm logo."></td>
+   </tr>
+</table>
+
+Special thanks to **Sonar Cloud** too for their code review software : 
+
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=fugerit-org_fj-doc)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
+
