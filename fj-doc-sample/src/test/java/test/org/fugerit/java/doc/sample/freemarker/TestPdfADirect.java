@@ -39,12 +39,12 @@ public class TestPdfADirect {
 	
 	@Test
 	public void testPDFADirectFormat() {
-		this.testWorker( DocConfig.FORMAT_PDF_A_1A );	
+		this.testWorker( DocConfig.FORMAT_PDF_A_1B );	
 	}
 	
 	@Test
 	public void testPDFADirectId() {
-		this.testWorker( "pdfa-fop" );	
+		this.testWorker( BasicFacadeTest.PDF_A_FOP );	
 	}
 	
 	@Test
