@@ -14,7 +14,7 @@ public class VenusFreemarkerAutodocFacade {
 
 	private VenusFreemarkerAutodocFacade() {}
 	
-	public static final String CURRENT_VERSION = "1.0.0-rc.004";
+	public static final String CURRENT_VERSION = "1.0.0";
 	
 	public static final String TITLE = "Reference xsd documentation for Venus - Fugerit Document Generation Framework (fj-doc) - Freemarker Configuration";
 	

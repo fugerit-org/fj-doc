@@ -1,7 +1,7 @@
-﻿1.5.0-rc.3 (2023-08-XX)
+﻿1.5.0 (2023-08-20)
 ------------------
 + [enhancement][fj-doc-base] Now DocTypeHandlerDefault implements ConfigurableObject instead of extending XMLConfigurableObject to reduce hierarchy depth[1.5.0-rc.3]
-+ [dependency]Updated fj-version to 8.1.0-rc.1 [1.5.0-rc.3]
++ [dependency]Updated fj-version to 8.1.0 [1.5.0-rc.3]
 + [enhancement][fj-doc-base] DocConstants refactor to conform to singleton pattern [1.5.0-rc.3]
 + [removed][fj-doc-mod-fop] removed org.fugerit.java.doc.mod.fop.FreeMarkerFopProcess [1.5.0-rc.3] 
 + [removed][fj-doc-val-pdfbox] removed deprecated class org.fugerit.java.doc.val.pdf.boc.PdfboxValidator [1.5.0-rc.3] 

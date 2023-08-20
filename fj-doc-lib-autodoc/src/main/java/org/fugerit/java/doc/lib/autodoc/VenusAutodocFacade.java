@@ -15,7 +15,7 @@ public class VenusAutodocFacade {
 
 	private VenusAutodocFacade() {}
 	
-	public static final String CURRENT_VERSION = "2.1.0-rc.1";
+	public static final String CURRENT_VERSION = "2.1.0";
 	
 	public static final String TITLE = "Reference xsd documentation for Venus - Fugerit Document Generation Framework (fj-doc)";
 	
