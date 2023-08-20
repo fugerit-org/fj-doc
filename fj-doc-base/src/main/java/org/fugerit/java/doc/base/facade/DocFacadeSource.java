@@ -12,9 +12,20 @@ import org.fugerit.java.doc.base.xml.DocXmlParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.Getter;
+
 public class DocFacadeSource {
 
-	private DocFacadeSource() {} // java:S1118
+	@Getter private DocFacadeSourceConfig docFacadeSourceConfig;
+	
+	public DocFacadeSource(DocFacadeSourceConfig docFacadeSourceConfig) {
+		super();
+		this.docFacadeSourceConfig = docFacadeSourceConfig;
+	}
+
+	public DocFacadeSource() {
+		this( DocFacadeSourceConfig.DEFAULT_CONFIG );
+	}
 	
 	public static final int SOURCE_TYPE_XML = 1;
 	
@@ -26,10 +37,10 @@ public class DocFacadeSource {
 	
 	private static final Logger logger = LoggerFactory.getLogger( DocFacadeSource.class );
 	
-	private static final DocFacadeSource INSTANCE = new DocFacadeSource();
+	private static final DocFacadeSource DEFAULT_INSTANCE = new DocFacadeSource();
 	
 	public static DocFacadeSource getInstance() {
-		return INSTANCE;
+		return DEFAULT_INSTANCE;
 	}
 	
 	private static final String TYPE_SOURCE_XML = DocXmlParser.class.getName();							// xml parser is always supported
@@ -53,7 +64,11 @@ public class DocFacadeSource {
 				parser = (DocParser) ClassHelper.newInstance( type );
 			}
 		} catch (Exception e) {
-			logger.warn( "Failed to load parser for source type : {} ({})", sourceType, e.toString() );
+			if ( this.docFacadeSourceConfig.isFailOnSourceModuleNotFound() ) {
+				throw new ConfigRuntimeException( "Exception getting parser for sourceType : "+sourceType+" - "+e, e );
+			} else {
+				logger.warn( "Failed to load parser for source type : {} ({})", sourceType, e.toString() );
+			}
 		}
 		return parser;
 	}

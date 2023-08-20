@@ -3,7 +3,6 @@ package test.org.fugerit.java.doc.base.facade;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -18,7 +17,7 @@ public class TestDocFacadeSource {
 		try {
 			supported = DocFacadeSource.getInstance().isSourceSupported(sourceType);
 			assertEquals( "Failed doc parser supported check", expected , supported );
-		} catch (DocException e) {
+		} catch (Exception e) {
 			String message = "Error : "+e;
 			logger.error( message, e );
 			fail( message );

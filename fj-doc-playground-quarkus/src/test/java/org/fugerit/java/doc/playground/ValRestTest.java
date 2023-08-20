@@ -9,10 +9,10 @@ import static org.hamcrest.CoreMatchers.is;
 import org.fugerit.java.TestConsts;
 
 @QuarkusTest
-public class ValRestTest {
+class ValRestTest {
 
     @Test
-    public void testHelloEndpoint() {
+    void testHelloEndpoint() {
         given()
           .when().get( TestConsts.BASE_API_PATH+"/val/supported_extensions" )
           .then()
