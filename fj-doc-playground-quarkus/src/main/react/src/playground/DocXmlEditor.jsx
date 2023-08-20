@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { FormControl, Select, MenuItem } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 

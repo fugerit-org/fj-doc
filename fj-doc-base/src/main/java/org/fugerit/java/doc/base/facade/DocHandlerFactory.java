@@ -79,8 +79,7 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	public static DocHandlerFactory newInstance( InputStream factoryConfig ) throws Exception {
 		FactoryCatalog catalog = new FactoryCatalog();
 		catalog.configureXML( factoryConfig );
-		DocHandlerFactory map = newInstance( catalog );
-		return map;
+		return newInstance( catalog );
 	}
 	
 	public static DocHandlerFactory newInstance( String factoryCatalogPath ) throws Exception {

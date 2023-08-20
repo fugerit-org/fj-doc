@@ -4,7 +4,7 @@ import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class GenerateDocMetaInfo extends GenerateDocHelper {
+public class TestGenerateDocMetaInfo extends GenerateDocHelper {
 
 	@Test
 	public void generateHtml() {

@@ -14,6 +14,8 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
+import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 
 public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 
@@ -26,6 +28,9 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 	public static final DocTypeHandler HANDLER_UTF8 = new FreeMarkerFopTypeHandler( StandardCharsets.UTF_8 );
 	
 	public static final String MODULE = "fop";
+	
+	private static final FreemarkerDocProcessConfig INSTANCE = 
+		FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_mod_fop_config/fm-fop-process-config.xml" );
 	
 	/**
 	 * 
@@ -50,7 +55,7 @@ public class FreeMarkerFopTypeHandler extends DocTypeHandlerDefault {
 
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-		MiniFilterChain chain = FreeMarkerFopProcess.getInstance().getChainCache( CHAIN_FREEMARKER );
+		MiniFilterChain chain = INSTANCE.getChainCache( CHAIN_FREEMARKER );
 		DocProcessContext context = DocProcessContext.newContext().withDocInput( docInput );
 		DocProcessData data = new DocProcessData();
 		chain.apply( context, data );

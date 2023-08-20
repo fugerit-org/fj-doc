@@ -14,8 +14,7 @@ public class FopConfigDefault implements Serializable, FopConfig {
 
 	@Override
 	public FopFactory newFactory() throws Exception {
-		FopFactory fopFactory = FopFactory.newInstance(new File(".").toURI());
-		return fopFactory;
+		return FopFactory.newInstance(new File(".").toURI());
 	}
 
 	public static final FopConfig DEFAULT = new FopConfigDefault();

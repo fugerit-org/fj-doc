@@ -6,9 +6,9 @@ public class DocCatalogEntry extends BasicIdConfigType {
 
 	private static final long serialVersionUID = -3140948907871403724L;
 	
-	public String path;
+	private String path;
 	
-	public String description;
+	private String description;
 
 	public String getPath() {
 		return path;

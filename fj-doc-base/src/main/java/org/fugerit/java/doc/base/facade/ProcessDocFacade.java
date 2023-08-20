@@ -16,12 +16,11 @@ import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.base.xml.DocValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class ProcessDocFacade {
-
-	private final static Logger logger = LoggerFactory.getLogger( ProcessDocFacade.class );
 
 	private DocHandlerFacade docHandlerFacade;
 	
@@ -76,7 +75,7 @@ public class ProcessDocFacade {
 		if ( validate ) {
 			result = DocValidator.validate( data.getCurrentXmlReader() );
 			if ( !result.isPartialSuccess() ) {
-				DocValidator.logResult(result, logger );
+				DocValidator.logResult(result, log );
 			}
 		}
 		DocBase docBase = null;

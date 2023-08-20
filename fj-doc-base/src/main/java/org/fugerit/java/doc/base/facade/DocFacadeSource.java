@@ -58,7 +58,7 @@ public class DocFacadeSource {
 		return parser;
 	}
 	
-	public boolean isSourceSupported( int sourceType ) throws DocException {
+	public boolean isSourceSupported( int sourceType ) {
 		return ( getParserForSource(sourceType) != null );
 	}
 	

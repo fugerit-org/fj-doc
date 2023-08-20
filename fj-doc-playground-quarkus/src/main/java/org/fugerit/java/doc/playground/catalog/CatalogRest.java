@@ -7,8 +7,6 @@ import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.util.collection.OptionItem;
 import org.fugerit.java.doc.playground.convert.ConvertOutput;
 import org.fugerit.java.doc.sample.facade.DocCatalogSample;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.GET;
@@ -17,13 +15,13 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @ApplicationScoped
 @Path("/catalog")
 public class CatalogRest {
 
-	private final static Logger logger = LoggerFactory.getLogger(CatalogRest.class);
-	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/list")
@@ -37,7 +35,7 @@ public class CatalogRest {
 						).collect( Collectors.toList() )	
 			).build();
 		} catch (Exception e) {
-			logger.info("Error : " + e, e);
+			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return res;
@@ -54,7 +52,7 @@ public class CatalogRest {
 			output.setDocOutput( StreamIO.readString( reader ) );
 			res = Response.ok().entity( output ).build();
 		} catch (Exception e) {
-			logger.info("Error : " + e, e);
+			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 		return res;

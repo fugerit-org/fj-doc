@@ -38,7 +38,7 @@ public class ConvertXlsxToSimpleTableFacade {
 				table = helper.newTable( helper.newFixedColumns( columnCount ) );
 			}
 			Iterator<Cell> itCells = row.iterator();
-			String line[] = new String[ columnCount ];
+			String[] line = new String[ columnCount ];
 			int colIndex = 0;
 			while ( itCells.hasNext() ) {
 				Cell cell = itCells.next();

@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 @Path("/convert")
 public class ConvertRest {
 
-	private final static String INVALID_FORMAT_MESSAGE = "Invalid output format : ";
+	private static final String INVALID_FORMAT_MESSAGE = "Invalid output format : ";
 	
 	private String handleXml( ConvertOutput output, String docContent, String outputFormat,  ObjectMapper yamlMapper ) throws Exception {
 		String docOutput = null;
