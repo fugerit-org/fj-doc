@@ -2,6 +2,8 @@
 
 Framework to produce documents in different formats starting from an XML document meta model.  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-base.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-base)
+
 The Core library (fj-doc-base) is all you need to start, even though typically you will use at least : 
 * fj-doc-base
 * fj-doc-freemarker
