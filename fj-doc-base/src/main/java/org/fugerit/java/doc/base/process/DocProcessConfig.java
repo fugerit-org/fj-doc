@@ -21,28 +21,36 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 	private static final long serialVersionUID = 6756541624973903875L;
 
 	public static final String ATT_TAG_DATA_LIST = "chain";
-	
+
 	public static final String ATT_TAG_DATA = "step";
 
 	private MiniFilterConfig miniFilterConfig;
 
 	public DocProcessConfig() {
-		this.miniFilterConfig = new MiniFilterConfig( ATT_TAG_DATA_LIST, ATT_TAG_DATA );
+		this.miniFilterConfig = new MiniFilterConfig(ATT_TAG_DATA_LIST, ATT_TAG_DATA);
+	}
+
+	public static DocProcessConfig loadConfig( InputStream is, DocProcessConfig config ) throws Exception {
+		DocProcessConfig docProcessConfig = new DocProcessConfig();
+		docProcessConfig.miniFilterConfig = new MiniFilterConfig();
+		MiniFilterConfig.loadConfig(is, docProcessConfig.miniFilterConfig);
+		return docProcessConfig;
 	}
 	
-	public static DocProcessConfig loadConfigSafe( String configPath ) {
+	public static DocProcessConfig loadConfigSafe(String configPath) {
 		DocProcessConfig config = null;
-		try ( InputStream is = StreamHelper.resolveStream( configPath ) ) {
-			config = loadConfig( is );
+		try (InputStream is = StreamHelper.resolveStream(configPath)) {
+			config = loadConfig(is);
 		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Exception on loadConfigSafe : "+e, e );
+			throw new ConfigRuntimeException("Exception on loadConfigSafe : " + e, e);
 		}
 		return config;
 	}
-	
-	public static DocProcessConfig loadConfig( InputStream is ) throws ConfigException {
+
+	public static DocProcessConfig loadConfig(InputStream is) throws ConfigException {
 		DocProcessConfig config = new DocProcessConfig();
-		config.miniFilterConfig.getGeneralProps().setProperty( GenericListCatalogConfig.ATT_TYPE , MiniFilterConfigEntry.class.getName() );
+		config.miniFilterConfig.getGeneralProps().setProperty(GenericListCatalogConfig.ATT_TYPE,
+				MiniFilterConfigEntry.class.getName());
 		try {
 			MiniFilterConfig.loadConfigMap(is, config.miniFilterConfig);
 		} catch (Exception e) {
@@ -85,6 +93,6 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 
 	public Collection<MiniFilterConfigEntry> getDataList(String id) {
 		return miniFilterConfig.getDataList(id);
-	}	
-	
+	}
+
 }

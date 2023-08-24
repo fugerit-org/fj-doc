@@ -1,4 +1,9 @@
-﻿1.5.1 (2023-08-24)
+﻿1.5.2 (2023-08-24)
+------------------
++ [fix][fj-doc-base] fix retrocompatibility DocProcessConfig
++ [fix][fj-doc-base] fix DocResult
+
+1.5.1 (2023-08-24)
 ------------------
 + [dependency] Updated fj-version to 8.2.0
 + [enhancement][fj-doc-base] DocProcessConfig made a wrapped for MiniFilterConfig (user accessibility standard)
