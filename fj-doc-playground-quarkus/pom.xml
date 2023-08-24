@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc-bom</artifactId>
-		<version>1.5.2</version>
+		<version>1.5.3</version>
 		<relativePath>../fj-doc-bom</relativePath>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
