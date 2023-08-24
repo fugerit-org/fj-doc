@@ -1,6 +1,8 @@
 package org.fugerit.java.doc.mod.poi;
 
 import java.awt.Color;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Iterator;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -14,10 +16,13 @@ import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
 
@@ -87,6 +92,29 @@ public class PoiUtils {
 		if ( workbook instanceof HSSFWorkbook && StringUtils.isNotEmpty( cell.getForeColor() ) ) {
 			font.setColor( findClosestColorIndex( (HSSFWorkbook)workbook , cell.getForeColor() ) );	
 		}
+	}
+	
+	public static void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws IOException {
+		workbook.write( docOutput.getOs() );
+		workbook.close();
+	}
+	
+	public static WorkbookHelper newHelper( boolean xlsx, InputStream is ) throws IOException {
+		Workbook workbook = null;
+		if ( xlsx ) {
+			if ( is == null ) {
+				workbook = new XSSFWorkbook();
+			} else {
+				workbook = new XSSFWorkbook( is );
+			}	
+		} else {
+			if ( is == null ) {
+				workbook = new HSSFWorkbook();
+			} else {
+				workbook = new HSSFWorkbook( is );
+			}
+		}
+		return new WorkbookHelper( workbook, new DefaultIndexedColorMap() );
 	}
 	
 }

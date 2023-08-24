@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.mod.poi;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
@@ -57,9 +58,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		super(type, MODULE);
 	}
 
-	protected abstract WorkbookHelper newWorkbook( DocInput docInput, InputStream is ) throws Exception;
+	protected abstract WorkbookHelper newWorkbook( DocInput docInput, InputStream is ) throws IOException;
 	
-	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws Exception;
+	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws IOException;
 	
 	protected abstract  void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
 	

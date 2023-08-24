@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.mod.poi;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.poi.hssf.usermodel.HSSFPalette;
@@ -9,7 +10,6 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -32,20 +32,13 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 
 	@Override
-	protected WorkbookHelper newWorkbook(DocInput docInput, InputStream is ) throws Exception {
-		Workbook workbook = null;
-		if ( is == null ) {
-			workbook = new HSSFWorkbook();
-		} else {
-			workbook = new HSSFWorkbook( is );
-		}
-		return new WorkbookHelper( workbook, new DefaultIndexedColorMap() );
+	protected WorkbookHelper newWorkbook(DocInput docInput, InputStream is ) throws IOException {
+		return PoiUtils.newHelper(false, is);
 	}
 
 	@Override
-	protected void closeWorkbook(Workbook workbook, DocOutput docOutput) throws Exception {
-		workbook.write( docOutput.getOs() );
-		workbook.close();
+	protected void closeWorkbook(Workbook workbook, DocOutput docOutput) throws IOException {
+		PoiUtils.closeWorkbook(workbook, docOutput);
 	}
 
 	public static short findClosestColorIndex( HSSFWorkbook workbook, String color ) {
