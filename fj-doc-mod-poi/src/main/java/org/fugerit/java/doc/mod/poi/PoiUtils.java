@@ -58,7 +58,7 @@ public class PoiUtils {
 		}
 	}
 	
-	public static void xlsxFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell ) {
+	public static void xlsxFontStyle( WorkbookHelper helper, Font font, DocCell cell ) {
 		if ( font instanceof XSSFFont ) {
 			XSSFFont realFont = (XSSFFont) font;
 			if ( StringUtils.isNotEmpty( cell.getForeColor() ) ) {
@@ -87,7 +87,7 @@ public class PoiUtils {
 		}
 	}
 	
-	public static void xlsFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell ) {
+	public static void xlsFontStyle( WorkbookHelper helper, Font font, DocCell cell ) {
 		Workbook workbook = helper.getWorkbook();
 		if ( workbook instanceof HSSFWorkbook && StringUtils.isNotEmpty( cell.getForeColor() ) ) {
 			font.setColor( findClosestColorIndex( (HSSFWorkbook)workbook , cell.getForeColor() ) );	

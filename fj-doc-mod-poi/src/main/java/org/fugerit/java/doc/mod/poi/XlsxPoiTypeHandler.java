@@ -43,7 +43,7 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 
 	@Override
 	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
-		PoiUtils.xlsxFontStyle(helper, font, style, cell);
+		PoiUtils.xlsxFontStyle(helper, font, cell);
 	}	
 
 }
