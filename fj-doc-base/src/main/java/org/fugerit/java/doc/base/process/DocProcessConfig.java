@@ -30,11 +30,14 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 		this.miniFilterConfig = new MiniFilterConfig(ATT_TAG_DATA_LIST, ATT_TAG_DATA);
 	}
 
-	public static DocProcessConfig loadConfig( InputStream is, DocProcessConfig config ) throws Exception {
-		DocProcessConfig docProcessConfig = new DocProcessConfig();
-		docProcessConfig.miniFilterConfig = new MiniFilterConfig();
-		MiniFilterConfig.loadConfig(is, docProcessConfig.miniFilterConfig);
-		return docProcessConfig;
+	public static DocProcessConfig loadConfig( InputStream is, DocProcessConfig config ) {
+		config.miniFilterConfig = new MiniFilterConfig();
+		try {
+			MiniFilterConfig.loadConfig(is, config.miniFilterConfig);
+		} catch (Exception e) {
+			throw ConfigRuntimeException.convertExMethod( "loadConfig" , e );
+		}
+		return config;
 	}
 	
 	public static DocProcessConfig loadConfigSafe(String configPath) {
