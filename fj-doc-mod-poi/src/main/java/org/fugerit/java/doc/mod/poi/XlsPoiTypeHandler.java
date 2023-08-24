@@ -3,16 +3,13 @@ package org.fugerit.java.doc.mod.poi;
 import java.awt.Color;
 import java.io.InputStream;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.DefaultIndexedColorMap;
-import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -60,23 +57,12 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	
 	@Override
 	protected void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
-		Workbook workbook = helper.getWorkbook();
-		if ( style instanceof HSSFCellStyle && workbook instanceof HSSFWorkbook ) {
-			HSSFCellStyle realStyle = (HSSFCellStyle) style;
-			if ( cell != null && StringUtils.isNotEmpty( cell.getBackColor() ) ) {
-				short index = findClosestColorIndex( (HSSFWorkbook) workbook , cell.getBackColor() );
-				realStyle.setFillForegroundColor( index );
-				realStyle.setFillPattern( FillPatternType.SOLID_FOREGROUND );
-			}
-		}
+		PoiUtils.xlsFormatStyle(helper, style, cell);
 	}
 
 	@Override
 	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
-		Workbook workbook = helper.getWorkbook();
-		if ( workbook instanceof HSSFWorkbook && StringUtils.isNotEmpty( cell.getForeColor() ) ) {
-			font.setColor( findClosestColorIndex( (HSSFWorkbook)workbook , cell.getForeColor() ) );	
-		}
+		PoiUtils.xlsFontStyle(helper, font, style, cell);
 	}
 
 }
