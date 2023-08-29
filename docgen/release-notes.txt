@@ -1,6 +1,8 @@
-﻿1.5.3 (next)
+﻿1.5.4 (2023-08-29)
 ------------------
-+ [enhancement][fj-doc] removed some code duplication [1.5.3-rc.1]
++ [enhancement][fj-doc] fj-version updated to 8.2.1
++ [enhancement][fj-doc-tool] Added more fm-doc-process-config testing
++ [enhancement][fj-doc] removed some code duplication
 
 1.5.3 (2023-08-24)
 ------------------
