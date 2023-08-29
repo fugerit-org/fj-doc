@@ -15,7 +15,8 @@ public class TestConvertConfigTool extends TestDocTool {
 			{ "src/test/resources/params-test/convert-config-fop.properties", true },
 			{ "src/test/resources/params-test/convert-config-sample.properties", true },
 			{ "src/test/resources/params-test/convert-config-autodoc.properties", true },
-			{ "src/test/resources/params-test/convert-config-help.properties", true }
+			{ "src/test/resources/params-test/convert-config-help.properties", true },
+			{ "src/test/resources/params-test/convert-config-yaml.properties", true },
 	};
 	
 	@SuppressWarnings("rawtypes")
