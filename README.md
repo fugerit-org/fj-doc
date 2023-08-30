@@ -3,6 +3,8 @@
 Framework to produce documents in different formats starting from an XML document meta model.  
 
 [![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-base.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-base)
+[![license](https://img.shields.io/badge/License-Apache%20License%202.0-teal.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
 
 The Core library (fj-doc-base) is all you need to start, even though typically you will use at least : 
 * fj-doc-base
@@ -86,7 +88,4 @@ Special thanks to **JetBrains** for accepting this project in the [Licenses for 
    </tr>
 </table>
 
-Special thanks to **Sonar Cloud** too for their code review software : 
-
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=fugerit-org_fj-doc)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
-
+Special thanks to **Sonar Cloud** too for their code review platform.
