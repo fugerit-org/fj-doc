@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-mod-poi.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-mod-poi) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-mod-poi/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-mod-poi)
+
 *Status* :  
 Most basic features implemented. (proper color and font handling missing).  
 For the intrinsic limitations of the XLS/XLSX format, it is possible to choose a some tables in the document and output it as excel sheets.  

@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-base.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-base) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-base/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-base)
+
 *Description* :  
 Basic infrastructure for generation of [fj-doc XML format](https://www.fugerit.org/data/java/doc/xsd/doc-1-1.xsd).
 

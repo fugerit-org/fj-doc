@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-base-yaml.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-base-yaml) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-base-yaml/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-base-yaml)
+
 *Description* :  
 Add the option to use a yank as document generator instead of standard xml source provided by default.
 

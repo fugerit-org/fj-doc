@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-mod-fop.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-mod-fop) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-mod-fop/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-mod-fop)
+
 *Status* :  
 Most feature implemented. (Sample JUnit [TestFreeMarker01Fop](../fj-doc-sample/src/test/java/test/org/fugerit/java/doc/sample/freemarker/TestFreeMarker01Fop.java) is now working).
   
