@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<docChain id="shared">
+		<chainStep stepType="config" attribute-not-exists="test">
+			<config id="FJ_DOC_TEST"
+				version="2.3.31"
+				path="/fj_doc_test/template/"
+				mode="class" 
+				class="org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade"
+				exception-handler="RETHROW_HANDLER"
+				log-exception="false"
+				wrap-unchecked-exceptions="true"
+				fallback-on-null-loop-variable="false"/>
+		</chainStep>
+		<chainStep stepType="function">
+			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
+			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+		</chainStep>
+	</docChain>
+
+	<docChain id="sample_chain" parent="shared">
+		<chainStep stepType="complex" template-path="${chainId}.ftl"/>
+	</docChain>
+
+</freemarker-doc-process-config>

@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Unit test for DocValidator and FreemarkerDocProcessConfigValidator (#56)
+
+### Fixed
+
+- Prohibit xml external entities on DocValidator and FreemarkerDocProcessConfigValidator (#56)
+
+### Changed
+
+- Added assertions to TestPOI junit
+
 ## [1.5.7] - 2023-09-01
 
 ### Added
