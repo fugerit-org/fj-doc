@@ -1,4 +1,6 @@
-﻿1.5.6 (2023-08-30)
+﻿See new [CHANGELOG](https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md) for details.
+
+1.5.6 (2023-08-30)
 ------------------
 + [enhancement][fj-doc] fix to coverage pom configuration
 
