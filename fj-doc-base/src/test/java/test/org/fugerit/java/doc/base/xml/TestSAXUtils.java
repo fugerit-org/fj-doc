@@ -27,7 +27,7 @@ public class TestSAXUtils {
 	public void testNewSafeInstance() {
 		try {
 			SAXParserFactory factory = SAXUtils.newSafeFactory();
-			Assert.assertTrue( factory != null );
+			Assert.assertNotNull( factory );
 		} catch (Exception e) {
 			this.failEx(e);
 		}

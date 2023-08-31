@@ -7,6 +7,9 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class SAXUtils {
 
 	private SAXUtils() {}
@@ -19,9 +22,9 @@ public class SAXUtils {
 			factory.setFeature( "http://xml.org/sax/features/external-general-entities" , false );
 			factory.setFeature( "http://xml.org/sax/features/external-parameter-entities" , false );
 			// additional features if any
-			for ( String key : features.keySet() ) {
-				boolean value = features.get( key );
-				factory.setFeature( key, value );
+			for ( Map.Entry<String,Boolean> entry : features.entrySet() ) {
+				log.trace( "set feature {} -> {}", entry.getKey(), entry.getValue() );
+				factory.setFeature( entry.getKey(), entry.getValue() );
 			}
 		} catch (Exception e) {
 			throw ConfigRuntimeException.convertExMethod("newFactory", e);
