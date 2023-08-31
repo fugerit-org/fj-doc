@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-val.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-val) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-val/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-val)
+
 *Description* :  
 This module offer validation utilities to check content of files and streams based on type.
 

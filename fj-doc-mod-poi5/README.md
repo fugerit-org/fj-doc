@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-mod-poi5.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-mod-poi5) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-mod-poi5/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-mod-poi5)
+
 *Description* :
 This module is used for using importing Apache POI 5+, but at core it still use the normal [fj-doc-mod-poi module](../fj-doc-mod-poi/README.md). 
 

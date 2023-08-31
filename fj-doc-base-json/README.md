@@ -4,6 +4,9 @@
 
 [back to fj-doc index](../README.md)  
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-base-json.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-base-json) 
+[![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-base-json/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-base-json)
+
 *Description* :  
 Add the option to use a json as document generator instead of standard xml source provided by default.
 
