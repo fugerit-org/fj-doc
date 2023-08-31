@@ -37,8 +37,9 @@ public class TestSAXUtils {
 	public void testNewInstanceFail() {
 		try {
 			Map<String, Boolean> features = new HashMap<>();
+			features.put( "http://xml.org/sax/features/external-general-entities" , false);
 			features.put( "feature-not-exists" , false);
-			SAXParserFactory factory = SAXUtils.newFactory(features);
+			SAXParserFactory factory = SAXUtils.newSafeFactory(features);
 			fail( "Should not arrive here "+factory );
 		} catch (Exception e) {
 			Assert.assertTrue( e instanceof ConfigRuntimeException );

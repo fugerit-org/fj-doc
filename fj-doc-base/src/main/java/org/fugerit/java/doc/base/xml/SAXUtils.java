@@ -11,24 +11,27 @@ public class SAXUtils {
 
 	private SAXUtils() {}
 	
-	public static SAXParserFactory newFactory( Map<String, Boolean> features ) {
+	private static final Map<String, Boolean> NO_FEATURES = new HashMap<>();
+	
+	public static SAXParserFactory newSafeFactory( Map<String, Boolean> features ) {
 		SAXParserFactory factory = SAXParserFactory.newInstance();
-		for ( String key : features.keySet() ) {
-			boolean value = features.get( key );
-			try {
+		try {
+			factory.setFeature( "http://xml.org/sax/features/external-general-entities" , false );
+			factory.setFeature( "http://xml.org/sax/features/external-parameter-entities" , false );
+			// additional features if any
+			for ( String key : features.keySet() ) {
+				boolean value = features.get( key );
 				factory.setFeature( key, value );
-			} catch (Exception e) {
-				throw ConfigRuntimeException.convertExMethod("newFactory", e);
 			}
+		} catch (Exception e) {
+			throw ConfigRuntimeException.convertExMethod("newFactory", e);
 		}
+		
 		return factory;
 	}
 	
 	public static SAXParserFactory newSafeFactory() {
-		Map<String, Boolean> features = new HashMap<>();
-		features.put( "http://xml.org/sax/features/external-general-entities" , false );
-		features.put( "http://xml.org/sax/features/external-parameter-entities" , false );
-		return newFactory( features );
+		return newSafeFactory(NO_FEATURES);
 	}
 	
 }
