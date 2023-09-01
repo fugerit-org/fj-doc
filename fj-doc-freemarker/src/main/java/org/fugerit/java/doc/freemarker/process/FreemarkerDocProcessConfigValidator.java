@@ -22,6 +22,7 @@ import org.fugerit.java.core.xml.sax.eh.ResultErrorHandler;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.doc.base.xml.DocContentHandler;
+import org.fugerit.java.doc.base.xml.SAXUtils;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -66,10 +67,10 @@ public class FreemarkerDocProcessConfigValidator {
 		return result;
 	}
 	
-	private static String getXsdVersion( Reader xmlReader ) throws XMLException {
+	public static String getXsdVersion( Reader xmlReader ) throws XMLException {
 		String version = null;
 		try {
-			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParserFactory spf = SAXUtils.newSafeFactory();
 			spf.setNamespaceAware( true );
 			final Properties infos = new Properties();
 			SAXParser parser = spf.newSAXParser();

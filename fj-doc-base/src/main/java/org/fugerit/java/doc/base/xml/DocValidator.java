@@ -84,10 +84,10 @@ public class DocValidator {
 		}
 	}
 	
-	private static String getXsdVersion( Reader xmlReader ) throws XMLException {
+	public static String getXsdVersion( Reader xmlReader ) throws XMLException {
 		String version = null;
 		try {
-			SAXParserFactory spf = SAXParserFactory.newInstance();
+			SAXParserFactory spf = SAXUtils.newSafeFactory();
 			spf.setNamespaceAware( true );
 			final Properties infos = new Properties();
 			SAXParser parser = spf.newSAXParser();
