@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.8] - 2023-09-01
+
 ### Added
 
 - Unit test for DocValidator and FreemarkerDocProcessConfigValidator (#56)
