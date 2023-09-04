@@ -5,13 +5,13 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
-		<version>1.3.3</version>
+		<version>1.3.5</version>
 		<relativePath></relativePath>
 	</parent>
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.5.10-SNAPSHOT</version>
+	<version>1.5.10</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -25,16 +25,10 @@
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>	
 	    <maven.compiler.release>${java-version-compliance}</maven.compiler.release>
 	    <!-- fj java versions -->
-	    <fj-version>8.2.4</fj-version>
+	    <fj-version>8.2.6</fj-version>
 	    <fj-test-helper-version>0.4.1</fj-test-helper-version> 
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	    <jackson-version>2.15.2</jackson-version>
-	    <!-- deprecated and incubator modules version -->
-	    <fj-doc-ent-version>0.5.0-rc.001</fj-doc-ent-version>
-	    <fj-doc-mod-pdfbox-version>0.5.0-rc.001</fj-doc-mod-pdfbox-version>
-	    <fj-doc-mod-openpdf-version>0.1.0</fj-doc-mod-openpdf-version>
-	    <fj-doc-mod-itext-version>0.5.0-rc.001</fj-doc-mod-itext-version>
-	    <fj-doc-mod-jxl-version>0.5.0-rc.001</fj-doc-mod-jxl-version>
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.0</jajarta-jaxb-version>
 	    <poi5-version>5.2.3</poi5-version>
@@ -109,9 +103,6 @@
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val</module>
 		<module>fj-doc-tool</module>
-		<module>fj-doc-bom</module>
-		<module>fj-doc-bom-core</module>
-		<module>fj-doc-bom-fop</module>
 		<module>fj-doc-sample</module>
 		<module>fj-doc-playground-quarkus</module>
 	</modules>
