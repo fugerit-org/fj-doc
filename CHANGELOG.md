@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - fj-bom set to 1.3.3
+- fj-bom set to 8.2.4
 - Changelog badge link set absolute 'https://github.com/fugerit-org/fj-daogen/blob/main/CHANGELOG.md'
 - module playground quarkus quarkus.platform.group-id set to 'io.quarkus', version set to '3.3.1'
 - playground samples doc version set to 2.1
