@@ -15,7 +15,7 @@ $(document).ready( function () {
         katex.render(addDisp+texTxt, el);
     }
     catch(err) {
-        $(this).html("<span class='err'>"+err);
+        $(this).html("<span class='err'>error");
     }
   });
 
