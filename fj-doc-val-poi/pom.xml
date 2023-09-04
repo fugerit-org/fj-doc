@@ -22,6 +22,7 @@
 	</licenses>
 	
 	<properties>
+		<poi-version>${poi5-version}</poi-version>
 	</properties>
 	
 	<build>
@@ -48,7 +49,6 @@
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-scratchpad</artifactId>
-			<version>${poi-version}</version>
 		</dependency>
 
 	</dependencies>
