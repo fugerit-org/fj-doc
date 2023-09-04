@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
+import test.org.fugerit.java.helpers.io.ReaderFail;
 
 @Slf4j
 public class TestDocValidator {
