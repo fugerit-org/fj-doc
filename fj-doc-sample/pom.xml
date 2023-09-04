@@ -6,13 +6,16 @@
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
-		<artifactId>fj-doc-bom</artifactId>
-		<version>1.5.10-SNAPSHOT</version>
-		<relativePath>../fj-doc-bom</relativePath>
+		<artifactId>fj-doc</artifactId>
+		<version>1.5.10</version>
 	</parent>
 
 	<name>fj-doc-sample</name>
 	<description></description>
+	
+	<properties>
+		 <fj-doc-mod-openpdf-version>1.0.0</fj-doc-mod-openpdf-version>
+	</properties>
 
 	<licenses>
 		<license>
@@ -75,7 +78,8 @@
 		
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-itext</artifactId>
+			<artifactId>fj-doc-mod-openpdf</artifactId>
+			<version>${fj-doc-mod-openpdf-version}</version>
 			<scope>test</scope>
 		</dependency>	
 		

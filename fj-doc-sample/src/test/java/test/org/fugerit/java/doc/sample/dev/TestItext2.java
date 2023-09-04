@@ -13,7 +13,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.mod.itext.PdfTypeHandler;
+import org.fugerit.java.doc.mod.openpdf.PdfTypeHandler;
 import org.junit.Assert;
 import org.junit.Test;
 

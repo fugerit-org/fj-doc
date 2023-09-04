@@ -2,17 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.5.10] - 2023-09-04
+
+### Added
+
+- [dependabot](.github/dependabot.yml) configuration
+
+### Changed
+
+- fj-core set to 8.2.6
+- sample module [fj-doc-mod-itext](https://github.com/fugerit-org/fj-doc-mod-itext/) substituted by [fj-doc-mod-openpdf](https://github.com/fugerit-org/fj-doc-mod-openpdf/)
+- reference to https://keepachangelog.com/ v1.1.0 in changelog
+
+### Removed
+
+- removed unsupported modules fj-doc-bom, fj-doc-bom-core, fj-doc-bom-fop
+
+### Security
+
+- fj-bom set to 1.3.5 (#59)
+- apache fop version set to 2.9 (#58)
+
+## [1.5.9] - 2023-09-04
 
 ### Added
 
 - tag element (HEAD) to scm element. (pom.xml)
 - issueManagement element (pom.xml, url : https://github.com/fugerit-org/fj-doc/issues )
 - dependency fj-tester-helper8 set to 0.4.1
-- [workflow](src/main/md/github/create_maven_build_workflow.md) for package testing and dependency upload
+- [workflow](.github/workflows/build_maven_package.yml) for package testing and dependency upload
 
 ### Changed
 
