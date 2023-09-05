@@ -11,6 +11,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
+import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
@@ -25,11 +26,19 @@ public class SimpleTableDocConfig {
 		this.config = config;
 	}
 	
+	public static SimpleTableDocConfig newConfigLatest() throws ConfigException {
+		return newConfig( null );
+	}
+	
 	public static SimpleTableDocConfig newConfig() throws ConfigException {
-		FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.newSimpleConfig( CONFIG_ID, "/fj_doc_lib_simpletable/template/" );
-		return new SimpleTableDocConfig(config);
+		return newConfig( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_29 );
 	}
 
+	public static SimpleTableDocConfig newConfig( String freemarkerVersion ) throws ConfigException {
+		FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.newSimpleConfig( CONFIG_ID, "/fj_doc_lib_simpletable/template/", freemarkerVersion );
+		return new SimpleTableDocConfig(config);
+	}
+	
 	public static final String CHAIN_ID_SIMPLE_TABLE = "simple_table";
 	
 	public MiniFilterMap getConfig() {
