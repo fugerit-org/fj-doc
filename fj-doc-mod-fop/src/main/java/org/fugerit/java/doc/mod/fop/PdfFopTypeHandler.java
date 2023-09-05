@@ -29,7 +29,6 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoader;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
 
@@ -46,12 +45,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_CONFIG_MODE_DEFAULT = "default";
 	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER = "classloader";
 	
-
-	/**
-	 * @deprecated planned for removal in version 1.6 (see https://github.com/fugerit-org/fj-doc/issues/7)
-	 */
-	@Deprecated
-	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY = "classloader-legacy";
+	private static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY = "classloader-legacy";  // removed as of v2.0.1
 	
 	public static final String ATT_FOP_CONFIG_CLASSLOADER_PATH = "fop-config-classloader-path";
 	
@@ -74,11 +68,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	private static final String[] VALID_PDF_UA = { ATT_PDF_UA_MODE_PDF_UA_1 };
 	public static final List<String> VALID_PDF_UA_MODES = Arrays.asList( VALID_PDF_UA );
 	
-	/**
-	 * @deprecated planned for removal in version 1.6 (see https://github.com/fugerit-org/fj-doc/issues/7)
-	 */
-	@Deprecated
-	public static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";
+	private static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";  // removed as of v2.0.1
 	
 	public static final boolean DEFAULT_ACCESSIBILITY = true;
 	
@@ -197,7 +187,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		// legacy class loader mode
 		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
 			fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
-			log.warn( "Activated legacy ClassLoader mode. It is strongly recomended to update te configuration {} -> {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY, FopConfigClassLoader.MIN_VERSION_NEW_CLASSLOADER_MODE );
+			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
+			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 		}
 		if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
 			try {
@@ -208,8 +199,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 				throw new ConfigException( PdfFopTypeHandler.class.getSimpleName()+" configuration error : "+e, e );
 			}
 		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
-			FopConfigClassLoader fopConfigClassLoader = new FopConfigClassLoader(fopConfigClassloaderPath, fontBaseClassloaderPath);
-			this.fopConfig = fopConfigClassLoader;
+			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
+			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 		}
 	}
 	

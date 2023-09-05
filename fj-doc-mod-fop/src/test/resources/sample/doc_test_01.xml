@@ -1,0 +1,53 @@
+<doc xmlns="http://javacoredoc.fugerit.org" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-10.xsd">
+  <metadata>
+    <info name="margins">10;10;10;30</info>
+    <info name="excel-table-id">excel-table=print</info>
+    <info name="excel-width-multiplier">450</info>
+    <footer-ext>
+      <para align="center">Page ${currentPage}</para>
+    </footer-ext>
+  </metadata>
+  <body>
+    <phrase>Test phrase 01</phrase>
+    <phrase>Test phrase 02</phrase>
+    <phrase>Test phrase 03</phrase>
+    <phrase>Test phrase 04</phrase>
+    <table columns="3" colwidths="30;30;40" id="excel-table" padding="2" width="100">
+      <row>
+        <cell align="center" border-color="#000000" border-width="1">
+          <para>Name</para>
+        </cell>
+        <cell align="center">
+          <para>Surname</para>
+        </cell>
+        <cell align="center">
+          <para>Title</para>
+        </cell>
+      </row>
+      <row>
+        <cell>
+          <para>Luthien</para>
+        </cell>
+        <cell>
+          <para>Tinuviel</para>
+        </cell>
+        <cell>
+          <para>Queen</para>
+        </cell>
+      </row>
+      <row>
+        <cell>
+          <para>Thorin</para>
+        </cell>
+        <cell>
+          <para>Oakshield</para>
+        </cell>
+        <cell>
+          <para>King</para>
+        </cell>
+      </row>
+    </table>
+  </body>
+</doc>
