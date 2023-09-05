@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Changed
+
+- FreemarkerDocProcessConfigFacade.newSimpleConfig() has a new method accepting the free marker version as a parameter.
+
 ## [1.5.11] - 2023-09-04
 
 ### Added

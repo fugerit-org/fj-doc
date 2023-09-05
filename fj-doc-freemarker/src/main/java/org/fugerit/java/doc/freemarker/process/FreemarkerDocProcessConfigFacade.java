@@ -55,7 +55,7 @@ public class FreemarkerDocProcessConfigFacade {
 	
 	public static final String STEP_TYPE_MAP = "map";
 	
-	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath ) throws ConfigException {
+	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version ) throws ConfigException {
 		FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
 		config.setDefaultChain(
 				new  DefaultChainProvider() {
@@ -67,6 +67,9 @@ public class FreemarkerDocProcessConfigFacade {
 						FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
 						Properties configParams = new Properties();
 						configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH , templatePath );
+						if ( version != null ) {
+							configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , version );
+						}
 						configStep.setParam01( id );
 						configStep.setCustomConfig( convertConfiguration( configParams ) );
 						defaultChain.getFilterChain().add( configStep );
@@ -83,6 +86,10 @@ public class FreemarkerDocProcessConfigFacade {
 				}
 		);
 		return config;
+	}
+	
+	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath ) throws ConfigException {
+		return newSimpleConfig(id, templatePath, null );
 	}
 	
 	private static DocTypeHandler createHelper( Element docHandlerConfig ) throws ConfigException {
