@@ -20,6 +20,9 @@ Disabled, native support will be added in a future release. Apache POI 4.X nativ
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md). 
  
 *Compatibility*  
-This module is based on Apache POI 4.X, which is compatible with java 8. If you are using java 11+ you can use the [fj-doc-mod-poi5](../fj-doc-mod-poi5/README.md)   module. 
- 
+Starting with version 2.0.0 this module is based on Apache POI 4.X.
+It is still possible to override this configuration by changing the poi-version property to : 
+
+`<poi-version>4.1.2</poi-version>`
+
 NOTE: If you have any special need you can open a pull request or create your own handler based on this.
