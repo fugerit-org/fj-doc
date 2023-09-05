@@ -11,7 +11,7 @@
 
 	<artifactId>fj-doc</artifactId>
 
-	<version>1.5.13</version>
+	<version>2.0.0</version>
 	<packaging>pom</packaging>
 
 	<name>fj-doc</name>
@@ -32,6 +32,7 @@
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.0</jajarta-jaxb-version>
 	    <poi5-version>5.2.3</poi5-version>
+	    <poi-version>${poi5-version}</poi-version>
 	</properties>
 
 	<licenses>
@@ -95,7 +96,6 @@
 		<module>fj-doc-lib-simpletable-import</module>
 		<module>fj-doc-lib-autodoc</module>
 		<module>fj-doc-mod-poi</module>
-		<module>fj-doc-mod-poi5</module>
 		<module>fj-doc-mod-fop</module>
 		<module>fj-doc-mod-opencsv</module>
 		<module>fj-doc-val-core</module>

@@ -7,16 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.5.13] - 2023-09-05
+## [2.0.0] - 2023-09-05
 
 ### Changed
 
+- The apache poi5+ is now the default version required (and java11+ unless the poi version is overridden )
 - FreemarkerDocProcessConfigFacade.newSimpleConfig() has a new method accepting the free marker version as a parameter.
 - SimpleTableDocConfig.newConfig() now works in legacy mode (freemarker 2.3.29), and there are new methods for setting freemarker version
 
-## [1.5.13] - 2023-09-05 
+### Removed
 
-- Skipped for maven release problem
+- The module fj-doc-mod-poi5 has beend removed as now the module fj-doc-mod-poi requires apache poi 5+
 
 ## [1.5.11] - 2023-09-04
 
