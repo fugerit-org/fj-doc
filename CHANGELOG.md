@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.5.12] - 2023-09-05
+## [1.5.13] - 2023-09-05
 
-## Changed
+### Changed
 
 - FreemarkerDocProcessConfigFacade.newSimpleConfig() has a new method accepting the free marker version as a parameter.
 - SimpleTableDocConfig.newConfig() now works in legacy mode (freemarker 2.3.29), and there are new methods for setting freemarker version
+
+## [1.5.13] - 2023-09-05 
+
+- Skipped for maven release problem
 
 ## [1.5.11] - 2023-09-04
 
