@@ -1,0 +1,3 @@
+<docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+	<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml" pdf-a-mode="PDF/A-1b" pdf-ua-mode="PDF/UA-1"/>
+</docHandler>
