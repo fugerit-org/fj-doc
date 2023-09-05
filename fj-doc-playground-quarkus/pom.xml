@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>2.0.1</version>
+		<version>2.0.2</version>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>
@@ -23,7 +23,6 @@
 		<fe.dist.dir>src/main/resources/META-INF/resources/fj-doc-playground/home</fe.dist.dir>
 		<exec-plugin.version>3.1.0</exec-plugin.version>
 		<antrun-plugin.version>3.1.0</antrun-plugin.version>
-		<poi-version>${poi5-version}</poi-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
