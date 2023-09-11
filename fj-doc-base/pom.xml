@@ -33,6 +33,13 @@
 		</dependency>	
 		
 		<dependency>
+		    <groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		    <version>2.3.32</version>
+		    <scope>test</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-test-helper8</artifactId>
 			<scope>test</scope>
