@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- fj-core set to 8.2.7
+
 ## [2.0.2] - 2023-09-05
 
 ### Changed

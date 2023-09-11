@@ -25,7 +25,7 @@
 	    <maven.compiler.target>${java-version-compliance}</maven.compiler.target>	
 	    <maven.compiler.release>${java-version-compliance}</maven.compiler.release>
 	    <!-- fj java versions -->
-	    <fj-version>8.2.6</fj-version>
+	    <fj-version>8.2.7</fj-version>
 	    <fj-test-helper-version>0.4.1</fj-test-helper-version> 
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	    <jackson-version>2.15.2</jackson-version>
