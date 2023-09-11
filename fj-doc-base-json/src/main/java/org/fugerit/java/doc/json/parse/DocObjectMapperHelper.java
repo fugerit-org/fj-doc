@@ -95,8 +95,8 @@ public class DocObjectMapperHelper {
 	}
 
 	public DocValidationResult validateWorkerResult(Reader reader, boolean parseVersion) throws DocException {
-		DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
-		try {
+		return DocException.get( () -> {
+			DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
 			DocJsonToXml convert = new DocJsonToXml( this.mapper );
 			Element root = convert.convertToElement( reader );
 			try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() )  {
@@ -114,27 +114,22 @@ public class DocObjectMapperHelper {
 					}
 				}
 			}
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "validateWorkerResult" , e );
-		}
-		return result;
+			return result;
+		} );
 	}
 	
 	public DocBase parse(Reader reader) throws DocException {
-		DocBase docBase = null;
-		try {
+		return DocException.get( () -> {
 			DocParserContext context = new DocParserContext();
 			context.startDocument();
 			JsonNode root = this.mapper.readTree( reader );
 			this.handleElement(root, context);
 			context.endDocument();
 			log.debug( "Parse done!" );
-			docBase = context.getDocBase();
+			DocBase docBase = context.getDocBase();
 			docBase.setXsdVersion( findVersion(root, DocFacade.CURRENT_VERSION) );
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "parse" , e );
-		}
-		return docBase;
+			return docBase;
+		});
 	}
 	
 }

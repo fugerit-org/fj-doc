@@ -1,13 +1,13 @@
 {
   "xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
-  "xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd",
+  "xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-10.xsd",
   "xmlns" : "http://javacoredoc.fugerit.org",
   "_t" : "doc",
   "_e" : [ {
     "_t" : "metadata",
     "_e" : [ {
       "name" : "margins",
-      "_t" : "info",
+      "t" : "// no info node",
       "_v" : "10;10;10;30"
     }, {
       "name" : "excel-table-id",

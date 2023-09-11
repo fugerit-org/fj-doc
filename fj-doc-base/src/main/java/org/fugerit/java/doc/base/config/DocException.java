@@ -1,5 +1,7 @@
 package org.fugerit.java.doc.base.config;
 
+import org.fugerit.java.core.function.UnsafeSupplier;
+import org.fugerit.java.core.function.UnsafeVoid;
 import org.fugerit.java.core.lang.ex.ExConverUtils;
 
 public class DocException extends Exception {
@@ -53,6 +55,24 @@ public class DocException extends Exception {
 	
 	public static DocException convertEx( Exception e ) {
 		return convertEx( ExConverUtils.DEFAULT_CAUSE_MESSAGE, e );
+	}
+	
+	public static <T, E extends Exception> T get( UnsafeSupplier<T, E> fun ) throws DocException {
+		T res = null;
+		try {
+			res = fun.get();
+		} catch (Exception e) {
+			throw convertEx( e );
+		}
+		return res;
+	}
+	
+	public static <E extends Exception> void apply( UnsafeVoid<E> fun ) throws DocException {
+		try {
+			fun.apply();
+		} catch (Exception e) {
+			throw convertEx( e );
+		}
 	}
 	
 	/**

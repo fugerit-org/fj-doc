@@ -1,6 +1,6 @@
 {
   "xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
-  "xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd",
+  "xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-10.xsd",
   "xmlns" : "http://javacoredoc.fugerit.org",
   "_t" : "doc",
   "_e" : [ {
@@ -19,11 +19,7 @@
       "_v" : "450"
     }, {
       "_t" : "footer-ext",
-      "_e" : [ {
-        "align" : "center",
-        "_t" : "para",
-        "_v" : "Page ${currentPage}"
-      } ]
+      "_e" : { "fail":"//here should fail" }
     } ]
   }, {
     "_t" : "body",

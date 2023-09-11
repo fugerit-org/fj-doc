@@ -17,9 +17,7 @@ _e:
     _v: "450"
   - _t: "footer-ext"
     _e:
-    - align: "center"
-      _t: "para"
-      _v: "Page ${currentPage}"
+      fail: "// should be array"
 - _t: "body"
   _e:
   - _t: "phrase"

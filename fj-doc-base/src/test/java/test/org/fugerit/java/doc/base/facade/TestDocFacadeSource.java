@@ -1,28 +1,19 @@
 package test.org.fugerit.java.doc.base.facade;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class TestDocFacadeSource {
+import test.org.fugerit.java.BasicTest;
 
-	private static final Logger logger = LoggerFactory.getLogger( TestDocFacadeSource.class );
-	
+public class TestDocFacadeSource extends BasicTest {
+
 	private void textSupportedParser( boolean expected, int sourceType ) {
-		boolean supported;
-		try {
-			supported = DocFacadeSource.getInstance().isSourceSupported(sourceType);
+		runTestEx( () -> {
+			boolean supported = DocFacadeSource.getInstance().isSourceSupported(sourceType);
 			assertEquals( "Failed doc parser supported check", expected , supported );
-		} catch (Exception e) {
-			String message = "Error : "+e;
-			logger.error( message, e );
-			fail( message );
-		}
-		
+		} );
 	}
 		
 	@Test

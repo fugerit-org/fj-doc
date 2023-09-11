@@ -30,7 +30,7 @@ public class DocJsonToXml {
 
 	private ObjectMapper mapper;
 
-	private void iterateElement( JsonNode current, Document doc, Element tag ) throws Exception {
+	private void iterateElement( JsonNode current, Document doc, Element tag ) throws ConfigException {
 		JsonNode elementsNode = current.get( DocObjectMapperHelper.PROPERTY_ELEMENTS );
 		if ( elementsNode != null ) {
 			if ( elementsNode.isArray() ) {
@@ -45,7 +45,7 @@ public class DocJsonToXml {
 		}
 	}
 	
-	private void iterateAttribute( JsonNode current, Element tag ) throws Exception {
+	private void iterateAttribute( JsonNode current, Element tag ) {
 		Iterator<String> itNames = current.fieldNames();
 		while ( itNames.hasNext() ) {
 			String currentName = itNames.next();
@@ -55,7 +55,7 @@ public class DocJsonToXml {
 		}
 	}
 	
-	private Element create( Document doc, Element parent, JsonNode current ) throws Exception {
+	private Element create( Document doc, Element parent, JsonNode current ) throws ConfigException {
 		Element tag = null;
 		JsonNode tagNode = current.get( DocObjectMapperHelper.PROPERTY_TAG );
 		if ( tagNode == null ) {
@@ -77,42 +77,33 @@ public class DocJsonToXml {
 	}
 	
 	public void writerAsXml( Reader jsonReader, Writer writer ) throws ConfigException {
-		try {
+		ConfigException.apply( () -> {
 			Element root = this.convertToElement(jsonReader);
 			DOMIO.writeDOMIndent( root , writer );
-		} catch (Exception e) {
-			throw new ConfigException( "Errore converting json to xml : "+e, e );
-		}
+		} );
 	}
 	
 	public Element convertToElement( Reader jsonReader ) throws ConfigException {
-		Element root = null;
-		try {
+		return ConfigException.get( () -> {
 			JsonNode node = this.mapper.readTree( jsonReader );
-			root = this.convert(node);
-		} catch (Exception e) {
-			throw new ConfigException( "Errore converting json to xml : "+e, e );
-		}
-		return root;
+			return this.convert(node);
+		} );
 	}
 	
 	public Element convert( JsonNode json ) throws ConfigException {
-		Element root = null;
-		try {
+		return ConfigException.get( () -> {
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			dbf.setNamespaceAware( true );
 			dbf.setValidating( false );
 			DocumentBuilder builder = dbf.newDocumentBuilder();
 			Document doc = builder.newDocument();
-			root = this.create(doc, null, json);
+			Element root = this.create(doc, null, json);
 			root.setAttribute( "xmlns" , DocFacade.SYSTEM_ID );
 			root.setAttribute( "xmlns:xsi" , "http://www.w3.org/2001/XMLSchema-instance" );
 			String xsdVersion = DocObjectMapperHelper.findVersion(json, DocFacade.CURRENT_VERSION) ;
 			root.setAttribute( "xsi:schemaLocation" , DocParserContext.createXsdVersionXmlns(xsdVersion) );
-		} catch (Exception e) {
-			throw  new ConfigException( "Conversion error : "+e, e );
-		}
-		return root;
+			return root;
+		} );
 		
 	}
 	

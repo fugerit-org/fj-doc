@@ -10,7 +10,7 @@ _e:
     _t: "info"
     _v: "10;10;10;30"
   - name: "excel-table-id"
-    _t: "info"
+    t: "//no tag value"
     _v: "excel-table=print"
   - name: "excel-width-multiplier"
     _t: "info"
