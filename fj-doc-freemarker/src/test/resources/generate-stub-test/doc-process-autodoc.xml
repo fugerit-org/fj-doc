@@ -1,0 +1,53 @@
+<doc-process>
+
+	<chain id="shared">
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="Apache FreeMarker Configuration" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep"
+			param01="FJ_DOC_LIB_AUTODOC">
+			<properties 
+				version="2.3.29"
+				path="/fj_doc_lib_autodoc/template/"
+				mode="class" 
+				class="org.fugerit.java.doc.lib.autodoc.AutodocModule"
+				exception-handler="RETHROW_HANDLER"
+				log-exception="false"
+				wrap-unchecked-exceptions="true"
+				fallback-on-null-loop-variable="false" />
+		</step>
+		<step id="step-02" defaultBehaviour="CONTINUE"
+			description="Add custom functions" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep">
+			<properties 
+				annotationAsSingleStringFun="org.fugerit.java.doc.lib.autodoc.fun.AnnotationAsSingleStringFun" />
+		</step>	
+	</chain>
+
+	<chain id="autodoc" extends="shared">
+		<step id="step-process" defaultBehaviour="CONTINUE"
+			description="Apply FreeMarker template to get the full XML" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep">
+			<properties 
+				template-path="${chainId}.ftl" 
+				map-atts="autodocModel"/>		
+		</step>
+	</chain>
+	
+	<chain id="autodoc_detail" extends="shared">
+		<step id="step-process" defaultBehaviour="CONTINUE"
+			description="Apply FreeMarker template to get the full XML" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep">
+			<properties 
+				template-path="${chainId}.ftl" 
+				map-atts="autodocDetailModel"/>		
+		</step>
+	</chain>
+	
+	<chain id="autodoc_detail" extends="shared">
+		<step id="step-process" defaultBehaviour="CONTINUE"
+			description="Apply FreeMarker template to get the full XML" 
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep"
+			param01="test_fop_font.ftl"/>
+	</chain>
+	
+</doc-process>

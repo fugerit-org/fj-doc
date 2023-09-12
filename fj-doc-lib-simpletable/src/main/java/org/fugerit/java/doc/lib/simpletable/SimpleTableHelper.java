@@ -35,7 +35,7 @@ public class SimpleTableHelper {
 	 * @return	the new table model initialized
 	 */
 	public SimpleTable newTable( Integer... colWidths ) {
-		if ( colWidths == null ) {
+		if ( colWidths == null || colWidths.length == 0 ) {
 			throw new ConfigRuntimeException( "Minimum one colunm must be provided" );
 		}
 		return newTable( Arrays.asList( colWidths ) );
@@ -51,7 +51,7 @@ public class SimpleTableHelper {
 	 * @return	the new table model initialized
 	 */
 	public SimpleTable newTable( List<Integer> colWidths ) {
-		if ( colWidths == null ) {
+		if ( colWidths == null || colWidths.isEmpty() ) {
 			throw new ConfigRuntimeException( "Minimum one colunm must be provided" );
 		} else {
 			int sum = 0;

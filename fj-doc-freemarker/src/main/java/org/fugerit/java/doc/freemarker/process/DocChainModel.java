@@ -8,9 +8,9 @@ import java.util.Properties;
 import org.fugerit.java.core.cfg.xml.IdConfigType;
 import org.fugerit.java.core.util.collection.KeyString;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 public class DocChainModel implements IdConfigType, KeyString, Serializable {
 
 	public static final String MAP_ATTS_ALL = "all";
@@ -23,17 +23,17 @@ public class DocChainModel implements IdConfigType, KeyString, Serializable {
 	
 	private static final long serialVersionUID = 9076457107043072322L;
 
-	private String id;
+	@Getter @Setter private String id;
 	
-	private String templatePath = DEFAULT_TEMPLATE_PATH;
+	@Getter @Setter private String templatePath = DEFAULT_TEMPLATE_PATH;
 	
-	private String mapAtts = MAP_ATTS_DEFAULT;
+	@Getter @Setter private String mapAtts = MAP_ATTS_DEFAULT;
 	
-	private String parent;
+	@Getter @Setter private String parent;
 	
-	private Properties mapAttsEnum;
+	@Getter @Setter private Properties mapAttsEnum;
 
-	private List<ChainStepModel> chainStepList = new ArrayList<>();
+	@Getter  private List<ChainStepModel> chainStepList = new ArrayList<>();
 	
 	@Override
 	public String getKey() {

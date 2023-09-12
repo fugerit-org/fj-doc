@@ -2,6 +2,7 @@ package org.fugerit.java.doc.playground.val;
 
 import java.io.FileInputStream;
 
+import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
@@ -36,23 +37,19 @@ public class ValRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/check")
 	public Response check( ValInput input) {
-		Response res = Response.status(Response.Status.BAD_REQUEST).build();
-		try {
+		return RestHelper.defaultHandle( () -> {
 			ValOutput output = null;
 			FileUpload file = input.getFile();
-			if ( file != null) {
-				log.info( "file -> {} -> {}", file.fileName(), file.uploadedFile() );
-				try ( FileInputStream fis = new FileInputStream( file.uploadedFile().toFile() ) ) {
-					DocTypeValidationResult result = facade.validate( file.fileName(), fis );
-					if (result.isResultOk()) {
-						output = new ValOutput(true, "Input is valid");
-					} else {
-						output = new ValOutput(false, "Input is not valid");
-					}	
-				}
-			} else {
-				output = new ValOutput(false, "No input provided");
+			log.info( "file -> {} -> {}", file.fileName(), file.uploadedFile() );
+			try ( FileInputStream fis = new FileInputStream( file.uploadedFile().toFile() ) ) {
+				DocTypeValidationResult result = facade.validate( file.fileName(), fis );
+				if (result.isResultOk()) {
+					output = new ValOutput(true, "Input is valid");
+				} else {
+					output = new ValOutput(false, "Input is not valid");
+				}	
 			}
+			Response res = null;
 			if (output != null) {
 				if (output.isValid()) {
 					res = Response.ok().entity(output).build();
@@ -60,11 +57,8 @@ public class ValRest {
 					res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
 				}
 			}
-		} catch (Exception e) {
-			log.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-		}
-		return res;
+			return res;
+		} );
 	}
 
 	@GET

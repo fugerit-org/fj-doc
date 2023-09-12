@@ -19,6 +19,7 @@ import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
+import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.playground.config.InitPlayground;
 import org.fugerit.java.doc.playground.facade.BasicInput;
 import org.fugerit.java.doc.playground.facade.InputFacade;
@@ -86,20 +87,15 @@ public class GenerateRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/document")
 	public Response document( GenerateInput input) {
-		Response res = Response.status(Response.Status.BAD_REQUEST).build();
-		try {
+		return RestHelper.defaultHandle( () -> {
 			long time = System.currentTimeMillis();
 			DocTypeHandler handler = this.findHandler(input);
 			byte[] data = this.generateHelper(input, handler);
 			GenerateOutput output = new GenerateOutput();
 			output.setDocOutputBase64( Base64.getEncoder().encodeToString( data ) );
 			output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
-			res = Response.ok().entity( output ).build();
-		} catch (Exception e) {
-			log.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-		}
-		return res;
+			return Response.ok().entity( output ).build();
+		} );
 	}
 	
 	private void addRow( SimpleTable simpleTableModel, int count, String level, String message ) {
@@ -119,8 +115,7 @@ public class GenerateRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/validate")
 	public Response validate( GenerateInput input) {
-		Response res = Response.status(Response.Status.BAD_REQUEST).build();
-		try {
+		return RestHelper.defaultHandle( () -> {
 			DocParser parser = this.findParser(input);
 			try ( StringReader reader = new StringReader( input.getDocContent() );
 					ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
@@ -146,13 +141,10 @@ public class GenerateRest {
 		        docConfig.processSimpleTable(simpleTableModel, handler, buffer);
 				GenerateOutput output = new GenerateOutput();
 				output.setDocOutputBase64( Base64.getEncoder().encodeToString( buffer.toByteArray() ) );
-				res = Response.ok().entity( output ).build();
+				return Response.ok().entity( output ).build();
 			}
-		} catch (Exception e) {
-			log.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
-		return res;
+		);
 	}
 
 }

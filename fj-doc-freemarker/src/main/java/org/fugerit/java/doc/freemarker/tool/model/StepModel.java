@@ -3,14 +3,14 @@ package org.fugerit.java.doc.freemarker.tool.model;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 public class StepModel {
 
-	private String type;
+	@Getter @Setter private String type;
 
-	private LinkedHashMap<String, String> atts;
+	@Getter private LinkedHashMap<String, String> atts;
 	
 	public StepModel(String type) {
 		super();
