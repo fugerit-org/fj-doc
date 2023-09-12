@@ -1,31 +1,17 @@
-package test.org.fugerit.java.doc.val;
+package test.org.fugerit.java.doc.core.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
-import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestAllFacade extends TestDocValidatorFacade {
+public class TestImageValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
-			PdfboxValidator.DEFAULT,
 			ImageValidator.JPG_VALIDATOR,
 			ImageValidator.PNG_VALIDATOR,
 			ImageValidator.TIFF_VALIDATOR
 	);
-	
-	@Test
-	public void testPdfAsPdf() {
-		boolean ok = this.worker(FACADE, "pdf_as_pdf.pdf", true );
-		Assert.assertTrue( ok );
-	}
-	
-	@Test
-	public void testPngAsPdf() {
-		boolean ok = this.worker(FACADE, "png_as_pdf.pdf", false );
-		Assert.assertTrue( ok );
-	}
 	
 	@Test
 	public void testJpgAsJpg() {

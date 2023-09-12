@@ -1,4 +1,4 @@
-package test.org.fugerit.java.doc.val;
+package test.org.fugerit.java.doc.core.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
