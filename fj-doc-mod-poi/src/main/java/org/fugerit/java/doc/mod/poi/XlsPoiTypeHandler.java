@@ -1,12 +1,8 @@
 package org.fugerit.java.doc.mod.poi;
 
-import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.poi.hssf.usermodel.HSSFPalette;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -16,7 +12,6 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.model.DocPara;
-import org.fugerit.java.doc.base.xml.DocModelUtils;
 
 public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 
@@ -39,13 +34,6 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 	@Override
 	protected void closeWorkbook(Workbook workbook, DocOutput docOutput) throws IOException {
 		PoiUtils.closeWorkbook(workbook, docOutput);
-	}
-
-	public static short findClosestColorIndex( HSSFWorkbook workbook, String color ) {
-		Color c = DocModelUtils.parseHtmlColor( color );
-		HSSFPalette palette = workbook.getCustomPalette();
-		HSSFColor current = palette.findSimilarColor( c.getRed() , c.getGreen(), c.getBlue() );
-		return current.getIndex();
 	}
 	
 	@Override

@@ -40,8 +40,8 @@ import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
 import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -311,14 +311,12 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 
 }
 
-@Data
 @AllArgsConstructor
-@RequiredArgsConstructor
 class WorkbookDataWrapper {
 	
-	private TableMatrix tableMatrix;
+	@Getter @Setter private TableMatrix tableMatrix;
 	
-	private WorkbookHelper workbookHelper;
+	@Getter @Setter private WorkbookHelper workbookHelper;
 	
 	public Workbook getWorkbook() {
 		return this.getWorkbookHelper().getWorkbook();
