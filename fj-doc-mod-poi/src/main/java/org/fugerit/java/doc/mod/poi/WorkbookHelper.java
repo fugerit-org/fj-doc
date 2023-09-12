@@ -1,11 +1,13 @@
 package org.fugerit.java.doc.mod.poi;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.io.Serializable;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.IndexedColorMap;
 
-public class WorkbookHelper implements Serializable {
+public class WorkbookHelper implements Serializable, Closeable {
 
 	/**
 	 * 
@@ -28,6 +30,11 @@ public class WorkbookHelper implements Serializable {
 
 	public IndexedColorMap getIndexedColorMap() {
 		return indexedColorMap;
+	}
+
+	@Override
+	public void close() throws IOException {
+		this.workbook.close();
 	}
 
 }

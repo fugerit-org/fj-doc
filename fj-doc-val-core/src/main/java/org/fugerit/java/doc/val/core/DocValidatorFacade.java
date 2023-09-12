@@ -71,8 +71,7 @@ public class DocValidatorFacade {
 	}
 	
 	public boolean isMimeTypeSupprted( String mimeType ) {
-		DocTypeValidator validator = this.findByMimeType(mimeType);
-		return validator != null && validator.isMimeTypeSupported(mimeType);
+		return this.findByMimeType(mimeType) != null;
 	}
 
 	public Collection<String> getSupportedMimeTypes() {
@@ -84,8 +83,7 @@ public class DocValidatorFacade {
 	}
 	
 	public boolean isExtensionSupported( String extension ) {
-		DocTypeValidator validator = this.findByExtension(extension);
-		return validator != null && validator.isExtensionSupported(extension);
+		return this.findByExtension(extension) != null;
 	}
 	
 	public boolean check( File file ) throws IOException {

@@ -1,11 +1,11 @@
-package test.org.fugerit.java.doc.val;
+package test.org.fugerit.java.doc.pdfbox.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestPdfBoxValidator extends TestDocValidatorFacade {
+public class TestPdfboxValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			PdfboxValidator.DEFAULT

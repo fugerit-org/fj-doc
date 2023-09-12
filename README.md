@@ -6,6 +6,7 @@ Framework to produce documents in different formats starting from an XML documen
 [![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc)
 [![license](https://img.shields.io/badge/License-Apache%20License%202.0-teal.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=coverage)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
 
 The Core library (fj-doc-base) is all you need to start, even though typically you will use at least : 
 * [fj-doc-base](fj-doc-base/README.md)

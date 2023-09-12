@@ -1,4 +1,4 @@
-package test.org.fugerit.java.doc.val;
+package test.org.fugerit.java.doc.poi.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.poi.DocValidator;
@@ -10,11 +10,11 @@ import org.junit.Test;
 
 public class TestPoiValidator extends TestDocValidatorFacade {
 
-	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict(
-			DocxValidator.DEFAULT,
+	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			DocValidator.DEFAULT,
-			XlsxValidator.DEFAULT,
-			XlsValidator.DEFAULT
+			DocxValidator.DEFAULT,
+			XlsValidator.DEFAULT,
+			XlsxValidator.DEFAULT
 	);
 	
 	@Test
@@ -30,6 +30,18 @@ public class TestPoiValidator extends TestDocValidatorFacade {
 	}
 	
 	@Test
+	public void testDocxAsDoc() {
+		boolean ok = this.worker(FACADE, "docx_as_doc.doc", false );
+		Assert.assertTrue( ok );
+	}
+	
+	@Test
+	public void testDocAsDocx() {
+		boolean ok = this.worker(FACADE, "doc_as_docx.docx", false );
+		Assert.assertTrue( ok );
+	}
+	
+	@Test
 	public void testXlsAsXls() {
 		boolean ok = this.worker(FACADE, "xls_as_xls.xls", true );
 		Assert.assertTrue( ok );
@@ -41,12 +53,6 @@ public class TestPoiValidator extends TestDocValidatorFacade {
 		Assert.assertTrue( ok );
 	}
 
-	@Test
-	public void testDocxAsDoc() {
-		boolean ok = this.worker(FACADE, "docx_as_doc.doc", false );
-		Assert.assertTrue( ok );
-	}
-	
 	@Test
 	public void testJpgAsXlsx() {
 		boolean ok = this.worker(FACADE, "jpg_as_xlsx.xlsx", false );

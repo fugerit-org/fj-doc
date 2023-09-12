@@ -59,35 +59,37 @@ public class PoiCellStyleModel implements Serializable {
 	public static CellStyle find( Collection<PoiCellStyleModel> styles, DocPara p, DocCell c ) {
 		CellStyle result = null;
 		DocBorders b = c.getDocBorders();
-		for ( PoiCellStyleModel style : styles ) {
-			DocPara cp = style.getDocPara();
-			DocCell cc = style.getDocCell();
-			DocBorders cb = cc.getDocBorders();
-			boolean equal = eq( p.getBackColor(), cp.getBackColor() )
-					&& eq( p.getForeColor(), cp.getForeColor() )
-					&& eq( p.getFontName(), cp.getFontName() )
-					&& eq( p.getSize(), cp.getSize() )
-					&& eq( p.getFormat(), cp.getFormat() )
-					&& eq( p.getStyle(), cp.getStyle() )
-					&& eq( p.getType(), cp.getType() )
-					&& eq( p.getAlign(), cp.getAlign() );
-			equal = equal 
-					&& eq( c.getBackColor(), cc.getBackColor() )
-					&& eq( c.getForeColor(), cc.getForeColor() )
-					&& eq( c.getType(), cc.getType() )
-					&& eq( c.getAlign(), cc.getAlign() );
-			equal = equal 
-					&& eq( b.getBorderWidthBottom(), cb.getBorderWidthBottom() )
-					&& eq( b.getBorderWidthTop(), cb.getBorderWidthTop() )
-					&& eq( b.getBorderWidthLeft(), cb.getBorderWidthLeft() )
-					&& eq( b.getBorderWidthRight(), cb.getBorderWidthRight() ) 
-					&& eq( b.getBorderColorBottom(), cb.getBorderColorBottom() )
-					&& eq( b.getBorderColorTop(), cb.getBorderColorTop() )
-					&& eq( b.getBorderColorLeft(), cb.getBorderColorLeft() )
-					&& eq( b.getBorderColorRight(), cb.getBorderColorRight() );
-			if ( equal ) {
-				result = style.getStyle();
-				break;
+		if ( p!= null ) {
+			for ( PoiCellStyleModel style : styles ) {
+				DocPara cp = style.getDocPara();
+				DocCell cc = style.getDocCell();
+				DocBorders cb = cc.getDocBorders();
+				boolean equal = eq( p.getBackColor(), cp.getBackColor() )
+						&& eq( p.getForeColor(), cp.getForeColor() )
+						&& eq( p.getFontName(), cp.getFontName() )
+						&& eq( p.getSize(), cp.getSize() )
+						&& eq( p.getFormat(), cp.getFormat() )
+						&& eq( p.getStyle(), cp.getStyle() )
+						&& eq( p.getType(), cp.getType() )
+						&& eq( p.getAlign(), cp.getAlign() );
+				equal = equal 
+						&& eq( c.getBackColor(), cc.getBackColor() )
+						&& eq( c.getForeColor(), cc.getForeColor() )
+						&& eq( c.getType(), cc.getType() )
+						&& eq( c.getAlign(), cc.getAlign() );
+				equal = equal 
+						&& eq( b.getBorderWidthBottom(), cb.getBorderWidthBottom() )
+						&& eq( b.getBorderWidthTop(), cb.getBorderWidthTop() )
+						&& eq( b.getBorderWidthLeft(), cb.getBorderWidthLeft() )
+						&& eq( b.getBorderWidthRight(), cb.getBorderWidthRight() ) 
+						&& eq( b.getBorderColorBottom(), cb.getBorderColorBottom() )
+						&& eq( b.getBorderColorTop(), cb.getBorderColorTop() )
+						&& eq( b.getBorderColorLeft(), cb.getBorderColorLeft() )
+						&& eq( b.getBorderColorRight(), cb.getBorderColorRight() );
+				if ( equal ) {
+					result = style.getStyle();
+					break;
+				}
 			}
 		}
 		return result;

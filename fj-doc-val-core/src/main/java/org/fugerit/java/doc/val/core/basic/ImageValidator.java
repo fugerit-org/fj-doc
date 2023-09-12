@@ -19,6 +19,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ImageValidator extends AbstractDocTypeValidator {
 	
+	public static boolean javaVersionSupportHelper( int javaMajorVersionFound, int javaMajorVersionRequired ) {
+		boolean notSupported = ( javaMajorVersionFound < javaMajorVersionRequired );
+		if ( notSupported ) {
+			log.warn( "java major version found : '{}' lower than required : '{}'", javaMajorVersionFound, javaMajorVersionRequired );
+		}
+		return !notSupported;
+	}
+	
 	public static final String FORMAT_JPG = "JPG";
 	public static final String MIME_JPG = "image/jpeg";
 	public static final Set<String> EXT_JPG = createSet( FORMAT_JPG, "JPEG" );
@@ -76,13 +84,7 @@ public class ImageValidator extends AbstractDocTypeValidator {
 
 	@Override
 	public boolean checkCompatibility() {
-		boolean ok = super.checkCompatibility();
-		int javaMajorVersionFound =  JavaVersionHelper.parseUniversalJavaMajorVersion() ;
-		if ( javaMajorVersionFound < this.javaMajorVersionRequired ) {
-			ok = false;
-			log.warn( "java major version found : '{}' lower than required : '{}'", javaMajorVersionFound, this.javaMajorVersionRequired );
-		}
-		return ok;
+		return javaVersionSupportHelper(JavaVersionHelper.parseUniversalJavaMajorVersion(), this.javaMajorVersionRequired);
 	}
 
 }

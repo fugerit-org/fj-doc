@@ -70,26 +70,15 @@ public class DocXmlToJson {
 	}
 	
 	public JsonNode convertToJsonNode( Reader xml ) throws ConfigException {
-		JsonNode tree;
-		try {
+		return ConfigException.get( () -> {
 			Document doc = DOMIO.loadDOMDoc( xml );
 			Element root = doc.getDocumentElement();
-			tree = this.convert( root );
-		} catch (Exception e) {
-			throw new ConfigException( "Errore converting xml to json node : "+e, e );
-		}
-		return tree;
+			return this.convert( root );
+		} );
 	}
 	
 	public JsonNode convert( Element root ) throws ConfigException {
-		JsonNode tree = null;
-		try {
-			tree = this.create( root, this.mapper.createObjectNode() );
-		} catch (Exception e) {
-			throw  new ConfigException( "Conversion error : "+e, e );
-		}
-		return tree;
-		
+		return ConfigException.get( () -> this.create( root, this.mapper.createObjectNode() ) );
 	}
 	
 }

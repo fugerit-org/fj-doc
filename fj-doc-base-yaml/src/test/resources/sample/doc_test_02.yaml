@@ -1,0 +1,96 @@
+---
+xmlns:xsi: "http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation: "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd"
+xmlns: "http://javacoredoc.fugerit.org"
+xsd-version: "2-1"
+_t: "doc"
+_e:
+- _t: "metadata"
+  _e:
+  - name: "margins"
+    _t: "info"
+    _v: "10;10;10;30"
+  - name: "excel-table-id"
+    _t: "info"
+    _v: "excel-table=print"
+  - name: "excel-width-multiplier"
+    _t: "info"
+    _v: "450"
+  - _t: "footer-ext"
+    _e:
+    - align: "center"
+      _t: "para"
+      _v: "Page ${currentPage}"
+- _t: "body"
+  _e:
+  - _t: "phrase"
+    _v: "Test phrase 01"
+  - _t: "phrase"
+    _v: "Test phrase 02"
+  - _t: "phrase"
+    _v: "Test phrase 03"
+  - _t: "phrase"
+    _v: "Test phrase 04"
+  - url: "cl://test/img_test_red.png"
+    scaling: "100"
+    _t: "image"
+  - url: "cl://test/img_test_green.png"
+    scaling: "50"
+    _t: "image"
+  - url: "cl://test/img_test_blue.png"
+    scaling: "25"
+    _t: "image"
+  - columns: "3"
+    width: "100"
+    colwidths: "30;30;40"
+    padding: "2"
+    id: "excel-table"
+    _t: "table"
+    _e:
+    - _t: "row"
+      _e:
+      - border-color: "#000000"
+        border-width: "1"
+        align: "center"
+        _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Name"
+      - align: "center"
+        _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Surname"
+      - align: "center"
+        _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Title"
+    - _t: "row"
+      _e:
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Luthien"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Tinuviel"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Queen"
+    - _t: "row"
+      _e:
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Thorin"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Oakshield"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "King"

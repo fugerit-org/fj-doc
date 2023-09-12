@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-core set to 8.2.7
+- fj-test-helper8 set to 0.5.0
+
 ## [2.0.2] - 2023-09-05
 
 ### Changed
