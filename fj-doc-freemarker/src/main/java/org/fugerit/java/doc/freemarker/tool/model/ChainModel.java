@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
 public class ChainModel implements Serializable {
 	
 	private static final long serialVersionUID = 3421438389573953861L;
 
-	private List<StepModel> stepList;
+	@Getter private List<StepModel> stepList;
 	
-	private String id;
+	@Getter @Setter private String id;
 	
-	private String parent;
+	@Getter @Setter private String parent;
 	
 	public ChainModel( String id ) {
 		this.setId( id );

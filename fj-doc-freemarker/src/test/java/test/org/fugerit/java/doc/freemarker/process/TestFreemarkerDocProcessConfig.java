@@ -2,10 +2,14 @@ package test.org.fugerit.java.doc.freemarker.process;
 
 import static org.junit.Assert.fail;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
+import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.base.config.DocConfig;
+import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
@@ -24,11 +28,47 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
 			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
 			log.info( "config {}", config.getChain( "sample_chain" ) );
+			Assert.assertNotNull( config );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );
 			fail(message);
 		}
+	}
+	
+	private void templateTesting( FreemarkerDocProcessConfig config ) {
+		DocProcessContext context = DocProcessContext.newContext( "test", "testString" );
+		runTestEx( () -> {
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+				config.process( "test_01", DocConfig.TYPE_MD, context, baos, false );
+			}
+		} );
+		runTestEx( () -> {
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+				config.process( "test_01_alt", DocConfig.TYPE_MD, context, baos, false );
+			}
+		} );
+		runTestEx( () -> {
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+				// need to make it work in the future!
+				Assert.assertThrows( NullPointerException.class, () -> {
+					config.process( "test_01_inline", DocConfig.TYPE_MD, context, baos, false );
+				} );
+			}
+		} );
+		Assert.assertThrows( ConfigException.class , () -> {
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+				config.process( "test_01_fail", DocConfig.TYPE_MD, context, baos, false );
+			}
+		} );
+	}
+	
+	@Test
+	public void testConfigRead002() {
+		FreemarkerDocProcessConfig config = 
+				FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_test/freemarker-doc-process_alt.xml" );
+		Assert.assertNotNull( config );
+		this.templateTesting(config);
 	}
 	
 	@Test

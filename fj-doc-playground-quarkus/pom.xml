@@ -47,42 +47,6 @@
 		<dependency>
 			<groupId>io.quarkus</groupId>
 			<artifactId>quarkus-arc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-base</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-base-json</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-base-yaml</artifactId>
-		</dependency>						
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-val</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-fop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-poi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-lib-simpletable</artifactId>
-		</dependency>		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-sample</artifactId>
 		</dependency>	
 		<dependency>
 			<groupId>io.quarkus</groupId>
@@ -94,6 +58,26 @@
 			<artifactId>rest-assured</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-sample</artifactId>
+			<exclusions>
+	            <exclusion>
+	                <artifactId>xml-apis</artifactId>
+	                <groupId>xml-apis</groupId>
+	            </exclusion>
+			</exclusions>
+		</dependency>	
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-val</artifactId>
+			<exclusions>
+	            <exclusion>
+	                <artifactId>xml-apis</artifactId>
+	                <groupId>xml-apis</groupId>
+	            </exclusion>
+			</exclusions>
+		</dependency>	
 	</dependencies>
 	<build>
 		<plugins>

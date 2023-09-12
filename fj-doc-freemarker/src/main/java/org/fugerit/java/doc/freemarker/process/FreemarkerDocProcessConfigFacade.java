@@ -155,7 +155,7 @@ public class FreemarkerDocProcessConfigFacade {
 			 if ( STEP_TYPE_CONFIG.equalsIgnoreCase( chainStepModel.getStepType() ) ) {
 				 NodeList configList = currentChainStepTag.getElementsByTagName( STEP_TYPE_CONFIG );
 				 if ( configList.getLength() != 1 ) {
-					 throw new ConfigException( "Expcted only one config tag : "+configList.getLength() );
+					 throw new ConfigException( "Expected only one config tag : "+configList.getLength() );
 				 } else {
 					 Element configTag = (Element)configList.item( 0 );
 					 atts.putAll( DOMUtils.attributesToProperties( configTag ) );

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<docHandlerConfig>
+		<!-- Type handler for markdown format -->
+		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+		<!-- Type henalder for xml format, generates the source xml:doc -->
+		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+	</docHandlerConfig>
+
+	<docChain id="shared">
+		<chainStep stepType="config">
+			<config id="FJ_DOC_TEST"
+				version="2.3.32"
+				path="/fj_doc_test/template/"
+				exception-handler="IGNORE_HANDLER"
+				log-exception="false"
+				wrap-unchecked-exceptions="true"
+				fallback-on-null-loop-variable="false"/>
+		</chainStep>
+		<chainStep stepType="function">
+			<function name="imageBase64CLFun" value="org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun"/>
+			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
+			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+		</chainStep>
+	</docChain>
+
+	<docChain id="sample_chain" parent="shared">
+		<chainStep stepType="complex" template-path="${chainId}.ftl"/>
+	</docChain>
+	
+	<docChain id="test_01" parent="shared">
+		<chainStep stepType="complex" template-path="${chainId}.ftl" map-atts="test"/>
+	</docChain>
+	
+	<docChain id="test_01_alt" parent="shared">
+		<chainStep stepType="complex" template-path="test_01.ftl" map-all="true"/>
+	</docChain>
+	
+	<docChain id="test_01_fail" parent="shared">
+		<chainStep stepType="complex" map-all="true"/>
+	</docChain>
+
+	<docChain id="test_01_inline" parent="shared" templatePath="test_01.ftl" mapAtts="all" />
+
+</freemarker-doc-process-config>
