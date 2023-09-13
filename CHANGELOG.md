@@ -7,10 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.3] - 2023-09-013
+
+###
+
+- [maven deploy workflow](.github/workflows/deploy_maven_package.yml)
+
 ### Changed
 
-- fj-core set to 8.2.7
+- fj-core set to 8.2.8
 - fj-test-helper8 set to 0.5.0
+- increased test coverage
 
 ## [2.0.2] - 2023-09-05
 
