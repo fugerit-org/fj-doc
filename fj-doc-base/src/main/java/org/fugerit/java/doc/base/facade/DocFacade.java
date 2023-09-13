@@ -32,7 +32,7 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.log.LogFacade;
@@ -108,20 +108,19 @@ public class DocFacade {
 	}
 	
 	public static boolean validate( Reader is, Properties params ) throws DocException {
-		boolean valRes = false;
-		try {
-			params = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
-			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
-			int result = parser.validate( is );
-			valRes = ( result == DocValidationResult.VALIDATION_OK );
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "validate", e );
-		} finally {
-			if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_CLOSE_STREAM, PARAM_VALUE_CLOSE_STREAM_DEFAULT ) ) ) {
-				StreamHelper.closeSafe( is );	
-			}
-		}
-		return valRes;
+		return SafeFunction.get( () -> {
+			Properties realParams = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
+			try {
+				
+				DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
+				int result = parser.validate( is );
+				return ( result == DocValidationResult.VALIDATION_OK );
+			} finally {
+				if ( BooleanUtils.isTrue( realParams.getProperty( PARAM_KEY_CLOSE_STREAM, PARAM_VALUE_CLOSE_STREAM_DEFAULT ) ) ) {
+					StreamHelper.closeSafe( is );	
+				}
+			}	
+		} );
 	}
 	
 	public static DocBase parse( Reader is, DocHelper docHelper ) throws DocException {
@@ -129,20 +128,18 @@ public class DocFacade {
 	}
 	
 	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws DocException {
-		DocBase docBase = null;
-		try {
-			LogFacade.getLog().warn( "parse() method with DocHelper parameter should be avoided , as currently supported, param value : {}", docHelper );
-			params = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
-			DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
-			docBase = parser.parse(is);
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "parse", e );
-		} finally {
-			if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_CLOSE_STREAM, PARAM_VALUE_CLOSE_STREAM_DEFAULT ) ) ) {
-				StreamHelper.closeSafe( is );	
+		return SafeFunction.get( () -> {
+			Properties realParams = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
+			try {
+				LogFacade.getLog().warn( "parse() method with DocHelper parameter should be avoided , as currently supported, param value : {}", docHelper );
+				DocXmlParser parser = new DocXmlParser( DocHelper.DEFAULT );
+				return parser.parse(is);
+			} finally {
+				if ( BooleanUtils.isTrue( realParams.getProperty( PARAM_KEY_CLOSE_STREAM, PARAM_VALUE_CLOSE_STREAM_DEFAULT ) ) ) {
+					StreamHelper.closeSafe( is );	
+				}
 			}
-		}
-		return docBase;
+		} );
 	}	
 	
 	public static DocBase parse( InputStream is, DocHelper docHelper, Properties params ) throws DocException {
@@ -154,25 +151,15 @@ public class DocFacade {
 	}
 	
 	public static DocBase parseRE( Reader is, int sourceType ) {
-		DocBase doc = null;
-		try {
+		return SafeFunction.get( () -> {
 			log.debug( "sourceType : {}", sourceType );
-			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Exception on parseRE : "+e, e );
-		}
-		return doc;
+			return parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
+		} );
 	}
 	
 	
 	public static DocBase parseRE( Reader is ) {
-		DocBase doc = null;
-		try {
-			doc = parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Exception on parseRE : "+e, e );
-		}
-		return doc;
+		return SafeFunction.get( () -> parse( is, DocHelper.DEFAULT, DEFAULT_PARAMS ) );
 	}
 	
 	public static DocBase parse( InputStream is ) throws DocException {

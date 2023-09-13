@@ -1,0 +1,12 @@
+<doc-process>
+
+	<chain id="test-chain">
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="Test for coverage" 
+			type="test.org.fugerit.java.doc.base.coverage.ProcessStepCoverage"
+			param01="TEST">
+			<properties xmlPath="coverage/xml/default_doc_alt.xml"/>
+		</step>
+	</chain>
+	
+</doc-process>

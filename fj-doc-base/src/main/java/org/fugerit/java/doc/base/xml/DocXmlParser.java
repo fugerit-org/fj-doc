@@ -4,6 +4,7 @@ import java.io.Reader;
 
 import javax.xml.parsers.SAXParser;
 
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.xml.sax.SAXParseResult;
 import org.fugerit.java.core.xml.sax.XMLFactorySAX;
 import org.fugerit.java.core.xml.sax.dh.DefaultHandlerComp;
@@ -33,39 +34,37 @@ public class DocXmlParser extends AbstractDocParser {
 
 	@Override
 	protected DocBase parseWorker(Reader reader) throws DocException {
-		DocContentHandler dch =  new DocContentHandler( this.docHelper );
-		try {
+		return SafeFunction.get( () -> {
+			DocContentHandler dch =  new DocContentHandler( this.docHelper );	
 			SAXParser parser = XMLFactorySAX.makeSAXParser( false ,  true );
 			DefaultHandlerComp dh = new DefaultHandlerComp( dch );
 			parser.parse( new InputSource(reader), dh);
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "parseWorker" , e );
-		}
-		return dch.getDocBase();
+			return dch.getDocBase();
+		} );
 	}
 	
 	@Override
 	protected DocValidationResult validateWorker(Reader reader, boolean parseVersion) throws DocException {
-		DocValidationResult docResult = DocValidationResult.newDefaultNotDefinedResult();
-		SAXParseResult result = null;
-		try {
+		return SafeFunction.get( () -> {
+			DocValidationResult docResult = DocValidationResult.newDefaultNotDefinedResult();
+			SAXParseResult result = null;
 			if ( parseVersion ) {
 				result = DocValidator.validateVersion( reader );
 			} else {
 				result = DocValidator.validate( reader );
 			}
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "validateWorker" , e );
-		}
-		for ( Exception e : result.fatalsAndErrors() ) {
-			docResult.getErrorList().add( e.toString() );
-		}
-		for ( Exception e : result.warnings() ) {
-			docResult.getInfoList().add( e.toString() );
-		}
-		docResult.evaluateResult();
-		log.debug( "Validation result {}", docResult );
-		return docResult;
+			for ( Exception e : result.fatalsAndErrors() ) {
+				docResult.getErrorList().add( e.toString() );
+			}
+			for ( Exception e : result.warnings() ) {
+				docResult.getInfoList().add( e.toString() );
+			}
+			docResult.evaluateResult();
+			log.debug( "Validation result {}", docResult );
+			return docResult;
+		} );
+		
+		
 	}
 
 }
