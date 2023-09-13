@@ -1,24 +1,15 @@
 package org.fugerit.java.doc.base.helper;
 
-import java.io.InputStream;
 import java.util.Properties;
 
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
-import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.util.PropsIO;
 
 public class DefaultMimeHelper {
 
 	private DefaultMimeHelper() {} // java:S1118
 	
-	private static Properties props = new Properties();
-	static {
-		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/default_mime.xml" ) ) {
-			props.loadFromXML( is );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Exception on init : "+e, e );
-		}
-	}
-	
+	private static Properties props = PropsIO.loadFromClassLoaderSafe( "config/default_mime.xml" );
+
 	public static String getDefaultMime(String type) {
 		return props.getProperty(type);
 	}

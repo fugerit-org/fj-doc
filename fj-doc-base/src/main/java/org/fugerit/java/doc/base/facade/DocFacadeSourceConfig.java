@@ -1,12 +1,10 @@
 package org.fugerit.java.doc.base.facade;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.With;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class DocFacadeSourceConfig {

@@ -7,9 +7,9 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.cfg.xml.GenericListCatalogConfig;
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.util.filterchain.MiniFilterConfig;
@@ -31,35 +31,28 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 	}
 
 	public static DocProcessConfig loadConfig( InputStream is, DocProcessConfig config ) {
-		config.miniFilterConfig = new MiniFilterConfig();
-		try {
+		return SafeFunction.get( () -> {
 			MiniFilterConfig.loadConfig(is, config.miniFilterConfig);
-		} catch (Exception e) {
-			throw ConfigRuntimeException.convertExMethod( "loadConfig" , e );
-		}
-		return config;
+			return config;
+		} );
 	}
 	
 	public static DocProcessConfig loadConfigSafe(String configPath) {
-		DocProcessConfig config = null;
-		try (InputStream is = StreamHelper.resolveStream(configPath)) {
-			config = loadConfig(is);
-		} catch (Exception e) {
-			throw new ConfigRuntimeException("Exception on loadConfigSafe : " + e, e);
-		}
-		return config;
+		return SafeFunction.get( () -> {
+			try (InputStream is = StreamHelper.resolveStream(configPath)) {
+				return loadConfig(is);
+			}	
+		} );
 	}
 
 	public static DocProcessConfig loadConfig(InputStream is) throws ConfigException {
 		DocProcessConfig config = new DocProcessConfig();
 		config.miniFilterConfig.getGeneralProps().setProperty(GenericListCatalogConfig.ATT_TYPE,
 				MiniFilterConfigEntry.class.getName());
-		try {
+		return SafeFunction.get( () -> {
 			MiniFilterConfig.loadConfigMap(is, config.miniFilterConfig);
-		} catch (Exception e) {
-			throw ConfigException.stadardExceptionWrapping(e);
-		}
-		return config;
+			return config;
+		} );
 	}
 
 	@Override

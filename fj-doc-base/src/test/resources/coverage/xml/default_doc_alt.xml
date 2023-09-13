@@ -15,6 +15,10 @@
 	<info name="doc-language">en</info>
 	<!-- font must be loaded -->
 	<info name="page-orient">horizontal</info>
+	<!-- specific xlsx properties -->
+	<info name="excel-try-autoresize">true</info>
+	<!-- CSV options -->
+	<info name="csv-table-id">excel-table</info>
 	<header>
 		<phrase fore-color="#222222" leading="3" align="right">header test</phrase>
 	</header>
@@ -28,7 +32,7 @@
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
     			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
-    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para fore-color="#ffffff" style="bold">Surname</para></cell>
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
        		<row>

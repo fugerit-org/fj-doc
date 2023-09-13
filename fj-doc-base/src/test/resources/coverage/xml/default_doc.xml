@@ -16,6 +16,8 @@
 	<!-- additional properties -->
 	<info name="set-total-page">true</info>
 	<info name="html-css-link">/css/test.css</info>
+	<!-- CSV options -->
+	<info name="csv-table-id">excel-table</info>
 	<header-ext>
 		<para align="center" fore-color="#eeeeee">header test</para>
 	</header-ext>
@@ -35,6 +37,7 @@
   		<para font-name="symbol" style="italic">Symbol</para>
   		<para font-name="helvetica" style="underline">Symbol</para>
   		<para size="3" fore-color="#dddddd">Test default font</para>
+  		<image scaling="100" url="cl://test/img_test_teal.jpg"/>
   		<br/>
   		<page-break/>
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">

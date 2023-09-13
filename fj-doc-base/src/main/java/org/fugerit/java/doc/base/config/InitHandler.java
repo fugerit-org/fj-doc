@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.checkpoint.CheckpointUtils;
 
@@ -39,12 +40,10 @@ public class InitHandler {
 			@Override
 			public void run() {
 				log.info( "Init handler start : {}", handler );
-				try {
+				SafeFunction.applySilent( () -> {
 					boolean initOk = initDoc(handler);
 					log.info( "Init handler end : {} -> {}", handler, initOk );
-				} catch (ConfigException e) {
-					log.info( "Init handler error "+e, e );
-				}
+				});
 			}
 		};
 		Thread t = new Thread( runInitDoc );
