@@ -7,9 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.3] - 2023-09-013
+## [3.0.3] - 2023-09-013
 
-###
+### Added
 
 - [maven deploy workflow](.github/workflows/deploy_maven_package.yml)
 
