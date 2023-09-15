@@ -17,6 +17,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Javadoc generation with java 17
 
+### Security
+
+- [Apache Commons Compress denial of service vulnerability](https://github.com/fugerit-org/fj-doc/security/dependabot/22)
+
 ## [3.0.3] - 2023-09-013
 
 ### Added
