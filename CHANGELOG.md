@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-bom set to 1.4.0 (fj-test-helper8 now managed by parent pom)
+
 ### Fixed
 
 - Javadoc generation with java 17
