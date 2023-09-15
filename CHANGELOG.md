@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.4] - 2023-09-015
+
 ### Changed
 
 - fj-bom set to 1.4.0 (fj-test-helper8 now managed by parent pom)
