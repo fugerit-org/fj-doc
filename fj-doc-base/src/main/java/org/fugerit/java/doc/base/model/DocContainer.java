@@ -53,7 +53,7 @@ public class DocContainer extends DocElement {
 	private ArrayList<DocElement> elementList;
 	
 	public DocContainer() {
-		this.elementList = new ArrayList<DocElement>();
+		this.elementList = new ArrayList<>();
 	}
 	
 	public Iterator<DocElement> docElements() {

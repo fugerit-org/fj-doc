@@ -17,7 +17,7 @@ public class AutodocSequence extends AutodocMulti {
 		return content;
 	}
 
-	private XsdSequence content;
+	private transient XsdSequence content;
 
 	public AutodocSequence(XsdSequence content) {
 		super();

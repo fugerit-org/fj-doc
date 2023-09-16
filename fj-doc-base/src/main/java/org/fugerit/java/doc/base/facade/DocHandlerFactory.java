@@ -4,9 +4,11 @@ import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.cfg.xml.FactoryCatalog;
 import org.fugerit.java.core.cfg.xml.FactoryType;
 import org.fugerit.java.core.cfg.xml.FactoryTypeHelper;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.slf4j.Logger;
@@ -27,44 +29,111 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	
 	private static final FactoryTypeHelper<DocTypeHandler> HELPER = FactoryTypeHelper.newInstance( DocTypeHandler.class );
 	
-	public static DocHandlerFacade register( String factoryCatalogPath ) throws Exception {
+	@Override
+	public int hashCode() {
+		// super class implementation is ok
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		// super class implementation is ok
+		return super.equals(o);
+	}
+	
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFacade with default catalog id.</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param factoryCatalogPath		the factory catalog xml path
+	 * @return							the configured facade
+	 */
+	public static DocHandlerFacade register( String factoryCatalogPath ) {
 		return register( factoryCatalogPath, null );
 	}
 	
-	public static DocHandlerFacade register( String factoryCatalogPath, String useFactory ) throws Exception {
-		DocHandlerFacade facade = null;
-		try ( InputStream is = StreamHelper.resolveStream( factoryCatalogPath ) ) {
-			FactoryCatalog catalog = new FactoryCatalog();
-			catalog.configureXML( is );
-			facade = register( catalog, useFactory );
-		}
-		return facade;
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFacade</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param factoryCatalogPath		the factory catalog xml path
+	 * @param useCatalog				the catalog id to use
+	 * @return							the configured facade
+	 */
+	public static DocHandlerFacade register( String factoryCatalogPath, String useCatalog ) {
+		return SafeFunction.get( () -> {
+			DocHandlerFacade facade = null;
+			try ( InputStream is = StreamHelper.resolveStream( factoryCatalogPath ) ) {
+				FactoryCatalog catalog = new FactoryCatalog();
+				catalog.configureXML( is );
+				facade = register( catalog, useCatalog );
+			}
+			return facade;
+		} );
 	}
 	
-	
-	public static DocHandlerFacade register( Collection<FactoryType> col ) throws Exception {
-		DocHandlerFacade facade = null;
-		if ( col != null ) {
-			facade = new DocHandlerFacade();
-			for ( FactoryType ft : col ) {
-				DocTypeHandler handler = HELPER.createHelper( ft );
-				if ( handler != null ) {
-					facade.registerHandler( handler );
-				} else {
-					logger.info( "skipped null handler for -> {}", ft );
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFacade</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param col	the collection of factory type
+	 * @return		the configured facade
+	 */
+	public static DocHandlerFacade register( Collection<FactoryType> col ) {
+		return SafeFunction.get( () -> {
+			DocHandlerFacade facade = null;
+			if ( col != null ) {
+				facade = new DocHandlerFacade();
+				for ( FactoryType ft : col ) {
+					DocTypeHandler handler = HELPER.createHelper( ft );
+					if ( handler != null ) {
+						facade.registerHandler( handler );
+					} else {
+						logger.info( "skipped null handler for -> {}", ft );
+					}
 				}
 			}
-		}
-		return facade;
+			return facade;
+		} );
+
 	}
 	
-	public static DocHandlerFacade register( FactoryCatalog catalog ) throws Exception {
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFacade with default catalog id.</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param catalog		the factory catalog
+	 * @return				the doc handler facade
+	 */
+	public static DocHandlerFacade register( FactoryCatalog catalog ) {
 		return register( catalog, null );
 	}
 		
-	public static DocHandlerFacade register( FactoryCatalog catalog, String useFactory  ) throws Exception {
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFacade</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param catalog		the factory catalog
+	 * @param useCatalog	the catalog id to use to create the facade
+	 * @return				the doc handler facade
+	 */
+	public static DocHandlerFacade register( FactoryCatalog catalog, String useCatalog  ) {
 		DocHandlerFacade facade = null;
-		String useCatalog = useFactory;
 		if ( useCatalog == null ) {
 			useCatalog = catalog.getGeneralProps().getProperty( USE_CATALOG_PROP );
 		}
@@ -76,21 +145,57 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	}
 
 	
-	public static DocHandlerFactory newInstance( InputStream factoryConfig ) throws Exception {
-		FactoryCatalog catalog = new FactoryCatalog();
-		catalog.configureXML( factoryConfig );
-		return newInstance( catalog );
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFactory</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param factoryConfig		a stream on xml configuration document
+	 * @return			the configured DocHandlerFactory
+	 * @throws 			ConfigRuntimeException in case of issues during loading
+	 */
+	public static DocHandlerFactory newInstance( InputStream factoryConfig ) {
+		return SafeFunction.get( () -> {
+			FactoryCatalog catalog = new FactoryCatalog();
+			catalog.configureXML( factoryConfig );
+			return newInstance( catalog );
+		} );
 	}
 	
-	public static DocHandlerFactory newInstance( String factoryCatalogPath ) throws Exception {
-		DocHandlerFactory map = null;
-		try ( InputStream is = StreamHelper.resolveStream( factoryCatalogPath ) ) {
-			map = newInstance( is );
-		}
-		return map;
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFactory</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param factoryCatalogPath	the path to the factory catalog xml
+	 * @return			the configured DocHandlerFactory
+	 * @throws 			ConfigRuntimeException in case of issues during loading
+	 */
+	public static DocHandlerFactory newInstance( String factoryCatalogPath ) {
+		return SafeFunction.get( () -> {
+			DocHandlerFactory map = null;
+			try ( InputStream is = StreamHelper.resolveStream( factoryCatalogPath ) ) {
+				map = newInstance( is );
+			}
+			return map;
+		} );
 	}
 	
-	public static DocHandlerFactory newInstance( FactoryCatalog catalog ) throws Exception {
+	/**
+	 * <p>Creates and configure an instance of DocHandlerFactory</p>
+	 * 
+	 * <p>NOTE: starting from version 8.4.X java.lang.Exception removed in favor of org.fugerit.java.core.cfg.ConfigRuntimeException.</p>
+	 * 
+	 * @see <a href="https://fuzzymemory.fugerit.org/src/docs/sonar_cloud/java-S112.html">Define and throw a dedicated exception instead of using a generic one.</a>
+	 * 
+	 * @param catalog		the factory catalog to use
+	 * @return				the configured factory
+	 */
+	public static DocHandlerFactory newInstance( FactoryCatalog catalog ) {
 		DocHandlerFactory map = new DocHandlerFactory( catalog.getGeneralProps().getProperty( USE_CATALOG_PROP ) );
 		for ( String id : catalog.getIdSet() ) {
 			Collection<FactoryType> col = catalog.getDataList( id );

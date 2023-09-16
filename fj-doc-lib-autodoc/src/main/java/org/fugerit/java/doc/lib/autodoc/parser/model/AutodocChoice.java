@@ -18,7 +18,7 @@ public class AutodocChoice extends AutodocMulti {
 		return content;
 	}
 
-	private XsdChoice content;
+	private transient XsdChoice content;
 
 	public AutodocChoice(XsdChoice content) {
 		super();

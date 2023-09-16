@@ -79,7 +79,7 @@ public class DocFacade {
 	private static void print( PrintStream s, DocContainer docContainer, String indent ) {
 		Iterator<DocElement> it = docContainer.docElements();
 		while ( it.hasNext() ) {
-			DocElement docElement = (DocElement) it.next();
+			DocElement docElement =  it.next();
 			s.println( indent+docElement );
 			if ( docElement instanceof DocContainer ) {
 				print( s, (DocContainer)docElement, indent+"  " );
@@ -108,7 +108,7 @@ public class DocFacade {
 	}
 	
 	public static boolean validate( Reader is, Properties params ) throws DocException {
-		return SafeFunction.get( () -> {
+		return DocException.get( () -> {
 			Properties realParams = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
 			try {
 				
@@ -128,7 +128,7 @@ public class DocFacade {
 	}
 	
 	public static DocBase parse( Reader is, DocHelper docHelper, Properties params ) throws DocException {
-		return SafeFunction.get( () -> {
+		return DocException.get( () -> {
 			Properties realParams = ObjectUtils.objectWithDefault( params , DEFAULT_PARAMS );
 			try {
 				LogFacade.getLog().warn( "parse() method with DocHelper parameter should be avoided , as currently supported, param value : {}", docHelper );

@@ -100,7 +100,7 @@ public class AutodocAttribute {
 		List<XsdEnumeration> enumeratios = xsdRestriction.getEnumeration();
 		if ( enumeratios != null && !enumeratios.isEmpty() ) {
 			builder.append( " , enumeration : [ " );
-			builder.append( StringUtils.concat( " , " , enumeratios.stream().map( current -> { return current.getValue(); } ).collect( Collectors.toList() ) ) );
+			builder.append( StringUtils.concat( " , " , enumeratios.stream().map( XsdEnumeration::getValue ).collect( Collectors.toList() ) ) );
 			builder.append( " ]" );
 		}
 	}

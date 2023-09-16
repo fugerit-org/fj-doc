@@ -35,7 +35,7 @@ public class MatrixCell implements Serializable {
 	}
 	
 	public DocBorders getBorders() {
-		DocBorders borders = new DocBorders();
+		DocBorders borders;
 		if ( this.getParent() == this.getCell() ) {
 			borders = new DocBorders( this.cell.getDocBorders() );
 			if ( this.getCell().getRSpan() > 1 ) {

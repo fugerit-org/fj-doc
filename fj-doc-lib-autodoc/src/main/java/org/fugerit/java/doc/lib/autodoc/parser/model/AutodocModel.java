@@ -19,7 +19,7 @@ public class AutodocModel implements Serializable {
 
 	private LinkedHashMap<String, AutodocElement> elements;
 
-	private XsdParser xsdParser;
+	private transient XsdParser xsdParser;
 	
 	public AutodocModel( XsdParser xsdParser ) {
 		this.elements = new LinkedHashMap<>();

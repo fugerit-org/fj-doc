@@ -1,8 +1,11 @@
 package test.org.fugerit.java.doc.mod.poi.coverage;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.function.Consumer;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.mod.poi.PoiUtils;
@@ -44,6 +47,15 @@ public class TestPOIUtils {
 				Assert.assertNotNull( helper );
 			}
 		} );
+	}
+	
+	private static final IOException FAIL_EX = new IOException( "scenario exception" );
+	
+	@Test
+	public void testAutoresizeFailhandler() {
+		PoiUtils.autoresizeFailHandler( false ).accept( FAIL_EX );
+		Consumer<Exception> exHandlerFail = PoiUtils.autoresizeFailHandler( true );
+		Assert.assertThrows( ConfigRuntimeException.class , () -> exHandlerFail.accept( FAIL_EX ) );
 	}
 	
 }

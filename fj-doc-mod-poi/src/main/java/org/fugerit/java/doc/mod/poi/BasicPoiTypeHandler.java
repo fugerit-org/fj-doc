@@ -21,6 +21,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.VerticalAlignment;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocException;
@@ -41,7 +42,6 @@ import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -62,9 +62,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	
 	protected abstract void closeWorkbook( Workbook workbook, DocOutput docOutput ) throws IOException;
 	
-	protected abstract  void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	protected abstract  void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para );
 	
-	protected abstract void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception;
+	protected abstract void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para );
 	
 	public static void handleDoc( DocBase docBase, OutputStream os, Workbook templateXls ) throws DocException {
 		
@@ -196,7 +196,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		DocPara currentePara = null;
 		if ( cell != null ) {
 			Iterator<DocElement> it1 = cell.docElements();
-			DocElement current = (DocElement)it1.next();
+			DocElement current = it1.next();
 			if ( current instanceof DocPara ) {
 				currentePara = ((DocPara)current);
 				text = currentePara.getText();
@@ -219,11 +219,11 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		this.setCellValue( workbook, currentCell, type, format, text);
 	}
 	
-	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet dati, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet ) throws Exception {
+	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet sheet, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet ) throws Exception {
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
-			Row currentRow = dati.getRow( rn );
+			Row currentRow = sheet.getRow( rn );
 			if ( currentRow == null ) {
-				currentRow = dati.createRow( rn );
+				currentRow = sheet.createRow( rn );
 			}
 			WorkbookDataWrapper wrapper = new WorkbookDataWrapper( matrix, helper );
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
@@ -232,7 +232,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		}
 	}
 	
-	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
+	private TableMatrix handleMatrix( DocTable table, boolean ignoreFormat, Sheet sheet, WorkbookHelper helper ) throws Exception {
 		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
 		Iterator<DocElement> rows = table.docElements();
 		while ( rows.hasNext() ) {
@@ -244,13 +244,13 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			}
 		}
 		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
-		this.handleSubmatrix(matrix, ignoreFormat, dati, helper, styleSet);
+		this.handleSubmatrix(matrix, ignoreFormat, sheet, helper, styleSet);
 		log.info( "TOTAL STYLES : {}", styleSet.size() );
 		return matrix;
 	}
 	
-	private void handleMerge( DocTable table, boolean ignoreFormat, Sheet dati, WorkbookHelper helper ) throws Exception {
-		TableMatrix matrix = handleMatrix( table, ignoreFormat, dati, helper );
+	private void handleMerge( DocTable table, boolean ignoreFormat, Sheet sheet, WorkbookHelper helper ) throws Exception {
+		TableMatrix matrix = handleMatrix( table, ignoreFormat, sheet, helper );
 		for ( int rn=0; rn<matrix.getRowCount(); rn++ ) {
 			for ( int cn=0; cn<matrix.getColumnCount(); cn++ ) {
 				DocCell cell = matrix.getCell( rn, cn );
@@ -258,7 +258,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 					int rs = cell.getRSpan()-1;
 					int cs = cell.getCSpan()-1;
 					if ( rs != 0 || cs != 0 ) {
-						dati.addMergedRegion( new CellRangeAddress( rn, rn+rs, cn, cn+cs ) );  
+						sheet.addMergedRegion( new CellRangeAddress( rn, rn+rs, cn, cn+cs ) );  
 					}
 				}
 			}
@@ -282,30 +282,23 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 			String sheetName = currentSheetData[1];
 			DocTable table = (DocTable)docBase.getElementById( sheetId );
 			
-			Sheet dati = null;
+			Sheet sheet = null;
 			if ( noTemplate) {
-				dati = outputXls.createSheet( sheetName );
+				sheet = outputXls.createSheet( sheetName );
 			} else {
-				dati = outputXls.getSheet( sheetName );
+				sheet = outputXls.getSheet( sheetName );
 			}			
-			handleMerge(table, ignoreFormat, dati, helper);
+			handleMerge(table, ignoreFormat, sheet, helper);
 		}
 
 		boolean tryAutoResize = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE, ExcelHelperConsts.PROP_XLS_TRY_AUTORESIZE_DEFAULT ) );
 		if ( tryAutoResize ) {
 			boolean failOnAutoResizeError = BooleanUtils.isTrue(  docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR_DEFAULT ) );
-			try {
+			SafeFunction.apply( () -> {
 				log.info( "try autoresize : {} -> {}", ExcelHelperConsts.PROP_XLS_FAIL_ON_AUTORESIZE_ERROR, failOnAutoResizeError );
 				PoiUtils.autoSizeColumns( outputXls );
-			} catch (Exception e) {
-				if ( failOnAutoResizeError ) {
-					throw e;
-				} else {
-					log.warn( "Excel autoresize failed "+e , e );
-				}
-			}
+			}, e -> PoiUtils.autoresizeFailHandler(failOnAutoResizeError) );
 		}
-		
 		this.closeWorkbook( outputXls , docOutput );
 	}
 
@@ -314,9 +307,9 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 @AllArgsConstructor
 class WorkbookDataWrapper {
 	
-	@Getter @Setter private TableMatrix tableMatrix;
+	@Getter private TableMatrix tableMatrix;
 	
-	@Getter @Setter private WorkbookHelper workbookHelper;
+	@Getter private WorkbookHelper workbookHelper;
 	
 	public Workbook getWorkbook() {
 		return this.getWorkbookHelper().getWorkbook();

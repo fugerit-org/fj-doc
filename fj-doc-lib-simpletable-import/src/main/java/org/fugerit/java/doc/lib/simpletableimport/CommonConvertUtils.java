@@ -19,10 +19,11 @@ public class CommonConvertUtils {
 	
 	private CommonConvertUtils() {}
 	
-	protected static SimpleTable handleConvertException( SimpleTable table, Exception e, Properties props ) throws ConfigException {
-		SimpleTable result = table;
+	protected static SimpleTable handleConvertException( final SimpleTable table, Exception e, Properties props ) throws ConfigException {
+		SimpleTable result;
 		Properties params = ObjectUtils.objectWithDefault( props, DEFAULT_PARAMS );
 		if ( BooleanUtils.isTrue( params.getProperty( PARAM_KEY_RETHROW_EXCEPTION, PARAM_VALUE_RETHROW_EXCEPTION_DEFAULT ) ) ) {
+			log.debug( "table : {}", table );
 			throw new ConfigException( e );	
 		} else {
 			result = null;

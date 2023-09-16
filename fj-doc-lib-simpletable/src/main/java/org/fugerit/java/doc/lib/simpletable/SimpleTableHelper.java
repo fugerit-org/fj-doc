@@ -62,7 +62,7 @@ public class SimpleTableHelper {
 				throw new ConfigRuntimeException( "Column width sum must be 100, while is : "+sum );
 			}
 		}
-		return new SimpleTable( StringUtils.concat( ";" , colWidths.stream().map( v -> v.toString() ).collect( Collectors.toList() ) ) );
+		return new SimpleTable( StringUtils.concat( ";" , colWidths.stream().map( Object::toString ).collect( Collectors.toList() ) ) );
 	}
 	
 	/**

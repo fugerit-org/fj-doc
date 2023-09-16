@@ -36,6 +36,31 @@ public class TestDocVersion {
 	}
 	
 	@Test
+	public void testHashCode() {
+		Assert.assertNotEquals( DocVersion.VERSION_1_5.hashCode() , DocVersion.VERSION_2_1.hashCode() );
+	}
+	
+	@Test
+	public void testEquals() {
+		boolean testNotEquals = DocVersion.VERSION_1_5.equals( DocVersion.VERSION_2_1 ); 
+		Assert.assertFalse( testNotEquals );
+		boolean testNotEqualsAlt = DocVersion.VERSION_1_5.equals( null ); 
+		Assert.assertFalse(  testNotEqualsAlt  );
+		boolean testEquals = DocVersion.VERSION_2_1.equals( DocVersion.VERSION_2_1 );
+		Assert.assertTrue( testEquals );
+	}
+	
+	@Test
+	public void testCompare() {
+		int testNotEquals = DocVersion.compare( DocVersion.VERSION_1_0.stringVersion() , DocVersion.VERSION_2_1.stringVersion() );
+		Assert.assertNotEquals( 0 , testNotEquals);
+		int testNotEqualsAlt = DocVersion.compare( DocVersion.VERSION_2_0.stringVersion() , DocVersion.VERSION_2_1.stringVersion() );
+		Assert.assertNotEquals( 0 , testNotEqualsAlt);
+		int testEquals = DocVersion.compare( DocVersion.VERSION_2_1.stringVersion() , DocVersion.VERSION_2_1.stringVersion() );
+		Assert.assertEquals( 0 , testEquals);
+	}
+	
+	@Test
 	public void testSort() {
 		List<DocVersion> list = new ArrayList<DocVersion>();
 		list.add( DocVersion.VERSION_1_8 );

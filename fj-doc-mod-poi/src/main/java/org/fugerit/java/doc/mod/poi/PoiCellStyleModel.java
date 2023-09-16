@@ -1,6 +1,5 @@
 package org.fugerit.java.doc.mod.poi;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -8,12 +7,7 @@ import org.fugerit.java.doc.base.model.DocBorders;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.model.DocPara;
 
-public class PoiCellStyleModel implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5403077043309984961L;
+public class PoiCellStyleModel {
 
 	private CellStyle style;
 	

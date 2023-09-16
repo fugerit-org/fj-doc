@@ -39,7 +39,7 @@ public abstract class AutodocMulti implements Serializable {
 	public Collection<AutodocChoice> getAutodocChoices() {
 		List<AutodocChoice> result = null;
 		try {
-			result = this.getChoiceStream().map( current -> { return new AutodocChoice( current ); } ).collect( Collectors.toList() );
+			result = this.getChoiceStream().map( AutodocChoice::new ).collect( Collectors.toList() );
 		} catch (NullPointerException npe) {
 			log.warn( "Null pointer exception getting choices {}", npe.toString() );
 		}
@@ -49,7 +49,7 @@ public abstract class AutodocMulti implements Serializable {
 	public Collection<AutodocSequence> getAutodocSequence() {
 		List<AutodocSequence> result = null;
 		try {
-			result = this.getSequencesStream().map( current -> { return new AutodocSequence( current ); } ).collect( Collectors.toList() );
+			result = this.getSequencesStream().map( AutodocSequence::new ).collect( Collectors.toList() );
 		} catch (NullPointerException npe) {
 			log.warn( "Null pointer exception getting sequences {}", npe.toString() );
 		}

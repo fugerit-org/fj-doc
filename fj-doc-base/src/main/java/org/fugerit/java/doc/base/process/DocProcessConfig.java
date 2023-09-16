@@ -49,7 +49,7 @@ public class DocProcessConfig implements MiniFilterMap, Serializable {
 		DocProcessConfig config = new DocProcessConfig();
 		config.miniFilterConfig.getGeneralProps().setProperty(GenericListCatalogConfig.ATT_TYPE,
 				MiniFilterConfigEntry.class.getName());
-		return SafeFunction.get( () -> {
+		return ConfigException.get( () -> {
 			MiniFilterConfig.loadConfigMap(is, config.miniFilterConfig);
 			return config;
 		} );

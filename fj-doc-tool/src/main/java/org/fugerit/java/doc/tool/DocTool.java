@@ -42,7 +42,7 @@ public class DocTool {
 		if ( helpParam != null ) {
 			String path = "help/"+toolHandler+".properties";
 			Properties helpProps = PropsIO.loadFromClassLoader( path );
-			List<String> keySet = helpProps.keySet().stream().map( m -> String.valueOf( m ) ).collect( Collectors.toList() );
+			List<String> keySet = helpProps.keySet().stream().map( String::valueOf ).collect( Collectors.toList() );
 			Collections.sort( keySet );
 			log.info( LINE );
 			log.info( "help params for tool : {}", toolHandler );

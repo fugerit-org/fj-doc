@@ -27,7 +27,7 @@ public class LegacyConfigRead {
 	private static void readStepList( ChainModel chainModel, Element currentStepTag ) {
 		
 		String type = currentStepTag.getAttribute( "type" );
-		String convertType = FreemarkerDocProcessConfigFacade.BUILT_IN_STEPS_REVERSE.getProperty( type, type );
+		String convertType = FreemarkerDocProcessConfigFacade.getBuiltInStepsReverse().getProperty( type, type );
 		StepModel stepModel = new StepModel(convertType);
 		chainModel.getStepList().add(stepModel);
 		if ( FreemarkerDocProcessConfigFacade.STEP_TYPE_CONFIG.equalsIgnoreCase( convertType ) ) {

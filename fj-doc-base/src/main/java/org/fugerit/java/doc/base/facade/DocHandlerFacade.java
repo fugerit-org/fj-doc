@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * DocHandlerFacade
  * 
- * Starting from versione 2.2.3.1 registration of type handlers changes : 
+ * Starting from version 0.2.X registration of type handlers changes : 
  * Now is possible to register a type handler both for type (ex. pdf) or key (ex. pdf-fop, pdf-itext, pdf-box)
  * 
  * @author fugerit
@@ -51,7 +51,7 @@ public class DocHandlerFacade implements Serializable {
 		this.mapHandlers.put( id, handler );
 		ListMapStringKey<DocTypeHandler> list = this.mapTypeHandlers.get( handler.getFormat() );
 		if ( list == null ) {
-			list = new ListMapStringKey<DocTypeHandler>();
+			list = new ListMapStringKey<>();
 			this.mapTypeHandlers.put( handler.getFormat() , list );
 		}
 		list.add( handler );

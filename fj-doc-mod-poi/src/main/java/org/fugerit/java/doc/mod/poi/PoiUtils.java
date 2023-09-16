@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFPalette;
@@ -21,11 +22,15 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class PoiUtils {
 
 	private PoiUtils() {}
@@ -115,6 +120,17 @@ public class PoiUtils {
 			}
 		}
 		return new WorkbookHelper( workbook, new DefaultIndexedColorMap() );
+	}
+	
+	public static Consumer<Exception> autoresizeFailHandler( boolean failOnAutoResizeError ) {
+		return e -> {
+			String message = "Exception on excel autoresize "+e;
+			if ( failOnAutoResizeError ) {
+				throw new ConfigRuntimeException( message, e );
+			} else {
+				log.warn( message , e );
+			}
+		};
 	}
 	
 }

@@ -45,7 +45,7 @@ public class SimpleTable {
 	 * @param colwidths	the semicolons separeted columns widh in percentage
 	 */
 	public SimpleTable( String colwidths ) {
-		this.rows = new ArrayList<SimpleRow>();
+		this.rows = new ArrayList<>();
 		this.columns = String.valueOf( colwidths.split( ";" ).length );
 		this.colwidths = colwidths;
 		this.sheetName = DEFAULT_SHEET_NAME;

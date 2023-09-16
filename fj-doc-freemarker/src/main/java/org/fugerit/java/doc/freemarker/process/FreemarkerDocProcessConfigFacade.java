@@ -56,11 +56,10 @@ public class FreemarkerDocProcessConfigFacade {
 	public static final String STEP_TYPE_MAP = "map";
 	
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version ) throws ConfigException {
-		FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
-		config.setDefaultChain(
-				new  DefaultChainProvider() {
-					@Override
-					public MiniFilterChain newDefaultChain(String idChain) {
+		return ConfigException.get( () -> {
+			FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
+			config.setDefaultChain(
+					idChain -> {
 						MiniFilterChain defaultChain = new MiniFilterChain( "DEFAULT_CHAIN_"+idChain+"_"+System.currentTimeMillis(), MiniFilter.CONTINUE );
 						defaultChain.setChainId( defaultChain.getKey() );
 						// config step
@@ -83,9 +82,9 @@ public class FreemarkerDocProcessConfigFacade {
 						defaultChain.getFilterChain().add( processStep );
 						return defaultChain;
 					}
-				}
-		);
-		return config;
+			);
+			return config;	
+		} );
 	}
 	
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath ) throws ConfigException {
@@ -100,7 +99,7 @@ public class FreemarkerDocProcessConfigFacade {
 			res = (DocTypeHandler)ClassHelper.newInstance( type );
 			if ( res instanceof ConfigurableObject ) {
 				log.info( "ConfigurableObject -> try configure()" );
-				((ConfigurableObject)res).configure( (Element)docHandlerConfig );
+				((ConfigurableObject)res).configure( docHandlerConfig );
 			}
 		} catch (Exception | NoClassDefFoundError e) {
 			UnsafeHelper.handleUnsafe( new ConfigException( "Type cannot be loaded : "+e, e ), docHandlerConfig.getAttribute( "unsafe"), docHandlerConfig.getAttribute( "unsafeMode") );	
@@ -143,7 +142,7 @@ public class FreemarkerDocProcessConfigFacade {
 		 }
 	}
 	
-	private static void handleChainStepList( DocChainModel model, Element currentTag ) throws Exception {
+	private static void handleChainStepList( DocChainModel model, Element currentTag ) throws ConfigException {
 		NodeList chainStepList = currentTag.getElementsByTagName( ATT_CHAIN_STEP );
 		 for ( int i=0; i<chainStepList.getLength(); i++ ) {
 			 Element currentChainStepTag = (Element) chainStepList.item(i);
@@ -197,7 +196,7 @@ public class FreemarkerDocProcessConfigFacade {
 		 }
 	}
 	
-	private static void handleMiniFilter( FreemarkerDocProcessConfig config ) throws Exception {
+	private static void handleMiniFilter( FreemarkerDocProcessConfig config ) throws ClassNotFoundException, NoSuchMethodException, ConfigException {
 		for ( DocChainModel docChainModel : config.getDocChainList() ) {
 			 MiniFilterChain chain = new MiniFilterChain( docChainModel.getId(), MiniFilter.CONTINUE );
 			 chain.setChainId( docChainModel.getId() );
@@ -240,13 +239,16 @@ public class FreemarkerDocProcessConfigFacade {
 	}
 	
 	private static final Properties BUILT_IN_STEPS = new Properties();
-	public static final Properties BUILT_IN_STEPS_REVERSE = new Properties();
+	private static final Properties BUILT_IN_STEPS_REVERSE = new Properties();
 	static {
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_CONFIG , FreeMarkerConfigStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_FUNCTION , FreeMarkerFunctionStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_COMPLEX , FreeMarkerComplexProcessStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_MAP , FreeMarkerMapStep.class.getName() );
 		BUILT_IN_STEPS.keySet().stream().forEach( k -> BUILT_IN_STEPS_REVERSE.put( BUILT_IN_STEPS.get( k ) , k ) );
+	}
+	public static Properties getBuiltInStepsReverse() {
+		return BUILT_IN_STEPS_REVERSE;
 	}
 	
 	private static Properties convertConfiguration( Properties props ) {
@@ -276,7 +278,7 @@ class FreemarkerConfigHelper extends FreeMarkerConfigStep {
 
 	private static final long serialVersionUID = 8824282827447873553L;
 	
-	protected static Configuration getConfig( String key, Properties config ) throws Exception {
+	protected static Configuration getConfig( String key, Properties config ) {
 		return FreeMarkerConfigStep.getConfig(key, config);
 	}
 	

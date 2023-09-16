@@ -36,17 +36,13 @@ public class InitHandler {
 	}
 	
 	public static void initDocAsync( DocTypeHandler handler ) {
-		Runnable runInitDoc = new Runnable() {	
-			@Override
-			public void run() {
-				log.info( "Init handler start : {}", handler );
-				SafeFunction.applySilent( () -> {
-					boolean initOk = initDoc(handler);
-					log.info( "Init handler end : {} -> {}", handler, initOk );
-				});
-			}
-		};
-		Thread t = new Thread( runInitDoc );
+		Thread t = new Thread( () -> {
+			log.info( "Init handler start : {}", handler );
+			SafeFunction.applySilent( () -> {
+				boolean initOk = initDoc(handler);
+				log.info( "Init handler end : {} -> {}", handler, initOk );
+			});	
+		} );
 		t.start();
 	}
 	

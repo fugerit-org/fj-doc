@@ -59,7 +59,7 @@ public class DocBase extends DocElement implements Serializable {
 		Iterator<DocElement> it = docContainer.docElements();
 		String p = builder.toString();
 		while ( it.hasNext() ) {
-			DocElement docElement = (DocElement)it.next();
+			DocElement docElement = it.next();
 			s.println( p+docElement );
 			if ( docElement instanceof DocContainer ) {
 				print( (DocContainer)docElement, s, pad+1 );
@@ -110,14 +110,14 @@ public class DocBase extends DocElement implements Serializable {
 	}
 	
 	public DocElement getElementById( String id ) {
-		return (DocElement)this.idMap.get( id );
+		return this.idMap.get( id );
 	}
 		
 	public Properties getInfo() {
 		Properties info = new Properties();
 		Iterator<DocElement> itInfo = this.getDocMeta().docElements();
 		while ( itInfo.hasNext() ) {
-			DocElement docElement = (DocElement)itInfo.next();
+			DocElement docElement = itInfo.next();
 			if ( docElement instanceof DocInfo ) {
 				DocInfo docInfo = (DocInfo) docElement;
 				info.setProperty( docInfo.getName() , docInfo.getContent().toString() );

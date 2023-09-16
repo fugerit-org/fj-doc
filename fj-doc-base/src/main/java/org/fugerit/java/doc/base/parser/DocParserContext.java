@@ -119,7 +119,7 @@ public class DocParserContext {
 		}
 		if ( this.parserHelper.isContainerElement( qName ) ) {
 			if ( !this.parents.isEmpty() ) {
-				this.currentContainer = (DocContainer)this.parents.remove( this.parents.size()-1 );	
+				this.currentContainer = this.parents.remove( this.parents.size()-1 );	
 			} else {
 				this.currentContainer = null;
 			}

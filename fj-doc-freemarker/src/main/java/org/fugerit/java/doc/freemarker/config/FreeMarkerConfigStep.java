@@ -1,11 +1,13 @@
 package org.fugerit.java.doc.freemarker.config;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.process.DocProcessContext;
@@ -60,9 +62,9 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 	 */
 	private static final long serialVersionUID = -2313658506839366841L;
 
-	private static Map<String, Configuration> mapConfig = new HashMap<String, Configuration>();
+	private static Map<String, Configuration> mapConfig = new HashMap<>();
 	
-	private static final HashMap<String, TemplateExceptionHandler> DEF_TEH = new HashMap<String, TemplateExceptionHandler>();
+	private static final HashMap<String, TemplateExceptionHandler> DEF_TEH = new HashMap<>();
 	static {
 		DEF_TEH.put( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_RETHROW , TemplateExceptionHandler.RETHROW_HANDLER );
 		DEF_TEH.put( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_IGNORE , TemplateExceptionHandler.IGNORE_HANDLER );
@@ -70,56 +72,63 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 		DEF_TEH.put( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_HTML_DEBUG, TemplateExceptionHandler.HTML_DEBUG_HANDLER );
 	}
 	
-	protected static Configuration getConfig( String key, Properties config ) throws Exception {
-		if ( key == null ) {
-			key = ATT_DEFAULT;
-		}
-		Configuration freeMarkerConfigInstance = mapConfig.get( key );
-		if ( freeMarkerConfigInstance == null ) {
-			logger.info( FreeMarkerConfigStep.class.getSimpleName()+" INIT - config = "+config );
-			// free marker version configuration
-			String versionString = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_VERSION , ATT_FREEMARKER_CONFIG_KEY_VERSION_DEFAULT);
-			Version version = new Version( versionString );
-			Configuration freeMarkerConfig = new Configuration( version );
-			// free marker template mode
-			String path = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_PATH );
-			if ( path == null ) {
-				throw new ConfigException( "provide valid value for parameter "+ATT_FREEMARKER_CONFIG_KEY_PATH );
-			}
-			// free marker template mode
-			String mode = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_MODE );
-			if ( ATT_FREEMARKER_CONFIG_KEY_MODE_CLASS.equalsIgnoreCase( mode ) ) {
-				String configClass = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_CLASS );
-				Class<?> c = null;
-				if ( configClass == null ) {
-					c = FreeMarkerConfigStep.class;
-				} else {
-					c = ClassHelper.newInstance( configClass ).getClass();
-				}
-				freeMarkerConfig.setClassForTemplateLoading( c , path );
-			} else if ( ATT_FREEMARKER_CONFIG_KEY_MODE_FOLDER.equalsIgnoreCase( mode ) ) {
-				freeMarkerConfig.setDirectoryForTemplateLoading( new File( path ) );
+	private static void configure( Properties config, Configuration freeMarkerConfig, String path ) throws ClassNotFoundException, NoSuchMethodException, ConfigException, IOException {
+		String mode = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_MODE );
+		if ( ATT_FREEMARKER_CONFIG_KEY_MODE_CLASS.equalsIgnoreCase( mode ) ) {
+			String configClass = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_CLASS );
+			Class<?> c = null;
+			if ( configClass == null ) {
+				c = FreeMarkerConfigStep.class;
 			} else {
-				throw new ConfigException( "provide valid value for parameter "+ATT_FREEMARKER_CONFIG_KEY_MODE+"(used:"+mode+")" );
+				c = ClassHelper.newInstance( configClass ).getClass();
 			}
-			// Set the preferred charset template files are stored in. UTF-8 is
-			// a good choice in most applications:
-			freeMarkerConfig.setDefaultEncoding( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_ENCODING, ATT_FREEMARKER_CONFIG_KEY_ENCODING_DEFAULT ) );
-			// Sets how errors will appear.
-			// During web page *development* TemplateExceptionHandler.HTML_DEBUG_HANDLER is better.
-			String exceptionHandler = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER, ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_DEFAULT );
-			TemplateExceptionHandler templateExceptionHandler = DEF_TEH.get( exceptionHandler );
-			freeMarkerConfig.setTemplateExceptionHandler( templateExceptionHandler );
-			// Don't log exceptions inside FreeMarker that it will thrown at you anyway:
-			freeMarkerConfig.setLogTemplateExceptions( BooleanUtils.isTrue( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION, ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION_DEFAULT ) ) );
-			// Wrap unchecked exceptions thrown during template processing into TemplateException-s:
-			freeMarkerConfig.setWrapUncheckedExceptions( BooleanUtils.isTrue( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION, ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION_DEFAULT ) ) );
-			// Do not fall back to higher scopes when reading a null loop variable:
-			freeMarkerConfig.setFallbackOnNullLoopVariable( BooleanUtils.isTrue( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE, ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE_DEFAULT ) ) );
-			freeMarkerConfigInstance = freeMarkerConfig;
-			mapConfig.put( key , freeMarkerConfig );
+			freeMarkerConfig.setClassForTemplateLoading( c , path );
+		} else if ( ATT_FREEMARKER_CONFIG_KEY_MODE_FOLDER.equalsIgnoreCase( mode ) ) {
+			freeMarkerConfig.setDirectoryForTemplateLoading( new File( path ) );
+		} else {
+			throw new ConfigException( "provide valid value for parameter "+ATT_FREEMARKER_CONFIG_KEY_MODE+"(used:"+mode+")" );
 		}
-		return freeMarkerConfigInstance;
+		// Set the preferred charset template files are stored in. UTF-8 is
+		// a good choice in most applications:
+		freeMarkerConfig.setDefaultEncoding( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_ENCODING, ATT_FREEMARKER_CONFIG_KEY_ENCODING_DEFAULT ) );
+		// Sets how errors will appear.
+		// During web page *development* TemplateExceptionHandler.HTML_DEBUG_HANDLER is better.
+		String exceptionHandler = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER, ATT_FREEMARKER_CONFIG_KEY_EXCEPTION_HANDLER_DEFAULT );
+		TemplateExceptionHandler templateExceptionHandler = DEF_TEH.get( exceptionHandler );
+		freeMarkerConfig.setTemplateExceptionHandler( templateExceptionHandler );
+		// Don't log exceptions inside FreeMarker that it will thrown at you anyway:
+		freeMarkerConfig.setLogTemplateExceptions( BooleanUtils.isTrue( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION, ATT_FREEMARKER_CONFIG_KEY_LOG_EXCEPTION_DEFAULT ) ) );
+		// Wrap unchecked exceptions thrown during template processing into TemplateException-s:
+		freeMarkerConfig.setWrapUncheckedExceptions( BooleanUtils.isTrue( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION, ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION_DEFAULT ) ) );
+		// Do not fall back to higher scopes when reading a null loop variable:
+		freeMarkerConfig.setFallbackOnNullLoopVariable( BooleanUtils.isTrue( config.getProperty( ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE, ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE_DEFAULT ) ) );
+	}
+	
+	protected static Configuration getConfig( String k, Properties config ) {
+		return SafeFunction.get( () -> {
+			String key = k;
+			if ( key == null ) {
+				key = ATT_DEFAULT;
+			}
+			Configuration freeMarkerConfigInstance = mapConfig.get( key );
+			if ( freeMarkerConfigInstance == null ) {
+				logger.info( "{} INIT - config = {}", FreeMarkerConfigStep.class.getSimpleName(), config );
+				// free marker version configuration
+				String versionString = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_VERSION , ATT_FREEMARKER_CONFIG_KEY_VERSION_DEFAULT);
+				Version version = new Version( versionString );
+				Configuration freeMarkerConfig = new Configuration( version );
+				// free marker template mode
+				String path = config.getProperty( ATT_FREEMARKER_CONFIG_KEY_PATH );
+				if ( path == null ) {
+					throw new ConfigException( "provide valid value for parameter "+ATT_FREEMARKER_CONFIG_KEY_PATH );
+				}
+				// free marker template mode
+				configure(config, freeMarkerConfig, path);
+				freeMarkerConfigInstance = freeMarkerConfig;
+				mapConfig.put( key , freeMarkerConfig );
+			}
+			return freeMarkerConfigInstance;
+		} );
 	}
 	
 	@Override

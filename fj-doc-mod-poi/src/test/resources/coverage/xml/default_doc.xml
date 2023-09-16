@@ -53,10 +53,17 @@
     			<cell><para><![CDATA[Oakshield]]></para></cell>
     			<cell><para><![CDATA[King]]></para></cell>
     		</row>     	
-        		<row>
+        	<row>
     			<cell><phrase><![CDATA[Phrase]]></phrase></cell>
     			<cell><phrase anchor="1"><![CDATA[Oakshield]]></phrase></cell>
     			<cell><phrase link="1"><![CDATA[King]]></phrase></cell>
+    		</row>   	
+        	<row>
+    			<cell rowspan="2"><phrase>rowspan 2</phrase></cell>
+    			<cell colspan="2"><phrase>colspn 2</phrase></cell>
+    		</row>   
+          	<row>
+    			<cell colspan="2"><phrase>colspn 2</phrase></cell>
     		</row>  
     	</table>
     	<list>
