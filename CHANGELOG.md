@@ -7,12 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.5] - 2023-09-17
+
 ### Changed
 
 - fj-core set to 8.3.5
 - all Sonar Cloud issues addressed
 
-## [3.0.4] - 2023-09-015
+## [3.0.4] - 2023-09-15
 
 ### Changed
 
@@ -26,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [Apache Commons Compress denial of service vulnerability](https://github.com/fugerit-org/fj-doc/security/dependabot/22)
 
-## [3.0.3] - 2023-09-013
+## [3.0.3] - 2023-09-13
 
 ### Added
 
