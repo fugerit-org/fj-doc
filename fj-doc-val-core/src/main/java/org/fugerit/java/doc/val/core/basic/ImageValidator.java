@@ -2,6 +2,7 @@ package org.fugerit.java.doc.val.core.basic;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -29,15 +30,15 @@ public class ImageValidator extends AbstractDocTypeValidator {
 	
 	public static final String FORMAT_JPG = "JPG";
 	public static final String MIME_JPG = "image/jpeg";
-	public static final Set<String> EXT_JPG = createSet( FORMAT_JPG, "JPEG" );
+	public static final Set<String> EXT_JPG = Collections.unmodifiableSet( createSet( FORMAT_JPG, "JPEG" ) );
 	
 	public static final String FORMAT_PNG = "PNG";
 	public static final String MIME_PNG = "image/png";
-	public static final Set<String> EXT_PNG = createSet( FORMAT_PNG );
+	public static final Set<String> EXT_PNG = Collections.unmodifiableSet( createSet( FORMAT_PNG ) );
 			
 	public static final String FORMAT_TIFF = "TIFF";
 	public static final String MIME_TIFF = "image/tiff";
-	public static final Set<String> EXT_TIFF = createSet( FORMAT_TIFF, "TIF" );
+	public static final Set<String> EXT_TIFF = Collections.unmodifiableSet( createSet( FORMAT_TIFF, "TIF" ) );
 	
 	public static final DocTypeValidator JPG_VALIDATOR = new ImageValidator( MIME_JPG, EXT_JPG, FORMAT_JPG );
 	

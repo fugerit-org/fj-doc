@@ -1,10 +1,12 @@
 package org.fugerit.java.doc.base.model;
 
+import java.io.Serializable;
 import java.util.Properties;
 
 import org.fugerit.java.doc.base.parser.DocParserUtil;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -12,8 +14,12 @@ import lombok.Data;
  * @author Matteo Franci a.k.a. Fugerit
  *
  */
-@Data
-public class DocBorders {
+public class DocBorders implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5243241968341771053L;
 
 	public static final String ATTRIBUTE_NAME_BORDER_WIDTH = "border-width";
 	
@@ -65,29 +71,29 @@ public class DocBorders {
 		}
 	}
 
-	private int paddingBottom;
+	@Getter @Setter private int paddingBottom;
 	
-	private int paddingTop;
+	@Getter @Setter private int paddingTop;
 	
-	private int paddingRight;
+	@Getter @Setter private int paddingRight;
 	
-	private int paddingLeft;
+	@Getter @Setter private int paddingLeft;
 	
-	private String borderColorTop;
+	@Getter @Setter private String borderColorTop;
 	
-	private String borderColorBottom;
+	@Getter @Setter private String borderColorBottom;
 	
-	private String borderColorLeft;
+	@Getter @Setter private String borderColorLeft;
 	
-	private String borderColorRight;
+	@Getter @Setter private String borderColorRight;
 	
-	private int borderWidthTop;
+	@Getter @Setter private int borderWidthTop;
 
-	private int borderWidthBottom;
+	@Getter @Setter private int borderWidthBottom;
 	
-	private int borderWidthLeft;
+	@Getter @Setter private int borderWidthLeft;
 
-	private int borderWidthRight;
+	@Getter @Setter private int borderWidthRight;
 
 	public static DocBorders createBorders( Properties atts, String defaultBorderWidth ) {
 		return createBorders(atts, defaultBorderWidth, DocElement.UNSET);

@@ -14,7 +14,7 @@ public class AutodocType implements Serializable {
 	 */
 	private static final long serialVersionUID = 1549582953481172034L;
 
-	private XsdComplexType xsdComplexType;
+	private transient XsdComplexType xsdComplexType;
 
 	public XsdComplexType getXsdComplexType() {
 		return xsdComplexType;

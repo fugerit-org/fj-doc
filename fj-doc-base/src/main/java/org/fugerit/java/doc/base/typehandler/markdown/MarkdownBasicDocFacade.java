@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeDefault;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeHelper;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -18,6 +19,8 @@ import org.fugerit.java.doc.base.model.DocRow;
 import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.model.util.DocTableUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * DocTypeFacade for basic markdown syntax
  * 
@@ -31,6 +34,7 @@ import org.fugerit.java.doc.base.model.util.DocTableUtil;
  * 
  * @author Matteo a.k.a. Fugerit
  */
+@Slf4j
 public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 
 	/**
@@ -38,7 +42,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 	 */
 	private static final long serialVersionUID = -3183772778800073010L;
 	
-	private PrintWriter writer;
+	private transient PrintWriter writer;
 
 	private boolean printComments;
 	
@@ -59,7 +63,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 	}
 
 	@Override
-	public void handleDoc(DocBase docBase) throws Exception {
+	public void handleDoc(DocBase docBase) throws DocException {
 		if ( this.printComments ) {
 			// just comment to the generated output :
 			this.getWriter().print( "[//]: # (generator : " );
@@ -85,14 +89,16 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 		}
 	}
 	
-	private void handleText( String text, int textStyle) throws Exception {
-		this.addStyle( textStyle);
-		this.writer.print( text );
-		this.addStyle(textStyle);
+	private void handleText( String text, int textStyle) throws DocException {
+		DocException.apply( () -> {
+			this.addStyle( textStyle);
+			this.writer.print( text );
+			this.addStyle(textStyle);			
+		} );
 	}
 	
 	@Override
-	public void handlePara(DocPara docPara, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+	public void handlePara(DocPara docPara, DocContainer parent, DocTypeFacadeHelper helper) throws DocException {
 		boolean body = ( helper.getDepth() == DocTypeFacadeHelper.ROOT_DEPTH );
 		int headLevel = docPara.getHeadLevel();
 		while ( headLevel>0 ) {
@@ -112,13 +118,13 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 	}
 
 	@Override
-	public void handlePhrase(DocPhrase docPhrase, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+	public void handlePhrase(DocPhrase docPhrase, DocContainer parent, DocTypeFacadeHelper helper) throws DocException {
 		this.handleText(docPhrase.getText(), docPhrase.getStyle() );
 		this.writer.print( " " );
 	}
 
 	@Override
-	public void handleList(DocList docList, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+	public void handleList(DocList docList, DocContainer parent, DocTypeFacadeHelper helper) throws DocException {
 		this.getWriter().println();
 		for ( DocElement liEl : docList.getElementList() ) {
 			if ( liEl instanceof DocLi ) {
@@ -131,20 +137,21 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 	}
 
 	@Override
-	public void handleTable(DocTable docTable, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+	public void handleTable(DocTable docTable, DocContainer parent, DocTypeFacadeHelper helper) throws DocException {
 		this.getWriter().println();
 		this.getWriter().println( "<table>" );
 		this.handleDocUtilTable( docTable, parent, helper );
 		this.getWriter().println( "<table>" );
 	}
 
-	protected void handleDocUtilTable( DocTable table, DocContainer parent, DocTypeFacadeHelper helper ) throws Exception {
+	protected void handleDocUtilTable( DocTable table, DocContainer parent, DocTypeFacadeHelper helper ) throws DocException {
 		DocTableUtil tableUtil = new DocTableUtil( table );
 		handleRowList( table, tableUtil, tableUtil.getHeaderRows() , true, helper );
 		handleRowList( table, tableUtil, tableUtil.getDataRows() , false, helper );
+		log.trace( "parent : {}", parent );
 	}
 		
-	protected void handleRowList( DocTable table, DocTableUtil tableUtil, List<DocElement> rowList, boolean header, DocTypeFacadeHelper helper  ) throws Exception {
+	protected void handleRowList( DocTable table, DocTableUtil tableUtil, List<DocElement> rowList, boolean header, DocTypeFacadeHelper helper  ) throws DocException {
 		String cellType = "td";
 		if ( header ) {
 			cellType = "th";
@@ -164,6 +171,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 			}
 			this.getWriter().println( "</tr>" );
 		}
+		log.trace( "table : {} , tableUtil : {}", table, tableUtil );
 	}
  	
 }

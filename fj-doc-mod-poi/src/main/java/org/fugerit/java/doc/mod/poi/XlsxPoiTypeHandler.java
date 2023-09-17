@@ -37,12 +37,12 @@ public class XlsxPoiTypeHandler extends BasicPoiTypeHandler {
 	}
 	
 	@Override
-	protected void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) throws Exception {
+	protected void setFormatStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para ) {
 		PoiUtils.xlsxFormatStyle(helper, style, cell);
 	}
 
 	@Override
-	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) throws Exception {
+	protected void setFontStyle( WorkbookHelper helper, Font font, CellStyle style, DocCell cell, DocPara para) {
 		PoiUtils.xlsxFontStyle(helper, font, cell);
 	}	
 

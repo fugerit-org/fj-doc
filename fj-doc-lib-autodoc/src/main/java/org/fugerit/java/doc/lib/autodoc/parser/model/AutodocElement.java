@@ -19,7 +19,7 @@ public class AutodocElement implements KeyString, Serializable {
 
 	private AutodocModel autodocModel;
 	
-	private XsdElement xsdElement;
+	private transient XsdElement xsdElement;
 
 	public AutodocElement(AutodocModel autodocModel, XsdElement xsdElement) {
 		super();
@@ -69,7 +69,7 @@ public class AutodocElement implements KeyString, Serializable {
 	}
 	
 	public Collection<AutodocAttribute> getAutodocAttributes() {
-		return this.getComplexType().getAllXsdAttributes().map( current -> { return new AutodocAttribute( current, this.autodocModel ); } ).collect( Collectors.toList() );
+		return this.getComplexType().getAllXsdAttributes().map( current -> new AutodocAttribute( current, this.autodocModel ) ).collect( Collectors.toList() );
 	}
 	
 }

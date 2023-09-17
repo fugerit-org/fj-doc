@@ -11,7 +11,7 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.sax.SAXSource;
 
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -36,17 +36,13 @@ public class DocValidator {
 	
 	private static final String CURRENT = "current";
 	
-	private static XMLSchemaCatalogConfig init() {
+	private static final XMLSchemaCatalogConfig SCHEMA_CATALOG = SafeFunction.get( () -> {
 		XMLSchemaCatalogConfig catalog = null;
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/schema-validator-config.xml" ) ) {
 			catalog = XMLSchemaCatalogConfig.loadConfigSchema( is );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Exception on init : "+e, e );
 		}
 		return catalog;
-	}
-	
-	private static final XMLSchemaCatalogConfig SCHEMA_CATALOG = init();
+	} );
 	
 	public static SAXParseResult validate( Reader xmlData ) throws XMLException {
 		SAXParseResult result = new SAXParseResult();
@@ -77,11 +73,15 @@ public class DocValidator {
 	}
 	
 	public static void logResult( SAXParseResult result, Logger logger ) throws XMLException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		try ( PrintStream ps = new PrintStream( baos ) ) {
-			result.printErrorReport( ps );
-			logger.info( "Validation issues : \n{}", String.valueOf( baos.toByteArray() ) );
-		}
+		XMLException.apply( () -> {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			try ( PrintStream ps = new PrintStream( baos ) ) {
+				result.printErrorReport( ps );
+				if ( logger.isInfoEnabled() ) {
+					logger.info( "Validation issues : \n{}", String.valueOf( baos.toByteArray() ) );
+				}
+			}	
+		} );
 	}
 	
 	public static String getXsdVersion( Reader xmlReader ) throws XMLException {

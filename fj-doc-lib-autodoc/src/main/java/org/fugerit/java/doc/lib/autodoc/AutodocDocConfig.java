@@ -2,7 +2,6 @@ package org.fugerit.java.doc.lib.autodoc;
 
 import java.io.OutputStream;
 
-import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
@@ -34,7 +33,7 @@ public class AutodocDocConfig {
 		return INSTANCE;
 	}
 	
-	public static AutodocDocConfig newConfig() throws ConfigException {
+	public static AutodocDocConfig newConfig() {
 		return getInstance();
 	}
 

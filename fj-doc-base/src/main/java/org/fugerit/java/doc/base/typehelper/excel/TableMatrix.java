@@ -40,7 +40,7 @@ public class TableMatrix implements Serializable {
 		return this.text[ r ][ c ].getParent(); 
 	}
 	
-	public DocBorders getBorders( int r, int c ) throws CloneNotSupportedException {
+	public DocBorders getBorders( int r, int c ) {
 		return this.text[ r ][ c ].getBorders(); 
 	}
 	

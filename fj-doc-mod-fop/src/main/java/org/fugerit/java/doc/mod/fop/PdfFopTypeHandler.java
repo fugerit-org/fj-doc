@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -63,10 +64,10 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_PDF_UA_MODE_PDF_UA_1 = DocConfig.FORMAT_PDF_UA_1;
 	
 	private static final String[] VALID_PDF_A = { ATT_PDF_A_MODE_PDF_A_1A, ATT_PDF_A_MODE_PDF_A_1B, ATT_PDF_A_MODE_PDF_A_2A };
-	public static final List<String> VALID_PDF_A_MODES = Arrays.asList( VALID_PDF_A );
+	public static final List<String> VALID_PDF_A_MODES = Collections.unmodifiableList( Arrays.asList( VALID_PDF_A ) );
 	
 	private static final String[] VALID_PDF_UA = { ATT_PDF_UA_MODE_PDF_UA_1 };
-	public static final List<String> VALID_PDF_UA_MODES = Arrays.asList( VALID_PDF_UA );
+	public static final List<String> VALID_PDF_UA_MODES = Collections.unmodifiableList( Arrays.asList( VALID_PDF_UA ) );
 	
 	private static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";  // removed as of v2.0.1
 	
@@ -186,7 +187,6 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		// legacy class loader mode
 		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
-			fopConfigMode = ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY;
 			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
 			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 		}

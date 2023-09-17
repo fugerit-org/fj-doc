@@ -25,7 +25,7 @@ public class SimpleRow {
 	}
 	
 	public SimpleRow() {
-		this.cells = new ArrayList<SimpleCell>();
+		this.cells = new ArrayList<>();
 		this.head = BooleanUtils.BOOLEAN_FALSE;
 	}
 	

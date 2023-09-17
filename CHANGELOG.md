@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-core set to 8.3.5
+- all Sonar Cloud issues addressed
+
 ## [3.0.4] - 2023-09-015
 
 ### Changed

@@ -3,6 +3,7 @@ package org.fugerit.java.doc.base.typehandler.markdown;
 import java.io.PrintWriter;
 import java.util.List;
 
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeHelper;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.model.DocContainer;
@@ -38,12 +39,13 @@ public class MarkdownExtDocFacade extends MarkdownBasicDocFacade {
 	}
 
 	@Override
-	public void handleTable(DocTable docTable, DocContainer parent, DocTypeFacadeHelper helper) throws Exception {
+	public void handleTable(DocTable docTable, DocContainer parent, DocTypeFacadeHelper helper) throws DocException {
 		this.getWriter().println();
 		this.handleDocUtilTable( docTable, parent, helper );
 	}
 		
-	protected void handleRowList( DocTable table, DocTableUtil tableUtil, List<DocElement> rowList, boolean header, DocTypeFacadeHelper helper  ) throws Exception {
+	@Override
+	protected void handleRowList( DocTable table, DocTableUtil tableUtil, List<DocElement> rowList, boolean header, DocTypeFacadeHelper helper  ) throws DocException {
 		for ( DocElement element: rowList ) {
 			DocRow row = (DocRow) element;
 			for ( DocElement cellEl : row.getElementList() ) {

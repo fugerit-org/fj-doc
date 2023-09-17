@@ -6,11 +6,7 @@
     xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 	
  
   <metadata>  
-
-		<!--
-		<info name="default-font-name">default-font</info>
-		-->
-
+  
 		<info name="default-font-size">9</info>  
 		 
 		<info name="margins">60;60;20;20</info><!-- destra, sinistra, alto, basso -->	

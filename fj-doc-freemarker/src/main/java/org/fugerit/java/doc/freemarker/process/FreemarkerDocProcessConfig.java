@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 
 	private static final long serialVersionUID = -6761081877582850120L;
-
+	
 	@Getter
 	private ListMapConfig<DocChainModel> docChainList;
 	
@@ -43,7 +43,7 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 		this.docProcessConfig = new DocProcessConfig();	
 	}
 	
-	private DefaultChainProvider defaultChain;
+	private transient DefaultChainProvider defaultChain;
 	
 	protected void setDefaultChain( DefaultChainProvider defaultChain ) {
 		this.defaultChain = defaultChain;

@@ -27,7 +27,7 @@ public class DocCatalogSample extends ListMapCatalogConfig<DocCatalogEntry> {
 		this.getGeneralProps().setProperty( ATT_TYPE,DocCatalogEntry.class.getCanonicalName() );
 	}
 	
-	public static DocCatalogSample loadConfig( InputStream is ) throws Exception {
+	public static DocCatalogSample loadConfig( InputStream is ) {
 		return (DocCatalogSample)load( is, new DocCatalogSample() );
 	}
 	

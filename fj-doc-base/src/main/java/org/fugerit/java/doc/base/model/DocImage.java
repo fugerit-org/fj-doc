@@ -25,8 +25,15 @@
  */
 package org.fugerit.java.doc.base.model;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.helper.SourceResolverHelper;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 
@@ -36,6 +43,16 @@ import org.fugerit.java.doc.base.helper.SourceResolverHelper;
  */
 public class DocImage extends DocElement {
 
+	public static final String TYPE_PNG = "png";
+	
+	public static final String TYPE_JPG = "jpg";
+	
+	public static final String TYPE_GIF = "gif";
+	
+	public static Collection<String> getAcceptedImageTypes() {
+		return Arrays.asList( TYPE_PNG, TYPE_JPG, TYPE_GIF );
+	}
+	
 	public static final String TAG_NAME = "image";
 	
 	/**
@@ -43,88 +60,30 @@ public class DocImage extends DocElement {
 	 */
 	private static final long serialVersionUID = 5892416838638462834L;
 
-	private Integer scaling;
+	@Getter @Setter private Integer scaling;
 	
-	private String url;
+	@Getter @Setter private String url;
 	
-	private String base64;
+	@Getter @Setter private String base64;
 	
-	private String type;
+	@Getter @Setter private String type;
 	
-	private String alt;
+	@Getter @Setter private String alt;
 	
-	private int align;
-
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return url;
-	}
-
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
-	/**
-	 * @return the scaling
-	 */
-	public Integer getScaling() {
-		return scaling;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	/**
-	 * @param scaling the scaling to set
-	 */
-	public void setScaling(Integer scaling) {
-		this.scaling = scaling;
-	}
-
-	public String getBase64() {
-		return base64;
-	}
-
-	public void setBase64(String base64) {
-		this.base64 = base64;
-	}
+	@Getter @Setter private int align;
 	
-	public String getResolvedBase64() throws Exception {
-		String res = this.getBase64();
-		if ( StringUtils.isEmpty( res ) ) {
-			res = SourceResolverHelper.resolveImageToBase64( this );
-		}
-		return res;
+	public String getResolvedBase64() {
+		return SafeFunction.get( () -> {
+			String res = this.getBase64();
+			if ( StringUtils.isEmpty( res ) ) {
+				res = SourceResolverHelper.resolveImageToBase64( this );
+			}
+			return res;	
+		} );
 	}
 	
 	public String getResolvedType() {
 		return StringUtils.valueWithDefault( this.getType() , this.getUrl() );
-	}
-
-	public String getAlt() {
-		return alt;
-	}
-
-	public void setAlt(String alt) {
-		this.alt = alt;
-	}
-
-	public int getAlign() {
-		return align;
-	}
-
-	public void setAlign(int align) {
-		this.align = align;
 	}
 	
 }

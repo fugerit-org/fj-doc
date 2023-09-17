@@ -1,6 +1,7 @@
 package test.org.fugerit.java.doc.base.coverage;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
@@ -34,10 +35,21 @@ public class TestProcessDocFacade {
 					"test" );	
 			Assert.assertNotNull( facade );
 			DocProcessContext context = DocProcessContext.newContext();
+			// test base
 			try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
 				facade.process( "test-chain" , DocConfig.TYPE_MD, context, buffer );
 				log.info( "result -> \n{}", buffer.toString( StandardCharsets.UTF_8.name() ) );
 			}
+			// test validate
+			try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
+				facade.process( "test-chain" , DocConfig.TYPE_MD, context, buffer, true );
+				log.info( "result -> \n{}", buffer.toString( StandardCharsets.UTF_8.name() ) );
+			}
+			// test file
+			File testFile = new File( "target/test_coverage_process_doc_facade.md" );
+			testFile.delete();
+			facade.process( "test-chain" , DocConfig.TYPE_MD, context, testFile  );
+			Assert.assertTrue( testFile.exists() );
 		} );	
 	}
 	

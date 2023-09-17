@@ -54,8 +54,8 @@ public class DocTableUtil extends DocElement {
 	
 	public DocTableUtil(DocTable docTable) {
 		super();
-		this.headerRows = new ArrayList<DocElement>();
-		this.dataRows = new ArrayList<DocElement>();
+		this.headerRows = new ArrayList<>();
+		this.dataRows = new ArrayList<>();
 		boolean headerSeparation = true;
 		for ( DocElement current : docTable.getElementList() ) {
 			if ( current instanceof DocRow  ) {

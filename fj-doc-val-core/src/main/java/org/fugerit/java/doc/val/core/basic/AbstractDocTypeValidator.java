@@ -8,7 +8,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
 
 public abstract class AbstractDocTypeValidator implements DocTypeValidator {
@@ -29,7 +28,7 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 	protected AbstractDocTypeValidator(String mimeType, Set<String> supportedExtensions) {
 		super();
 		this.mimeType = mimeType;
-		this.supportedExtensions = Collections.unmodifiableSet( supportedExtensions.stream().map( s -> s.toUpperCase() ).collect( Collectors.toSet() ) );
+		this.supportedExtensions = Collections.unmodifiableSet( supportedExtensions.stream().map( String::toUpperCase ).collect( Collectors.toSet() ) );
 	}
 
 	private String mimeType;
@@ -66,7 +65,4 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 		return true;
 	}
 
-	@Override
-	public abstract DocTypeValidationResult validate(InputStream is) throws IOException;
-	
 }

@@ -55,6 +55,21 @@ public final class DocVersion implements Serializable, Comparable<DocVersion> {
 	}
 	
 	@Override
+	public int hashCode() {
+		return (this.getMajor()*10000)+this.getMinor();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		boolean eq = false;
+		if ( obj instanceof DocVersion  ) {
+			DocVersion c = (DocVersion)obj;
+			eq = this.getMajor() == c.getMajor() && this.getMinor() == c.getMinor();
+		}
+		return eq;
+	}
+
+	@Override
 	public int compareTo(DocVersion o) {
 		return compare( this , o );
 	}

@@ -115,7 +115,7 @@ public class AutodocModelToSinpleTableFacade {
 		if ( xsdObject != null ) {
 			builder.append( "(" );
 			List<String> list = new ArrayList<>();
-			this.addIfNotEmpty( StringUtils.concat( separator , xsdObject.getChildrenElements().map( current -> this.handleElement(current) ).collect( Collectors.toList() )  ), list );
+			this.addIfNotEmpty( StringUtils.concat( separator , xsdObject.getChildrenElements().map( this::handleElement ).collect( Collectors.toList() )  ), list );
 			this.addIfNotEmpty( this.handleChoiceStream(xsdObject.getChildrenChoices(), separator) , list );
 			this.addIfNotEmpty( this.handleSequenceStream(xsdObject.getChildrenSequences(), separator) , list );
 			builder.append( StringUtils.concat( separator , list ) );
@@ -129,7 +129,7 @@ public class AutodocModelToSinpleTableFacade {
 		if ( xsdObject != null ) {
 			builder.append( "(" );
 			List<String> list = new ArrayList<>();
-			this.addIfNotEmpty( StringUtils.concat( separator , xsdObject.getChildrenElements().map( current -> this.handleElement(current) ).collect( Collectors.toList() )  ), list );
+			this.addIfNotEmpty( StringUtils.concat( separator , xsdObject.getChildrenElements().map( this::handleElement ).collect( Collectors.toList() )  ), list );
 			this.addIfNotEmpty(  this.handleChoiceStream(xsdObject.getChildrenChoices(), separator) , list );
 			this.addIfNotEmpty( this.handleSequenceStream(xsdObject.getChildrenSequences(), separator) , list );
 			builder.append( StringUtils.concat( separator , list ) );
