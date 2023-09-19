@@ -53,6 +53,13 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 		return this.defaultChain;
 	}
 	
+	public DocProcessData fullProcess( String chainId, DocProcessContext context, DocTypeHandler handler, DocOutput docOutput ) throws Exception {
+		DocProcessData data = new DocProcessData();
+		this.process(chainId, context, data);
+		handler.handle( DocInput.newInput( handler.getType() , data.getCurrentXmlReader() ) , docOutput );
+		return data;
+	}
+	
 	public void process( String chainId, DocProcessContext context, DocProcessData data ) throws Exception {
 		MiniFilterChain chain = this.getChainCache( chainId );
 		log.info( "chain list {}", this.docProcessConfig.getIdSet() );
