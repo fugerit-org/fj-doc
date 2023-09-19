@@ -102,8 +102,8 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 		MiniFilterChain chain = null;
 		if ( this.docProcessConfig.getKeys().contains( id ) ) {
 			chain = this.docProcessConfig.getChain(id);
-		} else  if ( this.defaultChain != null ) {
-			chain = this.defaultChain.newDefaultChain(id);
+		} else  if ( this.getDefaultChain() != null ) {
+			chain = this.getDefaultChain().newDefaultChain(id);
 			this.setChain(id, chain);
 		}
 		return chain;

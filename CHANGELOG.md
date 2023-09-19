@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.6] - 2023-09-19
+
 ### Added
 
 - method FreemarkerDocProcessConfig.fullProcess() with minimal parameters, generating the document and returning xml data.

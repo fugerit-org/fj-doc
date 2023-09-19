@@ -7,10 +7,14 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocConfig;
+import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.process.DocProcessContext;
+import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator;
@@ -69,6 +73,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_test/freemarker-doc-process_alt.xml" );
 		Assert.assertNotNull( config );
 		this.templateTesting(config);
+		log.info( "keys : {}", config.getKeys() );
 	}
 	
 	@Test
@@ -99,5 +104,25 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 			this.failEx(e);
 		}
 	}
+	
+	@Test
+	public void testProcess() {
+		SafeFunction.apply( () -> {
+			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-003",  "/fj_doc_test/template/" );
+			// test full process
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+				DocProcessData data = config.fullProcess( "test_02" ,
+						DocProcessContext.newContext(), FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
+				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
+			}
+			// test process 1
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+				DocProcessData data = new DocProcessData();
+				config.process( "test_02" , DocProcessContext.newContext(), data, FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
+				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
+			}
+		} );
+	}
+	
 	
 }
