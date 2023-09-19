@@ -76,7 +76,7 @@ public class FreemarkerDocProcessConfigFacade {
 						FreeMarkerComplexProcessStep processStep = new FreeMarkerComplexProcessStep();
 						Properties processAtts = new Properties();
 						processAtts.setProperty( "template-path" , "${chainId}.ftl" );
-						processAtts.setProperty( "map-atts" , "simpleTableModel" );
+						processAtts.setProperty( FreeMarkerComplexProcessStep.ATT_MAP_ALL , BooleanUtils.BOOLEAN_TRUE );
 						processStep.setCustomConfig( processAtts );
 						processStep.setChainId( idChain );
 						defaultChain.getFilterChain().add( processStep );

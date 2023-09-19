@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- now default chain in FreemarkerDocProcessConfig.newSimpleConfig() maps all attributes to freemarker template.
+
 ## [3.0.5] - 2023-09-17
 
 ### Added
