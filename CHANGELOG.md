@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+[3.0.9] - 2023-09-24
+
+### Changed
+
+- fj-doc-mod-openpdf-version set to 1.1.0-sa.1
+- jajarta-jaxb-version set to 4.0.1
+
 [3.0.8] - 2023-09-23
 
 ### Added
