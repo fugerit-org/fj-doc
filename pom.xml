@@ -29,7 +29,7 @@
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	    <jackson-version>2.15.2</jackson-version>
 	    <!-- other dependencies -->
-	    <jajarta-jaxb-version>4.0.0</jajarta-jaxb-version>
+	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
 	    <poi5-version>${poi-version}</poi5-version>
 	</properties>
 
