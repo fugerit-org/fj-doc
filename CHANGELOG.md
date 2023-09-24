@@ -7,9 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+[3.0.8] - 2023-09-23
+
 ### Added
 
 - Code of conduct badge and file
+- [Sample jdk compatibility check workflow on branch develop](.github/workflows/build_maven_compatibility.yml)
+
+### Changed
+
+- quarkus version set to 3.4.1
+- fj-bom set to 1.4.2
+- fj-version set to 8.3.8
+- [Sonar cloud workflow merged in maven build](.github/workflows/deploy_maven_package.yml)
+
+### Removed
+
+- Sonar cloud workflow yml removed. (after being merged with maven build)
+
+### Fixed
+
+- [GHSA-4f4r-wgv2-jjvg](https://github.com/advisories/GHSA-4f4r-wgv2-jjvg) [CVE-2023-4853](https://nvd.nist.gov/vuln/detail/CVE-2023-4853)
+
+### Security
+
+- [Quarkus HTTP vulnerable to incorrect evaluation of permissions](https://github.com/fugerit-org/fj-doc/security/dependabot/23) resolved. (fix GHSA-4f4r-wgv2-jjvg)
 
 ## [3.0.7] - 2023-09-20
 
