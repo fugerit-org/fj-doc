@@ -1,3 +1,3 @@
-# Contributor Covenant Code of Conduct
+# Code of conduct
 
-[refer to main repository code of conduct](https://github.com/fugerit-org/fj-universe/blob/main/CODE_OF_CONDUCT.md)
+refer to [fugerit-org](https://github.com/fugerit-org) [code of conduct](https://github.com/fugerit-org/fj-universe/blob/main/CODE_OF_CONDUCT.md).
