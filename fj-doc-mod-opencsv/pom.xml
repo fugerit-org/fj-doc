@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<opencsv-version>5.7.1</opencsv-version>
+		<opencsv-version>5.8</opencsv-version>
 	</properties>
 	
 	<build>
