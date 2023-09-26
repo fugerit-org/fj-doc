@@ -7,14 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-[3.0.9] - 2023-09-24
+### Changed
+
+- fj-bom set to 1.4.6
+- fj-version set to 8.3.9
+- pdfbox-version set to 2.0.29 (version 3.0.0 breaks compatibility, consider import)
+
+## [3.0.9] - 2023-09-24
 
 ### Changed
 
 - fj-doc-mod-openpdf-version set to 1.1.0-sa.1
 - jajarta-jaxb-version set to 4.0.1
 
-[3.0.8] - 2023-09-23
+## [3.0.8] - 2023-09-23
 
 ### Added
 
