@@ -21,20 +21,11 @@
 		</license>
 	</licenses>
 	
-	<properties>
-		<opencsv-version>5.7.1</opencsv-version>
-	</properties>
-	
-	<build>
-		
-	</build>
-
 	<dependencies>
 
 		<dependency>
 		    <groupId>com.opencsv</groupId>
 		    <artifactId>opencsv</artifactId>
-		    <version>${opencsv-version}</version>
 		</dependency>		
 
 		<dependency>

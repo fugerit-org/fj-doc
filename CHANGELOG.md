@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-bom set to 1.4.6
+- fj-bom set to 1.4.7
+- jackon and opencsv version set in fj-bom
 - fj-version set to 8.3.9
 - pdfbox-version set to 2.0.29 (version 3.0.0 breaks compatibility, consider import)
 
