@@ -150,6 +150,11 @@
 				<xsd:documentation>Comma separated list of attributes to map or 'map-all' to map all attributes</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
+		<xsd:attribute name="map-all" type="xsd:boolean" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>'true' if all attributes must be mapped. default 'false'.</xsd:documentation>
+			</xsd:annotation>		
+		</xsd:attribute>
 		<xsd:attribute name="template-path" type="xsd:string" use="optional">
 			<xsd:annotation>
 				<xsd:documentation>Free marker template path</xsd:documentation>

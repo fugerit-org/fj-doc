@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - DocHandlerFacade.findHandler() was not looking for all registered handlers in some case.
+- Fixed missing attributes 'map-all' in complex step xsd.
 
 ## [3.0.9] - 2023-09-24
 
