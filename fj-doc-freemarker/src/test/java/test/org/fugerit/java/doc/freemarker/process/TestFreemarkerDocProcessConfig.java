@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -39,6 +40,23 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 			fail(message);
 		}
 	}
+	
+	@Test
+	public void testConfigFail01() {
+		Assert.assertThrows( ConfigRuntimeException.class , () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" ) );
+	}
+	
+	@Test
+	public void testConfigFail02() {
+		Reader reader = null;
+		Assert.assertThrows( ConfigException.class , () -> FreemarkerDocProcessConfigFacade.loadConfig( reader ) );
+	}
+	
+	@Test
+	public void testConfigSec() {
+		Assert.assertNotNull( FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_test/freemarker-doc-process_sec.xml" ) );
+	}
+	
 	
 	private void templateTesting( FreemarkerDocProcessConfig config ) {
 		DocProcessContext context = DocProcessContext.newContext( "test", "testString" );

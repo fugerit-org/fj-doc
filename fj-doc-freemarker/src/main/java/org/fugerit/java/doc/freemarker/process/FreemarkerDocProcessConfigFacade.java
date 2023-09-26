@@ -112,7 +112,7 @@ public class FreemarkerDocProcessConfigFacade {
 		FreemarkerDocProcessConfig config = null;
 		try ( Reader xmlReader = new InputStreamReader(StreamHelper.resolveStream( configPath ) ) ) {
 			config = loadConfig(xmlReader);
-		} catch (Exception e) {
+		} catch (Exception | NoClassDefFoundError | ExceptionInInitializerError e) {
 			throw new ConfigRuntimeException( e );
 		}
 		return config;
@@ -173,7 +173,7 @@ public class FreemarkerDocProcessConfigFacade {
 		 }
 	}
 	
-	private static void handleStepList( FreemarkerDocProcessConfig config, Document doc ) throws Exception {
+	private static void handleStepList( FreemarkerDocProcessConfig config, Document doc ) throws DocException, ConfigException {
 		 NodeList docChainLisgt = doc.getElementsByTagName( ATT_DOC_CHAIN );
 		 for ( int k=0; k<docChainLisgt.getLength(); k++ ) {
 			 Element currentTag = (Element) docChainLisgt.item( k );

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.util.ObjectUtils;
 import org.fugerit.java.core.util.collection.ListMapStringKey;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -41,9 +42,12 @@ public class DocHandlerFacade implements Serializable {
 	
 	private Map<String, ListMapStringKey<DocTypeHandler>> mapTypeHandlers;	// map handlers registered by type
 	
+	private Map<String, DocTypeHandler> fullMap;
+	
 	public DocHandlerFacade() {
 		this.mapHandlers = new HashMap<>();
 		this.mapTypeHandlers = new HashMap<>();
+		this.fullMap = new HashMap<>();
 	}
 
 	private void doRegister( DocTypeHandler handler, String id ) {
@@ -80,6 +84,13 @@ public class DocHandlerFacade implements Serializable {
 		this.registerHandlerAndId(id, handler, false);
 	}
 	
+	private void registerOnFullMap( String currentKey, DocTypeHandler handler ) {
+		DocTypeHandler checkPrevious = this.fullMap.put( currentKey , handler );
+		if ( checkPrevious != null ) {
+			log.info( "overwriting currentKey : {}, handler : {}", currentKey, checkPrevious );
+		}
+	}
+	
 	public void registerHandlerAndId( String id, DocTypeHandler handler, boolean allowDuplicatedId ) throws Exception {
 		if ( this.mapHandlers.containsKey( id ) ) {
 			if ( allowDuplicatedId ) {
@@ -89,6 +100,17 @@ public class DocHandlerFacade implements Serializable {
 			}
 		}
 		this.mapHandlers.put( id , handler);
+		// new full map handling start
+		String format = handler.getFormat();
+		String type = handler.getType();
+		this.registerOnFullMap( id, handler );
+		if ( !id.equals( format ) ) {
+			this.registerOnFullMap( format, handler );
+		}
+		if ( !type.equals( format ) ) {
+			this.registerOnFullMap( type, handler );
+		}
+		// new full map handling end
 		this.registerHandler( handler, DEFAULT_REGISTER_FOR_TYPE, DEFAULT_ERROR_ON_DUPLICATE );
 	}
 	
@@ -118,7 +140,8 @@ public class DocHandlerFacade implements Serializable {
 	}
 	
 	public DocTypeHandler findHandler( String id ) {
-		return this.mapHandlers.get( id );
+		// fail safe on full map
+		return ObjectUtils.objectWithDefault( this.mapHandlers.get( id ) , this.fullMap.get( id ) );
 	}
 	
 	public ListMapStringKey<DocTypeHandler> listHandlersForType( String type ) {

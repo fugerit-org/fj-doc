@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - jackon and opencsv version set in fj-bom
 - fj-version set to 8.3.9
 - pdfbox-version set to 2.0.29 (version 3.0.0 breaks compatibility, consider import)
+- better test coverage DocHandlerFacade and FreemarkerDocProcessConfigFacade
+- better error handling for FreemarkerDocProcessConfigFacade
+
+### Fixed
+
+- DocHandlerFacade.findHandler() was not looking for all registered handlers in some case.
 
 ## [3.0.9] - 2023-09-24
 

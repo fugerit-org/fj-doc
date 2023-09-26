@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
-	<docHandlerConfig>
+	<docHandlerConfig registerById="true">
 		<!-- Type handler for markdown format -->
 		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
 		<!-- Type henalder for xml format, generates the source xml:doc -->
@@ -13,7 +13,7 @@
 
 	<docChain id="shared">
 		<chainStep stepType="config">
-			<config id="FJ_DOC_TEST_ALT"
+			<config id="FJ_DOC_TEST_SEC"
 				version="2.3.32"
 				path="/fj_doc_test/template/"
 				exception-handler="IGNORE_HANDLER"
