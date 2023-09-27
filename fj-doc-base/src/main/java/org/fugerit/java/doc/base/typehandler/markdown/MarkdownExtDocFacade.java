@@ -57,9 +57,9 @@ public class MarkdownExtDocFacade extends MarkdownBasicDocFacade {
 		}
 		if ( header ) {
 			for ( int k=0; k<table.getColumns(); k++ ) {
-				this.getWriter().print( "| ---------------" );
+				this.getWriter().print( "|---------------" );
 			}
-			this.getWriter().println( " |" );
+			this.getWriter().println( "|" );
 		}
 	}
 
