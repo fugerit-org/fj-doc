@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- new config attribute 'fop-suppress-events' top mod-fop
+
 ### Changed
 
 - fj-bom set to 1.4.7

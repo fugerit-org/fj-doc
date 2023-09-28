@@ -16,8 +16,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
+import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.BasicTest;
 
+@Slf4j
 public class TestPdfFopTypeHandler extends BasicTest {
 
 	private boolean testHelper( DocTypeHandler handler ) {
@@ -36,6 +38,8 @@ public class TestPdfFopTypeHandler extends BasicTest {
 	public void test001Ok() {
 		FopConfig config = new FopConfigDefault();
 		PdfFopTypeHandler handler = new PdfFopTypeHandler();
+		handler.setSuppressEvents( true );
+		log.info( "suppress events : {}", handler.isSuppressEvents() );
 		handler.setFopConfig( config );
 		boolean ok = this.testHelper(handler);
 		Assert.assertTrue(ok);
