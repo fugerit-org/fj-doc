@@ -34,7 +34,7 @@
 			Note for compatibilty reason, if attributes 'fop-config-classloader-path' and 'font-base-classloader-path' are both set, the mode switch to fop-config-mode='classloader-legacy'
 			Example 2 : <config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 			-->
-			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml"/>
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml" fop-suppress-events="1"/>
 		</docHandler>
 		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
 		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />

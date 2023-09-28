@@ -22,6 +22,7 @@ import org.apache.fop.apps.FopFactory;
 import org.apache.xmlgraphics.io.ResourceResolver;
 import org.apache.xmlgraphics.util.MimeConstants;
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMUtils;
@@ -74,6 +75,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final boolean DEFAULT_ACCESSIBILITY = true;
 	
 	public static final boolean DEFAULT_KEEP_EMPTY_TAGS = false;
+	
+	public static final String ATT_FOP_SUPPRESS_EVENTS = "fop-suppress-events";
 
 	/**
 	 * 
@@ -97,6 +100,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	@Getter @Setter private String pdfAMode;
 	
 	@Getter @Setter private String pdfUAMode;
+	
+	@Getter @Setter private boolean suppressEvents;
 	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
@@ -140,6 +145,9 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		// create an instance of fop factory
 		FopFactory fopFactory = this.getFopConfig().newFactory();
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+		if ( this.isSuppressEvents() ) {
+			foUserAgent.getEventBroadcaster().addEventListener( e -> {} );
+		}
 		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
 			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );	
 		}
@@ -190,6 +198,13 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
 			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 		}
+		// setup fop config mode
+		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath);
+		// setup suppress events
+		this.setSuppressEvents( BooleanUtils.isTrue( props.getProperty( ATT_FOP_SUPPRESS_EVENTS ) ) );
+	}
+
+	private void setupFopConfigMode( String fopConfigMode, String fopConfigResoverType, String fopConfigClassloaderPath ) throws ConfigException {
 		if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
 			try {
 				ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
