@@ -27,6 +27,7 @@
 	    <!-- fj java versions -->
 	    <fj-version>8.4.1</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
+	    <fj-xml-to-json-version>0.1.0</fj-xml-to-json-version>
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
 	    <poi5-version>${poi-version}</poi5-version>
@@ -203,6 +204,12 @@
 				<artifactId>fj-doc-sample</artifactId>
 				<version>${fj-doc-version}</version>
 			</dependency>								
+							
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-xml-to-json</artifactId>
+				<version>${fj-xml-to-json-version}</version>
+			</dependency>	
 								
 			<dependency>
 			    <groupId>org.apache.poi</groupId>
