@@ -7,12 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2023-10-01
+
 ### Added
 
 - new config attribute 'fop-suppress-events' top mod-fop
+- fj-xml-to-json 0.1.1 dependency
+- [next generation json format support](fj-doc-base-json/src/main/docs/xml_conversion_ng.md) [experimental]
 
 ### Changed
 
+- refactor of json and yaml format to use [fj-xml-to-json](https://github.com/fugerit-org/fj-xml-to-json)
 - fj-bom set to 1.4.7
 - jackon and opencsv version set in fj-bom
 - fj-version set to 8.4.1

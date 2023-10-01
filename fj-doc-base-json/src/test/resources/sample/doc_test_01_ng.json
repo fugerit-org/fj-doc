@@ -1,21 +1,16 @@
 {
-  "xsd-version":"2-1",
+  "xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+  "xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd",
+  "xmlns" : "http://javacoredoc.fugerit.org",
   "_t" : "doc",
   "_e" : [ {
     "_t" : "metadata",
+    "info" : {
+      "margins" : "10;10;10;30",
+      "excel-table-id" : "excel-table=print",
+      "excel-width-multiplier" : "450"
+    },
     "_e" : [ {
-      "name" : "margins",
-      "_t" : "info",
-      "_v" : "10;10;10;30"
-    }, {
-      "name" : "excel-table-id",
-      "_t" : "info",
-      "_v" : "excel-table=print"
-    }, {
-      "name" : "excel-width-multiplier",
-      "_t" : "info",
-      "_v" : "450"
-    }, {
       "_t" : "footer-ext",
       "_e" : [ {
         "align" : "center",

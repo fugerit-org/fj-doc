@@ -25,6 +25,8 @@ public class DocInfo extends DocElement {
 
 	public static final String TAG_NAME = "info";
 	
+	public static final String ATT_NAME = "name";
+	
 	public DocInfo() {
 		this.content = new StringBuilder();
 	}
