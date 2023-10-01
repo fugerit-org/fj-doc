@@ -16,10 +16,13 @@ import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.doc.json.parse.DocJsonFacade;
 import org.fugerit.java.doc.json.parse.DocJsonParser;
+import org.fugerit.java.doc.json.parse.DocObjectMapperHelper;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestJsonParser {
 
@@ -75,6 +78,11 @@ public class TestJsonParser {
 	public void testParse01() {
 		Assert.assertTrue( this.parseWorker( "doc_test_01" ) );
 	}
+
+	@Test
+	public void testParse02() {
+		Assert.assertTrue( this.parseWorker( "doc_test_02" ) );
+	}
 	
 	@Test
 	public void testValidateOk01() {
@@ -90,7 +98,7 @@ public class TestJsonParser {
 	public void testValidateOk02ParseVersion() {
 		Assert.assertTrue( this.validateWorker( "doc_test_02", VALID, NO_EXCEPTION, true ) );
 	}
-	
+
 	@Test
 	public void testValidateKo02() {
 		Assert.assertFalse( this.validateWorker( "doc_test_02_ko", NOT_VALID, NO_EXCEPTION ) );
@@ -104,6 +112,13 @@ public class TestJsonParser {
 				Assert.assertNotNull( DocJsonFacade.parse( reader ) );
 			}
 		} );
+	}
+	
+	@Test
+	public void testHelper() {
+		Assert.assertTrue( DocObjectMapperHelper.isSpecialProperty( DocObjectMapperHelper.PROPERTY_TAG ) );
+		Assert.assertFalse( DocObjectMapperHelper.isSpecialProperty( "aaa" ) );
+		Assert.assertNotNull( new DocObjectMapperHelper( new ObjectMapper() ) );
 	}
 	
 }

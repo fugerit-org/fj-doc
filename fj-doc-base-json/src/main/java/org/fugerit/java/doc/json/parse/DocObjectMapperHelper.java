@@ -4,100 +4,57 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Properties;
 import java.util.Set;
 
-import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocException;
-import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
+import org.fugerit.java.xml2json.XmlToJsonConverter;
+import org.fugerit.java.xml2json.XmlToJsonHandler;
 import org.w3c.dom.Element;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DocObjectMapperHelper {
+
+	private XmlToJsonHandler handler;
+	
+	public DocObjectMapperHelper(XmlToJsonHandler handler) {
+		super();
+		this.handler = handler;
+	}
 	
 	public DocObjectMapperHelper(ObjectMapper mapper) {
-		super();
-		this.mapper = mapper;
+		this( new XmlToJsonHandler( mapper ) );
 	}
 
-	private ObjectMapper mapper;
+	public static final String PROPERTY_TAG = XmlToJsonConverter.DEF_PROPERTY_TAG;
 	
-	public static final String PROPERTY_TAG = "_t";
-	
-	public static final String PROPERTY_TEXT = "_v";
+	public static final String PROPERTY_TEXT = XmlToJsonConverter.DEF_PROPERTY_TEXT;
 
-	public static final String PROPERTY_ELEMENTS = "_e";
+	public static final String PROPERTY_ELEMENTS = XmlToJsonConverter.DEF_PROPERTY_ELEMENTS;
 	
 	public static final String PROPERTY_XSD_VERSION = "xsd-version";
 	
-	private static final Set<String> SPECIAL_PROPERTY_NAMES = new HashSet<>();
-	static {
-		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TAG );
-		SPECIAL_PROPERTY_NAMES.add( PROPERTY_TEXT );
-		SPECIAL_PROPERTY_NAMES.add( PROPERTY_ELEMENTS );
-		SPECIAL_PROPERTY_NAMES.add( PROPERTY_XSD_VERSION );
-	}
-	
+	private static final Set<String> SPECIAL_PROPERTY_NAMES = new HashSet<>( Arrays.asList( PROPERTY_TAG, PROPERTY_ELEMENTS, PROPERTY_TAG, PROPERTY_XSD_VERSION ) );
+
 	public static boolean isSpecialProperty( String propertyName ) {
 		return SPECIAL_PROPERTY_NAMES.contains(propertyName);
-	}
-	
-	public static String findVersion( JsonNode root, String def ) {
-		String res = def;
-		JsonNode xsdVersion = root.get( PROPERTY_XSD_VERSION );
-		if ( xsdVersion != null ) {
-			res = xsdVersion.asText();
-		}
-		return res;
-	}
-	
-	private void handleElement( JsonNode node, DocParserContext context ) {
-		Iterator<String> fieldsNames = node.fieldNames();
-		Properties props = new Properties();
-		String qName = null;
-		String text = null;
-		Iterator<JsonNode> elements = null;
-		while ( fieldsNames.hasNext() ) {
-			String currentName = fieldsNames.next();
-			JsonNode currentValue = node.get( currentName );
-			if ( PROPERTY_TEXT.equalsIgnoreCase( currentName ) ) {
-				text = currentValue.asText();
-			} else if ( PROPERTY_TAG.equalsIgnoreCase( currentName ) ) {
-				qName = currentValue.asText();
-			} else if ( PROPERTY_ELEMENTS.equalsIgnoreCase( currentName ) ) {
-				elements = currentValue.elements();
-			} else {
-				props.setProperty( currentName , currentValue.asText() );
-			}
-		}
-		context.handleStartElement(qName, props);
-		if ( StringUtils.isNotEmpty( text ) ) {
-			context.handleText(text);
-		}
-		if ( elements != null ) {
-			while ( elements.hasNext() ) {
-				this.handleElement( elements.next() , context );
-			}
-		}
-		context.handleEndElement(qName);
 	}
 
 	public DocValidationResult validateWorkerResult(Reader reader, boolean parseVersion) throws DocException {
 		return DocException.get( () -> {
 			DocValidationResult result = DocValidationResult.newDefaultNotDefinedResult();
-			DocJsonToXml convert = new DocJsonToXml( this.mapper );
+			DocJsonToXml convert = new DocJsonToXml( this.handler.getMapper() );
 			Element root = convert.convertToElement( reader );
 			try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() )  {
 				DOMIO.writeDOMIndent(root, buffer);
@@ -120,14 +77,15 @@ public class DocObjectMapperHelper {
 	
 	public DocBase parse(Reader reader) throws DocException {
 		return DocException.get( () -> {
-			DocParserContext context = new DocParserContext();
-			context.startDocument();
-			JsonNode root = this.mapper.readTree( reader );
-			this.handleElement(root, context);
-			context.endDocument();
+			DocBase docBase = null;
+			try ( StringWriter writer = new StringWriter() ) {
+				this.handler.writerAsXml( reader , writer );
+				try ( StringReader xml = new StringReader( writer.toString() ) ) {
+					DocXmlParser parser = new DocXmlParser();
+					docBase = parser.parse( xml );
+				}
+			}
 			log.debug( "Parse done!" );
-			DocBase docBase = context.getDocBase();
-			docBase.setXsdVersion( findVersion(root, DocFacade.CURRENT_VERSION) );
 			return docBase;
 		});
 	}

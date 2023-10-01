@@ -7,16 +7,19 @@ import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.AbstractDocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.fugerit.java.xml2json.XmlToJsonHandler;
 
 public class DocJsonParser extends AbstractDocParser {
 	
 	private DocObjectMapperHelper helper;
 	
-	public DocJsonParser() {
+	public DocJsonParser( XmlToJsonHandler handler ) {
 		super( DocFacadeSource.SOURCE_TYPE_JSON );
-		this.helper = new DocObjectMapperHelper( new ObjectMapper() );
+		this.helper = new DocObjectMapperHelper( handler );
+	}
+
+	public DocJsonParser() {
+		this( new XmlToJsonHandler() );
 	}
 
 	private DocObjectMapperHelper getHelper() {
