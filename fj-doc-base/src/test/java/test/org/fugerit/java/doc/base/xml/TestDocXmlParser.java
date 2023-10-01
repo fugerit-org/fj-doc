@@ -3,9 +3,13 @@ package test.org.fugerit.java.doc.base.xml;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Reader;
 
 import org.fugerit.java.core.function.SimpleValue;
+import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.util.result.Result;
+import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -97,6 +101,34 @@ public class TestDocXmlParser extends BasicTest {
 	@Test
 	public void testValidateKo02() {
 		Assert.assertTrue(  this.validateWorker( "doc_test_02_ko", NOT_VALID, NO_EXCEPTION) );
+	}
+	
+	@Test
+	public void parseVersion01() {
+		SimpleValue<Boolean> res = new SimpleValue<>( false );
+		runTestEx( () -> {
+			String fullPath = "cl://sample/doc_test_01.xml";
+			logger.info( "validate -> {}", fullPath );
+			DocParser parser = new DocXmlParser();
+			try ( Reader reader = StreamHelper.resolveReader( fullPath ) ) {
+				int pr = parser.validateVersion( reader );
+				res.setValue( Result.RESULT_CODE_OK == pr );
+			}
+		} );
+		Assert.assertTrue( res.getValue().booleanValue() );
+	}
+	
+	@Test
+	public void parseFail() {
+		boolean failOnElementNotFound = true;
+		runTestEx( () -> {
+			String fullPath = "cl://coverage/xml/default_doc_fail2.xml";
+			logger.info( "validate -> {}", fullPath );
+			DocParser parser = new DocXmlParser( failOnElementNotFound );
+			try ( Reader reader = StreamHelper.resolveReader( fullPath ) ) {
+				Assert.assertThrows( DocException.class ,	() -> parser.parse(reader) );
+			}
+		} );
 	}
 	
 }

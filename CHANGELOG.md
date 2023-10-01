@@ -15,10 +15,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fj-bom set to 1.4.7
 - jackon and opencsv version set in fj-bom
-- fj-version set to 8.3.9
+- fj-version set to 8.4.1
 - pdfbox-version set to 2.0.29 (version 3.0.0 breaks compatibility, consider import)
 - better test coverage DocHandlerFacade and FreemarkerDocProcessConfigFacade
 - better error handling for FreemarkerDocProcessConfigFacade
+- increased test coverage of fj-doc-base module
+- DocXmlParser can now be set to fail when elements are unknown
 
 ### Fixed
 
