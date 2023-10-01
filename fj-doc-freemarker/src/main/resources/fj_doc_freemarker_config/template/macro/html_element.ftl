@@ -17,6 +17,9 @@
 		<@handleImage docImage=current/>					
 	<#elseif elementType = 'DocList'>
 		<@handleList docList=current/>	
+	<#elseif elementType = 'DocPageBreak'>
+</div>
+<div>
 	<#elseif elementType = 'DocContainer'>
 		<#list current.elementList as currentChild><@handleElement current=currentChild/></#list>
 	<#else>

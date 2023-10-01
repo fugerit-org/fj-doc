@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - LICENSE place holder
+- page-break tag now rendered in html as </div><div> by freemarker html type handler
 
 ## [3.1.0] - 2023-10-01
 

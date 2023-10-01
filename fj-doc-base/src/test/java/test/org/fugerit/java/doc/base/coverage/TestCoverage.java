@@ -11,6 +11,7 @@ import java.util.TimeZone;
 
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.function.SimpleValue;
+import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
@@ -108,9 +109,10 @@ public class TestCoverage extends BasicTest {
 		return cfg;
 	} );
 	
-	private boolean workerAlt( String path ) {
+	private boolean workerAlt( String c ) {
 		SimpleValue<Boolean> res = new SimpleValue<>(false);
 		runTestEx( () -> {
+			String path = "coverage/xml/"+c+".xml";
 			Template temp = CFG.getTemplate("/html_doc.ftl");
 			Map<String, Object> root = new HashMap<>();
 			try ( StringWriter writer = new StringWriter();
@@ -122,6 +124,7 @@ public class TestCoverage extends BasicTest {
 				temp.process(root, writer);
 				String html = writer.toString();
 				log.info( "html -> {}", html );
+				FileIO.writeString( html , new File("target/alt_html_"+c+".html" ) );
 				res.setValue( html.length() > 0 );
 			}
 		} );
@@ -131,7 +134,7 @@ public class TestCoverage extends BasicTest {
 	@Test
 	public void test01() {
 		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
-			Assert.assertTrue( this.workerAlt( "coverage/xml/"+c+".xml" ) );
+			Assert.assertTrue( this.workerAlt( c ) );
 		} );
 	}
 	
