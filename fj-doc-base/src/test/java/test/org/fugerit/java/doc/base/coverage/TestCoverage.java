@@ -18,10 +18,12 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerXML;
 import org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8;
+import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.config.InitHandler;
 import org.fugerit.java.doc.base.facade.SimpleDocFacade;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeDefault;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.doc.base.typehandler.markdown.AbstractCustomMarkdownTypeHandler;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandler;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerUTF8;
@@ -41,8 +43,8 @@ import test.org.fugerit.java.BasicTest;
 @Slf4j
 public class TestCoverage extends BasicTest {
 
-	private final static String[] TEST_LIST = { "default_doc", "default_doc_alt", "default_doc_fail1" };
-
+	private final static String[] TEST_LIST = { "default_doc", "default_doc_alt", "default_doc_missing_tag", "default_doc_fail1", "default_doc_fail2", "default_doc_empty" };
+	
 	private final static DocTypeHandler[] HANDLERS = { 
 			DocTypeHandlerXML.HANDLER, 
 			DocTypeHandlerXMLUTF8.HANDLER, 
@@ -152,6 +154,13 @@ public class TestCoverage extends BasicTest {
 				Assert.assertNotEquals( 0 , buffer.toByteArray().length );
 			}
 		} );
+	}
+	
+	@Test
+	public void testXsdVersion() {
+		String version = DocParserContext.createXsdVersionXmlns( DocVersion.VERSION_2_1.stringVersion() );
+		log.info( "version : {}", version );
+		Assert.assertTrue( version.endsWith( "doc-2-1.xsd" ) );
 	}
 	
 }

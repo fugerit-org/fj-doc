@@ -37,8 +37,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DocParserContext {
 
-	private static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND = false;
+	public static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT = false;
 	
+	private boolean failWhenElementNotFound;
+	
+	public DocParserContext() {
+		this(FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT);
+	}
+	
+	public DocParserContext(boolean failWhenElementNotFound) {
+		super();
+		this.failWhenElementNotFound = failWhenElementNotFound;
+	}
+
 	public static String findXsdVersion( Properties props ) {
 		String xsdVersion = null;
 		for ( Object key : props.keySet() ) {
@@ -88,12 +99,8 @@ public class DocParserContext {
 	}
 	
 	public void endDocument() {
-		if ( this.infos.size() != this.docBase.getInfo().size() ) {
-			throw new ConfigRuntimeException( "Parsing error, wrong info size : "+this.infos.size() );
-		} else {
-			this.docBase.setStableInfo( this.infos );
-			log.debug( "info {}", this.infos );
-		}
+		this.docBase.setStableInfo( this.infos );
+		log.debug( "info {}", this.infos );
 	}
 	
 	public void handleText( String text ) {
@@ -118,11 +125,11 @@ public class DocParserContext {
 			this.infos.setProperty( docInfo.getName(), docInfo.getContent().toString() );
 		}
 		if ( this.parserHelper.isContainerElement( qName ) ) {
-			if ( !this.parents.isEmpty() ) {
-				this.currentContainer = this.parents.remove( this.parents.size()-1 );	
-			} else {
-				this.currentContainer = null;
-			}
+			/*
+			 * The handleEndElement is called only after handlerStartElement.
+			 * So it should be granted that this is always possible : 
+			 */
+			this.currentContainer = this.parents.remove( this.parents.size()-1 );
 		}
 	}
 	
@@ -180,8 +187,6 @@ public class DocParserContext {
 		String scaling = props.getProperty( "scaling" );
 		if ( scaling != null ) {
 			docImage.setScaling( Integer.valueOf( scaling ) );	
-		} else {
-			docImage.setScaling( null );
 		}
 		String base64 = props.getProperty( "base64" );
 		if ( StringUtils.isNotEmpty( base64 ) ) {
@@ -442,7 +447,7 @@ public class DocParserContext {
 				ok = this.handleStartElementPriorityThree(qName, props);
 				if ( !ok ) {
 					String message = "Element not found : "+qName;
-					if ( FAIL_WHEN_ELEMENT_NOT_FOUND ) {
+					if ( failWhenElementNotFound ) {
 						throw new ConfigRuntimeException( message );
 					} else {
 						log.warn( message );

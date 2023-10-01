@@ -58,8 +58,12 @@ public class DocContentHandler implements ContentHandler {
 	private DocHelper docHelper;
 	
 	public DocContentHandler( DocHelper docHelper ) {
+		this( docHelper, DocParserContext.FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT );
+	}
+	
+	public DocContentHandler( DocHelper docHelper, boolean failWhenElementNotFound ) {
 		this.docHelper = docHelper;
-		this.context = new DocParserContext();
+		this.context = new DocParserContext( failWhenElementNotFound );
 	}
 	
 	public DocContentHandler() {

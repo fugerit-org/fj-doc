@@ -13,19 +13,32 @@ import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.parser.AbstractDocParser;
+import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.xml.sax.InputSource;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DocXmlParser extends AbstractDocParser {
 	
 	private DocHelper docHelper;
+	
+	@Getter private boolean failWhenElementNotFound;
 
-	public DocXmlParser( DocHelper docHelper ) {
+	public DocXmlParser( DocHelper docHelper, boolean failWhenElementNotFound ) {
 		super( DocFacadeSource.SOURCE_TYPE_XML );
 		this.docHelper = docHelper;
+		this.failWhenElementNotFound = failWhenElementNotFound;
+	}
+	
+	public DocXmlParser( boolean failOnElementNotFound ) {
+		this( DocHelper.DEFAULT, failOnElementNotFound );
+	}
+	
+	public DocXmlParser( DocHelper docHelper ) {
+		this( docHelper, DocParserContext.FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT );
 	}
 
 	public DocXmlParser() {
@@ -35,7 +48,7 @@ public class DocXmlParser extends AbstractDocParser {
 	@Override
 	protected DocBase parseWorker(Reader reader) throws DocException {
 		return SafeFunction.get( () -> {
-			DocContentHandler dch =  new DocContentHandler( this.docHelper );	
+			DocContentHandler dch =  new DocContentHandler( this.docHelper, this.isFailWhenElementNotFound() );	
 			SAXParser parser = XMLFactorySAX.makeSAXParser( false ,  true );
 			DefaultHandlerComp dh = new DefaultHandlerComp( dch );
 			parser.parse( new InputSource(reader), dh);
