@@ -19,8 +19,13 @@ All basic features are implemented (json parsing, conversion from and to xml)
 Disabled, native support will be added in a future release.
 
 *Doc Json format*  
-The xml and json format have inherent differences. this is why is important to read the [conversion conventions used](xml_conversion.md)
+The xml and json format have inherent differences. this is why is important to read the [conversion conventions used](src/main/docs/xml_conversion.md)
+
+*Doc Json format NG*  
+A alternate json format, defined Next Generation (NG) is under development.
+See the [conversion conventions used](src/main/docs/xml_conversion_ng.md)
 
 Examples : 
 * [sample json doc](src/test/resources/sample/doc_test_01.json)
+* [sample json ng doc](src/test/resources/sample/doc_test_01_ng.json)
 * [sample xml doc](src/test/resources/sample/doc_test_01.xml)

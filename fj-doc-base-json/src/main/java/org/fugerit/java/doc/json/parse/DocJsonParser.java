@@ -13,9 +13,13 @@ public class DocJsonParser extends AbstractDocParser {
 	
 	private DocObjectMapperHelper helper;
 	
-	public DocJsonParser( XmlToJsonHandler handler ) {
-		super( DocFacadeSource.SOURCE_TYPE_JSON );
+	protected DocJsonParser(int sourceType, XmlToJsonHandler handler ) {
+		super(sourceType);
 		this.helper = new DocObjectMapperHelper( handler );
+	}
+
+	public DocJsonParser( XmlToJsonHandler handler ) {
+		this( DocFacadeSource.SOURCE_TYPE_JSON, handler );
 	}
 
 	public DocJsonParser() {
