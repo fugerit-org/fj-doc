@@ -1,6 +1,6 @@
 <doc xmlns="http://javacoredoc.fugerit.org" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-1-10.xsd">
+	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd">
   <metadata>
     <info name="margins">10;10;10;30</info>
     <info name="excel-table-id">excel-table=print</info>
@@ -18,7 +18,7 @@
     <image scaling="50" url="cl://test/img_test_green.png"/>
     <image scaling="25" url="cl://test/img_test_blue.png"/>
     <table columns="3" colwidths="30;30;40" id="excel-table" padding="2" width="100">
-      <row>
+      <row header="true">
         <cell align="center" border-color="#000000" border-width="1">
           <para>Name</para>
         </cell>
@@ -52,5 +52,7 @@
         </cell>
       </row>
     </table>
+    <phrase link="#test1" white-space-collapse="true">test link 1</phrase>
+    <phrase id="test1" link="https://www.fugerit.org">test link 2</phrase>
   </body>
 </doc>
