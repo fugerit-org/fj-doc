@@ -7,7 +7,6 @@ import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigurableObject;
-import org.fugerit.java.core.cfg.helpers.XMLConfigurableObject;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.helper.DefaultMimeHelper;
@@ -23,7 +22,7 @@ public class DocTypeHandlerDefault implements DocTypeHandler, ConfigurableObject
 
 	@Override
 	public void configureProperties(InputStream source) throws ConfigException {
-		XMLConfigurableObject.DO_NOTHING.configureProperties( source );
+		throw new ConfigException( "Property configuration not supported!" );
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class DocTypeHandlerDefault implements DocTypeHandler, ConfigurableObject
 
 	@Override
 	public void configure(Properties props) throws ConfigException {
-		XMLConfigurableObject.DO_NOTHING.configure( props );
+		throw new ConfigException( "Property configuration not supported!" );
 	}
 
 	/**

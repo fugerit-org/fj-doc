@@ -38,6 +38,9 @@ public class TestDocFacade {
 			}
 		}
 		Assert.assertNotNull( matrix );
+		Assert.assertNotNull( matrix.getParent( 1, 1 ) );
+		Assert.assertNotNull( matrix.getBorders( 1, 1 ) );
+		Assert.assertFalse( matrix.isCellEmpty( 1, 1 ) );
 		for ( int r=0; r<matrix.getRowCount(); r++ ) {
 			for ( int c=0; c<matrix.getColumnCount(); c++ ) {
 				matrix.getCell( r , c );	

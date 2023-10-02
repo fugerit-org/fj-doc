@@ -13,7 +13,7 @@ public class ExcelHelperUtils {
 	private ExcelHelperUtils() {} // java:S1118
 	
 	public static InputStream resoveTemplateStream( DocBase docBase ) throws IOException {
-		String excelTemplate = docBase.getInfo().getProperty( ExcelHelperConsts.PROP_XLS_TEMPLATE );
+		String excelTemplate = docBase.getStableInfo().getProperty( ExcelHelperConsts.PROP_XLS_TEMPLATE );
 		InputStream is = null;
 		if ( excelTemplate != null ) {
 			try {

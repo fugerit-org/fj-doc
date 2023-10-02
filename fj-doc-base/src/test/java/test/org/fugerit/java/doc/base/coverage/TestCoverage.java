@@ -79,6 +79,7 @@ public class TestCoverage extends BasicTest {
 		SafeFunction.apply( () -> {
 			for ( int k=0; k<HANDLERS.length; k++ ) {
 				DocTypeHandler handler = HANDLERS[k];
+				log.info( "running : {} -> {}", handler, path );
 				try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader(path) );
 						ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
 						handler.handle( DocInput.newInput( handler.getType() , reader ) ,  DocOutput.newOutput( buffer ) );

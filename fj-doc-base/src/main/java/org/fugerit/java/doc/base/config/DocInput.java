@@ -5,24 +5,18 @@ import java.io.Reader;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 
+import lombok.Getter;
+
 public class DocInput {
 
-	private String type;
+	@Getter private String type;
 	
+	@Getter private Reader reader;
+
+	@Getter private int source;
+
 	private DocBase doc;
-	
-	private Reader reader;
-
-	private int source;
-	
-	public Reader getReader() {
-		return reader;
-	}
-
-	public String getType() {
-		return type;
-	}
-
+		
 	public DocBase getDoc() {
 		DocBase res = doc;
 		if ( res == null && reader != null ) {
@@ -30,12 +24,7 @@ public class DocInput {
 		}
  		return res;
 	}
-
-	public int getSource() {
-		return source;
-	}
-
-
+	
 	public DocInput(String type, DocBase doc, Reader reader) {
 		this(type, doc, reader, DocFacadeSource.SOURCE_TYPE_DEFAULT);
 	}
