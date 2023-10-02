@@ -1,10 +1,15 @@
 package test.org.fugerit.java.doc.base.coverage;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocConstants;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.config.InitHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSourceConfig;
@@ -55,20 +60,25 @@ public class TestConfig {
 		Assert.assertNotNull( config );
 	}
 	
-	
-	
+		
 	@Test
-	public void testInitAsync() {
-		InitHandler.initDocAsync( SimpleMarkdownExtTypeHandler.HANDLER );
+	public void testInitAsyncAll() {
+		DocTypeHandler fail = new DocTypeHandlerDefault( DocConfig.TYPE_CSV , "test-fail" ) {
+			@Override
+			public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
+				throw new ConfigException( "Test fail init" );
+			}
+			private static final long serialVersionUID = -5969726916244716079L;
+		};
+		List<DocTypeHandler> handlers = Arrays.asList( SimpleMarkdownExtTypeHandler.HANDLER, fail );
+		InitHandler.initDocAllAsync( handlers );
+		Map<DocTypeHandler, Exception> failMap = InitHandler.initDocAll( handlers );
+		Assert.assertTrue( failMap.containsKey( fail ) );
+		Assert.assertFalse( failMap.containsKey( SimpleMarkdownExtTypeHandler.HANDLER ) );
 		Assert.assertThrows( ConfigException.class , () -> InitHandler.initDoc( 
-				new DocTypeHandlerDefault( DocConfig.TYPE_CSV , "test-fail" ) {
-					@Override
-					public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-						throw new ConfigException( "Test fail init" );
-					}
-					private static final long serialVersionUID = -5969726916244716079L;
-				}
+				fail
 		) );
 	}
+	
 	
 }
