@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- InitHandler initialization of PDF/A fop handlers failed if a font was not found.
+
 ## [3.1.1] - 2023-10-01
 
 ### Changed
