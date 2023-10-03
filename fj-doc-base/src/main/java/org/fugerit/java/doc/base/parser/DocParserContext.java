@@ -75,8 +75,6 @@ public class DocParserContext {
 	
 	private DocParserHelper parserHelper = DocParserHelper.getInstance();
 	
-	private DocParserNameCheck parserNames = DocParserNameCheck.getInstance();
-	
 	private DocBase docBase;
 	
 	private DocElement currentElement;
@@ -352,107 +350,92 @@ public class DocParserContext {
 	
 	// start tag handlers - END
 	
-	private boolean handleStartElementPriorityOne( String qName, Properties props ) {
-		boolean ok = false;
-		if ( DocPara.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartPara(props);
-			ok = true;
-		} else if ( DocPara.TAG_NAME_H.equalsIgnoreCase( qName ) ) {
-			this.handleStartH(props);
-			ok = true;
-		} else if ( DocPhrase.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartPhrase(props);
-			ok = true;
-		} else if ( DocList.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartList(props);
-			ok = true;
-		} else if ( DocLi.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartLi();
-			ok = true;
-		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartTable(props);
-			ok = true;
-		} else if ( DocRow.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartRow(props);
-			ok = true;
-		} else if ( DocCell.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartCell(props);
-			ok = true;
-		} else if ( DocPageBreak.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartPageBreak();
-			ok = true;
-		}
-		return ok;
-	}
-	
-	private boolean handleStartElementPriorityTwo( String qName, Properties props ) {
-		boolean ok = false;
-		if ( this.parserNames.isTypeDoc( qName ) ) {
-			this.handleStartDoc(props);
-			ok = true;
-		} else if ( DocContainer.TAG_NAME_META.equalsIgnoreCase( qName ) || DocContainer.TAG_NAME_METADATA.equalsIgnoreCase( qName ) ) {
-			this.handleStartMeta();
-			ok = true;
-		} else if ( DocContainer.TAG_NAME_BODY.equalsIgnoreCase( qName ) ) {
-			this.handleStartBody();
-			ok = true;
-		} else if ( DocInfo.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartInfo( props );
-			ok = true;
-		} else if ( DocHeader.TAG_NAME.equalsIgnoreCase( qName ) || DocHeader.TAG_NAME_EXT.equalsIgnoreCase( qName )  ) {
-			this.handleStartHeader( qName, props);
-			ok = true;
-		} else if ( DocFooter.TAG_NAME.equalsIgnoreCase( qName ) || DocFooter.TAG_NAME_EXT.equalsIgnoreCase( qName ) ) {
-			this.handleStartFooter(qName, props);
-			ok = true;
-		} else if ( DocBr.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBr( props);
-			ok = true;
-		} else if ( DocNbsp.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartNbsp( props);
-			ok = true;
-		}
-		return ok;
-	}
-	
-	private boolean handleStartElementPriorityThree( String qName, Properties props ) {
-		boolean ok = false;
-		if ( DocBackground.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBackground();
-			ok = true;
-		} else if ( DocImage.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartImage(props);
-			ok = true;
-		} else if (  DocContainer.TAG_NAME_PL.equalsIgnoreCase( qName ) ) {
-			this.handleStartPl();
-			ok = true;
-		}  else if ( DocBarcode.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBarcode( props);
-			ok = true;
-		} else if ( DocBookmarkTree.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBookmarkTree();
-			ok = true;
-		} else if ( DocBookmark.TAG_NAME.equalsIgnoreCase( qName ) ) {
-			this.handleStartBookmark(props);
-			ok = true;
-		}
-		return ok;
-	}
-	
 	public void handleStartElement( String qName, Properties props ) {
-		boolean ok = this.handleStartElementPriorityOne(qName, props);
-		if ( !ok ) {
-			ok = this.handleStartElementPriorityTwo(qName, props);
-			if ( !ok ) {
-				ok = this.handleStartElementPriorityThree(qName, props);
-				if ( !ok ) {
-					String message = "Element not found : "+qName;
-					if ( failWhenElementNotFound ) {
-						throw new ConfigRuntimeException( message );
-					} else {
-						log.warn( message );
-					}
-				}
+		switch(qName) {
+		  case DocBase.TAG_NAME:
+			  this.handleStartDoc(props);
+		    break;
+		  case DocPara.TAG_NAME:
+			  this.handleStartPara(props);
+		    break;
+		  case DocPara.TAG_NAME_H:
+			  this.handleStartH(props);
+		    break;
+		  case DocPhrase.TAG_NAME:
+			  this.handleStartPhrase(props);
+		    break;
+		  case DocList.TAG_NAME:
+			  this.handleStartList(props);
+		    break;
+		  case DocLi.TAG_NAME:
+			  this.handleStartLi();
+		    break;
+		  case DocTable.TAG_NAME:
+			  this.handleStartTable(props);
+		    break;
+		  case DocRow.TAG_NAME:
+			  this.handleStartRow(props);
+		    break;
+		  case DocCell.TAG_NAME:
+			  this.handleStartCell(props);
+		    break;
+		  case DocPageBreak.TAG_NAME:
+			  this.handleStartPageBreak();
+		    break;
+		  case DocContainer.TAG_NAME_META:
+			  this.handleStartMeta();				// meta and metadata are aliases
+		    break;
+		  case DocContainer.TAG_NAME_METADATA:
+			  this.handleStartMeta();				// meta and metadata are aliases
+		    break;
+		  case DocContainer.TAG_NAME_BODY:
+			  this.handleStartBody();
+		    break;
+		  case DocInfo.TAG_NAME:
+			  this.handleStartInfo(props);
+		    break;
+		  case DocHeader.TAG_NAME:
+			  this.handleStartHeader( qName, props );		// ext version and normal basic version of header / footer use the same method
+		    break;
+		  case DocFooter.TAG_NAME:
+			  this.handleStartFooter( qName, props);		// ext version and normal basic version of header / footer use the same method
+		    break;
+		  case DocHeader.TAG_NAME_EXT:
+			  this.handleStartHeader( qName, props );		// ext version and normal basic version of header / footer use the same method
+		    break;
+		  case DocFooter.TAG_NAME_EXT:
+			  this.handleStartFooter( qName, props);		// ext version and normal basic version of header / footer use the same method
+		    break;
+		  case DocBr.TAG_NAME:
+			  this.handleStartBr(props);
+		    break;
+		  case DocNbsp.TAG_NAME:
+			  this.handleStartNbsp(props);
+		    break;
+		  case DocBackground.TAG_NAME:
+			  this.handleStartBackground();
+		    break;	 
+		  case DocImage.TAG_NAME:
+			  this.handleStartImage(props);
+		    break;
+		  case DocContainer.TAG_NAME_PL:
+			  this.handleStartPl();
+		    break;
+		  case DocBarcode.TAG_NAME:
+			  this.handleStartBarcode(props);
+		    break;
+		  case DocBookmarkTree.TAG_NAME:
+			  this.handleStartBookmarkTree();
+		    break;
+		  case DocBookmark.TAG_NAME:
+			  this.handleStartBookmark(props);
+		    break;
+		  default:
+			String message = "Element not found : "+qName;
+			if ( failWhenElementNotFound ) {
+				throw new ConfigRuntimeException( message );
+			} else {
+				log.warn( message );
 			}
 		}
 		this.handleStartFinalJob(qName, props);
