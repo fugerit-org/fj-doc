@@ -1,0 +1,43 @@
+package test.org.fugerit.java.doc.base.model;
+
+import java.util.Date;
+
+import org.fugerit.java.doc.base.model.DocPara;
+import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
+import org.junit.Assert;
+import org.junit.Test;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+public class TestDocPara {
+
+	@Test
+	public void testNumber() {
+		DocPara model = new DocPara();
+		model.setText( "100000.0" );
+		model.setType( FormatTypeConsts.TYPE_NUMBER );
+		log.info( "test : {}, type : {}", model.getText(), model.getType() );
+		Number n = FormatTypeConsts.standardNumberParse( model.getText() , model.getFormat() );
+		log.info( "n : {} -> {}", n.getClass(), n );
+		model.setFormat( "#,###" );
+		n = FormatTypeConsts.standardNumberParse( model.getText() , model.getFormat() );
+		log.info( "n : {} -> {}", n.getClass(), n );
+		Assert.assertEquals( 100000L , n );
+	}
+	
+	@Test
+	public void testDate() {
+		DocPara model = new DocPara();
+		model.setText( "2023-10-03" );
+		model.setType( FormatTypeConsts.TYPE_DATE );
+		log.info( "test : {}, type : {}", model.getText(), model.getType() );
+		Date d = FormatTypeConsts.standardDateParse( model.getText() , model.getFormat() );
+		log.info( "d : {} -> {}", d.getClass(), d );
+		Assert.assertEquals( java.sql.Date.valueOf( model.getText() ), d );
+		model.setFormat( "yyyy-MM-dd" );
+		FormatTypeConsts.standardDateParse( model.getText() , model.getFormat() );
+		log.info( "d : {} -> {}", d.getClass(), d );
+	}
+	
+}

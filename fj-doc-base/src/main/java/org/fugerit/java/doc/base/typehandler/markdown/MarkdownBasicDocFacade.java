@@ -76,7 +76,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 		}
 		// actual document handling :we will treat only the body
 		DocTypeFacadeHelper helper = new DocTypeFacadeHelper( docBase );
-		this.handleElements( docBase.getDocBody(), helper );
+		this.handleElements( helper.getDocBase().getDocBody(), helper );
 		// flush content
 		this.getWriter().flush();	
 	}

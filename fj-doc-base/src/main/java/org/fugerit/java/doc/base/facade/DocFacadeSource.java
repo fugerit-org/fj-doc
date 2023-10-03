@@ -69,7 +69,7 @@ public class DocFacadeSource {
 				parser = (DocParser) ClassHelper.newInstance( type );
 			}
 		} catch (Exception e) {
-			if ( this.docFacadeSourceConfig.isFailOnSourceModuleNotFound() ) {
+			if ( this.getDocFacadeSourceConfig().isFailOnSourceModuleNotFound() ) {
 				throw new ConfigRuntimeException( "Exception getting parser for sourceType : "+sourceType+" - "+e, e );
 			} else {
 				logger.warn( "Failed to load parser for source type : {} ({})", sourceType, e.toString() );

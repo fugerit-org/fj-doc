@@ -57,6 +57,7 @@ public class TestConfig {
 	public void testDocHelperEuro() {
 		DocHelperEuro config = new DocHelperEuro();
 		log.info( "config-> {}", config.filterText( "test" ) );
+		log.info( "config-> {}", config.filterText( "test €" ) );
 		Assert.assertNotNull( config );
 	}
 	

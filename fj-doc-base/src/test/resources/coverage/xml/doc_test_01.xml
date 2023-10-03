@@ -10,6 +10,20 @@
     </footer-ext>
   </metadata>
   <body>
+  	<para type="number" format="#,###.00">100000</para>
+  	<para type="number" format="#,###">100000</para>
+  	<para type="date" format="MM/dd/yyyy">2023-10-03</para>
+    <para white-space-collapse="false"><![CDATA[<pre>> _____________________
+|  _________________  |
+| |                 | |
+| |      0   0      | |
+| |        -        | |
+| |      \___/      | |
+| |_________________| |
+|_____________________|
+     _|_________|_
+    /             \
+   -----------------</pre>]]></para>
     <phrase>Test phrase 01</phrase>
     <phrase>Test phrase 02</phrase>
     <phrase>Test phrase 03</phrase>

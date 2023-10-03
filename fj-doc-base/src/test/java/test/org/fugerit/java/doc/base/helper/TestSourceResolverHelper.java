@@ -24,6 +24,9 @@ public class TestSourceResolverHelper {
 		String base64 = Base64.getEncoder().encodeToString( StreamIO.readBytes( ClassHelper.loadFromDefaultClassLoader( pathImg ) ) );
 		docImage.setBase64(base64);
 		Assert.assertNotNull( SourceResolverHelper.resolveImage(docImage) );
+		docImage.setBase64( null );
+		docImage.setUrl( "https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/src/test/resources/test/img_test_red.png" );
+		Assert.assertNotNull( SourceResolverHelper.resolveImage(docImage) );
 		log.info( "docImage : {}", docImage );
 	}
 	

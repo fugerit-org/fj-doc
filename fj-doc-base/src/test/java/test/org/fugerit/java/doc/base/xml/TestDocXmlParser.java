@@ -9,6 +9,7 @@ import org.fugerit.java.core.function.SimpleValue;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.result.Result;
+import org.fugerit.java.core.xml.sax.SAXParseResult;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -22,6 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
 import test.org.fugerit.java.BasicTest;
 
@@ -34,6 +36,15 @@ public class TestDocXmlParser extends BasicTest {
 	public static final boolean EXCEPTION = true;
 	
 	private final static Logger logger = LoggerFactory.getLogger( TestDocXmlParser.class );
+	
+	@Test
+	public void testFillDocValidationResultHelper() {
+		SAXParseResult result = new SAXParseResult();
+		result.putWarning( new SAXException( "warning" ) );
+		DocValidationResult docResult = new DocValidationResult( Result.RESULT_CODE_OK );
+		DocXmlParser.fillDocValidationResultHelper(result, docResult);
+		Assert.assertFalse( docResult.getInfoList().isEmpty() );
+	}
 	
 	private boolean validateWorker( String path, boolean valid, boolean exception ) {
 		SimpleValue<Boolean> res = new SimpleValue<>( true );

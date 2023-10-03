@@ -7,6 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.cfg.xml.FactoryCatalog;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -14,6 +15,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
+import org.fugerit.java.doc.base.facade.DocHandlerFactory;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandler;
 import org.junit.Assert;
 import org.junit.Test;
@@ -57,6 +59,7 @@ public class TestDocHandlerFacade {
 		for ( DocTypeHandler handler : facade.handlers() ) {
 			log.info( "current handler {}", handler );
 		}
+		DocHandlerFactory.register( new FactoryCatalog() );
 		Assert.assertFalse( facade.listHandlersForType( SimpleMarkdownBasicTypeHandler.HANDLER.getType() ).isEmpty() );
 	}
 	

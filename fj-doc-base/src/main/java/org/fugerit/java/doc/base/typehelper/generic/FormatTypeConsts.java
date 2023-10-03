@@ -26,7 +26,7 @@ public class FormatTypeConsts {
 		return SafeFunction.get( () -> format == null ? java.sql.Date.valueOf( value ) : new SimpleDateFormat(format).parse( value ) );
 	}
 	
-	public static Number standardNumberFormat( String value, String format ) {
+	public static Number standardNumberParse( String value, String format ) {
 		return SafeFunction.get( () -> format == null ? new BigDecimal( value ) : new DecimalFormat( format ).parse( value ) );
 	}
 

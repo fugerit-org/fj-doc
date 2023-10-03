@@ -44,7 +44,7 @@ import test.org.fugerit.java.BasicTest;
 @Slf4j
 public class TestCoverage extends BasicTest {
 
-	private final static String[] TEST_LIST = { "default_doc", "default_doc_alt", "default_doc_missing_tag", "default_doc_fail1", "default_doc_fail2", "default_doc_empty" };
+	private final static String[] TEST_LIST = { "default_doc", "doc_test_01", "default_doc_alt", "default_doc_missing_tag", "default_doc_fail1", "default_doc_fail2", "default_doc_empty" };
 	
 	private final static DocTypeHandler[] HANDLERS = { 
 			DocTypeHandlerXML.HANDLER, 

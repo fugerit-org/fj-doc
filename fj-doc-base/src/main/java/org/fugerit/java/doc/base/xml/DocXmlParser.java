@@ -23,6 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DocXmlParser extends AbstractDocParser {
 	
+	public static void fillDocValidationResultHelper( SAXParseResult result, DocValidationResult docResult ) {
+		for ( Exception e : result.fatalsAndErrors() ) {
+			docResult.getErrorList().add( e.toString() );
+		}
+		for ( Exception e : result.warnings() ) {
+			docResult.getInfoList().add( e.toString() );
+		}
+	}
+	
 	private DocHelper docHelper;
 	
 	@Getter private boolean failWhenElementNotFound;
@@ -66,12 +75,7 @@ public class DocXmlParser extends AbstractDocParser {
 			} else {
 				result = DocValidator.validate( reader );
 			}
-			for ( Exception e : result.fatalsAndErrors() ) {
-				docResult.getErrorList().add( e.toString() );
-			}
-			for ( Exception e : result.warnings() ) {
-				docResult.getInfoList().add( e.toString() );
-			}
+			fillDocValidationResultHelper(result, docResult);
 			docResult.evaluateResult();
 			log.debug( "Validation result {}", docResult );
 			return docResult;

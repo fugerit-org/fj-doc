@@ -10,6 +10,20 @@
     </footer-ext>
   </metadata>
   <body>
+    <para white-space-collapse="false"><![CDATA[> _____________________
+|  _________________  |
+| |                 | |
+| |      0   0      | |
+| |        -        | |
+| |      \___/      | |
+| |_________________| |
+|_____________________|
+     _|_________|_
+    /             \
+   -----------------]]></para>
+  	<para>test 1</para>
+  	<para space-before="30" space-after="30" space-right="30" space-left="30">test 2</para>
+  	<para text-indent="5" leading="5">test 3</para>
     <phrase>Test phrase 01</phrase>
     <phrase>Test phrase 02</phrase>
     <phrase>Test phrase 03</phrase>
