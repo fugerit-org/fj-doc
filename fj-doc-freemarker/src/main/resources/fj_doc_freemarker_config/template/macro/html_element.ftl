@@ -149,7 +149,6 @@ padding-right : space-right
 white-space-collapse -> false : white-space-collapse: preserve; white-space: pre-wrap;
 -->
 <#macro handlePadding amt dir><#if (amt > 0)> padding-${dir}: ${amt}px;</#if></#macro>
-<#macro handleIndent amt><#if (amt > 0)> padding-${dir}: ${amt}px;</#if></#macro>
 <#macro handleSpacing dc><@handlePadding amt=dc.spaceBefore!0 dir='top'/><@handlePadding amt=((dc.leading!0)*10 + dc.spaceAfter!0) dir='bottom'/><@handlePadding amt=((dc.textIndent!0)*10 + dc.spaceLeft!0) dir='left'/><@handlePadding amt=dc.spaceRight!0 dir='right'/><#if dc.notWhiteSpaceCollapse> white-space-collapse: preserve; white-space: pre-wrap;</#if></#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1> text-align: left;<#elseif alignValue = 2> text-align: center;<#elseif alignValue = 3> text-align: right;<#elseif alignValue = 8 || alignValue = 9> text-align: justify;</#if></#macro>
