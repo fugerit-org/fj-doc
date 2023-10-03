@@ -39,9 +39,9 @@
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p<@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
+		<p<@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align dc=current/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
 	<#else>
-		<h${current.headLevel} <@handleId element=current/><@handleStyleComplete element=current styleValue=current.style alignValue=current.align spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
+		<h${current.headLevel} <@handleId element=current/><@handleStyleComplete element=current styleValue=current.style alignValue=current.align dc=current/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
 	</#if>
 </#macro>
 
@@ -141,7 +141,16 @@
 
 <#macro handleColspan colspanValue><#if (colspanValue != 1)> colspan="${colspanValue}"</#if></#macro>
 
-<#macro handleParaSpacing spaceBefore spaceAfter><#if (spaceBefore > 0)> padding-top: ${spaceBefore}px;</#if><#if (spaceAfter > 0)> padding-bottom: ${spaceAfter}px;</#if></#macro>
+<#-- 
+padding-top : space-before
+padding-bottom : 10 * leading + space-bottom
+padding-left : 10 * text-indent + space-left
+padding-right : space-right
+white-space-collapse -> false : white-space-collapse: preserve; white-space: pre-wrap;
+-->
+<#macro handlePadding amt dir><#if (amt > 0)> padding-${dir}: ${amt}px;</#if></#macro>
+<#macro handleIndent amt><#if (amt > 0)> padding-${dir}: ${amt}px;</#if></#macro>
+<#macro handleSpacing dc><@handlePadding amt=dc.spaceBefore!0 dir='top'/><@handlePadding amt=((dc.leading!0)*10 + dc.spaceAfter!0) dir='bottom'/><@handlePadding amt=((dc.textIndent!0)*10 + dc.spaceLeft!0) dir='left'/><@handlePadding amt=dc.spaceRight!0 dir='right'/><#if dc.notWhiteSpaceCollapse> white-space-collapse: preserve; white-space: pre-wrap;</#if></#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1> text-align: left;<#elseif alignValue = 2> text-align: center;<#elseif alignValue = 3> text-align: right;<#elseif alignValue = 8 || alignValue = 9> text-align: justify;</#if></#macro>
 
@@ -151,10 +160,9 @@
 
 <#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
-<#macro handleStyleComplete element styleValue alignValue spaceBefore spaceAfter><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleParaSpacing spaceBefore=spaceBefore spaceAfter=spaceAfter/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
+<#macro handleStyleComplete element styleValue alignValue dc><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleSpacing dc=dc/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
 <#macro handleStylePrint cStyle><#assign tStyle=cStyle?trim><#if tStyle?has_content> style="${tStyle}"</#if></#macro>
-
 
 <#--
 	macro : addCssValue
