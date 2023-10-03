@@ -8,23 +8,38 @@ import java.util.stream.Stream;
 
 import org.xmlet.xsdparser.xsdelements.XsdChoice;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
+import org.xmlet.xsdparser.xsdelements.XsdMultipleElements;
 import org.xmlet.xsdparser.xsdelements.XsdSequence;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public abstract class AutodocMulti implements Serializable {
+public abstract class AutodocMulti<T extends XsdMultipleElements> implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 5741209190264158477L;
 
-	protected abstract Stream<XsdElement> getElementsStream();
-	
-	protected abstract Stream<XsdChoice> getChoiceStream();
-	
-	protected abstract Stream<XsdSequence> getSequencesStream();
+	protected Stream<XsdElement> getElementsStream() {
+		return this.content.getChildrenElements();
+	}
+
+	protected Stream<XsdChoice> getChoiceStream() {
+		return this.content.getXsdElements().filter(XsdChoice.class::isInstance).map(XsdChoice.class::cast);
+	}
+
+	protected Stream<XsdSequence> getSequencesStream() {
+		return this.content.getXsdElements().filter(XsdSequence.class::isInstance).map(XsdSequence.class::cast);
+	}
+
+	protected AutodocMulti(T content) {
+		super();
+		this.content = content;
+	}
+
+	@Getter protected transient T content;
 	
 	public Collection<XsdElement> getXsdElements() {
 		List<XsdElement> result = null;
