@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+###
+
+- FormatTypeConsts methods for standardDateParse() and standardNumberParse()
+
 ### Changed
 
 - FreeMarkerHtmlTypeHandler, element 'para', more attributes are evaluated : space-left, space-right, white-space-collapse, leading, text-indent
