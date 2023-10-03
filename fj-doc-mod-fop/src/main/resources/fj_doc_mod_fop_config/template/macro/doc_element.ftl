@@ -46,7 +46,7 @@
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block<#if (current.id)??> id="${current.id}"</#if><@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
+	<fo:block<#if (current.id)??> id="${current.id}"</#if><@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleSpacing dc=current/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -72,7 +72,7 @@
 			<#assign current=li.content/>
 			<fo:list-item>
 				<fo:list-item-label end-indent="label-end()">
-					<fo:block<@handleParaSpacing textIndent=current.textIndent!0 spaceBefore=current.spaceBefore!0 spaceAfter=current.spaceAfter!0 spaceLeft=current.spaceLeft!0 spaceRight=current.spaceRight!0/> ><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
+					<fo:block<@handleSpacing dc=current/> ><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
 				</fo:list-item-label>
 				<fo:list-item-body start-indent="body-start()">
 					<fo:block><@handleElement current=li.content/><#if li.secondList><@handleElement current=li.secondContent/></#if></fo:block>
@@ -153,7 +153,16 @@
 
 <#macro handleFormat formatValue><#if formatValue = 'preserve-line'> linefeed-treatment="preserve"</#if></#macro>
 
-<#macro handleParaSpacing textIndent spaceBefore spaceAfter spaceLeft spaceRight><#if (textIndent > 0)> text-indent="${textIndent}px"</#if><#if (spaceBefore > 0)> margin-top="${spaceBefore}px"</#if><#if (spaceAfter > 0)> margin-bottom="${spaceAfter}px"</#if><#if (spaceLeft > 0)> margin-left="${spaceLeft}px"</#if><#if (spaceRight > 0)> margin-right="${spaceRight}px"</#if></#macro>
+<#-- 
+padding-top : space-before
+padding-bottom : 10 * leading + space-bottom
+padding-left : 10 * space-left
+padding-right : space-right
+text-indent : text-indent
+-->
+<#macro handlePadding amt dir><#if (amt > 0)> margin-${dir}="${amt}px"</#if></#macro>
+<#macro handleIndent amt><#if (amt > 0)> text-indent="${amt}px"</#if></#macro>
+<#macro handleSpacing dc><@handleIndent amt=dc.textIndent!0/><@handlePadding amt=dc.spaceBefore!0 dir='top'/><@handlePadding amt=((dc.leading!0)*10 + dc.spaceAfter!0) dir='bottom'/><@handlePadding amt=dc.spaceLeft!0 dir='left'/><@handlePadding amt=dc.spaceRight!0 dir='right'/></#macro>
 
 <#macro handleWhiteSpace element><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse != 'true')> white-space="pre"</#if></#macro>
 

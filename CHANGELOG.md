@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - FreeMarkerHtmlTypeHandler, element 'para', more attributes are evaluated : space-left, space-right, white-space-collapse, leading, text-indent
+- PdfFopTypeHandler, element 'para', attribute leading evaluated
 
 ## [3.1.2] - 2023-10-02
 
