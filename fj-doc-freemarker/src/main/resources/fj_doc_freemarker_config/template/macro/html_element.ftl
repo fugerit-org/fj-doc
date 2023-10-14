@@ -1,6 +1,12 @@
 <#global defaultBorderColor='black'>
 <#global defaultFontSize='10'>
 
+<#if escapeTextAsHtml!false>
+<#import "feature-escape-html.ftl" as escape>
+<#else>
+<#import "feature-escape-none.ftl" as escape>
+</#if>
+
 <#macro handleElement current>
 	<#assign elementType="${current.class.simpleName}"/>
 	<#if elementType = 'DocPhrase'>
@@ -29,19 +35,19 @@
 
 <#macro handlePhrase current>
 	<#if (current.link)??>
-		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> href="${current.link}">${current.text}</a>
+		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> href="${current.link}"><@escape.printText e=current/></a>
 	<#elseif (current.anchor)??>
-		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>>${current.text}</span>
+		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>><@escape.printText e=current/></span>
 	<#else>
-		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>>${current.text}</span>
+		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>><@escape.printText e=current/></span>
 	</#if>
 </#macro>
 
 <#macro handlePara current>
 	<#if current.headLevel == 0>
-		<p<@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align dc=current/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
+		<p<@handleId element=current/><@handleStyleComplete element=current styleValue=current.originalStyle alignValue=current.align dc=current/>><@escape.printText e=current/><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></p>
 	<#else>
-		<h${current.headLevel} <@handleId element=current/><@handleStyleComplete element=current styleValue=current.style alignValue=current.align dc=current/>>${current.text}<#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
+		<h${current.headLevel} <@handleId element=current/><@handleStyleComplete element=current styleValue=current.style alignValue=current.align dc=current/>><@escape.printText e=current/><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></h${current.headLevel}>
 	</#if>
 </#macro>
 
