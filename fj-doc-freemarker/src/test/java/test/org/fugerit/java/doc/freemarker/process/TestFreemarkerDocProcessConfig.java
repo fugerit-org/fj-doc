@@ -3,12 +3,14 @@ package test.org.fugerit.java.doc.freemarker.process;
 import static org.junit.Assert.fail;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -136,8 +138,10 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 			// test process 1
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				DocProcessData data = new DocProcessData();
-				config.process( "test_02" , DocProcessContext.newContext(), data, FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
+				config.process( "test_02" , DocProcessContext.newContext( "testKey", "<test/>" ), data, FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
 				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
+				File file = new File( "target/test_02.xml" );
+				FileIO.writeBytes( data.getCurrentXmlData().getBytes() , file );
 			}
 		} );
 	}

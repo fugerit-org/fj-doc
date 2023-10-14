@@ -1,3 +1,4 @@
+<#ftl output_format="XML">
 <?xml version="1.0" encoding="utf-8"?>
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
@@ -29,7 +30,7 @@
   </meta>
  
   <body>
-    
+    	<para>${.output_format} - ${testKey!'not present'}</para>
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
     			<cell align="center" border-color="#ee0000" border-width="1"><para style="bold">Name</para></cell>
