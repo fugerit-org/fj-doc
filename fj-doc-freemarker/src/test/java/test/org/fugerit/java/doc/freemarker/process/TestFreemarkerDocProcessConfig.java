@@ -6,17 +6,23 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
@@ -136,12 +142,20 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
 			}
 			// test process 1
-			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
-				DocProcessData data = new DocProcessData();
-				config.process( "test_02" , DocProcessContext.newContext( "testKey", "<test/>" ), data, FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
-				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
-				File file = new File( "target/test_02.xml" );
-				FileIO.writeBytes( data.getCurrentXmlData().getBytes() , file );
+			// handler list :
+			FreeMarkerHtmlTypeHandler custom1 = new FreeMarkerHtmlTypeHandler();
+			try ( StringReader reader = new StringReader( "<config><docHandlerCustomConfig escapeTextAsHtml='true'/></config>" ) ) {
+				custom1.configure( DOMIO.loadDOMDoc( reader ).getDocumentElement() );
+			}
+			DocTypeHandler[] handlers = { FreeMarkerHtmlTypeHandlerUTF8.HANDLER, FreeMarkerHtmlTypeHandlerEscapeUTF8.HANDLER, FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8.HANDLER, custom1 };
+			for ( int k=0; k<handlers.length; k++ ) {
+				try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+					DocProcessData data = new DocProcessData();
+					config.process( "test_02" , DocProcessContext.newContext( "testKey", "<test/>" ), data, FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
+					Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
+					File file = new File( "target/test_02_handler_"+k+".xml" );
+					FileIO.writeBytes( data.getCurrentXmlData().getBytes() , file );
+				}
 			}
 		} );
 	}
