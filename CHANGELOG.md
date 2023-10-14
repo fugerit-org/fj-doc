@@ -16,6 +16,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-freemarker] FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8 with default escapeTextAsHtml=true and UTF8 charset
 - [fj-doc-freemarker] output_format xml test
 
+### Changed
+
+- [fj-doc-freemarker] FreeMarkerHtmlTypeHandlerEscapeUTF8 and FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8 set as default for config stub generation
+
+### Removed
+
+- reference to fj-doc-mod-poi5 in README.md
+
 ## [3.1.3] - 2023-10-03
 
 ### Added
