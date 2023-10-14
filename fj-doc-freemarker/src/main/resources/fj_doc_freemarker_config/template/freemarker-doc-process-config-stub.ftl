@@ -5,7 +5,7 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<!--
-		Configuration stub version : 004 (2023-08-02)
+		Configuration stub version : 005 (2023-10-14)
 	-->
 
 	<#assign stubHandler=stubParams['stub-handler']!'1'>
@@ -19,9 +19,9 @@
 		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
 	
 		<!-- Type handlers for html using freemarker --> 
-		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />	
 		<!-- Type handlers for html using freemarker (fragment version, only generates body content no html or head part --> 
-		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
+		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
 		
 		<#assign enableFopBase=stubParams['enable-fop-base']!'0'>
 		<#assign enableFopFull=stubParams['enable-fop-full']!'0'>
