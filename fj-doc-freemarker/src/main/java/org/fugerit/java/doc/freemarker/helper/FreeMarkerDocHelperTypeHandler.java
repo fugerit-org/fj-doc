@@ -74,16 +74,13 @@ public class FreeMarkerDocHelperTypeHandler extends DocTypeHandlerDefault {
 		chain.apply( context, data );
 		StreamIO.pipeCharCloseBoth( data.getCurrentXmlReader() , new OutputStreamWriter( docOutput.getOs(), this.getCharset() ) );
 	}
+	
+	
 
 	@Override
-	public void configure(Element tag) throws ConfigException {
-		super.configure(tag);
-		if ( tag != null ) {
-			Properties atts = DOMUtils.attributesToProperties( tag );
-			this.setEscapeTextAsHtml( BooleanUtils.isTrue( atts.getProperty( ATT_ESCAPE_TEXT_AS_HTML ) ) );
-		}
-	}
-	
-	
+	protected void handleConfigTag(Element config) throws ConfigException {
+		Properties atts = DOMUtils.attributesToProperties( config );
+		this.setEscapeTextAsHtml( BooleanUtils.isTrue( atts.getProperty( ATT_ESCAPE_TEXT_AS_HTML ) ) );
+	}	
 	
 }
