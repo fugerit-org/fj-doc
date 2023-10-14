@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.4] - 2023-10-14
+
 ### Added
 
+- [fj-doc-freemarker] config attribute for FreeMarkerDocHelperTypeHandler : escapeTextAsHtml
 - [fj-doc-freemarker] output_format xml test
 
 ## [3.1.3] - 2023-10-03
