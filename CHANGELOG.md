@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-freemarker] output_format xml test
+
 ## [3.1.3] - 2023-10-03
 
 ### Added
