@@ -2,7 +2,21 @@
 
 *Since* : fj-doc 0.7
 
-## Running the application in dev mode as a single package
+Playground to demonstrate Fugerit Venus Doc project features.
+
+## 1. Quickstart : Run built container image
+
+A public docker repository is available (since version 3.1.5) : 
+
+`https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general`
+
+Running the project is as simple as : 
+
+`docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest`
+
+Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-doc-playground/home/)
+
+## 2. Quickstart : Running the application in dev mode as a single package
 
 You can run the application in live mode : 
 shell script  
@@ -12,9 +26,9 @@ cd fj-doc-playground-quarkus
 mvn compile quarkus:dev -P buildreact
 ```
 
-And go to the home page link [http://localhost:8080/fj-doc-playground/home](http://localhost:8080/fj-doc-playground/home)
+Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-doc-playground/home/)
 
-## Running the back end (quarkus) and front end (react) separately : 
+## 3. Quickstart : Running the back end (quarkus) and front end (react) separately : 
 
 launch quarkus : 
 
@@ -30,18 +44,23 @@ cd fj-doc-playground-quarkus/src/main/react
 npm run start
 ```
 
-## required software
-* jdk 11 (tested with oracle jdk 11.0.16.1)
-* apache maven (tested with apache maven 3.8.7)
-* node (tested with node js 18.12.1)
+Open : [http://localhost:3000/fj-doc-playground/home/](http://localhost:3000/fj-doc-playground/home/)
 
-## modules currently supported in playground : 
-* fj-doc-val (and all its extensions)
-* fj-doc-base (and all its extensions)
+## 4. required software
 
-## functions available
-* Doc Xml Editor : allow for writing documents in XML/JSON/YAML, validating them and generating some output formats (currently PDF/XLSX/HTML) [covers fj-doc-mod* modules]
-* Doc Conversion : allow source conversion from/to XML/JSON/YAML [convers fj-doc-base* modules]
-* Doc Type Validator : allow validation of documents in various formats [covers fj-doc-val* modules]
+- jdk 11 (tested with oracle jdk 11.0.16.1)
+- apache maven (tested with apache maven 3.8.7)
+- node (tested with node js 18.12.1)
+
+## 5. modules currently supported in playground : 
+
+- fj-doc-val (and all its extensions)
+- fj-doc-base (and all its extensions)
+
+## 5. functions available
+
+- Doc Editor and Generator : allow for writing documents in FTLX/XML/JSON/YAML, validating them and generating some output formats (currently PDF/XLSX/HTML) [covers fj-doc-mod* modules]
+- Doc Conversion : allow source conversion from/to XML/JSON/YAML [convers fj-doc-base* modules]
+- Doc Type Validator : allow validation of documents in various formats [covers fj-doc-val* modules]
 
 **NOTE**: A catalog of sample documents has been added to the Doc Xml Editor and Doc Conversion functionalities.
