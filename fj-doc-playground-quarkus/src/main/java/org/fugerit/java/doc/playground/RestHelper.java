@@ -18,7 +18,6 @@ public class RestHelper {
 				res = Response.status(Response.Status.BAD_REQUEST).build();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			log.info("Error : " + e, e);
 			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
