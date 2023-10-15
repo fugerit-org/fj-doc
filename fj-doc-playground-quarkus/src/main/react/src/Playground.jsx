@@ -59,7 +59,7 @@ class Playground extends Component {
 
 					<Grid container spacing={4} columns={{ xs: 16 }}>
 					  <Grid item xs={4}><Link to={homepage}><Button color="primary">Home</Button></Link></Grid>
-					  <Grid item xs={4}><Link to={homepage + "/doc_fun/doc_xml_editor"}><Button color="primary">Doc Xml Editor</Button></Link></Grid>
+					  <Grid item xs={4}><Link to={homepage + "/doc_fun/doc_xml_editor"}><Button color="primary">Doc editor and generator</Button></Link></Grid>
 					  <Grid item xs={4}><Link to={homepage + "/doc_fun/doc_conversion"}><Button color="primary">Doc Conversion (XML/JSON/YAML)</Button></Link></Grid>
 					  <Grid item xs={4}><Link to={homepage + "/doc_fun/doc_type_validator"}><Button color="primary">Doc Type Validator</Button></Link></Grid>
 					</Grid>

@@ -9,6 +9,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/webpack-resolver";
 
 class DocXmlEditor extends Component {
 
@@ -18,11 +19,13 @@ class DocXmlEditor extends Component {
 		this.handleValidate = this.handleValidate.bind(this);
 		this.handleFormat = this.handleFormat.bind(this);
 		this.handleDoc = this.handleDoc.bind(this);
+		this.handleFreemarkerData = this.handleFreemarkerData.bind(this);
 		this.handleEditorContent = this.handleEditorContent.bind(this);
 		this.state = {
-			inputFormat: 'XML',			
+			inputFormat: 'FTLX',			
 			outputFormat: 'HTML',
 			docContent: '',
+			freemarkerJsonData: '{"docTitle":"My FreeMarker Template Sample Doc Title"}',
 			docOutput: null,
 			docFormat: null,
 			generationTime: null
@@ -39,6 +42,7 @@ class DocXmlEditor extends Component {
 			payload.inputFormat = this.state.inputFormat;
 			payload.outputFormat = this.state.outputFormat;
 			payload.docContent = this.state.docContent;
+			payload.freemarkerJsonData = this.state.freemarkerJsonData;
 			appService.doAjaxJson('POST', '/generate/document', payload).then(response => {
 				if (response.success) {
 					reactState.setState({
@@ -94,6 +98,13 @@ class DocXmlEditor extends Component {
 		}); 
 	};
 	
+	handleFreemarkerData( newValue ) {
+		this.setState({
+			outputFormat: this.state.outputFormat,
+			freemarkerJsonData: newValue
+		}); 
+	};
+	
 	handleEditorContent = ( content ) => {
 		this.setState(
 			{ 
@@ -105,9 +116,35 @@ class DocXmlEditor extends Component {
 
 	render() {
 		
+		let freemarkerJsonData = '';
 		let editorInFormat = 'xml';
 		if ( this.state.inputFormat != null ) {
-			editorInFormat = this.state.inputFormat.toLowerCase()
+			if ( this.state.inputFormat === 'FTLX' ) {
+				editorInFormat = 'text'
+				freemarkerJsonData = <Row>
+					<Col>				
+						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL with the prefix 'ftlData'.</p>
+						<p>For instance a json like {"{ \"docTitle\": \"My FreeMarker Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{ftlData.docTitle}"} in template</p>	
+						<AceEditor
+							mode="json"
+							theme="xcode"
+							name="DOC_JSON_EDITOR"
+							editorProps={{ $blockScrolling: true }}
+							enableBasicAutocompletion={true}
+							enableLiveAutocompletion={true}
+							enableSnippets={true}
+							value={this.state.freemarkerJsonData}
+							onChange={this.handleFreemarkerData}
+							width='100%'
+						/>
+					</Col>
+					<Col>
+						
+					</Col>
+				</Row>	
+			} else {
+				editorInFormat = this.state.inputFormat.toLowerCase()
+			}
 		}
 
 		let outputData = <Fragment>Here will be the output</Fragment>
@@ -130,7 +167,7 @@ class DocXmlEditor extends Component {
 			<Form>
 				<Row>
 					<Col>
-						<DocCatalog handleEditorContent={this.handleEditorContent} />
+						<DocCatalog handleEditorContent={this.handleEditorContent} defaultDocId='default'/>
 					</Col>
 				</Row>
 				<Row>
@@ -144,6 +181,7 @@ class DocXmlEditor extends Component {
 						    onChange={this.handleInputFormat}
 							value={this.state.inputFormat}
 						  >
+						    <MenuItem value='FTLX'>FTLX (FreeMarker Template XML)</MenuItem>
 						    <MenuItem value='XML'>XML</MenuItem>
 						    <MenuItem value='JSON'>JSON</MenuItem>
 						    <MenuItem value='YAML'>YAML</MenuItem>
@@ -188,7 +226,7 @@ class DocXmlEditor extends Component {
 					<Col>
 						<div>{outputData}</div>
 					</Col>
-				</Row>			
+				</Row>				
 				<Row>
 					<Col>						
 						<Row>
@@ -203,7 +241,8 @@ class DocXmlEditor extends Component {
 					<Col>
 						
 					</Col>
-				</Row>							
+				</Row>		
+				{freemarkerJsonData}					
 			</Form>
 
 		</Fragment>

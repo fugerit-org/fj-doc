@@ -1,9 +1,15 @@
 package org.fugerit.java.doc.playground.doc;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Reader;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.util.checkpoint.CheckpointUtils;
 import org.fugerit.java.core.util.result.Result;
@@ -13,6 +19,7 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
+import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
@@ -24,6 +31,10 @@ import org.fugerit.java.doc.playground.config.InitPlayground;
 import org.fugerit.java.doc.playground.facade.BasicInput;
 import org.fugerit.java.doc.playground.facade.InputFacade;
 
+import freemarker.cache.StringTemplateLoader;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.Version;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -38,6 +49,35 @@ import lombok.extern.slf4j.Slf4j;
 @Path("/generate")
 public class GenerateRest {
 
+	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
+		SafeFunction.apply( () -> {
+			DocInput docInput = DocInput.newInput( type, reader , sourceType );
+			DocOutput docOutput = DocOutput.newOutput( baos );
+			handler.handle(docInput, docOutput);
+		} );
+	}
+	
+	private void handleFtlx( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos, String freemarkerJsonData ) {
+		SafeFunction.apply( () -> {
+			// volatile FreeMarker Template configuration
+			String templateName = "current"+System.currentTimeMillis();
+			Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
+			StringTemplateLoader loader = new StringTemplateLoader();
+			String templateData = "<#assign ftlData = "+freemarkerJsonData+">"+StreamIO.readString( reader );
+			loader.putTemplate( templateName , templateData );
+			configuration.setTemplateLoader( loader );
+			Template template = configuration.getTemplate( templateName );
+			Map<Object, Object> data = new HashMap<>();
+			try ( StringWriter writer = new StringWriter() ) {
+				template.process( data , writer );
+				try ( StringReader ftlReader = new StringReader( writer.toString() ) ) {
+					this.doHandle(handler, type, sourceType, ftlReader, baos);
+				}
+			}
+			configuration.clearTemplateCache();
+		} );
+	}
+	
 	private byte[] generateHelper( GenerateInput input, DocTypeHandler handler) throws Exception {
 		byte[] result = null;
 		if ( input.getDocContent() != null ) {
@@ -51,9 +91,11 @@ public class GenerateRest {
 				}
 				String type = input.getOutputFormat().toLowerCase();
 				log.info( "output format : {}", type );
-				DocInput docInput = DocInput.newInput( type, reader , sourceType );
-				DocOutput docOutput = DocOutput.newOutput( baos );
-				handler.handle(docInput, docOutput);
+				if ( InputFacade.FORMAT_FTLX.equalsIgnoreCase( input.getInputFormat() ) ) {
+					this.handleFtlx(handler, type, sourceType, reader, baos, input.getFreemarkerJsonData());
+				} else {
+					this.doHandle(handler, type, sourceType, reader, baos);
+				}
 				result =  baos.toByteArray();
 			}
 		}

@@ -1,15 +1,10 @@
 package org.fugerit.java.doc.playground.facade;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class BasicOutput {
 
-	private String message;
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
+	@Setter @Getter private String message;
 	
 }
