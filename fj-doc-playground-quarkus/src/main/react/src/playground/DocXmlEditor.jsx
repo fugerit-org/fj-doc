@@ -9,6 +9,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
+import "ace-builds/webpack-resolver";
 
 class DocXmlEditor extends Component {
 
