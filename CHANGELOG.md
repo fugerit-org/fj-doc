@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - favicon and logo for playground quarkus
 
+### Fixed
+
+- [Server-side template injection](https://github.com/fugerit-org/fj-doc/security/code-scanning/9)
+
 ## [3.1.5] - 2023-10-15
 
 ### Added

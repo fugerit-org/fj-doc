@@ -31,6 +31,9 @@ import org.fugerit.java.doc.playground.config.InitPlayground;
 import org.fugerit.java.doc.playground.facade.BasicInput;
 import org.fugerit.java.doc.playground.facade.InputFacade;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -57,21 +60,29 @@ public class GenerateRest {
 		} );
 	}
 	
+	private void handleConfiguration( Configuration configuration, String freemarkerJsonData, String ftlData, String chainId ) {
+		StringTemplateLoader loader = new StringTemplateLoader();
+		String chainData = "<#assign ftlData = "+freemarkerJsonData+">"+ftlData;
+		loader.putTemplate( chainId , chainData );
+		configuration.setTemplateLoader( loader );
+	}
+	
 	private void handleFtlx( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos, String freemarkerJsonData ) {
 		SafeFunction.apply( () -> {
 			// volatile FreeMarker Template configuration
-			String templateName = "current"+System.currentTimeMillis();
+			String chainId = "current_"+System.currentTimeMillis();
 			Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
-			StringTemplateLoader loader = new StringTemplateLoader();
-			String templateData = "<#assign ftlData = "+freemarkerJsonData+">"+StreamIO.readString( reader );
-			loader.putTemplate( templateName , templateData );
-			configuration.setTemplateLoader( loader );
-			Template template = configuration.getTemplate( templateName );
-			Map<Object, Object> data = new HashMap<>();
-			try ( StringWriter writer = new StringWriter() ) {
-				template.process( data , writer );
-				try ( StringReader ftlReader = new StringReader( writer.toString() ) ) {
-					this.doHandle(handler, type, sourceType, ftlReader, baos);
+			ObjectMapper mapper = new ObjectMapper();
+			try ( StringReader jsonReader = new StringReader(freemarkerJsonData) ) {
+				JsonNode node = mapper.readTree( jsonReader ); // parse json node to sanitize input
+				this.handleConfiguration(configuration, mapper.writeValueAsString( node ), StreamIO.readString( reader ), chainId );
+				Template currentChain = configuration.getTemplate( chainId );
+				Map<Object, Object> data = new HashMap<>();
+				try ( StringWriter writer = new StringWriter() ) {
+					currentChain.process( data , writer );
+					try ( StringReader ftlReader = new StringReader( writer.toString() ) ) {
+						this.doHandle(handler, type, sourceType, ftlReader, baos);
+					}
 				}
 			}
 			configuration.clearTemplateCache();
