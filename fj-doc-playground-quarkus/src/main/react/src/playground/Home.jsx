@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
-import Link from '@mui/material/Link';
+import { Link } from "react-router-dom";
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -9,6 +10,8 @@ import Avatar from '@mui/material/Avatar';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import ArticleIcon from '@mui/icons-material/Article';
 import DoneIcon from '@mui/icons-material/Done';
+
+
 
 const homepage = '/fj-doc-playground/home';
 
@@ -24,7 +27,7 @@ class Home extends Component {
 							<ModeEditOutlineIcon />
 						</Avatar>
 					</ListItemAvatar>
-					<Link href={homepage + "/doc_fun/doc_xml_editor"}>
+					<Link to={homepage + "/doc_fun/doc_xml_editor"}>
 						<ListItemText primary="Doc editor (FTL, XML, JSON or YAML) and generator (HTML, PDF or XLSX)"
 							secondary='Demonstrates the Venus (fj-doc) core capabilities for generating documents in various formats' />
 					</Link>
@@ -35,7 +38,7 @@ class Home extends Component {
 							<ArticleIcon />
 						</Avatar>
 					</ListItemAvatar>
-					<Link href={homepage + "/doc_fun/doc_conversion"}>
+					<Link to={homepage + "/doc_fun/doc_conversion"}>
 						<ListItemText primary="Source document conversion from/to XML/JSON/YAML"
 							secondary='Allow conversion of the Venus Doc source documents in supported formats.' />
 					</Link>
@@ -46,7 +49,7 @@ class Home extends Component {
 							<DoneIcon />
 						</Avatar>
 					</ListItemAvatar>
-					<Link href={homepage + "/doc_fun/doc_type_validator"}>
+					<Link to={homepage + "/doc_fun/doc_type_validator"}>
 						<ListItemText primary="Doc validation testing playground (fj-doc-val-*)"
 							secondary='Allow upload and validation in supported formats.' />
 					</Link>
