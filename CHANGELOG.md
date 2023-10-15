@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Run locally instruction in playground quarkus
 
+### Changed
+
+- favicon and logo for playground quarkus
+
 ## [3.1.5] - 2023-10-15
 
 ### Added
