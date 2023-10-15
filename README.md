@@ -18,7 +18,7 @@ The Core library (fj-doc-base) is all you need to start, even though typically y
 * [fj-doc-freemarker](fj-doc-freemarker/README.md)
 * One or more type handlers modules
 
-Useful resources : [github pages documentation](https://venusdocs.fugerit.org/) | [project home page](https://www.fugerit.org/perm/venus) | docgen [home](https://www.fugerit.org/data/java/doc/venus/index.html) | [release notes](https://www.fugerit.org/data/java/doc/venus/release-notes.html) | [Doc XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html) | [freemarker-doc-process-config XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html) | [Venus Doc Meta Informations reference](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html) | [Venus Guides](https://venusguides.fugerit.org/)
+Useful resources : [github pages documentation](https://venusdocs.fugerit.org/) | [project home page](https://www.fugerit.org/perm/venus) | docgen [home](https://www.fugerit.org/data/java/doc/venus/index.html) | [release notes](https://www.fugerit.org/data/java/doc/venus/release-notes.html) | [Doc XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html) | [freemarker-doc-process-config XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html) | [Venus Doc Meta Informations reference](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html) | [Venus Guides](https://venusguides.fugerit.org/) | [Online playground](https://www.fugerit.org/fj-doc-playground/home/)
 
 A quick start is available in module [fj-doc-sample](fj-doc-sample/README.md)  
 
@@ -55,8 +55,9 @@ There are five kinds of components (each components README.md contains module st
 * [Doc type validation (fj-doc-val)](fj-doc-val/README.md) - simple utilities for validating file type.
 
 ### 5. Tutorial :
-* [Playground (fj-doc-playground-quarkus)](fj-doc-playground-quarkus/README.md) [since 0.7.0]
 * [Samples and Quickstart (fj-doc-sample)](fj-doc-sample/README.md)
+* [Playground (fj-doc-playground-quarkus)](fj-doc-playground-quarkus/README.md) [since 0.7.0]
+* [Playground online version](https://www.fugerit.org/fj-doc-playground/home/)
 
 ### 6. Extension Type Handlers (Extension renders) :
 Basically the same as type handlers but based on libraries non available on Maven Repository Central (es. PDFLIB).  
