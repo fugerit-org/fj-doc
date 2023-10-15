@@ -8,7 +8,7 @@ class DocCatalog extends Component {
 		super(props);
 		this.handleSelectDocument = this.handleSelectDocument.bind(this);
 		this.state = {
-			currentEntryId: 'default',
+			currentEntryId: this.props.defaultDocId,
 			entryList: null
 		}
 	}
@@ -58,7 +58,7 @@ class DocCatalog extends Component {
 						<Form.Label>Document samples catalog</Form.Label>
 					</Col>
 					<Col>
-						<Form.Select aria-label="Select output format" onChange={this.handleSelectDocument}>
+						<Form.Select aria-label="Select output format" onChange={this.handleSelectDocument}  defaultValue={this.props.defaultDocId}>
 							{options}
 						</Form.Select>
 					</Col>

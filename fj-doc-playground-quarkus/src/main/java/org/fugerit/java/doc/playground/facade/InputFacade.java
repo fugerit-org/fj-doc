@@ -12,7 +12,9 @@ public class InputFacade {
 	public static final String FORMAT_JSON = "JSON";
 	public static final String FORMAT_YAML = "YAML";
 	
-	protected static final String[] FORMATS_A = { FORMAT_XML, FORMAT_JSON, FORMAT_YAML };
+	public static final String FORMAT_FTLX = "FTLX";
+	
+	protected static final String[] FORMATS_A = { FORMAT_XML, FORMAT_JSON, FORMAT_YAML, FORMAT_FTLX };
 	
 	public static final List<String> FORMAT_LIST = Collections.unmodifiableList( Arrays.asList( FORMATS_A ) );
 	

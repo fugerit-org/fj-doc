@@ -93,7 +93,7 @@ class DocConversion extends Component {
 			<Form>
 				<Row>
 					<Col>
-						<DocCatalog handleEditorContent={this.handleEditorContent} />
+						<DocCatalog handleEditorContent={this.handleEditorContent} defaultDocId='default_xml'/>
 					</Col>
 				</Row>
 				<Row>
