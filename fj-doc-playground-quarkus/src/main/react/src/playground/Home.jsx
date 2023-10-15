@@ -2,6 +2,9 @@ import React, { Component, Fragment } from 'react';
 
 import { Link } from "react-router-dom";
 
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -9,11 +12,14 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
 import ArticleIcon from '@mui/icons-material/Article';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DoneIcon from '@mui/icons-material/Done';
-
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 
 const homepage = '/fj-doc-playground/home';
+
+const cmdDockerRun = 'docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest';
 
 class Home extends Component {
 
@@ -55,6 +61,17 @@ class Home extends Component {
 					</Link>
 				</ListItem>
 			</List>
+ 			<Grid id="firstRow" container spacing={1}>
+ 				<Grid item sx={8}>
+ 					<p>To run locally, <a href="https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus">go to the project page</a> or use the public image : </p>
+ 				</Grid>
+ 			</Grid>
+ 			<Grid id="secondRow" container spacing={1}>
+ 	 			<Grid item sx={8}>
+ 					<TextField sx={{ width: '800px' }} id="outlined-basic" label="docker run" variant="outlined" value={cmdDockerRun}/>
+ 					<CopyToClipboard text={cmdDockerRun}><Button><ContentCopyIcon /></Button></CopyToClipboard>
+ 				</Grid>
+    		</Grid>
 		</Fragment>
 	}
 
