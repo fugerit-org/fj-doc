@@ -63,13 +63,18 @@ class Home extends Component {
 			</List>
  			<Grid id="firstRow" container spacing={1}>
  				<Grid item sx={8}>
- 					<p>To run locally, <a href="https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus">go to the project page</a> or use the public image : </p>
+ 					<p>To run locally, <a href="https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus">go to the project page</a> or use a public image : </p>
  				</Grid>
  			</Grid>
  			<Grid id="secondRow" container spacing={1}>
  	 			<Grid item sx={8}>
  					<TextField sx={{ width: '800px' }} id="outlined-basic" label="docker run" variant="outlined" value={cmdDockerRun}/>
  					<CopyToClipboard text={cmdDockerRun}><Button><ContentCopyIcon /></Button></CopyToClipboard>
+ 				</Grid>
+    		</Grid>
+   			<Grid id="secondRow" container spacing={1}>
+ 	 			<Grid item sx={8}>
+ 					And open <a href="http://localhost:8080/fj-doc-playground/home/">http://localhost:8080/fj-doc-playground/home/</a> 
  				</Grid>
     		</Grid>
 		</Fragment>
