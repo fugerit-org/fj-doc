@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- FreeMarker Template sample features on fj-doc-playground-quarkus (91)
+
 ### Changed
 
 - quarkus version set to 3.4.3
