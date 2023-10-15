@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Maven wrapper
 - Public [Playground docker repository](https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general)
 - Dockerfile for playground and instructions
 - FreeMarker Template sample features on fj-doc-playground-quarkus (91)
