@@ -72,9 +72,14 @@ class Home extends Component {
  					<CopyToClipboard text={cmdDockerRun}><Button><ContentCopyIcon /></Button></CopyToClipboard>
  				</Grid>
     		</Grid>
-   			<Grid id="secondRow" container spacing={1} style={{ paddingLeft: 15 }}>
+   			<Grid id="thirdRow" container spacing={1} style={{ paddingLeft: 15 }}>
  	 			<Grid item sx={8}>
  					And open <a href="http://localhost:8080/fj-doc-playground/home/">http://localhost:8080/fj-doc-playground/home/</a> 
+ 				</Grid>
+    		</Grid>
+     		<Grid id="fourthRow" container spacing={1} style={{ paddingLeft: 15, paddingTop: 15 }}>
+ 	 			<Grid item sx={8}>
+ 					Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tag. 
  				</Grid>
     		</Grid>
 		</Fragment>
