@@ -37,7 +37,7 @@ class GenerateRestTest {
 	
     @Test
     void testGenerateDocument() {   	
-    	int[] testId = { 1, 2, 3, 4, 5, 6, 7 };
+    	int[] testId = { 1, 2, 3, 4, 5, 6, 7, 8 };
     	for ( int k=0; k<testId.length; k++ ) {
     		this.testWorker( "/generate/document", "generate/test_generate_input_0"+testId[k]+".json" );
     	}   
