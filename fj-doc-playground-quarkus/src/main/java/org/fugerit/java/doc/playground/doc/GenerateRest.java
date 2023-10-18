@@ -19,6 +19,7 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
+import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
@@ -121,6 +122,8 @@ public class GenerateRest {
 			handler = FreeMarkerHtmlFragmentTypeHandler.HANDLER;
 		} else if ( "PDFA".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = InitPlayground.PDFA_FOP_TYPE_HANDLER;
+		} else if ( "MD".equalsIgnoreCase( input.getOutputFormat() ) ) {
+			handler = SimpleMarkdownExtTypeHandler.HANDLER_NOCOMMENTS_UTF8;
 		}
 		return handler;
 	}

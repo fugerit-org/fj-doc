@@ -33,10 +33,10 @@
   <body>
   		<para>${ftlData.docTitle!'My sample title'}</para>
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
-    		<row>
-    			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
-    			<cell align="center"><para style="bold">Surname</para></cell>
-    			<cell align="center"><para style="bold">Title</para></cell>
+    		<row header="true">
+    			<cell align="center"><para>Name</para></cell>
+    			<cell align="center"><para>Surname</para></cell>
+    			<cell align="center"><para>Title</para></cell>
     		</row>
        		<row>
     			<cell><para><![CDATA[Luthien]]></para></cell>

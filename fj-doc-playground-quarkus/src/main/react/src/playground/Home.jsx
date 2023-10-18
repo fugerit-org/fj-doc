@@ -34,7 +34,7 @@ class Home extends Component {
 						</Avatar>
 					</ListItemAvatar>
 					<Link to={homepage + "/doc_fun/doc_xml_editor"}>
-						<ListItemText primary="Doc editor (FTL, XML, JSON or YAML) and generator (HTML, PDF or XLSX)"
+						<ListItemText primary="Doc editor (FTL, XML, JSON or YAML) and generator (HTML, PDF, XLSX or Markdwon)"
 							secondary='Demonstrates the Venus (fj-doc) core capabilities for generating documents in various formats' />
 					</Link>
 				</ListItem>

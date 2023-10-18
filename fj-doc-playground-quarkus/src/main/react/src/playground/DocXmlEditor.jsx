@@ -6,7 +6,10 @@ import appService from '../common/app-service';
 
 import AceEditor from "react-ace";
 
+import MarkdownEditor from '@uiw/react-markdown-editor';
+
 import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/webpack-resolver";
@@ -158,6 +161,9 @@ class DocXmlEditor extends Component {
 			}  else if ( this.state.docFormat === 'XLSX' ) {
 				let srcData = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+ this.state.docOutput;
 				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
+			} else if ( this.state.docFormat === 'MD' ) {
+				let decodedStringAtoB = atob(this.state.docOutput);
+				outputData = <MarkdownEditor  value={decodedStringAtoB} />
 			}
 			outputData = <Fragment>{outputData}<p>Generation time : {this.state.generationTime}</p></Fragment>
 		}
@@ -204,6 +210,7 @@ class DocXmlEditor extends Component {
 						    <MenuItem value='PDF'>PDF</MenuItem>
 						    <MenuItem value='PDFA'>PDF/A</MenuItem>
 						    <MenuItem value='XLSX'>XLSX</MenuItem>
+						    <MenuItem value='MD'>Markdown (MD)</MenuItem>
 						  </Select>
 						</FormControl>								
 					</Col>
