@@ -34,6 +34,9 @@ class DocCatalog extends Component {
 		appService.doAjaxMultipart('GET', '/catalog/entry/'+id, null).then(response => {
 			if (response.success) {
 				reactState.props.handleEditorContent( response.result.docOutput );
+				if ( (reactState.props.handleJsonDataContent) && (response.result.jsonData) ) {
+					reactState.props.handleJsonDataContent( response.result.jsonData );
+				}
 			} else {
 				reactState.setState({
 					currentEntryData: null

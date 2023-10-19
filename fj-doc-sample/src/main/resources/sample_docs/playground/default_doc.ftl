@@ -14,13 +14,15 @@
   	For documentation on how to write a valid Venus Doc XML Meta Model refer to : 
   	https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html
   -->
+  
+  <#assign defaultTitle="My sample title">
 
   <metadata>
   	<!-- Margin for document : left;right;top;bottom -->
   	<info name="margins">10;10;10;30</info>  
   	<info name="excel-table-id">excel-table=print</info>
  	<!-- documenta meta information -->
-	<info name="doc-title">Basic example</info>
+	<info name="doc-title">${docTitle!defaultTitle}</info>
 	<info name="doc-subject">fj doc venus sample source FreeMarker Template XML - ftlx</info>
 	<info name="doc-author">fugerit79</info>
 	<info name="doc-language">en</info>
@@ -31,23 +33,22 @@
 	</footer-ext>
   </metadata>
   <body>
-  		<para>${ftlData.docTitle!'My sample title'}</para>
+  		<para>${docTitle!defaultTitle}</para>
     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row header="true">
     			<cell align="center"><para>Name</para></cell>
     			<cell align="center"><para>Surname</para></cell>
     			<cell align="center"><para>Title</para></cell>
     		</row>
-       		<row>
-    			<cell><para><![CDATA[Luthien]]></para></cell>
-    			<cell><para><![CDATA[Tinuviel]]></para></cell>
-    			<cell><para><![CDATA[Queen]]></para></cell>
+    		<#if listPeople??>
+    		<#list listPeople as current>
+         	<row>
+    			<cell><para>${current.name}</para></cell>
+    			<cell><para>${current.surname}</para></cell>
+    			<cell><para>${current.title}</para></cell>
     		</row>
-       		<row>
-    			<cell><para><![CDATA[Thorin]]></para></cell>
-    			<cell><para><![CDATA[Oakshield]]></para></cell>
-    			<cell><para><![CDATA[King]]></para></cell>
-    		</row>     	
+    		</#list>
+    		</#if>
     	</table>
   </body>
   

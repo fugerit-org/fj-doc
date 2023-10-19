@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.fugerit.java.core.function.SafeFunction;
@@ -34,6 +35,7 @@ import org.fugerit.java.doc.playground.facade.InputFacade;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
@@ -61,10 +63,23 @@ public class GenerateRest {
 		} );
 	}
 	
-	private void handleConfiguration( Configuration configuration, String freemarkerJsonData, String ftlData, String chainId ) {
+	private void handleConfiguration( Configuration configuration, JsonNode node, String ftlData, String chainId ) {
 		StringTemplateLoader loader = new StringTemplateLoader();
-		String chainData = "<#assign ftlData = "+freemarkerJsonData+">"+ftlData;
-		loader.putTemplate( chainId , chainData );
+		ObjectNode oNode = (ObjectNode) node;
+		Iterator<String> fieldNames = oNode.fieldNames();
+		StringBuilder chainData = new StringBuilder();
+		while ( fieldNames.hasNext() ) {
+			String currentName = fieldNames.next();
+			String currentValue = node.get( currentName ).toString();
+			log.debug( "handleConfiguration() set var {} -> {}", currentName, currentValue );
+			chainData.append( "<#assign " );
+			chainData.append( currentName );
+			chainData.append( "=" );
+			chainData.append( currentValue );
+			chainData.append( ">");
+		}
+		chainData.append( ftlData );
+		loader.putTemplate( chainId , chainData.toString() );
 		configuration.setTemplateLoader( loader );
 	}
 	
@@ -76,7 +91,7 @@ public class GenerateRest {
 			ObjectMapper mapper = new ObjectMapper();
 			try ( StringReader jsonReader = new StringReader(freemarkerJsonData) ) {
 				JsonNode node = mapper.readTree( jsonReader ); // parse json node to sanitize input
-				this.handleConfiguration(configuration, mapper.writeValueAsString( node ), StreamIO.readString( reader ), chainId );
+				this.handleConfiguration(configuration, node, StreamIO.readString( reader ), chainId );
 				Template currentChain = configuration.getTemplate( chainId );
 				Map<Object, Object> data = new HashMap<>();
 				try ( StringWriter writer = new StringWriter() ) {

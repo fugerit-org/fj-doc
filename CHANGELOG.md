@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- better json custom data handling in playground samples
 - base playground docker image set to eclipse-temurin:21_35-jre
 
 ### Fixed

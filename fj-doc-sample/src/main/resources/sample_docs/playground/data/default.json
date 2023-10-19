@@ -1,0 +1,7 @@
+{
+	"docTitle":"My FreeMarker Template Sample Doc Title",
+	"listPeople": [
+		{ "name":"Luthien", "surname":"Tinuviel", "title":"Queen" },
+		{ "name":"Thorin", "surname":"Oakshield", "title":"Kind" }
+	]
+}

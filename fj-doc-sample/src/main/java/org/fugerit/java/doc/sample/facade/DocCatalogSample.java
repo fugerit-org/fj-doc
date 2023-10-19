@@ -5,8 +5,8 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.cfg.xml.ListMapCatalogConfig;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.collection.ListMapStringKey;
 
@@ -31,35 +31,36 @@ public class DocCatalogSample extends ListMapCatalogConfig<DocCatalogEntry> {
 		return (DocCatalogSample)load( is, new DocCatalogSample() );
 	}
 	
-	private static DocCatalogSample loadDefaultInstance() {
-		DocCatalogSample catalog = null;
+	private static final DocCatalogSample INSTANCE = SafeFunction.get( ()  -> {
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "sample_docs/doc_catalog.xml" ) ) {
-			catalog = loadConfig( is );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Error loading default instance : "+e, e );
+			return loadConfig( is );
 		}
-		return catalog;
-	}
-	
-	private static final DocCatalogSample INSTANCE = loadDefaultInstance();
+	} );
 	
 	public static DocCatalogSample getInstance() {
 		return INSTANCE;
+	}
+	
+	public Reader entryReaderJsonData( DocCatalogEntry entry ) throws ConfigException {
+		return new InputStreamReader( this.entryStreamJsonData( entry ) );
 	}
 	
 	public Reader entryReader( DocCatalogEntry entry ) throws ConfigException {
 		return new InputStreamReader( this.entryStream( entry ) );
 	}
 	
-	public InputStream entryStream( DocCatalogEntry entry ) throws ConfigException {
-		String path = entry.getPath();
+	private InputStream loadStreamWorker( String path, DocCatalogEntry entry ) throws ConfigException {
 		String fullPath = this.getGeneralProps().getProperty( ATT_BASE_PATH, "" )+path;
 		logger.info( "load entry full path : {}, entry : {}", fullPath , entry );
-		try {
-			return ClassHelper.loadFromDefaultClassLoader( fullPath );
-		} catch (Exception e) {
-			throw new ConfigException( "Failed to read entry : "+entry+"["+e+"]", e );
-		}
+		return ConfigException.get( () -> ClassHelper.loadFromDefaultClassLoader( fullPath ) );
+	}
+	
+	public InputStream entryStreamJsonData( DocCatalogEntry entry ) throws ConfigException {
+		return this.loadStreamWorker( entry.getJsonDataPath() , entry );
+	}
+	
+	public InputStream entryStream( DocCatalogEntry entry ) throws ConfigException {
+		return this.loadStreamWorker( entry.getPath() , entry );
 	}
 	
 	public ListMapStringKey<DocCatalogEntry> getPlaygroundCoreCatalog() {

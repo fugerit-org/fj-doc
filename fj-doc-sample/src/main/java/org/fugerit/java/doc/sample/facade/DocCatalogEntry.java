@@ -2,33 +2,21 @@ package org.fugerit.java.doc.sample.facade;
 
 import org.fugerit.java.core.cfg.xml.BasicIdConfigType;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@ToString
 public class DocCatalogEntry extends BasicIdConfigType {
 
 	private static final long serialVersionUID = -3140948907871403724L;
 	
-	private String path;
+	@Getter @Setter private String type;
 	
-	private String description;
-
-	public String getPath() {
-		return path;
-	}
-
-	public void setPath(String path) {
-		this.path = path;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	@Override
-	public String toString() {
-		return super.toString()+"[path=" + path + ", description=" + description + "]";
-	}
+	@Getter @Setter private String path;
+	
+	@Getter @Setter private String jsonDataPath;
+	
+	@Getter @Setter private String description;
 
 }

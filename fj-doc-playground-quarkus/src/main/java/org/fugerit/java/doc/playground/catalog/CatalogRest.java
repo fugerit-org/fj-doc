@@ -4,9 +4,10 @@ import java.io.Reader;
 import java.util.stream.Collectors;
 
 import org.fugerit.java.core.io.StreamIO;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.collection.OptionItem;
 import org.fugerit.java.doc.playground.RestHelper;
-import org.fugerit.java.doc.playground.convert.ConvertOutput;
+import org.fugerit.java.doc.sample.facade.DocCatalogEntry;
 import org.fugerit.java.doc.sample.facade.DocCatalogSample;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -39,9 +40,13 @@ public class CatalogRest {
 	public Response catalogEntry( @PathParam("id") String id ) {
 		return RestHelper.defaultHandle( () -> {
 			DocCatalogSample catalog = DocCatalogSample.getInstance();
-			try ( Reader reader = catalog.entryReader( catalog.getPlaygroundCoreCatalog().get( id ) ) ) {
-				ConvertOutput output = new ConvertOutput();
+			DocCatalogEntry entry = catalog.getPlaygroundCoreCatalog().get( id );
+			try ( Reader reader = catalog.entryReader( entry ) ) {
+				CatalogOutput output = new CatalogOutput();
 				output.setDocOutput( StreamIO.readString( reader ) );
+				if ( StringUtils.isNotEmpty( entry.getJsonDataPath() ) ) {
+					output.setJsonData( StreamIO.readString( catalog.entryReaderJsonData( entry ) ) );
+				}
 				return Response.ok().entity( output ).build();
 			}
 		} );

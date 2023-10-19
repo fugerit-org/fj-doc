@@ -24,6 +24,7 @@ class DocXmlEditor extends Component {
 		this.handleDoc = this.handleDoc.bind(this);
 		this.handleFreemarkerData = this.handleFreemarkerData.bind(this);
 		this.handleEditorContent = this.handleEditorContent.bind(this);
+		this.handleJsonDataContent = this.handleJsonDataContent.bind(this);
 		this.state = {
 			inputFormat: 'FTLX',			
 			outputFormat: 'HTML',
@@ -114,7 +115,14 @@ class DocXmlEditor extends Component {
 				docContent: content			 
 			}
 		);
-		console.log( this.state );
+	};
+
+	handleJsonDataContent = ( content ) => {
+		this.setState(
+			{ 
+				freemarkerJsonData: content			 
+			}
+		);
 	};
 
 	render() {
@@ -126,8 +134,8 @@ class DocXmlEditor extends Component {
 				editorInFormat = 'text'
 				freemarkerJsonData = <Row>
 					<Col>				
-						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL with the prefix 'ftlData'.</p>
-						<p>For instance a json like {"{ \"docTitle\": \"My FreeMarker Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{ftlData.docTitle}"} in template</p>	
+						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL. each property as a freemarker variable.'.</p>
+						<p>For instance a json like {"{ \"docTitle\": \"My FreeMarker Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{docTitle}"} in template</p>	
 						<AceEditor
 							mode="json"
 							theme="xcode"
@@ -173,7 +181,7 @@ class DocXmlEditor extends Component {
 			<Form>
 				<Row>
 					<Col>
-						<DocCatalog handleEditorContent={this.handleEditorContent} defaultDocId='default'/>
+						<DocCatalog handleEditorContent={this.handleEditorContent} handleJsonDataContent={this.handleJsonDataContent} defaultDocId='default'/>
 					</Col>
 				</Row>
 				<Row>
