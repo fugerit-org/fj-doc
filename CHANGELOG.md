@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- utf8 read function
 - link in playground quarkus hope page
 
 ## [3.1.6] - 2023-10-15

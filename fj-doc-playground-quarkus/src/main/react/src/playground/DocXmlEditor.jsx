@@ -125,6 +125,20 @@ class DocXmlEditor extends Component {
 		);
 	};
 
+ myAtob = (code) => {
+    try {
+      return decodeURIComponent(atob(code)
+      .split('')
+      .map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+      })
+      .join(''))
+    }
+    catch( e ) {
+      return atob(code)
+    }
+  }
+
 	render() {
 		
 		let freemarkerJsonData = '';
@@ -170,7 +184,7 @@ class DocXmlEditor extends Component {
 				let srcData = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+ this.state.docOutput;
 				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
 			} else if ( this.state.docFormat === 'MD' ) {
-				let decodedStringAtoB = atob(this.state.docOutput);
+				let decodedStringAtoB = this.myAtob(this.state.docOutput);
 				outputData = <MarkdownEditor  value={decodedStringAtoB} />
 			}
 			outputData = <Fragment>{outputData}<p>Generation time : {this.state.generationTime}</p></Fragment>
