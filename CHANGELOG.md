@@ -13,8 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- set -Dfile. encoding="UTF-8" on playground quarkus image
 - better json custom data handling in playground samples
-- base playground docker image set to eclipse-temurin:21_35-jre
+- base playground docker image set to amazoncorretto:21
 
 ### Fixed
 
