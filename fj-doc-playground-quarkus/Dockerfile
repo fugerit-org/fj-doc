@@ -27,4 +27,4 @@ USER root
 
 RUN echo "securerandom.source=file:/dev/./urandom" >> /usr/lib/jvm/jre/lib/security/java.security
 
-CMD java -Dfile. encoding="UTF-8"  -jar /deployments/quarkus-run.jar
+CMD java -Dfile.encoding="UTF-8"  -jar /deployments/quarkus-run.jar
