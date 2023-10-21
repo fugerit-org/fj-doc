@@ -8,6 +8,7 @@ class DocCatalog extends Component {
 		super(props);
 		this.handleSelectDocument = this.handleSelectDocument.bind(this);
 		this.state = {
+			initEntryId: this.props.defaultDocId,
 			currentEntryId: this.props.defaultDocId,
 			currentType: this.props.currentType,
 			updateType: null,
@@ -20,28 +21,29 @@ class DocCatalog extends Component {
 	}
 
     loadList( type ) {
-			let reactState = this;
-			let catalogUrl = '/catalog/list';
-			if ( type != null ) {
-				catalogUrl+= '/type/' + type;
+		let reactState = this;
+		let catalogUrl = '/catalog/list';
+		if ( type != null ) {
+			catalogUrl+= '/type/' + type;
+		}
+		appService.doAjaxMultipart('GET', catalogUrl, null).then(response => {
+			if (response.success) {
+				reactState.setState({
+					entryList: response.result
+				}, () => this.loadDocument() )
+			} else {
+				reactState.setState({
+					entryList: null
+				})
 			}
-			appService.doAjaxMultipart('GET', catalogUrl, null).then(response => {
-				if (response.success) {
-					reactState.setState({
-						entryList: response.result
-					})
-					if ( reactState.state.entryList != null ) {
-						this.loadDocument( reactState.state.entryList[0].key );
-					}
-				} else {
-					reactState.setState({
-						entryList: null
-					})
-				}
-			})
+		})
 	}
 	
 	loadDocument( id ) {
+		console.log( "load document" );
+		if ( id == null ) {
+			id = this.state.entryList[0].key
+		}
 		let reactState = this;
 		appService.doAjaxMultipart('GET', '/catalog/entry/'+id, null).then(response => {
 			if (response.success) {
@@ -73,7 +75,7 @@ class DocCatalog extends Component {
 						<Form.Label>Document samples catalog</Form.Label>
 					</Col>
 					<Col>
-						<Form.Select aria-label="Select output format" onChange={this.handleSelectDocument}  defaultValue={this.props.defaultDocId}>
+						<Form.Select aria-label="Select output format" onChange={this.handleSelectDocument}>
 							{options}
 						</Form.Select>
 					</Col>
