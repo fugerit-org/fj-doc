@@ -22,6 +22,7 @@ import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
+import org.fugerit.java.doc.freemarker.fun.SimpleMessageFun;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
@@ -96,6 +97,7 @@ public class GenerateRest {
 				this.handleConfiguration(configuration, node, StreamIO.readString( reader ), chainId );
 				Template currentChain = configuration.getTemplate( chainId );
 				Map<Object, Object> data = new HashMap<>();
+				data.put( "messageFormat" , new SimpleMessageFun() );
 				try ( StringWriter writer = new StringWriter() ) {
 					currentChain.process( data , writer );
 					try ( StringReader ftlReader = new StringReader( writer.toString() ) ) {
