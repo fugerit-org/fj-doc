@@ -31,7 +31,7 @@ public class MetaRest {
 		} );
 	}
 	
-	private static final String[] ADD_PROPS = { "java.version", "java.vendor", "os.name", "os.version" };
+	private static final String[] ADD_PROPS = { "java.version", "java.vendor", "os.name", "os.version", "os.arch" };
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
