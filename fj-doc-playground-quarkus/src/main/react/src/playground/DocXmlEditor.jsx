@@ -8,6 +8,7 @@ import AceEditor from "react-ace";
 import MarkdownEditor from '@uiw/react-markdown-editor';
 
 import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/mode-ftl";
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
@@ -149,7 +150,7 @@ class DocXmlEditor extends Component {
 		let editorInFormat = 'xml';
 		if ( this.state.inputFormat != null ) {
 			if ( this.state.inputFormat === 'FTLX' ) {
-				editorInFormat = 'text'
+				editorInFormat = 'ftl'
 				freemarkerJsonData = <Fragment>		
 						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL. each property as a freemarker variable.</p>
 						<p>For instance a json like {"{ \"docTitle\": \"My FreeMarker Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{docTitle}"} in template</p>	

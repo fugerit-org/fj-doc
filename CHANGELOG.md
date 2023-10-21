@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [playground-quarkus] freemarker (ftl) code highlight
 - [playground-quarkus] complex example taken from https://github.com/fugerit-org/fj-doc-guides/tree/main/fj-doc-guides-A003-full-document-freemarker
 - [playground-quarkus] os.arch info in home page
 - [playground-quarkus] generation error output 
