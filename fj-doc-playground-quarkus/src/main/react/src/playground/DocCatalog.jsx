@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Col, Row } from 'react-bootstrap';
+import { FormControl, Select, MenuItem, Grid, FormLabel } from "@mui/material";
 import appService from '../common/app-service';
 
 class DocCatalog extends Component {
@@ -8,7 +8,6 @@ class DocCatalog extends Component {
 		super(props);
 		this.handleSelectDocument = this.handleSelectDocument.bind(this);
 		this.state = {
-			initEntryId: this.props.defaultDocId,
 			currentEntryId: this.props.defaultDocId,
 			currentType: this.props.currentType,
 			updateType: null,
@@ -43,6 +42,7 @@ class DocCatalog extends Component {
 		if ( id == null ) {
 			id = this.state.entryList[0].key
 		}
+		this.setState({ currentEntryId:id })	
 		let reactState = this;
 		appService.doAjaxMultipart('GET', '/catalog/entry/'+id, null).then(response => {
 			if (response.success) {
@@ -65,21 +65,25 @@ class DocCatalog extends Component {
 
 	render() {
 		let catalogSelection = <Fragment>Loading</Fragment>;
-		if ( this.state.entryList != null ) {
-			let options = this.state.entryList.map( (current) =>  <option key={current.key} value={current.key}>{current.label}</option>)
+		if ( this.state.entryList != null && this.state.currentEntryId != null ) {
 			catalogSelection = <Fragment>
-				<Form>
-				<Row>
-					<Col>
-						<Form.Label>Document samples catalog</Form.Label>
-					</Col>
-					<Col>
-						<Form.Select aria-label="Select output format" onChange={this.handleSelectDocument}>
-							{options}
-						</Form.Select>
-					</Col>
-				</Row>				
-			</Form>
+			<Grid container spacing={1}>
+			  <Grid item xs={6}>
+			    <FormLabel>Document samples catalog</FormLabel>
+			  </Grid>
+			  <Grid item xs={6}>
+					<FormControl fullWidth>
+					  <Select
+					    id="doc-catalog-select"
+					    onChange={this.handleSelectDocument}
+					    value={this.state.currentEntryId}
+					    defaultValue={this.state.currentEntryId}
+					  >
+						{this.state.entryList.map( (current) =>  <MenuItem key={current.key} selected={current.key===this.state.currentEntryId} value={current.key}>{current.label}</MenuItem>)}					    
+					  </Select>
+					</FormControl>	
+			  </Grid>
+			 </Grid>
 			</Fragment>
 		}
 		return catalogSelection

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Button, Col, Row } from 'react-bootstrap';
+import { FormControl, Select, MenuItem, Grid, FormLabel, Button } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
@@ -21,7 +21,7 @@ class DocConversion extends Component {
 		this.handleEditorContent = this.handleEditorContent.bind(this);
 		this.state = {
 			inputFormat: 'XML',			
-			outputFormat: null,
+			outputFormat: '',
 			docOutput: ''
 		}
 	}
@@ -89,41 +89,51 @@ class DocConversion extends Component {
 	
 		return <Fragment>
 
-			<Form>
-				<Row>
-					<Col>
+			<Grid container spacing={1}>
+			  <Grid item xs={12}>
 						<DocCatalog key={this.state.inputFormat}
 							currentType={this.state.inputFormat}
 							handleEditorContent={this.handleEditorContent}
 						/>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
-						<Form.Label>Convert from</Form.Label>
-					</Col>
-					<Col>
-						<Form.Select aria-label="Select output format" onChange={this.handleInputFormat}>
-							<option value="XML">XML</option>
-							<option value="JSON">JSON</option>
-							<option value="YAML">YAML</option>
-						</Form.Select>
-					</Col>
-				
-					<Col>				
-						<Form.Label>Convert to</Form.Label>
-					</Col>
-					<Col>									
-						<Form.Select aria-label="Select output format" onChange={this.handleFormat}>
-							<option>Select output format</option>
-							<option value="JSON">JSON</option>
-							<option value="YAML">YAML</option>
-							<option value="XML">XML</option>
-						</Form.Select>
-					</Col>
-				</Row>
-				<Row>
-					<Col>
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+			    <FormLabel>Convert from</FormLabel>
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+					<FormControl fullWidth>
+					  <Select
+					    id="input-type-select"
+					    onChange={this.handleInputFormat}
+						value={this.state.inputFormat}
+					  >
+					    <MenuItem value='XML'>XML</MenuItem>
+					    <MenuItem value='JSON'>JSON</MenuItem>
+					    <MenuItem value='YAML'>YAML</MenuItem>
+					  </Select>
+					</FormControl>	
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+			    <FormLabel>Convert to</FormLabel>
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+					<FormControl fullWidth>
+					  <Select
+					    id="output-type-select"
+					    onChange={this.handleFormat}
+						value={this.state.outputFormat}
+						displayEmpty
+					  >
+					  	<MenuItem value=''>Select output format</MenuItem>
+					    <MenuItem value='JSON'>JSON</MenuItem>
+					    <MenuItem value='YAML'>YAML</MenuItem>
+					    <MenuItem value='XML'>XML</MenuItem>
+					  </Select>
+					</FormControl>	
+			  </Grid>
+			  <Grid item xs={12}>
+				<Button variant="contained" onClick={this.handleGenerate}>Convert</Button>		
+			  </Grid>
+			  <Grid item xs={12} md={6}>
 						<AceEditor
 							mode={editorInFormat}
 							theme="xcode"
@@ -136,8 +146,8 @@ class DocConversion extends Component {
 							onChange={this.handleDoc}
 							width='100%'
 						/>
-				</Col>
-				<Col>
+			  </Grid>
+			  <Grid item xs={12} md={6}>
 					<AceEditor
 						mode={editorOutFormat}
 						theme="xcode"
@@ -147,11 +157,8 @@ class DocConversion extends Component {
 						value={this.state.docOutput}
 						width='100%'
 					/>
-					</Col>
-				</Row>
-				<Button variant="primary" onClick={this.handleGenerate}>Convert</Button>			
-			</Form>
-			
+			  </Grid>
+			</Grid>
 
 		</Fragment>
 	}

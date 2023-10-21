@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Button, ListGroup } from 'react-bootstrap';
+import { Input, Grid, FormLabel, Button, List, ListItem, ListItemText } from "@mui/material";
 import appService from '../common/app-service';
 
 class DocValTestForm extends Component {
@@ -67,19 +67,33 @@ class DocValTestForm extends Component {
 		}
 		let supportedExtensions = <Fragment></Fragment>;
 		if (this.state.supportedExtensions != null) {
-			supportedExtensions = <ListGroup variant="secondary">Supported extensions : {this.state.supportedExtensions.map(d => <ListGroup.Item key={d}>{d}</ListGroup.Item>)}</ListGroup>
+			supportedExtensions = <List variant="secondary">Supported extensions : {this.state.supportedExtensions.map(d => <ListItem key={d}><ListItemText>{d}</ListItemText></ListItem>)}</List>
 		}
 
 		return (
-			<div>
-				{message}
-				<Form.Group controlId="For" className="mb-3">
-					<Form.Label>Doc Type File validation example: </Form.Label>
-					<Form.Control type="file" onChange={this.prepareSend} />
-				</Form.Group>
-				<Button variant="primary" onClick={this.sendForValidation}>Send</Button>
-				{supportedExtensions}
-			</div>
+			<Fragment>
+				<Grid container spacing={1}>
+				  <Grid item xs={8}>
+				  	<Grid container spacing={1}>
+				  		<Grid item xs={12}>
+				  			{message}
+				  		</Grid>
+				  		<Grid item xs={12}>
+				  			<FormLabel>Doc Type File validation example:</FormLabel>
+				  		</Grid>
+				  		<Grid item xs={12}>
+				  			<Input type='file' onChange={this.prepareSend}/>
+				  		</Grid>
+				  		<Grid item xs={12}>
+				  			<Button variant="contained" component="label" onClick={this.sendForValidation}>Send</Button>
+				  		</Grid>
+				  	</Grid>
+				  </Grid>
+				  <Grid item xs={6} md={3}>
+				    {supportedExtensions}
+				  </Grid>
+				 </Grid>
+			</Fragment>
 		);
 	}
 

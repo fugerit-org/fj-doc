@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [playground-quarkus] os.arch info in home page
 - [playground-quarkus] generation error output 
 
+### Changed
+
+- [playground-quarkus] code review to remove bootstrap
+- [playground-quarkus] default html type handler set to FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8
+
 ## [3.1.7] - 2023-10-21
 
 ### Added

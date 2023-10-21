@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap';
-import { FormControl, Select, MenuItem, TextField, Grid } from "@mui/material";
+import { FormControl, Select, MenuItem, TextField, Grid, FormLabel, Button } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
@@ -151,9 +150,8 @@ class DocXmlEditor extends Component {
 		if ( this.state.inputFormat != null ) {
 			if ( this.state.inputFormat === 'FTLX' ) {
 				editorInFormat = 'text'
-				freemarkerJsonData = <Row>
-					<Col>				
-						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL. each property as a freemarker variable.'.</p>
+				freemarkerJsonData = <Fragment>		
+						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL. each property as a freemarker variable.</p>
 						<p>For instance a json like {"{ \"docTitle\": \"My FreeMarker Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{docTitle}"} in template</p>	
 						<AceEditor
 							mode="json"
@@ -165,13 +163,10 @@ class DocXmlEditor extends Component {
 							enableSnippets={true}
 							value={this.state.freemarkerJsonData}
 							onChange={this.handleFreemarkerData}
+							height='200px'
 							width='100%'
 						/>
-					</Col>
-					<Col>
-						
-					</Col>
-				</Row>	
+					</Fragment>
 			} else {
 				editorInFormat = this.state.inputFormat.toLowerCase()
 			}
@@ -208,58 +203,56 @@ class DocXmlEditor extends Component {
 		
 		return <Fragment>
 		    
-			<Form>
-				<Row>
-					<Col>
-						<DocCatalog key={this.state.inputFormat}
-							currentType={this.state.inputFormat}
-							handleEditorContent={this.handleEditorContent} 
-							handleJsonDataContent={this.handleJsonDataContent} 
-						/>
-					</Col>
-				</Row>	
-				<Row>
-					<Col>
-						<Form.Label>Source type</Form.Label>
-					</Col>
-					<Col>
-						<FormControl fullWidth>
-						  <Select
-						    id="input-type-select"
-						    onChange={this.handleInputFormat}
-							value={this.state.inputFormat}
-						  >
-						    <MenuItem value='FTLX'>FTLX (FreeMarker Template XML)</MenuItem>
-						    <MenuItem value='XML'>XML</MenuItem>
-						    <MenuItem value='JSON'>JSON</MenuItem>
-						    <MenuItem value='YAML'>YAML</MenuItem>
-						  </Select>
-						</FormControl>	
-					</Col>
-				</Row>
-				<Row>				
-					<Col>				
-						<Form.Label>Output format</Form.Label>
-					</Col>
-					<Col>	
-						<FormControl fullWidth>
-						  <Select
-						    id="output-type-select"
-						    onChange={this.handleFormat}
-							value={this.state.outputFormat}
-						  >
-							<MenuItem value='HTML'>HTML</MenuItem>
-						    <MenuItem value='PDF'>PDF</MenuItem>
-						    <MenuItem value='PDFA'>PDF/A</MenuItem>
-						    <MenuItem value='XLSX'>XLSX</MenuItem>
-						    <MenuItem value='MD'>Markdown (MD)</MenuItem>
-						  </Select>
-						</FormControl>								
-					</Col>
-				</Row>	
-
-				<Row>
-					<Col>						
+			<Grid container spacing={1}>
+			  <Grid item xs={12}>
+					<DocCatalog key={this.state.inputFormat}
+						currentType={this.state.inputFormat}
+						handleEditorContent={this.handleEditorContent} 
+						handleJsonDataContent={this.handleJsonDataContent} 
+					/>
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+			    <FormLabel>Source type</FormLabel>
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+					<FormControl fullWidth>
+					  <Select
+					    id="input-type-select"
+					    onChange={this.handleInputFormat}
+						value={this.state.inputFormat}
+					  >
+					    <MenuItem value='FTLX'>FTLX (FreeMarker Template XML)</MenuItem>
+					    <MenuItem value='XML'>XML</MenuItem>
+					    <MenuItem value='JSON'>JSON</MenuItem>
+					    <MenuItem value='YAML'>YAML</MenuItem>
+					  </Select>
+					</FormControl>	
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+			    <FormLabel>Output format</FormLabel>
+			  </Grid>
+			  <Grid item xs={6} md={3}>
+					<FormControl fullWidth>
+					  <Select
+					    id="output-type-select"
+					    onChange={this.handleFormat}
+						value={this.state.outputFormat}
+					  >
+						<MenuItem value='HTML'>HTML</MenuItem>
+					    <MenuItem value='PDF'>PDF</MenuItem>
+					    <MenuItem value='PDFA'>PDF/A</MenuItem>
+					    <MenuItem value='XLSX'>XLSX</MenuItem>
+					    <MenuItem value='MD'>Markdown (MD)</MenuItem>
+					  </Select>
+					</FormControl>	
+			  </Grid>
+			  <Grid item xs={6}>
+			    <Button variant="contained" onClick={this.handleGenerate}>Generate document</Button> 
+			  </Grid>
+			  <Grid item xs={6}>
+			    <Button variant="contained" onClick={this.handleValidate}>Validate document</Button>
+			  </Grid>
+			  <Grid item xs={12} xl={6}>
 						<AceEditor
 							mode={editorInFormat}
 							theme="xcode"
@@ -272,29 +265,13 @@ class DocXmlEditor extends Component {
 							onChange={this.handleDoc}
 							width='100%'
 						/>
-					</Col>
-					<Col>
-						<div>{outputData}</div>
-					</Col>
-				</Row>				
-				<Row>
-					<Col>						
-						<Row>
-							<Col>							
-								<Button variant="primary" onClick={this.handleGenerate}>Generate document</Button> 
-							</Col>
-							<Col>							 
-								<Button variant="primary" onClick={this.handleValidate}>Validate document</Button>
-							</Col>							
-						</Row>							
-					</Col>
-					<Col>
-						
-					</Col>
-				</Row>		
-				{freemarkerJsonData}					
-			</Form>
-
+					{freemarkerJsonData}
+			  </Grid>
+			  <Grid item xs={12} xl={6}>
+			    {outputData}
+			  </Grid>
+			</Grid>
+			
 		</Fragment>
 	}
 
