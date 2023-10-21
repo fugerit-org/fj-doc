@@ -22,7 +22,7 @@ import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
-import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
@@ -136,7 +136,7 @@ public class GenerateRest {
 		if ( "XLSX".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = XlsxPoiTypeHandler.HANDLER;
 		} else if ( "HTML".equalsIgnoreCase( input.getOutputFormat() ) ) {
-			handler = FreeMarkerHtmlFragmentTypeHandler.HANDLER;
+			handler = FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8.HANDLER;
 		} else if ( "PDFA".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = InitPlayground.PDFA_FOP_TYPE_HANDLER;
 		} else if ( "MD".equalsIgnoreCase( input.getOutputFormat() ) ) {
