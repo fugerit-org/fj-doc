@@ -18,5 +18,14 @@ class MetaRestTest {
         .then()
            .statusCode(200);
     }
+    
+    @Test
+    void testMetaInfoOk() {   	
+        given()
+        .when()
+        .get( TestConsts.BASE_API_PATH+"/meta/info" )
+        .then()
+           .statusCode(200);
+    }
 
 }

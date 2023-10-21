@@ -15,6 +15,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DoneIcon from '@mui/icons-material/Done';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import Info from './Info';
 
 
 const homepage = '/fj-doc-playground/home';
@@ -80,6 +81,11 @@ class Home extends Component {
      		<Grid id="fourthRow" container spacing={1} style={{ paddingLeft: 15, paddingTop: 15 }}>
  	 			<Grid item sx={8}>
  					Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tag. 
+ 				</Grid>
+    		</Grid>
+      		<Grid id="fiftRow" container spacing={1} style={{ paddingLeft: 15, paddingTop: 15 }}>
+ 	 			<Grid item sx={8}>
+ 					<Info/>
  				</Grid>
     		</Grid>
 		</Fragment>
