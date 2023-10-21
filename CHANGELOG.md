@@ -9,37 +9,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- os.arch info in playground home page
-- generation error output in playground
+- [playground-quarkus] complex example taken from https://github.com/fugerit-org/fj-doc-guides/tree/main/fj-doc-guides-A003-full-document-freemarker
+- [playground-quarkus] os.arch info in home page
+- [playground-quarkus] generation error output 
 
 ## [3.1.7] - 2023-10-21
 
 ### Added
 
-- markdown output to playground
-- document catalog filter by input type on playground
-- system info in playground
+- [playground-quarkus] markdown output
+- [playground-quarkus] document catalog filter by input type
+- [playground-quarkus] system info in home page
 
 ### Changed
 
-- set -Dfile. encoding="UTF-8" on playground quarkus image
-- better json custom data handling in playground samples
-- base playground docker image set to amazoncorretto:21
+- [playground-quarkus] set -Dfile. encoding="UTF-8" on quarkus image
+- [playground-quarkus] better json custom data handling in samples
+- [playground-quarkus] base docker image set to amazoncorretto:21
 
 ### Fixed
 
 - utf8 read function
-- link in playground quarkus hope page
+- [playground-quarkus] link in home page
 
 ## [3.1.6] - 2023-10-15
 
 ### Added
 
-- Run locally instruction in playground quarkus
+- [playground-quarkus] Run locally instruction
 
 ### Changed
 
-- favicon and logo for playground quarkus
+- [playground-quarkus] favicon and logo
 
 ### Fixed
 

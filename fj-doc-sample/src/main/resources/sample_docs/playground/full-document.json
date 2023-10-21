@@ -1,0 +1,397 @@
+{
+  "xmlns" : "http://javacoredoc.fugerit.org",
+  "xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd",
+  "xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+  "_t" : "doc",
+  "_e" : [ {
+    "_t" : "metadata",
+    "_e" : [ {
+      "name" : "margins",
+      "_t" : "info",
+      "_v" : "10;10;10;30"
+    }, {
+      "name" : "doc-title",
+      "_t" : "info",
+      "_v" : "Full document sample demo"
+    }, {
+      "name" : "doc-author",
+      "_t" : "info",
+      "_v" : "fugerit79"
+    }, {
+      "name" : "doc-language",
+      "_t" : "info",
+      "_v" : "en"
+    }, {
+      "name" : "excel-table-id",
+      "_t" : "info",
+      "_v" : "data-table-1=sheet1,data-table-2=sheet2"
+    }, {
+      "name" : "default-font-name",
+      "_t" : "info",
+      "_v" : "TitilliumWeb"
+    }, {
+      "_t" : "footer-ext",
+      "_e" : [ {
+        "align" : "right",
+        "_t" : "para",
+        "_v" : "${currentPage} / ${pageCount}"
+      } ]
+    }, {
+      "_t" : "bookmark-tree",
+      "_e" : [ {
+        "ref" : "top",
+        "_t" : "bookmark",
+        "_v" : "Full document sample demo"
+      }, {
+        "ref" : "sec_1",
+        "_t" : "bookmark",
+        "_v" : "1. Sample tables"
+      }, {
+        "ref" : "sec_2",
+        "_t" : "bookmark",
+        "_v" : "2. Sample lists"
+      } ]
+    } ]
+  }, {
+    "_t" : "body",
+    "_e" : [ {
+      "size" : "16",
+      "head-level" : "1",
+      "id" : "top",
+      "_t" : "h",
+      "_v" : "Full document sample demo"
+    }, {
+      "_t" : "para",
+      "_v" : "This documents tries to show all the xml document format features."
+    }, {
+      "_t" : "para",
+      "_v" : "Current Apache FreeMarker output format : XML."
+    }, {
+      "size" : "14",
+      "head-level" : "2",
+      "id" : "sec_1",
+      "_t" : "h",
+      "_v" : "1. Sample tables"
+    }, {
+      "_t" : "para",
+      "_v" : "This sections contains some sample tables."
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "1.1 Sample table : no special characteristics"
+    }, {
+      "columns" : "3",
+      "width" : "100",
+      "id" : "data-table-1",
+      "colwidths" : "30;30;40",
+      "_t" : "table",
+      "_e" : [ {
+        "header" : "true",
+        "_t" : "row",
+        "_e" : [ {
+          "align" : "center",
+          "_t" : "cell",
+          "_e" : [ {
+            "style" : "bold",
+            "_t" : "para",
+            "_v" : "Name"
+          } ]
+        }, {
+          "align" : "center",
+          "_t" : "cell",
+          "_e" : [ {
+            "style" : "bold",
+            "_t" : "para",
+            "_v" : "Surname"
+          } ]
+        }, {
+          "align" : "center",
+          "_t" : "cell",
+          "_e" : [ {
+            "style" : "bold",
+            "_t" : "para",
+            "_v" : "Title"
+          } ]
+        } ]
+      }, {
+        "_t" : "row",
+        "_e" : [ {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Marie"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Curie"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : ">> Chemist"
+          } ]
+        } ]
+      }, {
+        "_t" : "row",
+        "_e" : [ {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Alan"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Turing"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "<IT/> Specialist"
+          } ]
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "1.2 Sample table : special characteristics"
+    }, {
+      "columns" : "3",
+      "width" : "100",
+      "id" : "data-table-2",
+      "colwidths" : "30;30;40",
+      "_t" : "table",
+      "_e" : [ {
+        "header" : "true",
+        "_t" : "row",
+        "_e" : [ {
+          "align" : "center",
+          "_t" : "cell",
+          "_e" : [ {
+            "style" : "bold",
+            "_t" : "para",
+            "_v" : "Name"
+          } ]
+        }, {
+          "align" : "center",
+          "_t" : "cell",
+          "_e" : [ {
+            "style" : "bold",
+            "_t" : "para",
+            "_v" : "Surname"
+          } ]
+        }, {
+          "align" : "center",
+          "_t" : "cell",
+          "_e" : [ {
+            "style" : "bold",
+            "_t" : "para",
+            "_v" : "Title"
+          } ]
+        } ]
+      }, {
+        "_t" : "row",
+        "_e" : [ {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Marie"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Curie"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : ">> Chemist"
+          } ]
+        } ]
+      }, {
+        "_t" : "row",
+        "_e" : [ {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Alan"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "Turing"
+          } ]
+        }, {
+          "_t" : "cell",
+          "_e" : [ {
+            "_t" : "para",
+            "_v" : "<IT/> Specialist"
+          } ]
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "14",
+      "head-level" : "2",
+      "id" : "sec_2",
+      "_t" : "h",
+      "_v" : "2. Sample lists"
+    }, {
+      "_t" : "para",
+      "_v" : "This sections contains some sample lists."
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "Sample list 1 : default unordered list"
+    }, {
+      "list-type" : "ul",
+      "_t" : "list",
+      "_e" : [ {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Marie Curie"
+        } ]
+      }, {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Alan Turing"
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "Sample list 2 : dotted unordered list"
+    }, {
+      "list-type" : "uld",
+      "_t" : "list",
+      "_e" : [ {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Marie Curie"
+        } ]
+      }, {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Alan Turing"
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "Sample list 3 : square unordered list"
+    }, {
+      "list-type" : "ulm",
+      "_t" : "list",
+      "_e" : [ {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Marie Curie"
+        } ]
+      }, {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Alan Turing"
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "Sample list 4 : default ordered list"
+    }, {
+      "list-type" : "ol",
+      "_t" : "list",
+      "_e" : [ {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Marie Curie"
+        } ]
+      }, {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Alan Turing"
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "Sample list 5 : letter ordered list"
+    }, {
+      "list-type" : "oll",
+      "_t" : "list",
+      "_e" : [ {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Marie Curie"
+        } ]
+      }, {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Alan Turing"
+        } ]
+      } ]
+    }, {
+      "_t" : "br"
+    }, {
+      "size" : "12",
+      "head-level" : "3",
+      "_t" : "h",
+      "_v" : "Sample list 6 : numbered ordered list"
+    }, {
+      "list-type" : "oln",
+      "_t" : "list",
+      "_e" : [ {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Marie Curie"
+        } ]
+      }, {
+        "_t" : "li",
+        "_e" : [ {
+          "_t" : "para",
+          "_v" : "Alan Turing"
+        } ]
+      } ]
+    }, {
+      "_t" : "page-break"
+    } ]
+  } ]
+}

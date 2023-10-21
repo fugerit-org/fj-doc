@@ -1,0 +1,15 @@
+{
+	"docTitle":"This documents tries to show all the xml document format features.",
+	"listPeople": [
+		{ "name":"Marie", "surname":"Curie", "title":">> Chemist" },
+		{ "name":"Alan", "surname":"Turing", "title":"<IT/> Specialist" }
+	],
+	"listTests": [
+		{ "key":"ul", "value":"default unordered list" },
+		{ "key":"uld", "value":"dotted unordered list" },
+		{ "key":"ulm", "value":"square unordered list" },
+		{ "key":"ol", "value":"default ordered list" },
+		{ "key":"oll", "value":"letter ordered list" },
+		{ "key":"oln", "value":"numbered ordered list" }
+	]
+}
