@@ -40,7 +40,6 @@ class DocCatalog extends Component {
 	}
 	
 	loadDocument( id ) {
-		console.log( "load document" );
 		if ( id == null ) {
 			id = this.state.entryList[0].key
 		}
