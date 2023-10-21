@@ -40,6 +40,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import freemarker.cache.StringTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.Consumes;
@@ -80,6 +81,7 @@ public class GenerateRest {
 		}
 		chainData.append( ftlData );
 		loader.putTemplate( chainId , chainData.toString() );
+		configuration.setTemplateExceptionHandler( TemplateExceptionHandler.RETHROW_HANDLER );
 		configuration.setTemplateLoader( loader );
 	}
 	
@@ -153,6 +155,10 @@ public class GenerateRest {
 		return DocFacadeSource.getInstance().getParserForSource( sourceType );
 	}
 	
+	private Throwable findCause( Throwable o ) {
+		return o.getCause() != null ? this.findCause( o.getCause() ) : o;
+	}
+	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -161,10 +167,16 @@ public class GenerateRest {
 		return RestHelper.defaultHandle( () -> {
 			long time = System.currentTimeMillis();
 			DocTypeHandler handler = this.findHandler(input);
-			byte[] data = this.generateHelper(input, handler);
 			GenerateOutput output = new GenerateOutput();
-			output.setDocOutputBase64( Base64.getEncoder().encodeToString( data ) );
-			output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
+			try {
+				byte[] data = this.generateHelper(input, handler);
+				output.setDocOutputBase64( Base64.getEncoder().encodeToString( data ) );
+				output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
+			} catch ( Exception e ) {
+				log.warn( "Error generating document : "+e , e );
+				Throwable te = this.findCause(e);
+				output.setMessage( te.getMessage() );
+			}
 			return Response.ok().entity( output ).build();
 		} );
 	}

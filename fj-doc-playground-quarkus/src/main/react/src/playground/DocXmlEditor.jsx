@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import { FormControl, Select, MenuItem } from "@mui/material";
+import { FormControl, Select, MenuItem, TextField, Grid } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
@@ -34,7 +34,8 @@ class DocXmlEditor extends Component {
 			freemarkerJsonData: '{"docTitle":"My FreeMarker Template Sample Doc Title"}',
 			docOutput: null,
 			docFormat: null,
-			generationTime: null
+			generationTime: null,
+			outputMessage: null
 		}
 	}
 
@@ -54,7 +55,8 @@ class DocXmlEditor extends Component {
 					reactState.setState({
 						docOutput: response.result.docOutputBase64,
 						docFormat: this.state.outputFormat,
-						generationTime:  response.result.generationTime
+						generationTime:  response.result.generationTime,
+						outputMessage: response.result.message
 					})
 				} 
 			})
@@ -191,6 +193,17 @@ class DocXmlEditor extends Component {
 				outputData = <MarkdownEditor  value={decodedStringAtoB} />
 			}
 			outputData = <Fragment>{outputData}<p>Generation time : {this.state.generationTime}</p></Fragment>
+		} else if ( this.state.outputMessage != null ) {
+			outputData =  <Grid id="firstRow" container spacing={1} style={{ paddingLeft: 5, paddingTop: 15 }}>
+ 				<Grid item sx={{ width: '100%' }}>
+ 					<TextField sx={{ width: '100%' }} 
+ 						id="outputMessage" 
+ 						rows={20}
+ 						multiline={true}
+ 						label="output message" 
+ 						variant="outlined" value={this.state.outputMessage}/>
+ 				</Grid>
+ 			</Grid>
 		}
 		
 		return <Fragment>
