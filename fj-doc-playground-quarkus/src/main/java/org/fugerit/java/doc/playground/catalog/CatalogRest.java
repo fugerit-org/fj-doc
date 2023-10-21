@@ -24,6 +24,18 @@ public class CatalogRest {
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
+	@Path("/list/type/{type}")
+	public Response catalogListFilterType( @PathParam("type") String type ) {
+		return RestHelper.defaultHandle( () -> Response.ok().entity( 
+					DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
+						.stream().filter( e -> type.equalsIgnoreCase( e.getType() ) ).map( 
+								e -> new OptionItem( e.getId(), e.getDescription() ) 
+						).collect( Collectors.toList() ) ).build()
+		);
+	}
+	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/list")
 	public Response catalogList() {
 		return RestHelper.defaultHandle( () -> Response.ok().entity( 

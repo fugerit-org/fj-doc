@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - markdown output to playground
+- document catalog filter by input type on playground
 
 ### Changed
 

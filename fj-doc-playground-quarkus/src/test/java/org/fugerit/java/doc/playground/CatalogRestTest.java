@@ -20,6 +20,15 @@ class CatalogRestTest {
     }
     
     @Test
+    void testListFilterFltx() {   	
+        given()
+        .when()
+        .get( TestConsts.BASE_API_PATH+"/catalog/list/type/XML" )
+        .then()
+           .statusCode(200);
+    }
+    
+    @Test
     void testEntry() {   	
         given()
         .when()

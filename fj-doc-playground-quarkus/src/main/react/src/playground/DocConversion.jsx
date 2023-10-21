@@ -73,7 +73,6 @@ class DocConversion extends Component {
 				docContent: content			 
 			}
 		);
-		console.log( this.state );
 	};
 
 	render() {
@@ -93,7 +92,10 @@ class DocConversion extends Component {
 			<Form>
 				<Row>
 					<Col>
-						<DocCatalog handleEditorContent={this.handleEditorContent} defaultDocId='default_xml'/>
+						<DocCatalog key={this.state.inputFormat}
+							currentType={this.state.inputFormat}
+							handleEditorContent={this.handleEditorContent}
+						/>
 					</Col>
 				</Row>
 				<Row>

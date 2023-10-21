@@ -3,15 +3,15 @@
 	path-base="sample_docs/">
 
 	<catalog id="playground-core">
-		<doc id="default" type="ftl" 
+		<doc id="default" type="ftlx" 
 			path="playground/default_doc.ftl" 
 			jsonDataPath="playground/data/default.json"
 			description="Sample FreeMarker Template XML source document"/>
-		<doc id="default_xml" path="playground/default_doc.xml" description="Sample XML source document"/>
-		<doc id="default_json" path="playground/default_doc.json" description="Sample JSON source document"/>
-		<doc id="default_yaml" path="playground/default_doc.yaml" description="Sample YAML source document"/>
-		<doc id="doc-01" path="playground/doc_test_01.xml" description="Image loading (does not work in excel format)"/>
-		<doc id="doc-02" path="playground/full_doc_header_footer.xml" description="Document which contains most tags"/>
+		<doc id="default_xml" type="xml" path="playground/default_doc.xml" description="Sample XML source document"/>
+		<doc id="default_json" type="json" path="playground/default_doc.json" description="Sample JSON source document"/>
+		<doc id="default_yaml" type="yaml" path="playground/default_doc.yaml" description="Sample YAML source document"/>
+		<doc id="doc-01" type="xml" path="playground/doc_test_01.xml" description="Image loading (does not work in excel format)"/>
+		<doc id="doc-02" type="xml" path="playground/full_doc_header_footer.xml" description="Document which contains most tags"/>
 	</catalog>
 
 </doc-catalog>

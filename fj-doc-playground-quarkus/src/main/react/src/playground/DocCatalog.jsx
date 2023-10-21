@@ -9,24 +9,36 @@ class DocCatalog extends Component {
 		this.handleSelectDocument = this.handleSelectDocument.bind(this);
 		this.state = {
 			currentEntryId: this.props.defaultDocId,
+			currentType: this.props.currentType,
+			updateType: null,
 			entryList: null
 		}
-	}
+	}	
 
 	componentDidMount() {
-		let reactState = this;
-		appService.doAjaxMultipart('GET', '/catalog/list', null).then(response => {
-			if (response.success) {
-				reactState.setState({
-					entryList: response.result
-				})
-			} else {
-				reactState.setState({
-					entryList: null
-				})
+		this.loadList( this.state.currentType );
+	}
+
+    loadList( type ) {
+			let reactState = this;
+			let catalogUrl = '/catalog/list';
+			if ( type != null ) {
+				catalogUrl+= '/type/' + type;
 			}
-		})
-		this.loadDocument( this.state.currentEntryId );
+			appService.doAjaxMultipart('GET', catalogUrl, null).then(response => {
+				if (response.success) {
+					reactState.setState({
+						entryList: response.result
+					})
+					if ( reactState.state.entryList != null ) {
+						this.loadDocument( reactState.state.entryList[0].key );
+					}
+				} else {
+					reactState.setState({
+						entryList: null
+					})
+				}
+			})
 	}
 	
 	loadDocument( id ) {

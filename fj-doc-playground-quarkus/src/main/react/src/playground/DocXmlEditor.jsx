@@ -25,7 +25,9 @@ class DocXmlEditor extends Component {
 		this.handleFreemarkerData = this.handleFreemarkerData.bind(this);
 		this.handleEditorContent = this.handleEditorContent.bind(this);
 		this.handleJsonDataContent = this.handleJsonDataContent.bind(this);
+		this.handleInputFormat = this.handleInputFormat.bind(this);
 		this.state = {
+			renderCatalog: true,
 			inputFormat: 'FTLX',			
 			outputFormat: 'HTML',
 			docContent: '',
@@ -83,7 +85,8 @@ class DocXmlEditor extends Component {
 	handleInputFormat = (e) => {
 		e.preventDefault();
 		this.setState({
-			inputFormat: e.target.value,
+			renderCatalog : true,
+			inputFormat: e.target.value
 		});
 	};
 
@@ -125,19 +128,19 @@ class DocXmlEditor extends Component {
 		);
 	};
 
- myAtob = (code) => {
-    try {
-      return decodeURIComponent(atob(code)
-      .split('')
-      .map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
-      })
-      .join(''))
-    }
-    catch( e ) {
-      return atob(code)
-    }
-  }
+	 myAtob = (code) => {
+	    try {
+	      return decodeURIComponent(atob(code)
+	      .split('')
+	      .map(function(c) {
+	        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+	      })
+	      .join(''))
+	    }
+	    catch( e ) {
+	      return atob(code)
+	    }
+	  }
 
 	render() {
 		
@@ -191,13 +194,17 @@ class DocXmlEditor extends Component {
 		}
 		
 		return <Fragment>
-
+		    
 			<Form>
 				<Row>
 					<Col>
-						<DocCatalog handleEditorContent={this.handleEditorContent} handleJsonDataContent={this.handleJsonDataContent} defaultDocId='default'/>
+						<DocCatalog key={this.state.inputFormat}
+							currentType={this.state.inputFormat}
+							handleEditorContent={this.handleEditorContent} 
+							handleJsonDataContent={this.handleJsonDataContent} 
+						/>
 					</Col>
-				</Row>
+				</Row>	
 				<Row>
 					<Col>
 						<Form.Label>Source type</Form.Label>
@@ -236,7 +243,8 @@ class DocXmlEditor extends Component {
 						  </Select>
 						</FormControl>								
 					</Col>
-				</Row>		
+				</Row>	
+
 				<Row>
 					<Col>						
 						<AceEditor
