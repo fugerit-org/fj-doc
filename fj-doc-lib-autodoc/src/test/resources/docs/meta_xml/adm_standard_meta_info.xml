@@ -152,7 +152,7 @@
 
   <admeta:admSection>
     <admeta:name>meta_html</admeta:name>
-    <admeta:description>Properties specific to HTML formata</admeta:description>
+    <admeta:description>Properties specific to HTML format</admeta:description>
     <admeta:admMetaInfo>
       <admeta:name>html-css-link</admeta:name>
       <admeta:description>Link to css for the html document</admeta:description>
@@ -211,6 +211,72 @@
       <admeta:supportedType>pdf</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-mod-openpdf(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+  </admeta:admSection>
+  
+  <admeta:admSection>
+  	<admeta:name>meta_xls</admeta:name>
+    <admeta:description>Properties specific to spreadsheet format (XLS/XLSX)</admeta:description>
+    <admeta:admMetaInfo>
+      <admeta:name>excel-table-id</admeta:name>
+      <admeta:description>This property is required to generated spreadsheet format. It should be a list of ';' separated element. 
+Each element is a key=value set, where 'key' is the id of a table in the document which will be the content of a new sheet, 
+the 'value' is the name of the sheet to be created. i.e. 'table-1=sheet1;table-2=sheet2'.</admeta:description>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-poi(xlsx)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>excel-try-autoresize</admeta:name>
+      <admeta:description>If set to 'true', a column auto resize will be tried on the created sheets.</admeta:description>
+      <admeta:defaultValue>false</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-poi(xlsx)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+     <admeta:admMetaInfo>
+      <admeta:name>excel-fail-on-autoresize-error</admeta:name>
+      <admeta:description>If both this property and 'excel-try-autoresize' are set to true, the generation will fail in case of autoresize errors.</admeta:description>
+      <admeta:defaultValue>false</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-poi(xlsx)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>excel-ignore-format</admeta:name>
+      <admeta:description>If set to 'true', column format will be ignored and all content will be rendered as string.</admeta:description>
+      <admeta:defaultValue>false</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-poi(xlsx)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>excel-template</admeta:name>
+      <admeta:description>Path to a template to use as a base for the output. If the prefix is 'file://' will load from file system. If prefix is 'cl://' will load from classlaoder.</admeta:description>
+      <admeta:defaultValue>false</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-poi(xlsx)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-jxl(xls) [deprecated]</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>excel-width-multiplier</admeta:name>
+      <admeta:description>A multiplier for zooming the width of the generated excel. Base value is '256'</admeta:description>
+      <admeta:defaultValue>256</admeta:defaultValue>
+      <admeta:since>1.0.0</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-jxl(xls) [deprecated]</admeta:supportedHandler>
     </admeta:admMetaInfo>
   </admeta:admSection>
 

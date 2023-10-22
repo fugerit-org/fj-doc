@@ -18,9 +18,11 @@
 	<ol >
 				<li > 		<a  href="#meta_general">Properties for generic metadata</a>
 </li>
-				<li > 		<a  href="#meta_html">Properties specific to HTML formata</a>
+				<li > 		<a  href="#meta_html">Properties specific to HTML format</a>
 </li>
 				<li > 		<a  href="#meta_fixed">Properties specific to fixed size formats (like PDF)</a>
+</li>
+				<li > 		<a  href="#meta_xls">Properties specific to spreadsheet format (XLS/XLSX)</a>
 </li>
 	</ol>
 		<a  href="#top">top</a>
@@ -213,7 +215,7 @@
 		</table>
 		<a  href="#top">top</a>
 		<span  id="meta_html"></span>
-		<h2  style="font-weight: bold;">Properties specific to HTML formata</h2>
+		<h2  style="font-weight: bold;">Properties specific to HTML format</h2>
 		<table style='width: 100%'>
 				<thead>
 		<tr>
@@ -384,6 +386,142 @@
 		<p>vertical</p>
 				</td>
 				<td id="cell_3_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>1.0.0</p>
+				</td>
+		</tr>				
+				</tbody>
+		</table>
+		<a  href="#top">top</a>
+		<span  id="meta_xls"></span>
+		<h2  style="font-weight: bold;">Properties specific to spreadsheet format (XLS/XLSX)</h2>
+		<table style='width: 100%'>
+				<thead>
+		<tr>
+				<th id="cell_0_0"  style="width: 20%; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-weight: bold;">Name</p>
+				</th>
+				<th id="cell_0_1"  style="width: 40%; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-weight: bold;">Description</p>
+				</th>
+				<th id="cell_0_2"  style="width: 25%; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-weight: bold;">Supporting handlers</p>
+				</th>
+				<th id="cell_0_3"  style="width: 10%; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-weight: bold;">Default</p>
+				</th>
+				<th id="cell_0_4"  style="width: 5%; text-align: center; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-weight: bold;">Since</p>
+				</th>
+		</tr>				
+				</thead>
+				<tbody>
+		<tr>
+				<td id="cell_0_0"  style="width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-style: italic;">excel-table-id</p>
+		<span  id="excel-table-id"></span>
+				</td>
+				<td id="cell_0_1"  style="width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>This property is required to generated spreadsheet format. It should be a list of ';' separated element. 
+Each element is a key=value set, where 'key' is the id of a table in the document which will be the content of a new sheet, 
+the 'value' is the name of the sheet to be created. i.e. 'table-1=sheet1;table-2=sheet2'.</p>
+				</td>
+				<td id="cell_0_2"  style="width: 25%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>fj-doc-mod-poi(xls), fj-doc-mod-poi(xlsx), </p>
+				</td>
+				<td id="cell_0_3"  style="width: 10%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p></p>
+				</td>
+				<td id="cell_0_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>1.0.0</p>
+				</td>
+		</tr>				
+		<tr>
+				<td id="cell_1_0"  style="width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-style: italic;">excel-try-autoresize</p>
+		<span  id="excel-try-autoresize"></span>
+				</td>
+				<td id="cell_1_1"  style="width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>If set to 'true', a column auto resize will be tried on the created sheets.</p>
+				</td>
+				<td id="cell_1_2"  style="width: 25%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>fj-doc-mod-poi(xls), fj-doc-mod-poi(xlsx), </p>
+				</td>
+				<td id="cell_1_3"  style="width: 10%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>false</p>
+				</td>
+				<td id="cell_1_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>1.0.0</p>
+				</td>
+		</tr>				
+		<tr>
+				<td id="cell_2_0"  style="width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-style: italic;">excel-fail-on-autoresize-error</p>
+		<span  id="excel-fail-on-autoresize-error"></span>
+				</td>
+				<td id="cell_2_1"  style="width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>If both this property and 'excel-try-autoresize' are set to true, the generation will fail in case of autoresize errors.</p>
+				</td>
+				<td id="cell_2_2"  style="width: 25%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>fj-doc-mod-poi(xls), fj-doc-mod-poi(xlsx), </p>
+				</td>
+				<td id="cell_2_3"  style="width: 10%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>false</p>
+				</td>
+				<td id="cell_2_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>1.0.0</p>
+				</td>
+		</tr>				
+		<tr>
+				<td id="cell_3_0"  style="width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-style: italic;">excel-ignore-format</p>
+		<span  id="excel-ignore-format"></span>
+				</td>
+				<td id="cell_3_1"  style="width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>If set to 'true', column format will be ignored and all content will be rendered as string.</p>
+				</td>
+				<td id="cell_3_2"  style="width: 25%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>fj-doc-mod-poi(xls), fj-doc-mod-poi(xlsx), </p>
+				</td>
+				<td id="cell_3_3"  style="width: 10%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>false</p>
+				</td>
+				<td id="cell_3_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>1.0.0</p>
+				</td>
+		</tr>				
+		<tr>
+				<td id="cell_4_0"  style="width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-style: italic;">excel-template</p>
+		<span  id="excel-template"></span>
+				</td>
+				<td id="cell_4_1"  style="width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>Path to a template to use as a base for the output. If the prefix is 'file://' will load from file system. If prefix is 'cl://' will load from classlaoder.</p>
+				</td>
+				<td id="cell_4_2"  style="width: 25%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>fj-doc-mod-poi(xls), fj-doc-mod-poi(xlsx), fj-doc-mod-jxl(xls) [deprecated], </p>
+				</td>
+				<td id="cell_4_3"  style="width: 10%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>false</p>
+				</td>
+				<td id="cell_4_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>1.0.0</p>
+				</td>
+		</tr>				
+		<tr>
+				<td id="cell_5_0"  style="width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p style="font-style: italic;">excel-width-multiplier</p>
+		<span  id="excel-width-multiplier"></span>
+				</td>
+				<td id="cell_5_1"  style="width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>A multiplier for zooming the width of the generated excel. Base value is '256'</p>
+				</td>
+				<td id="cell_5_2"  style="width: 25%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>fj-doc-mod-jxl(xls) [deprecated], </p>
+				</td>
+				<td id="cell_5_3"  style="width: 10%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
+		<p>256</p>
+				</td>
+				<td id="cell_5_4"  style="width: 5%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;"> 
 		<p>1.0.0</p>
 				</td>
 		</tr>				
