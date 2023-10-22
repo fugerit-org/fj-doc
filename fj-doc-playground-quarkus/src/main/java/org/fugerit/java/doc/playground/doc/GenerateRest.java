@@ -58,6 +58,8 @@ import lombok.extern.slf4j.Slf4j;
 @Path("/generate")
 public class GenerateRest {
 
+	public static final String FTL_DIRECTIVE = "<#ftl";
+	
 	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
 		SafeFunction.apply( () -> {
 			DocInput docInput = DocInput.newInput( type, reader , sourceType );
@@ -68,9 +70,17 @@ public class GenerateRest {
 	
 	private void handleConfiguration( Configuration configuration, JsonNode node, String ftlData, String chainId ) {
 		StringTemplateLoader loader = new StringTemplateLoader();
+		StringBuilder chainData = new StringBuilder();
 		ObjectNode oNode = (ObjectNode) node;
 		Iterator<String> fieldNames = oNode.fieldNames();
-		StringBuilder chainData = new StringBuilder();
+		int ftlDirectiveStartIndex = ftlData.indexOf( FTL_DIRECTIVE );
+		if ( ftlDirectiveStartIndex != -1 ) {
+			int ftlDirectiveEndIndex = ftlData.indexOf( ">" );
+			String ftlDirective = ftlData.substring( 0, ftlDirectiveEndIndex+1 );
+			log.debug( "ftlDirective : {}", ftlDirective );
+			chainData.append( ftlDirective );
+			ftlData = ftlData.substring( ftlDirectiveEndIndex+1 );
+		}
 		while ( fieldNames.hasNext() ) {
 			String currentName = fieldNames.next();
 			String currentValue = node.get( currentName ).toString();
