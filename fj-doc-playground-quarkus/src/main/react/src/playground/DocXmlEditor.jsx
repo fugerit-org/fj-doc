@@ -35,7 +35,8 @@ class DocXmlEditor extends Component {
 			docOutput: null,
 			docFormat: null,
 			generationTime: null,
-			outputMessage: null
+			outputMessage: null,
+			validationEnabled: false
 		}
 	}
 
@@ -77,7 +78,8 @@ class DocXmlEditor extends Component {
 				if (response.success) {
 					reactState.setState({
 						docOutput: response.result.docOutputBase64,
-						docFormat: this.state.outputFormat
+						docFormat: this.state.outputFormat,
+						outputMessage: response.result.message
 					})
 				} 
 			})
@@ -88,7 +90,8 @@ class DocXmlEditor extends Component {
 		e.preventDefault();
 		this.setState({
 			renderCatalog : true,
-			inputFormat: e.target.value
+			inputFormat: e.target.value,
+			validationEnabled: (e.target.value !== 'FTLX')
 		});
 	};
 
@@ -279,7 +282,7 @@ class DocXmlEditor extends Component {
 			    <Button variant="contained" onClick={this.handleGenerate}>Generate document</Button> 
 			  </Grid>
 			  <Grid item xs={6}>
-			    <Button variant="contained" onClick={this.handleValidate}>Validate document</Button>
+			    <Button variant="contained" disabled={!this.state.validationEnabled} onClick={this.handleValidate}>Validate (only XML, JSON and YAML sources)</Button>
 			  </Grid>
 			  <Grid item xs={12} xl={6}>
 						<AceEditor

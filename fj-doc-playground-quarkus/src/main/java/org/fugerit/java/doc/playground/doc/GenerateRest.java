@@ -12,6 +12,7 @@ import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleCell;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleRow;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.playground.RestHelper;
@@ -68,7 +69,9 @@ public class GenerateRest {
 			errorRow.addCell( "-" );
 		}
     	errorRow.addCell( level );
-    	errorRow.addCell( message );
+    	SimpleCell messageCell = new SimpleCell(message);
+    	messageCell.setAlign( "left" );
+    	errorRow.addCell( messageCell );
         simpleTableModel.addRow( errorRow );
 	}
 	
@@ -76,37 +79,40 @@ public class GenerateRest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/validate")
-	public Response validate( GenerateInput input) {
-		return RestHelper.defaultHandle( () -> {
+	public Response validate(GenerateInput input) {
+		return RestHelper.defaultHandle(() -> {
+			GenerateOutput output = new GenerateOutput();
 			DocParser parser = facade.findParser(input);
-			try ( StringReader reader = new StringReader( input.getDocContent() );
-					ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
-				DocValidationResult result = parser.validateResult( reader );
+			try (StringReader reader = new StringReader(input.getDocContent());
+					ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
 				DocTypeHandler handler = facade.findHandler(input);
-				SimpleTable simpleTableModel = SimpleTableFacade.newTable( 15, 20, 65 );
-		        SimpleRow headerRow = new SimpleRow( BooleanUtils.BOOLEAN_TRUE );
-		        headerRow.addCell( "#" );
-		        headerRow.addCell( "level" );
-		        headerRow.addCell( "message" );
-		        simpleTableModel.addRow( headerRow );
-		        int count = 1;
-		        for ( String message : result.getErrorList() ) {
-		        	this.addRow(simpleTableModel, count, "error", message);
-			        count++;
-		        }
-		        for ( String message : result.getInfoList() ) {
-		        	this.addRow(simpleTableModel, count, "info", message);
-			        count++;
-		        }
-		        this.addRow(simpleTableModel, 0, "result", "Document valid? : "+ ( Result.RESULT_CODE_OK == result.getResultCode() ) );
-		        SimpleTableDocConfig docConfig = SimpleTableDocConfig.newConfig();
-		        docConfig.processSimpleTable(simpleTableModel, handler, buffer);
-				GenerateOutput output = new GenerateOutput();
-				output.setDocOutputBase64( Base64.getEncoder().encodeToString( buffer.toByteArray() ) );
-				return Response.ok().entity( output ).build();
+				SimpleTable simpleTableModel = SimpleTableFacade.newTable(10, 20, 70);
+				SimpleRow headerRow = new SimpleRow(BooleanUtils.BOOLEAN_TRUE);
+				headerRow.addCell("#");
+				headerRow.addCell("level");
+				headerRow.addCell("message");
+				simpleTableModel.addRow(headerRow);
+				DocValidationResult result = parser.validateResult(reader);
+				int count = 1;
+				for (String message : result.getErrorList()) {
+					this.addRow(simpleTableModel, count, "error", message);
+					count++;
+				}
+				for (String message : result.getInfoList()) {
+					this.addRow(simpleTableModel, count, "info", message);
+					count++;
+				}
+				this.addRow(simpleTableModel, 0, "result",
+						"Document valid? : " + (Result.RESULT_CODE_OK == result.getResultCode()));
+				SimpleTableDocConfig docConfig = SimpleTableDocConfig.newConfig();
+				docConfig.processSimpleTable(simpleTableModel, handler, buffer);
+				output.setDocOutputBase64(Base64.getEncoder().encodeToString(buffer.toByteArray()));
+			} catch (Exception e) {
+				Throwable te = this.findCause(e);
+				output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
 			}
-		}
-		);
+			return Response.ok().entity(output).build();
+		});
 	}
 
 }
