@@ -22,9 +22,18 @@ class DocConversion extends Component {
 		this.state = {
 			inputFormat: 'XML',			
 			outputFormat: '',
-			docOutput: ''
+			docOutput: '',
+			prettyPrint: true
 		}
 	}
+
+	handleGenerateOnlyFormat = (e) => {
+		this.setState( { prettyPrint: false }, () => this.handleGenerate( e ) );
+	};
+	
+	handleGeneratePrettyPrint = (e) => {
+		this.setState( { prettyPrint: true }, () => this.handleGenerate( e ) );
+	};
 
 	handleGenerate = (e) => {
 		e.preventDefault();
@@ -130,8 +139,11 @@ class DocConversion extends Component {
 					  </Select>
 					</FormControl>	
 			  </Grid>
-			  <Grid item xs={12}>
-				<Button variant="contained" onClick={this.handleGenerate}>Convert</Button>		
+			  <Grid item xs={6}>
+				<Button variant="contained" onClick={this.handleGeneratePrettyPrint}>Convert and pretty print</Button>		
+			  </Grid>
+			  <Grid item xs={6}>
+				<Button variant="contained" onClick={this.handleGenerateOnlyFormat}>Only convert</Button>		
 			  </Grid>
 			  <Grid item xs={12} md={6}>
 						<AceEditor
