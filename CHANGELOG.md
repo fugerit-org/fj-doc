@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [lib-autodoc] documentation for csv properties
 - [lib-autodoc] documentation for spreadsheet properties
 - [playground-quarkus] DocConversion same format conversion (i.e. json -> json)
 - [playground-quarkus] DocConversion only convert without pretty print

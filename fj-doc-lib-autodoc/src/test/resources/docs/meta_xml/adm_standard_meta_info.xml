@@ -219,7 +219,7 @@
     <admeta:description>Properties specific to spreadsheet format (XLS/XLSX)</admeta:description>
     <admeta:admMetaInfo>
       <admeta:name>excel-table-id</admeta:name>
-      <admeta:description>This property is required to generated spreadsheet format. It should be a list of ';' separated element. 
+      <admeta:description>This property is required to generate spreadsheet format. It should be a list of ';' separated element. 
 Each element is a key=value set, where 'key' is the id of a table in the document which will be the content of a new sheet, 
 the 'value' is the name of the sheet to be created. i.e. 'table-1=sheet1;table-2=sheet2'.</admeta:description>
       <admeta:since>1.0.0</admeta:since>
@@ -277,6 +277,20 @@ the 'value' is the name of the sheet to be created. i.e. 'table-1=sheet1;table-2
       <admeta:supportedType>xls</admeta:supportedType>
       <admeta:supportedType>xlsx</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-mod-jxl(xls) [deprecated]</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+  </admeta:admSection>
+
+  <admeta:admSection>
+  	<admeta:name>meta_csv</admeta:name>
+    <admeta:description>Properties specific to CSV format</admeta:description>
+    <admeta:admMetaInfo>
+      <admeta:name>csv-table-id</admeta:name>
+      <admeta:description>This property is required to generate the CSV format. It should be a single id of a table contained in the source document to be rendered as CSV.</admeta:description>
+      <admeta:since>1.4.5</admeta:since>
+      <admeta:supportedType>xls</admeta:supportedType>
+      <admeta:supportedType>xlsx</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-poi(xls)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-poi(xlsx)</admeta:supportedHandler>
     </admeta:admMetaInfo>
   </admeta:admSection>
 
