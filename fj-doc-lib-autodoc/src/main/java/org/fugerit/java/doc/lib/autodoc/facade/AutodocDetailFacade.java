@@ -4,11 +4,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Calendar;
 
-import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.lib.autodoc.detail.model.AdAttribute;
@@ -28,15 +27,7 @@ import jakarta.xml.bind.Unmarshaller;
 
 public class AutodocDetailFacade {
 
-	private static final AutodocDetailFacade INSTANCE = new AutodocDetailFacade();
-	
-	public static AutodocDetailFacade getInstance() {
-		return INSTANCE;
-	}
-	
-	private AutodocDetailFacade() {
-		
-	}
+	private AutodocDetailFacade() {}
 	
 	public static final String PROP_OUTPUT_TITLE = "output-title";
 	
@@ -61,7 +52,7 @@ public class AutodocDetailFacade {
 		return adProperty;
 	}
 	
-	public AutodocDetail populateStub( AutodocModel autodocModel ) {
+	public static AutodocDetail populateStub( AutodocModel autodocModel ) {
 		AutodocDetail detail = new AutodocDetail();
 		// ad property section
 		detail.getAdProperty().add( createProperty( PROP_OUTPUT_TITLE, PLACEHOLDRE_TOKEN ) );
@@ -72,14 +63,11 @@ public class AutodocDetailFacade {
 		detail.getAdProperty().add( createProperty( PROP_AUTODOC_DETAIL_MODULE_VERSION, PLACEHOLDRE_TOKEN ) );
 		// ad changelog section
 		AdChangelog adChangelog = new AdChangelog();
-		try {
+		SafeFunction.apply( () -> {
 			Calendar c = Calendar.getInstance();
 			XMLGregorianCalendar date = DatatypeFactory.newInstance().newXMLGregorianCalendarDate( c.get( Calendar.YEAR ), c.get( Calendar.MONTH )+1, c.get( Calendar.DAY_OF_MONTH ), 0 );
-			
 			adChangelog.setDate( date );
-		} catch (DatatypeConfigurationException e) {
-			throw new ConfigRuntimeException( e );
-		}
+		} );
 		adChangelog.setVersion( AUTODOC_DETAIL_FACADE_1_0_0_VERSION );
 		adChangelog.getDescription().add( "Sample changelog entry (can be 1+)" );
 		detail.getAdChangelog().add( adChangelog );
@@ -111,12 +99,12 @@ public class AutodocDetailFacade {
 		return detail;
 	}
 	
-	public void marshal( AutodocDetail autodocDetail, OutputStream os ) throws DocException {
-		this.marshal( autodocDetail, os, true, true );
+	public static void marshal( AutodocDetail autodocDetail, OutputStream os ) throws DocException {
+		marshal( autodocDetail, os, true, true );
 	}
 	
-	public void marshal( AutodocDetail autodocDetail, OutputStream os, boolean format, boolean addSchemaLocation ) throws DocException {
-		try {
+	public static void marshal( AutodocDetail autodocDetail, OutputStream os, boolean format, boolean addSchemaLocation ) throws DocException {
+		DocException.applyWithMessage( () -> {
 			JAXBContext jc = JAXBContext.newInstance( AutodocDetail.class );
 			Marshaller marshaller = jc.createMarshaller();
 		    marshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
@@ -125,21 +113,15 @@ public class AutodocDetailFacade {
 		    	 marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "https://autodoc.fugerit.org, https://www.fugerit.org/data/java/doc/xsd/autodoc-detail-1-0.xsd");
 		    }
 			marshaller.marshal( autodocDetail , os );
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "marshal" , e );
-		}
+		} , "marshal" );
 	}
 	
-	public AutodocDetail unmarshal(InputStream is) throws DocException {
-		AutodocDetail model = null;
-		try {
+	public static AutodocDetail unmarshal(InputStream is) throws DocException {
+		return DocException.getWithMessage( () -> {
 			JAXBContext jc = JAXBContext.newInstance(AutodocDetail.class);
 			Unmarshaller unmarshaller = jc.createUnmarshaller();
-			model = (AutodocDetail) unmarshaller.unmarshal(is);
-		} catch (Exception e) {
-			throw DocException.convertExMethod( "unmarshal" , e );
-		}
-		return model;
+			return (AutodocDetail) unmarshaller.unmarshal(is);
+		} , "unmarshal" );
 	}
 	
 }

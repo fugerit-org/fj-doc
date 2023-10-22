@@ -5,29 +5,26 @@ import java.util.stream.Collectors;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class XsdParserFacade {
 
-	private static final Logger logger = LoggerFactory.getLogger(XsdParserFacade.class);
-
 	public AutodocModel parse(String filePath) throws ConfigException {
-		AutodocModel autodocModel = null;
-		try {
+		return ConfigException.getWithMessage( () -> {
+			AutodocModel autodocModel = null;
 			XsdParser xsdParser = new XsdParser(filePath);
 			autodocModel = new AutodocModel( xsdParser );
 			List<XsdElement> elements = xsdParser.getResultXsdElements().collect(Collectors.toList());
 			for (XsdElement currentElement : elements) {
-				logger.info("current element {} -> {}", currentElement.getName(), currentElement.getType());
+				log.info("current element {} -> {}", currentElement.getName(), currentElement.getType());
 				autodocModel.addElement( currentElement );
 			}
-		} catch (Exception e) {
-			throw new ConfigException("Error parsing xsd : " + e, e);
-		}
-		return autodocModel;
+			return autodocModel;
+		} , "Error parsing xsd" );
 	}
 
 

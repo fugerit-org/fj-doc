@@ -67,7 +67,7 @@ public class AutodocAttribute {
 		}
 	}
 	
-	private void handleMinRestrictions( StringBuilder builder, XsdRestriction xsdRestriction ) {
+	private void handleMinMaxInclusiveRestrictions( StringBuilder builder, XsdRestriction xsdRestriction ) {
 		if ( xsdRestriction.getMinInclusive() != null ) {
 			builder.append( " , minInclusive : " );
 			builder.append( xsdRestriction.getMinInclusive().getValue() );	
@@ -78,7 +78,7 @@ public class AutodocAttribute {
 		}
 	}
 	
-	private void handleMaxRestrictions( StringBuilder builder, XsdRestriction xsdRestriction ) {
+	private void handleMinMaxExclusiveRestrictions( StringBuilder builder, XsdRestriction xsdRestriction ) {
 		if ( xsdRestriction.getMinExclusive() != null ) {
 			builder.append( " , minExclusive : " );
 			builder.append( xsdRestriction.getMinExclusive().getValue() );	
@@ -114,8 +114,8 @@ public class AutodocAttribute {
 			for ( XsdRestriction xsdRestriction : restrictions ) {
 				this.handleBaseRestriction(builder, xsdRestriction);
 				this.handleLenthRestrictions(builder, xsdRestriction);
-				this.handleMinRestrictions(builder, xsdRestriction);
-				this.handleMaxRestrictions(builder, xsdRestriction);
+				this.handleMinMaxInclusiveRestrictions(builder, xsdRestriction);
+				this.handleMinMaxExclusiveRestrictions(builder, xsdRestriction);
 				this.handlePatternRestriction(builder, xsdRestriction);
 				this.handleEnumerationRestriction(builder, xsdRestriction);
 			}

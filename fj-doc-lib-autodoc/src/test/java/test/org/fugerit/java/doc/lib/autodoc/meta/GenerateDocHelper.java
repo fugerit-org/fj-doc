@@ -2,6 +2,7 @@ package test.org.fugerit.java.doc.lib.autodoc.meta;
 
 import static org.junit.Assert.fail;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -24,11 +25,14 @@ public class GenerateDocHelper {
 		File destFile = new File( destPath );
 		log.info( "handler {}, sourcePath : {}, destFile : {}", handler, sourcePath, destFile );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( sourcePath );
-				OutputStream os = new FileOutputStream( destFile ) ) {
-			AutodocMeta autodocMeta = AutodocMetaFacade.getInstance().unmarshal( is );
+				OutputStream os = new FileOutputStream( destFile );
+				ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+			AutodocMeta autodocMeta = AutodocMetaFacade.unmarshal( is );
 			AutodocMetaModel autodocMetaModel = new AutodocMetaModel(autodocMeta);
 			AutodocDocConfig.getInstance().processAutodocMeta( autodocMetaModel , handler, os);
-			ok = true;
+			// test marashall
+			AutodocMetaFacade.marshal(autodocMeta, baos);
+			ok = baos.toByteArray().length > 0;
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );

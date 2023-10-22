@@ -48,12 +48,12 @@ public class AutodocDocConfig {
 	}
 	
 	private void process( String chainId, DocProcessContext context, DocProcessData data ) throws Exception {
-		MiniFilterChain chain = this.config.getChainCache( chainId );
+		MiniFilterChain chain = this.getConfig().getChainCache( chainId );
 		chain.apply( context , data );
 	}
 	
 	public void processAutodoc(  AutodocModel autodocModel, DocTypeHandler handler, OutputStream os ) throws DocException {
-		try {
+		DocException.applyWithMessage( () -> {
 			DocProcessData data = new DocProcessData();
 			DocProcessContext context = DocProcessContext.newContext( AutodocModel.ATT_NAME, autodocModel );
 			process( CHAIN_ID_AUTODOC , context, data );
@@ -61,21 +61,15 @@ public class AutodocDocConfig {
 			DocInput docInput = DocInput.newInput( handler.getType() , docBase );
 			DocOutput docOutput = DocOutput.newOutput( os );
 			handler.handle( docInput , docOutput );
-		} catch (Exception e) {
-			throw new DocException( "Autodoc generation error : "+e, e );
-		}
+		}, "Autodoc generation error" );
 	}
 	
 	public void processAutodocHtmlDefault(  AutodocModel autodocModel, OutputStream os ) throws DocException {
-		try  {
-			this.processAutodoc( autodocModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
-		} catch (Exception e) {
-			throw new DocException( "Autodoc generation error : "+e, e );
-		}
+		this.processAutodoc( autodocModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
 	}
 
 	public void processAutodocDetail(  AutodocDetailModel autoDetailModel, DocTypeHandler handler, OutputStream os ) throws DocException {
-		try {
+		DocException.applyWithMessage( () -> {
 			DocProcessData data = new DocProcessData();
 			DocProcessContext context = DocProcessContext.newContext( AutodocDetailModel.ATT_NAME, autoDetailModel );
 			process( CHAIN_ID_AUTODOC_DETAIL , context, data );
@@ -83,21 +77,15 @@ public class AutodocDocConfig {
 			DocInput docInput = DocInput.newInput( handler.getType() , docBase );
 			DocOutput docOutput = DocOutput.newOutput( os );
 			handler.handle( docInput , docOutput );
-		} catch (Exception e) {
-			throw new DocException( "Autodoc detail generation error : "+e, e );
-		}
+		}, "Autodoc detail generation error" );
 	}
 	
 	public void processAutodocDetailHtmlDefault(  AutodocDetailModel autoDetailModel, OutputStream os ) throws DocException {
-		try {
-			this.processAutodocDetail( autoDetailModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
-		} catch (Exception e) {
-			throw new DocException( "Autodoc detail generation error : "+e, e );
-		}
+		this.processAutodocDetail( autoDetailModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
 	}
 
 	public void processAutodocMeta(  AutodocMetaModel autodocMetaModel, DocTypeHandler handler, OutputStream os ) throws DocException {
-		try {
+		DocException.applyWithMessage( () -> {
 			DocProcessData data = new DocProcessData();
 			DocProcessContext context = DocProcessContext.newContext( AutodocMetaModel.ATT_NAME, autodocMetaModel );
 			process( CHAIN_ID_AUTODOC_META , context, data );
@@ -105,9 +93,7 @@ public class AutodocDocConfig {
 			DocInput docInput = DocInput.newInput( handler.getType() , docBase );
 			DocOutput docOutput = DocOutput.newOutput( os );
 			handler.handle( docInput , docOutput );
-		} catch (Exception e) {
-			throw new DocException( "Autodoc meta generation error : "+e, e );
-		}
+		}, "Autodoc meta generation error" );
 	}
 	
 }

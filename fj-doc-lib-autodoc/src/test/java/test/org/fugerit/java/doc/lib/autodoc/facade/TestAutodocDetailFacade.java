@@ -23,9 +23,8 @@ public class TestAutodocDetailFacade {
 	public void testParseXsdModel() {
 		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET ) ) )  {
 			AutodocModel autodocModel = VenusAutodocFacade.parseLast();
-			AutodocDetailFacade facade = AutodocDetailFacade.getInstance();
-			AutodocDetail autodocDetail = facade.populateStub(autodocModel);
-			facade.marshal( autodocDetail, fos, true, false );
+			AutodocDetail autodocDetail = AutodocDetailFacade.populateStub(autodocModel);
+			AutodocDetailFacade.marshal( autodocDetail, fos, true, false );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			logger.error( message, e );

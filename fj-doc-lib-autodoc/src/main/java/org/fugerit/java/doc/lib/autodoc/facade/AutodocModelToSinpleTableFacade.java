@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.lang.helpers.reflect.MethodHelper;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocElement;
@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AutodocModelToSinpleTableFacade {
 
 	private void handleOccurs( final StringBuilder builder, XsdAbstractElement xsdObject ) {
-		try {
+		SafeFunction.apply( () -> {
 			Integer minOccurs = (Integer) MethodHelper.invokeGetter( xsdObject , "minOccurs" );
 			String maxOccurs = (String) MethodHelper.invokeGetter( xsdObject , "maxOccurs" );
 			if ( minOccurs == null ) {
@@ -42,15 +42,13 @@ public class AutodocModelToSinpleTableFacade {
 			builder.append( "-" );
 			builder.append( maxOccurs );
 			builder.append( "]" );
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Method invocation error "+e, e );
-		}
+		} );
 	}
 	
 	private String handleElement( XsdElement xsdObject ) {
 		final StringBuilder builder = new StringBuilder();
 		builder.append( xsdObject.getRawName() );
-		try {
+		SafeFunction.apply( () -> {
 			Integer minOccurs = (Integer) MethodHelper.invokeGetter( xsdObject , "minOccurs" );
 			String maxOccurs = (String) MethodHelper.invokeGetter( xsdObject , "maxOccurs" );
 			if ( minOccurs != null || maxOccurs != null ) {
@@ -68,9 +66,7 @@ public class AutodocModelToSinpleTableFacade {
 					builder.append( "]" );
 				}
 			}
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( "Method invocation error "+e, e );
-		}
+		} );
 		return builder.toString();
 	}
 	

@@ -26,8 +26,7 @@ public class TestAutodocDocConfigDetail {
 	public void testGenerateAutodocDetail() {
 		try ( FileInputStream fis = new FileInputStream( new File( SOURCE ) );
 				FileOutputStream fos = new FileOutputStream( new File( TARGET ) ) )  {
-			AutodocDetailFacade facade = AutodocDetailFacade.getInstance();
-			AutodocDetail autodocDetail = facade.unmarshal( fis );
+			AutodocDetail autodocDetail = AutodocDetailFacade.unmarshal( fis );
 			AutodocDetailModel autodocDetailModel = new AutodocDetailModel(autodocDetail);
 			AutodocDocConfig docConfig = AutodocDocConfig.newConfig();
 			docConfig.processAutodocDetailHtmlDefault(autodocDetailModel, fos);
