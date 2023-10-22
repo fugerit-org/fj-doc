@@ -20,4 +20,11 @@ public class CsvHelperConsts {
 	 */
 	public static final String PROP_CSV_TABLE_ID = "csv-table-id";
 	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#csv-separator">See 'csv-separator' documentation</a>
+	 * 
+	 * @since 3.1
+	 */
+	public static final String PROP_CSV_SEPARATOR = "csv-separator";
+	
 }

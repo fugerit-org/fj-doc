@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [fj-doc-mod-opencsv] 'csv-separator' property to override the default separator (,) 
 - [lib-autodoc] documentation for csv properties
 - [lib-autodoc] documentation for spreadsheet properties
 - [playground-quarkus] DocConversion same format conversion (i.e. json -> json)

@@ -4,6 +4,7 @@ import java.io.OutputStreamWriter;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -20,6 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.opencsv.CSVWriter;
+import com.opencsv.ICSVWriter;
 
 public class OpenCSVTypeHandler extends DocTypeHandlerDefault {
 
@@ -63,26 +65,36 @@ public class OpenCSVTypeHandler extends DocTypeHandlerDefault {
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
  		DocBase docBase = docInput.getDoc();
-		CSVWriter writer = new CSVWriter( new OutputStreamWriter( docOutput.getOs(), this.getCharset()  ) );
-		String csvTableId = docBase.getInfo().getProperty( CsvHelperConsts.PROP_CSV_TABLE_ID );
-		DocTable table = (DocTable)docBase.getElementById( csvTableId );
-		if ( table == null ) {
-			log.warn( "table id {} not found!", csvTableId );
-		} else {
-			log.info( "handling table id {}", csvTableId );
-			String[] currentRow = new String[ table.getColumns() ];
-			for ( DocElement currentElement : table.getElementList() ) {
-				DocRow row = (DocRow) currentElement;
-				int count = 0;
-				for ( DocElement currentCell : row.getElementList() ) {
-					DocCell cell = (DocCell) currentCell;
-					currentRow[count] = this.handleCell(cell);
-					count++;
-				}
-				writer.writeNext( currentRow );
-			}
-			writer.flush();
-		}
+ 		char separator = ICSVWriter.DEFAULT_SEPARATOR;
+ 		char quotechar = ICSVWriter.DEFAULT_QUOTE_CHARACTER;
+ 		char escapechar = ICSVWriter.DEFAULT_ESCAPE_CHARACTER;
+ 		String lineEnd = ICSVWriter.DEFAULT_LINE_END;
+ 		String csvSeparator = docBase.getStableInfo().getProperty( CsvHelperConsts.PROP_CSV_SEPARATOR );
+ 		if ( StringUtils.isNotEmpty( csvSeparator ) ) {
+ 			log.info( "override default separator : {} -> {}", csvSeparator, separator );
+ 			separator = csvSeparator.charAt( 0 );
+ 		}
+ 		try ( CSVWriter writer = new CSVWriter( new OutputStreamWriter( docOutput.getOs(), this.getCharset() ), separator, quotechar, escapechar, lineEnd  ) ) {
+ 			String csvTableId = docBase.getStableInfo().getProperty( CsvHelperConsts.PROP_CSV_TABLE_ID );
+ 			DocTable table = (DocTable)docBase.getElementById( csvTableId );
+ 			if ( table == null ) {
+ 				log.warn( "table id {} not found!", csvTableId );
+ 			} else {
+ 				log.info( "handling table id {}", csvTableId );
+ 				String[] currentRow = new String[ table.getColumns() ];
+ 				for ( DocElement currentElement : table.getElementList() ) {
+ 					DocRow row = (DocRow) currentElement;
+ 					int count = 0;
+ 					for ( DocElement currentCell : row.getElementList() ) {
+ 						DocCell cell = (DocCell) currentCell;
+ 						currentRow[count] = this.handleCell(cell);
+ 						count++;
+ 					}
+ 					writer.writeNext( currentRow );
+ 				}
+ 				writer.flush();
+ 			}
+ 		}
 	}
 	
 }

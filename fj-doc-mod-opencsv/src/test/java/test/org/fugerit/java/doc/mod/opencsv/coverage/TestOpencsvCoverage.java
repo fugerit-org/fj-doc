@@ -1,11 +1,13 @@
 package test.org.fugerit.java.doc.mod.opencsv.coverage;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.function.SimpleValue;
+import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -30,7 +32,7 @@ public class TestOpencsvCoverage {
 	
 	private final static DocTypeHandler[] HANDLERS = { OpenCSVTypeHandler.HANDLER };
 	
-	private boolean worker( String path, boolean result ) {
+	private boolean worker( String id, String path, boolean result ) {
 		SimpleValue<Boolean> res = new SimpleValue<>(false);
 		SafeFunction.apply( () -> {
 			for ( int k=0; k<HANDLERS.length; k++ ) {
@@ -40,9 +42,11 @@ public class TestOpencsvCoverage {
 						handler.handle( DocInput.newInput( handler.getType() , reader ) ,  DocOutput.newOutput( buffer ) );
 						if ( result ) {
 							res.setValue( buffer.toByteArray().length > 0 );
+							FileIO.writeBytes( buffer.toByteArray() , new File( "target/", id+".csv" ) );
 						} else {
 							res.setValue( buffer.toByteArray().length == 0 );	
 						}
+						
 				}
 			}
 		} );
@@ -53,7 +57,7 @@ public class TestOpencsvCoverage {
 	public void test01() {
 		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
 			log.info( "test -> {}", c );
-			Assert.assertTrue( this.worker( "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
+			Assert.assertTrue( this.worker( c.getId(), "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
 		} );
 	}
 	

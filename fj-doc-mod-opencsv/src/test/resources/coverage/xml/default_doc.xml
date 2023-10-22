@@ -18,6 +18,7 @@
 	<info name="html-css-link">/css/test.css</info>
 	<!-- CSV options -->
 	<info name="csv-table-id">excel-table</info>
+	<info name="csv-separator">;</info>
 	<header-ext>
 		<para align="center" fore-color="#eeeeee">header test</para>
 	</header-ext>
