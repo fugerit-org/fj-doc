@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [playground-quarkus] home page provides the 'snapshot' image tag (instead of previous 'latest').
 - [playground-quarkus] code review to remove bootstrap
 - [playground-quarkus] default html type handler set to FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8
 

@@ -20,7 +20,7 @@ import Info from './Info';
 
 const homepage = '/fj-doc-playground/home';
 
-const cmdDockerRun = 'docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest';
+const cmdDockerRun = 'docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:snapshot';
 
 class Home extends Component {
 
@@ -62,32 +62,28 @@ class Home extends Component {
 					</Link>
 				</ListItem>
 			</List>
- 			<Grid id="firstRow" container spacing={1} style={{ paddingLeft: 15, paddingTop: 15 }}>
- 				<Grid item sx={8}>
- 					<p>To run locally, <a href="https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus">go to the project page</a> or use a public image : </p>
- 				</Grid>
- 			</Grid>
- 			<Grid id="secondRow" container spacing={1} style={{ paddingLeft: 15 }}>
- 	 			<Grid item sx={8}>
- 					<TextField sx={{ width: '800px' }} id="outlined-basic" label="docker run" variant="outlined" value={cmdDockerRun}/>
- 					<CopyToClipboard text={cmdDockerRun}><Button><ContentCopyIcon /></Button></CopyToClipboard>
- 				</Grid>
-    		</Grid>
-   			<Grid id="thirdRow" container spacing={1} style={{ paddingLeft: 15 }}>
- 	 			<Grid item sx={8}>
- 					And open <a href="http://localhost:8080/fj-doc-playground/home/">http://localhost:8080/fj-doc-playground/home/</a> 
- 				</Grid>
-    		</Grid>
-     		<Grid id="fourthRow" container spacing={1} style={{ paddingLeft: 15, paddingTop: 15 }}>
- 	 			<Grid item sx={8}>
- 					Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tag. 
- 				</Grid>
-    		</Grid>
-      		<Grid id="fiftRow" container spacing={1} style={{ paddingLeft: 15, paddingTop: 15 }}>
- 	 			<Grid item sx={8}>
- 					<Info/>
- 				</Grid>
-    		</Grid>
+			
+			<Grid container spacing={1} style={{ padding: 10 }}>
+			  <Grid item xs={12} align="left">
+					<p>To run locally, <a href="https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus">go to the project page</a> or use a public image : </p>
+			  </Grid>
+			  <Grid item xs={11}>
+					<TextField style={{ width: '100%' }} id="outlined-basic" label="docker run" variant="outlined" value={cmdDockerRun} />
+			  </Grid>
+			  <Grid item xs={1} align="left">
+					<CopyToClipboard text={cmdDockerRun}><Button><ContentCopyIcon /></Button></CopyToClipboard>
+			  </Grid>
+			  <Grid item xs={12} align="left">
+					And open <a href="http://localhost:8080/fj-doc-playground/home/">http://localhost:8080/fj-doc-playground/home/</a> 
+			  </Grid>
+			  <Grid item xs={12} align="left">
+					Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tags (for instance 'latest' stable or specific version). 
+			  </Grid>
+			  <Grid item xs={12} align="left">
+					<Info/>
+			  </Grid>
+			</Grid>
+
 		</Fragment>
 	}
 
