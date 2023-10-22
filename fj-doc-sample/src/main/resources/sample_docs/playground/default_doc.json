@@ -10,17 +10,13 @@
       "_t" : "info",
       "_v" : "10;10;10;30"
     }, {
-      "name" : "excel-table-id",
-      "_t" : "info",
-      "_v" : "excel-table=print"
-    }, {
       "name" : "doc-title",
       "_t" : "info",
       "_v" : "Basic example"
     }, {
       "name" : "doc-subject",
       "_t" : "info",
-      "_v" : "fj doc venus sample source json"
+      "_v" : "fj doc venus sample source xml"
     }, {
       "name" : "doc-author",
       "_t" : "info",
@@ -33,6 +29,14 @@
       "name" : "default-font-name",
       "_t" : "info",
       "_v" : "TitilliumWeb"
+    }, {
+      "name" : "excel-table-id",
+      "_t" : "info",
+      "_v" : "data-table=print"
+    }, {
+      "name" : "csv-table-id",
+      "_t" : "info",
+      "_v" : "data-table"
     }, {
       "_t" : "footer-ext",
       "_e" : [ {
@@ -50,7 +54,7 @@
       "padding" : "2",
       "columns" : "3",
       "width" : "100",
-      "id" : "excel-table",
+      "id" : "data-table",
       "colwidths" : "30;30;40",
       "_t" : "table",
       "_e" : [ {

@@ -200,6 +200,19 @@ class DocXmlEditor extends Component {
 							value={decodedStringAtoB}
 							width='100%'
 						/>
+			} else if ( this.state.docFormat === 'CSV' ) {
+				let decodedStringAtoB = this.myAtob(this.state.docOutput);
+				outputData = <AceEditor
+							mode='text'
+							theme="xcode"
+							name="DOC_CSV_OUTPUT"
+							editorProps={{ $blockScrolling: true }}
+							enableBasicAutocompletion={true}
+							enableLiveAutocompletion={true}
+							enableSnippets={true}
+							value={decodedStringAtoB}
+							width='100%'
+						/>
 			}
 			outputData = <Fragment>{outputData}<p>Generation time : {this.state.generationTime}</p></Fragment>
 		} else if ( this.state.outputMessage != null ) {
@@ -257,7 +270,8 @@ class DocXmlEditor extends Component {
 					    <MenuItem value='PDFA'>PDF/A</MenuItem>
 					    <MenuItem value='XLSX'>XLSX</MenuItem>
 					    <MenuItem value='MD'>Markdown (MD)</MenuItem>
-					     <MenuItem value='XML'>Venus XML Doc</MenuItem>
+					    <MenuItem value='XML'>Venus XML Doc</MenuItem>
+					    <MenuItem value='CSV'>CSV</MenuItem>
 					  </Select>
 					</FormControl>	
 			  </Grid>

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [playground-quarkus] csv output format
 - [fj-doc-mod-opencsv] 'csv-line-end' property to override the default line terminator (\n) 
 - [fj-doc-mod-opencsv] 'csv-separator' property to override the default separator (,) 
 - [lib-autodoc] documentation for csv properties

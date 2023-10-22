@@ -24,8 +24,10 @@
 	<info name="doc-title">${docTitle}</info>
 	<info name="doc-author">fugerit79</info>
 	<info name="doc-language">en</info>
-	<!-- only apply to excep format -->
+	<!-- only apply to xls/xlsx format -->
   	<info name="excel-table-id">data-table-1=sheet1,data-table-2=sheet2</info>
+ 	<!-- only apply to csv format -->
+  	<info name="csv-table-id">data-table-1</info>
 	<!-- font must be loaded -->
 	<info name="default-font-name">TitilliumWeb</info>
 	<footer-ext>
