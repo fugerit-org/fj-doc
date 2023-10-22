@@ -17,6 +17,7 @@ import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
@@ -141,6 +142,8 @@ public class GenerateRest {
 			handler = FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8.HANDLER;
 		} else if ( "PDFA".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = InitPlayground.PDFA_FOP_TYPE_HANDLER;
+		} else if ( "XML".equalsIgnoreCase( input.getOutputFormat() ) ) {
+			handler = DocTypeHandlerXMLUTF8.HANDLER;
 		} else if ( "MD".equalsIgnoreCase( input.getOutputFormat() ) ) {
 			handler = SimpleMarkdownExtTypeHandler.HANDLER_NOCOMMENTS_UTF8;
 		}
@@ -177,7 +180,7 @@ public class GenerateRest {
 			} catch ( Exception e ) {
 				log.warn( "Error generating document : "+e , e );
 				Throwable te = this.findCause(e);
-				output.setMessage( te.getMessage() );
+				output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
 			}
 			return Response.ok().entity( output ).build();
 		} );
