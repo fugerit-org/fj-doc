@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [playground-quarkus] DocConversion same format conversion (i.e. json -> json)
 - [playground-quarkus] DocConversion only convert without pretty print
 - [playground-quarkus] Venus XML Doc output format
 - [playground-quarkus] messageFun (SimpleMessageFun) usable in ftl templates
