@@ -151,7 +151,7 @@ public class GenerateFacade {
 			case DocConfig.TYPE_MD:
 				handler = SimpleMarkdownExtTypeHandler.HANDLER_NOCOMMENTS_UTF8;
 				break;
-			case "PDFA":
+			case InitPlayground.OUTPUT_FORMAT_PDF_A:
 				handler = InitPlayground.PDFA_FOP_TYPE_HANDLER;
 				break;
 			default:

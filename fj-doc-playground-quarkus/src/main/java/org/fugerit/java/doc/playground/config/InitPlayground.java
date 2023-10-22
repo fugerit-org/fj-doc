@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @ApplicationScoped
 public class InitPlayground {
 	
+	public static final String OUTPUT_FORMAT_PDF_A = "pdfa";
+	
 	private static final FreemarkerDocProcessConfig PROCESS_CONFIG = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://playground-config/fm-playground-doc-process.xml" );
 	
 	public static final DocTypeHandler PDF_FOP_TYPE_HANDLER = PROCESS_CONFIG.getFacade().findHandler( "pdf-fop" );
