@@ -27,4 +27,11 @@ public class CsvHelperConsts {
 	 */
 	public static final String PROP_CSV_SEPARATOR = "csv-separator";
 	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#csv-line-end">See 'csv-line-end' documentation</a>
+	 * 
+	 * @since 3.1
+	 */
+	public static final String PROP_CSV_LINE_END= "csv-line-end";
+	
 }

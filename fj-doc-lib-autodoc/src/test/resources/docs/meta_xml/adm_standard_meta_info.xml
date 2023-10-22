@@ -298,6 +298,14 @@ the 'value' is the name of the sheet to be created. i.e. 'table-1=sheet1;table-2
       <admeta:supportedType>csv</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-mod-opencsv(csv)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>csv-line-end</admeta:name>
+      <admeta:description>The line terminator for the CSV.</admeta:description>
+      <admeta:defaultValue>\n</admeta:defaultValue>
+      <admeta:since>3.1.8</admeta:since>
+      <admeta:supportedType>csv</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-opencsv(csv)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
   </admeta:admSection>
 
 </admeta:autodocMeta>

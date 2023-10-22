@@ -19,6 +19,7 @@
 	<!-- CSV options -->
 	<info name="csv-table-id">excel-table</info>
 	<info name="csv-separator">;</info>
+	<info name="csv-line-end">\r\n</info>
 	<header-ext>
 		<para align="center" fore-color="#eeeeee">header test</para>
 	</header-ext>

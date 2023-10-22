@@ -74,6 +74,11 @@ public class OpenCSVTypeHandler extends DocTypeHandlerDefault {
  			log.info( "override default separator : {} -> {}", csvSeparator, separator );
  			separator = csvSeparator.charAt( 0 );
  		}
+ 		String csvLineEnd = docBase.getStableInfo().getProperty( CsvHelperConsts.PROP_CSV_LINE_END );
+ 		if ( StringUtils.isNotEmpty( csvLineEnd ) ) {
+ 			log.info( "override default lineEnd : {} -> {}", csvLineEnd, lineEnd );
+ 			lineEnd = csvLineEnd.replace( "\\n" , String.valueOf( '\n' ) ).replace( "\\r" , String.valueOf( '\r' ) );
+ 		}
  		try ( CSVWriter writer = new CSVWriter( new OutputStreamWriter( docOutput.getOs(), this.getCharset() ), separator, quotechar, escapechar, lineEnd  ) ) {
  			String csvTableId = docBase.getStableInfo().getProperty( CsvHelperConsts.PROP_CSV_TABLE_ID );
  			DocTable table = (DocTable)docBase.getElementById( csvTableId );
