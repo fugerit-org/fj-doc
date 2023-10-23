@@ -189,7 +189,7 @@ class DocXmlEditor extends Component {
 				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
 			} else if ( this.state.docFormat === 'MD' ) {
 				let decodedStringAtoB = this.myAtob(this.state.docOutput);
-				outputData = <MarkdownEditor  value={decodedStringAtoB} />
+				outputData = <MarkdownEditor key={new Date().getTime()} value={decodedStringAtoB} />
 			} else if ( this.state.docFormat === 'XML' ) {
 				let decodedStringAtoB = this.myAtob(this.state.docOutput);
 				outputData = <AceEditor
