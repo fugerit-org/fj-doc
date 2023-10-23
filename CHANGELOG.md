@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [playground-quarkus] validation disabled for FTLX
 - [playground-quarkus] better validation handling
-- fj-core version set to 8.4.3
+- fj-core version set to 8.4.4
 
 ## [3.1.8] - 2023-10-22
 
