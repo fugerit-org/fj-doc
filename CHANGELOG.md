@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [playground-quarkus] better validation handling
 - fj-core version set to 8.4.4
 - fj-bom version set to 1.4.8
+- quarkus version set to 3.5.0
 
 ## [3.1.8] - 2023-10-22
 
