@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [playground-quarkus] set docker image to eclipse-temurin:21.0.1_12-jdk
 - [playground-quarkus] validation disabled for FTLX
 - [playground-quarkus] better validation handling
 - fj-core version set to 8.4.4
