@@ -63,6 +63,18 @@ public class InitHandler {
 	 * @throws ConfigException		in case of exceptions
 	 */
 	public static boolean initDoc( DocTypeHandler handler ) throws ConfigException {
+		return initDoc(handler, true);
+	}
+	
+	/**
+	 * <p>Initialize one handler.</p>
+	 * 
+	 * @param handler 				the handler to initialize
+	 * @param throwEx 				true if should throw exception in case of error
+	 * @return						if the handler has been initialized
+	 * @throws ConfigException		in case of exceptions
+	 */
+	public static boolean initDoc( DocTypeHandler handler, boolean throwEx ) throws ConfigException {
 		boolean init = true;
 		log.info( "initDoc start : {}", handler );
 		long startTime = System.currentTimeMillis();
@@ -71,7 +83,12 @@ public class InitHandler {
 			handler.handle( DocInput.newInput( handler.getType() , reader ) , DocOutput.newOutput( baos ) );
 			log.info( "Init handler time {} -> {}", handler, CheckpointUtils.formatTimeDiffMillis( startTime , System.currentTimeMillis() ) );
 		} catch (Exception e) {
-			throw new ConfigException( "Init exception : "+e, e );
+			if ( throwEx ) {
+				throw new ConfigException( "Error on handler init : "+handler+" -> "+e, e );
+			} else {
+				init = false;
+				log.warn( "Error on init handler {}  -> {}", handler, e.toString() );
+			}
 		}
 		return init;
 	}
@@ -87,7 +104,7 @@ public class InitHandler {
 		Thread t = new Thread( () -> {
 			log.info( "Init handler start : {}", handler );
 			SafeFunction.applySilent( () -> {
-				boolean initOk = initDoc(handler);
+				boolean initOk = initDoc(handler, false);
 				log.info( "Init handler end : {} -> {}", handler, initOk );
 			});	
 		} );
