@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.1.9] - 2023-10-31
 
+- [playground-quarkus] added no cache headers
+
 ### Added
 
 - init handler with exception suppression
