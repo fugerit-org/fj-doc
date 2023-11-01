@@ -33,11 +33,11 @@ Full build is made by :
 
 Or with the maven wrapper for linux : 
 
-`./mvnw clean install -P full,teat`
+`./mvnw clean install -P full,test`
 
 Or with the maven wrapper for windows : 
 
-`./mvnw clean install -P full,teat`
+`./mvnw clean install -P full,test`
 
 ### Run
 
