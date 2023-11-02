@@ -11,7 +11,7 @@
 # docker image tag [image tag] fugeritorg/fj-doc-playground-quarkus:latest
 #
 # Change with any base openjdk image is preferred 
-FROM eclipse-temurin:21.0.1_12-jdk
+FROM eclipse-temurin:21.0.1_12-jre-ubi9-minimal
 
 LABEL org.opencontainers.image.authors="Fugerit" \
       org.opencontainers.image.source="Quarkus" \

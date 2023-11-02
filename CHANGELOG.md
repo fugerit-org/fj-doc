@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [3.1.9] - 2023-10-31
+### Changed
 
+- [playground-quarkus] changed docker base image to 21.0.1_12-jre-ubi9-minimal
 - [playground-quarkus] added no cache headers
+
+## [3.1.9] - 2023-10-31
 
 ### Added
 
