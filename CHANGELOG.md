@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [val] P7MValidator in full validator facade
+- [playground-quarkus] P7MValidator in validator feature
+
 ## [3.2.0] - 2023-11-02
 
 ### Added

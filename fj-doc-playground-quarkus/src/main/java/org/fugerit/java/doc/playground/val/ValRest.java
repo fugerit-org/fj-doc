@@ -6,6 +6,7 @@ import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
+import org.fugerit.java.doc.val.p7m.P7MValidator;
 import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
 import org.fugerit.java.doc.val.poi.DocValidator;
 import org.fugerit.java.doc.val.poi.DocxValidator;
@@ -30,7 +31,7 @@ public class ValRest {
 
 	private static final DocValidatorFacade facade = DocValidatorFacade.newFacadeStrict(ImageValidator.JPG_VALIDATOR,
 			ImageValidator.PNG_VALIDATOR, ImageValidator.TIFF_VALIDATOR, PdfboxValidator.DEFAULT, DocxValidator.DEFAULT,
-			DocValidator.DEFAULT, XlsxValidator.DEFAULT, XlsValidator.DEFAULT);
+			DocValidator.DEFAULT, XlsxValidator.DEFAULT, XlsValidator.DEFAULT, P7MValidator.DEFAULT );
 
 	@POST
 	@Consumes(MediaType.MULTIPART_FORM_DATA)

@@ -2,6 +2,7 @@ package org.fugerit.java.doc.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
+import org.fugerit.java.doc.val.p7m.P7MValidator;
 import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
 import org.fugerit.java.doc.val.poi.DocValidator;
 import org.fugerit.java.doc.val.poi.DocxValidator;
@@ -19,7 +20,8 @@ public class DocValidatorFacadeFactory {
 				DocValidator.DEFAULT, 
 				DocxValidator.DEFAULT,
 				XlsValidator.DEFAULT,
-				XlsxValidator.DEFAULT );
+				XlsxValidator.DEFAULT,
+				P7MValidator.DEFAULT);
 	}
 	
 }
