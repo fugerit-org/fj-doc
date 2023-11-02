@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.0] - 2023-11-02
+
+### Added
+
+- [val-p7m] module for p7m validation
+
 ### Changed
 
 - [playground-quarkus] changed docker base image to 21.0.1_12-jre-ubi9-minimal

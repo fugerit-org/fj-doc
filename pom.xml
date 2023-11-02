@@ -99,6 +99,7 @@
 		<module>fj-doc-val-core</module>
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
+		<module>fj-doc-val-p7m</module>
 		<module>fj-doc-val</module>
 		<module>fj-doc-tool</module>
 		<module>fj-doc-sample</module>
@@ -198,6 +199,12 @@
 				<artifactId>fj-doc-val-poi</artifactId>
 				<version>${fj-doc-version}</version>
 			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-val-p7m</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>
 			
 			<dependency>
 				<groupId>org.fugerit.java</groupId>

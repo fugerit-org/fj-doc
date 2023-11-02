@@ -11,7 +11,7 @@
 This module offer validation utilities to check content of files and streams based on type.
 
 *Status* :  
-Offer basic support for validating jpg, png, tiff and pdf
+Offer basic support for validating jpg, png, tiff, pdf and p7m
   
 *Since* : fj-doc 0.8
   

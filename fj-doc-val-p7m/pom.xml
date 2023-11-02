@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-val</artifactId>
+	<artifactId>fj-doc-val-p7m</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,8 @@
 		<version>3.1.10-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-val</name>
-	<description>Modular doc validator utilities</description>
+	<name>fj-doc-val-p7m</name>
+	<description>Module for validating P7M via Bouncy Castle</description>
 
 	<licenses>
 		<license>
@@ -22,6 +22,7 @@
 	</licenses>
 	
 	<properties>
+		<bouncy-castle-version>1.76</bouncy-castle-version>
 	</properties>
 	
 	<build>
@@ -41,18 +42,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-val-pdfbox</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-val-poi</artifactId>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-val-p7m</artifactId>
+		    <groupId>org.bouncycastle</groupId>
+		    <artifactId>bcpkix-jdk18on</artifactId>
+		    <version>${bouncy-castle-version}</version>
 		</dependency>
 
 	</dependencies>
@@ -63,5 +55,6 @@
 	</organization>
 	
 	<url>https://www.fugerit.org/perm/venus/</url>
+	
 	
 </project>

@@ -25,6 +25,7 @@ COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
 
 USER root
 
-RUN echo "securerandom.source=file:/dev/./urandom" >> /opt/java/openjdk/lib/security/java.security
+# disabled for now
+#RUN echo "securerandom.source=file:/dev/./urandom" >> /opt/java/openjdk/lib/security/java.security
 
 CMD java -Dfile.encoding="UTF-8"  -jar /deployments/quarkus-run.jar
