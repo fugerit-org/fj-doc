@@ -29,7 +29,7 @@ class ValRestTest {
           .when().get( TestConsts.BASE_API_PATH+"/val/supported_extensions" )
           .then()
              .statusCode(200)
-             .body(is("[\"JPG\",\"TIF\",\"DOCX\",\"XLSX\",\"TIFF\",\"PDF\",\"PNG\",\"DOC\",\"JPEG\",\"XLS\"]"));
+             .body(is("[\"JPG\",\"TIF\",\"DOCX\",\"XLSX\",\"TIFF\",\"PDF\",\"P7M\",\"PNG\",\"DOC\",\"JPEG\",\"XLS\"]"));
     }
     
     @Test
