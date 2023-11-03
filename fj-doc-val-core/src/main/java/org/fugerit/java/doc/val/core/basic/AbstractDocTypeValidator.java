@@ -8,8 +8,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.function.UnsafeVoid;
+import org.fugerit.java.core.util.ObjectUtils;
+import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
 
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 
 	@Override
@@ -19,6 +27,13 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 
 	public static Set<String> createSet( String... s ) {
 		return new HashSet<>( Arrays.asList( s ) );
+	}
+	
+	protected DocTypeValidationResult validationHelper( UnsafeVoid<Exception> fun ) {
+		return ObjectUtils.objectWithDefault( SafeFunction.get( () -> {
+			fun.apply();
+			return DocTypeValidationResult.newOk();
+		}, e -> log.warn( "validation failed {}, {}", this.getMimeType(), e.toString() ) ), DocTypeValidationResult.newFail() );
 	}
 	
 	protected AbstractDocTypeValidator(String mimeType, String extension) {
@@ -31,19 +46,9 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 		this.supportedExtensions = Collections.unmodifiableSet( supportedExtensions.stream().map( String::toUpperCase ).collect( Collectors.toSet() ) );
 	}
 
-	private String mimeType;
+	@Getter private String mimeType;
 	
-	private Set<String> supportedExtensions;
-	
-	@Override
-	public Set<String> getSupportedExtensions() {
-		return this.supportedExtensions;
-	}
-
-	@Override
-	public String getMimeType() {
-		return this.mimeType;
-	}
+	@Getter private Set<String> supportedExtensions;
 
 	@Override
 	public boolean isExtensionSupported(String ext) {

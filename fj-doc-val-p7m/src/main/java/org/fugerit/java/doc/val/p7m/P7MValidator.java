@@ -6,12 +6,8 @@ import org.bouncycastle.cms.CMSSignedData;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
 import org.fugerit.java.doc.val.core.basic.AbstractDocTypeValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class P7MValidator extends AbstractDocTypeValidator {
-
-	private static final Logger logger = LoggerFactory.getLogger( P7MValidator.class );
 	
 	public static final String EXTENSION = "P7M";
 	
@@ -25,14 +21,7 @@ public class P7MValidator extends AbstractDocTypeValidator {
 	
 	@Override
 	public DocTypeValidationResult validate(InputStream is) {
-		DocTypeValidationResult result = DocTypeValidationResult.newFail();
-		try {
-		    new CMSSignedData( is );
-		    result = DocTypeValidationResult.newOk();
-		} catch (Exception e) {
-			logger.warn( "Failed check on p7m : {}", e.toString() );
-		}
-		return result;
+		return this.validationHelper( () -> new CMSSignedData( is ) );
 	}
 	
 }
