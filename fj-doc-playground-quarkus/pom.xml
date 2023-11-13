@@ -16,7 +16,7 @@
 		<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
 		<quarkus.platform.version>3.5.0</quarkus.platform.version>
 		<skipITs>true</skipITs>
-		<surefire-plugin.version>3.2.1</surefire-plugin.version>
+		<surefire-plugin.version>3.2.2</surefire-plugin.version>
 		<!-- front end runtime -->
 		<src.react>src/main/react</src.react>
 		<npm.build.script>build</npm.build.script>
