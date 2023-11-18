@@ -16,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [playground-quarkus] docker image eclipse-temurin:21.0.1_12-jre-alpine
-- [playground-quarkus] quarkus-version set to 3.5.1
+- [playground-quarkus] quarkus-version set to 3.5.2
 - fj-core version set to 3.4.5
 - fj-bom version set to 1.5.0
 
