@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [playground-quarkus] quarkus-version set to 3.5.2
 - fj-core version set to 3.4.5
 - fj-bom version set to 1.5.0
+- bouncycastle jdk18on-1.77
+- org.codehaus.mojo-exec-maven-plugin-3.1.1
+- fj-doc-mod-openpdf-1.2.0-sa.1
 
 ## [3.2.0] - 2023-11-02
 
