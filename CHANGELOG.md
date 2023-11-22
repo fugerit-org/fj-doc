@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [playground-quarkus] quarkus-version set to 3.5.3
+
 ## [3.2.1] - 2023-11-22
 
 ### Added
