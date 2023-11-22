@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [val-p7m] utility to extract p7m content
 - [val-core] XmlValidator for simple xml doc type validation
 - [val] P7MValidator in full validator facade
 - [playground-quarkus] P7MValidator in validator feature
