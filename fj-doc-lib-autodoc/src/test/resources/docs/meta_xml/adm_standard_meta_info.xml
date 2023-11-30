@@ -13,7 +13,7 @@
   </admeta:admProperty>
   <admeta:admProperty>
     <admeta:name>doc-version</admeta:name>
-    <admeta:description>3 (2023-08-17)</admeta:description>
+    <admeta:description>4 (2023-11-30)</admeta:description>
   </admeta:admProperty>
   <admeta:admProperty>
     <admeta:name>doc-subject</admeta:name>
@@ -131,6 +131,14 @@
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-openpdf(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>table-border-collapse</admeta:name>
+      <admeta:description>Set the default table-border-collapse mode, possible values are 'separate' or 'collapse'</admeta:description>
+      <admeta:defaultValue>separate</admeta:defaultValue>
+      <admeta:since>3.2.2</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
     <admeta:admMetaInfo>
       <admeta:name>default-cell-border-width</admeta:name>

@@ -163,4 +163,22 @@ public class GenericConsts {
 	 */
 	public static final String INFO_DEFAULT_TABLE_SPACING_DEF = INFO_VALUE_DEFAULT_TABLE_PADDING;
 	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-border-collapse">See 'table-border-collapse' documentation</a>
+	 */
+	public static final String INFO_TABLE_BORDER_COLLAPSE = "table-border-collapse";
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-border-collapse">See 'table-border-collapse' documentation, value for border 'separate' mode</a>
+	 */
+	public static final String TABLE_BORDER_COLLAPSE_SEPARATE = "separate";
+	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-border-collapse">See 'table-border-collapse' documentation, value for border 'collapse' mode</a>
+	 */
+	public static final String TABLE_BORDER_COLLAPSE_COLLAPSE = "collapse";
+	
+	
+	
+	
 }
