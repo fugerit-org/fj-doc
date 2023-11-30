@@ -30,6 +30,8 @@
   	<info name="csv-table-id">data-table-1</info>
 	<!-- font must be loaded -->
 	<info name="default-font-name">TitilliumWeb</info>
+	<!-- default table-border-collapse, can be 'separate' or 'collapse' -->
+	<info name="table-border-collapse">collapse</info>
 	<footer-ext>
 		<para align="right">${r"${currentPage}"} / ${r"${pageCount}"}</para>
 	</footer-ext>

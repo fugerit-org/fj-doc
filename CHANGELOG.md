@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.2] - 2023-11-30
+
+### Added
+
+- [mod-fop] 'table-border-collapse' document info to setup default border collapse behavior
+
 ### Changed
 
-- [mod-fop] new 'table-border-collapse' document info to setup default border collapse behaviour
 - [mod-fop] support for table cell back-color attribute
 - [playground-quarkus] quarkus-version set to 3.6.0
 
