@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocInput;
@@ -11,8 +12,10 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.fop.FopConfig;
 import org.fugerit.java.doc.mod.fop.FopConfigDefault;
+import org.fugerit.java.doc.mod.fop.InitFopHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
@@ -22,6 +25,11 @@ import test.org.fugerit.java.BasicTest;
 @Slf4j
 public class TestPdfFopTypeHandler extends BasicTest {
 
+	@BeforeClass
+	public static void init() {
+		SafeFunction.apply(  () -> InitFopHandler.initDocAsync() );
+	}
+	
 	private boolean testHelper( DocTypeHandler handler ) {
 		boolean ok = false;
 		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.xml" ) );

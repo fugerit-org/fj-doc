@@ -88,7 +88,7 @@
 				<#list rowList as row>	
 				<fo:table-row>
 					<#list row.elementList as cell>
-						<fo:table-cell<@addCssValue name='padding' value=docTable.padding def=0 unit='mm'/><@addCssValue name='margin' value=docTable.padding def=0 unit='mm'/><@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/><@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
+						<fo:table-cell<#if (cell.backColor??)> background-color="${cell.backColor}" </#if><@addCssValue name='padding' value=docTable.padding def=0 unit='mm'/><@addCssValue name='margin' value=docTable.padding def=0 unit='mm'/><@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/><@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
 							<#if (cell.elementList?size > 0)>
 								<#list cell.elementList as cellElement>
 								<@handleElement current=cellElement/>
