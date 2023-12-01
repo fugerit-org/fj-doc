@@ -133,14 +133,6 @@
       <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
     <admeta:admMetaInfo>
-      <admeta:name>table-border-collapse</admeta:name>
-      <admeta:description>Set the default table-border-collapse mode, possible values are 'separate' or 'collapse'</admeta:description>
-      <admeta:defaultValue>separate</admeta:defaultValue>
-      <admeta:since>3.2.2</admeta:since>
-      <admeta:supportedType>pdf</admeta:supportedType>
-      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
-    </admeta:admMetaInfo>
-    <admeta:admMetaInfo>
       <admeta:name>default-cell-border-width</admeta:name>
       <admeta:description>Set default cell border width for all table cells, default '-1' means 'unset'</admeta:description>
       <admeta:defaultValue>-1</admeta:defaultValue>
@@ -155,6 +147,14 @@
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-openpdf(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-itext(pdf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>table-border-collapse</admeta:name>
+      <admeta:description>Set the default table-border-collapse mode, possible values are 'separate' or 'collapse'. (note that this is a document scoped property, all tables in documnent will be affected)</admeta:description>
+      <admeta:defaultValue>separate</admeta:defaultValue>
+      <admeta:since>3.2.2</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
   </admeta:admSection>
 

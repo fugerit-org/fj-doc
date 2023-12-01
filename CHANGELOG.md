@@ -7,11 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [core] meta info 'table-border-collapse' [documentation improvement](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-border-collapse)
+
 ## [3.2.2] - 2023-11-30
 
 ### Added
 
-- [mod-fop] 'table-border-collapse' document info to setup default border collapse behavior
+- [core] 'table-border-collapse' document info to setup default border collapse behavior
 
 ### Changed
 
