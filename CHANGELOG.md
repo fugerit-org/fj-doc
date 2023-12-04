@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [val-pdfbox] PdfboxStrictValidator (uses not lenient parser)
+
 ### Changed
 
 - [val-pdfbox] pdfbox version 2.0.30

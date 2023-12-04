@@ -10,22 +10,18 @@ import org.fugerit.java.doc.val.core.basic.AbstractDocTypeValidator;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class PdfboxValidator extends AbstractDocTypeValidator {
+public class PdfboxStrictValidator extends AbstractDocTypeValidator {
+
+	public static final DocTypeValidator DEFAULT = new PdfboxStrictValidator();
 	
-	public static final String EXTENSION = "PDF";
-	
-	public static final String MIME_TYPE = "application/pdf";
-	
-	public static final DocTypeValidator DEFAULT = new PdfboxValidator();
-	
-	public PdfboxValidator() {
-		super( MIME_TYPE, EXTENSION );
+	public PdfboxStrictValidator() {
+		super( PdfboxValidator.MIME_TYPE, PdfboxValidator.EXTENSION );
 	}
 	
 	@Override
 	public DocTypeValidationResult validate(InputStream is) {
 		DocTypeValidationResult result = DocTypeValidationResult.newFail();
-		try( PDDocument doc = PdfboxUtils.parse(is, true) ) {
+		try( PDDocument doc = PdfboxUtils.parse(is, false) ) {
 			result = DocTypeValidationResult.newOk();
 		} catch (Exception e) {
 			log.warn( "Failed check on pdf : {}", e.toString() );

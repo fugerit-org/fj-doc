@@ -1,14 +1,14 @@
 package test.org.fugerit.java.doc.pdfbox.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
-import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
+import org.fugerit.java.doc.val.pdf.box.PdfboxStrictValidator;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TestPdfboxValidator extends TestDocValidatorFacade {
+public class TestPdfboxStrictValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
-			PdfboxValidator.DEFAULT
+			PdfboxStrictValidator.DEFAULT
 	);
 	
 	@Test
@@ -25,7 +25,7 @@ public class TestPdfboxValidator extends TestDocValidatorFacade {
 	
 	@Test
 	public void testPdfAsPdfP7M() {
-		boolean ok = this.worker(FACADE, "pdf_as_pdf_p7m.pdf", true );
+		boolean ok = this.worker(FACADE, "pdf_as_pdf_p7m.pdf", false );
 		Assert.assertTrue( ok );
 	}
 	
