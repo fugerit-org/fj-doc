@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [val-pdfbox] pdfbox version 2.0.30
 - [core] meta info 'table-border-collapse' [documentation improvement](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-border-collapse)
 
 ## [3.2.2] - 2023-11-30
