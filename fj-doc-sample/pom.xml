@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-doc</artifactId>
-		<version>3.2.3</version>
+		<version>3.2.4-SNAPSHOT</version>
 	</parent>
 
 	<name>fj-doc-sample</name>
