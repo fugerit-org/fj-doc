@@ -18,7 +18,6 @@ import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.playground.RestHelper;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -32,8 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 @Path("/generate")
 public class GenerateRest {
 
-	@Inject
-	private GenerateFacade facade;
+	private GenerateFacade facade = new GenerateFacade();
 	
 	private Throwable findCause( Throwable o ) {
 		return o.getCause() != null ? this.findCause( o.getCause() ) : o;

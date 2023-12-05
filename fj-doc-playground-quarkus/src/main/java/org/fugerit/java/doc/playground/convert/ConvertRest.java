@@ -4,7 +4,6 @@ import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.playground.facade.InputFacade;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -20,8 +19,7 @@ public class ConvertRest {
 
 	private static final String INVALID_FORMAT_MESSAGE = "Invalid output format : ";
 	
-	@Inject
-	private ConvertFacade facade;
+	private ConvertFacade facade = new ConvertFacade();
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
