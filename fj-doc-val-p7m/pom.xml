@@ -42,6 +42,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-val-pdfbox</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
 		    <groupId>org.bouncycastle</groupId>
 		    <artifactId>bcpkix-jdk18on</artifactId>
 		    <version>${bouncy-castle-version}</version>

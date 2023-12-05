@@ -54,12 +54,16 @@ public class DocValidatorFacade {
 		return ok;
 	}
 
+	public List<DocTypeValidator> validators() {
+		return Collections.unmodifiableList( this.validators );
+	}
+	
 	public List<DocTypeValidator> findAllByMimeType( final String mimeType ) {
-		return this.validators.stream().filter( v -> v.isMimeTypeSupported( mimeType ) ).collect( Collectors.toList() );
+		return this.validators().stream().filter( v -> v.isMimeTypeSupported( mimeType ) ).collect( Collectors.toList() );
 	}
 	
 	public List<DocTypeValidator> findAllExtension( final String extension ) {
-		return this.validators.stream().filter( v -> v.isExtensionSupported( extension ) ).collect( Collectors.toList() );
+		return this.validators().stream().filter( v -> v.isExtensionSupported( extension ) ).collect( Collectors.toList() );
 	}
 	
 	public DocTypeValidator findByMimeType( String mimeType ) {
