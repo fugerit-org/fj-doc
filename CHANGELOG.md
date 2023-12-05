@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.2.3] - 2023-12-05
+
 - [val-p7m] P7MContentValidator (validate p7m and possibly its content with a facade)
 - [val-pdfbox] PdfboxStrictValidator (uses not lenient parser)
 
