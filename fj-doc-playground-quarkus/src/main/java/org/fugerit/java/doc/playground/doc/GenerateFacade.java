@@ -22,6 +22,7 @@ import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandl
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.fun.SimpleMessageFun;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8;
+import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler;
 import org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
 import org.fugerit.java.doc.playground.config.InitPlayground;
@@ -150,6 +151,9 @@ public class GenerateFacade {
 				break;
 			case DocConfig.TYPE_MD:
 				handler = SimpleMarkdownExtTypeHandler.HANDLER_NOCOMMENTS_UTF8;
+				break;
+			case DocConfig.TYPE_FO:
+				handler = FreeMarkerFopTypeHandler.HANDLER_UTF8;
 				break;
 			case InitPlayground.OUTPUT_FORMAT_PDF_A:
 				handler = InitPlayground.PDFA_FOP_TYPE_HANDLER;
