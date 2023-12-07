@@ -1,0 +1,6 @@
+{
+	"docTitle":"This document show some table cell alignment features.",
+	"listContent": [
+		{ "cell1":"Test long text to toggle multi line content", "cell2":"VAlign left", "cell3":"VAlign middle", "cell4":"VAlign bottom" }
+	]
+}
