@@ -172,7 +172,7 @@ text-indent : text-indent
 
 <#macro handleCellSpan cell><#if cell.columnSpan != 1> number-columns-spanned="${cell.columnSpan}"</#if><#if cell.rowSpan != 1> number-rows-spanned="${cell.rowSpan}"</#if></#macro>
 
-<#macro handleVerticalAlign valignValue><#if valignValue = 5> vertical-align="middle"<#elseif valignValue = 4> vertical-align="top"<#elseif valignValue = 6> vertical-align="bottom"</#if></#macro>
+<#macro handleVerticalAlign valignValue><#if valignValue = 5> vertical-align="middle" display-align="center"<#elseif valignValue = 4> vertical-align="top"<#elseif valignValue = 6> vertical-align="bottom" display-align="after"</#if></#macro>
 
 <#macro handleStyle styleValue><#if styleValue = 2> font-weight="bold"<#elseif styleValue = 3> text-decoration="underline"<#elseif styleValue = 4> font-style="italic"<#elseif styleValue = 5> font-style="italic" font-weight="bold"<#elseif styleValue = 1> font-style="normal" font-weight="normal"</#if></#macro>
 

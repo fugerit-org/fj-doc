@@ -43,6 +43,17 @@
           <para>King</para>
         </cell>
       </row>
+      <row>
+        <cell valign="middle">
+          <para>Multi row text content to test vertical allign of other cells in the row</para>
+        </cell>
+        <cell valign="middle">
+          <para>Elrond</para>
+        </cell>
+        <cell valign="bottom">
+          <para>Gil-Galad</para>
+        </cell>
+      </row>
     </table>
   </body>
 </doc>

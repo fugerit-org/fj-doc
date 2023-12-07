@@ -190,7 +190,7 @@ class DocXmlEditor extends Component {
 			} else if ( this.state.docFormat === 'MD' ) {
 				let decodedStringAtoB = this.myAtob(this.state.docOutput);
 				outputData = <MarkdownEditor key={new Date().getTime()} value={decodedStringAtoB} />
-			} else if ( this.state.docFormat === 'XML' ) {
+			} else if ( this.state.docFormat === 'XML' || this.state.docFormat === 'FO' ) {
 				let decodedStringAtoB = this.myAtob(this.state.docOutput);
 				outputData = <AceEditor
 							mode='xml'
@@ -274,6 +274,7 @@ class DocXmlEditor extends Component {
 					    <MenuItem value='XLSX'>XLSX</MenuItem>
 					    <MenuItem value='MD'>Markdown (MD)</MenuItem>
 					    <MenuItem value='XML'>Venus XML Doc</MenuItem>
+					    <MenuItem value='FO'>XSL-FO</MenuItem>
 					    <MenuItem value='CSV'>CSV</MenuItem>
 					  </Select>
 					</FormControl>	
