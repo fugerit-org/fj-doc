@@ -7,7 +7,7 @@
   <metadata>
   	<!-- Margin for document : left;right;top;bottom -->
   	<info name="margins">10;10;10;30</info>  
-  	<info name="excel-table-id">excel-table=print</info>
+  	<info name="excel-table-id">excel-table=print,excel-table-1=print1</info>
  	<!-- documenta meta information -->
 	<info name="doc-title">Basic example</info>
 	<info name="doc-subject">fj doc venus sample source xml</info>
@@ -44,18 +44,23 @@
     			<cell align="center"><para style="bold">Title</para></cell>
     		</row>
        		<row>
-    			<cell><para><![CDATA[Luthien]]></para></cell>
+    			<cell valign="top"><para><![CDATA[Thorin]]></para></cell>
+    			<cell valign="bottom"><para><![CDATA[Oakshield]]></para></cell>
+    			<cell valign="middle"><para><![CDATA[King]]></para></cell>
+    		</row>   
+       		<row>
+    			<cell fore-color="#000000" back-color="#ffffff"><para><![CDATA[Luthien]]></para></cell>
     			<cell><para><![CDATA[Tinuviel]]></para></cell>
     			<cell><para><![CDATA[Queen]]></para></cell>
     		</row>
        		<row>
-    			<cell><para><![CDATA[Thorin]]></para></cell>
-    			<cell><para><![CDATA[Oakshield]]></para></cell>
-    			<cell><para><![CDATA[King]]></para></cell>
+    			<cell valign="top"><para><![CDATA[Thorin]]></para></cell>
+    			<cell valign="bottom"><para><![CDATA[Oakshield]]></para></cell>
+    			<cell valign="middle"><para><![CDATA[King]]></para></cell>
     		</row>     	
         	<row>
-    			<cell><phrase><![CDATA[Phrase]]></phrase></cell>
-    			<cell><phrase anchor="1"><![CDATA[Oakshield]]></phrase></cell>
+    			<cell align="left"><phrase><![CDATA[Phrase]]></phrase></cell>
+    			<cell align="right"><phrase anchor="1"><![CDATA[Oakshield]]></phrase></cell>
     			<cell><phrase link="1"><![CDATA[King]]></phrase></cell>
     		</row>   	
         	<row>
@@ -65,6 +70,18 @@
           	<row>
     			<cell colspan="2"><phrase>colspn 2</phrase></cell>
     		</row>  
+    	</table>
+     	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table-1" padding="2">
+    		<row>
+    			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
+    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para style="bold">Title</para></cell>
+    		</row>
+       		<row>
+    			<cell valign="top"><para><![CDATA[Thorin]]></para></cell>
+    			<cell valign="bottom"><para><![CDATA[Oakshield]]></para></cell>
+    			<cell valign="middle"><para><![CDATA[King]]></para></cell>
+    		</row>   
     	</table>
     	<list>
     		<li><para>test 1</para></li>
