@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<docHandlerConfig registerById="true">
+		<docHandler id="pdf_ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua.xml" pdf-ua-mode="PDF/UA-1"/>
+		</docHandler>
+		<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa.xml" pdf-a-mode="PDF/A-1b"/>
+		</docHandler>
+		<docHandler id="pdf_a-fop_err" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" unsafe="true">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa_er.xml" pdf-a-mode="PDF/A-err"/>
+		</docHandler>
+		<docHandler id="pdf_ua-fop_err" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" unsafe="true">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua_er.xml" pdf-ua-mode="PDF/UA-err"/>
+		</docHandler>
+	</docHandlerConfig>
+
+</freemarker-doc-process-config>

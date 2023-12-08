@@ -6,6 +6,7 @@ import java.net.URI;
 
 import org.apache.fop.apps.io.ResourceResolverFactory;
 import org.apache.xmlgraphics.io.Resource;
+import org.fugerit.java.core.io.helper.HelperIOException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ public class ClassLoaderResourceResolverWrapper extends ResourceResolverWrapper 
 	@Override
 	public OutputStream getOutputStream(URI uri) throws IOException {
 		logger.debug( "getOutputStream() uri -> {}", uri );
-		return Thread.currentThread().getContextClassLoader().getResource(uri.toString()).openConnection().getOutputStream();
+		return this.unwrap().getOutputStream(uri);
 	}
 
 	public boolean canHandle( String uri ) {
@@ -42,7 +43,7 @@ public class ClassLoaderResourceResolverWrapper extends ResourceResolverWrapper 
 	
 	@Override
 	public Resource getResource(URI uri) throws IOException {
-		try {
+		return HelperIOException.get( () -> {
 			String path = uri.toString();
 			boolean canHandle = this.canHandle( path );
 			logger.debug( "getResource() canHandle?:{}, uri:{}", canHandle, uri );
@@ -52,9 +53,7 @@ public class ClassLoaderResourceResolverWrapper extends ResourceResolverWrapper 
 			} else {
 				return this.unwrap().getResource(uri);
 			}
-		} catch (Exception e) {
-			throw new IOException( e );
-		}
+		} );
 	}
 
 }

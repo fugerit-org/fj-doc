@@ -206,13 +206,11 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	private void setupFopConfigMode( String fopConfigMode, String fopConfigResoverType, String fopConfigClassloaderPath ) throws ConfigException {
 		if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
-			try {
+			ConfigException.apply( () -> {
 				ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
 				FopConfigClassLoaderWrapper fopConfigClassLoaderWrapper = new FopConfigClassLoaderWrapper(fopConfigClassloaderPath, customResourceResolver);
 				this.fopConfig = fopConfigClassLoaderWrapper;	
-			} catch (Exception e) {
-				throw new ConfigException( PdfFopTypeHandler.class.getSimpleName()+" configuration error : "+e, e );
-			}
+			} );
 		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
 			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
 			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
