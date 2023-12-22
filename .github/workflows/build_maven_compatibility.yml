@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         distribution: [ 'corretto' ]
-        java: [ '11', '17' ]
+        java: [ '11', '17', '21' ]
         os: [ 'ubuntu-latest', 'macos-latest', 'windows-latest' ]
     name: Java ${{ matrix.os }} ${{ matrix.java }} (${{ matrix.distribution }}) compatibility check
     steps:

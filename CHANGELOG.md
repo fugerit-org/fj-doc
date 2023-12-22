@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [playground-quarkus] quarkus-version set to 3.6.4
+- Added java 21 to github action workflow for compatibility check
 
 ## [3.2.4] - 2023-12-07
 
