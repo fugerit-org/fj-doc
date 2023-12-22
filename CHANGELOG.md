@@ -15,7 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [playground-quarkus] quarkus-version set to 3.6.4
 - Added java 21 to github action workflow for compatibility check
-- fj-bom version set to 1.5.1
+- fj-core version set to 8.4.6
+- fj-bom parent set to 1.5.2
+- fj-bom parent set to 1.5.1, [fix lombok-maven-plugin compatibility with java 21](https://github.com/fugerit-org/fj-bom/blob/main/CHANGELOG.md#151---2023-12-22)
 
 ## [3.2.4] - 2023-12-07
 
