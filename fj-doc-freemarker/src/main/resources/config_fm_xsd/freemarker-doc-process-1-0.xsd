@@ -102,7 +102,10 @@
 		</xsd:annotation>
 	</xsd:element>					
 					
-	<xsd:complexType name="docHandlerCustomConfigType">				
+	<xsd:complexType name="docHandlerCustomConfigType">	
+		<xsd:sequence>
+      		<xsd:any minOccurs="0"/>
+    	</xsd:sequence>			
 		<xsd:anyAttribute processContents="skip"/>
 	</xsd:complexType>		
 	
