@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.mod.fop.config;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -11,6 +12,8 @@ import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.FopFactoryBuilder;
 import org.apache.xmlgraphics.io.ResourceResolver;
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.mod.fop.FopConfig;
 
@@ -40,6 +43,8 @@ public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 	 */
 	private static final long serialVersionUID = 188843074194800812L;
 	
+	private byte[] fopConfigData;
+	
 	private String fopConfigPath;
 	
 	private String resolverType;
@@ -61,6 +66,19 @@ public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 	public FopConfigClassLoaderWrapper(String fopConfigPath, ResourceResolver customResourceResolver) {
 		super();
 		this.fopConfigPath = fopConfigPath;
+		this.fopConfigData = SafeFunction.get( () -> {
+			try ( InputStream fopConfigStream = ClassHelper.loadFromDefaultClassLoader( this.getFopConfigPath() ) ) {
+				return StreamIO.readBytes( fopConfigStream );
+			}
+		} );
+		
+		this.customResourceResolver = customResourceResolver;
+		this.resolverType = customResourceResolver.getClass().getName();
+	}
+	
+	public FopConfigClassLoaderWrapper( byte[] fopConfigDataPreloaded, ResourceResolver customResourceResolver) {
+		super();
+		this.fopConfigData = fopConfigDataPreloaded;
 		this.customResourceResolver = customResourceResolver;
 		this.resolverType = customResourceResolver.getClass().getName();
 	}
@@ -69,7 +87,7 @@ public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 	public FopFactory newFactory() throws ConfigException {
 		return ConfigException.get( () -> {
 			FopFactory fopFactory = null;
-			try ( InputStream fopConfigStream = ClassHelper.loadFromDefaultClassLoader( this.getFopConfigPath() ) ) {
+			try ( InputStream fopConfigStream = new ByteArrayInputStream( this.fopConfigData ) ) {
 				FopConfParser confParser =  new FopConfParser( fopConfigStream, EnvironmentalProfileFactory.createRestrictedIO(new URI("."), this.customResourceResolver) );
 			    FopFactoryBuilder confBuilder = confParser.getFopFactoryBuilder();
 			    fopFactory = confBuilder.build();	

@@ -25,6 +25,7 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocCharsetProvider;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -33,6 +34,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +48,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_CONFIG_MODE = "fop-config-mode";
 	public static final String ATT_FOP_CONFIG_MODE_DEFAULT = "default";
 	public static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER = "classloader";
+	public static final String ATT_FOP_CONFIG_MODE_INLINE = "inline";
 	
 	private static final String ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY = "classloader-legacy";  // removed as of v2.0.1
 	
@@ -78,6 +81,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	
 	public static final String ATT_FOP_SUPPRESS_EVENTS = "fop-suppress-events";
 
+	private static final String FOP_CONFIG_ROOT = "fop";
+	
 	/**
 	 * 
 	 */
@@ -199,16 +204,31 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 		}
 		// setup fop config mode
-		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath);
+		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath, config);
 		// setup suppress events
 		this.setSuppressEvents( BooleanUtils.isTrue( props.getProperty( ATT_FOP_SUPPRESS_EVENTS ) ) );
 	}
 
-	private void setupFopConfigMode( String fopConfigMode, String fopConfigResoverType, String fopConfigClassloaderPath ) throws ConfigException {
+	private void setupFopConfigMode( String fopConfigMode, String fopConfigResoverType, String fopConfigClassloaderPath, Element config ) throws ConfigException {
 		if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER.equalsIgnoreCase( fopConfigMode ) ) {
 			ConfigException.apply( () -> {
 				ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
 				FopConfigClassLoaderWrapper fopConfigClassLoaderWrapper = new FopConfigClassLoaderWrapper(fopConfigClassloaderPath, customResourceResolver);
+				this.fopConfig = fopConfigClassLoaderWrapper;	
+			} );
+		} else if ( ATT_FOP_CONFIG_MODE_INLINE.equalsIgnoreCase( fopConfigMode ) ) {
+			ConfigException.apply( () -> {
+				NodeList nl = config.getElementsByTagName( FOP_CONFIG_ROOT );
+				if ( nl.getLength() != 1 ) {
+					throw new ConfigException( String.format( "wrong number of tag : %s - %s" , FOP_CONFIG_ROOT, nl.getLength() ) );
+				}
+				byte[] fopConfigInlineData = null;
+				try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+					DOMIO.writeDOM( nl.item( 0 ) , baos);
+					fopConfigInlineData = baos.toByteArray();
+				} 
+				ResourceResolver customResourceResolver = (ResourceResolver) ClassHelper.newInstance( fopConfigResoverType );
+				FopConfigClassLoaderWrapper fopConfigClassLoaderWrapper = new FopConfigClassLoaderWrapper(fopConfigInlineData, customResourceResolver);
 				this.fopConfig = fopConfigClassLoaderWrapper;	
 			} );
 		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {

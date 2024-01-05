@@ -6,7 +6,32 @@
 
 	<docHandlerConfig registerById="true">
 		<docHandler id="pdf_ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
-			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua.xml" pdf-ua-mode="PDF/UA-1"/>
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-ua-mode="PDF/UA-1">
+				<fop version="1.0">
+				  <!-- Strict user configuration -->
+				  <strict-configuration>true</strict-configuration>
+				  <!-- Strict FO validation -->
+				  <strict-validation>true</strict-validation>
+				  <!-- Base URL for resolving relative URLs -->
+				  <base>.</base>
+				  <!-- Font Base URL for resolving relative font URLs -->
+				  <font-base>.</font-base>
+					<renderers>
+					   <renderer mime="application/pdf">
+					   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode> 
+					   	  <pdf-a-mode>PDF/A-1b</pdf-a-mode>
+				      	  <version>1.4</version>
+					   </renderer> 
+					</renderers>
+				  <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+				  <source-resolution>72</source-resolution>
+				  <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+				  <target-resolution>72</target-resolution>
+				  <!-- default page-height and page-width, in case
+				       value is specified as auto -->
+				  <default-page-settings height="11in" width="8.26in"/>
+				</fop>
+			</docHandlerCustomConfig>
 		</docHandler>
 		<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa.xml" pdf-a-mode="PDF/A-1b"/>
@@ -16,6 +41,9 @@
 		</docHandler>
 		<docHandler id="pdf_ua-fop_err" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" unsafe="true">
 			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua_er.xml" pdf-ua-mode="PDF/UA-err"/>
+		</docHandler>
+		<docHandler id="pdf_ua-fop_err_inline" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" unsafe="true">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-ua-mode="PDF/UA-1"/>
 		</docHandler>
 	</docHandlerConfig>
 
