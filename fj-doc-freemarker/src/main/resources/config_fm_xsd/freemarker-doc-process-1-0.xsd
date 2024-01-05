@@ -98,11 +98,14 @@
 					
 	<xsd:element name='docHandlerCustomConfig' type="fdp:docHandlerCustomConfigType">
 		<xsd:annotation>
-			<xsd:documentation>Custom configuration of a doc handler</xsd:documentation>
+			<xsd:documentation>Custom configuration of a doc handler, it can contains unchecked attributes and child elements.</xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>					
 					
-	<xsd:complexType name="docHandlerCustomConfigType">				
+	<xsd:complexType name="docHandlerCustomConfigType">	
+		<xsd:sequence>
+      		<xsd:any minOccurs="0"/>
+    	</xsd:sequence>			
 		<xsd:anyAttribute processContents="skip"/>
 	</xsd:complexType>		
 	

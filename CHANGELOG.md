@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-mod-doc-fop, now fop configuration can be inline
+- fj-mod-freemarker, freemarker-doc-process-1-0.xsd now allows any child element in docHandlerCustomConfigType
 - fj-doc-mod-openpdf version set to 1.2.2
 
 ## [3.2.5] - 2023-12-23
