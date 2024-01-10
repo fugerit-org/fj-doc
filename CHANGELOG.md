@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - fj-doc-mod-opencsv, new OpenCSVTypeHandlerUTF8 handler
+- fj-doc-base, new SimpleMarkdownBasicTypeHandlerNoCommentsUTF8 and SimpleMarkdownExtTypeHandlerNoCommentsUTF8 handlers
 
 ### Changed
 
