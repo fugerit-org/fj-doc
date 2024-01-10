@@ -12,10 +12,6 @@
 
 	<name>fj-doc-sample</name>
 	<description></description>
-	
-	<properties>
-		 <fj-doc-mod-openpdf-version>1.3.0</fj-doc-mod-openpdf-version>
-	</properties>
 
 	<licenses>
 		<license>

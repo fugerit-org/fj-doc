@@ -82,6 +82,11 @@
 	            </exclusion>
 			</exclusions>
 		</dependency>	
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-openpdf</artifactId>
+			<version>${fj-doc-mod-openpdf-version}</version>
+		</dependency>	
 	</dependencies>
 	<build>
 		<plugins>

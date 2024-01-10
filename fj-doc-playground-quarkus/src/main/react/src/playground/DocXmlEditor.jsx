@@ -181,7 +181,7 @@ class DocXmlEditor extends Component {
 			if ( this.state.docFormat === 'HTML' ) {
 				let decodedStringAtoB = atob(this.state.docOutput);
 				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: decodedStringAtoB }}></div>
-			}  else if ( this.state.docFormat === 'PDF' || this.state.docFormat === 'PDFA' ) {
+			}  else if ( this.state.docFormat === 'PDF' || this.state.docFormat === 'PDFA' || this.state.docFormat === 'OPENPDF' ) {
 				let srcData = 'data:application/pdf;base64,'+ this.state.docOutput;
 				outputData = <embed width="100%" height="600" src={srcData}/>
 			}  else if ( this.state.docFormat === 'XLSX' ) {
@@ -269,13 +269,14 @@ class DocXmlEditor extends Component {
 						value={this.state.outputFormat}
 					  >
 						<MenuItem value='HTML'>HTML</MenuItem>
-					    <MenuItem value='PDF'>PDF</MenuItem>
-					    <MenuItem value='PDFA'>PDF/A</MenuItem>
+					    <MenuItem value='PDF'>PDF (fop)</MenuItem>
+					    <MenuItem value='PDFA'>PDF/A (fop)</MenuItem>
 					    <MenuItem value='XLSX'>XLSX</MenuItem>
 					    <MenuItem value='MD'>Markdown (MD)</MenuItem>
 					    <MenuItem value='XML'>Venus XML Doc</MenuItem>
 					    <MenuItem value='FO'>XSL-FO</MenuItem>
 					    <MenuItem value='CSV'>CSV</MenuItem>
+					    <MenuItem value='OPENPDF'>PDF (openpdf)</MenuItem>
 					  </Select>
 					</FormControl>	
 			  </Grid>

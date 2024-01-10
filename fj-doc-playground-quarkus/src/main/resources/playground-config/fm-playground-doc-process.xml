@@ -4,8 +4,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
-	<docHandlerConfig registerById="true">
-		<docHandler id="PDF/A-1a" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+	<docHandlerConfig registerById="true" allowDuplicatedId="true">
+		<docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.PdfTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8">
+				<font name="TitilliumWeb" path="font/TitilliumWeb-Regular.ttf"/>
+			</docHandlerCustomConfig>
+		</docHandler>
+		<docHandler id="pdfa" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-a-mode="PDF/A-1a">
 				<fop version="1.0">
 				  <!-- Strict user configuration -->
