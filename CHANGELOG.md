@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fj-doc-sample, fj-doc-mod-openpdf version set to 1.3.0
 
+### Fixed
+
+- freemarker-doc-process-1-0.xsd, docHandlerCustomConfigType now accepts any child elements
+
 ## [3.3.0] - 2024-01-05
 
 ### Changed

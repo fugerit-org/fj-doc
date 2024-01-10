@@ -104,7 +104,7 @@
 					
 	<xsd:complexType name="docHandlerCustomConfigType">	
 		<xsd:sequence>
-      		<xsd:any minOccurs="0"/>
+      		<xsd:any minOccurs="0" processContents="skip"/>
     	</xsd:sequence>			
 		<xsd:anyAttribute processContents="skip"/>
 	</xsd:complexType>		

@@ -103,11 +103,13 @@ public class FreemarkerDocProcessConfigValidator {
 	}
 	
 	public static void logResult( SAXParseResult result ) throws XMLException {
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		try ( PrintStream ps = new PrintStream( baos ) ) {
-			result.printErrorReport( ps );
-			log.info( "Validation issues : \n{}", String.valueOf( baos.toByteArray() ) );
-		}
+		XMLException.apply( () -> {
+			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					PrintStream ps = new PrintStream( baos ) ) {
+				result.printErrorReport( ps );
+				log.info( "Validation issues : \n{}", new String( baos.toByteArray() ) );
+			}
+		} );
 	}
 	
 	public static boolean logValidation( Reader xmlData ) throws XMLException {
