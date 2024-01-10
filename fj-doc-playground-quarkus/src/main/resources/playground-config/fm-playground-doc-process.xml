@@ -10,6 +10,10 @@
 				<font name="TitilliumWeb" path="font/TitilliumWeb-Regular.ttf"/>
 			</docHandlerCustomConfig>
 		</docHandler>
+		<docHandler id="openrtf" info="openrtf" type="org.fugerit.java.doc.mod.openpdf.RtfTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8">
+			</docHandlerCustomConfig>
+		</docHandler>
 		<docHandler id="pdfa" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-a-mode="PDF/A-1a">
 				<fop version="1.0">

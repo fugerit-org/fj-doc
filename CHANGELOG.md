@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-doc-playground quarkus, added openpdf output format
+- fj-doc-playground quarkus, added openpdf and openrtf output format
 
 ## [3.3.1] - 2024-01-10
 

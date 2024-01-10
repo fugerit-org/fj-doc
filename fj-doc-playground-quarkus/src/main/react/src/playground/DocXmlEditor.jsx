@@ -186,7 +186,10 @@ class DocXmlEditor extends Component {
 				outputData = <embed width="100%" height="600" src={srcData}/>
 			}  else if ( this.state.docFormat === 'XLSX' ) {
 				let srcData = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+ this.state.docOutput;
-				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>			
+				outputData = <a href={srcData} download='generated_document.xlsx'>generated_document.xlsx</a>		
+			}  else if ( this.state.docFormat === 'OPENRTF' ) {
+				let srcData = 'data:application/rtf;base64,'+ this.state.docOutput;
+				outputData = <a href={srcData} download='generated_document.rtf'>generated_document.rtf</a>		
 			} else if ( this.state.docFormat === 'MD' ) {
 				let decodedStringAtoB = this.myAtob(this.state.docOutput);
 				outputData = <MarkdownEditor key={new Date().getTime()} value={decodedStringAtoB} />
@@ -277,6 +280,7 @@ class DocXmlEditor extends Component {
 					    <MenuItem value='FO'>XSL-FO</MenuItem>
 					    <MenuItem value='CSV'>CSV</MenuItem>
 					    <MenuItem value='OPENPDF'>PDF (openpdf)</MenuItem>
+					    <MenuItem value='OPENRTF'>RTF (openrtf)</MenuItem>
 					  </Select>
 					</FormControl>	
 			  </Grid>
