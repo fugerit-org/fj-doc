@@ -14,7 +14,7 @@
 	<description></description>
 	
 	<properties>
-		 <fj-doc-mod-openpdf-version>1.2.2</fj-doc-mod-openpdf-version>
+		 <fj-doc-mod-openpdf-version>1.3.0</fj-doc-mod-openpdf-version>
 	</properties>
 
 	<licenses>
