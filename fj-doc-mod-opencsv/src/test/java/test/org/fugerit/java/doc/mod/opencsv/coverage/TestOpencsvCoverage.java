@@ -12,7 +12,7 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler;
+import org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -30,7 +30,7 @@ public class TestOpencsvCoverage {
 			new TestEntry( "default_doc_fail1" , false )
 	};
 	
-	private final static DocTypeHandler[] HANDLERS = { OpenCSVTypeHandler.HANDLER };
+	private final static DocTypeHandler[] HANDLERS = { OpenCSVTypeHandlerUTF8.HANDLER };
 	
 	private boolean worker( String id, String path, boolean result ) {
 		SimpleValue<Boolean> res = new SimpleValue<>(false);

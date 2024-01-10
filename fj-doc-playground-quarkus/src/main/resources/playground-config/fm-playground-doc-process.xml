@@ -4,19 +4,62 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
-	<docHandlerConfig>
-		<docHandler id="PDFA" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
-			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" 
-			fop-config-classloader-path="playground-config/fop-config-pdfa.xml" pdf-a-mode="PDF/A-1a"/>
+	<docHandlerConfig registerById="true">
+		<docHandler id="PDF/A-1a" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-a-mode="PDF/A-1a">
+				<fop version="1.0">
+				  <!-- Strict user configuration -->
+				  <strict-configuration>true</strict-configuration>
+				  <!-- Strict FO validation -->
+				  <strict-validation>true</strict-validation>
+				  <!-- Base URL for resolving relative URLs -->
+				  <base>.</base>
+				  <!-- Font Base URL for resolving relative font URLs -->
+				  <font-base>.</font-base>
+					<!--
+						NOTE: for PDF/A format all fonts, even the basic ones, myst be fully embdedded.
+						https://xmlgraphics.apache.org/fop/2.8/pdfa.htm
+					-->
+					<renderers>
+					   <renderer mime="application/pdf">
+					   	  <!-- In this configuration the pdf-a-mode has been set via the freemarker-doc-process.xml
+					   	  <pdf-a-mode>PDF/A-1a</pdf-a-mode>
+				      	  <version>1.4</version>
+				      	  -->
+						  <fonts>
+							<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">
+					          <font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
+					        </font>
+							<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
+					          <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
+					        </font>	        
+							<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="full">
+					          <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
+					        </font>	        
+							<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="full">
+					          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
+					        </font>	     
+						  </fonts>
+					   </renderer> 
+					</renderers>
+				  <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+				  <source-resolution>72</source-resolution>
+				  <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+				  <target-resolution>72</target-resolution>
+				  <!-- default page-height and page-width, in case
+				       value is specified as auto -->
+				  <default-page-settings height="11in" width="8.26in"/>
+				</fop>
+		  </docHandlerCustomConfig>
 		</docHandler>
-		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
-		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
-		<docHandler id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
-		<docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
-		<docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
-		<docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
-		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />	
-		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
+		<docHandler id="md" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8" />
+		<docHandler id="xml" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+		<docHandler id="xls" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
+		<docHandler id="xlsx" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
+		<docHandler id="fo" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
+		<docHandler id="pdf" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
+		<docHandler id="html" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+		<docHandler id="csv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8" />
 	</docHandlerConfig>
 
 </freemarker-doc-process-config>

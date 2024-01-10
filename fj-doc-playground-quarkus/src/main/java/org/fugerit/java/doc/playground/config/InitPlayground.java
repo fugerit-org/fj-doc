@@ -30,4 +30,8 @@ public class InitPlayground {
 		log.info( "InitPlayground end" );
 	}
 	
+	public static DocTypeHandler findHandler( String id ) {
+		return PROCESS_CONFIG.getFacade().findHandler( id );
+	}
+	
 }
