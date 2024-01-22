@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fj-doc-playground quarkus, added openpdf and openrtf output format
 - [playground-quarkus] quarkus-version set to 3.7.0.CR1
+- fj-core version set to 8.4.7
 
 ## [3.3.1] - 2024-01-10
 
