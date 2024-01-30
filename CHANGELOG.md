@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Switch to codeql actions v3
 - Minimum java version to run quarkus playground set to 17
 - Minimum java version for build set to 17
 - fj-doc-playground quarkus, added openpdf and openrtf output format
