@@ -9,7 +9,7 @@
 	<artifactId>fj-doc-playground-quarkus</artifactId>
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
-		<maven.compiler.release>11</maven.compiler.release>
+		<maven.compiler.release>17</maven.compiler.release>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
