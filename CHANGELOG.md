@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Minimum java version for build set to 17
 - fj-doc-playground quarkus, added openpdf and openrtf output format
 - [playground-quarkus] quarkus-version set to 3.7.1
+- [playground-quarkus] base docker image eclipse-temurin:21.0.2_13-jre-alpine
 - fj-core version set to 8.4.7
 
 ## [3.3.1] - 2024-01-10
