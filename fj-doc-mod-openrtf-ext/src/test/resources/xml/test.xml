@@ -1,0 +1,44 @@
+
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+	<metadata>
+		
+		<info name="default-font-name">TitilliumWeb</info>
+		<info name="default-font-size">10</info>
+		<info name="margins">50;50;20;20</info>
+		<info name="doc-version">1</info>
+		<info name="doc-title">Test doc</info>
+		<info name="doc-author">Fugerit</info>
+		<info name="doc-creator">Venus</info>
+		<info name="doc-language">en</info>
+		<header-ext expected-size="45">
+			<table width="100" colwidths="24;49;24" columns="3" render-mode="inline">
+				<row>
+				<cell><para></para></cell>
+					<cell align="center" border-width="0">
+						<image url="png" scaling="200" base64="iVBORw0KGgoAAAANSUhEUgAAAOsAAAAoCAYAAAAfdg3PAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAAndEVYdENyZWF0aW9uIFRpbWUAbWVyIDEwIGdlbiAyMDI0LCAxODoyNzo1NEcuoXEAAAGySURBVHic7ZtRTsQwDAWfrdwHxOWA+4I4hvmwm5ZS4I+40liI2dnZ3ygpWezp9SNkkkKCEPblCIUs6j0IYVsOk0mSrJZwGo7j3XyEQvscX+M43snHtq/WhgshbMoRIS0/jEMI/6TLct0eDsc4jjd0Vy3e/JXEcbyf+3EFQwj7ckSETKbQFXNV0+n09d1Npvy5ov3wPp1O/++e96yH8zGEsCfHtnJrv4UQNiU7K4Q3oUt1Pla+wnG8p7skxWkJ4zjez12XY9dv0+n0Zd0javVGSCGlxsHpdHqHbo8v72kMw7SeX7/BlNsxnU5v0dlZGeYeM7YzMcMwvcclk1nd55gJx/Gm/vD8xtbKMDeYvGetlZsPtDiOd3TPa53Y73dwHG/pPtfwtohxHG/pvv0xeFInp9PpLTp/YGKYm0zds5r2NS0cxxv6kFm9tPkRHMf7+VDEXMMQwr4c+53OPudNmE6nr+/1XzcZjx86Op1OX9/rnjXPx6qwPcdOp9Ppy3t+g0mn59Zvz7F0On11968rGELYlXnPaiZtVJ2Sz+/T6fSl3ef5eJ6TT06n01t0n+djCGFrfgL64jesbodk/AAAAABJRU5ErkJggg==" align="center" alt="Logo 1"/>
+					</cell>
+					<cell align="right" border-width="0">
+						<image url="png" base64="iVBORw0KGgoAAAANSUhEUgAAAOsAAAAoCAYAAAAfdg3PAAAABHNCSVQICAgIfAhkiAAAABl0RVh0U29mdHdhcmUAZ25vbWUtc2NyZWVuc2hvdO8Dvz4AAAAndEVYdENyZWF0aW9uIFRpbWUAbWVyIDEwIGdlbiAyMDI0LCAxODoyNzo1NEcuoXEAAAGySURBVHic7ZtRTsQwDAWfrdwHxOWA+4I4hvmwm5ZS4I+40liI2dnZ3ygpWezp9SNkkkKCEPblCIUs6j0IYVsOk0mSrJZwGo7j3XyEQvscX+M43snHtq/WhgshbMoRIS0/jEMI/6TLct0eDsc4jjd0Vy3e/JXEcbyf+3EFQwj7ckSETKbQFXNV0+n09d1Npvy5ov3wPp1O/++e96yH8zGEsCfHtnJrv4UQNiU7K4Q3oUt1Pla+wnG8p7skxWkJ4zjez12XY9dv0+n0Zd0javVGSCGlxsHpdHqHbo8v72kMw7SeX7/BlNsxnU5v0dlZGeYeM7YzMcMwvcclk1nd55gJx/Gm/vD8xtbKMDeYvGetlZsPtDiOd3TPa53Y73dwHG/pPtfwtohxHG/pvv0xeFInp9PpLTp/YGKYm0zds5r2NS0cxxv6kFm9tPkRHMf7+VDEXMMQwr4c+53OPudNmE6nr+/1XzcZjx86Op1OX9/rnjXPx6qwPcdOp9Ppy3t+g0mn59Zvz7F0On11968rGELYlXnPaiZtVJ2Sz+/T6fSl3ef5eJ6TT06n01t0n+djCGFrfgL64jesbodk/AAAAABJRU5ErkJggg==" align="right" alt="Logo 2" scaling="80"/>
+					</cell>
+				</row>
+			</table>
+		</header-ext>  
+		<footer-ext>
+			<!-- paginazione nel footer a titolo di esempio, va agganciata una versione del anpr-bom : 8.0.1-rc.005 -->
+			<para align="center">${currentPage} / ${pageCount}</para>
+		</footer-ext>
+	
+		<bookmark-tree>
+			<bookmark ref="bookmark1">Bookmark 1</bookmark>
+		</bookmark-tree>
+		
+	</metadata>
+	<body>
+		<para align="center" style="normal" space-after="50" size="13">MAIN TITLE</para>
+		<h head-level="1" align="center" style="bold" space-after="20" size="20" id="bookmark1">Secondary title</h>
+	</body>
+</doc>

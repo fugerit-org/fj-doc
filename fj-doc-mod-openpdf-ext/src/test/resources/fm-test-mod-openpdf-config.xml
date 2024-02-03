@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<docHandlerConfig registerById="true">
+		<docHandler id="pdf_openpdf" info="pdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8">
+				<font name="TitilliumWeb" path="src/test/resources/font/TitilliumWeb-Regular.ttf"/>
+			</docHandlerCustomConfig>
+		</docHandler>
+		<docHandler id="html_openpdf" info="html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8"/>
+		</docHandler>
+	</docHandlerConfig>
+
+</freemarker-doc-process-config>

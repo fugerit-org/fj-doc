@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 
+
+  <metadata>
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>  
+  	<info name="excel-table-id">excel-table=print</info>
+ 	<!-- documenta meta information -->
+	<info name="doc-title">Basic example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+	<!-- additional properties -->
+	<info name="set-total-page">true</info>
+	<info name="html-css-link">/css/test.css</info>
+	<header-ext>
+		<para align="center" fore-color="#eeeeee">header test</para>
+	</header-ext>
+	<footer-ext>
+		<para align="left">test</para>
+		<para align="center">${r"${currentPage}"} / ${r"${pageCount}"}</para>
+		<para align="right">test</para>
+	</footer-ext>
+  </metadata>
+  <body>
+  		<para font-name="times-roman" style="bold">Test times roman</para>
+  		<para font-name="courier" style="bolditalic">Courier</para>
+  		<para font-name="symbol" style="italic">Symbol</para>
+  		<para font-name="helvetica" style="underline">Symbol</para>
+  		<para size="-1" fore-color="#dddddd">Test default font</para>
+    	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
+    		<row>
+    			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
+    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para style="bold">Title</para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Luthien]]></para></cell>
+    			<cell><para><![CDATA[Tinuviel]]></para></cell>
+    			<cell><para><![CDATA[Queen]]></para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Thorin]]></para></cell>
+    			<cell><para><![CDATA[Oakshield]]></para></cell>
+    			<cell><para><![CDATA[King]]></para></cell>
+    		</row>     	
+        		<row>
+    			<cell><phrase><![CDATA[Phrase]]></phrase></cell>
+    			<cell><phrase anchor="1"><![CDATA[Oakshield]]></phrase></cell>
+    			<cell><phrase link="1"><![CDATA[King]]></phrase></cell>
+    		</row>  
+    	</table>
+  </body>
+  
+</doc>

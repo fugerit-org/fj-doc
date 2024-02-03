@@ -98,6 +98,8 @@
 		<module>fj-doc-mod-poi</module>
 		<module>fj-doc-mod-fop</module>
 		<module>fj-doc-mod-opencsv</module>
+		<module>fj-doc-mod-openpdf-ext</module>
+		<module>fj-doc-mod-openrtf-ext</module>
 		<module>fj-doc-val-core</module>
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
@@ -165,6 +167,18 @@
 				<artifactId>fj-doc-mod-opencsv</artifactId>
 				<version>${fj-doc-version}</version>
 			</dependency>					
+		
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-openpdf-ext</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>	
+			
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-mod-openrtf-ext</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>	
 		
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
