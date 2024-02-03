@@ -15,6 +15,8 @@ public class TestDefaultDoc extends TestDocBase {
 	
 	private static final String DEFAULT_DOC_ALT = "default_doc_alt";
 	
+	private static final String DEFAULT_DOC_PDFA = "default_doc_pdfa";
+	
 	@Test
 	public void testOpenFailPDF() {
 		Assert.assertThrows( AssertionError.class , () -> this.testDocWorker( "default_doc_fail1" ,  DocConfig.TYPE_PDF ) );
@@ -48,6 +50,12 @@ public class TestDefaultDoc extends TestDocBase {
 	public void testOpenAltHTML() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_HTML );
 		Assert.assertTrue(ok);
+	}
+	
+	@Test
+	public void testOpenPDFA() {
+		// still working on font embedding
+		Assert.assertThrows( AssertionError.class , () -> this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF ));
 	}
 	
 }

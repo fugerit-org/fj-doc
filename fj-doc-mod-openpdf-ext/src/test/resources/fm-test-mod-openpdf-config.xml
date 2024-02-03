@@ -8,6 +8,7 @@
 		<docHandler id="pdf_openpdf" info="pdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8">
 				<font name="TitilliumWeb" path="src/test/resources/font/TitilliumWeb-Regular.ttf"/>
+				<font name="helvetica" path="src/test/resources/font/TitilliumWeb-Regular.ttf"/>
 			</docHandlerCustomConfig>
 		</docHandler>
 		<docHandler id="html_openpdf" info="html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler">

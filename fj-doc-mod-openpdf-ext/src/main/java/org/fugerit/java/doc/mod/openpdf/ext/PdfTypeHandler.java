@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -27,7 +28,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 	public static final DocTypeHandler HANDLER = new PdfTypeHandler();
 	
 	public PdfTypeHandler() {
-		super( OpenPpfDocHandler.DOC_OUTPUT_PDF, OpenPpfDocHandler.MODULE );
+		super( DocConfig.TYPE_PDF, OpenPpfDocHandler.MODULE );
 	}
 
 	@Override

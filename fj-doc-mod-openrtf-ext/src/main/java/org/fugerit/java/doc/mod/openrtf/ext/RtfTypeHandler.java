@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -28,7 +29,7 @@ public class RtfTypeHandler extends DocTypeHandlerDefault {
 	public static final DocTypeHandler HANDLER = new RtfTypeHandler();
 	
 	public RtfTypeHandler() {
-		super( OpenPpfDocHandler.DOC_OUTPUT_RTF, OpenPpfDocHandler.MODULE );
+		super( DocConfig.TYPE_RTF, OpenRtfDocHandler.MODULE );
 	}
 
 	@Override

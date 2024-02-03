@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -26,7 +27,7 @@ public class HtmlTypeHandler extends DocTypeHandlerDefault {
 	public static final DocTypeHandler HANDLER = new HtmlTypeHandler();
 	
 	public HtmlTypeHandler() {
-		super( OpenPpfDocHandler.DOC_OUTPUT_HTML, OpenPpfDocHandler.MODULE );
+		super( DocConfig.TYPE_HTML, OpenPpfDocHandler.MODULE );
 	}
 
 	@Override
@@ -36,7 +37,7 @@ public class HtmlTypeHandler extends DocTypeHandlerDefault {
 		Document document = new Document( );
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		HtmlWriter.getInstance( document, baos );
-		OpenPpfDocHandler handler = new OpenPpfDocHandler( document, OpenPpfDocHandler.DOC_OUTPUT_HTML );
+		OpenPpfDocHandler handler = new OpenPpfDocHandler( document, DocConfig.TYPE_HTML );
 		handler.handleDoc( docBase );
 		baos.writeTo( outputStream );
 		baos.close();

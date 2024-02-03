@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.util.regex.ParamFinder;
@@ -96,13 +97,7 @@ public class OpenPpfDocHandler {
 	
 	private String docType;
 	
-	public static final String MODULE = "itext";
-	
-	public static final String DOC_OUTPUT_HTML = DocConfig.TYPE_HTML;
-	
-	public static final String DOC_OUTPUT_PDF = DocConfig.TYPE_PDF;
-	
-	public static final String DOC_OUTPUT_RTF = DocConfig.TYPE_RTF;
+	public static final String MODULE = "openpdf-ext";
 	
 	public static final String DOC_DEFAULT_FONT_NAME = "default-font-name";
 	public static final String DOC_DEFAULT_FONT_SIZE = "default-font-size";
@@ -116,7 +111,7 @@ public class OpenPpfDocHandler {
 	}	
 	
 	public OpenPpfDocHandler( Document document, PdfWriter pdfWriter, int totalPageCount ) {
-		this( document, DOC_OUTPUT_PDF );
+		this( document, DocConfig.TYPE_PDF );
 		this.pdfWriter = pdfWriter;
 		this.totalPageCount = totalPageCount;
 	}	
@@ -142,19 +137,16 @@ public class OpenPpfDocHandler {
 	
 	
 	protected static Image createImage( DocImage docImage ) {
-		Image image = null;
 		String url = docImage.getUrl();
 		log.trace( "currently unsupported image param url {}", url );
-		try {
+		return SafeFunction.get( () -> {
 			byte[] data = SourceResolverHelper.resolveImage( docImage );
-			image = Image.getInstance( data );
+			Image image = Image.getInstance( data );
 			if ( docImage.getScaling() != null ) {
 				image.scalePercent( docImage.getScaling().floatValue() );
 			}
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( e );
-		}
-		return image;
+			return image;
+		} );
 	}	
 	
 	
@@ -258,23 +250,23 @@ public class OpenPpfDocHandler {
 	
 	private void handleTypeSpecific( Properties info ) {
 		// per documenti tipo HTML
-		if ( DOC_OUTPUT_HTML.equalsIgnoreCase( this.docType ) ) {
+		if ( DocConfig.TYPE_HTML.equalsIgnoreCase( this.docType ) ) {
 			String cssLink = info.getProperty( DocInfo.INFO_NAME_CSS_LINK );
 			if ( cssLink != null ) {
 				this.document.add( new Header( HtmlTags.STYLESHEET, cssLink ) );
 			}
 		}
 		// per documenti tipo word o pdf
-		if ( DOC_OUTPUT_PDF.equalsIgnoreCase( this.docType ) || DOC_OUTPUT_RTF.equalsIgnoreCase( this.docType ) ) {
+		if ( DocConfig.TYPE_PDF.equalsIgnoreCase( this.docType ) || DocConfig.TYPE_RTF.equalsIgnoreCase( this.docType ) ) {
 			Rectangle size = this.document.getPageSize();
 			String pageOrient = info.getProperty( DocInfo.INFO_NAME_PAGE_ORIENT );
 			if ( "horizontal".equalsIgnoreCase( pageOrient ) ) {
 				size = new Rectangle( size.getHeight(), size.getWidth() );
 				this.document.setPageSize( size );
 			}
-			if ( DOC_OUTPUT_PDF.equalsIgnoreCase( this.docType ) ) {
+			if ( DocConfig.TYPE_PDF.equalsIgnoreCase( this.docType ) ) {
 				String pdfFormat = info.getProperty( DocInfo.INFO_NAME_PDF_FORMAT );
-				if ( "pdf-a".equalsIgnoreCase( pdfFormat ) ) {
+				if ( DocConfig.FORMAT_PDF_A_1B.equalsIgnoreCase( pdfFormat ) ) {
 					this.pdfWriter.setPDFXConformance(PdfWriter.PDFA1B);
 					PdfDictionary outi = new PdfDictionary( PdfName.OUTPUTINTENT );
 					outi.put( PdfName.OUTPUTCONDITIONIDENTIFIER, new PdfString("sRGB IEC61966-2.1") );
@@ -350,7 +342,7 @@ public class OpenPpfDocHandler {
 		PdfHelper pdfHelper = new PdfHelper( docHelper );
 		this.handleHeader(docBase, pdfHelper, docHelper);
 		this.handleFooter(docBase, pdfHelper, docHelper);
-		if ( DOC_OUTPUT_PDF.equals( this.docType ) ) {
+		if ( DocConfig.TYPE_PDF.equals( this.docType ) ) {
 			this.pdfWriter.setPageEvent( pdfHelper );
 		}
 		

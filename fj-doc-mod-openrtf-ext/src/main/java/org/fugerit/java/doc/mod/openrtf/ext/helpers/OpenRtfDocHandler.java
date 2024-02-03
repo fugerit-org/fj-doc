@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocFooter;
 import org.fugerit.java.doc.base.model.DocHeader;
@@ -24,8 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class OpenRtfDocHandler extends OpenPpfDocHandler {
 
+	public static final String MODULE = "openrtf-ext";
+	
 	public OpenRtfDocHandler( Document document, RtfWriter2 rtfWriter2 ) {
-		super( document, DOC_OUTPUT_RTF );
+		super( document, DocConfig.TYPE_RTF );
 		log.trace( "currently unused parameter rtfWriter2 {}", rtfWriter2 );
 	}	
 	
