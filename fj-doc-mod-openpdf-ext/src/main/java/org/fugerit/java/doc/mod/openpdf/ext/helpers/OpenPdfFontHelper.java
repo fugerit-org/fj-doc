@@ -38,7 +38,7 @@ public class OpenPdfFontHelper {
 		return style;
 	}
 	
-	protected static Font createFont( String fontName, String fontPath, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
+	public static Font createFont( String fontName, String fontPath, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
 		Font font = null;
 		int size = fontSize;
 		int style = Font.NORMAL;
