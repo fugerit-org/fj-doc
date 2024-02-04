@@ -89,6 +89,8 @@ There are five kinds of components (each components README.md contains module st
 * [Apache POI Module (fj-doc-mod-poi)](fj-doc-mod-poi/README.md) ([XLS](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java)/[XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java))
 * [Apache FOP Module (fj-doc-mod-fop)](fj-doc-mod-fop/README.md) ([PDF](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/PdfFopTypeHandler.java)/[FO](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/FreeMarkerFopTypeHandler.java))
 * [OpenCSV Module (fj-doc-mod-opencsv)](fj-doc-mod-opencsv/README.md) ([CSV](fj-doc-mod-opencsv/src/main/java/org/fugerit/java/doc/mod/opencsv/OpenCSVTypeHandler.java))
+* [OpenPDF EXT Module (fj-doc-mod-openpdf-ext)](fj-doc-mod-openpdf-ext/README.md) ([PDF](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openpdf/ext/PdfTypeHandler.java)/[HTML](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openpdf/ext/HtmlTypeHandler.java))
+* [OpenRTF EXT Module (fj-doc-mod-openrtf-ext)](fj-doc-mod-openrtf-ext/README.md) ([RTF](fj-doc-mod-openrtf-ext/src/main/java/org/fugerit/java/doc/mod/openrtf/ext/RtfTypeHandler.java))
 
 
 ### 3. Available type handlers :
@@ -102,6 +104,10 @@ There are five kinds of components (each components README.md contains module st
 * [PDF](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/PdfFopTypeHandler.java) - (fj-doc-mod-fop) - output as PDF using Apache FOP
 * [FO](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/FreeMarkerFopTypeHandler.java) - (fj-doc-mod-fop) - output as FO using Apache FOP
 * [CSV](fj-doc-mod-opencsv/src/main/java/org/fugerit/java/doc/mod/opencsv/OpenCSVTypeHandler.java) - (fj-doc-mod-opencsv) - output as CSV using OpenCSV
+* [PDF](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openpdf/ext/PdfTypeHandler.java) - (fj-doc-mod-openpdf-ext) - output as PDF using OpenPDF
+* [HTML](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openpdf/ext/HtmlTypeHandler.java) - (fj-doc-mod-openpdf-ext) - output as HTML using OpenPDF
+* [RTF](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openrtf/ext/RtfTypeHandler.java) - (fj-doc-mod-openrtf-ext) - output as RTF using OpenRTF
+
 
 ### 4. Bundled libraries :
 * [Simple table (fj-doc-lib-singletable)](fj-doc-lib-simpletable/README.md) - offers a simple API for creating a document made of a table.
