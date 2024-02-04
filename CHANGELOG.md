@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.0] - 2024-02-04
+
+### Added
+
+- fj-doc-mod-openpdf-ext, PDF and HTML renderer based on [OpenPDF](https://github.com/LibrePDF/OpenPDF)
+- fj-doc-mod-openrtf-ext, RTF renderer based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)
+
 ### Changed
 
 - Setup java 17 for code ql workflow
