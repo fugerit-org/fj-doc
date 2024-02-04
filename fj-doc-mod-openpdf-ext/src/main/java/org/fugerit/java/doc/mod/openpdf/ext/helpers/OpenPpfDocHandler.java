@@ -243,7 +243,7 @@ public class OpenPpfDocHandler {
 	}
 	
 
-	
+ 	
 	public static Font createFont( String fontName, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
 		return OpenPdfFontHelper.createFont(fontName, fontName, fontSize, fontStyle, docHelper, color);
 	}

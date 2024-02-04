@@ -81,7 +81,7 @@ public class OpenPdfDocTableHelper {
 			}
 		}
 		if ( docCell.getValign() != DocPara.ALIGN_UNSET ) {
-			Optional<VerticalAlignment> va = VerticalAlignment.of( docCell.getAlign() );
+			Optional<VerticalAlignment> va = VerticalAlignment.of( docCell.getValign() );
 			if ( va.isPresent() ) {
 				cell.setVerticalAlignment( va.get() );
 			}
