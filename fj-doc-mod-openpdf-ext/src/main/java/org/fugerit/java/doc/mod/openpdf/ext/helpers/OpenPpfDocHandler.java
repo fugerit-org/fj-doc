@@ -11,7 +11,6 @@ import java.util.Properties;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
-import org.fugerit.java.core.log.LogFacade;
 import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.helper.SourceResolverHelper;
@@ -69,9 +68,10 @@ public class OpenPpfDocHandler {
 	
 	private static HashMap<String, BaseFont> fonts = new HashMap<>();
 
-	public static void registerFont( String name, String path ) throws DocumentException, IOException {
+	public static BaseFont registerFont( String name, String path ) throws DocumentException, IOException {
 		BaseFont font = BaseFont.createFont( path, BaseFont.CP1252, true );
 		registerFont( name, font );
+		return font;
 	}
 	
 	public static void registerFont( String name, BaseFont font ) {
@@ -414,11 +414,7 @@ public class OpenPpfDocHandler {
 			}
 			Font f = new Font( Font.HELVETICA, docPara.getSize() );
 			if ( docPara.getForeColor() != null ) {
-				try {
-					f.setColor( DocModelUtils.parseHtmlColor( docPara.getForeColor() ) );	
-				} catch (Exception fe) {
-					LogFacade.getLog().warn( "Error setting fore color on footer : "+docPara.getForeColor(), fe );
-				}
+				SafeFunction.applySilent( () -> f.setColor( DocModelUtils.parseHtmlColor( docPara.getForeColor() ) ) );
 			}
 			Chunk ck = new Chunk( docPara.getText(), f );
 			phrase.add( ck );

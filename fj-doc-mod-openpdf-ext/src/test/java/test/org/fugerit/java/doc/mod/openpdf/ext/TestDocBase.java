@@ -11,10 +11,10 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-
-import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class TestDocBase {

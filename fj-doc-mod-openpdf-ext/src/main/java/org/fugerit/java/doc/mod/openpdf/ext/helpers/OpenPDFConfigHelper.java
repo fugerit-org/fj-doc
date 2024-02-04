@@ -1,9 +1,10 @@
 package org.fugerit.java.doc.mod.openpdf.ext.helpers;
 
-import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class OpenPDFConfigHelper {

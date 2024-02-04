@@ -15,6 +15,8 @@ public class TestDefaultDoc extends TestDocBase {
 	
 	private static final String DEFAULT_DOC_ALT = "default_doc_alt";
 	
+	private static final String DEFAULT_DOC_SIMPLE = "default_doc_simple";
+	
 	private static final String DEFAULT_DOC_PDFA = "default_doc_pdfa";
 	
 	@Test
@@ -49,6 +51,12 @@ public class TestDefaultDoc extends TestDocBase {
 	@Test
 	public void testOpenAltHTML() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_HTML );
+		Assert.assertTrue(ok);
+	}
+	
+	@Test
+	public void testOpenSimple() {
+		boolean ok = this.testDocWorker( DEFAULT_DOC_SIMPLE ,  DocConfig.TYPE_PDF );
 		Assert.assertTrue(ok);
 	}
 	

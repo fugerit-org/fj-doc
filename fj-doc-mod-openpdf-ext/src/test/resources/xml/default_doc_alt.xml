@@ -52,10 +52,16 @@
     					</row>
     				</table>
     			</cell>
-    		</row>     	     	
+    		</row>   
+        		<row>
+    			<cell><barcode text="0123456789123"/></cell>
+    			<cell><barcode size="10" text="0123456789123"/></cell>
+    			<cell><barcode type="128" text="0123456789123"/></cell>
+    		</row>    	     	
     	</table>
+  
+  		<page-break/>
+  	
   </body>
-  
-  <page-break/>
-  
+ 
 </doc>

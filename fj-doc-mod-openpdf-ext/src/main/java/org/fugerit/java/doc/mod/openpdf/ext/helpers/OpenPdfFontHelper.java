@@ -62,8 +62,7 @@ public class OpenPdfFontHelper {
 		} else {
 			bf = OpenPpfDocHandler.findFont( fontName );
 			if ( bf == null) {
-				bf = BaseFont.createFont( fontPath, BaseFont.CP1252, true );
-				OpenPpfDocHandler.registerFont( fontName, bf );
+				bf = OpenPpfDocHandler.registerFont( fontName , fontPath );
 			}
 		}
 		Color c = Color.BLACK;
