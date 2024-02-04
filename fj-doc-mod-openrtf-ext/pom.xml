@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-mod-opencsv</artifactId>
+	<artifactId>fj-doc-mod-openrtf-ext</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,12 @@
 		<version>3.3.2-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-mod-opencsv</name>
-	<description>Renderer for CSV using OpenCSV</description>
+	<name>fj-doc-mod-openrtf-ext</name>
+	<description>Renderer for RTF format, based on https://github.com/LibrePDF/OpenRTF</description>
+
+	<properties>
+		<openrtf-version-version>1.2.1</openrtf-version-version>
+	</properties>
 
 	<licenses>
 		<license>
@@ -24,8 +28,9 @@
 	<dependencies>
 
 		<dependency>
-		    <groupId>com.opencsv</groupId>
-		    <artifactId>opencsv</artifactId>
+		    <groupId>com.github.librepdf</groupId>
+		    <artifactId>openrtf</artifactId>
+		    <version>${openrtf-version-version}</version>
 		</dependency>		
 
 		<dependency>
@@ -37,6 +42,17 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
 		</dependency>		
+		
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-openpdf-ext</artifactId>
+		</dependency>	
+	
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-freemarker</artifactId>
+			<scope>test</scope>
+		</dependency>	
 	
 	</dependencies>
 

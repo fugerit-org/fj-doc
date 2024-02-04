@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 
+
+  <metadata>
+  	<!-- for pdf A all fonts must be embedded -->
+	<info name="default-font-name">TitilliumWeb</info>
+	<info name="pdf-format">PDF/A-1b</info>
+  </metadata>
+  <body>
+  		<para font-name="TitilliumWeb">Test PDFA</para>
+  </body>
+  
+</doc>
