@@ -31,8 +31,6 @@
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
 	    <poi5-version>${poi-version}</poi5-version>
-	    <!-- openpdf alternate pdf -->
-	    <fj-doc-mod-openpdf-version>1.3.0</fj-doc-mod-openpdf-version>
 	</properties>
 
 	<licenses>

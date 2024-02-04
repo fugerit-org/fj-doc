@@ -74,9 +74,12 @@
 		
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-mod-openpdf</artifactId>
-			<version>${fj-doc-mod-openpdf-version}</version>
-			<scope>test</scope>
+			<artifactId>fj-doc-mod-openpdf-ext</artifactId>
+		</dependency>	
+	
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-openrtf-ext</artifactId>
 		</dependency>	
 		
 	</dependencies>

@@ -5,12 +5,12 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<docHandlerConfig registerById="true" allowDuplicatedId="true">
-		<docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.PdfTypeHandler">
+		<docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8">
 				<font name="TitilliumWeb" path="font/TitilliumWeb-Regular.ttf"/>
 			</docHandlerCustomConfig>
 		</docHandler>
-		<docHandler id="openrtf" info="openrtf" type="org.fugerit.java.doc.mod.openpdf.RtfTypeHandler">
+		<docHandler id="openrtf" info="openrtf" type="org.fugerit.java.doc.mod.openrtf.ext.RtfTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8">
 			</docHandlerCustomConfig>
 		</docHandler>
