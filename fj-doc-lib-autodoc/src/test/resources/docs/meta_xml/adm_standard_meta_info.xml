@@ -156,6 +156,39 @@
       <admeta:supportedType>pdf</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>default-font-name</admeta:name>
+      <admeta:description>Set the default font name</admeta:description>
+      <admeta:defaultValue>helvetica</admeta:defaultValue>
+      <admeta:since>1.4.5</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedType>rtf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openrtf-ext(rtf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>default-font-size</admeta:name>
+      <admeta:description>Set the default font size</admeta:description>
+      <admeta:defaultValue>10</admeta:defaultValue>
+      <admeta:since>1.4.5</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedType>rtf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openrtf-ext(rtf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>default-font-style</admeta:name>
+      <admeta:description>Set the default font style</admeta:description>
+      <admeta:defaultValue>normal</admeta:defaultValue>
+      <admeta:since>1.4.5</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedType>rtf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openrtf-ext(rtf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
   </admeta:admSection>
 
   <admeta:admSection>

@@ -178,7 +178,22 @@ public class GenericConsts {
 	 */
 	public static final String TABLE_BORDER_COLLAPSE_COLLAPSE = "collapse";
 	
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-font-name">See 'default-font-name' documentation.</a>
+	 */
+	public static final String DOC_DEFAULT_FONT_NAME = "default-font-name";
 	
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-font-size">See 'default-font-size' documentation.</a>
+	 */
+	public static final String DOC_DEFAULT_FONT_SIZE = "default-font-size";
+	
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-font-style">See 'default-font-style' documentation.</a>
+	 */
+	public static final String DOC_DEFAULT_FONT_STYLE = "default-font-style";
 	
 	
 }

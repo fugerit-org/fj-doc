@@ -27,6 +27,7 @@ import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.model.DocPhrase;
 import org.fugerit.java.doc.base.model.DocStyle;
 import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
 
 import com.lowagie.text.Anchor;
@@ -98,10 +99,6 @@ public class OpenPpfDocHandler {
 	private String docType;
 	
 	public static final String MODULE = "openpdf-ext";
-	
-	public static final String DOC_DEFAULT_FONT_NAME = "default-font-name";
-	public static final String DOC_DEFAULT_FONT_SIZE = "default-font-size";
-	public static final String DOC_DEFAULT_FONT_STYLE = "default-font-style";
 
 	private int totalPageCount; 
 	
@@ -319,9 +316,9 @@ public class OpenPpfDocHandler {
 	public void handleDoc(DocBase docBase) throws DocumentException, IOException {
 		Properties info = docBase.getInfo();
 		
-		String defaultFontName = info.getProperty( DOC_DEFAULT_FONT_NAME, "helvetica" );
-		String defaultFontSize = info.getProperty( DOC_DEFAULT_FONT_SIZE, "10" );
-		String defaultFontStyle = info.getProperty( DOC_DEFAULT_FONT_STYLE, "normal" );
+		String defaultFontName = info.getProperty( GenericConsts.DOC_DEFAULT_FONT_NAME, "helvetica" );
+		String defaultFontSize = info.getProperty( GenericConsts.DOC_DEFAULT_FONT_SIZE, "10" );
+		String defaultFontStyle = info.getProperty( GenericConsts.DOC_DEFAULT_FONT_STYLE, "normal" );
 		OpenPdfHelper docHelper = new OpenPdfHelper();
 		
 		if ( this.pdfWriter != null ) {
