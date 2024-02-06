@@ -27,6 +27,7 @@ class Home extends Component {
 	render() {
 		return <Fragment>
 			<h1>This is a playground for <a href="https://github.com/fugerit-org/fj-doc">Venus (fj-doc)</a> project.</h1>
+			<p>Framework to produce documents in different output formats starting from an XML document meta model. (options for json and yaml source models are also available)</p>
 			<List sx={{ width: '100%', maxWidth: 800 }}>
 				<ListItem key='1'>
 					<ListItemAvatar>
@@ -78,6 +79,9 @@ class Home extends Component {
 			  </Grid>
 			  <Grid item xs={12} align="left">
 					Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tags (for instance 'latest' stable or specific version). 
+			  </Grid>
+			  <Grid item xs={12} align="left">
+					<p>For general documentation on Venus, see <a href="https://venusguides.fugerit.org/">Venus Guides</a> and <a href="https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html">Doc Format Summary</a></p>
 			  </Grid>
 			  <Grid item xs={12} align="left">
 					<Info/>

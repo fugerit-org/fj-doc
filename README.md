@@ -1,6 +1,6 @@
 # Venus - Fugerit Document Generation Framework (fj-doc)  
 
-Framework to produce documents in different formats starting from an XML document meta model.  
+Framework to produce documents in different output formats starting from an XML document meta model. (options for json and yaml source models are also available)  
 
 [![Keep a Changelog v1.1.0 badge](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735)](CHANGELOG.md) 
 [![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc)
