@@ -144,14 +144,6 @@ Note that, being an open source project hosted on maven central, you can find re
 
 Special thanks to **JetBrains** for accepting this project in the [Licenses for Open Source Development - Community Support](https://jb.gg/OpenSourceSupport) program.
 
-<table style="background-color:#F6F6F6; with: 600px">
-	<tr>
-		<td rowspan="2" style="border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png" alt="JetBrains Logo (Main) logo."></td>
-		<td style="border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA.png" alt="IntelliJ IDEA logo."></td>
-	</tr>
-	<tr>
-        <td style="border: border: 0px;"><img width="300px" src="https://resources.jetbrains.com/storage/products/company/brand/logos/WebStorm.png" alt="WebStorm logo."></td>
-   </tr>
-</table>
+[![JetBrains](https://universe.fugerit.org/src/docs/thanks/jetbrains.png)](https://universe.fugerit.org/src/docs/thanks/jetbrains.html)
 
 Special thanks to **Sonar Cloud** too for their code review platform.
