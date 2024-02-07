@@ -27,7 +27,7 @@ class Home extends Component {
 	render() {
 		return <Fragment>
 			<h1>This is a playground for <a href="https://github.com/fugerit-org/fj-doc">Venus (fj-doc)</a> project.</h1>
-			<p>Framework to produce documents in different output formats starting from an XML document meta model. (options for json and yaml source models are also available)</p>
+			<p>Framework to produce documents in different output formats starting from an XML meta model. (options for json and yaml source models are also available)</p>
 			<List sx={{ width: '100%', maxWidth: 800 }}>
 				<ListItem key='1'>
 					<ListItemAvatar>
