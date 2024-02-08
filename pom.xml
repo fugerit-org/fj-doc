@@ -30,6 +30,7 @@
 	    <fj-xml-to-json-version>0.1.1</fj-xml-to-json-version>
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
+		<jajarta-jaxb-impl-version>4.0.4</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
 	</properties>
 
@@ -252,7 +253,7 @@
 			<dependency>
 			  <groupId>com.sun.xml.bind</groupId>
 			  <artifactId>jaxb-impl</artifactId>
-			  <version>${jajarta-jaxb-version}</version>
+			  <version>${jajarta-jaxb-impl-version}</version>
 			  <scope>runtime</scope>
 			</dependency>
 		
