@@ -6,7 +6,7 @@
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
 		<version>1.5.2</version>
-		<relativePath></relativePath>
+		<relativePath/>
 	</parent>
 
 	<artifactId>fj-doc</artifactId>
@@ -29,7 +29,7 @@
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	    <fj-xml-to-json-version>0.1.1</fj-xml-to-json-version>
 	    <!-- other dependencies -->
-	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
+	    <jajarta-jaxb-version>4.0.4</jajarta-jaxb-version>
 	    <poi5-version>${poi-version}</poi5-version>
 	</properties>
 
