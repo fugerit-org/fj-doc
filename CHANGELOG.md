@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- snyk status badge
+- snyk status badge and scan
 
 ## [3.4.0] - 2024-02-04
 
