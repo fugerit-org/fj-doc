@@ -16,9 +16,11 @@ export const onResponse = function (response) {
 
 export const onResponseError = function (error) {
   switch (error.response.status) {
-    case 401:
     case 403:
-      window.location.href = process.env.CONTEXT_PATH + '/open/errorPage/noauth'
+      window.location.href = process.env.CONTEXT_PATH + '/fj-doc-playground/home'
+      break
+    default:
+      window.location.href = process.env.CONTEXT_PATH + '/'
       break
   }
 }
