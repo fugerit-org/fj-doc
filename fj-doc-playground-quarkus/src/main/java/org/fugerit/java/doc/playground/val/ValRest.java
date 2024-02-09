@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.playground.val;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 import org.fugerit.java.doc.playground.RestHelper;
@@ -42,22 +43,27 @@ public class ValRest {
 		return RestHelper.defaultHandle( () -> {
 			ValOutput output = null;
 			FileUpload file = input.getFile();
-			log.info( "file -> {} -> {}", file.fileName(), file.uploadedFile() );
-			try ( FileInputStream fis = new FileInputStream( file.uploadedFile().toFile() ) ) {
-				DocTypeValidationResult result = facade.validate( file.fileName(), fis );
-				if (result.isResultOk()) {
-					output = new ValOutput(true, "Input is valid");
-				} else {
-					output = new ValOutput(false, "Input is not valid");
-				}	
-			}
+			File tempFile = file.uploadedFile().toFile();
 			Response res = null;
-			if (output != null) {
+			File tempDir = new File( System.getProperty( "java.io.tmpdir" ) );
+			log.info( "file -> {} -> {} (tmpdir : {})", file.fileName(), tempFile, tempDir );
+			if ( tempFile.getCanonicalPath().startsWith(tempDir.getCanonicalPath() ) ) {
+				try ( FileInputStream fis = new FileInputStream( tempFile ) ) {
+					DocTypeValidationResult result = facade.validate( file.fileName(), fis );
+					if (result.isResultOk()) {
+						output = new ValOutput(true, "Input is valid");
+					} else {
+						output = new ValOutput(false, "Input is not valid");
+					}
+				}
 				if (output.isValid()) {
 					res = Response.ok().entity(output).build();
 				} else {
 					res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
 				}
+			} else {
+				// no access
+				res = Response.status(Response.Status.UNAUTHORIZED).entity(output).build();
 			}
 			return res;
 		} );
