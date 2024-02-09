@@ -53,7 +53,7 @@ jobs:
           # SonarCloud access token should be generated from https://sonarcloud.io/account/security/
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - name: Build and analyze
-        run: mvn -B clean install org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage,full,metadata,sonarfugerit -Dsonar.projectKey=fugerit-org_${{github.event.repository.name}}
+        run: mvn -B clean install org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage,full,metadata,sonarfugerit,buildreact -Dsonar.projectKey=fugerit-org_${{github.event.repository.name}}
         env:
           # Needed to get some information about the pull request, if any
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
