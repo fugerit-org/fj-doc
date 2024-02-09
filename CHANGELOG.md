@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - snyk status badge and scan
 
+### Changed
+
+- [playground-quarkus] quarkus-version set to 3.7.2
+
 ## [3.4.0] - 2024-02-04
 
 ### Added
