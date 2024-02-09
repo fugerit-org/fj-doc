@@ -2,6 +2,7 @@
 
 #react
 
+.idea/
 *.iml
 
 *.DS_Store
