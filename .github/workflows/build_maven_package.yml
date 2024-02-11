@@ -47,7 +47,7 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@main
         with:
           node-version: 20
       - name: Maven version
