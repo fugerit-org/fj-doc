@@ -1,10 +1,8 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# CI maven compatibility check
+#
+# version 1.0.0
+#
+# see : https://universe.fugerit.org/src/docs/conventions/workflows/build_maven_compatibility.html
 
 name: CI maven compatibility check
 
@@ -13,7 +11,7 @@ on:
   # a pull request.
   push:
     branches:
-      - develop
+      - branch-compatibility
 
 jobs:
   check-main:

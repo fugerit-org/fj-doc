@@ -1,5 +1,7 @@
 # CI with maven build and scan
 #
+# version 1.0.0
+#
 # see : https://universe.fugerit.org/src/docs/conventions/workflows/build_maven_package.html
 
 name: CI maven build and scan

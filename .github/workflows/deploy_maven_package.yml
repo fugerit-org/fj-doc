@@ -1,17 +1,15 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+# CI deploy maven package
+#
+# version 1.0.0
+#
+# see : https://universe.fugerit.org/src/docs/conventions/workflows/deploy_maven_package.html
 
 name: CI deploy maven package 
 
 on:
   push:
     branches:
-    - deploy
+    - branch-deploy
 
 jobs:
   build:
