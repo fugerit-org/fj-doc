@@ -8,16 +8,16 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.io.IOException;
 
-public class ValUtilsTest {
+class ValUtilsTest {
 
     @Test
-    public void testDoIfInTmpFolder401() throws IOException  {
+    void testDoIfInTmpFolder401() throws IOException  {
         Response response = ValUtils.doIfInTmpFolder(new File("/"), () -> null);
         Assertions.assertEquals( Response.Status.UNAUTHORIZED.getStatusCode(),  response.getStatus() );
     }
 
     @Test
-    public void testDoIfInTmpFolder200() throws IOException  {
+    void testDoIfInTmpFolder200() throws IOException  {
         Response response = ValUtils.doIfInTmpFolder( new File( System.getProperty( "java.io.tmpdir" ), "test.txt" ), () -> null);
         Assertions.assertNull( response );
     }

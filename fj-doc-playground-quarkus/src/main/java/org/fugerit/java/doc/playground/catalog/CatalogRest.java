@@ -30,7 +30,7 @@ public class CatalogRest {
 					DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
 						.stream().filter( e -> type.equalsIgnoreCase( e.getType() ) ).map( 
 								e -> new OptionItem( e.getId(), e.getDescription() ) 
-						).collect( Collectors.toList() ) ).build()
+						).toList() ).build()
 		);
 	}
 	
@@ -42,7 +42,7 @@ public class CatalogRest {
 					DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
 						.stream().map( 
 								e -> new OptionItem( e.getId(), e.getDescription() ) 
-						).collect( Collectors.toList() ) ).build()
+						).toList() ).build()
 		);
 	}
 	

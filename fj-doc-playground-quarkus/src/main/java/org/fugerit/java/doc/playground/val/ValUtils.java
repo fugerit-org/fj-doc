@@ -25,7 +25,7 @@ public class ValUtils {
     public static Response doIfInTmpFolder(File tempFile,  UnsafeSupplier<Response, Exception> fun ) throws IOException {
         Response res = null;
         if ( isInTmpFolder( tempFile ) ) {
-            res = HelperIOException.get( () -> fun.get() );
+            res = HelperIOException.get( fun::get );
         } else {
             // no access
             res = Response.status(Response.Status.UNAUTHORIZED).build();
