@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- docker publish workflow
 - [fugerit org github project conventions](https://universe.fugerit.org/src/docs/conventions/index.html) reference
 - snyk status badge and scan
 
