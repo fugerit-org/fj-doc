@@ -10,6 +10,7 @@ Framework to produce documents in different output formats starting from an XML 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=coverage)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
 [![Known Vulnerabilities](https://snyk.io/test/github/fugerit-org/fj-doc/badge.svg)](https://snyk.io/test/github/fugerit-org/fj-doc)
 ![build and scan](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_package.yml/badge.svg)
+[![Docker images](https://img.shields.io/badge/dockerhub-images-important.svg?logo=Docker)](https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general)
 
 [![Java runtime version](https://img.shields.io/badge/run%20on-java%208+-%23113366.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java11.html)
 [![Java build version](https://img.shields.io/badge/build%20on-java%2017+-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java17.html)

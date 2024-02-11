@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.1] - 2024-02-11
+
 ### Added
 
 - docker publish workflow
@@ -17,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - new deploy workflow
 - workflows review and documentation
+- fj-bom set to 1.6.0
 - [playground-quarkus] quarkus-version set to 3.7.2
 - [playground-quarkus] base image changed to 21.0.2_13-jre-ubi9-minimal
 
