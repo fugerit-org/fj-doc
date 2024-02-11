@@ -41,13 +41,11 @@ public class ValRest {
 	@Path("/check")
 	public Response check( ValInput input) {
 		return RestHelper.defaultHandle( () -> {
-			ValOutput output = null;
 			FileUpload file = input.getFile();
 			File tempFile = file.uploadedFile().toFile();
-			Response res = null;
-			File tempDir = new File( System.getProperty( "java.io.tmpdir" ) );
-			log.info( "file -> {} -> {} (tmpdir : {})", file.fileName(), tempFile, tempDir );
-			if ( tempFile.getCanonicalPath().startsWith(tempDir.getCanonicalPath() ) ) {
+			return ValUtils.doIfInTmpFolder( tempFile, () -> {
+				Response res = null;
+				ValOutput output = null;
 				try ( FileInputStream fis = new FileInputStream( tempFile ) ) {
 					DocTypeValidationResult result = facade.validate( file.fileName(), fis );
 					if (result.isResultOk()) {
@@ -61,11 +59,8 @@ public class ValRest {
 				} else {
 					res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
 				}
-			} else {
-				// no access
-				res = Response.status(Response.Status.UNAUTHORIZED).entity(output).build();
-			}
-			return res;
+				return res;
+			} );
 		} );
 	}
 
