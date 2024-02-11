@@ -1,4 +1,6 @@
 # CI with maven build and scan
+#
+# see : https://universe.fugerit.org/src/docs/conventions/workflows/build_maven_package.html
 
 name: CI maven build and scan
 
@@ -8,7 +10,8 @@ on:
   push:
     branches:
       - main
-      - branch-sonarcloud
+      - develop
+      - branch-preview
   pull_request:
     types:
       - opened
