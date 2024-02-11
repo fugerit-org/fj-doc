@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- new deploy workflow
 - workflows review and documentation
 - [playground-quarkus] quarkus-version set to 3.7.2
 - [playground-quarkus] base image changed to 21.0.2_13-jre-ubi9-minimal
