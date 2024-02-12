@@ -5,12 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.function.UnsafeSupplier;
 import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.io.helper.HelperIOException;
-import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.function.Supplier;
 
 @Slf4j
 public class ValUtils {
