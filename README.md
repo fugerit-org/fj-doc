@@ -1,6 +1,6 @@
 # Venus - Fugerit Document Generation Framework (fj-doc)  
 
-Framework to produce documents in different output formats starting from an XML document meta model. (options for json and yaml source models are also available)  
+Framework to produce documents in different output formats starting from an XML document metamodel. (options for json and yaml source models are also available)  
 
 [![Keep a Changelog v1.1.0 badge](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735)](CHANGELOG.md) 
 [![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc)
@@ -49,7 +49,7 @@ The Fugerit Venus Doc project is a library for generating documents to be includ
 
 The module [fj-doc-playground-quarkus](fj-doc-playground-quarkus/README.md) demonstrates some of the main features.
 
-After building it is possible to just run it by launching : 
+After building, it is possible to just run it by launching : 
 
 ```
 cd fj-doc-playground-quarkus
@@ -69,7 +69,7 @@ NOTE  : Node 18+ is required to build the demo app
 - [release notes](https://www.fugerit.org/data/java/doc/venus/release-notes.html)
 - [Doc XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html)
 - [freemarker-doc-process-config XSD Configuration Reference](https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html)
-- [Venus Doc Meta Informations reference](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html)
+- [Venus Doc Meta Information reference](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html)
 - [Venus Guides](https://venusguides.fugerit.org/)
 - [Online playground](https://www.fugerit.org/fj-doc-playground/home/)
 
@@ -81,7 +81,7 @@ A quick start is available in module [fj-doc-sample](fj-doc-sample/README.md)
 There are five kinds of components (each components README.md contains module status) : 
 
 ### 1. Framework core :
-* [Core library (fj-doc-base)](fj-doc-base/README.md) (contains a simple renderer for [Markdowm BASIC](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownBasicTypeHandler.java) and [Markdown EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java))
+* [Core library (fj-doc-base)](fj-doc-base/README.md) (contains a simple renderer for [Markdown BASIC](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownBasicTypeHandler.java) and [Markdown EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java))
 * [Json extension (fj-doc-base-json)](fj-doc-base-json/README.md) (allow for using json as document generator instead of standard xml generator) [since 0.7.0]
 * [Yaml extension (fj-doc-base-yaml)](fj-doc-base-yaml/README.md) (allow for using yaml as document generator instead of standard xml generator) [since 0.7.0]
 * Doc format [![public xsd](https://img.shields.io/badge/public%20xsd-doc%202.1-purple.svg)](https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd) [![private xsd](https://img.shields.io/badge/private%20xsd-doc%202.1-purple.svg)](fj-doc-base/src/main/resources/config/doc-2-1.xsd)
@@ -101,7 +101,7 @@ There are five kinds of components (each components README.md contains module st
 * [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) - (fj-doc-freemarker) output as html
 * [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java) - (fj-doc-freemarker) output as html body content only (no html, head or body tags)
 * [XLS](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLS using Apache POI
-* [XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLSX using Apache POItput as Microsoft XLSX using Apache POI 5
+* [XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLSX using Apache POI
 * [PDF](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/PdfFopTypeHandler.java) - (fj-doc-mod-fop) - output as PDF using Apache FOP
 * [FO](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/FreeMarkerFopTypeHandler.java) - (fj-doc-mod-fop) - output as FO using Apache FOP
 * [CSV](fj-doc-mod-opencsv/src/main/java/org/fugerit/java/doc/mod/opencsv/OpenCSVTypeHandler.java) - (fj-doc-mod-opencsv) - output as CSV using OpenCSV
@@ -121,20 +121,20 @@ There are five kinds of components (each components README.md contains module st
 * [Playground online version](https://www.fugerit.org/fj-doc-playground/home/)
 
 ### 6. Extension Type Handlers (Extension renders) :
-Basically the same as type handlers but based on libraries non available on Maven Repository Central (es. PDFLIB).  
+Basically the same as type handlers but based on libraries not available on Maven Repository Central (es. PDFLIB).  
 You can find in them in a dedicated repository [fj-doc-ext](https://gitlab.com/fugerit-org/fj-doc-ext)  
 
 ### 7. Incubator Type Handlers (Are too far from being complete) :
 * [Apache PdfBox Renderer (PDF)(fj-doc-mod-pdfbox)](https://github.com/fugerit-org/fj-doc-mod-pdfbox.git) (incubator since version 0.5.0)
 
 ### 8. Deprecated Type Handlers (Will not be maintained) :
-* [JXL Renderer (XLS)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-jxl.git) (deprecated as [jexcelapi](https://jexcelapi.sourceforge.net/) is no longer mantained, may be used 'AS IS') (deprecated since version 0.5.0)
-* [Itext 2.X Renderer (PDF/RTF/HTML)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-itext.git) (deprecated as [IText 2.1.X](https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7) is no longer mantained, may be used 'AS IS') (deprecated since version 0.5.0)
-* [Java EE extension (fj-doc-ent)](https://github.com/fugerit-org/fj-doc-ent.git)) (deprecated as not the module fj-mod-freemarker provided mostly the same features, but in a standalone mode) (deprecated since version 0.5.0)
+* [JXL Renderer (XLS)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-jxl.git) (deprecated as [jexcelapi](https://jexcelapi.sourceforge.net/) is no longer maintained, may be used 'AS IS') (deprecated since version 0.5.0)
+* [Itext 2.X Renderer (PDF/RTF/HTML)(fj-doc-mod-jxl)](https://github.com/fugerit-org/fj-doc-mod-itext.git) (deprecated as [IText 2.1.X](https://mvnrepository.com/artifact/com.lowagie/itext/2.1.7) is no longer maintained, may be used 'AS IS') (deprecated since version 0.5.0)
+* [Java EE extension (fj-doc-ent)](https://github.com/fugerit-org/fj-doc-ent.git) (deprecated as not the module fj-mod-freemarker provided mostly the same features, but in a standalone mode) (deprecated since version 0.5.0)
 
 ### 9. GraalVM native support  
 Beginning with version 1.4.0-rc.001, *GraalVM* metadata started to be added (*reflect-config.json* and *resources-config.json*). Initially only the *fj-doc-base* and *fj-doc-freemarker* have full support.
-Actual support for other module will be added as soon as possible, but somtimes is dependant on underlying depandancies support (for example *Apache FOP* for *fj-doc-mod-fop*).
+Actual support for other module will be added as soon as possible, but sometimes is dependent on underlying dependencies support (for example *Apache FOP* for *fj-doc-mod-fop*).
 It is possible to check the current status on the module documentation, in the section *native support*
 
 *About javadoc*  
