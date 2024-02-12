@@ -58,7 +58,7 @@ mvn compile quarkus:dev -P buildreact
 
 Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-doc-playground/home/)
 
-NOTE  : Node 18+ is required to build the demo app
+NOTE  : The playground demo single page application currently runs on [node 20](https://nodejs.org/en)
 
 
 ## Useful resources

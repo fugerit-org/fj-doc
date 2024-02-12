@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [playground-quarkus] migrate SPA bundler to [Vite](https://vitejs.dev/)
+- [playground-quarkus] suggested node 20 for react front end
 
 ## [3.4.1] - 2024-02-11
 
