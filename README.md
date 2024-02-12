@@ -101,14 +101,13 @@ There are five kinds of components (each components README.md contains module st
 * [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) - (fj-doc-freemarker) output as html
 * [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java) - (fj-doc-freemarker) output as html body content only (no html, head or body tags)
 * [XLS](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLS using Apache POI
-* [XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLSX using Apache POI
-* [XLSX](fj-doc-mod-poi5/src/main/java/org/fugerit/java/doc/mod/poi5/XlsPoi5TypeHandler.java) - (fj-doc-mod-poi5) output as Microsoft XLSX using Apache POI 5
+* [XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLSX using Apache POItput as Microsoft XLSX using Apache POI 5
 * [PDF](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/PdfFopTypeHandler.java) - (fj-doc-mod-fop) - output as PDF using Apache FOP
 * [FO](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/FreeMarkerFopTypeHandler.java) - (fj-doc-mod-fop) - output as FO using Apache FOP
 * [CSV](fj-doc-mod-opencsv/src/main/java/org/fugerit/java/doc/mod/opencsv/OpenCSVTypeHandler.java) - (fj-doc-mod-opencsv) - output as CSV using OpenCSV
 * [PDF](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openpdf/ext/PdfTypeHandler.java) - (fj-doc-mod-openpdf-ext) - output as PDF using OpenPDF
 * [HTML](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openpdf/ext/HtmlTypeHandler.java) - (fj-doc-mod-openpdf-ext) - output as HTML using OpenPDF
-* [RTF](fj-doc-mod-openpdf-ext/src/main/java/org/fugerit/java/doc/mod/openrtf/ext/RtfTypeHandler.java) - (fj-doc-mod-openrtf-ext) - output as RTF using OpenRTF
+* [RTF](fj-doc-mod-openrtf-ext/src/main/java/org/fugerit/java/doc/mod/openrtf/ext/RtfTypeHandler.java) - (fj-doc-mod-openrtf-ext) - output as RTF using OpenRTF
 
 
 ### 4. Bundled libraries :
