@@ -12,7 +12,6 @@ import "ace-builds/src-noconflict/mode-ftl";
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
-import "ace-builds/webpack-resolver";
 
 class DocXmlEditor extends Component {
 
