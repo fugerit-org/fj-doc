@@ -1,6 +1,7 @@
 {
   "name": "playground",
-  "version": "0.1.0",
+  "version": "3.4.1",
+  "author": "Matteo Franci a.k.a. Fugerit",
   "private": true,
   "homepage": "/fj-doc-playground/home",
   "type": "module",
