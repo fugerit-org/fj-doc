@@ -297,7 +297,7 @@
 										<delete dir="${fe.dist.dir}" />
 										<mkdir dir="${fe.dist.dir}" />
 										<copy todir="${fe.dist.dir}">
-											<fileset dir="${src.react}/build">
+											<fileset dir="${src.react}/dist">
 												<include name="**/*.*" />
 											</fileset>
 										</copy>
