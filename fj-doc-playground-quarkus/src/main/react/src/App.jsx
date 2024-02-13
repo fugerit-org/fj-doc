@@ -6,30 +6,13 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {MenuItem, Select} from "@mui/material";
 import React, { useState } from 'react';
+import themes from './themes'
 
 const TITLE = 'Venus (fj-doc) playground';
 
-const darkTheme = createTheme({
-    palette: {
-        mode: 'dark',
-    },
-});
-
-const lightTheme = createTheme({
-    palette: {
-        mode: 'light',
-    },
-});
-
-const themes = [
-    { key: 'dark', theme: darkTheme },
-    { key: 'light', theme: lightTheme }
-]
-
-
 function App() {
 
-    const [state, setState] = useState({ currentState: darkTheme });
+    const [state, setState] = useState({ currentState: themes.at( 0 ).theme });
 
     return (
         <ThemeProvider theme={state.currentState}>
