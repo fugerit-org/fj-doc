@@ -19,7 +19,7 @@ public class ValUtils {
             res = HelperIOException.get( fun::get );
         } else {
             // no access
-            res = Response.status(Response.Status.UNAUTHORIZED).build();
+
         }
         return res;
     }

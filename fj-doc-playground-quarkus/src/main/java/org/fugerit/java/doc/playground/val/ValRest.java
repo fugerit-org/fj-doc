@@ -3,6 +3,7 @@ package org.fugerit.java.doc.playground.val;
 import java.io.File;
 import java.io.FileInputStream;
 
+import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
@@ -46,18 +47,22 @@ public class ValRest {
 			return ValUtils.doIfInTmpFolder( tempFile, () -> {
 				Response res = null;
 				ValOutput output = null;
-				try ( FileInputStream fis = new FileInputStream( tempFile ) ) {
-					DocTypeValidationResult result = facade.validate( file.fileName(), fis );
-					if (result.isResultOk()) {
-						output = new ValOutput(true, "Input is valid");
-					} else {
-						output = new ValOutput(false, "Input is not valid");
+				if ( FileIO.isInTmpFolder( tempFile ) ) {
+					try ( FileInputStream fis = new FileInputStream( tempFile ) ) {
+						DocTypeValidationResult result = facade.validate( file.fileName(), fis );
+						if (result.isResultOk()) {
+							output = new ValOutput(true, "Input is valid");
+						} else {
+							output = new ValOutput(false, "Input is not valid");
+						}
 					}
-				}
-				if (output.isValid()) {
-					res = Response.ok().entity(output).build();
+					if (output.isValid()) {
+						res = Response.ok().entity(output).build();
+					} else {
+						res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
+					}
 				} else {
-					res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
+					res = Response.status(Response.Status.UNAUTHORIZED).build();
 				}
 				return res;
 			} );
