@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [playground-quarkus] base image amazoncorretto:21.0.2-alpine3.19
 - [playground-quarkus] migrate SPA bundler to [Vite](https://vitejs.dev/)
 - [playground-quarkus] suggested node 20 for react front end
+- [playground-quarkus] quarkus-version set to 3.7.3
 
 ## [3.4.1] - 2024-02-11
 
