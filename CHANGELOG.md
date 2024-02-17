@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Upgraded build_maven_package workflow to version 1.0.1, (accespt DISABLE_MAVEN_DEPENDENCY_SUBMISSION)
 - [playground-quarkus] handle direct link to xml2xml, json2json and yaml2yaml conversion
 - [playground-quarkus] theme selector
 - [playground-quarkus] base image amazoncorretto:21.0.2-alpine3.19
