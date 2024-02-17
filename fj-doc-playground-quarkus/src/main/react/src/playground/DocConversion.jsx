@@ -19,9 +19,10 @@ class DocConversion extends Component {
 		this.handleFormat = this.handleFormat.bind(this);
 		this.handleDoc = this.handleDoc.bind(this);
 		this.handleEditorContent = this.handleEditorContent.bind(this);
+		console.log( this.props.from )
 		this.state = {
-			inputFormat: 'XML',			
-			outputFormat: '',
+			inputFormat: this.props.from == null ? 'XML' : this.props.from,
+			outputFormat: this.props.to == null ? '' : this.props.to,
 			docOutput: '',
 			prettyPrint: true
 		}
