@@ -14,7 +14,7 @@
 	<description>Renderer for RTF format, based on https://github.com/LibrePDF/OpenRTF</description>
 
 	<properties>
-		<openrtf-version-version>1.2.1</openrtf-version-version>
+		<openrtf-version>1.2.1</openrtf-version>
 	</properties>
 
 	<licenses>
@@ -30,7 +30,7 @@
 		<dependency>
 		    <groupId>com.github.librepdf</groupId>
 		    <artifactId>openrtf</artifactId>
-		    <version>${openrtf-version-version}</version>
+		    <version>${openrtf-version}</version>
 		</dependency>		
 
 		<dependency>
