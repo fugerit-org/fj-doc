@@ -1,5 +1,6 @@
 package org.fugerit.java.doc.lib.autodoc.parser.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,6 +9,7 @@ import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
 import org.xmlet.xsdparser.xsdelements.XsdRestriction;
 import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
+import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdPattern;
 
 public class AutodocAttribute {
 
@@ -90,9 +92,10 @@ public class AutodocAttribute {
 	}
 	
 	private void handlePatternRestriction( StringBuilder builder, XsdRestriction xsdRestriction ) {
-		if ( xsdRestriction.getPattern() != null ) {
+		List<XsdPattern> patterns = xsdRestriction.getPattern();
+		if ( patterns != null && !patterns.isEmpty() ) {
 			builder.append( " , pattern : " );
-			builder.append( xsdRestriction.getPattern().getValue() );
+			builder.append( StringUtils.concat( ", ", patterns.stream().map(  xp -> xp.getValue() ).collect( Collectors.toList() ) ) );
 		}
 	}
 	
