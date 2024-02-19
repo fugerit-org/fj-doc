@@ -47,22 +47,18 @@ public class ValRest {
 			return ValUtils.doIfInTmpFolder( tempFile, () -> {
 				Response res = null;
 				ValOutput output = null;
-				if ( FileIO.isInTmpFolder( tempFile ) ) {
-					try ( FileInputStream fis = new FileInputStream( tempFile ) ) {
-						DocTypeValidationResult result = facade.validate( file.fileName(), fis );
-						if (result.isResultOk()) {
-							output = new ValOutput(true, "Input is valid");
-						} else {
-							output = new ValOutput(false, "Input is not valid");
-						}
-					}
-					if (output.isValid()) {
-						res = Response.ok().entity(output).build();
+				try ( FileInputStream fis = new FileInputStream( tempFile ) ) {
+					DocTypeValidationResult result = facade.validate( file.fileName(), fis );
+					if (result.isResultOk()) {
+						output = new ValOutput(true, "Input is valid");
 					} else {
-						res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
+						output = new ValOutput(false, "Input is not valid");
 					}
+				}
+				if (output.isValid()) {
+					res = Response.ok().entity(output).build();
 				} else {
-					res = Response.status(Response.Status.UNAUTHORIZED).build();
+					res = Response.status(Response.Status.BAD_REQUEST).entity(output).build();
 				}
 				return res;
 			} );
