@@ -3,7 +3,6 @@ package org.fugerit.java.doc.playground.val;
 import java.io.File;
 import java.io.FileInputStream;
 
-import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;

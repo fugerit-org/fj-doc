@@ -1,6 +1,5 @@
 package org.fugerit.java.doc.lib.autodoc.parser.model;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
