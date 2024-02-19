@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [playground-quarkus] doc conversion shortcut for xml, json and yaml
+
 ## [3.4.2] - 2024-02-19
 
 ### Changed

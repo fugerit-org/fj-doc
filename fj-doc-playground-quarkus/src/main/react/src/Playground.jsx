@@ -63,9 +63,9 @@ class Playground extends Component {
 					  <Grid item xs={4}>
 						  <Select id='conversionSelect' defaultValue='def'>
 							  <MenuItem id='def' selected={true} value='def'><Link to={homepage + "/doc_fun/doc_conversion"}><Button color="primary">Doc Conversion (XML/JSON/YAML)</Button></Link></MenuItem>
-							  <MenuItem id='jsonToJson' selected={true} value='jsonToJson'><Link to={homepage + "/doc_fun/doc_conversion_x2x"}><Button color="primary">Doc Conversion (XML to XML)</Button></Link></MenuItem>
+							  <MenuItem id='xmlToXml' selected={true} value='xmlToXml'><Link to={homepage + "/doc_fun/doc_conversion_x2x"}><Button color="primary">Doc Conversion (XML to XML)</Button></Link></MenuItem>
 							  <MenuItem id='jsonToJson' selected={true} value='jsonToJson'><Link to={homepage + "/doc_fun/doc_conversion_j2j"}><Button color="primary">Doc Conversion (JSON to JSON)</Button></Link></MenuItem>
-							  <MenuItem id='jsonToJson' selected={true} value='jsonToJson'><Link to={homepage + "/doc_fun/doc_conversion_y2y"}><Button color="primary">Doc Conversion (YAML to YAML)</Button></Link></MenuItem>
+							  <MenuItem id='yamlToYaml' selected={true} value='yamlToYaml'><Link to={homepage + "/doc_fun/doc_conversion_y2y"}><Button color="primary">Doc Conversion (YAML to YAML)</Button></Link></MenuItem>
 						  </Select>
 					  </Grid>
 					  <Grid item xs={4}><Link to={homepage + "/doc_fun/doc_type_validator"}><Button color="primary">Doc Type Validator</Button></Link></Grid>
