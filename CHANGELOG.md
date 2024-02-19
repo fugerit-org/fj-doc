@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.2] - 2024-02-19
+
 ### Changed
 
 - openpdf-version set to 1.3.40 [Currently not moving to openpdf 2.X as it requires java 17](https://github.com/LibrePDF/OpenPDF/releases/tag/2.0.0)
