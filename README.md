@@ -12,7 +12,7 @@ Framework to produce documents in different output formats starting from an XML 
 ![build and scan](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_package.yml/badge.svg)
 [![Docker images](https://img.shields.io/badge/dockerhub-images-important.svg?logo=Docker)](https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general)
 
-[![Java runtime version](https://img.shields.io/badge/run%20on-java%208+-%23113366.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java11.html)
+[![Java runtime version](https://img.shields.io/badge/run%20on-java%208+-%23113366.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java8.html)
 [![Java build version](https://img.shields.io/badge/build%20on-java%2017+-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java17.html)
 [![Apache Maven](https://img.shields.io/badge/Apache%20Maven-3.9.0+-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)](https://universe.fugerit.org/src/docs/versions/maven3_9.html)
 [![Online playground](https://img.shields.io/badge/Try%20Now-Online%20Playground-1AC736?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://docs.fugerit.org/fj-doc-playground/home/)
