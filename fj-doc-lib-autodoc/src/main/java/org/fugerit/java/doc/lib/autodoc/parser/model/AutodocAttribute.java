@@ -91,7 +91,7 @@ public class AutodocAttribute {
 	}
 	
 	private void handlePatternRestriction( StringBuilder builder, XsdRestriction xsdRestriction ) {
-		List<XsdPattern> patterns = xsdRestriction.getPattern();
+		List<XsdPattern> patterns = xsdRestriction.getPatterns();
 		if ( patterns != null && !patterns.isEmpty() ) {
 			builder.append( " , pattern : " );
 			builder.append( StringUtils.concat( ", ", patterns.stream().map(  xp -> xp.getValue() ).collect( Collectors.toList() ) ) );

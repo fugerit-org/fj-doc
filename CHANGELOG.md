@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [xsd-parser-version 1.2.7](https://github.com/xmlet/XsdParser/issues/57)
+
 ### Fixed
 
 - [playground-quarkus] doc conversion shortcut for xml, json and yaml
