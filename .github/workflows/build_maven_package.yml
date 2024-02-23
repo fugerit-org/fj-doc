@@ -1,6 +1,6 @@
 # CI with maven build and scan
 #
-# version 1.0.1
+# version 1.1.0
 #
 # see : https://universe.fugerit.org/src/docs/conventions/workflows/build_maven_package.html
 
@@ -25,7 +25,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: fugerit-org/psychic-actions/maven-build-scan@main
+      - uses: fugerit-org/psychic-actions/maven-build-scan@stable
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           sonar-token: ${{ secrets.SONAR_TOKEN }}
