@@ -27,7 +27,7 @@
 	    <!-- fj java versions -->
 	    <fj-version>8.4.9</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
-	    <fj-xml-to-json-version>1.0.0</fj-xml-to-json-version>
+	    <fj-xml-to-json-version>1.1.1</fj-xml-to-json-version>
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
 		<jajarta-jaxb-impl-version>4.0.4</jajarta-jaxb-impl-version>
