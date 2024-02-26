@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-xml-to-json-version set to 1.1.1
+- exec-plugin.version set to 3.2.0
+- xsd-parser-version set to 1.2.8
 - fj-version set to 8.4.9
 - fj-bom set to 1.6.1
 - [playground-quarkus] quarkus-version set to 3.8.0
