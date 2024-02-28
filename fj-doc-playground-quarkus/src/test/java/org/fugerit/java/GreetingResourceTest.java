@@ -15,8 +15,8 @@ class GreetingResourceTest {
         given()
           .when().get( TestConsts.BASE_API_PATH+"/hello" )
           .then()
-             .statusCode(200)
-             .body(is("Hello from RESTEasy Reactive"));
+                .body(is("Hello from RESTEasy Reactive"))
+                .statusCode(200);
     }
 
 }
