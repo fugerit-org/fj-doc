@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - xsd-parser-version set to 1.2.8
 - fj-version set to 8.4.9
 - fj-bom set to 1.6.1
-- [playground-quarkus] quarkus-version set to 3.8.0
+- [playground-quarkus] quarkus-version set to 3.8.1
 
 ## [3.4.3] - 2024-02-20
 
