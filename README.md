@@ -9,6 +9,7 @@ Framework to produce documents in different output formats starting from an XML 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=coverage)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
 [![Known Vulnerabilities](https://snyk.io/test/github/fugerit-org/fj-doc/badge.svg)](https://snyk.io/test/github/fugerit-org/fj-doc)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/58d93495dce94c618c4299cd80eb19f1)](https://app.codacy.com/gh/fugerit-org/fj-doc/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 ![build and scan](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_package.yml/badge.svg)
 [![Docker images](https://img.shields.io/badge/dockerhub-images-important.svg?logo=Docker)](https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general)
 
