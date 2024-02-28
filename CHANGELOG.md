@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Security
 
+- Security issue on html include
 - Security issue on Dockerfile
 
 ## [3.4.3] - 2024-02-20

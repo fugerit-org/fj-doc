@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { FormControl, Select, MenuItem, TextField, Grid, FormLabel, Button } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
+import DOMPurify from 'isomorphic-dompurify';
 
 import AceEditor from "react-ace";
 
@@ -179,7 +180,7 @@ class DocXmlEditor extends Component {
 		if ( this.state.docOutput != null && this.state.docFormat != null ) {
 			if ( this.state.docFormat === 'HTML' ) {
 				let decodedStringAtoB = atob(this.state.docOutput);
-				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: decodedStringAtoB }}></div>
+				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(decodedStringAtoB) }}></div>
 			}  else if ( this.state.docFormat === 'PDF' || this.state.docFormat === 'PDFA' || this.state.docFormat === 'OPENPDF' ) {
 				let srcData = 'data:application/pdf;base64,'+ this.state.docOutput;
 				outputData = <embed width="100%" height="600" src={srcData}/>
