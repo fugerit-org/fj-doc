@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-version set to 8.5.0
+- xsd-parser-version set to 1.2.9
+- openpdf-version set to 1.3.41 <https://github.com/fugerit-org/fj-doc/discussions/128>
+
 ## [3.4.4] - 2024-02-28
 
 ### Added
@@ -42,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- openpdf-version set to 1.3.40 [Currently not moving to openpdf 2.X as it requires java 17](https://github.com/LibrePDF/OpenPDF/releases/tag/2.0.0)
+- openpdf-version set to 1.3.40 <https://github.com/fugerit-org/fj-doc/discussions/128>
 - xsd-parser-version set to 1.2.6
 - fj-xml-to-json version set to 1.0.0
 - Upgraded build_maven_package workflow to version 1.0.1, (accespt DISABLE_MAVEN_DEPENDENCY_SUBMISSION)
