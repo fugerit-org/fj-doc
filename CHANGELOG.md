@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - fj-version set to 8.5.0
-- xsd-parser-version set to 1.2.9
 - openpdf-version set to 1.3.41 <https://github.com/fugerit-org/fj-doc/discussions/128>
 - [playground-quarkus] quarkus-version set to 3.8.2
 
