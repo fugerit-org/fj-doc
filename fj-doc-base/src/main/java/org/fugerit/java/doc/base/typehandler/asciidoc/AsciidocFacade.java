@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.base.typehelper.asciidoc;
+package org.fugerit.java.doc.base.typehandler.asciidoc;
 
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeDefault;
@@ -6,6 +6,7 @@ import org.fugerit.java.doc.base.helper.DocTypeFacadeHelper;
 import org.fugerit.java.doc.base.model.*;
 
 import java.io.PrintWriter;
+import java.util.Date;
 
 public class AsciidocFacade extends DocTypeFacadeDefault {
 
@@ -13,13 +14,19 @@ public class AsciidocFacade extends DocTypeFacadeDefault {
 
     private transient PrintWriter writer;
 
+    protected PrintWriter getWriter() { return this.writer; }
+
     public AsciidocFacade(PrintWriter writer) {
         this.writer = writer;
     }
 
     @Override
     public void handleDoc(DocBase docBase) throws DocException {
-        super.handleDoc(docBase);
+        // actual document handling :we will treat only the body
+        DocTypeFacadeHelper helper = new DocTypeFacadeHelper( docBase );
+        this.handleElements( helper.getDocBase().getDocBody(), helper );
+        // flush content
+        this.getWriter().flush();
     }
 
     @Override
