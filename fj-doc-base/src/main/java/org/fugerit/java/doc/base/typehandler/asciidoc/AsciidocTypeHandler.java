@@ -1,11 +1,10 @@
-package org.fugerit.java.doc.base.typehelper.asciidoc;
+package org.fugerit.java.doc.base.typehandler.asciidoc;
 
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.typehandler.markdown.MarkdownBasicDocFacade;
 
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
