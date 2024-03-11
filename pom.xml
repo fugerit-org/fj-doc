@@ -30,7 +30,7 @@
 	    <fj-xml-to-json-version>1.2.0</fj-xml-to-json-version>
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.1</jajarta-jaxb-version>
-		<jajarta-jaxb-impl-version>4.0.4</jajarta-jaxb-impl-version>
+		<jajarta-jaxb-impl-version>4.0.5</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
 	</properties>
 
