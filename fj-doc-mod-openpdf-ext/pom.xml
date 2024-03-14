@@ -14,7 +14,7 @@
 	<description>Renderer for PDF format, based on https://github.com/LibrePDF/OpenPDF</description>
 	
 	<properties>
-		<openpdf-version>1.3.41</openpdf-version>
+		<openpdf-version>1.4.1</openpdf-version>
 	</properties>
 
 	<licenses>
