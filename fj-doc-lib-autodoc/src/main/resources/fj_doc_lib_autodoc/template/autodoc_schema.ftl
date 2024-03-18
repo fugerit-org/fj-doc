@@ -19,7 +19,7 @@
 		<info name="doc-title">${autodocModel.title}</info>
 		<info name="doc-language">en</info> 
 		<!-- style -->
-		<info name="html-css-link">https://venusguides.fugerit.org/src/css/default_venus_docs_style.css</info> 
+		<#if (params['html-css-link'])?? ><info name="html-css-link">params['html-css-link']</info></#if>
 	</metadata>
 	<body>
 		
@@ -27,14 +27,14 @@
     	<h head-level="1">${autodocModel.title}<#if autodocModel.version??> ${autodocModel.version}</#if></h>
 
     	<!-- table for element summary -->    	
-    	<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-id" padding="2" alt="${autodocModel.title}">
+    	<table columns="3" colwidths="20;60;20"  width="100" id="autodoc-table-id" padding="2" alt="${autodocModel.title}">
       		<row header="true">
-    			<cell colspan="3"><phrase style="bold" anchor="begin">Elements configuration reference</phrase></cell>
+    			<cell colspan="3"><phrase style="bold" anchor="begin">XSD configuration reference</phrase></cell>
     		</row>
     		<row header="true">
-    			<cell><phrase style="bold">Element</phrase></cell>
+    			<cell><phrase style="bold">Item</phrase></cell>
     			<cell><phrase style="bold">Description</phrase></cell>
-    			<cell><phrase style="bold">Children</phrase></cell>
+    			<cell><phrase style="bold">Category</phrase></cell>
     		</row>
     		<#list autodocModel.elements as autodocElement>
     		<#assign xsdElement=autodocElement.xsdElement>
@@ -42,11 +42,27 @@
        		<row>  
      			<cell><phrase link="#${xsdElement.rawName}">${xsdElement.rawName}</phrase></cell>
     			<cell><phrase>${annotationAsSingleStringFun(autodocElement.xsdAnnotationDeep)}</phrase></cell>
-    			<cell><#if autodocElement.complexType.mixed><phrase>mixed </phrase></#if> <@utils.handleTypeChildren autodocType/></cell>
+    			<cell><phrase>element</phrase></cell>
     		</row>
 			</#list>
+			<#list autodocModel.types as autodocType>
+				<#assign xsdComplexType=autodocType.xsdComplexType>
+				<row>
+					<cell><phrase link="#${xsdComplexType.rawName}">${xsdComplexType.rawName}</phrase></cell>
+					<cell><phrase>${annotationAsSingleStringFun(autodocType.xsdAnnotationDeep)}</phrase></cell>
+					<cell><phrase>complex type</phrase></cell>
+				</row>
+			</#list>
+			<#list autodocModel.simpleTypes as autodocSimpleType>
+				<#assign xsdSimpleType=autodocSimpleType.xsdSimpleType>
+				<row>
+					<cell><phrase link="#${xsdSimpleType.rawName}">${xsdSimpleType.rawName}</phrase></cell>
+					<cell><phrase>${annotationAsSingleStringFun(autodocSimpleType.xsdAnnotationDeep)}</phrase></cell>
+					<cell><phrase>simple type</phrase></cell>
+				</row>
+			</#list>
     	</table>
-		
+
 		<!-- tables for element detail and attributes -->
     	<#list autodocModel.elements as autodocElement>
 			<br/>
