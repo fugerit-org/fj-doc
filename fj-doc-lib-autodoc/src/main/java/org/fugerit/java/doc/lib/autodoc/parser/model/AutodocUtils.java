@@ -22,7 +22,7 @@ public class AutodocUtils {
 	}
 
 	public static String toKey(XsdNamedElements current) {
-		return current.getXsdSchema().getTargetNamespace()+"_"+current.getRawName();
+		return ( current.getXsdSchema() != null ? current.getXsdSchema().getTargetNamespace()+"_" : "" )+current.getRawName();
 	}
 	
 }
