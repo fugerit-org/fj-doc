@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.xmlet.xsdparser.core.XsdParser;
 import org.xmlet.xsdparser.xsdelements.XsdElement;
 
@@ -17,57 +19,26 @@ public class AutodocModel implements Serializable {
 	 */
 	private static final long serialVersionUID = 5016692762844545990L;
 
-	private LinkedHashMap<String, AutodocElement> elements;
+	private final LinkedHashMap<String, AutodocElement> elements;
 
-	private transient XsdParser xsdParser;
+	@Getter
+	private transient final XsdParser xsdParser;
+
+	@Getter @Setter
+	private String version;
+
+	@Getter @Setter
+	private String title;
+
+	@Getter @Setter
+	private String xsdPrefix;
+
+	@Getter @Setter
+	private String autodocPrefix;
 	
 	public AutodocModel( XsdParser xsdParser ) {
 		this.elements = new LinkedHashMap<>();
 		this.xsdParser = xsdParser;
-	}
-	
-	private String version;
-	
-	private String title;
-	
-	private String xsdPrefix;
-	
-	private String autodocPrefix;
-	
-	public String getVersion() {
-		return version;
-	}
-
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getXsdPrefix() {
-		return xsdPrefix;
-	}
-
-	public void setXsdPrefix(String xsdPrefix) {
-		this.xsdPrefix = xsdPrefix;
-	}
-
-	public String getAutodocPrefix() {
-		return autodocPrefix;
-	}
-
-	public void setAutodocPrefix(String autodocPrefix) {
-		this.autodocPrefix = autodocPrefix;
-	}
-
-	public XsdParser getXsdParser() {
-		return xsdParser;
 	}
 
 	public AutodocElement addElement( XsdElement xsdElement ) {
