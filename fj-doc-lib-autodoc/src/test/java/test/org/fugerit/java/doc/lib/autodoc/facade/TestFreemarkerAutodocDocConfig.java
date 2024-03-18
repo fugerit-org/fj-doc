@@ -4,6 +4,7 @@ import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Properties;
 
 import org.fugerit.java.doc.lib.autodoc.AutodocDocConfig;
 import org.fugerit.java.doc.lib.autodoc.VenusFreemarkerAutodocFacade;
@@ -22,15 +23,18 @@ public class TestFreemarkerAutodocDocConfig {
 	
 	@Test
 	public void testParseXsdModel() {
-		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET ) ) )  {
+		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET ) );
+			  FileOutputStream fosSchema = new FileOutputStream( new File( "target/test-schema.html" ) ) )  {
 			AutodocModel autodocModel = VenusFreemarkerAutodocFacade.parseLast();
 			AutodocDocConfig docConfig = AutodocDocConfig.newConfig();
 			docConfig.processAutodocHtmlDefault(autodocModel, fos);
+			docConfig.processAutodocSchemaHtmlDefault(autodocModel, fosSchema, new Properties());
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			logger.error( message, e );
 			fail( message );
 		}
 	}
+
 	
 }

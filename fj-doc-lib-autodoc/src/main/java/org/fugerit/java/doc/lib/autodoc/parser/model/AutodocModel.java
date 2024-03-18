@@ -30,7 +30,7 @@ public class AutodocModel implements Serializable {
 	private final LinkedHashMap<String, AutodocSimpleType> simpleTypes;
 
 	@Getter
-	private transient final XsdParser xsdParser;
+	private final transient XsdParser xsdParser;
 
 	@Getter @Setter
 	private String version;

@@ -20,8 +20,8 @@ public class XsdParserFacade {
 			xsdParser.getResultXsdSchemas().forEach( currentSchema -> {
 				log.info("current schema {} -> {}", currentSchema.getTargetNamespace(), currentSchema.getNamespaces() );
 				currentSchema.getNamespaces().entrySet().forEach( e -> log.info( "namespace : {} : {}", e.getKey(), e.getValue().getName() ) );
-				currentSchema.getChildrenComplexTypes().forEach( xct -> autodocModel.addType( xct ) );
-				currentSchema.getChildrenSimpleTypes().forEach( xst -> autodocModel.addSimpleType( xst ) );
+				currentSchema.getChildrenComplexTypes().forEach( autodocModel::addType );
+				currentSchema.getChildrenSimpleTypes().forEach( autodocModel::addSimpleType );
 			} );
 			return autodocModel;
 		} , "Error parsing xsd" );
