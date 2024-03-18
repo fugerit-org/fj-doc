@@ -38,7 +38,9 @@ public class AutodocDocConfig {
 	}
 
 	public static final String CHAIN_ID_AUTODOC = "autodoc";
-	
+
+	public static final String CHAIN_ID_AUTODOC_SCHEMA = "autodoc_schema";
+
 	public static final String CHAIN_ID_AUTODOC_DETAIL = "autodoc_detail";
 	
 	public static final String CHAIN_ID_AUTODOC_META = "autodoc_meta";
@@ -66,6 +68,22 @@ public class AutodocDocConfig {
 	
 	public void processAutodocHtmlDefault(  AutodocModel autodocModel, OutputStream os ) throws DocException {
 		this.processAutodoc( autodocModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
+	}
+
+	public void processAutodocSchema(  AutodocModel autodocModel, DocTypeHandler handler, OutputStream os ) throws DocException {
+		DocException.applyWithMessage( () -> {
+			DocProcessData data = new DocProcessData();
+			DocProcessContext context = DocProcessContext.newContext( AutodocModel.ATT_NAME, autodocModel );
+			process( CHAIN_ID_AUTODOC_SCHEMA , context, data );
+			DocBase docBase = DocFacade.parse( data.getCurrentXmlReader() );
+			DocInput docInput = DocInput.newInput( handler.getType() , docBase );
+			DocOutput docOutput = DocOutput.newOutput( os );
+			handler.handle( docInput , docOutput );
+		}, "Autodoc generation error" );
+	}
+
+	public void processAutodocSchemaHtmlDefault(  AutodocModel autodocModel, OutputStream os ) throws DocException {
+		this.processAutodocSchema( autodocModel, FreeMarkerHtmlTypeHandler.HANDLER, os );
 	}
 
 	public void processAutodocDetail(  AutodocDetailModel autoDetailModel, DocTypeHandler handler, OutputStream os ) throws DocException {

@@ -44,5 +44,9 @@ public class AutodocType implements Serializable {
 		}
 		return result;
 	}
-	
+
+	public String getKey() {
+		return AutodocUtils.toKey( this.xsdComplexType );
+	}
+
 }

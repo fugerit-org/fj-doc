@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdDocumentation;
+import org.xmlet.xsdparser.xsdelements.XsdNamedElements;
 
 public class AutodocUtils {
 
@@ -18,6 +19,10 @@ public class AutodocUtils {
 			annotation = "";
 		}
 		return annotation;
+	}
+
+	public static String toKey(XsdNamedElements current) {
+		return current.getXsdSchema().getTargetNamespace()+"_"+current.getRawName();
 	}
 	
 }
