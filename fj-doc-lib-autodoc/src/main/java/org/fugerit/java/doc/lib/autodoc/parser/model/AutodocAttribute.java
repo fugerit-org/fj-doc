@@ -1,14 +1,7 @@
 package org.fugerit.java.doc.lib.autodoc.parser.model;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdAttribute;
-import org.xmlet.xsdparser.xsdelements.XsdRestriction;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdEnumeration;
-import org.xmlet.xsdparser.xsdelements.xsdrestrictions.XsdPattern;
 
 public class AutodocAttribute {
 

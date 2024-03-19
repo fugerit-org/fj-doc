@@ -18,9 +18,7 @@ public class TestFreemarkerAutodocDocConfig {
 	private static final Logger logger = LoggerFactory.getLogger( TestFreemarkerAutodocDocConfig.class );
 	
 	private static final String TARGET = "../fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html";
-	
-	//private static final String TARGET = "target/doc_xsd_config_ref.html";
-	
+
 	@Test
 	public void testParseXsdModel() {
 		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET ) );
