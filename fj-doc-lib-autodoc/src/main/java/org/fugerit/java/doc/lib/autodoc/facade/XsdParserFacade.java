@@ -14,12 +14,12 @@ public class XsdParserFacade {
 			XsdParser xsdParser = new XsdParser(filePath);
 			final AutodocModel autodocModel = new AutodocModel( xsdParser );
 			xsdParser.getResultXsdElements().forEach( currentElement -> {
-				log.info("current element {} -> {}", currentElement.getName(), currentElement.getType());
+				log.debug("current element {} -> {}", currentElement.getName(), currentElement.getType());
 				autodocModel.addElement( currentElement );
 			} );
 			xsdParser.getResultXsdSchemas().forEach( currentSchema -> {
-				log.info("current schema {} -> {}", currentSchema.getTargetNamespace(), currentSchema.getNamespaces() );
-				currentSchema.getNamespaces().entrySet().forEach( e -> log.info( "namespace : {} : {}", e.getKey(), e.getValue().getName() ) );
+				log.debug("current schema {} -> {}", currentSchema.getTargetNamespace(), currentSchema.getNamespaces() );
+				currentSchema.getNamespaces().entrySet().forEach( e -> log.debug( "namespace : {} : {}", e.getKey(), e.getValue().getName() ) );
 				currentSchema.getChildrenComplexTypes().forEach( autodocModel::addType );
 				currentSchema.getChildrenSimpleTypes().forEach( autodocModel::addSimpleType );
 			} );

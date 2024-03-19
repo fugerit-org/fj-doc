@@ -60,15 +60,15 @@ public class AutodocModel implements Serializable {
 	public AutodocType addType( XsdComplexType xsdComplexType ) {
 		AutodocType type = new AutodocType(  xsdComplexType );
 		String key = AutodocUtils.toKey( xsdComplexType );
-		log.info( "xsdComplexType key : {}", key );
+		log.debug( "xsdComplexType key : {}", key );
 		this.types.put( key, type );
 		return type;
 	}
 
 	public AutodocSimpleType addSimpleType( XsdSimpleType xsdSimpleType ) {
-		AutodocSimpleType type = new AutodocSimpleType(  xsdSimpleType );
+		AutodocSimpleType type = new AutodocSimpleType(  this, xsdSimpleType );
 		String key = AutodocUtils.toKey( xsdSimpleType );
-		log.info( "xsdSimpleType key : {}", key );
+		log.debug( "xsdSimpleType key : {}", key );
 		this.simpleTypes.put( key, type );
 		return type;
 	}
