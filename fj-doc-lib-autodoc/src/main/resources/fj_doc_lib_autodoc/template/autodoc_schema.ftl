@@ -33,11 +33,10 @@
 			<li><pl><phrase link="#autodoc-table-simpleTypesIndex">${labels['autodoc.schema.category.simpleTypes']}</phrase></pl></li>
 		</list>
 
+		<phrase id="autodoc-table-elementsIndex"></phrase> <h head-level="2" style="bold">${messageFormat(labels['autodoc.schema.mainTable.title'])} - ${messageFormat(labels['autodoc.schema.category.elements'])}</h>
+
     	<!-- table for element summary -->    	
     	<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-elements" padding="2" alt="${autodocModel.title}">
-      		<row header="true">
-    			<cell colspan="3"><phrase id="autodoc-table-elementsIndex" style="bold" anchor="begin">${messageFormat(labels['autodoc.schema.mainTable.title'])} - ${messageFormat(labels['autodoc.schema.category.elements'])}</phrase></cell>
-    		</row>
     		<row header="true">
     			<cell><phrase style="bold">${messageFormat(labels['autodoc.schema.mainTable.column.item'])}</phrase></cell>
     			<cell><phrase style="bold">${messageFormat(labels['autodoc.schema.mainTable.column.description'])}</phrase></cell>
@@ -54,11 +53,10 @@
 			</#list>
     	</table>
 
+		<phrase id="autodoc-table-complexTypesIndex"></phrase> <h head-level="2" style="bold">${messageFormat(labels['autodoc.schema.mainTable.title'])} - ${messageFormat(labels['autodoc.schema.category.complexTypes'])}</h>
+
 		<!-- table for complexy type summary -->
 		<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-complexTypes" padding="2" alt="${autodocModel.title}">
-			<row header="true">
-				<cell colspan="3"><phrase id="autodoc-table-complexTypesIndex" style="bold" anchor="begin">${messageFormat(labels['autodoc.schema.mainTable.title'])} - ${messageFormat(labels['autodoc.schema.category.complexTypes'])}</phrase></cell>
-			</row>
 			<row header="true">
 				<cell><phrase style="bold">${messageFormat(labels['autodoc.schema.mainTable.column.item'])}</phrase></cell>
 				<cell><phrase style="bold">${messageFormat(labels['autodoc.schema.mainTable.column.description'])}</phrase></cell>
@@ -74,11 +72,10 @@
 			</#list>
 		</table>
 
+		<phrase id="autodoc-table-simpleTypesIndex"></phrase> <h head-level="2" style="bold">${messageFormat(labels['autodoc.schema.mainTable.title'])} - ${messageFormat(labels['autodoc.schema.category.simpleTypes'])}</h>
+
 		<!-- table for complexy type summary -->
 		<table columns="3" colwidths="20;40;40"  width="100" id="autodoc-table-simpleTypes" padding="2" alt="${autodocModel.title}">
-			<row header="true">
-				<cell colspan="3"><phrase id="autodoc-table-simpleTypesIndex" style="bold" anchor="begin">${messageFormat(labels['autodoc.schema.mainTable.title'])} - ${messageFormat(labels['autodoc.schema.category.simpleTypes'])}</phrase></cell>
-			</row>
 			<row header="true">
 				<cell><phrase style="bold">${messageFormat(labels['autodoc.schema.mainTable.column.item'])}</phrase></cell>
 				<cell><phrase style="bold">${messageFormat(labels['autodoc.schema.mainTable.column.description'])}</phrase></cell>
