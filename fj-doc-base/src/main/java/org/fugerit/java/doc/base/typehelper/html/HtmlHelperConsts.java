@@ -27,6 +27,10 @@ public class HtmlHelperConsts {
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#html-css-style">See 'html-css-style' documentation</a>
 	 */
 	public static final String INFO_KEY_HTML_CSS_STYLE = "html-css-style";
-	
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#html-charset">See 'html-charset' documentation</a>
+	 */
+	public static final String INFO_KEY_HTML_CHARSET = "html-charset";
 	
 }
