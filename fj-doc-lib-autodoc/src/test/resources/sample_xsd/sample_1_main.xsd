@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Sample test case xsd for issue : https://github.com/fugerit-org/fj-doc/issues/135
+-->
+<xsd:schema xmlns='http://www.w3.org/2000/10/XMLSchema'
+	targetNamespace='github.com/fugerit-org/fj-doc/issues/135/_sample_1_main'
+	xmlns:sample1main='github.com/fugerit-org/fj-doc/issues/135/_sample_1_main'
+			xmlns:inc1="github.com/fugerit-org/fj-doc/issues/135/_sample_1_include"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+	<xsd:import namespace='github.com/fugerit-org/fj-doc/issues/135/_sample_1_include'  schemaLocation='sample_1_include.xsd'/>
+
+
+	<xsd:element name='info' type="inc1:include1Type">
+		<xsd:annotation>
+			<xsd:documentation>Some documentation text</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+
+</xsd:schema>

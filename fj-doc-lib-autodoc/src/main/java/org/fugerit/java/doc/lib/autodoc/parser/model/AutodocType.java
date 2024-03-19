@@ -2,6 +2,7 @@ package org.fugerit.java.doc.lib.autodoc.parser.model;
 
 import java.io.Serializable;
 
+import org.xmlet.xsdparser.xsdelements.XsdAnnotation;
 import org.xmlet.xsdparser.xsdelements.XsdComplexType;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,5 +45,13 @@ public class AutodocType implements Serializable {
 		}
 		return result;
 	}
-	
+
+	public String getKey() {
+		return AutodocUtils.toKey( this.xsdComplexType );
+	}
+
+	public XsdAnnotation getXsdAnnotationDeep() {
+		return this.getXsdComplexType().getAnnotation();
+	}
+
 }

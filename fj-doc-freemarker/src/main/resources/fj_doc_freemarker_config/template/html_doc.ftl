@@ -10,6 +10,7 @@
 <html lang="${docBase.infoDocLanguage!'en'}">
 	<head>
 		<title>${docBase.infoDocTitle!'Generated document'}</title>
+		<#if (docBase.stableInfo['html-charset'])??><meta charset="${docBase.stableInfo['html-charset']}"></#if>
 		<#if (docBase.infoDocAuthor)??><meta name="author" content="${docBase.infoDocAuthor}"/></#if>
 		<#if (docBase.infoDocSubject)??><meta name="description" content="${docBase.infoDocSubject}"/></#if>
 		<#if (docBase.infoDocLanguage)??><meta http-equiv="content-language" content="${docBase.infoDocLanguage}"/></#if>		

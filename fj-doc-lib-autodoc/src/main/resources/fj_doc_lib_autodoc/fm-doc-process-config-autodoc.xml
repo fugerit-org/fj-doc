@@ -24,11 +24,16 @@
 		</chainStep>
 		<chainStep stepType="function">
 			<function name="annotationAsSingleStringFun" value="org.fugerit.java.doc.lib.autodoc.fun.AnnotationAsSingleStringFun"/>
+			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
 		</chainStep>
 	</docChain>
 
 	<docChain id="autodoc" parent="shared">
 		<chainStep stepType="complex" map-atts="autodocModel" template-path="${chainId}.ftl"/>
+	</docChain>
+
+	<docChain id="autodoc_schema" parent="shared">
+		<chainStep stepType="complex" map-all="true" template-path="${chainId}.ftl"/>
 	</docChain>
 
 	<docChain id="autodoc_detail" parent="shared">

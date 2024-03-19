@@ -36,3 +36,4 @@ jobs:
           snyk-dockertag: fj-doc-playground-quarkus
           maven-additional-profiles: ',buildreact'
           disable-maven-dependency-submission: ${{ vars.DISABLE_MAVEN_DEPENDENCY_SUBMISSION }}
+          maven-core: '2'

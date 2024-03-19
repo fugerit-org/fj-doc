@@ -215,6 +215,13 @@
       <admeta:supportedType>html</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>html-charset</admeta:name>
+      <admeta:description>Add meta charset to head</admeta:description>
+      <admeta:since>3.4.5</admeta:since>
+      <admeta:supportedType>html</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
   </admeta:admSection>
 
   <admeta:admSection>

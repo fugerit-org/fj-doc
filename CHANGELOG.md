@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- html-charset property for freemarker(html) renderer
+
 ### Changed
 
 - xsd-parser-version set to 1.2.10 <https://github.com/xmlet/XsdParser/issues/63>
