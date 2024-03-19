@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.4.5] - 2024-03-19
+
 ### Added
 
 - html-charset property for freemarker(html) renderer
+- [fj-doc-lib-autodoc] alternate template with additional
+  schema handling <https://github.com/fugerit-org/fj-doc/issues/135>
 
 ### Changed
 
