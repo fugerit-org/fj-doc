@@ -1,12 +1,12 @@
 package test.org.fugerit.java.doc.lib.autodoc.facade;
 
+import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.doc.lib.autodoc.AutodocDocConfig;
 import org.fugerit.java.doc.lib.autodoc.facade.XsdParserFacade;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
+import org.junit.Assert;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,10 +14,9 @@ import java.util.Properties;
 
 import static org.junit.Assert.fail;
 
+@Slf4j
 public class TestAutodocDocSchemaConfig {
 
-	private static final Logger logger = LoggerFactory.getLogger( TestAutodocDocSchemaConfig.class );
-	
 	private static final String TARGET = "target";
 
 	private static AutodocModel parseSample1() throws ConfigException {
@@ -33,14 +32,18 @@ public class TestAutodocDocSchemaConfig {
 
 	@Test
 	public void testParseXsdModel() {
-		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET, "xsd_ref_sample_1.html" ) ) )  {
+		File outputFile = new File( TARGET, "xsd_ref_sample_1.html" );
+		try ( FileOutputStream fos = new FileOutputStream( outputFile ) )  {
 			AutodocModel autodocModel = parseSample1();
 			AutodocDocConfig docConfig = AutodocDocConfig.newConfig();
 			Properties params = new Properties();
 			docConfig.processAutodocSchemaHtmlDefault(autodocModel, fos, params);
+			autodocModel.getTypes().forEach( t -> log.info( "key : {}", t.getKey() ) );
+			autodocModel.getSimpleTypes().forEach( st -> log.info( "note : {}", st.getNote() ) );
+			Assert.assertTrue( outputFile.exists() );
 		} catch (Exception e) {
 			String message = "Error : "+e;
-			logger.error( message, e );
+			log.error( message, e );
 			fail( message );
 		}
 	}
