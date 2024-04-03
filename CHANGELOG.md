@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-version set to 8.5.4
 - [playground-quarkus] quarkus-version set to 3.9.1
 - fj-bom set to 1.6.3
 
