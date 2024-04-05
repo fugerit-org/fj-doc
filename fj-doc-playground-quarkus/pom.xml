@@ -23,6 +23,7 @@
 		<fe.dist.dir>src/main/resources/META-INF/resources/fj-doc-playground/home</fe.dist.dir>
 		<exec-plugin.version>3.2.0</exec-plugin.version>
 		<antrun-plugin.version>3.1.0</antrun-plugin.version>
+		<fj-service-helper-bom-version>1.1.0</fj-service-helper-bom-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -30,6 +31,13 @@
 				<groupId>${quarkus.platform.group-id}</groupId>
 				<artifactId>${quarkus.platform.artifact-id}</artifactId>
 				<version>${quarkus.platform.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-service-helper-bom</artifactId>
+				<version>${fj-service-helper-bom-version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -81,7 +89,11 @@
 	                <groupId>xml-apis</groupId>
 	            </exclusion>
 			</exclusions>
-		</dependency>	
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>emp-service-model</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
