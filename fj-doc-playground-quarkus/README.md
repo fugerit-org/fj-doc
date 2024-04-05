@@ -13,10 +13,10 @@ A public docker repository is available (since version 3.1.5) :
 Running the project is as simple as : 
 
 ```shell
-docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest
+docker run -it --rm -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest
 ```
 
-Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-doc-playground/home/)
+Open : <http://localhost:8080/fj-doc-playground/home/>
 
 ## 2. Quickstart : Running the application in dev mode as a single package
 
@@ -46,7 +46,7 @@ cd fj-doc-playground-quarkus/src/main/react
 npm run start
 ```
 
-Open : [http://localhost:3000/fj-doc-playground/home/](http://localhost:3000/fj-doc-playground/home/)
+Open : <http://localhost:3000/fj-doc-playground/home/>
 
 ## 4. required software
 
@@ -59,7 +59,7 @@ Open : [http://localhost:3000/fj-doc-playground/home/](http://localhost:3000/fj-
 - fj-doc-val (and all its extensions)
 - fj-doc-base (and all its extensions)
 
-## 5. functions available
+## 6. functions available
 
 - Doc Editor and Generator : allow for writing documents in FTLX/XML/JSON/YAML, validating them and generating some output formats (currently PDF/XLSX/HTML) [covers fj-doc-mod* modules]
 - Doc Conversion : allow source conversion from/to XML/JSON/YAML [convers fj-doc-base* modules]
