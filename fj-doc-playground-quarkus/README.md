@@ -12,7 +12,9 @@ A public docker repository is available (since version 3.1.5) :
 
 Running the project is as simple as : 
 
-`docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest`
+```shell
+docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:latest
+```
 
 Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-doc-playground/home/)
 
@@ -21,25 +23,25 @@ Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-
 You can run the application in live mode : 
 shell script  
 
-```
+```shell
 cd fj-doc-playground-quarkus
 mvn compile quarkus:dev -P buildreact
 ```
 
-Open : [http://localhost:8080/fj-doc-playground/home/](http://localhost:8080/fj-doc-playground/home/)
+Open : <http://localhost:8080/fj-doc-playground/home/>
 
 ## 3. Quickstart : Running the back end (quarkus) and front end (react) separately : 
 
-launch quarkus : 
+launch quarkus (java 17+): 
 
-```
+```shell
 cd fj-doc-playground-quarkus
 mvn compile quarkus:dev
 ```
 
-launch react : 
+launch react frontend (node 20+) : 
 
-```
+```shell
 cd fj-doc-playground-quarkus/src/main/react
 npm run start
 ```
@@ -48,9 +50,9 @@ Open : [http://localhost:3000/fj-doc-playground/home/](http://localhost:3000/fj-
 
 ## 4. required software
 
-- jdk 11 (tested with oracle jdk 11.0.16.1)
-- apache maven (tested with apache maven 3.8.7)
-- node (tested with node js 18.12.1)
+- jdk (tested with oracle graalvm 21.0.2)
+- apache maven (tested with apache maven 3.9.6)
+- node (tested with node js v20.11.0)
 
 ## 5. modules currently supported in playground : 
 
