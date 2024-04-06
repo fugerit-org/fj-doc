@@ -11,7 +11,7 @@
 # docker image tag [image tag] fugeritorg/fj-doc-playground-quarkus:latest
 #
 # Change with any base openjdk image is preferred 
-FROM amazoncorretto:21.0.2-alpine3.19
+FROM eclipse-temurin:21.0.2_13-jre-alpine
 
 LABEL org.opencontainers.image.authors="Fugerit" \
       org.opencontainers.image.source="Quarkus" \
@@ -23,6 +23,7 @@ COPY --chown=185:0 target/quarkus-app/*.jar /deployments/
 COPY --chown=185:0 target/quarkus-app/app/ /deployments/app/
 COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
 
-RUN echo "securerandom.source=file:/dev/./urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
+#RUN echo "securerandom.source=file:/dev/./urandom" >> /opt/java/openjdk/lib/security/java.security
 
 CMD java -Dfile.encoding="UTF-8"  -jar /deployments/quarkus-run.jar
+
