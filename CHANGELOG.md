@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- bouncy-castle-version set to 1.78
 - fj-version set to 8.5.4
 - [playground-quarkus] quarkus-version set to 3.9.2
 - [playground-quarkus] docker image eclipse-temurin:21.0.2_13-jre-alpine
