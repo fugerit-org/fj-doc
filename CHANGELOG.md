@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- xsd-parser-version set to 1.2.11
 - openpdf version set to 1.3.43
 - bouncy-castle-version set to 1.78
 - fj-version set to 8.5.4

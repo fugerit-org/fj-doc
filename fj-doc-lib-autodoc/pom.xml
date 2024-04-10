@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<xsd-parser-version>1.2.10</xsd-parser-version>
+		<xsd-parser-version>1.2.11</xsd-parser-version>
 		<autodoc-detail-package-name>org.fugerit.java.doc.lib.autodoc.detail.model</autodoc-detail-package-name>
 		<autodoc-meta-package-name>org.fugerit.java.doc.lib.autodoc.meta.model</autodoc-meta-package-name>
 		<ad-output-dir>${project.build.directory}/generated-sources/jaxb-ad</ad-output-dir>
