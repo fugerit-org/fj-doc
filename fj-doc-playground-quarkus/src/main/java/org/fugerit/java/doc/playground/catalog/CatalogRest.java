@@ -3,6 +3,7 @@ package org.fugerit.java.doc.playground.catalog;
 import java.io.Reader;
 import java.util.stream.Collectors;
 
+import jakarta.ws.rs.core.NewCookie;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.collection.OptionItem;
@@ -26,6 +27,7 @@ public class CatalogRest {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/list/type/{type}")
 	public Response catalogListFilterType( @PathParam("type") String type ) {
+
 		return RestHelper.defaultHandle( () -> Response.ok().entity( 
 					DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
 						.stream().filter( e -> type.equalsIgnoreCase( e.getType() ) ).map( 
