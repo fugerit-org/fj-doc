@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [playground-quarkus] added kotlin input <https://github.com/fugerit-org/fj-doc-ext-kotlin/>
+
 ### Changed
 
 - fj-bom set to 1.6.5

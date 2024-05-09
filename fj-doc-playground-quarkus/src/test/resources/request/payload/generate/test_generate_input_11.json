@@ -1,0 +1,5 @@
+{
+	"inputFormat": "XML",
+	"outputFormat":"HTML",
+	"docContent":"{\n\t\"docTitle\":\"My FreeMarker Template Sample Doc Title\",\n\t\"listPeople\": [\n\t\t{ \"name\":\"Luthien\", \"surname\":\"Tinuviel\", \"title\":\"Queen\" },\n\t\t{ \"name\":\"Thorin\", \"surname\":\"Oakshield\", \"title\":\"King\" }\n\t]\n}"
+}

@@ -23,6 +23,7 @@
 		<doc id="full_document_yaml" type="yaml" path="playground/full-document.yaml" description="More complex YAML source document"/>
 		<doc id="doc-01" type="xml" path="playground/doc_test_01.xml" description="Image loading (does not work in excel format)"/>
 		<doc id="doc-02" type="xml" path="playground/full_doc_header_footer.xml" description="Document which contains most tags"/>
+		<doc id="kts-01" type="kts" path="playground/sample-1.kts" description="Sample fugerit kotlin document"/>
 	</catalog>
 
 </doc-catalog>

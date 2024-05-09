@@ -24,6 +24,7 @@
 		<exec-plugin.version>3.2.0</exec-plugin.version>
 		<antrun-plugin.version>3.1.0</antrun-plugin.version>
 		<fj-service-helper-bom-version>1.4.0</fj-service-helper-bom-version>
+		<fj-doc-ext-kotlin-version>0.2.0</fj-doc-ext-kotlin-version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -93,6 +94,11 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>emp-service-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-ext-kotlin</artifactId>
+			<version>${fj-doc-ext-kotlin-version}</version>
 		</dependency>
 	</dependencies>
 	<build>

@@ -9,6 +9,7 @@ import AceEditor from "react-ace";
 import MarkdownEditor from '@uiw/react-markdown-editor';
 
 import "ace-builds/src-noconflict/mode-xml";
+import "ace-builds/src-noconflict/mode-kotlin";
 import "ace-builds/src-noconflict/mode-ftl";
 import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
@@ -152,7 +153,9 @@ class DocXmlEditor extends Component {
 		let freemarkerJsonData = '';
 		let editorInFormat = 'xml';
 		if ( this.state.inputFormat != null ) {
-			if ( this.state.inputFormat === 'FTLX' ) {
+			if ( this.state.inputFormat === 'KTS' ) {
+				editorInFormat = 'kotlin'
+			} else if ( this.state.inputFormat === 'FTLX' ) {
 				editorInFormat = 'ftl'
 				freemarkerJsonData = <Fragment>		
 						<p style={{paddingTop: "20px"}}>Json properties will be available in FTL. each property as a freemarker variable.</p>
@@ -258,6 +261,7 @@ class DocXmlEditor extends Component {
 					    <MenuItem value='XML'>XML</MenuItem>
 					    <MenuItem value='JSON'>JSON</MenuItem>
 					    <MenuItem value='YAML'>YAML</MenuItem>
+						<MenuItem value='KTS'>KTS</MenuItem>
 					  </Select>
 					</FormControl>	
 			  </Grid>

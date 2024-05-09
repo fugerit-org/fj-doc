@@ -34,13 +34,16 @@ import freemarker.template.Version;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 @Slf4j
 @ApplicationScoped
 public class GenerateFacade {
 
 
 	private static final String FTL_DIRECTIVE = "<#ftl";
-	
+
 	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
 		SafeFunction.apply( () -> {
 			DocInput docInput = DocInput.newInput( type, reader , sourceType );
@@ -100,6 +103,18 @@ public class GenerateFacade {
 			configuration.clearTemplateCache();
 		} );
 	}
+
+	private void handleKts( DocTypeHandler handler, String type, Reader reader, ByteArrayOutputStream baos ) {
+		SafeFunction.apply( () -> {
+			ScriptEngineManager manager = new ScriptEngineManager();
+			ScriptEngine engine =  manager.getEngineByExtension( "kts" );
+			Object obj = engine.eval( StreamIO.readString( reader ) );
+			String xml = obj.toString();
+			try ( StringReader xmlReader = new StringReader( xml) ) {
+				this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
+			}
+		} );
+	}
 	
 	public byte[] generateHelper( GenerateInput input, DocTypeHandler handler) throws Exception {
 		byte[] result = null;
@@ -116,6 +131,8 @@ public class GenerateFacade {
 				log.info( "output format : {}", type );
 				if ( InputFacade.FORMAT_FTLX.equalsIgnoreCase( input.getInputFormat() ) ) {
 					this.handleFtlx(handler, type, sourceType, reader, baos, input.getFreemarkerJsonData());
+				} else if ( InputFacade.FORMAT_KTS.equalsIgnoreCase( input.getInputFormat() ) ) {
+					this.handleKts(handler, type, reader, baos);
 				} else {
 					this.doHandle(handler, type, sourceType, reader, baos);
 				}
@@ -144,5 +161,4 @@ public class GenerateFacade {
 		return DocFacadeSource.getInstance().getParserForSource( sourceType );
 	}
 
-	
 }
