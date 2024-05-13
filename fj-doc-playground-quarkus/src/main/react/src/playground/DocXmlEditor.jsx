@@ -156,8 +156,8 @@ class DocXmlEditor extends Component {
 			if ( this.state.inputFormat === 'KTS' ) {
 				editorInFormat = 'kotlin'
 				freemarkerJsonData = <Fragment>
-					<p style={{paddingTop: "20px"}}>Json properties will be available in KTSas a map.</p>
-					<p>For instance a json like {"{ \"docTitle\": \"My KTS Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{docTitle}"} in template</p>
+					<p style={{paddingTop: "20px"}}>Json properties will be available in KTS as a map named 'data'. Kotlin module has some built in function to access the map : attStr, attList, attMap and attListMap</p>
+					<p>For instance a json like {"{ \"docTitle\": \"My Kotlin Template Sample Doc Title\" }"}, will be bound as 'data' parameter and can be accessed with attStr( data, "docTitle" ) in template</p>
 					<AceEditor
 						mode="json"
 						theme="xcode"
