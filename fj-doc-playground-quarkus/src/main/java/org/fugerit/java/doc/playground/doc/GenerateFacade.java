@@ -6,6 +6,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.fugerit.java.core.function.SafeFunction;
@@ -34,6 +35,8 @@ import freemarker.template.Version;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
 
+import javax.script.Bindings;
+import javax.script.ScriptContext;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
@@ -104,14 +107,21 @@ public class GenerateFacade {
 		} );
 	}
 
-	private void handleKts( DocTypeHandler handler, String type, Reader reader, ByteArrayOutputStream baos ) {
+	private void handleKts( DocTypeHandler handler, String type, Reader reader, ByteArrayOutputStream baos, String ktsJsonData ) {
 		SafeFunction.apply( () -> {
 			ScriptEngineManager manager = new ScriptEngineManager();
 			ScriptEngine engine =  manager.getEngineByExtension( "kts" );
-			Object obj = engine.eval( StreamIO.readString( reader ) );
-			String xml = obj.toString();
-			try ( StringReader xmlReader = new StringReader( xml) ) {
-				this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
+			Bindings bindings = engine.createBindings();
+			ObjectMapper mapper = new ObjectMapper();
+			try ( StringReader jsonReader = new StringReader(ktsJsonData) ) {
+				LinkedHashMap data = mapper.readValue( jsonReader, LinkedHashMap.class );
+				bindings.put( "data", data );
+				engine.setBindings( bindings, ScriptContext.ENGINE_SCOPE );
+				Object obj = engine.eval( StreamIO.readString( reader ) );
+				String xml = obj.toString();
+				try ( StringReader xmlReader = new StringReader( xml) ) {
+					this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
+				}
 			}
 		} );
 	}
@@ -132,7 +142,7 @@ public class GenerateFacade {
 				if ( InputFacade.FORMAT_FTLX.equalsIgnoreCase( input.getInputFormat() ) ) {
 					this.handleFtlx(handler, type, sourceType, reader, baos, input.getFreemarkerJsonData());
 				} else if ( InputFacade.FORMAT_KTS.equalsIgnoreCase( input.getInputFormat() ) ) {
-					this.handleKts(handler, type, reader, baos);
+					this.handleKts(handler, type, reader, baos, input.getFreemarkerJsonData());
 				} else {
 					this.doHandle(handler, type, sourceType, reader, baos);
 				}

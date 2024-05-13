@@ -155,6 +155,23 @@ class DocXmlEditor extends Component {
 		if ( this.state.inputFormat != null ) {
 			if ( this.state.inputFormat === 'KTS' ) {
 				editorInFormat = 'kotlin'
+				freemarkerJsonData = <Fragment>
+					<p style={{paddingTop: "20px"}}>Json properties will be available in KTSas a map.</p>
+					<p>For instance a json like {"{ \"docTitle\": \"My KTS Template Sample Doc Title\" }"}, can be accessed like {"$"}{"{docTitle}"} in template</p>
+					<AceEditor
+						mode="json"
+						theme="xcode"
+						name="DOC_JSON_EDITOR"
+						editorProps={{ $blockScrolling: true }}
+						enableBasicAutocompletion={true}
+						enableLiveAutocompletion={true}
+						enableSnippets={true}
+						value={this.state.freemarkerJsonData}
+						onChange={this.handleFreemarkerData}
+						height='200px'
+						width='100%'
+					/>
+				</Fragment>
 			} else if ( this.state.inputFormat === 'FTLX' ) {
 				editorInFormat = 'ftl'
 				freemarkerJsonData = <Fragment>		
