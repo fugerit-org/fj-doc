@@ -1,36 +1,33 @@
 import org.fugerit.java.doc.base.kotlin.dsl.dslDoc
 
 dslDoc {
+    val docTitle = attStr( data, "docTitle" )
     meta {
-        info( ( "DSL Kotlin Document From JUnit 2" ) ).name( "doc-title" )
+        info( ( docTitle ) ).name( "doc-title" )
+        info( ( "10;10;10;30" ) ).name( "margins" )
+        info( ( "fj doc venus sample source Kotlin Template - kts" ) ).name( "doc-subject" )
+        info( ( "fugerit79" ) ).name( "dock-author" )
+        info( ( "en" ) ).name( "doc-language" )
+        info( ( "TitilliumWeb" ) ).name( "default-font-name" )
+        info( ( "data-table=print" ) ).name( "excel-table-id" )
+        info( ( "data-table" ) ).name( "csv-table-id" )
+        footerExt {
+            para( '$'+"{currentPage} / "+'$'+"{pageCount}" ).align( "right" )
+        }
     }
     body {
-        para( "Concise paragraph" )
-            .align( "center" )
-            .style( "bold" )
-            .whiteSpaceCollapse( true )
-            .spaceLeft( 10 )
-            .leading( 1 )
-            .format( "{}" )
-        para {
-            setText("Verbose paragraph")
-            align( "left" )
-            style( "italic" )
-            whiteSpaceCollapse( true )
-            spaceAfter( 10 )
-            foreColor( "#000000" )
-            backColor( "#ffffff" )
-        }
-        phrase( "Inline phrase" ).style( "normal" ).size( 8 )
+        h( docTitle ).headLevel( 1 )
         table {
             row {
-                cell { para( "col 1" )  }
-                cell { para( "col 2" )  }
+                cell { para( "Name" ) }.align( "center" )
+                cell { para( "Surname" ) }.align( "center" )
+                cell { para( "Title" ) }.align( "center" )
             }.header( true )
-            row {
-                cell { para( "data 1" )  }
-                cell { para( "data 2" )  }
-            }
-        }.width( 100 ).columns( 2 ).colwidths( "50;50" )
+            attListMap( data, "listPeople" ).forEach( { e -> row {
+                cell { para( attStr( e, "name" ) ) }
+                cell { para( attStr( e, "surname" ) ) }
+                cell { para( attStr( e, "title" ) ) }
+            } } )
+        }.columns( 3 ).colwidths( "30;30;40" ).width( 100 ).id( "data-table" ).padding( 2 )
     }
 }
