@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-version set to 8.6.0
+- fj-version set to 8.6.1
 - fj-bom set to 1.6.5
 - [playground-quarkus] kotlin source set to fj-doc-ext-kotlin 0.3.1
 - [playground-quarkus] quarkus-version set to 3.10.0
