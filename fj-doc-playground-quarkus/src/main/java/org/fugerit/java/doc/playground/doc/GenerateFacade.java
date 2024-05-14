@@ -128,7 +128,7 @@ public class GenerateFacade {
 			log.info( "kts create script bindings : {}", checkpoint.getFormatTimeDiffMillis() );
 			ObjectMapper mapper = new ObjectMapper();
 			try ( StringReader jsonReader = new StringReader(ktsJsonData) ) {
-				LinkedHashMap data = mapper.readValue( jsonReader, LinkedHashMap.class );
+				LinkedHashMap<String, Object> data = mapper.readValue( jsonReader, LinkedHashMap.class );
 				log.info( "kts read json data : {}", checkpoint.getFormatTimeDiffMillis() );
 				bindings.put( "data", data );
 				engine.setBindings( bindings, ScriptContext.ENGINE_SCOPE );
