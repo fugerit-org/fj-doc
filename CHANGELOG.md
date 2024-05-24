@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-bom set to 1.6.5
 - [playground-quarkus] kotlin source set to fj-doc-ext-kotlin 0.3.2
 - [playground-quarkus] quarkus-version set to 3.11.0
+- [playground-quarkus] base image is no eclipse-temurin:21.0.3_9-jre-alpine
 
 ## [8.4.6] - 2024-04-21
 
