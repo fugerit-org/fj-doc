@@ -24,7 +24,8 @@
 		<exec-plugin.version>3.2.0</exec-plugin.version>
 		<antrun-plugin.version>3.1.0</antrun-plugin.version>
 		<fj-service-helper-bom-version>1.4.0</fj-service-helper-bom-version>
-		<fj-doc-ext-kotlin-version>0.3.2</fj-doc-ext-kotlin-version>
+		<fj-doc-ext-kotlin-version>0.4.0</fj-doc-ext-kotlin-version>
+		<kotlin.version>2.0.0</kotlin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -99,6 +100,46 @@
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-ext-kotlin</artifactId>
 			<version>${fj-doc-ext-kotlin-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-stdlib</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-scripting-jsr223</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-script-runtime</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-scripting-common</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-scripting-jvm</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-scripting-jvm-host</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-compiler-embeddable</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-reflect</artifactId>
+			<version>${kotlin.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
