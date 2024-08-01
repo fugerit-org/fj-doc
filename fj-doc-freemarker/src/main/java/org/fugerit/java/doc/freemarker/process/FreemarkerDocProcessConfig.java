@@ -62,7 +62,6 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	
 	public void process( String chainId, DocProcessContext context, DocProcessData data ) throws Exception {
 		MiniFilterChain chain = this.getChainCache( chainId );
-		log.info( "chain list {}", this.docProcessConfig.getIdSet() );
 		chain.apply( context , data );
 	}
 	
