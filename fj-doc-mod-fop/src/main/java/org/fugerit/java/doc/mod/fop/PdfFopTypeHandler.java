@@ -5,10 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
@@ -16,12 +13,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 
+import lombok.AllArgsConstructor;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.xmlgraphics.io.ResourceResolver;
 import org.apache.xmlgraphics.util.MimeConstants;
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.function.UnsafeConsumer;
+import org.fugerit.java.core.function.UnsafeSupplier;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -81,6 +81,10 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	
 	public static final String ATT_FOP_SUPPRESS_EVENTS = "fop-suppress-events";
 
+	public static final String ATT_FOP_POOL_MIN = "fop-pool-min";
+
+	public static final String ATT_FOP_POOL_MAX = "fop-pool-max";
+
 	private static final String FOP_CONFIG_ROOT = "fop";
 	
 	/**
@@ -107,12 +111,27 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	@Getter @Setter private String pdfUAMode;
 	
 	@Getter @Setter private boolean suppressEvents;
+
+	@Getter @Setter private int fopPoolMin;
+
+	@Getter @Setter private int fopPoolMax;
+
+	private List<FopWrap> pool;
+
+	private UnsafeSupplier<FopWrap, ConfigException> fopWrapSupplier;
+
+	private UnsafeConsumer<FopWrap, ConfigException> fopWrapConsumer;
 	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
 		this.fopConfig = fopConfig;
 		this.accessibility = accessibility;
 		this.keepEmptyTags = keepEmptyTags;
+		this.pool = Collections.synchronizedList( new ArrayList<>() );
+		this.fopWrapSupplier = () -> this.newFopWrap();
+		this.fopWrapConsumer = fc -> {};
+		this.fopPoolMin = 0;
+		this.fopPoolMax = 0;
 	}
 	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig ) {
@@ -139,6 +158,46 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this( DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
 	}
 
+	private FopWrap newFopWrap() throws ConfigException {
+		// create an instance of fop factory
+		FopFactory fopFactory = this.getFopConfig().newFactory();
+		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
+		if ( this.isSuppressEvents() ) {
+			foUserAgent.getEventBroadcaster().addEventListener( e -> {} );
+		}
+		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
+			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );
+		}
+		if ( StringUtils.isNotEmpty( this.getPdfUAMode() ) ) {
+			foUserAgent.getRendererOptions().put( ATT_PDF_UA_MODE, this.getPdfAMode() );
+		}
+		foUserAgent.setAccessibility( this.isAccessibility() );
+		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
+		return new FopWrap( fopFactory, foUserAgent );
+	}
+
+	private FopWrap handleFopWrap( FopWrap toRelease ) throws ConfigException {
+		FopWrap res = null;
+		try {
+			if ( toRelease == null ) {
+				if ( this.pool.isEmpty() ) {
+					log.info("empty pool (size:{}): new fop env", this.pool.size());
+					res = this.newFopWrap();
+				} else {
+					log.info("get fop env from pool (size:{})", this.pool.size());
+					return this.pool.remove( 0 );
+				}
+			} else if ( this.pool.size() < this.getFopPoolMax() ) {
+				log.info("release fop env to pool (size:{})", this.pool.size()-1);
+				this.pool.add(toRelease);
+			}
+		} catch (Exception e) {
+			log.warn( "handleFopWrap error : {} -> newFopWrap()", e.getMessage() );
+			res = this.newFopWrap();
+		}
+		return res;
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
@@ -147,25 +206,13 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		super.handle(docInput, bufferOutput);
 		// the XML file which provides the input
 		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ), this.getCharset() ) );
-		// create an instance of fop factory
-		FopFactory fopFactory = this.getFopConfig().newFactory();
-		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
-		if ( this.isSuppressEvents() ) {
-			foUserAgent.getEventBroadcaster().addEventListener( e -> {} );
-		}
-		if ( StringUtils.isNotEmpty( this.getPdfAMode() ) ) {
-			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );	
-		}
-		if ( StringUtils.isNotEmpty( this.getPdfUAMode() ) ) {
-			foUserAgent.getRendererOptions().put( ATT_PDF_UA_MODE, this.getPdfAMode() );	
-		}
-		foUserAgent.setAccessibility( this.isAccessibility() );
-		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
-		Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, foUserAgent, docOutput.getOs());
+		FopWrap fopWrap = this.fopWrapSupplier.get();
+		Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer = factory.newTransformer();
 		Result res = new SAXResult(fop.getDefaultHandler());
 		transformer.transform(xmlSource, res);
+		this.fopWrapConsumer.accept( fopWrap );
 	}
 
 	@Override
@@ -207,6 +254,24 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath, config);
 		// setup suppress events
 		this.setSuppressEvents( BooleanUtils.isTrue( props.getProperty( ATT_FOP_SUPPRESS_EVENTS ) ) );
+		// setup pool
+		this.setupPool( props );
+	}
+
+	private void setupPool( Properties props ) throws ConfigException {
+		if ( StringUtils.isNotEmpty( props.getProperty( ATT_FOP_POOL_MIN ) ) ) {
+			this.setFopPoolMin( Integer.parseInt( props.getProperty( ATT_FOP_POOL_MIN ) ) );
+			for ( int k=0; k<this.getFopPoolMin(); k++ ) {
+				this.pool.add( this.newFopWrap() );
+			}
+			this.fopWrapSupplier = () -> this.handleFopWrap( null );
+			this.fopWrapConsumer = fc -> this.handleFopWrap( fc );
+		}
+		if ( StringUtils.isNotEmpty( props.getProperty( ATT_FOP_POOL_MAX ) ) ) {
+			this.setFopPoolMax( Integer.parseInt( props.getProperty( ATT_FOP_POOL_MAX ) ) );
+	 	} else if ( this.getFopPoolMin() > 0 ) {
+			this.setFopPoolMax( this.getFopPoolMin() );
+		}
 	}
 
 	private void setupFopConfigMode( String fopConfigMode, String fopConfigResoverType, String fopConfigClassloaderPath, Element config ) throws ConfigException {
@@ -237,4 +302,13 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 	}
 	
+}
+
+@AllArgsConstructor
+class FopWrap {
+
+	@Getter private FopFactory fopFactory;
+
+	@Getter private FOUserAgent foUserAgent;
+
 }
