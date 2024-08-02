@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [mod-fop] fop-pool-min and fop-pool-max properties (fop configuration can be now resued)
 - [playground-quarkus] added kotlin input <https://github.com/fugerit-org/fj-doc-ext-kotlin/>
 
 ### Changed

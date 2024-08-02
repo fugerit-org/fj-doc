@@ -112,15 +112,15 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	
 	@Getter @Setter private boolean suppressEvents;
 
-	@Getter @Setter private int fopPoolMin;
+	@Getter @Setter private transient int fopPoolMin;
 
-	@Getter @Setter private int fopPoolMax;
+	@Getter @Setter private transient int fopPoolMax;
 
-	private List<FopWrap> pool;
+	private transient List<FopWrap> pool;
 
-	private UnsafeSupplier<FopWrap, ConfigException> fopWrapSupplier;
+	private transient UnsafeSupplier<FopWrap, ConfigException> fopWrapSupplier;
 
-	private UnsafeConsumer<FopWrap, ConfigException> fopWrapConsumer;
+	private transient UnsafeConsumer<FopWrap, ConfigException> fopWrapConsumer;
 	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
@@ -128,7 +128,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this.accessibility = accessibility;
 		this.keepEmptyTags = keepEmptyTags;
 		this.pool = Collections.synchronizedList( new ArrayList<>() );
-		this.fopWrapSupplier = () -> this.newFopWrap();
+		this.fopWrapSupplier = this::newFopWrap;
 		this.fopWrapConsumer = fc -> {};
 		this.fopPoolMin = 0;
 		this.fopPoolMax = 0;
