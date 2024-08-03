@@ -265,7 +265,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 				this.pool.add( this.newFopWrap() );
 			}
 			this.fopWrapSupplier = () -> this.handleFopWrap( null );
-			this.fopWrapConsumer = fc -> this.handleFopWrap( fc );
+			this.fopWrapConsumer = this::handleFopWrap;
 		}
 		if ( StringUtils.isNotEmpty( props.getProperty( ATT_FOP_POOL_MAX ) ) ) {
 			this.setFopPoolMax( Integer.parseInt( props.getProperty( ATT_FOP_POOL_MAX ) ) );
@@ -301,7 +301,12 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 		}
 	}
-	
+
+	@Override
+	public String toString() {
+		return super.toString()+"[poolMin="+this.getFopPoolMin()+",poolMax="+this.getFopPoolMax()+"]";
+	}
+
 }
 
 @AllArgsConstructor

@@ -4,7 +4,9 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.Properties;
+import java.util.UUID;
 
+import lombok.Getter;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -55,7 +57,10 @@ public class DocTypeHandlerDefault implements DocTypeHandler, ConfigurableObject
 	private String module;
 	
 	private String mime;
-	
+
+	@Getter @Setter
+	private String customId;
+
 	@Setter(value = AccessLevel.PROTECTED) private String format;
 	
 	private transient Charset charset;
@@ -111,6 +116,7 @@ public class DocTypeHandlerDefault implements DocTypeHandler, ConfigurableObject
 		this.mime = mime;
 		this.format = format;
 		this.charset = DocCharsetProvider.getDefaultProvider().resolveCharset(charset);
+		this.customId = UUID.randomUUID().toString();
 	}
 	
 	public DocTypeHandlerDefault(String type, String module, String mime) {
@@ -157,7 +163,13 @@ public class DocTypeHandlerDefault implements DocTypeHandler, ConfigurableObject
 
 	@Override
 	public String toString() {
-		return this.getClass().getSimpleName()+" [type=" + type + ", module=" + module + ", format=" + format + "]";
+		return this.getClass().getSimpleName()+"{" +
+				"customId='" + customId +
+				"', type='" + type +
+				"', module='" + module +
+				"', format='" + format +
+				"', mime='" + mime +
+				"', charset=" + charset +
+				'}';
 	}
-	
 }

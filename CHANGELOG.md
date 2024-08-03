@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- DocTypeHandlerDefault.toString() has more informations now,
+  and a customID generated from UUID when the class is created
 - [doc-base] DocHandlerFacade.findHandler() now changed a bit handlers id resolution,
   (will now search first the natural id from the xml configuration)
 - fj-version set to 8.6.4
