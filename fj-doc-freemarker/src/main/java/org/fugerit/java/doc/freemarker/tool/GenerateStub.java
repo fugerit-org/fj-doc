@@ -1,9 +1,6 @@
 package org.fugerit.java.doc.freemarker.tool;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.Writer;
+import java.io.*;
 import java.util.Properties;
 
 import org.fugerit.java.core.io.StreamIO;
@@ -83,7 +80,7 @@ public class GenerateStub {
 			generate(out, params, null);
 		}
 	}
-	
+
 	public static void generate( Writer out, Properties params, InputStream is ) throws Exception {
 		ConfigModel configModel = null;
 		DocProcessData data = new DocProcessData();

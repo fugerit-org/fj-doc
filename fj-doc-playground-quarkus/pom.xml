@@ -75,6 +75,7 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-sample</artifactId>
+			<version>${fj-doc-version}</version>
 			<exclusions>
 	            <exclusion>
 	                <artifactId>xml-apis</artifactId>
@@ -90,6 +91,17 @@
 	                <artifactId>xml-apis</artifactId>
 	                <groupId>xml-apis</groupId>
 	            </exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-tool</artifactId>
+			<version>${fj-doc-version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>*</artifactId>
+					<groupId>*</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>

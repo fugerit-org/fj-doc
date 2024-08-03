@@ -37,4 +37,22 @@ class CatalogRestTest {
            .statusCode(200);
     }
 
+    @Test
+    void testRes200() {
+        given()
+                .when()
+                .get( TestConsts.BASE_API_PATH+"/catalog/res/convert-config-stub.properties" )
+                .then()
+                .statusCode(200);
+    }
+
+    @Test
+    void testRes404() {
+        given()
+                .when()
+                .get( TestConsts.BASE_API_PATH+"/catalog/res/404b.properties" )
+                .then()
+                .statusCode(404);
+    }
+
 }

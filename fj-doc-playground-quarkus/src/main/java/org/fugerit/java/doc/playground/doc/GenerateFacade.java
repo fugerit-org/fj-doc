@@ -20,7 +20,7 @@ import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.fun.SimpleMessageFun;
-import org.fugerit.java.doc.playground.config.InitPlayground;
+import org.fugerit.java.doc.playground.InitPlayground;
 import org.fugerit.java.doc.playground.facade.BasicInput;
 import org.fugerit.java.doc.playground.facade.InputFacade;
 

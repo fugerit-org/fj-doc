@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.playground.config;
+package org.fugerit.java.doc.playground;
 
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.InitHandler;

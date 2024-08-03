@@ -1,10 +1,12 @@
 package org.fugerit.java.doc.playground.catalog;
 
+import java.io.InputStream;
 import java.io.Reader;
 import java.util.stream.Collectors;
 
 import jakarta.ws.rs.core.NewCookie;
 import org.fugerit.java.core.io.StreamIO;
+import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.collection.OptionItem;
 import org.fugerit.java.doc.playground.RestHelper;
@@ -62,6 +64,21 @@ public class CatalogRest {
 					output.setJsonData( StreamIO.readString( catalog.entryReaderJsonData( entry ) ) );
 				}
 				return Response.ok().entity( output ).build();
+			}
+		} );
+	}
+
+	@GET
+	@Produces(MediaType.TEXT_PLAIN)
+	@Path("/res/{id}")
+	public Response catalogRes( @PathParam("id") String id ) {
+		return RestHelper.defaultHandle( () -> {
+			try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "catalog_res/"+id )) {
+				if ( is == null ) {
+					return Response.status(Response.Status.NOT_FOUND).build();
+				} else {
+					return Response.ok().entity( StreamIO.readString( is ) ).build();
+				}
 			}
 		} );
 	}
