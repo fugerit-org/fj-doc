@@ -4,16 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.function.UnsafeSupplier;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.XMLException;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.fop.FopConfig;
-import org.fugerit.java.doc.mod.fop.FopConfigDefault;
-import org.fugerit.java.doc.mod.fop.InitFopHandler;
-import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
+import org.fugerit.java.doc.mod.fop.*;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -30,6 +28,15 @@ import java.util.UUID;
 
 @Slf4j
 public class TestPdfFopTypePooledHandler extends BasicTest {
+
+	@Test
+	public void testPoolUtils() throws ConfigException {
+		UnsafeSupplier<FopConfigWrap, ConfigException> supplier = () -> new FopConfigWrap( null, null );
+		FopConfigWrap configWrap1 = PoolUtils.handleFopWrap( null, null, 1, 2, supplier );
+		Assert.assertNotNull( configWrap1 );
+		FopConfigWrap configWrap2 = PoolUtils.handleFopWrap( null, new ArrayList<FopConfigWrap>(), 1, 2, supplier );
+		Assert.assertNotNull( configWrap2 );
+	}
 
 	@Test
 	public void pooledTest1() throws ConfigException, XMLException {

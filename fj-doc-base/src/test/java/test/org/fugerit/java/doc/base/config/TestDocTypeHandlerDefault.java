@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.base.config;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.UUID;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.doc.base.config.DocConfig;
@@ -37,6 +38,9 @@ public class TestDocTypeHandlerDefault {
 		try ( InputStream is = new ByteArrayInputStream( "<config>".getBytes() ) ) {
 			Assert.assertThrows( ConfigException.class , () -> handler.configureXML( is ) );
 		}
+		String customId = UUID.randomUUID().toString();
+		handler.setCustomId( customId );
+		Assert.assertEquals( customId, handler.getCustomId() );
 	}
 	
 }

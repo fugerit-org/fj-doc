@@ -13,7 +13,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 
-import lombok.AllArgsConstructor;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
@@ -116,11 +115,11 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	@Getter @Setter private transient int fopPoolMax;
 
-	private transient List<FopWrap> pool;
+	private transient List<FopConfigWrap> pool;
 
-	private transient UnsafeSupplier<FopWrap, ConfigException> fopWrapSupplier;
+	private transient UnsafeSupplier<FopConfigWrap, ConfigException> fopWrapSupplier;
 
-	private transient UnsafeConsumer<FopWrap, ConfigException> fopWrapConsumer;
+	private transient UnsafeConsumer<FopConfigWrap, ConfigException> fopWrapConsumer;
 	
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
@@ -158,7 +157,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this( DEFAULT_ACCESSIBILITY, DEFAULT_KEEP_EMPTY_TAGS );
 	}
 
-	private FopWrap newFopWrap() throws ConfigException {
+	private FopConfigWrap newFopWrap() throws ConfigException {
 		// create an instance of fop factory
 		FopFactory fopFactory = this.getFopConfig().newFactory();
 		FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
@@ -173,29 +172,11 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
-		return new FopWrap( fopFactory, foUserAgent );
+		return new FopConfigWrap( fopFactory, foUserAgent );
 	}
 
-	private FopWrap handleFopWrap( FopWrap toRelease ) throws ConfigException {
-		FopWrap res = null;
-		try {
-			if ( toRelease == null ) {
-				if ( this.pool.isEmpty() ) {
-					log.info("empty pool (size:{}): new fop env", this.pool.size());
-					res = this.newFopWrap();
-				} else {
-					log.info("get fop env from pool (size:{})", this.pool.size());
-					return this.pool.remove( 0 );
-				}
-			} else if ( this.pool.size() < this.getFopPoolMax() ) {
-				log.info("release fop env to pool (size:{})", this.pool.size()-1);
-				this.pool.add(toRelease);
-			}
-		} catch (Exception e) {
-			log.warn( "handleFopWrap error : {} -> newFopWrap()", e.getMessage() );
-			res = this.newFopWrap();
-		}
-		return res;
+	private FopConfigWrap handleFopWrap(FopConfigWrap toRelease ) throws ConfigException {
+		return PoolUtils.handleFopWrap( toRelease, this.pool, this.getFopPoolMin(), this.getFopPoolMax(), this::newFopWrap );
 	}
 
 	@SuppressWarnings("unchecked")
@@ -206,7 +187,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		super.handle(docInput, bufferOutput);
 		// the XML file which provides the input
 		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ), this.getCharset() ) );
-		FopWrap fopWrap = this.fopWrapSupplier.get();
+		FopConfigWrap fopWrap = this.fopWrapSupplier.get();
 		Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
 		TransformerFactory factory = TransformerFactory.newInstance();
 		Transformer transformer = factory.newTransformer();
@@ -309,11 +290,3 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 }
 
-@AllArgsConstructor
-class FopWrap {
-
-	@Getter private FopFactory fopFactory;
-
-	@Getter private FOUserAgent foUserAgent;
-
-}
