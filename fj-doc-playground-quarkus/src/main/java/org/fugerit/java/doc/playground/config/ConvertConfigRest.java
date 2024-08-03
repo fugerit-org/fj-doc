@@ -25,7 +25,7 @@ public class ConvertConfigRest {
 	private Throwable findCause( Throwable o ) {
 		return o.getCause() != null ? this.findCause( o.getCause() ) : o;
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)

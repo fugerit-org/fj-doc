@@ -23,7 +23,7 @@ class ConfigConvertRestTest {
 		} );
 	}
 	
-	private void testWorker( String apiPath, String jsonPayloadPath ) {
+	private void testWorker( String apiPath, String jsonPayloadPath, int expectedStatus ) {
         given()
         .when()
         .accept( MediaType.APPLICATION_JSON )
@@ -31,12 +31,27 @@ class ConfigConvertRestTest {
         .body( getInput( jsonPayloadPath ) )
         .post( TestConsts.BASE_API_PATH+apiPath )
         .then()
-           .statusCode(200);
+           .statusCode(expectedStatus);
 	}
 	
     @Test
     void testConvertConfig() {
-		this.testWorker( "/config/convert", "convert_config/test_convert_config_1.json" );
+		this.testWorker( "/config/convert", "convert_config/test_convert_config_1.json", 200 );
     }
+
+	@Test
+	void testConvertConfigError() {
+		this.testWorker( "/config/convert", "convert_config/test_convert_config_error.json", 200 );
+	}
+
+	@Test
+	void testConvertConfigNoInput1() {
+		this.testWorker( "/config/convert", "convert_config/test_convert_config_ni1.json", 200 );
+	}
+
+	@Test
+	void testConvertConfigNoInput2() {
+		this.testWorker( "/config/convert", "convert_config/test_convert_config_ni2.json", 200 );
+	}
 
 }

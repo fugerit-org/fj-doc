@@ -1,0 +1,1 @@
+{"freemarkerJsonData":"# if stub handers=1, sample type handler configuration will be created\nstub-handler=1\n# additional paarameters, only evaluated if stub-handler=1\nenable-opencsv=1\nenable-fop-base=1\nenable-fop-full=1\nenable-poi=1"}
