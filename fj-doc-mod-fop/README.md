@@ -29,7 +29,7 @@ NOTE: If you have any special need you can open a pull request or create your ow
 | fop-config-mode             | no       |         | Custom configuration method : 'classloader', 'inline'                  |
 | fop-config-classloader-path | no       |         | Class loader path to fop-config.xml                                    |
 | pdf-a-mode                  | no       |         | pdf a profile : PDF/A-1b, PDF/A-1a, PDF/A-2a, PDF/A-3a                 |
-| pdf-a-mode                  | no       |         | pdf ua profile : PDF/UA-1                                              |
+| pdf-ua-mode                 | no       |         | pdf ua profile : PDF/UA-1                                              |
 | fop-suppress-events         | no       | false   | if set to true, it will support some fop logging                       |
 | fop-pool-min                | no       | 0       | Integer, if higher than 0, fop configuration will be pooled and resued |
 | fop-pool-max                | no       | 0       | Integer, maximum number of fop configuration                           |
