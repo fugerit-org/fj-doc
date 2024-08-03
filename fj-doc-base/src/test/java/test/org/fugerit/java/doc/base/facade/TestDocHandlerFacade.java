@@ -61,6 +61,7 @@ public class TestDocHandlerFacade {
 		}
 		DocHandlerFactory.register( new FactoryCatalog() );
 		Assert.assertFalse( facade.listHandlersForType( SimpleMarkdownBasicTypeHandler.HANDLER.getType() ).isEmpty() );
+		facade.logHandlersInfo();
 	}
 	
 	@Test

@@ -138,18 +138,34 @@ public class DocHandlerFacade implements Serializable {
 		DocOutput docOutput = DocOutput.newOutput( os );
 		this.handle( docInput , docOutput );
 	}
-	
+
 	public DocTypeHandler findHandler( String id ) {
-		// fail safe on full map
-		return ObjectUtils.objectWithDefault( this.mapHandlers.get( id ) , this.fullMap.get( id ) );
+		// fail safe on map handler
+		DocTypeHandler handler = this.fullMap.get( id );
+		if ( handler != null ) {
+			return handler;
+		} else {
+			return this.mapHandlers.get( id );
+		}
 	}
-	
+
 	public ListMapStringKey<DocTypeHandler> listHandlersForType( String type ) {
-		return this.mapTypeHandlers.get( type ); 
+		return this.mapTypeHandlers.get( type );
 	}
-	
+
 	public Collection<DocTypeHandler> handlers() {
 		return this.mapHandlers.values();
+	}
+
+	public void logHandlersInfo() {
+		log.info( "mapHandlers ids : '{}'", this.mapHandlers.keySet() );
+		this.mapHandlers.entrySet().forEach(
+				e -> log.info( "key : {}, value : {}", e.getKey(), e.getValue() )
+		);
+		log.info( "fullMap ids : '{}'", this.fullMap.keySet() );
+		this.fullMap.entrySet().forEach(
+				e -> log.info( "key : {}, value : {}", e.getKey(), e.getValue() )
+		);
 	}
 	
 }

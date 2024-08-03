@@ -14,7 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-version set to 8.6.1
+- [doc-base] DocHandlerFacade.findHandler() now changed a bit handlers id resolution,
+  (will now search first the natural id from the xml configuration)
+- fj-version set to 8.6.4
 - fj-bom set to 1.6.5
 - [playground-quarkus] kotlin source set to fj-doc-ext-kotlin 0.3.2
 - [playground-quarkus] quarkus-version set to 3.12.2
