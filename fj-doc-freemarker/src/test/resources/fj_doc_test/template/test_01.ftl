@@ -41,6 +41,9 @@
   		<para align="right">Test right</para>
   		
   		<para align="right">${messageFormat('test format -> {0} {1}', 'param1', 'param2')}</para>
+
+		<para align="right">${textWrap('test text wrap')}</para>
+
   
   		<br/>
   		<br/>

@@ -19,6 +19,7 @@
 		<chainStep stepType="function">
 			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
 			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+			<function name="textWrap" value="org.fugerit.java.doc.freemarker.fun.TextWrapFun"/>
 		</chainStep>
 	</docChain>
 

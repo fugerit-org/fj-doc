@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - [playground-quarkus] Config conversion user interface
+- [freemarker] text wrap function (using zero with space `&#8203;`)
 
 ### Changed
 
