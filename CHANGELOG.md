@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [freemarker] Changed latest freemarker constant to 2.3.33
+
 ## [8.5.1] - 2024-08-09
 
 ### Added
