@@ -6,6 +6,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.freemarker.tool.model.ChainModel;
@@ -50,7 +51,7 @@ public class LegacyConfigRead {
 	}
 	
 	public static ConfigModel readConfig( InputStream is ) throws Exception {
-		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilderFactory dbf = DOMIO.newSafeDocumentBuilderFactory();
 		dbf.setNamespaceAware( true );
 		DocumentBuilder parser = dbf.newDocumentBuilder();
 		Document inputDoc = parser.parse( is );

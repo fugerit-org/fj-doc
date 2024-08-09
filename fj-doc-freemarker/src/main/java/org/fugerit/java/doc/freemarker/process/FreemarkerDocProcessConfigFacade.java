@@ -19,6 +19,7 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.filterchain.MiniFilter;
 import org.fugerit.java.core.util.filterchain.MiniFilterBase;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
+import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
@@ -220,7 +221,7 @@ public class FreemarkerDocProcessConfigFacade {
 		FreemarkerDocProcessConfig result = null;
 		 try {
 			 FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
-			 DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+			 DocumentBuilderFactory dbf = DOMIO.newSafeDocumentBuilderFactory();
 			 dbf.setNamespaceAware( true );
 			 DocumentBuilder db = dbf.newDocumentBuilder();
 			 Document doc = db.parse( new InputSource( xmlReader ) );
