@@ -9,7 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 public class RestHelper {
 
 	private RestHelper() {}
-	
+
+	public static Throwable findCause( Throwable o ) {
+		return o.getCause() != null ? findCause( o.getCause() ) : o;
+	}
+
 	public static Response defaultHandle( UnsafeSupplier<Response, Exception> fun ) {
 		Response res = null;
 		try {

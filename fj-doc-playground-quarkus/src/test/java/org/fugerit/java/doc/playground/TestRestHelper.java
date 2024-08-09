@@ -2,6 +2,8 @@ package org.fugerit.java.doc.playground;
 
 import java.io.IOException;
 
+import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,5 +24,11 @@ class TestRestHelper {
 		Assertions.assertEquals( Response.Status.BAD_REQUEST.getStatusCode(),
 				RestHelper.defaultHandle( () -> null ).getStatus() );
 	}
-	
+
+	@Test
+	void testFindCause() {
+		Assertions.assertEquals( ConfigRuntimeException.class, RestHelper.findCause( new ConfigRuntimeException( "a" ) ).getClass() );
+		Assertions.assertEquals( ConfigRuntimeException.class, RestHelper.findCause( new ConfigException( new ConfigRuntimeException( "a" ) ) ).getClass() );
+	}
+
 }

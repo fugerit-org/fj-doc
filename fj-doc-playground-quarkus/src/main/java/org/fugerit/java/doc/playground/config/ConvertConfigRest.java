@@ -21,10 +21,6 @@ import java.util.Base64;
 public class ConvertConfigRest {
 
 	private ConvertConfigFacade facade = new ConvertConfigFacade();
-	
-	private Throwable findCause( Throwable o ) {
-		return o.getCause() != null ? this.findCause( o.getCause() ) : o;
-	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -40,7 +36,7 @@ public class ConvertConfigRest {
 				output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
 			} catch ( Exception e ) {
 				log.warn( String.format( "Error converting configuration : %s", e.getMessage() ) , e );
-				Throwable te = this.findCause(e);
+				Throwable te = RestHelper.findCause(e);
 				output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
 			}
 			return Response.ok().entity( output ).build();

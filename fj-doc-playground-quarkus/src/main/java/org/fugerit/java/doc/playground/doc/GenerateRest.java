@@ -32,11 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 public class GenerateRest {
 
 	private GenerateFacade facade = new GenerateFacade();
-	
-	private Throwable findCause( Throwable o ) {
-		return o.getCause() != null ? this.findCause( o.getCause() ) : o;
-	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -52,7 +48,7 @@ public class GenerateRest {
 				output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
 			} catch ( Exception e ) {
 				log.warn( "Error generating document : "+e , e );
-				Throwable te = this.findCause(e);
+				Throwable te = RestHelper.findCause(e);
 				output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
 			}
 			return Response.ok().entity( output ).build();
@@ -106,7 +102,7 @@ public class GenerateRest {
 				docConfig.processSimpleTable(simpleTableModel, handler, buffer);
 				output.setDocOutputBase64(Base64.getEncoder().encodeToString(buffer.toByteArray()));
 			} catch (Exception e) {
-				Throwable te = this.findCause(e);
+				Throwable te = RestHelper.findCause(e);
 				output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
 			}
 			return Response.ok().entity(output).build();
