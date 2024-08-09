@@ -9,6 +9,8 @@ import java.util.List;
 @Slf4j
 public class PoolUtils {
 
+    private PoolUtils() {}
+
     public static FopConfigWrap handleFopWrap(FopConfigWrap toRelease, List<FopConfigWrap> pool, int poolMin, int poolMax, UnsafeSupplier<FopConfigWrap, ConfigException> supplier) throws ConfigException {
         FopConfigWrap res = null;
         try {
