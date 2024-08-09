@@ -11,6 +11,8 @@ import java.util.List;
 
 public class TextWrapFun implements TemplateMethodModelEx {
 
+	public static final String DEFAULT_NAME = "textWrap";
+
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
 		FMFunHelper.checkFirstRequred( arguments );

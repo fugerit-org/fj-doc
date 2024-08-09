@@ -229,6 +229,11 @@
 				<xsd:documentation>Just a referenced to the relevant freemarker configuration</xsd:documentation>
 			</xsd:annotation>				
 		</xsd:attribute>
+		<xsd:attribute name="load-bundled-functions" type="xsd:boolean" use="optional" default="false">
+			<xsd:annotation>
+				<xsd:documentation>It will load all the default funs with the default name</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
 	</xsd:complexType>	
 	
 	<xsd:complexType name="propertyType">

@@ -10,6 +10,8 @@ import freemarker.template.TemplateScalarModel;
 
 public class SimpleMessageFun implements TemplateMethodModelEx {
 
+	public static final String DEFAULT_NAME = "messageFormat";
+
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
 		FMFunHelper.checkFirstRequred( arguments );

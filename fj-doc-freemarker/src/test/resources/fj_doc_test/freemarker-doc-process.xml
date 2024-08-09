@@ -14,12 +14,8 @@
 				exception-handler="RETHROW_HANDLER"
 				log-exception="false"
 				wrap-unchecked-exceptions="true"
-				fallback-on-null-loop-variable="false"/>
-		</chainStep>
-		<chainStep stepType="function">
-			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
-			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
-			<function name="textWrap" value="org.fugerit.java.doc.freemarker.fun.TextWrapFun"/>
+				fallback-on-null-loop-variable="false"
+				load-bundled-functions="true"/>
 		</chainStep>
 	</docChain>
 

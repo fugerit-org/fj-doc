@@ -17,6 +17,10 @@ import org.fugerit.java.doc.base.process.DocProcessorBasic;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
+import org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun;
+import org.fugerit.java.doc.freemarker.fun.SimpleMessageFun;
+import org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun;
+import org.fugerit.java.doc.freemarker.fun.TextWrapFun;
 
 public class FreeMarkerConfigStep extends DocProcessorBasic {
 
@@ -57,8 +61,9 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 	
 	public static final String ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE = "fallback-on-null-loop-variable";
 	public static final String ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE_DEFAULT = "false";
-	
-	
+
+	public static final String ATT_FREEMARKER_CONFIG_KEY_LOAD_BUNDLED_FUN = "load-bundled-functions";
+
 	/**
 	 * 
 	 */
@@ -138,6 +143,15 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 		int res = super.process(context, data);
 		Configuration cfg = getConfig( this.getParam01(), this.getCustomConfig() );
 		context.setAttribute( FreeMarkerConstants.ATT_FREEMARKER_CONFIG , cfg );
+		// bundle default function
+		boolean loadBundledFunction = BooleanUtils.isTrue( this.getCustomConfig().getProperty( ATT_FREEMARKER_CONFIG_KEY_LOAD_BUNDLED_FUN ) );
+		if ( loadBundledFunction ) {
+			Map<String, Object> map = FreeMarkerConstants.getFreeMarkerMap( context );
+			map.put(ImageBase64CLFun.DEFAULT_NAME, new ImageBase64CLFun());
+			map.put(TextWrapFun.DEFAULT_NAME, new TextWrapFun());
+			map.put(SimpleMessageFun.DEFAULT_NAME, new SimpleMessageFun());
+			map.put(SimpleSumLongFun.DEFAULT_NAME, new SimpleSumLongFun());
+		}
 		return res;
 	}
 

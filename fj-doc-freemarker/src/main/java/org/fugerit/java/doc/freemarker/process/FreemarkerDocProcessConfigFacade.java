@@ -270,6 +270,8 @@ public class FreemarkerDocProcessConfigFacade {
 				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_WRAP_UNCHECKED_EXCEPTION_DEFAULT ) );
 		 params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE , 
 				 props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_FALLBACK_ON_NULL_LOOP_VARIABLE_DEFAULT ) );
+		params.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOAD_BUNDLED_FUN ,
+				props.getProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_LOAD_BUNDLED_FUN, BooleanUtils.BOOLEAN_FALSE ) );
 		 return params;
 	}
 	

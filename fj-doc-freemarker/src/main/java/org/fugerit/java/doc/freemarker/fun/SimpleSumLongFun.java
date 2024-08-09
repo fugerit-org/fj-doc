@@ -9,6 +9,8 @@ import freemarker.template.TemplateModelException;
 
 public class SimpleSumLongFun implements TemplateMethodModelEx {
 
+	public static final String DEFAULT_NAME = "sumLong";
+
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
 		BigDecimal res = new BigDecimal( 0 );

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [freemarker] added load-bundled-functions property
 - [freemarker] Changed latest freemarker constant to 2.3.33
 
 ## [8.5.1] - 2024-08-09

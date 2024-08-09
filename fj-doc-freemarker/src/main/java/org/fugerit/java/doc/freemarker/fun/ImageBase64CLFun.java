@@ -14,6 +14,8 @@ import freemarker.template.TemplateScalarModel;
 
 public class ImageBase64CLFun implements TemplateMethodModelEx {
 
+	public static final String DEFAULT_NAME = "imageBase64CLFun";
+
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
 		if ( arguments.isEmpty() ) {
