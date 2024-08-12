@@ -11,10 +11,14 @@
 			path="playground/full-document.ftl" 
 			jsonDataPath="playground/data/full-document.json"
 			description="More complex FTLX Sample"/>
-		<doc id="table-align" type="ftlx" 
-			path="playground/table-align.ftl" 
-			jsonDataPath="playground/data/table-align.json"
-			description="Table alignment FTLX Sample"/>
+		<doc id="table-align" type="ftlx"
+			 path="playground/table-align.ftl"
+			 jsonDataPath="playground/data/table-align.json"
+			 description="Table alignment FTLX Sample"/>
+		<doc id="json-props-document" type="ftlx"
+			 path="playground/json-props-document.ftl"
+			 jsonDataPath="playground/data/json-props-document.json"
+			 description="Properties Json FTLX Sample"/>
 		<doc id="default_xml" type="xml" path="playground/default_doc.xml" description="Sample XML source document"/>
 		<doc id="full_document_xml" type="xml" path="playground/full-document.xml" description="More complex XML source document"/>
 		<doc id="default_json" type="json" path="playground/default_doc.json" description="Sample JSON source document"/>
