@@ -6,7 +6,6 @@ import freemarker.template.TemplateModelException;
 import freemarker.template.TemplateScalarModel;
 import org.fugerit.java.doc.base.helper.TextWrapHelper;
 
-import java.text.MessageFormat;
 import java.util.List;
 
 public class TextWrapFun implements TemplateMethodModelEx {
