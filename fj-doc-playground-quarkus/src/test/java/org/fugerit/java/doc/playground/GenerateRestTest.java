@@ -6,6 +6,10 @@ import org.fugerit.java.TestConsts;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
+import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
+import org.fugerit.java.doc.playground.doc.GenerateRest;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -15,6 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 @QuarkusTest
 @Slf4j
 class GenerateRestTest {
+
+	@Test
+	void testAddRow() {
+		SimpleTable simpleTable = SimpleTableFacade.newTable( 100 );
+		GenerateRest.addRow( simpleTable, 1, "error", "test" );
+		Assert.assertEquals( 1, simpleTable.getRows().size() );
+	}
 
 	private byte[] getInput( String path ) {
 		return SafeFunction.get( () ->  {

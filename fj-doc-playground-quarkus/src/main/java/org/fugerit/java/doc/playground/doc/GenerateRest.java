@@ -55,7 +55,7 @@ public class GenerateRest {
 		} );
 	}
 	
-	private void addRow( SimpleTable simpleTableModel, int count, String level, String message ) {
+	public static void addRow( SimpleTable simpleTableModel, int count, String level, String message ) {
 		SimpleRow errorRow = new SimpleRow();
 		if ( count > 0 ) {
 			errorRow.addCell( String.valueOf( count ) );	
@@ -89,14 +89,14 @@ public class GenerateRest {
 				DocValidationResult result = parser.validateResult(reader);
 				int count = 1;
 				for (String message : result.getErrorList()) {
-					this.addRow(simpleTableModel, count, "error", message);
+					addRow(simpleTableModel, count, "error", message);
 					count++;
 				}
 				for (String message : result.getInfoList()) {
-					this.addRow(simpleTableModel, count, "info", message);
+					addRow(simpleTableModel, count, "info", message);
 					count++;
 				}
-				this.addRow(simpleTableModel, 0, "result",
+				addRow(simpleTableModel, 0, "result",
 						"Document valid? : " + (Result.RESULT_CODE_OK == result.getResultCode()));
 				SimpleTableDocConfig docConfig = SimpleTableDocConfig.newConfig();
 				docConfig.processSimpleTable(simpleTableModel, handler, buffer);
