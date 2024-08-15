@@ -135,10 +135,11 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 	public void testProcess() {
 		SafeFunction.apply( () -> {
 			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-003",  "/fj_doc_test/template/" );
+			config.getFacade().registerHandler( FreeMarkerHtmlTypeHandlerUTF8.HANDLER );
 			// test full process
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				DocProcessData data = config.fullProcess( "test_02" ,
-						DocProcessContext.newContext(), FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
+						DocProcessContext.newContext(), DocConfig.TYPE_HTML, DocOutput.newOutput(baos) );
 				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
 			}
 			// test process 1

@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [base] new findHandlerRequired() method
+- [freemarker] new fullProcess() by handler id method
 - [freemarker] added load-bundled-functions property
 - [freemarker] Changed latest freemarker constant to 2.3.33
 - [playground-quarkus] quarkus-version set to 3.13.2

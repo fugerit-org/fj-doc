@@ -62,6 +62,8 @@ public class TestDocHandlerFacade {
 		DocHandlerFactory.register( new FactoryCatalog() );
 		Assert.assertFalse( facade.listHandlersForType( SimpleMarkdownBasicTypeHandler.HANDLER.getType() ).isEmpty() );
 		facade.logHandlersInfo();
+		// handler not found
+		Assert.assertThrows( ConfigRuntimeException.class, () -> facade.findHandlerRequired( "not-found" ) );
 	}
 	
 	@Test

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.ObjectUtils;
 import org.fugerit.java.core.util.collection.ListMapStringKey;
 import org.fugerit.java.doc.base.config.DocInput;
@@ -117,7 +118,23 @@ public class DocHandlerFacade implements Serializable {
 	public void registerHandler( DocTypeHandler handler ) throws Exception {
 		this.registerHandler( handler, DEFAULT_REGISTER_FOR_TYPE, DEFAULT_ERROR_ON_DUPLICATE );
 	}
-	
+
+	/**
+	 * Handler lookup by id, throws a ConfigRuntimeException if not found.
+	 *
+	 * @param handlerId		the id of the handler
+	 * @return				the handler
+	 * throws ConfigRuntimeException if the handler is not found
+	 */
+	public DocTypeHandler findHandlerRequired( String handlerId ) {
+		DocTypeHandler handler = this.findHandler( handlerId );
+		if ( handler == null ) {
+			throw new ConfigRuntimeException( String.format( "No handler found for id %s, available handler ids are : %s", handlerId, StringUtils.concat( ", ", this.mapHandlers.keySet() ) ) );
+		} else {
+			return handler;
+		}
+	}
+
 	public void handle( DocInput docInput, DocOutput docOutput ) throws Exception {
 		String type = docInput.getType();
 		DocTypeHandler handler = this.mapHandlers.get( type );

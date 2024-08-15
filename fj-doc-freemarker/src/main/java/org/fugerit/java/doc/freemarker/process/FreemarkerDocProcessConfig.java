@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
 import org.fugerit.java.core.util.filterchain.MiniFilterMap;
 import org.fugerit.java.core.xml.sax.SAXParseResult;
@@ -52,7 +53,11 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	protected DefaultChainProvider getDefaultChain() {
 		return this.defaultChain;
 	}
-	
+
+	public DocProcessData fullProcess( String chainId, DocProcessContext context, String handlerId, DocOutput docOutput ) {
+		return SafeFunction.get( () -> this.fullProcess( chainId, context, this.facade.findHandlerRequired( handlerId ), docOutput ) );
+	}
+
 	public DocProcessData fullProcess( String chainId, DocProcessContext context, DocTypeHandler handler, DocOutput docOutput ) throws Exception {
 		DocProcessData data = new DocProcessData();
 		this.process(chainId, context, data);
