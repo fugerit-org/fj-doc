@@ -82,6 +82,7 @@ A quick start is available in module [fj-doc-sample](fj-doc-sample/README.md)
 There are five kinds of components (each components README.md contains module status) : 
 
 ### 1. Framework core :
+
 * [Core library (fj-doc-base)](fj-doc-base/README.md) (contains a simple renderer for [Markdown BASIC](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownBasicTypeHandler.java) and [Markdown EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java))
 * [Json extension (fj-doc-base-json)](fj-doc-base-json/README.md) (allow for using json as document generator instead of standard xml generator) [since 0.7.0]
 * [Yaml extension (fj-doc-base-yaml)](fj-doc-base-yaml/README.md) (allow for using yaml as document generator instead of standard xml generator) [since 0.7.0]
@@ -134,9 +135,22 @@ You can find in them in a dedicated repository [fj-doc-ext](https://gitlab.com/f
 * [Java EE extension (fj-doc-ent)](https://github.com/fugerit-org/fj-doc-ent.git) (deprecated as not the module fj-mod-freemarker provided mostly the same features, but in a standalone mode) (deprecated since version 0.5.0)
 
 ### 9. GraalVM native support  
+
 Beginning with version 1.4.0-rc.001, *GraalVM* metadata started to be added (*reflect-config.json* and *resources-config.json*). Initially only the *fj-doc-base* and *fj-doc-freemarker* have full support.
 Actual support for other module will be added as soon as possible, but sometimes is dependent on underlying dependencies support (for example *Apache FOP* for *fj-doc-mod-fop*).
 It is possible to check the current status on the module documentation, in the section *native support*
+
+### 10. Maven Plugin
+
+A [maven plugin](fj-doc-maven-plugin/README.md) is also available. It allows to configure a maven project for document generation, it is as simple as : 
+
+```shell
+mvn org.fugerit.java:fj-doc-maven-plugin:add \
+-Dextensions=base,freemarker,mod-fop \
+-Dversion=8.5.3
+```
+
+See [Documentation](fj-doc-maven-plugin/README.md) for further details.
 
 *About javadoc*  
 Javadoc are far from being complete, but you can find latest version at [https://www.fugerit.org](https://www.fugerit.org/data/java/javadoc/)  
