@@ -3,8 +3,10 @@ package org.fugerit.java.doc.project.facade;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.DependencyManagement;
+import org.apache.maven.model.Exclusion;
 import org.apache.maven.model.Model;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.maxxq.maven.dependency.ModelIO;
 
 import java.io.*;
@@ -34,10 +36,19 @@ public class BasicVenusFacade {
         deps.add( d );
     }
 
-    private static void addCurrentModule(String currentModule, List<Dependency> dependencies) {
+    private static void addCurrentModule( VenusContext context, String currentModule, List<Dependency> dependencies)  {
         Dependency d = new Dependency();
         d.setArtifactId( currentModule );
         d.setGroupId( GROUP_ID );
+        if (StringUtils.isNotEmpty( context.getAddExclusions() ) ) {
+            for ( String current : context.getAddExclusions().split( "," ) ) {
+                String[] parts = current.split( ":" );
+                Exclusion e = new Exclusion();
+                e.setGroupId( parts[0] );
+                e.setArtifactId( parts[1] );
+                d.getExclusions().add( e );
+            }
+        }
         addOrOverwrite( dependencies, d );
     }
 
@@ -79,7 +90,7 @@ public class BasicVenusFacade {
             String moduleName = ModuleFacade.toModuleName( currentModule );
             log.info( "Adding module : {}", moduleName );
             if ( ModuleFacade.isModuleSupported( moduleName ) ) {
-                addCurrentModule( moduleName, model.getDependencies() );
+                addCurrentModule( context, moduleName, model.getDependencies() );
                 context.getModules().add( currentModule );
             } else {
                 String message = String.format( "Module not supported : %s", moduleName );

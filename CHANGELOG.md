@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] new parameter excludeXmlApis (could be needed with quarkus)
+- [fj-doc-maven-plugin] new parameter addExclusions
+
 ## [8.6.3] - 2024-08-21
 
 ### Changed

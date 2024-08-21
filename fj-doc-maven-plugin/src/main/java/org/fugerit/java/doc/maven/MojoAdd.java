@@ -29,6 +29,12 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "force", defaultValue = "false", required = true)
     protected boolean force;
 
+    @Parameter(property = "excludeXmlApis", defaultValue = "false", required = true)
+    protected boolean excludeXmlApis;
+
+    @Parameter(property = "addExclusions", required = false)
+    protected String addExclusions;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         String foundVersion = VersionCheck.findVersion( this.version );
@@ -36,6 +42,8 @@ public class MojoAdd extends AbstractMojo {
         VenusContext context = new VenusContext( new File( this.projectFolder ), foundVersion ,this.extensions );
         context.setAddDocFacace( this.addDocFacade );
         context.setForce( this.force );
+        context.setAddExclusions( addExclusions );
+        context.setExcludeXmlApis( this.excludeXmlApis );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addVenusToMavenProject( context );
     }

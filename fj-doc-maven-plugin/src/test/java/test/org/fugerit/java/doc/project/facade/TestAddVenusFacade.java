@@ -36,17 +36,21 @@ public class TestAddVenusFacade {
     @Test
     public void testAddVenus() throws IOException {
         int count = 0;
-        for ( String currentConfig : Arrays.asList( "ok1-pom", "ok2-pom", "ok3-pom" ) ) {
+        for ( String currentConfig : Arrays.asList( "ok1-pom", "ok2-pom", "ok3-pom", "ok4-pom" ) ) {
             File projectDir = this.initConfigWorker( currentConfig );
             log.info( "projectDir: {}, exists:{}", projectDir, projectDir.exists() );
             Assert.assertTrue( projectDir.exists() );
             String moduleList = "fj-doc-base,base-json,mod-fop,mod-opencsv,mod-poi";
             boolean addFacade = false;
+            boolean excludeXmlApis = false;
             if ( count == 0 ) {
                 moduleList = "base,freemarker";
                 addFacade = true;
+            } else if ( count == 3 ) {
+                excludeXmlApis = true;
             }
             VenusContext context = new VenusContext( projectDir, this.getVersion(), moduleList );
+            context.setExcludeXmlApis( excludeXmlApis );
             context.setAddDocFacace( addFacade );
             boolean result = AddVenusFacade.addVenusToMavenProject( context );
             Assert.assertTrue( result );
@@ -67,6 +71,7 @@ public class TestAddVenusFacade {
                     this.projectFolder = projectDir.getAbsolutePath();
                     this.addDocFacade = true;
                     this.force = true;
+                    this.excludeXmlApis = true;
                     super.execute();
                 }
             };

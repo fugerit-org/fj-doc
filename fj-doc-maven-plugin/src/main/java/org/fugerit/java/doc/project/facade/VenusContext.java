@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.apache.maven.model.Model;
 import org.fugerit.java.core.cfg.VersionUtils;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 
 import java.io.File;
@@ -39,6 +40,15 @@ public class VenusContext {
 
     @Getter @Setter
     private Model mavenModel;
+
+    @Getter @Setter
+    private String addExclusions;
+
+    public void setExcludeXmlApis( boolean excludeXmlApis ) {
+        if ( excludeXmlApis ) {
+            this.setAddExclusions( "xml-apis:xml-apis" );
+        }
+    }
 
     public VenusContext(File projectDir, String version, String extensions ) {
         this.projectDir = projectDir;
