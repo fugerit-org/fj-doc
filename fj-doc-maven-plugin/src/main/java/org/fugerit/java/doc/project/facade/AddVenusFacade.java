@@ -32,6 +32,8 @@ public class AddVenusFacade extends BasicVenusFacade {
 
     private static final String EXAMPLE_FOLDER = "config/example/";
 
+    private static final String LINE = "************************************************************************************************************************";
+
     private static void addDocFacade( VenusContext context ) throws IOException, TemplateException, ConfigException {
         // freemarker configuration
         Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
@@ -94,6 +96,7 @@ public class AddVenusFacade extends BasicVenusFacade {
                 addExtensionList( pomFile, context );
                 if ( context.isAddDocFacace() ) {
                     addDocFacade( context );
+                    log.info( "Generation complete:\n{}\n* For usage open the example main() : {} *\n{}", LINE, context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Example", LINE );
                 }
             } else {
                 addErrorAndLog( String.format( "No pom file in project dir : %s", pomFile.getCanonicalPath() ), context );
