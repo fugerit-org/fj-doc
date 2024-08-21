@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-mod-openpdf-ext] openpdf version 1.4.2
 - [fj-doc-maven-plugin] latest version discovery
 - [fj-doc-maven-plugin] version customization
 - [fj-doc-maven-plugin] check if project is already configured for fj-doc (default fail)
