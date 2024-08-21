@@ -17,7 +17,7 @@ public class VersionCheck {
 
     public static String findFromPropsFile( String path ) {
         Properties props = PropsIO.loadFromClassLoaderSafe( path );
-        if ( props != null && props.containsKey( "version" ) ) {
+        if ( props.containsKey( "version" ) ) {
             String latest = props.getProperty( "version" );
             log.info( "findVersion() latest : {}", latest );
             return latest;
