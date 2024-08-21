@@ -13,7 +13,7 @@ import java.io.File;
 @Mojo( name = "add" )
 public class MojoAdd extends AbstractMojo {
 
-    @Parameter(property = "version", defaultValue = "8.5.2", required = true)
+    @Parameter(property = "version", defaultValue = "8.6.0", required = true)
     protected String version;
 
     @Parameter(property = "extensions", defaultValue = "base,freemarker", required = true)

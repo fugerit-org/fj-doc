@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.project.facade;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.doc.maven.MojoAdd;
 import org.fugerit.java.doc.project.facade.BasicVenusFacade;
@@ -39,10 +40,13 @@ public class TestAddVenusFacade {
             log.info( "projectDir: {}, exists:{}", projectDir, projectDir.exists() );
             Assert.assertTrue( projectDir.exists() );
             String moduleList = "fj-doc-base,base-json,mod-fop,mod-opencsv,mod-poi";
+            boolean addFacade = false;
             if ( count == 0 ) {
                 moduleList = "base,freemarker";
+                addFacade = true;
             }
             VenusContext context = new VenusContext( projectDir, this.getVersion(), moduleList );
+            context.setAddDocFacace( addFacade );
             boolean result = AddVenusFacade.addVenusToMavenProject( context );
             Assert.assertTrue( result );
             count++;
@@ -73,6 +77,15 @@ public class TestAddVenusFacade {
         VenusContext context = new VenusContext( new File( "target" ), this.getVersion(),"base" );
         boolean result = AddVenusFacade.addVenusToMavenProject( context );
         Assert.assertFalse( result );
+    }
+
+    @Test
+    public void testFailNoModule() throws IOException {
+        for ( String currentConfig : Arrays.asList( "ko1-pom" ) ) {
+            File projectDir = this.initConfigWorker(currentConfig);
+            VenusContext context = new VenusContext( projectDir, this.getVersion(), "base,not-exists" );
+            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );
+        }
     }
 
     @Test

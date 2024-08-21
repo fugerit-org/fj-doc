@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.Dependency;
 import org.apache.maven.model.DependencyManagement;
 import org.apache.maven.model.Model;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.maxxq.maven.dependency.ModelIO;
 
 import java.io.*;
@@ -17,8 +18,6 @@ import java.util.stream.Collectors;
 public class BasicVenusFacade {
 
     protected BasicVenusFacade() {}
-
-    protected static final String MODULE_PREFIX = "fj-doc-";
 
     protected static final String GROUP_ID = "org.fugerit.java";
 
@@ -73,16 +72,18 @@ public class BasicVenusFacade {
         fjDocBom.setScope( "import" );
         addOrOverwrite( dm.getDependencies(), fjDocBom );
         log.info( "start dependencies size : {}, version : {}", model.getDependencies().size(), context.getVersion() );
-        for ( String currentModule :  Arrays.asList( extensionList ).stream().map(e -> {
-            if ( e.startsWith( MODULE_PREFIX ) ) {
-                return e;
+        for ( String currentModule :  Arrays.asList( extensionList ) ) {
+            String moduleName = ModuleFacade.toModuleName( currentModule );
+            log.info( "Adding module : {}", moduleName );
+            if ( ModuleFacade.isModuleSupported( moduleName ) ) {
+                addCurrentModule( moduleName, model.getDependencies() );
+                context.getModules().add( currentModule );
             } else {
-                return MODULE_PREFIX + e;
+                String message = String.format( "Module not supported : %s", moduleName );
+                log.warn( "{}, supported modules are : ", message );
+                ModuleFacade.getModules().forEach( log::warn );
+                throw new ConfigRuntimeException( message );
             }
-        } ).collect(Collectors.toList()) ) {
-            log.info( "Adding module : {}", currentModule );
-            addCurrentModule( currentModule, model.getDependencies() );
-            context.getModules().add( currentModule );
         }
         log.info( "end dependencies size : {}", model.getDependencies().size() );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
