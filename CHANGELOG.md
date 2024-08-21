@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.6.0] - 2024-08-21
+
 ### Added
 
 - fj-doc-maven-plugin (configure a maven project for Fugerit Venus Doc usage)
