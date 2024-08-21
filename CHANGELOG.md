@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.6.2] - 2024-08-21
+
 ### Changed
 
 - [fj-doc-val-pdfbox] pdfbox version 2.0.32
