@@ -1,9 +1,11 @@
-package [PACKAGE];
+package ${context.docConfigPackage};
 
 import org.fugerit.java.doc.base.config.DocConfig;
+import org.fugerit.java.doc.base.process.DocProcessContext;
+<#if context.preVersion862 >
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.base.process.DocProcessContext;
+</#if>
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -30,12 +32,19 @@ public class DocHelperExample {
         try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
             // creates the doc helper
             DocHelper docHelper = new DocHelper();
-            // find the handler for the output :
-            DocTypeHandler docTypeHandler = docHelper.getDocProcessConfig().getFacade().findHandler(DocConfig.TYPE_MD);
             // create custom data for the fremarker template 'document.ftl'
             List<People> listPeople = Arrays.asList( new DocHelperExample.People( "Luthien", "Tinuviel", "Queen" ), new DocHelperExample.People( "Thorin", "Oakshield", "King" ) );
+            <#if context.preVersion862 >
+            // find the handler for the output :
+            DocTypeHandler docTypeHandler = docHelper.getDocProcessConfig().getFacade().findHandler(DocConfig.TYPE_MD);
             // output generation
             docHelper.getDocProcessConfig().fullProcess( "document", DocProcessContext.newContext( "listPeople", listPeople ), docTypeHandler, DocOutput.newOutput( baos ) );
+            <#else>
+            // handler id
+            String handlerId = DocConfig.TYPE_MD;
+            // output generation
+            docHelper.getDocProcessConfig().fullProcess( "document", DocProcessContext.newContext( "listPeople", listPeople ), handlerId, baos );
+            </#if>
             // print the output
             System.out.println( "html output : \n"+ new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );
         } catch (Exception e) {

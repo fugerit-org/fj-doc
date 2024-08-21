@@ -146,8 +146,7 @@ A [maven plugin](fj-doc-maven-plugin/README.md) is also available. It allows to 
 
 ```shell
 mvn org.fugerit.java:fj-doc-maven-plugin:add \
--Dextensions=base,freemarker,mod-fop \
--Dversion=8.6.0
+-Dextensions=base,freemarker,mod-fop
 ```
 
 See [Documentation](fj-doc-maven-plugin/README.md) for further details.

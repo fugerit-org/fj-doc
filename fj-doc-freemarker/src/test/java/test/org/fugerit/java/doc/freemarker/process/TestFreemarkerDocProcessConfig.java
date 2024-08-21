@@ -139,7 +139,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 			// test full process
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				DocProcessData data = config.fullProcess( "test_02" ,
-						DocProcessContext.newContext(), DocConfig.TYPE_HTML, DocOutput.newOutput(baos) );
+						DocProcessContext.newContext(), DocConfig.TYPE_HTML, baos );
 				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
 			}
 			// test process 1

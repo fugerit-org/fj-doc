@@ -72,11 +72,10 @@ public class AddVenusFacade extends BasicVenusFacade {
         javaGenerator.generate();
         javaGenerator.write();
         // create examples
-        String docExampleFileName = "DocHelperExample.java";
-        try ( InputStream documentExampleIS = ClassHelper.loadFromDefaultClassLoader( EXAMPLE_FOLDER+docExampleFileName ) ) {
-            String documentContent = StreamIO.readString( documentExampleIS ).replace( "[PACKAGE]", context.getDocConfigPackage() );
-            File docExampleFile = new File( new File( sourceFolder, context.getDocConfigPackage().replace( '.', '/' ) ), docExampleFileName );
-            FileIO.writeString( documentContent, docExampleFile );
+        Template docExampleTemplate = configuration.getTemplate( "DocHelperExample.ftl" );
+        File docExampleFile = new File( new File( sourceFolder, context.getDocConfigPackage().replace( '.', '/' ) ), "DocHelperExample.java" );
+        try ( Writer writer = new FileWriter( docExampleFile) ) {
+            docExampleTemplate.process( data, writer );
         }
         if ( context.getModules().contains( "fj-doc-mod-fop" ) ) {
             String fopConfigName = "fop-config.xml";
@@ -97,6 +96,7 @@ public class AddVenusFacade extends BasicVenusFacade {
                 if ( context.isAddDocFacace() ) {
                     addDocFacade( context );
                     log.info( "Generation complete:\n{}\n* For usage open the example main() : {} *\n{}", LINE, context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Example", LINE );
+                    log.info( "for documentation refer to https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-maven-plugin/README.md" );
                 }
             } else {
                 addErrorAndLog( String.format( "No pom file in project dir : %s", pomFile.getCanonicalPath() ), context );

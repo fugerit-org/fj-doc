@@ -24,15 +24,14 @@ Custom configuration :
 
 ```shell
 mvn org.fugerit.java:fj-doc-maven-plugin:add \
--Dextensions=base,freemarker,mod-fop \
--Dversion=8.6.0
+-Dextensions=base,freemarker,mod-fop
 ```
 
 *Parameters*
 
 | parameter     | required | default         | description                                                                                       |
 |---------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
-| version       | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.0')                                               |
+| version       | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.2')                                               |
 | extensions    | true     | base,freemarker | List of fj-doc core modules to add (*)                                                            |
 | projectFolder | true     | .               | Maven project base folder                                                                         |
 | addDocFacade  | true     | true            | If true, a stub doc configuration helper will be created                                          |

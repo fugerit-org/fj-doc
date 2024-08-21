@@ -22,7 +22,7 @@ import java.util.UUID;
 public class TestAddVenusFacade {
 
     private String getVersion() {
-        return "8.5.2";
+        return "8.6.1";
     }
 
     private File initConfigWorker(String configId ) throws IOException {

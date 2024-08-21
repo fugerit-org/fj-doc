@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.apache.maven.model.Model;
+import org.fugerit.java.core.cfg.VersionUtils;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 
 import java.io.File;
@@ -73,6 +74,10 @@ public class VenusContext {
 
     public String getDocConfigClass() {
         return "DocHelper";
+    }
+
+    public boolean isPreVersion862() {
+        return VersionCheck.isMajorThan( "8.6.2", this.getVersion() );
     }
 
 }

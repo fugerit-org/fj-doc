@@ -54,6 +54,10 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 		return this.defaultChain;
 	}
 
+	public DocProcessData fullProcess( String chainId, DocProcessContext context, String handlerId, OutputStream os ) {
+		return this.fullProcess( chainId, context, handlerId, DocOutput.newOutput( os ) );
+	}
+
 	public DocProcessData fullProcess( String chainId, DocProcessContext context, String handlerId, DocOutput docOutput ) {
 		return SafeFunction.get( () -> this.fullProcess( chainId, context, this.facade.findHandlerRequired( handlerId ), docOutput ) );
 	}
