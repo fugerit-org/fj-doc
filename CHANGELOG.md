@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-mod-openpdf-ext] revert openpdf to version 1.3.43
+
 ## [8.6.2] - 2024-08-21
 
 ### Changed
