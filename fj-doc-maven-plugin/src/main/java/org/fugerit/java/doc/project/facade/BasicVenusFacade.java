@@ -72,6 +72,9 @@ public class BasicVenusFacade {
         fjDocBom.setScope( "import" );
         addOrOverwrite( dm.getDependencies(), fjDocBom );
         log.info( "start dependencies size : {}, version : {}", model.getDependencies().size(), context.getVersion() );
+        // check if dependencies are already present
+        model.getDependencies().forEach( d -> checkDependencies( context.isForce(), d ) );
+        // configure dependencies
         for ( String currentModule :  Arrays.asList( extensionList ) ) {
             String moduleName = ModuleFacade.toModuleName( currentModule );
             log.info( "Adding module : {}", moduleName );
@@ -88,6 +91,15 @@ public class BasicVenusFacade {
         log.info( "end dependencies size : {}", model.getDependencies().size() );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
             modelIO.writeModelToStream( model, pomStream );
+        }
+    }
+
+    public static void checkDependencies( boolean force, Dependency d ) {
+        if ( d.getGroupId().equals( GROUP_ID ) && d.getArtifactId().startsWith( "fj-doc") ) {
+            log.warn( "fj-doc dependency found : {}", d );
+            if ( !force ) {
+                throw new ConfigRuntimeException( "Fugerit Venus Doc already configured" );
+            }
         }
     }
 

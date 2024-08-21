@@ -30,12 +30,13 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 *Parameters*
 
-| parameter     | required | default         | description                                              |
-|---------------|----------|-----------------|----------------------------------------------------------|
-| version       | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.0')      |
-| extensions    | true     | base,freemarker | List of fj-doc core modules to add (*)                   |
-| projectFolder | true     | .               | Maven project base folder                                |
-| addDocFacade  | true     | true            | If true, a stub doc configuration helper will be created |
+| parameter     | required | default         | description                                                                                       |
+|---------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
+| version       | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.0')                                               |
+| extensions    | true     | base,freemarker | List of fj-doc core modules to add (*)                                                            |
+| projectFolder | true     | .               | Maven project base folder                                                                         |
+| addDocFacade  | true     | true            | If true, a stub doc configuration helper will be created                                          |
+| force         | false    | true            | Will force project setup even if fj-doc already configured (warning: can overwrite configuration) |
 
 *Available extensions*
 

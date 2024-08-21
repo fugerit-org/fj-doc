@@ -25,10 +25,14 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addDocFacade", defaultValue = "true", required = true)
     protected boolean addDocFacade;
 
+    @Parameter(property = "force", defaultValue = "false", required = true)
+    protected boolean force;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         VenusContext context = new VenusContext( new File( this.projectFolder ), this.version ,this.extensions );
         context.setAddDocFacace( this.addDocFacade );
+        context.setForce( this.force );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addVenusToMavenProject( context );
     }

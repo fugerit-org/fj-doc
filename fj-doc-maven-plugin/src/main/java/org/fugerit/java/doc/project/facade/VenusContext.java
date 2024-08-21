@@ -27,6 +27,9 @@ public class VenusContext {
     @Getter @Setter
     private boolean addDocFacace;
 
+    @Getter @Setter
+    private boolean force;
+
     @Getter
     private List<String> errors;
 

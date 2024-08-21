@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] check if project is already configured for fj-doc (default fail)
+- [fj-doc-maven-plugin] new parameter : force (if set will not fail if project already configured)
+
 ## [8.6.1] - 2024-08-21
 
 ### Changed

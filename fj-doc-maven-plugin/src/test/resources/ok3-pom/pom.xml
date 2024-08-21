@@ -23,26 +23,10 @@
 	
 	<url>https://www.fugerit.org/</url>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc</artifactId>
-				<version>${fj-doc-version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-base</artifactId>
 		</dependency>
 	</dependencies>
 		

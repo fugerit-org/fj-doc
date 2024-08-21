@@ -26,9 +26,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.fugerit.java</groupId>
-				<artifactId>fj-doc</artifactId>
-				<version>${fj-doc-version}</version>
+				<groupId>org.junit</groupId>
+				<artifactId>junit-bom</artifactId>
+				<version>5.11.0</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -39,10 +39,6 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-doc-base</artifactId>
 		</dependency>
 	</dependencies>
 		

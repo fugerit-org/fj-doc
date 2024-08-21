@@ -1,6 +1,7 @@
 package test.org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.maven.model.Dependency;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
@@ -35,7 +36,7 @@ public class TestAddVenusFacade {
     @Test
     public void testAddVenus() throws IOException {
         int count = 0;
-        for ( String currentConfig : Arrays.asList( "ok1-pom", "ok2-pom" ) ) {
+        for ( String currentConfig : Arrays.asList( "ok1-pom", "ok2-pom", "ok3-pom" ) ) {
             File projectDir = this.initConfigWorker( currentConfig );
             log.info( "projectDir: {}, exists:{}", projectDir, projectDir.exists() );
             Assert.assertTrue( projectDir.exists() );
@@ -49,6 +50,7 @@ public class TestAddVenusFacade {
             context.setAddDocFacace( addFacade );
             boolean result = AddVenusFacade.addVenusToMavenProject( context );
             Assert.assertTrue( result );
+            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );
             count++;
         }
     }
@@ -64,6 +66,7 @@ public class TestAddVenusFacade {
                     this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
                     this.projectFolder = projectDir.getAbsolutePath();
                     this.addDocFacade = true;
+                    this.force = true;
                     super.execute();
                 }
             };
@@ -90,7 +93,17 @@ public class TestAddVenusFacade {
 
     @Test
     public void testAdditional() {
-        Assert.assertNotNull( new BasicVenusFacade() {} );
+        Assert.assertNotNull( new BasicVenusFacade() {});
+        Dependency d = new Dependency();
+        d.setGroupId( "org.fugerit.java" );
+        d.setArtifactId( "fj-core" );
+        BasicVenusFacade.checkDependencies( true, d );
+        d.setArtifactId( "fj-doc-base" );
+        BasicVenusFacade.checkDependencies( true, d );
+        Assert.assertThrows( ConfigRuntimeException.class, () -> BasicVenusFacade.checkDependencies( false, d ) );
+        d.setGroupId( "junit" );
+        d.setArtifactId( "junit" );
+        BasicVenusFacade.checkDependencies( true, d );
     }
 
 }
