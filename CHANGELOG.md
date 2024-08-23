@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.6.5] - 2024-08-23
+
 ### Fixed
 
 - [fj-doc-maven-plugin] groupId from parent
