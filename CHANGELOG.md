@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-maven-plugin] groupId from parent
+
+## [8.6.4] - 2024-08-22
+
 ### Changed
 
 - quarkus version set to 3.14.0

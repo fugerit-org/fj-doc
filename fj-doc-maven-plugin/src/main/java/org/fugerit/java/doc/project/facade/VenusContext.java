@@ -58,6 +58,14 @@ public class VenusContext {
         this.modules = new HashSet<>();
     }
 
+    public String getGroupId() {
+        if ( this.getMavenModel().getGroupId() != null ) {
+            return this.getMavenModel().getGroupId();
+        } else {
+            return this.getMavenModel().getParent().getGroupId();
+        }
+    }
+
     public String getArtificatIdForFolder() {
         return this.getMavenModel().getArtifactId().toLowerCase();
     }
@@ -75,7 +83,7 @@ public class VenusContext {
     }
 
     public String getDocConfigPackage() {
-        return this.getMavenModel().getGroupId()+"."+this.getArtificatIdForName();
+        return this.getGroupId()+"."+this.getArtificatIdForName();
     }
 
     public String getTemplateSubPath() {
