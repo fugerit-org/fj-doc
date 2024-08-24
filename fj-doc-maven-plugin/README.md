@@ -12,6 +12,18 @@ All basic features are implemented.
   
 *Since* : fj-doc 8.6.0
 
+## Available goals
+
+| goal   | since | description                                                                                                                                           |
+|--------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| add    | 8.6.0 | add Venus Doc Configuration to an existing project                                                                                                    |
+| verify | 8.7.0 | verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc. |
+
+
+## Goal : add 
+
+add Venus Doc Configuration to an existing project
+
 *Quickstart* :
 
 Default configuration : 
@@ -54,3 +66,24 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | mod-openrtf-ext | fj-doc-mod-openrtf-ext | rtf          | Type handler based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)                                    |
 | base-json       | fj-doc-base-json       |              | add support to use json documents as format for document template                                       |
 | base-yaml       | fj-doc-base-yaml       |              | add support to use yaml documents as format for document template                                       |
+
+
+## Goal : verify
+
+add Venus Doc Configuration to an existing project
+
+*Quickstart* :
+
+```shell
+mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/resources/fj_doc_test/template-fail
+```
+
+verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.
+
+| parameter           | required | default       | description                                                                                                        |
+|---------------------|----------|---------------|--------------------------------------------------------------------------------------------------------------------|
+| templateBasePath    | true     |               | Path to base folder containing FreeMarker templates                                                                |
+| freemarkerVersion   | false    | latest stable | FreeMarker configuration ( i.e. 2.3.33)                                                                            |
+| templateFilePattern | false    |               | Filter on templates to be checked, regex on filename, i.e. ".{0,}[.]ftl"                                           |
+| failOnErrors        | true     | true          | If set to true the build will fail when template syntax errors will be found, otherwise errors will be only logged |
+
