@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
@@ -31,6 +32,7 @@ public class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
 				log.info( "check info : {}", info );
 			}
 			log.info( "total number of checked template : {}, resultCode : {}", output.getInfos().size(), output.getResultCode() );
+			log.info( "Templates with errors : {}", output.getErrorsTemplateIds() );
 			return output;
 		} );
 	}

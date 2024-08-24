@@ -2,12 +2,15 @@ package org.fugerit.java.doc.freemarker.tool.verify;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.util.result.Result;
 
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@Slf4j
 public class VerifyTemplateOutput {
 
     @Getter @Setter
@@ -32,6 +35,14 @@ public class VerifyTemplateOutput {
             }
         }
         return Result.RESULT_CODE_OK;
+    }
+
+    public List<VerifyTemplateInfo> getErrors() {
+        return this.infos.stream().filter( info -> info.getResultCode() != Result.RESULT_CODE_OK ).collect(Collectors.toList());
+    }
+
+    public List<String> getErrorsTemplateIds() {
+        return this.getErrors().stream().map( VerifyTemplateInfo::getTemplateId ).collect(Collectors.toList());
     }
 
 }
