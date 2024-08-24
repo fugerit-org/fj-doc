@@ -1,0 +1,17 @@
+<lifecycleMappingMetadata>
+  <pluginExecutions>
+    <!-- configurazione for mojo:generate, will run all builds. -->
+    <pluginExecution>
+      <pluginExecutionFilter>
+        <goals>
+          <goal>add</goal>
+        </goals>
+      </pluginExecutionFilter>
+      <action>
+        <execute>
+          <runOnIncremental>false</runOnIncremental>
+          <runOnConfiguration>false</runOnConfiguration>
+        </execute>
+      </action>
+    </pluginExecution>
+</lifecycleMappingMetadata>
