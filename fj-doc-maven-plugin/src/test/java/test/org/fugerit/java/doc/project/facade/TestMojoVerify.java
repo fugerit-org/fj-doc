@@ -7,8 +7,6 @@ import org.fugerit.java.doc.maven.MojoVerify;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.IOException;
-
 public class TestMojoVerify {
 
     private static final String PATH_OK = "src/test/resources/fj_doc_test/template";
@@ -39,8 +37,7 @@ public class TestMojoVerify {
             @Override
             public void execute() throws MojoExecutionException, MojoFailureException {
                 this.failOnErrors=false;
-                this.templateFilePattern = ".{0,}[.]ftl";
-                this.templateBasePath = PATH_OK;
+                this.templateBasePath = PATH_KO;
                 super.execute();
                 res.setValue( Boolean.TRUE );
             }
