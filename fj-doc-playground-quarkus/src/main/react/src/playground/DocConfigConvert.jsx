@@ -1,12 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { FormControl, Select, MenuItem, TextField, Grid, FormLabel, Button } from "@mui/material";
-import DocCatalog from './DocCatalog';
+import { TextField, Grid, Button } from "@mui/material";
 import appService from '../common/app-service';
-import DOMPurify from 'isomorphic-dompurify';
 
 import AceEditor from "react-ace";
-
-import MarkdownEditor from '@uiw/react-markdown-editor';
 
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/mode-kotlin";

@@ -11,9 +11,6 @@ export const onNoServerResponse = function (error) {
   console.log(error)
 }
 
-export const onResponse = function (response) {
-}
-
 export const onResponseError = function (error) {
   switch (error.response.status) {
     case 403:
