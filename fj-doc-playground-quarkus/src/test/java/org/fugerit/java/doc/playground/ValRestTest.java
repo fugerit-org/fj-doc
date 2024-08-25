@@ -3,6 +3,7 @@ package org.fugerit.java.doc.playground;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
+import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.TestConsts;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
 
+@Slf4j
 @QuarkusTest
 class ValRestTest {
 
@@ -30,6 +32,7 @@ class ValRestTest {
           .then()
              .statusCode(200)
              .body(is("[\"JPG\",\"TIF\",\"DOCX\",\"XLSX\",\"TIFF\",\"PDF\",\"XML\",\"P7M\",\"PNG\",\"DOC\",\"JPEG\",\"XLS\"]"));
+        Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
     
     @Test
@@ -40,6 +43,7 @@ class ValRestTest {
           .post( TestConsts.BASE_API_PATH+"/val/check" )
           .then()
              .statusCode(200);
+        Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
     
     @Test
@@ -50,6 +54,7 @@ class ValRestTest {
           .post( TestConsts.BASE_API_PATH+"/val/check" )
           .then()
              .statusCode(400);
+        Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
     
     @Test
