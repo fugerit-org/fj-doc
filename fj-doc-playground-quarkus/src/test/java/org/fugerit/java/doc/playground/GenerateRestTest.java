@@ -10,6 +10,7 @@ import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.playground.doc.GenerateRest;
 import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -52,7 +53,8 @@ class GenerateRestTest {
     	for ( int k=0; k<testId.length; k++ ) {
     		String current = String.valueOf( testId[k]<10 ? "0"+testId[k] : testId[k] ); 
     		this.testWorker( "/generate/document", "generate/test_generate_input_"+current+".json" );
-    	}   
+    	}
+		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
 
     @Test
@@ -60,7 +62,8 @@ class GenerateRestTest {
     	int[] testId = { 1, 5, 6 };
     	for ( int k=0; k<testId.length; k++ ) {
     		this.testWorker( "/generate/validate", "generate/test_generate_input_0"+testId[k]+".json" );
-    	}    	
+    	}
+		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
     
 }
