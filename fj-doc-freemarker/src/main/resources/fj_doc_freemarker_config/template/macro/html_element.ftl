@@ -82,7 +82,7 @@
 	<#list rowList as row>	
 		<tr<@handleId element=row/>>
 			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign>
-				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleBorders docBorders=cell.docBorders/><@addCssValue name='padding' value=docTable.padding def=0 unit='px'/><@addCssValue name='margin' value=docTable.spacing def=0 unit='px'/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>> 
+				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="<#if (cell.backColor??)> background: ${cell.backColor};</#if> width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleBorders docBorders=cell.docBorders/><@addCssValue name='padding' value=docTable.padding def=0 unit='px'/><@addCssValue name='margin' value=docTable.spacing def=0 unit='px'/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>>
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
