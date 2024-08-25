@@ -10,12 +10,12 @@ public class TestDocHandlerFactory {
 
 	@Test
 	public void test001() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			DocHandlerFactory factory = DocHandlerFactory.newInstance( "cl://coverage/config/doc-handler-sample.xml" );	
 			DocHandlerFacade facade = factory.get( "test" ); 
 			Assert.assertNotNull( facade );
-			Assert.assertNotNull( facade.findHandler( "md" ) );
-		} );	
+			return facade.findHandler( "md" );
+		} ) );
 	}
 	
 }

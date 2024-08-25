@@ -28,7 +28,7 @@ public class TestProcessDocFacade {
 	
 	@Test
 	public void test001() {
-		SafeFunction.apply( () -> {
+		Assert.assertTrue( SafeFunction.get( () -> {
 			ProcessDocFacade facade = ProcessDocFacade.newFacade( 
 					"cl://"+TEST_PROCESS_PATH,
 					"cl://coverage/config/doc-handler-sample.xml", 
@@ -49,16 +49,13 @@ public class TestProcessDocFacade {
 			File testFile = new File( "target/test_coverage_process_doc_facade.md" );
 			testFile.delete();
 			facade.process( "test-chain" , DocConfig.TYPE_MD, context, testFile  );
-			Assert.assertTrue( testFile.exists() );
-		} );	
+			return testFile.exists();
+		} ) );
 	}
 	
 	@Test
 	public void test002() {
-		SafeFunction.apply( () -> {
-			DocProcessConfig facade = DocProcessConfig.loadConfigSafe( "cl://"+TEST_PROCESS_PATH );
-			Assert.assertNotNull( facade );
-		} );	
+		Assert.assertNotNull( SafeFunction.get( () -> DocProcessConfig.loadConfigSafe( "cl://"+TEST_PROCESS_PATH ) ) );
 	}
 	
 	@Test

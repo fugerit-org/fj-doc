@@ -89,12 +89,12 @@ public class TestDocValidator {
 	
 	@Test
 	public void testValidateFail() {
-		try ( Reader reader = new ReaderFail() ) {
-			SAXParseResult result = DocValidator.validate( reader );
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				SAXParseResult result = DocValidator.validate( reader );
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 
 	@Test
