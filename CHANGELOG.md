@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - [fj-doc-freemarker] back color handling in html check
+- [fj-doc-maven-plugin] removed template reference to font.
+
 
 ## [8.6.5] - 2024-08-23
 
