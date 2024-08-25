@@ -1,7 +1,6 @@
 package test.org.fugerit.java.doc.base.facade;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.junit.Assert;

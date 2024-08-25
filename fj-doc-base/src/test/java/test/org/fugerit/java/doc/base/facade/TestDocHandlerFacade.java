@@ -70,13 +70,13 @@ public class TestDocHandlerFacade {
 	@Test
 	public void testFullMap() {
 		DocHandlerFacade facade = new DocHandlerFacade();
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			// for full map testing
 			facade.registerHandlerAndId( "test-1" , new TestDocTypeHandler( DocConfig.TYPE_PDF , DocConfig.FORMAT_PDF_A_1B ), true );
 			facade.registerHandlerAndId( "test-2" , new TestDocTypeHandler( DocConfig.TYPE_PDF , DocConfig.TYPE_PDF ), true );
 			facade.registerHandlerAndId( DocConfig.TYPE_PDF , new TestDocTypeHandler( DocConfig.TYPE_PDF , DocConfig.TYPE_PDF ), true );
-			Assert.assertNotNull( facade.findHandler( DocConfig.FORMAT_PDF_A_1B ) );
-		} );
+			return facade.findHandler( DocConfig.FORMAT_PDF_A_1B );
+		} ) );
 		
 	}
 	

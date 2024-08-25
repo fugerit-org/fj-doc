@@ -50,7 +50,7 @@ public class TestDocXmlParser extends BasicTest {
 		SimpleValue<Boolean> res = new SimpleValue<>( true );
 		runTestEx( () -> {
 			String fullPath = "sample/"+path+".xml";
-			logger.info( "validate -> {}", fullPath );
+			logger.info( "validate -> {}, valid : {}, exception : {}", fullPath, valid, exception );
 			DocParser parser = new DocXmlParser();
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( fullPath ) ) {
 				DocValidationResult result = parser.validateResult( new InputStreamReader( is ) );

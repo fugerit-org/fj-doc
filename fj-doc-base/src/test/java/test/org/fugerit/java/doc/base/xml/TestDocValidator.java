@@ -99,32 +99,32 @@ public class TestDocValidator {
 
 	@Test
 	public void testValidateVersionFail() {
-		try ( Reader reader = new ReaderFail() ) {
-			SAXParseResult result = DocValidator.validateVersion( reader );
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				SAXParseResult result = DocValidator.validateVersion( reader );
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 
 	@Test
 	public void testValidateLoggerFail() {
-		try ( Reader reader = new ReaderFail() ) {
-			boolean result = DocValidator.logValidation( reader, log );
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				boolean result = DocValidator.logValidation( reader, log );
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 	
 	@Test
 	public void testGetXsdVersion() {
-		try ( Reader reader = new ReaderFail() ) {
-			String result = DocValidator.getXsdVersion(reader);
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				String result = DocValidator.getXsdVersion(reader);
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 		
 }

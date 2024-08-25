@@ -1,7 +1,5 @@
 package test.org.fugerit.java.doc.yaml.parse;
 
-import static org.junit.Assert.fail;
-
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
