@@ -383,8 +383,6 @@ public class DocParserContext {
 			  this.handleStartPageBreak();
 		    break;
 		  case DocContainer.TAG_NAME_META:
-			  this.handleStartMeta();				// meta and metadata are aliases
-		    break;
 		  case DocContainer.TAG_NAME_METADATA:
 			  this.handleStartMeta();				// meta and metadata are aliases
 		    break;
@@ -395,14 +393,10 @@ public class DocParserContext {
 			  this.handleStartInfo(props);
 		    break;
 		  case DocHeader.TAG_NAME:
-			  this.handleStartHeader( qName, props );		// ext version and normal basic version of header / footer use the same method
-		    break;
-		  case DocFooter.TAG_NAME:
-			  this.handleStartFooter( qName, props);		// ext version and normal basic version of header / footer use the same method
-		    break;
 		  case DocHeader.TAG_NAME_EXT:
 			  this.handleStartHeader( qName, props );		// ext version and normal basic version of header / footer use the same method
 		    break;
+		  case DocFooter.TAG_NAME:
 		  case DocFooter.TAG_NAME_EXT:
 			  this.handleStartFooter( qName, props);		// ext version and normal basic version of header / footer use the same method
 		    break;
@@ -431,14 +425,18 @@ public class DocParserContext {
 			  this.handleStartBookmark(props);
 		    break;
 		  default:
-			String message = "Element not found : "+qName;
-			if ( failWhenElementNotFound ) {
-				throw new ConfigRuntimeException( message );
-			} else {
-				log.warn( message );
-			}
+			this.handleDefault( qName );
 		}
 		this.handleStartFinalJob(qName, props);
+	}
+
+	private void handleDefault( String qName ) {
+		String message = "Element not found : "+qName;
+		if ( failWhenElementNotFound ) {
+			throw new ConfigRuntimeException( message );
+		} else {
+			log.warn( message );
+		}
 	}
 
 	private static void handleHeaderFooter( DocHeaderFooter headerFooter, Properties atts ) {
