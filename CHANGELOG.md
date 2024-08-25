@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-maven-plugin] verify plugin using FreeMarkerTemplateSyntaxVerifier
 - [fj-doc-maven-plugin] m2e lifecycle configuration
-- [fj-doc-freemarker] tool FreeMarkerTemplateSyntaxVerifier (check for FreeMarker templates syntax)
+- [fj-doc-freemarker] tool FreeMarkerTemplateSyntaxVerifier (check for FreeMarker templates syntax) with report
 
 ### Fixed
 

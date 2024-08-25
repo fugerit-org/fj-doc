@@ -2,7 +2,21 @@
 <freemarker-doc-process-config
 	xmlns="https://freemarkerdocprocess.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" >
+
+	<docHandlerConfig registerById="true">
+
+		<!-- Type handler for markdown format -->
+		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+		<!-- Type henalder for xml format, generates the source xml:doc -->
+		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+
+		<!-- Type handlers for html using freemarker -->
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
+		<!-- Type handlers for html using freemarker (fragment version, only generates body content no html or head part -->
+		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+
+	</docHandlerConfig>
 
 	<docChain id="base-freemarker">
 		<chainStep stepType="config">
@@ -40,6 +54,10 @@
 			<map name="configModel" value="configModel"/>
 		</chainStep>
 		<chainStep stepType="complex" template-path="freemarker-doc-process-config-stub.ftl"/>
+	</docChain>
+
+	<docChain id="freemarker-verify-syntax-report" parent="base-freemarker">
+		<chainStep stepType="complex" map-all="1" template-path="${chainId}.ftl"/>
 	</docChain>
 
 </freemarker-doc-process-config>

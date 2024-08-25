@@ -7,6 +7,7 @@ import org.fugerit.java.core.util.result.Result;
 
 import java.io.FileFilter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,8 +20,12 @@ public class VerifyTemplateOutput {
     @Getter
     private List<VerifyTemplateInfo> infos;
 
+    @Getter
+    private Date creationTime;
+
     public VerifyTemplateOutput() {
         this.infos = new ArrayList<>();
+        this.creationTime = new Date();
     }
 
     /**

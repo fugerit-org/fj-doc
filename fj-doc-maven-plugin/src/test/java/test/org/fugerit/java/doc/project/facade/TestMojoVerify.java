@@ -13,6 +13,11 @@ public class TestMojoVerify {
 
     private static final String PATH_KO = "src/test/resources/fj_doc_test/template-fail";
 
+    private static final String OUTPUT_1 = "target/report-1";
+
+    private static final String OUTPUT_2 = "target/report-2";
+
+
     @Test
     public void testMojoVerifyOk() throws MojoExecutionException, MojoFailureException {
         SimpleValue<Boolean> res = new SimpleValue<>( Boolean.FALSE );
@@ -22,6 +27,8 @@ public class TestMojoVerify {
                 this.failOnErrors=true;
                 this.templateFilePattern = ".{0,}[.]ftl";
                 this.templateBasePath = PATH_OK;
+                this.generateReport = true;
+                this.reportOutputFolder = OUTPUT_1;
                 super.execute();
                 res.setValue( Boolean.TRUE );
             }
@@ -54,6 +61,8 @@ public class TestMojoVerify {
             public void execute() throws MojoExecutionException, MojoFailureException {
                 this.failOnErrors=true;
                 this.templateBasePath = PATH_KO;
+                this.generateReport = true;
+                this.reportOutputFolder = OUTPUT_2;
                 super.execute();
                 res.setValue( Boolean.TRUE );
             }

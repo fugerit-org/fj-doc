@@ -27,6 +27,12 @@ public class MojoVerify extends AbstractMojo {
     @Parameter(property = "failOnErrors", defaultValue = "true", required = true)
     protected boolean failOnErrors;
 
+    @Parameter(property = "generateReport", defaultValue = "false", required = false)
+    protected boolean generateReport;
+
+    @Parameter(property = "reportOutputFolder", required = false)
+    protected String reportOutputFolder;
+
     private void addIfPresent( Properties params, String key, String value ) {
         if ( value != null ) {
             this.getLog().info( String.format( "setting verifier parameter : %s -> %s", key, value ) );
@@ -46,6 +52,8 @@ public class MojoVerify extends AbstractMojo {
         Properties params = new Properties();
         this.addIfPresent( params, FreeMarkerTemplateSyntaxVerifier.PARAM_VERSION, this.freemarkerVersion );
         this.addIfPresent( params, FreeMarkerTemplateSyntaxVerifier.PARAM_TEMPLATE_FILE_PATTERN, this.templateFilePattern );
+        this.addIfPresent( params, FreeMarkerTemplateSyntaxVerifier.PARAM_GENERATE_REPORT, String.valueOf( this.generateReport ) );
+        this.addIfPresent( params, FreeMarkerTemplateSyntaxVerifier.PARAM_REPORT_OUTPUT_FOLDER, this.reportOutputFolder );
         FreeMarkerTemplateSyntaxVerifier verifier = new FreeMarkerTemplateSyntaxVerifier();
         VerifyTemplateOutput output = verifier.createConfigurationAndVerify( baseFolder, params );
         this.getLog().info( String.format( "verify output resultCode %s, checked templates : %s", output.getResultCode(), output.getInfos().size() ) );
