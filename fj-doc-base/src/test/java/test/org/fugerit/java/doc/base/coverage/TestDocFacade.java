@@ -74,38 +74,38 @@ public class TestDocFacade {
 	
 	@Test
 	public void testParseRE001() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
-				Assert.assertNotNull( DocFacade.parseRE( reader ) );
+				 return DocFacade.parseRE( reader );
 			}
-		});	
+		}) );
 	}
 	
 	@Test
 	public void testParseRE002() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
-				Assert.assertNotNull( DocFacade.parseRE( reader, DocFacadeSource.SOURCE_TYPE_XML ) );
+				 return DocFacade.parseRE( reader, DocFacadeSource.SOURCE_TYPE_XML );
 			}
-		});	
+		}) );
 	}
 	
 	@Test
 	public void testValidate001() {
-		SafeFunction.apply( () -> {
+		Assert.assertTrue( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
-				Assert.assertTrue( DocFacade.validate( reader ) );
+				 return DocFacade.validate( reader );
 			}
-		});	
+		}) );
 	}
 	
 	@Test
 	public void testParse002() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
-				Assert.assertNotNull( DocFacade.parse( reader, new DocHelper() ) );
+				 return DocFacade.parse( reader, new DocHelper() );
 			}
-		});	
+		}) );
 	}
 	
 }

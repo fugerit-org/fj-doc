@@ -63,7 +63,7 @@ public class TestProcessDocFacade {
 	
 	@Test
 	public void test003() {
-		SafeFunction.apply( () -> {
+		Assert.assertTrue( SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( TEST_PROCESS_PATH ) ) {
 				DocProcessConfig facade = new DocProcessConfig();
 				DocProcessConfig.loadConfig(is, facade);	
@@ -77,8 +77,9 @@ public class TestProcessDocFacade {
 				Assert.assertNotNull( facade.getIdSet() );
 				Assert.assertNotNull( facade.getDataList( TEST_CHAIN_ID ) );
 				facade.setChain( TEST_CHAIN_ID , chain );
+				return Boolean.TRUE;
 			}
-		} );	
+		} ) );
 	}
 	
 }

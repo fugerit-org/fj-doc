@@ -92,9 +92,8 @@ public class TestCoverage extends BasicTest {
 	
 	@Test
 	public void test02() {
-		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
-			Assert.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) );
-		} );
+		Arrays.asList( TEST_LIST ).stream().forEach( c -> Assert.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) ) );
+		Assert.assertTrue( Boolean.TRUE );
 	}
 	
 	private static final Configuration CFG = SafeFunction.get( () -> {
@@ -134,9 +133,8 @@ public class TestCoverage extends BasicTest {
 
 	@Test
 	public void test01() {
-		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
-			Assert.assertTrue( this.workerAlt( c ) );
-		} );
+		Arrays.asList( TEST_LIST ).stream().forEach( c -> Assert.assertTrue( this.workerAlt( c ) ) );
+		Assert.assertTrue( Boolean.TRUE );
 	}
 	
 	
