@@ -25,6 +25,7 @@ public class XmlToJsonConverterNG extends XmlToJsonConverter {
 	
 	@Override
 	public ObjectNode handleTag(ObjectMapper mapper, Element currentTag, ObjectNode currentNode) {
+		ObjectNode resultNode = currentNode;
 		String tagName = currentTag.getTagName();
 		// special handling of metadata section
 		if ( this.isMetaSection(tagName) ) {
@@ -44,13 +45,13 @@ public class XmlToJsonConverterNG extends XmlToJsonConverter {
 				}
 			}
 			if ( !infoNode.isEmpty() ) {
-				currentNode.set( DocInfo.TAG_NAME , infoNode );
+				resultNode.set( DocInfo.TAG_NAME , infoNode );
 			}
-			currentNode.set( this.getPropertyElements(), kidsNode );
+			resultNode.set( this.getPropertyElements(), kidsNode );
 		} else {
-			currentNode = super.handleTag(mapper, currentTag, currentNode);
+			resultNode = super.handleTag(mapper, currentTag, currentNode);
 		}
-		return currentNode;
+		return resultNode;
 	}
 	
 	@Override
