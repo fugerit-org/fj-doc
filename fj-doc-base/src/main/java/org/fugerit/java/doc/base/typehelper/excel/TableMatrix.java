@@ -60,19 +60,20 @@ public class TableMatrix implements Serializable {
 			this.cn++;	
 		}
 		DocCell p = s;
+		DocCell current = s;
 		if ( this.getCellMatrix( this.rn , this.cn ) == null ) {
 			int counterRS = 0;
 			while ( counterRS < rs ) {
 				int counterCS = 0;
 				while ( counterCS < cs ) {
-					this.setCell( s , p, this.rn+counterRS, this.cn+counterCS );
-					s = null;
+					this.setCell( current , p, this.rn+counterRS, this.cn+counterCS );
+					current = null;
 					counterCS++;
 				}
 				counterRS ++;
 			}
 		} else {
-			this.setNext( s, rs, cs );
+			this.setNext( current, rs, cs );
 		}
 	}
 	

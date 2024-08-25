@@ -30,10 +30,11 @@ public class ExcelHelperUtils {
 	
 	public static String convertComma( String s ) {
 		int index = s.indexOf( ',' );
+		String res = s;
 		if ( index!=-1 ) {
-			s = s.substring( 0, index )+"."+s.substring( index+1 );
+			res = s.substring( 0, index )+"."+s.substring( index+1 );
 		}
-		return s; 	
+		return res;
 	}	
 	
 	public static String removeDots( String s ) {
@@ -46,9 +47,7 @@ public class ExcelHelperUtils {
 	}
 	
 	public static String prepareNumber( String s ) {
-		s = removeDots( s );
-		s = convertComma( s );
-		return s;
+		return  convertComma( removeDots( s ) );
 	}
 	
 }

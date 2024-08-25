@@ -41,14 +41,15 @@ public class TestDocJsonToXml {
 	
 	@Test
 	public void testConvert() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotEquals( "" ,
+		SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.json" ) );
 					StringWriter writer = new StringWriter() ) {
 				DocJsonToXml converter = new DocJsonToXml();
 				converter.writerAsXml(reader, writer);
-				Assert.assertNotEquals( "" , writer.toString() );
+				return writer.toString();
 			}
-		} );
+		} ) );
 	}
 	
 	@Test
