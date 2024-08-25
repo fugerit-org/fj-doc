@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- obsolete [docgen](https://mtmacdonald.github.io/docgen/docs/index.html) folder.
+
 ## [8.7.1] - 2024-08-25
 
 ### Changed
