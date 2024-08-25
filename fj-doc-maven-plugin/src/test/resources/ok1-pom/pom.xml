@@ -22,5 +22,9 @@
 	</organization>
 	
 	<url>https://www.fugerit.org/</url>
+
+	<build>
+
+	</build>
 		
 </project>

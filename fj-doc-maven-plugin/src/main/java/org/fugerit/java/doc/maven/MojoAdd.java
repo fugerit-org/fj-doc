@@ -35,6 +35,9 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addExclusions", required = false)
     protected String addExclusions;
 
+    @Parameter(property = "addVerifyPlugin", defaultValue = "true", required = true)
+    protected boolean addVerifyPlugin;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         String foundVersion = VersionCheck.findVersion( this.version );
@@ -44,6 +47,7 @@ public class MojoAdd extends AbstractMojo {
         context.setForce( this.force );
         context.setAddExclusions( addExclusions );
         context.setExcludeXmlApis( this.excludeXmlApis );
+        context.setAddVerifyPlugin( this.addVerifyPlugin );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addVenusToMavenProject( context );
     }

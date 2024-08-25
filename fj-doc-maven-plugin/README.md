@@ -41,15 +41,16 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 *Parameters*
 
-| parameter      | required | default         | description                                                                                       |
-|----------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
-| version        | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.5')                                               |
-| extensions     | true     | base,freemarker | List of fj-doc core modules to add (*)                                                            |
-| projectFolder  | true     | .               | Maven project base folder                                                                         |
-| addDocFacade   | true     | true            | If true, a stub doc configuration helper will be created                                          |
-| force          | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration) |
-| excludeXmlApis | false    | false           | It will exclude dependency xml-apis:xml-apis                                                      |
-| addExclusions  | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}         |
+| parameter       | required | default         | description                                                                                       |
+|-----------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
+| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.5')                                               |
+| extensions      | true     | base,freemarker | List of fj-doc core modules to add (*)                                                            |
+| projectFolder   | true     | .               | Maven project base folder                                                                         |
+| addDocFacade    | true     | true            | If true, a stub doc configuration helper will be created                                          |
+| force           | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration) |
+| excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                      |
+| addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}         |
+| addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                |
 
 
 
@@ -89,7 +90,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/re
     <version>${fj-doc-version}</version>
     <executions>
       <execution>
-        <id>daogen</id>
+        <id>freemarker-verify</id>
         <phase>compile</phase>
         <goals>
           <goal>verify</goal>
@@ -97,9 +98,13 @@ mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/re
       </execution>
     </executions>
     <configuration>
+      <!-- Where the FreeMarker templates are located -->
       <templateBasePath>${project.basedir}/src/main/resources/fugerit-blank/template</templateBasePath>
-      <generateReport>true</generateReport>
+      <!-- WARNING: if set to 'true', build will fail when at least one syntax error is found -->
       <failOnErrors>true</failOnErrors>
+      <!-- If 'true' a report will be generated (when 'true', param reportOutputFolder is required) -->
+      <generateReport>true</generateReport>
+      <!-- Template syntax verify report output folder -->
       <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>
     </configuration>
   </plugin>

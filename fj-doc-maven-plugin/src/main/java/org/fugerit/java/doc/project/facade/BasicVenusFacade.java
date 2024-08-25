@@ -1,12 +1,15 @@
 package org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.maven.model.Dependency;
-import org.apache.maven.model.DependencyManagement;
-import org.apache.maven.model.Exclusion;
-import org.apache.maven.model.Model;
+import org.apache.maven.model.*;
+import org.apache.maven.plugin.lifecycle.Execution;
+import org.codehaus.plexus.util.xml.Xpp3Dom;
+import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.io.helper.HelperIOException;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.freemarker.tool.FreeMarkerTemplateSyntaxVerifier;
 import org.maxxq.maven.dependency.ModelIO;
 
 import java.io.*;
@@ -100,8 +103,44 @@ public class BasicVenusFacade {
             }
         }
         log.info( "end dependencies size : {}", model.getDependencies().size() );
+        // addVerifyPlugin?
+        log.info( "addVerifyPlugin : {}", context.isAddVerifyPlugin() );
+        addPlugin( context, model );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
             modelIO.writeModelToStream( model, pomStream );
+        }
+    }
+
+    private static void addPlugin( VenusContext context, Model model ) throws IOException {
+        if ( context.isAddVerifyPlugin() ) {
+            Build build = model.getBuild();
+            if ( build == null ) {
+                build = new Build();
+                model.setBuild( build );
+            }
+            List<Plugin> plugins = model.getBuild().getPlugins();
+            Plugin plugin = new Plugin();
+            plugin.setGroupId( GROUP_ID );
+            plugin.setArtifactId( "fj-doc-maven-plugin" );
+            plugin.setVersion( "${"+KEY_VERSION+"}" );
+            PluginExecution execution = new PluginExecution();
+            execution.setId( "freemarker-verify" );
+            execution.setPhase( "compile" );
+            execution.addGoal( "verify" );
+            plugin.getExecutions().add( execution );
+            String xml = "<configuration>\n" +
+                    "      <templateBasePath>${project.basedir}/src/main/resources/"+context.getArtificatIdForFolder()+"/template</templateBasePath>\n" +
+                    "      <generateReport>true</generateReport>\n" +
+                    "      <failOnErrors>true</failOnErrors>\n" +
+                    "      <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>\n" +
+                    "    </configuration>";
+            HelperIOException.apply( () -> {
+                try ( StringReader sr = new StringReader( xml ) ) {
+                    Xpp3Dom dom = Xpp3DomBuilder.build( sr );
+                    plugin.setConfiguration( dom );
+                }
+            });
+            plugins.add( plugin );
         }
     }
 

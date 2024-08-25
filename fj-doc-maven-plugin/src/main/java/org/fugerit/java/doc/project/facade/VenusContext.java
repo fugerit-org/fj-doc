@@ -44,6 +44,9 @@ public class VenusContext {
     @Getter @Setter
     private String addExclusions;
 
+    @Getter @Setter
+    private boolean addVerifyPlugin;
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );

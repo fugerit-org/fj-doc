@@ -43,15 +43,18 @@ public class TestAddVenusFacade {
             String moduleList = "fj-doc-base,base-json,mod-fop,mod-opencsv,mod-poi";
             boolean addFacade = false;
             boolean excludeXmlApis = false;
+            boolean addVerifyPlugin = false;
             if ( count == 0 ) {
                 moduleList = "base,freemarker";
                 addFacade = true;
+                addVerifyPlugin = true;
             } else if ( count == 3 ) {
                 excludeXmlApis = true;
             }
             VenusContext context = new VenusContext( projectDir, this.getVersion(), moduleList );
             context.setExcludeXmlApis( excludeXmlApis );
             context.setAddDocFacace( addFacade );
+            context.setAddVerifyPlugin( addVerifyPlugin );
             boolean result = AddVenusFacade.addVenusToMavenProject( context );
             Assert.assertTrue( result );
             Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );
@@ -72,6 +75,7 @@ public class TestAddVenusFacade {
                     this.addDocFacade = true;
                     this.force = true;
                     this.excludeXmlApis = true;
+                    this.addVerifyPlugin = true;
                     super.execute();
                 }
             };
