@@ -37,7 +37,7 @@ public class TestYamlParser {
 	
 	private boolean validateWorker( String path, boolean valid, boolean exception, boolean parseVersion ) {
 		String fullPath = "sample/"+path+".yaml";
-		logger.info( "validate -> {}", fullPath );
+		logger.info( "validate -> {}, valid : {}, exception : {}, parseVersion : {}", fullPath, valid, exception, parseVersion );
 		DocParser parser = new DocYamlParser();
 		return SafeFunction.get( () -> {
 			try ( Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( fullPath ) ) ) {
@@ -98,12 +98,13 @@ public class TestYamlParser {
 
 	@Test
 	public void testFacade() {
-		SafeFunction.apply( () -> {
-			try ( InputStreamReader reader = new InputStreamReader( 
-					ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.yaml" ) ) ) {
-				Assert.assertNotNull( DocJsonFacade.parse( reader ) );
-			}
-		} );
+		Assert.assertNotNull( SafeFunction.get( () -> {
+				try ( InputStreamReader reader = new InputStreamReader(
+						ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.yaml" ) ) ) {
+					 return DocJsonFacade.parse( reader );
+				}
+			} )
+		);
 	}
 	
 }
