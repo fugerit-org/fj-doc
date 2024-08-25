@@ -133,12 +133,13 @@ public class DocHandlerFactory extends HashMap<String, DocHandlerFacade> {
 	 * @return				the doc handler facade
 	 */
 	public static DocHandlerFacade register( FactoryCatalog catalog, String useCatalog  ) {
+		String checkCatalog = useCatalog;
 		DocHandlerFacade facade = null;
-		if ( useCatalog == null ) {
-			useCatalog = catalog.getGeneralProps().getProperty( USE_CATALOG_PROP );
+		if ( checkCatalog == null ) {
+			checkCatalog = catalog.getGeneralProps().getProperty( USE_CATALOG_PROP );
 		}
-		if ( useCatalog != null ) {
-			Collection<FactoryType> col = catalog.getDataList( useCatalog );
+		if ( checkCatalog != null ) {
+			Collection<FactoryType> col = catalog.getDataList( checkCatalog );
 			facade = register( col );
 		}
 		return facade;
