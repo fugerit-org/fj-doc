@@ -3,7 +3,6 @@ package org.fugerit.java.doc.playground;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
-import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.TestConsts;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
 
-@Slf4j
 @QuarkusTest
 class ValRestTest {
 

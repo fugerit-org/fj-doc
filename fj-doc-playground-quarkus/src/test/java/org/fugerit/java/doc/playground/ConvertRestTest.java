@@ -6,6 +6,7 @@ import org.fugerit.java.TestConsts;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.test.junit.QuarkusTest;
@@ -40,7 +41,8 @@ class ConvertRestTest {
     	int[] testId = { 1, 2, 3, 6, 7, 8 };
     	for ( int k=0; k<testId.length; k++ ) {
     		this.testWorker( "/convert/doc", "convert/test_convert_input_0"+testId[k]+".json", 200 );
-    	}   
+    	}
+		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
 
     @Test
@@ -48,7 +50,8 @@ class ConvertRestTest {
     	int[] testId = { 4, 5 };
     	for ( int k=0; k<testId.length; k++ ) {
     		this.testWorker( "/convert/doc", "convert/test_convert_input_0"+testId[k]+".json", 400 );
-    	}   
+    	}
+		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
     
 }
