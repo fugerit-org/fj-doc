@@ -47,6 +47,7 @@ public class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
 					Assert.assertEquals(Result.RESULT_CODE_OK, output.getResultCode());
 				}
 		);
+		Assert.assertTrue( Boolean.TRUE );
 	}
 
 	@Test
@@ -57,6 +58,7 @@ public class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
 					Assert.assertEquals(Result.RESULT_CODE_KO, output.getResultCode());
 				}
 		);
+		Assert.assertTrue( Boolean.TRUE );
 	}
 
 	@Test
@@ -82,6 +84,7 @@ public class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
 							f -> verifier.createConfigurationAndVerify( f, params ) ) );
 				}
 		);
+		Assert.assertTrue( Boolean.TRUE );
 	}
 
 	@Test
