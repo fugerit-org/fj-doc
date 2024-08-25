@@ -58,12 +58,13 @@ public class GenerateFacade {
 		} );
 	}
 	
-	private void handleConfiguration( Configuration configuration, JsonNode node, String ftlData, String chainId ) {
+	private void handleConfiguration( Configuration configuration, JsonNode node, String templateData, String chainId ) {
 		StringTemplateLoader loader = new StringTemplateLoader();
 		StringBuilder chainData = new StringBuilder();
 		ObjectNode oNode = (ObjectNode) node;
 		Iterator<String> fieldNames = oNode.fieldNames();
-		int ftlDirectiveStartIndex = ftlData.indexOf( FTL_DIRECTIVE );
+		int ftlDirectiveStartIndex = templateData.indexOf( FTL_DIRECTIVE );
+		String ftlData = templateData;
 		if ( ftlDirectiveStartIndex != -1 ) {
 			int ftlDirectiveEndIndex = ftlData.indexOf( ">" );
 			String ftlDirective = ftlData.substring( 0, ftlDirectiveEndIndex+1 );

@@ -31,7 +31,7 @@ public class TestExtractContentP7M {
 	
 	@Test
 	public void testP7MOk() {
-		SafeFunction.apply( () -> {
+		Assert.assertTrue( SafeFunction.get( () -> {
 			String path = "src/test/resources/sample/pdf_as_pdf.p7m";
 			File testP7M = new File( path );
 			log.info( "test extract : {}", testP7M.getCanonicalPath() );
@@ -43,8 +43,8 @@ public class TestExtractContentP7M {
 				P7MUtils.extractContent(is, os);
 				FileIO.writeBytes( os.toByteArray() , outputContent );
 			}
-			Assert.assertTrue( outputContent.exists() );
-		} );
+			return outputContent.exists();
+		} ) );
 	}
 	
 }
