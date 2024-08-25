@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Helmet } from 'react-helmet';
 import Playground from './Playground';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import {MenuItem, Select} from "@mui/material";
 import React, { useState } from 'react';

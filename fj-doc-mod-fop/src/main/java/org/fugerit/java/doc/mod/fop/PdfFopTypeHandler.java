@@ -24,6 +24,7 @@ import org.fugerit.java.core.function.UnsafeSupplier;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.xml.TransformerXML;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocCharsetProvider;
@@ -189,7 +190,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ), this.getCharset() ) );
 		FopConfigWrap fopWrap = this.fopWrapSupplier.get();
 		Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
-		TransformerFactory factory = TransformerFactory.newInstance();
+		TransformerFactory factory = TransformerXML.newSafeTransformerFactory();
 		Transformer transformer = factory.newTransformer();
 		Result res = new SAXResult(fop.getDefaultHandler());
 		transformer.transform(xmlSource, res);
