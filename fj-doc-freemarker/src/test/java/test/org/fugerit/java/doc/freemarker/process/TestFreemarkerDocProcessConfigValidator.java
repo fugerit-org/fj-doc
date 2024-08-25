@@ -89,42 +89,42 @@ public class TestFreemarkerDocProcessConfigValidator {
 	
 	@Test
 	public void testValidateFail() {
-		try ( Reader reader = new ReaderFail() ) {
-			SAXParseResult result = FreemarkerDocProcessConfigValidator.validate( reader );
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				SAXParseResult result = FreemarkerDocProcessConfigValidator.validate( reader );
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 
 	@Test
 	public void testValidateVersionFail() {
-		try ( Reader reader = new ReaderFail() ) {
-			SAXParseResult result = FreemarkerDocProcessConfigValidator.validateVersion( reader );
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				SAXParseResult result = FreemarkerDocProcessConfigValidator.validateVersion( reader );
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 
 	@Test
 	public void testValidateLoggerFail() {
-		try ( Reader reader = new ReaderFail() ) {
-			boolean result = FreemarkerDocProcessConfigValidator.logValidation( reader );
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				boolean result = FreemarkerDocProcessConfigValidator.logValidation( reader );
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 	
 	@Test
 	public void testGetXsdVersion() {
-		try ( Reader reader = new ReaderFail() ) {
-			String result = FreemarkerDocProcessConfigValidator.getXsdVersion(reader);
-			fail( "Should not get here : "+result );
-		} catch (Exception e) {
-			Assert.assertTrue( e instanceof XMLException );
-		}
+		Assert.assertThrows( XMLException.class, () -> {
+			try ( Reader reader = new ReaderFail() ) {
+				String result = FreemarkerDocProcessConfigValidator.getXsdVersion(reader);
+				fail( "Should not get here : "+result );
+			}
+		} );
 	}
 	
 }
