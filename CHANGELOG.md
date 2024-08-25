@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.7.1] - 2024-08-25
+
 ### Changed
 
 - [fj-doc-maven-plugin] new param 'addVerifyPlugin' (default 'true') of 'add' plugin
