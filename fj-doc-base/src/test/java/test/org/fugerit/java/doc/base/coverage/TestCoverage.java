@@ -142,22 +142,23 @@ public class TestCoverage extends BasicTest {
 	
 	@Test
 	public void test03() {
-		SafeFunction.apply( () -> {
+		Assert.assertTrue( SafeFunction.get( () -> {
 			File file = new File( "target/test_output.md" );
 			SimpleDocFacade.produce( SimpleMarkdownExtTypeHandler.HANDLER , "cl://coverage/xml/default_doc.xml", file );			
-			Assert.assertTrue( file.exists() );
-		} );
+			return file.exists();
+		} ) );
 	}
 
 	@Test
 	public void test04() {
-		SafeFunction.apply( () -> {
+		int res = SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "coverage/xml/default_doc.xml" ) );
-					ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
-				SimpleDocFacade.produce( SimpleMarkdownExtTypeHandler.HANDLER , reader, buffer  );				
-				Assert.assertNotEquals( 0 , buffer.toByteArray().length );
+				  ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
+				SimpleDocFacade.produce( SimpleMarkdownExtTypeHandler.HANDLER , reader, buffer  );
+				return buffer.toByteArray().length;
 			}
 		} );
+		Assert.assertNotEquals( 0, res );
 	}
 	
 	@Test

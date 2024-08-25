@@ -61,13 +61,15 @@ public class TestDocFacade {
 	
 	@Test
 	public void testParse001() {
-		SafeFunction.apply( () -> {
-			try ( InputStream reader = ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) {
-				DocBase doc =  DocFacade.parse( reader );
-				this.additionalTest(doc);
-				Assert.assertNotNull( doc );
-			}
-		});	
+		Assert.assertNotNull(
+			SafeFunction.get( () -> {
+				try ( InputStream reader = ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) {
+					DocBase doc =  DocFacade.parse( reader );
+					this.additionalTest(doc);
+					return doc;
+				}
+			})
+		);
 	}
 	
 	@Test

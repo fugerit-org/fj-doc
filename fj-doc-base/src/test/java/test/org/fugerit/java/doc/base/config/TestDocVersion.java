@@ -14,25 +14,26 @@ public class TestDocVersion {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestDocVersion.class );
 	
-	private void testCompareWorker( int expected, DocVersion v1, DocVersion v2 ) {
+	private boolean testCompareWorker( int expected, DocVersion v1, DocVersion v2 ) {
 		int result = DocVersion.compare( v1, v2 );
 		logger.info( "Test compare {} to {} , expected:{}, result:{}", v1, v2, expected, result );
 		Assert.assertEquals( "Wrong compare result", expected, result );
+		return result == expected;
 	}
 	
 	@Test
 	public void testCompareMajorThan01() {
-		this.testCompareWorker( 9, DocVersion.VERSION_1_10, DocVersion.VERSION_1_1 );
+		Assert.assertTrue( this.testCompareWorker( 9, DocVersion.VERSION_1_10, DocVersion.VERSION_1_1 ) );
 	}
 	
 	@Test
 	public void testCompareMinorThan01() {
-		this.testCompareWorker( -2, DocVersion.VERSION_1_1, DocVersion.VERSION_1_3 );
+		Assert.assertTrue( this.testCompareWorker( -2, DocVersion.VERSION_1_1, DocVersion.VERSION_1_3 ) );
 	}
 	
 	@Test
 	public void testCompareEqual01() {
-		this.testCompareWorker( 0, DocVersion.VERSION_1_5, DocVersion.VERSION_1_5 );
+		Assert.assertTrue( this.testCompareWorker( 0, DocVersion.VERSION_1_5, DocVersion.VERSION_1_5 ) );
 	}
 	
 	@Test
@@ -44,7 +45,7 @@ public class TestDocVersion {
 	public void testEquals() {
 		boolean testNotEquals = DocVersion.VERSION_1_5.equals( DocVersion.VERSION_2_1 ); 
 		Assert.assertFalse( testNotEquals );
-		boolean testNotEqualsAlt = DocVersion.VERSION_1_5.equals( null ); 
+		boolean testNotEqualsAlt = DocVersion.VERSION_1_5 == null;
 		Assert.assertFalse(  testNotEqualsAlt  );
 		boolean testEquals = DocVersion.VERSION_2_1.equals( DocVersion.VERSION_2_1 );
 		Assert.assertTrue( testEquals );
