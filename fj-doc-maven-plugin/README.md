@@ -70,15 +70,40 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 ## Goal : verify
 
-add Venus Doc Configuration to an existing project
+verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.
 
 *Quickstart* :
+
+### Verify existing FreeMarker configuration
 
 ```shell
 mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/resources/fj_doc_test/template-fail
 ```
 
-verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.
+### Verify FreeMarker configuration at maven build time
+
+```xml
+  <plugin>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-maven-plugin</artifactId>
+    <version>${fj-doc-version}</version>
+    <executions>
+      <execution>
+        <id>daogen</id>
+        <phase>compile</phase>
+        <goals>
+          <goal>verify</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+      <templateBasePath>${project.basedir}/src/main/resources/fugerit-blank/template</templateBasePath>
+      <generateReport>true</generateReport>
+      <failOnErrors>true</failOnErrors>
+      <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>
+    </configuration>
+  </plugin>
+```
 
 | parameter           | required | default       | description                                                                                                        |
 |---------------------|----------|---------------|--------------------------------------------------------------------------------------------------------------------|
@@ -86,4 +111,5 @@ verify the templates in a FreeMarker configuration (folder), note: it can be use
 | freemarkerVersion   | false    | latest stable | FreeMarker configuration ( i.e. 2.3.33)                                                                            |
 | templateFilePattern | false    |               | Filter on templates to be checked, regex on filename, i.e. ".{0,}[.]ftl"                                           |
 | failOnErrors        | true     | true          | If set to true the build will fail when template syntax errors will be found, otherwise errors will be only logged |
-
+| generateReport      | false    | false         | If set to true a report will be generated (and property 'reportOutputFolder' will be olso required).               |
+| reportOutputFolder  | false    |               | Output folder for the generated report.                                                                            |

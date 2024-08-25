@@ -119,7 +119,7 @@ public class FreeMarkerTemplateSyntaxVerifier {
         } );
     }
 
-    public void generateReport( VerifyTemplateOutput output, Properties params ) throws IOException {
+    public void generateReport( VerifyTemplateOutput output, Properties params ) {
         boolean generateReport = BooleanUtils.isTrue( params.getProperty( PARAM_GENERATE_REPORT ) );
         if ( generateReport ) {
             String reportOutputFolder = params.getProperty( PARAM_REPORT_OUTPUT_FOLDER );
@@ -136,6 +136,7 @@ public class FreeMarkerTemplateSyntaxVerifier {
                 try (ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
                     FreeMarkerDocProcess.getInstance().fullProcess( chainId, DocProcessContext.newContext( "output", output ), type, buffer );
                     FileIO.writeBytes( buffer.toByteArray(), reportFile );
+                    log.info( "report generated : {}", reportFile.getCanonicalPath() );
                 } catch ( Exception e ) {
                     throw new ConfigRuntimeException(
                             String.format( "Fail to generate report in folder %s, error : %s", reportOutputFolder, e.getMessage() ), e );
