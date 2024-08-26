@@ -16,14 +16,15 @@ public class TestGenerateStub extends BasicTest {
 
 	@Test
 	public void genTest001() {
-		runTestEx( () -> {
+		int result = SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "generate-stub-test/doc-process-autodoc.xml" );
 					StringWriter writer = new StringWriter() ) {
 				Properties props = new Properties();
 				GenerateStub.generate( writer, props, is );
-				Assert.assertNotEquals( 0 , writer.toString().length() );
+				return writer.toString().length();
 			}
 		} );
+		Assert.assertNotEquals( 0 , result );
 	}
 	
 	@Test
