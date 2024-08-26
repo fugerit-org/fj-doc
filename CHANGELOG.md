@@ -41,10 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- quarkus version set to 3.14.0
-
-### Changed
-
+- [fj-doc-playground-quarku] quarkus version set to 3.14.0
 - [fj-doc-maven-plugin] new parameter excludeXmlApis (could be needed with quarkus)
 - [fj-doc-maven-plugin] new parameter addExclusions
 
@@ -466,7 +463,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - LICENSE place holder
-- page-break tag now rendered in html as </div><div> by freemarker html type handler
+- page-break tag now rendered in html as `</div><div>` by freemarker html type handler
 
 ## [3.1.0] - 2023-10-01
 
@@ -687,7 +684,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-bom version set to 1.3.1
 - Added build metadata to artifacts (https://github.com/fugerit-org/fj-bom/issues/2) (#54)
 - Sonar Cloud Maven Build set to use maven profile sonarfugerit and github environmental variable for sonarKey (#54)
-- New changelog style based on : [https://github.com/olivierlacan/keep-a-changelog](https://github.com/olivierlacan/keep-a-changelog) (#53)
+- New changelog style based on : <https://github.com/olivierlacan/keep-a-changelog> (#53)
 - some link in the README.md
 
 ### Removed
