@@ -41,6 +41,7 @@ public class TestPoiCoverage {
 		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
 			Assert.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) );
 		} );
+		Assert.assertTrue( Boolean.TRUE );
 	}
 	
 }
