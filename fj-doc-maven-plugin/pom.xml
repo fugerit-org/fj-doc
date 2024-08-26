@@ -17,7 +17,7 @@
 	<description>Maven plugin to add Fugerit Venus Doc to a mavne project (fj-doc:generate)</description>
 
 	<properties>
-		<mvn-site-plugin-version>3.12.1</mvn-site-plugin-version>
+		<mvn-site-plugin-version>3.20.0</mvn-site-plugin-version>
 		<mvn-project-info-reports-plugin>3.6.0</mvn-project-info-reports-plugin>
 		<!-- 'report' goal seems not to work with lastest version, 3.9.0 --> 
 		<mvn-plugin-version>3.13.1</mvn-plugin-version>
