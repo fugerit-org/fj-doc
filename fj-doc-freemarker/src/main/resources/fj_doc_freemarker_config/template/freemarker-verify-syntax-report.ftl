@@ -39,7 +39,7 @@
     <#if output?? && output.infos?? && output.infos?size != 0 >
         <para>Total number of templates verified : ${output.infos?size}</para>
         <para>Total number of templates with syntax errors : ${output.errors?size}</para>
-        <#if output.errors?size != 0 ><para>Template with errors :<#list output.errorsTemplateIds as current> <phrase link="#${current}">${current}</phrase></#list></para></#if>
+        <#if output.errors?size != 0 ><para>Templates with syntax errors :<#list output.errorsTemplateIds as current> <phrase link="#${current}">${current}</phrase></#list></para></#if>
         <table columns="3" colwidths="30;20;50"  width="100" id="data-table" padding="2">
             <row header="true">
                 <cell align="center"><para>Template</para></cell>
