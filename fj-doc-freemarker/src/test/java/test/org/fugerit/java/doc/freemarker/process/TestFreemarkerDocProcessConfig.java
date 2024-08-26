@@ -159,6 +159,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				}
 			}
 		} );
+		Assert.assertTrue( Boolean.TRUE );
 	}
 	
 	

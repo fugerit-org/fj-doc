@@ -132,12 +132,12 @@ public class TestDocXmlParser extends BasicTest {
 	@Test
 	public void parseFail() {
 		boolean failOnElementNotFound = true;
-		runTestEx( () -> {
+		Assert.assertThrows( DocException.class , () -> {
 			String fullPath = "cl://coverage/xml/default_doc_fail2.xml";
 			logger.info( "validate -> {}", fullPath );
 			DocParser parser = new DocXmlParser( failOnElementNotFound );
 			try ( Reader reader = StreamHelper.resolveReader( fullPath ) ) {
-				Assert.assertThrows( DocException.class ,	() -> parser.parse(reader) );
+				parser.parse(reader);
 			}
 		} );
 	}

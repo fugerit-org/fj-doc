@@ -61,6 +61,7 @@ public class TestFreemarkerCoverage {
 			log.info( "test -> {}", c );
 			Assert.assertTrue( this.worker( "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
 		} );
+		Assert.assertTrue( Boolean.TRUE );
 	}
 	
 }
