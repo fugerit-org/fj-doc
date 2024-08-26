@@ -56,7 +56,7 @@ public class TestPdfFopTypePooledHandler extends BasicTest {
 				}
 			};
 			Thread t = new Thread( r );
-			t.run();
+			t.start();
 			log.info( "thread started : {}", k );
 		}
 		Assert.assertTrue( Boolean.TRUE );

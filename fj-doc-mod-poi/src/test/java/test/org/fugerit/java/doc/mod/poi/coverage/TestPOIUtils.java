@@ -23,27 +23,27 @@ public class TestPOIUtils {
 	
 	@Test
 	public void xlsxFormatStyle() {
-		SafeFunction.apply( () -> {
-			boolean ok = true;
+		Assert.assertTrue( SafeFunction.get( () -> {
+			boolean ok = Boolean.TRUE;
 			PoiUtils.xlsxFormatStyle(null, null, null);
 			PoiUtils.xlsxFormatStyle(null, new XSSFCellStyle( null), null );
-			Assert.assertTrue( ok );
-		} );
+			return ok;
+		} ) );
 	}
 	
 	@Test
 	public void xlsxFontStyle() {
-		SafeFunction.apply( () -> {
-			boolean ok = true;
+		Assert.assertTrue( SafeFunction.get( () -> {
+			boolean ok = Boolean.TRUE;
 			PoiUtils.xlsxFontStyle(null, null, null);
-			Assert.assertTrue( ok );
-		} );
+			 return ok;
+		} ) );
 	}
 	
 	@Test
 	public void lsxFormat() {
-		SafeFunction.apply( () -> {
-			boolean ok = true;
+		Assert.assertTrue( SafeFunction.get( () -> {
+			boolean ok = Boolean.TRUE;
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
 					HSSFWorkbook workbook = new HSSFWorkbook( is ) ) {
 				WorkbookHelper helper = new WorkbookHelper(workbook, null);
@@ -51,21 +51,21 @@ public class TestPOIUtils {
 				PoiUtils.xlsFormatStyle(helper, workbook.createCellStyle(), null );
 				PoiUtils.xlsFontStyle(helper, null, new DocCell() );
 			}
-			Assert.assertTrue( ok );
-		} );
+			return ok;
+		} ) );
 	}
 	
 	@Test
 	public void testFindColor() {
-		SafeFunction.apply( () -> {
+		Short test = 31;
+		Assert.assertEquals( test, SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
 					HSSFWorkbook workbook = new HSSFWorkbook( is ) ) {
 				short index = PoiUtils.findClosestColorIndex( workbook , "#dddddd" );
-				short test = 31;
 				log.info( "index - {}", index );
-				Assert.assertEquals( test, index );
+				return index;
 			}
-		} );
+		} ) );
 	}
 	
 	@Test
@@ -73,17 +73,17 @@ public class TestPOIUtils {
 		SafeFunction.apply( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
 					WorkbookHelper helper = PoiUtils.newHelper( false , is ) ) {
-				log.info( "test -> {}", helper.getIndexedColorMap() );
+				log.info( "test 1 -> {}", helper.getIndexedColorMap() );
 				Assert.assertNotNull( helper );
 			}
 		} );
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xlsx_as_xlsx.xlsx" ); 
 					WorkbookHelper helper = PoiUtils.newHelper( true , is ) ) {
-				log.info( "test -> {}", helper.getIndexedColorMap() );
-				Assert.assertNotNull( helper );
+				log.info( "test 2 -> {}", helper.getIndexedColorMap() );
+				return helper;
 			}
-		} );
+		} ) );
 	}
 	
 	private static final IOException FAIL_EX = new IOException( "scenario exception" );

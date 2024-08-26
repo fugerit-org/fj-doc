@@ -424,8 +424,9 @@ public class OpenPpfDocHandler {
 		}
 	}
 	
-	private HeaderFooter createHeaderFooter( DocHeaderFooter container, int align, OpenPdfHelper docHelper ) throws DocumentException, IOException {
-		Iterator<DocElement> it = container.docElements(); 
+	private HeaderFooter createHeaderFooter( DocHeaderFooter container, int inputAlign, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+		int align = inputAlign;
+		Iterator<DocElement> it = container.docElements();
 		Phrase phrase = new Phrase();
 		float leading = (float)-1.0;
 		while ( it.hasNext() ) {
