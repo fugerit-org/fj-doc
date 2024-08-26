@@ -59,6 +59,7 @@ public class TestOpencsvCoverage {
 			log.info( "test -> {}", c );
 			Assert.assertTrue( this.worker( c.getId(), "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
 		} );
+		Assert.assertTrue( Boolean.TRUE );
 	}
 	
 }

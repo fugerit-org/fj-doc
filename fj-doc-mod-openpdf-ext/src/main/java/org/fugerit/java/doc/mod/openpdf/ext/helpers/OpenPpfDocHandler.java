@@ -395,7 +395,8 @@ public class OpenPpfDocHandler {
 		return result;
 	}
 	
-	private void handleHeaderFooterElement( DocElement docElement, float leading, OpenPdfHelper docHelper , Phrase phrase ) throws DocumentException, IOException {
+	private void handleHeaderFooterElement( DocElement docElement, float inputLeading, OpenPdfHelper docHelper , Phrase phrase ) throws DocumentException, IOException {
+		float leading = inputLeading;
 		if ( docElement instanceof DocPhrase ) {
 			DocPhrase docPhrase = (DocPhrase) docElement;
 			Chunk ck = createChunk( docPhrase, docHelper );

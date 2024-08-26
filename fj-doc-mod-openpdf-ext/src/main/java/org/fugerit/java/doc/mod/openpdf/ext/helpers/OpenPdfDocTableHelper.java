@@ -113,8 +113,9 @@ public class OpenPdfDocTableHelper {
 		return fontList;
 	}
 	
-	private static boolean handleCell( Table table, DocCell docCell, boolean startHeader, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+	private static boolean handleCell( Table table, DocCell docCell, boolean setupStartHeader, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
 		OpenPpfDocHandler.setStyle( docTable, docCell );
+		boolean startHeader = setupStartHeader;
 		Cell cell = new Cell();
 		if ( docCell.isHeader() ) {
 			cell.setHeader( true );

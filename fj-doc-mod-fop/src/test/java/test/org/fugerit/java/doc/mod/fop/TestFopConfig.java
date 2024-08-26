@@ -13,27 +13,27 @@ public class TestFopConfig extends BasicTest {
 
 	@Test
 	public void testResolver1() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			FopConfigClassLoaderWrapper wrapper = new FopConfigClassLoaderWrapper( "test", ResourceResolverFactory.createDefaultResourceResolver() );
-			Assert.assertNotNull( this.fullSerializationTest( wrapper ) );
-		} );	
+			return this.fullSerializationTest( wrapper );
+		} ) );
 	}
 
 	@Test
 	public void testResolver2() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			FopConfigClassLoaderWrapper wrapper = new FopConfigClassLoaderWrapper( "test" );
-			Assert.assertNotNull( this.fullSerializationTest( wrapper ) );
-		} );	
+			return this.fullSerializationTest( wrapper );
+		} ) );
 	}
 	
 	@Test
 	public void testResolver3() {
-		SafeFunction.apply( () -> {
+		Assert.assertNotNull( SafeFunction.get( () -> {
 			ResourceResolverWrapper rrw = new ResourceResolverWrapper( ResourceResolverFactory.createDefaultResourceResolver() );
 			FopConfigClassLoaderWrapper wrapper = new FopConfigClassLoaderWrapper( "test", rrw );
-			Assert.assertNotNull( this.fullSerializationTest( wrapper ) );
-		} );	
+			return this.fullSerializationTest( wrapper );
+		} ) );
 	}
 	
 }

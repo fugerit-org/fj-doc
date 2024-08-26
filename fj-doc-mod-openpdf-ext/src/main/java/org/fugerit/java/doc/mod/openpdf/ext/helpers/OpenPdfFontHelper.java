@@ -25,7 +25,8 @@ public class OpenPdfFontHelper {
 		return result;
 	}
 	
-	private static int handleFontStyle( int style, int fontStyle ) {
+	private static int handleFontStyle( int styleValue, int fontStyle ) {
+		int style = styleValue;
 		if ( fontStyle == DocPara.STYLE_BOLD ) {
 			style = Font.BOLD;
 		} else if ( fontStyle == DocPara.STYLE_UNDERLINE ) {
@@ -38,7 +39,8 @@ public class OpenPdfFontHelper {
 		return style;
 	}
 	
-	public static Font createFont( String fontName, String fontPath, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
+	public static Font createFont( String inputFontName, String fontPath, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
+		String fontName = inputFontName;
 		Font font = null;
 		int size = fontSize;
 		int style = Font.NORMAL;
