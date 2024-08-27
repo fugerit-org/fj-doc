@@ -39,7 +39,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 -Dextensions=base,freemarker,mod-fop
 ```
 
-*Parameters*
+### Add Fugerit Venus, parameters
 
 | parameter       | required | default         | description                                                                                       |
 |-----------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
@@ -51,10 +51,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                      |
 | addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}         |
 | addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                |
-
-
-
-*Available extensions*
+### Add Fugerit Venus, available extensions
 
 | short name      | full name              | type handler | description                                                                                             |
 |-----------------|------------------------|--------------|---------------------------------------------------------------------------------------------------------|
@@ -68,6 +65,31 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | base-json       | fj-doc-base-json       |              | add support to use json documents as format for document template                                       |
 | base-yaml       | fj-doc-base-yaml       |              | add support to use yaml documents as format for document template                                       |
 
+
+## Goal : init
+
+Create a new project and add Venus Doc Configuration to it.
+
+*Quickstart* :
+
+```shell
+mvn org.fugerit.java:fj-doc-maven-plugin:init \
+-DgroupId=org.example.doc \
+-DartifactId=fugerit-demo
+```
+
+Project folder will be `./${artifactId}/`.
+
+### Init Fugerit Venus, parameters
+
+| parameter      | required | default        | description          |
+|----------------|----------|----------------|----------------------|
+| groupId        | true     |                | new project group id |
+| artifactId     | true     |                | new project group id |
+| projectVersion | true     | 1.0.0-SNAPSHOT | new project version  |
+| javaRelease    | true     | 21             | java release version |
+
+NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
 
 ## Goal : verify
 

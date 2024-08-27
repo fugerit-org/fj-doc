@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] added init fugerit venus goal
 - [fj-doc-maven-plugin] build order changed, now will build before fj-doc-sample
 - [fj-doc-maven-plugin] new param 'reportOutputFormat' (default 'html') of 'verify' plugin
 
