@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.util.result.Result;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.freemarker.tool.FreeMarkerTemplateSyntaxVerifier;
 import org.fugerit.java.doc.freemarker.tool.verify.VerifyTemplateInfo;
 import org.fugerit.java.doc.freemarker.tool.verify.VerifyTemplateOutput;
@@ -67,6 +68,7 @@ public class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
 		params.setProperty( FreeMarkerTemplateSyntaxVerifier.PARAM_TEMPLATE_FILE_PATTERN, ".{0,}[.]ftl" );
 		params.setProperty( FreeMarkerTemplateSyntaxVerifier.PARAM_GENERATE_REPORT, "1" );
 		params.setProperty( FreeMarkerTemplateSyntaxVerifier.PARAM_REPORT_OUTPUT_FOLDER, "target/report-1" );
+		params.setProperty( FreeMarkerTemplateSyntaxVerifier.PARAM_REPORT_OUTPUT_FORMAT, "not-found" );		// will default to html
 		FreeMarkerTemplateSyntaxVerifier verifier = new FreeMarkerTemplateSyntaxVerifier();
 		Arrays.asList( "src/test/resources/fj_doc_test/template-fail",
 				"src/test/resources/fj_doc_test/template-macro" ).forEach(

@@ -79,6 +79,21 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-fop</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-poi</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-opencsv</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.maxxq.maven</groupId>
 			<artifactId>maxxq-maven</artifactId>
 			<version>1.3.0</version>

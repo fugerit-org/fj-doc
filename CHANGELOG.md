@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] new param 'reportOutputFormat' (default 'html') of 'verify' plugin
+
 ### Removed
 
 - obsolete [docgen](https://mtmacdonald.github.io/docgen/docs/index.html) folder.

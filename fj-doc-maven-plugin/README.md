@@ -110,6 +110,8 @@ mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/re
   </plugin>
 ```
 
+### Verify FreeMarker parameters
+
 | parameter           | required | default       | description                                                                                                        |
 |---------------------|----------|---------------|--------------------------------------------------------------------------------------------------------------------|
 | templateBasePath    | true     |               | Path to base folder containing FreeMarker templates                                                                |
@@ -118,3 +120,5 @@ mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/re
 | failOnErrors        | true     | true          | If set to true the build will fail when template syntax errors will be found, otherwise errors will be only logged |
 | generateReport      | false    | false         | If set to true a report will be generated (and property 'reportOutputFolder' will be olso required).               |
 | reportOutputFolder  | false    |               | Output folder for the generated report.                                                                            |
+| reportOutputFormat  | false    | 'html'        | Output format for the generated report, supported : html (default), pdf, csv, xlsx, md.                            |
+

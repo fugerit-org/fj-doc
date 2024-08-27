@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.project.facade;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.fugerit.java.core.function.SimpleValue;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.maven.MojoVerify;
 import org.junit.Assert;
 import org.junit.Test;
@@ -63,6 +64,7 @@ public class TestMojoVerify {
                 this.templateBasePath = PATH_KO;
                 this.generateReport = true;
                 this.reportOutputFolder = OUTPUT_2;
+                this.reportOutputFormat = DocConfig.TYPE_CSV;
                 super.execute();
                 res.setValue( Boolean.TRUE );
             }

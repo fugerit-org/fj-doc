@@ -46,8 +46,8 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base</artifactId>
-		</dependency>		
-		
+		</dependency>
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-test-helper8</artifactId>

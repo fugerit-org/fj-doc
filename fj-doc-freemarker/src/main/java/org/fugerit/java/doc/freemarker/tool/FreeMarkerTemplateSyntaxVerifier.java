@@ -64,6 +64,11 @@ public class FreeMarkerTemplateSyntaxVerifier {
      */
     public static final String PARAM_REPORT_OUTPUT_FOLDER = "reportOutputFolder";
 
+    /**
+     * Output format for the generated report, supported : html (default), pdf, csv, xlsx, md
+     */
+    public static final String PARAM_REPORT_OUTPUT_FORMAT = "reportOutputFormat";
+
     public static VerifyTemplateOutput doCreateConfigurationAndVerify(File baseFolder) {
         return new FreeMarkerTemplateSyntaxVerifier().createConfigurationAndVerify( baseFolder, new Properties() );
     }
@@ -131,7 +136,11 @@ public class FreeMarkerTemplateSyntaxVerifier {
                     log.info( "{} does not exist, create directories : {}", reportOutputFolder, reportOutputFolderFile.mkdirs() );
                 }
                 String chainId = "freemarker-verify-syntax-report";
-                String type = DocConfig.TYPE_HTML;
+                String type = params.getProperty( PARAM_REPORT_OUTPUT_FORMAT, DocConfig.TYPE_HTML );
+                if ( FreeMarkerDocProcess.getInstance().getFacade().findHandler( type ) == null ) {
+                    log.info( "handler not found : {}, default to : {}", type, DocConfig.TYPE_HTML );
+                    type = DocConfig.TYPE_HTML;
+                }
                 File reportFile = new File( reportOutputFolderFile, chainId+"."+type );
                 try (ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
                     FreeMarkerDocProcess.getInstance().fullProcess( chainId, DocProcessContext.newContext( "output", output ), type, buffer );
