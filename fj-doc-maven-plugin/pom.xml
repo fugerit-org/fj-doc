@@ -20,7 +20,7 @@
 		<mvn-site-plugin-version>3.12.1</mvn-site-plugin-version>
 		<mvn-project-info-reports-plugin>3.6.0</mvn-project-info-reports-plugin>
 		<!-- 'report' goal seems not to work with lastest version, 3.9.0 --> 
-		<mvn-plugin-version>3.13.1</mvn-plugin-version>
+		<mvn-plugin-version>3.14.0</mvn-plugin-version>
 	</properties>
 
 	<licenses>
