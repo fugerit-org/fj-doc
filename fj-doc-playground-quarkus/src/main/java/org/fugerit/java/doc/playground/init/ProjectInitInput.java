@@ -7,7 +7,6 @@ import java.util.List;
 
 public class ProjectInitInput {
 
-    @Getter @Setter private String projectName;
     @Getter @Setter private String groupId;
     @Getter @Setter private String artifactId;
     @Getter @Setter private String projectVersion;

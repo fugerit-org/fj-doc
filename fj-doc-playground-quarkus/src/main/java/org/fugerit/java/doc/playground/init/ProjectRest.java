@@ -16,6 +16,7 @@ import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.project.facade.ModuleFacade;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Base64;
 import java.util.UUID;
 import java.util.zip.ZipEntry;
@@ -80,7 +81,7 @@ public class ProjectRest {
                 byte[] data = buffer.toByteArray();
                 output.setContent( Base64.getEncoder().encodeToString( data ) );
                 log.info( "zip size : {}", data.length );
-                projectDir.delete();
+                Files.delete( projectDir.toPath() );
                 output.setMessage( String.format( "Project init OK : %s:%s, time:%s",
                         input.getGroupId(), input.getArtifactId(),
                         CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) ) );
@@ -147,17 +148,16 @@ public class ProjectRest {
             return;
         }
 
-        FileInputStream fis = new FileInputStream(fileToZip);
-        ZipEntry zipEntry = new ZipEntry(fileName);
-        zos.putNextEntry(zipEntry);
-
-        byte[] bytes = new byte[1024];
-        int length;
-        while ((length = fis.read(bytes)) >= 0) {
-            zos.write(bytes, 0, length);
+        try (FileInputStream fis = new FileInputStream(fileToZip)) {
+            ZipEntry zipEntry = new ZipEntry(fileName);
+            zos.putNextEntry(zipEntry);
+            byte[] bytes = new byte[1024];
+            int length;
+            while ((length = fis.read(bytes)) >= 0) {
+                zos.write(bytes, 0, length);
+            }
         }
 
-        fis.close();
     }
 
 }
