@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-doc-maven-plugin is no on plugin management of fj-doc parent 
 - [fj-doc-sample] fj-doc-maven-plugin:verify configuration
 
+### Fixed
+
+- [fj-doc-maven-plugin] Could not find goal 'verify' <https://github.com/fugerit-org/fj-doc/issues/180>
+
 ## [8.7.4] - 2024-08-28
 
 ### Fixed
