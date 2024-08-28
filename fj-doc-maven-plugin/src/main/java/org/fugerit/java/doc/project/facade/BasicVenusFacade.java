@@ -103,8 +103,6 @@ public class BasicVenusFacade {
             }
         }
         log.info( "end dependencies size : {}", model.getDependencies().size() );
-        // addVerifyPlugin?
-        log.info( "addVerifyPlugin : {}", context.isAddVerifyPlugin() );
         addPlugin( context, model );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
             modelIO.writeModelToStream( model, pomStream );
@@ -112,11 +110,12 @@ public class BasicVenusFacade {
     }
 
     private static void addPlugin( VenusContext context, Model model ) throws IOException {
+        // addVerifyPlugin?
         if ( context.isAddVerifyPlugin() ) {
             if ( context.isVerifyPluginNotAvailable() ) {
-                log.info( "addVerifyPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
+                log.warn( "addVerifyPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
             } else {
-                log.info( "addVerifyPlugin, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
+                log.info( "addVerifyPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
                 Build build = model.getBuild();
                 if ( build == null ) {
                     build = new Build();
@@ -146,6 +145,8 @@ public class BasicVenusFacade {
                 });
                 plugins.add( plugin );
             }
+        } else {
+            log.info( "addVerifyPlugin : false" );
         }
     }
 
