@@ -14,11 +14,11 @@ All basic features are implemented.
 
 ## Available goals
 
-| goal   | since | description                                                                                                                                           |
-|--------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-| add    | 8.6.0 | add Venus Doc Configuration to an existing project                                                                                                    |
-| verify | 8.7.0 | verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc. |
-
+| goal   | since | description                                                                                                                                                                         |
+|--------|-------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| add    | 8.6.0 | add Venus Doc Configuration to an existing project                                                                                                                                  |
+| verify | 8.7.0 | verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.                               |
+| init   | 8.7.2 | create a new project project already configured (actually an extension to 'add' goal); an UI is available on the [playground](https://docs.fugerit.org/fj-doc-playground/home) too. |
 
 ## Goal : add 
 
@@ -43,7 +43,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 | parameter       | required | default         | description                                                                                       |
 |-----------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
-| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.6.5')                                               |
+| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.4')                                               |
 | extensions      | true     | base,freemarker | List of fj-doc core modules to add (*)                                                            |
 | projectFolder   | true     | .               | Maven project base folder                                                                         |
 | addDocFacade    | true     | true            | If true, a stub doc configuration helper will be created                                          |
