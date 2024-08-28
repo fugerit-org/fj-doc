@@ -106,6 +106,16 @@
 		</dependency>
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-maven-plugin</artifactId>
+			<version>${fj-doc-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>3.9.9</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
 			<artifactId>emp-service-model</artifactId>
 		</dependency>
 		<dependency>

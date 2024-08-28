@@ -15,6 +15,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DoneIcon from '@mui/icons-material/Done';
 import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Info from './Info';
 
@@ -72,6 +73,17 @@ class Home extends Component {
 					<Link to={homepage + "/doc_fun/doc_config_convert"}>
 						<ListItemText primary="Doc Configuration Convert (fj-doc-tool, generate-stub)"
 									  secondary='Convert from old configuration to new free marker configuration.' />
+					</Link>
+				</ListItem>
+				<ListItem key='3'>
+					<ListItemAvatar>
+						<Avatar>
+							<AllInclusiveIcon />
+						</Avatar>
+					</ListItemAvatar>
+					<Link to={homepage + "/doc_fun/doc_project_init"}>
+						<ListItemText primary="Doc Proget Init (fj-dodc-maven-plugin:init)"
+									  secondary='Fugerit Doc Venus Project init.' />
 					</Link>
 				</ListItem>
 			</List>

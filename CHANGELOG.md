@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-playground-quarkus] Add project init function
 - fj-doc-maven-plugin is no on plugin management of fj-doc parent 
 - [fj-doc-sample] fj-doc-maven-plugin:verify configuration
 
@@ -66,7 +67,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [fj-doc-playground-quarku] quarkus version set to 3.14.0
+- [fj-doc-playground-quarkus] quarkus version set to 3.14.0
 - [fj-doc-maven-plugin] new parameter excludeXmlApis (could be needed with quarkus)
 - [fj-doc-maven-plugin] new parameter addExclusions
 
