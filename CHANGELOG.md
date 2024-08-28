@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-doc-maven-plugin is no on plugin management of fj-doc parent
+- fj-doc-maven-plugin is no on plugin management of fj-doc parent 
+- [fj-doc-sample] fj-doc-maven-plugin:verify configuration
 
 ## [8.7.4] - 2024-08-28
 

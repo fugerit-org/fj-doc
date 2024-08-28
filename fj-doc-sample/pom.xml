@@ -22,7 +22,35 @@
 	</licenses>
 	
 	<build>
-		
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>freemarker-verify</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>verify</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<!-- Where the FreeMarker templates are located -->
+					<templateBasePath>${project.basedir}/src/main/resources/free_marker</templateBasePath>
+					<!-- WARNING: if set to 'true', build will fail when at least one syntax error is found -->
+					<failOnErrors>true</failOnErrors>
+					<!-- If 'true' a report will be generated (when 'true', param reportOutputFolder is required) -->
+					<generateReport>true</generateReport>
+					<!-- Template syntax verify report output folder -->
+					<reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
 	</build>
 
 	<dependencies>
