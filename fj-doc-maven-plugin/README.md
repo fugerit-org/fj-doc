@@ -20,6 +20,8 @@ All basic features are implemented.
 | verify | 8.7.0 | verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.                               |
 | init   | 8.7.2 | create a new project project already configured (actually an extension to 'add' goal); an UI is available on the [playground](https://docs.fugerit.org/fj-doc-playground/home) too. |
 
+NOTE: Even though possible, it is not a recommended to run the 'add' or 'init' plugin with setting a 'version' parmeter lower than '8.7.4' (see issue [#180](https://github.com/fugerit-org/fj-doc/issues/180))
+
 ## Goal : add 
 
 add Venus Doc Configuration to an existing project
@@ -41,16 +43,16 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 ### Add Fugerit Venus, parameters
 
-| parameter       | required | default         | description                                                                                       |
-|-----------------|----------|-----------------|---------------------------------------------------------------------------------------------------|
-| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.4')                                               |
-| extensions      | true     | base,freemarker | List of fj-doc core modules to add (*)                                                            |
-| projectFolder   | true     | .               | Maven project base folder                                                                         |
-| addDocFacade    | true     | true            | If true, a stub doc configuration helper will be created                                          |
-| force           | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration) |
-| excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                      |
-| addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}         |
-| addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                |
+| parameter       | required | default         | description                                                                                                                       |
+|-----------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.4'), *advice*: **keep the default** unless a specific version is striclty needed. |
+| extensions      | true     | base,freemarker | List of fj-doc core modules to add (*)                                                                                            |
+| projectFolder   | true     | .               | Maven project base folder                                                                                                         |
+| addDocFacade    | true     | true            | If true, a stub doc configuration helper will be created                                                                          |
+| force           | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration)                                 |
+| excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
+| addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
+| addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
 ### Add Fugerit Venus, available extensions
 
 | short name      | full name              | type handler | description                                                                                             |
