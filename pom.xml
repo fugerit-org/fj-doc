@@ -27,6 +27,7 @@
 	    <!-- fj java versions -->
 	    <fj-version>8.6.4</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
+		<fj-doc-maven-plugin-version>${fj-doc-version}</fj-doc-maven-plugin-version>
 	    <fj-xml-to-json-version>1.2.0</fj-xml-to-json-version>
 	    <!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.2</jajarta-jaxb-version>
@@ -221,7 +222,7 @@
 				<artifactId>fj-doc-val-p7m</artifactId>
 				<version>${fj-doc-version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-sample</artifactId>
@@ -272,6 +273,12 @@
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>jaxb2-maven-plugin</artifactId>
 					<version>3.2.0</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.fugerit.java</groupId>
+					<artifactId>fj-doc-maven-plugin</artifactId>
+					<version>${fj-doc-maven-plugin-version}</version>
 				</plugin>
 			
 			</plugins>
