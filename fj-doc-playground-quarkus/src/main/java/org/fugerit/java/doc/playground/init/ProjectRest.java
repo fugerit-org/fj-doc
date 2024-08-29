@@ -60,7 +60,9 @@ public class ProjectRest {
             ProjectInitOutput output = new ProjectInitOutput();
             try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
                 File projectDir = this.initConfigWorker( input.getArtifactId() );
+                checkIfInTempFolder( projectDir );    // security check
                 File realDir = new File( projectDir, input.getArtifactId() );
+                checkIfInTempFolder( realDir );    // security check
                 log.info( "project init folder : {}", realDir.getAbsolutePath() );
                 MojoInit mojoInit = new MojoInit() {
                     @Override
