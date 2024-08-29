@@ -7,8 +7,13 @@ import org.fugerit.java.TestConsts;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.playground.init.ProjectRest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 
 import static io.restassured.RestAssured.given;
 
@@ -54,5 +59,12 @@ class InitRestTest {
 		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
 	}
 
+	@Test
+	void checkZipFunction() {
+		Assertions.assertTrue( ProjectRest.ensureEndWithSlash( "test1" ).endsWith( "/" ) );
+		Assertions.assertTrue( ProjectRest.ensureEndWithSlash( "test2/" ).endsWith( "/" ) );
+		Assertions.assertThrows( IOException.class, () -> ProjectRest.checkIfInTempFolder( new File( System.getProperty( "user.dir" ) )) );
+		Assertions.assertThrows( IOException.class, () -> ProjectRest.zipFolder( new File( "/"+System.currentTimeMillis()+"/not-exist" ), new ByteArrayOutputStream() ) );
+	}
     
 }

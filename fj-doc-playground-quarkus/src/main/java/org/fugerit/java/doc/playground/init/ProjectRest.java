@@ -6,8 +6,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.checkpoint.CheckpointUtils;
 import org.fugerit.java.core.util.collection.OptionItem;
@@ -77,11 +79,11 @@ public class ProjectRest {
                     }
                 };
                 mojoInit.execute();
-                zipFolder( realDir.getCanonicalPath(), buffer );
+                zipFolder( realDir, buffer );
                 byte[] data = buffer.toByteArray();
                 output.setContent( Base64.getEncoder().encodeToString( data ) );
                 log.info( "zip size : {}", data.length );
-                Files.delete( projectDir.toPath() );
+                FileUtils.deleteDirectory( projectDir );
                 output.setMessage( String.format( "Project init OK : %s:%s, time:%s",
                         input.getGroupId(), input.getArtifactId(),
                         CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) ) );
@@ -93,52 +95,34 @@ public class ProjectRest {
             return Response.ok().entity( output ).build();
         } );
     }
-
-    /**
-     * Zips the contents of a folder.
-     *
-     * @param sourceFolderPath The path to the folder to be zipped.
-     * @param fos the stream to write the zip.
-     * @throws IOException If an I/O error occurs.
-     */
-    public static void zipFolder(String sourceFolderPath, OutputStream fos) throws IOException {
-        ZipOutputStream zos = new ZipOutputStream(fos);
-
-        File sourceFile = new File(sourceFolderPath);
-
-        // Ensure the source folder exists
-        if (!sourceFile.exists()) {
-            throw new IOException("The source folder does not exist: " + sourceFolderPath);
+    public static String ensureEndWithSlash( String name ) {
+        if ( name.endsWith( "/" ) ) {
+            return name;
+        } else {
+            return name+"/";
         }
-
-        zipFile(sourceFile, sourceFile.getName(), zos);
+    }
+    public static void checkIfInTempFolder( File file ) throws IOException {
+        File tempDir = new File( System.getProperty("java.io.tmpdir") );
+        if ( !file.getCanonicalPath().startsWith( tempDir.getCanonicalPath() ) ) {
+            throw new IOException( file.getCanonicalPath() + " is not in temp folder" );
+        }
+    }
+    public static void zipFolder(File sourceFolder, OutputStream fos) throws IOException {
+        ZipOutputStream zos = new ZipOutputStream(fos);
+        // Ensure the source folder exists
+        if (!sourceFolder.exists()) {
+            throw new IOException("The source folder does not exist: " + sourceFolder);
+        }
+        zipFile(sourceFolder, sourceFolder.getName(), zos);
         zos.flush();
         zos.close();
         fos.close();
     }
-
-    /**
-     * Recursively zips a file or folder.
-     *
-     * @param fileToZip The file or folder to zip.
-     * @param fileName The name of the file or folder to zip.
-     * @param zos The ZIP output stream.
-     * @throws IOException If an I/O error occurs.
-     */
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zos) throws IOException {
-        if (fileToZip.isHidden()) {
-            return; // Skip hidden files
-        }
-
         if (fileToZip.isDirectory()) {
-            if (fileName.endsWith("/")) {
-                zos.putNextEntry(new ZipEntry(fileName));
-                zos.closeEntry();
-            } else {
-                zos.putNextEntry(new ZipEntry(fileName + "/"));
-                zos.closeEntry();
-            }
-
+            zos.putNextEntry(new ZipEntry( ensureEndWithSlash( fileName ) ));
+            zos.closeEntry();
             File[] children = fileToZip.listFiles();
             if (children != null) {
                 for (File childFile : children) {
@@ -147,15 +131,10 @@ public class ProjectRest {
             }
             return;
         }
-
         try (FileInputStream fis = new FileInputStream(fileToZip)) {
             ZipEntry zipEntry = new ZipEntry(fileName);
             zos.putNextEntry(zipEntry);
-            byte[] bytes = new byte[1024];
-            int length;
-            while ((length = fis.read(bytes)) >= 0) {
-                zos.write(bytes, 0, length);
-            }
+            StreamIO.pipeStream( fis, zos, StreamIO.MODE_CLOSE_NONE );
         }
 
     }
