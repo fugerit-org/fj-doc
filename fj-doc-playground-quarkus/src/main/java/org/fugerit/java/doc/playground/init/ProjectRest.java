@@ -41,14 +41,6 @@ public class ProjectRest {
         );
     }
 
-    private File initConfigWorker( String base ) {
-        String tempDir = System.getProperty("java.io.tmpdir");
-        File outputFolder = new File( tempDir, base+"_"+ System.currentTimeMillis() );
-        outputFolder.mkdir();
-        log.info( "tempDir : {}, outputFolder : {}", tempDir, outputFolder);
-        return outputFolder;
-    }
-
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -60,7 +52,10 @@ public class ProjectRest {
             String groupIdData = data.getGroupId();
             String artifactIdData = data.getArtifactId();
             try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
-                File projectDir = this.initConfigWorker( artifactIdData );
+                String tempDir = System.getProperty("java.io.tmpdir");
+                File projectDir = new File( tempDir, artifactIdData+"_"+ System.currentTimeMillis() );
+                projectDir.mkdir();
+                log.info( "tempDir : {}, outputFolder : {}", tempDir, projectDir);
                 checkIfInTempFolder( projectDir );    // security check
                 File realDir = new File( projectDir, artifactIdData );
                 checkIfInTempFolder( realDir );    // security check
