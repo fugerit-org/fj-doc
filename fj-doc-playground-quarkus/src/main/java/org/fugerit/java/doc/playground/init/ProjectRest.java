@@ -83,6 +83,7 @@ public class ProjectRest {
                 byte[] data = buffer.toByteArray();
                 output.setContent( Base64.getEncoder().encodeToString( data ) );
                 log.info( "zip size : {}", data.length );
+                checkIfInTempFolder( projectDir );    // security check
                 FileUtils.deleteDirectory( projectDir );
                 output.setMessage( String.format( "Project init OK : %s:%s, time:%s",
                         input.getGroupId(), input.getArtifactId(),
