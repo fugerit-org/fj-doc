@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.playground.init;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -18,9 +19,7 @@ import org.fugerit.java.doc.playground.RestHelper;
 import org.fugerit.java.doc.project.facade.ModuleFacade;
 
 import java.io.*;
-import java.nio.file.Files;
 import java.util.Base64;
-import java.util.UUID;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -54,30 +53,28 @@ public class ProjectRest {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/init")
-    public Response init( ProjectInitInput input) {
+    public Response init( @Valid ProjectInitInput data ) {
         return RestHelper.defaultHandle( () -> {
-            // check artifact id naming
-            if ( !input.getArtifactId().matches( "[A-Za-z0-9-]+" ) ) {
-                return Response.status( Response.Status.BAD_REQUEST ).build();
-            }
             long time = System.currentTimeMillis();
             ProjectInitOutput output = new ProjectInitOutput();
+            String groupIdData = data.getGroupId();
+            String artifactIdData = data.getArtifactId();
             try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
-                File projectDir = this.initConfigWorker( input.getArtifactId() );
+                File projectDir = this.initConfigWorker( artifactIdData );
                 checkIfInTempFolder( projectDir );    // security check
-                File realDir = new File( projectDir, input.getArtifactId() );
+                File realDir = new File( projectDir, artifactIdData );
                 checkIfInTempFolder( realDir );    // security check
                 log.info( "project init folder : {}", realDir.getAbsolutePath() );
                 MojoInit mojoInit = new MojoInit() {
                     @Override
                     public void execute() throws MojoExecutionException, MojoFailureException {
                         this.baseInitFolder = projectDir.getAbsolutePath();
-                        this.projectVersion = input.getProjectVersion();
-                        this.groupId = input.getGroupId();
-                        this.version = input.getVenusVersion();
-                        this.artifactId = input.getArtifactId();
-                        this.javaRelease = input.getJavaVersion();
-                        this.extensions = StringUtils.concat( ",", input.getExtensionList() );
+                        this.projectVersion = data.getProjectVersion();
+                        this.groupId = groupIdData;
+                        this.version = data.getVenusVersion();
+                        this.artifactId = artifactIdData;
+                        this.javaRelease = String.valueOf( data.getJavaVersion() );
+                        this.extensions = StringUtils.concat( ",", data.getExtensionList() );
                         this.addDocFacade = true;
                         this.force = true;
                         this.addVerifyPlugin = true;
@@ -86,13 +83,13 @@ public class ProjectRest {
                 };
                 mojoInit.execute();
                 zipFolder( realDir, buffer );
-                byte[] data = buffer.toByteArray();
-                output.setContent( Base64.getEncoder().encodeToString( data ) );
-                log.info( "zip size : {}", data.length );
+                byte[] byteArray = buffer.toByteArray();
+                output.setContent( Base64.getEncoder().encodeToString( byteArray ) );
+                log.info( "zip size : {}", byteArray.length );
                 checkIfInTempFolder( projectDir );    // security check
                 FileUtils.deleteDirectory( projectDir );
                 output.setMessage( String.format( "Project init OK : %s:%s, time:%s",
-                        input.getGroupId(), input.getArtifactId(),
+                        groupIdData, artifactIdData,
                         CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) ) );
             } catch ( Exception e ) {
                 log.warn( "Error generating document : "+e , e );
