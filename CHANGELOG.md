@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.7.5] - 2024-08-29
+
 ### Changed
 
 - [fj-doc-playground-quarkus] Add project init function

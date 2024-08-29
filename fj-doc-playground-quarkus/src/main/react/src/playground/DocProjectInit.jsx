@@ -49,7 +49,7 @@ const DocProjectInit = () => {
 		setArtifactId( 'fugerit-doc-demo' )
 		setProjectVersion( '1.0.0-SNAPSHOT' )
 		setJavaVersion( '21' );
-		setVenusVersion( '8.7.4' )
+		setVenusVersion( '8.7.5' )
 	}, []); // Empty dependency array means this effect runs once on mount
 
 	// Handle change event for groupId input
@@ -183,6 +183,7 @@ const DocProjectInit = () => {
 					onChange={handleVenusVersionChange}
 				>
 					{/* Allowed values for venusVersion */}
+					<MenuItem value={'8.7.5'}>8.7.5</MenuItem>
 					<MenuItem value={'8.7.4'}>8.7.4</MenuItem>
 				</Select>
 			</FormControl>
