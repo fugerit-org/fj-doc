@@ -112,10 +112,6 @@ public class ProjectRest {
     public static void zipFolder(File sourceFolder, OutputStream fos) throws IOException {
         checkIfInTempFolder( sourceFolder );    // security check
         try (ZipOutputStream zos = new ZipOutputStream(fos)) {
-            // Ensure the source folder exists
-            if (!sourceFolder.exists()) {
-                throw new IOException("The source folder does not exist: " + sourceFolder);
-            }
             zipFile(sourceFolder, sourceFolder.getName(), zos);
             zos.flush();
             fos.flush();
@@ -127,10 +123,8 @@ public class ProjectRest {
             zos.putNextEntry(new ZipEntry( ensureEndWithSlash( fileName ) ));
             zos.closeEntry();
             File[] children = fileToZip.listFiles();
-            if (children != null) {
-                for (File childFile : children) {
-                    zipFile(childFile, fileName + "/" + childFile.getName(), zos);
-                }
+            for (File childFile : children) {
+                zipFile(childFile, fileName + "/" + childFile.getName(), zos);
             }
             return;
         }
