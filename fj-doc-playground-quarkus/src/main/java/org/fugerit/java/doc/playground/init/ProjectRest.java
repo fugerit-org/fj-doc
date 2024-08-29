@@ -109,6 +109,7 @@ public class ProjectRest {
         }
     }
     public static void zipFolder(File sourceFolder, OutputStream fos) throws IOException {
+        checkIfInTempFolder( sourceFolder );    // security check
         ZipOutputStream zos = new ZipOutputStream(fos);
         // Ensure the source folder exists
         if (!sourceFolder.exists()) {
@@ -120,6 +121,7 @@ public class ProjectRest {
         fos.close();
     }
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zos) throws IOException {
+        checkIfInTempFolder( fileToZip );    // security check
         if (fileToZip.isDirectory()) {
             zos.putNextEntry(new ZipEntry( ensureEndWithSlash( fileName ) ));
             zos.closeEntry();
