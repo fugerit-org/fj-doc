@@ -40,9 +40,9 @@ public class ProjectRest {
         );
     }
 
-    private File initConfigWorker() {
+    private File initConfigWorker( String base ) {
         String tempDir = System.getProperty("java.io.tmpdir");
-        File outputFolder = new File( tempDir, "init_"+ UUID.randomUUID().toString() );
+        File outputFolder = new File( tempDir, base+"_"+ System.currentTimeMillis() );
         outputFolder.mkdir();
         log.info( "tempDir : {}, outputFolder : {}", tempDir, outputFolder);
         return outputFolder;
@@ -57,7 +57,7 @@ public class ProjectRest {
             long time = System.currentTimeMillis();
             ProjectInitOutput output = new ProjectInitOutput();
             try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
-                File projectDir = this.initConfigWorker();
+                File projectDir = this.initConfigWorker( input.getArtifactId() );
                 File realDir = new File( projectDir, input.getArtifactId() );
                 log.info( "project init folder : {}", realDir.getAbsolutePath() );
                 MojoInit mojoInit = new MojoInit() {
