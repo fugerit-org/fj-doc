@@ -56,6 +56,10 @@ public class ProjectRest {
     @Path("/init")
     public Response init( ProjectInitInput input) {
         return RestHelper.defaultHandle( () -> {
+            // check artifact id naming
+            if ( !input.getArtifactId().matches( "[A-Za-z0-9-]+" ) ) {
+                return Response.status( Response.Status.BAD_REQUEST ).build();
+            }
             long time = System.currentTimeMillis();
             ProjectInitOutput output = new ProjectInitOutput();
             try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {

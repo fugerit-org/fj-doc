@@ -44,6 +44,7 @@ class InitRestTest {
     void testInit() {
 		this.testWorker( "/project/init", "request/payload/init/init_ok_1.json", 200 );
 		this.testWorker( "/project/init", "request/payload/init/init_ko_1.json", 200 );
+		this.testWorker( "/project/init", "request/payload/init/init_ko_2.json", 400 );
 		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
     }
 
