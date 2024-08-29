@@ -17,6 +17,10 @@ import java.util.Set;
 @ToString
 public class VenusContext {
 
+    public static final String VERSION_NA_VERIFY_PLUGIN = "8.7.2";
+
+    public static final String VERSION_NA_FULL_PROCESS = "8.6.2";
+
     @Getter
     private File projectDir;
 
@@ -97,8 +101,12 @@ public class VenusContext {
         return "DocHelper";
     }
 
+    public boolean isVerifyPluginNotAvailable() {
+        return VersionCheck.isMajorThan( VERSION_NA_VERIFY_PLUGIN, this.getVersion() );
+    }
+
     public boolean isPreVersion862() {
-        return VersionCheck.isMajorThan( "8.6.2", this.getVersion() );
+        return VersionCheck.isMajorThan( VERSION_NA_FULL_PROCESS, this.getVersion() );
     }
 
 }
