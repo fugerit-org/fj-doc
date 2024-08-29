@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.playground.init;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -50,34 +51,46 @@ public class ProjectRest {
         return outputFolder;
     }
 
+    private static final String PATTERN_ARTIFICAT_ID = "[A-Za-z0-9-]+";
+
+    private static final String PATTERN_GROUP_ID = "[A-Za-z0-9-\\.]+";
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/init")
-    public Response init( ProjectInitInput input) {
+    public Response init( @Valid ProjectInitInput data ) {
         return RestHelper.defaultHandle( () -> {
-            // check artifact id naming
-            if ( !input.getArtifactId().matches( "[A-Za-z0-9-]+" ) ) {
-                return Response.status( Response.Status.BAD_REQUEST ).build();
-            }
             long time = System.currentTimeMillis();
             ProjectInitOutput output = new ProjectInitOutput();
+            String groupId = data.getGroupId();
+            String artifactId = data.getArtifactId();
+            // check group id naming
+            if ( !artifactId.matches( PATTERN_GROUP_ID ) ) {
+                output.setMessage( String.format( "group id not valid, pattern : %s", PATTERN_GROUP_ID  ) );
+                return Response.ok().entity( output ).build();
+            }
+            // check artifact id naming
+            if ( !artifactId.matches( PATTERN_ARTIFICAT_ID ) ) {
+                output.setMessage( String.format( "artifact id not valid, pattern : %s", PATTERN_ARTIFICAT_ID  ) );
+                return Response.ok().entity( output ).build();
+            }
             try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
-                File projectDir = this.initConfigWorker( input.getArtifactId() );
+                File projectDir = this.initConfigWorker( artifactId );
                 checkIfInTempFolder( projectDir );    // security check
-                File realDir = new File( projectDir, input.getArtifactId() );
+                File realDir = new File( projectDir, artifactId );
                 checkIfInTempFolder( realDir );    // security check
                 log.info( "project init folder : {}", realDir.getAbsolutePath() );
                 MojoInit mojoInit = new MojoInit() {
                     @Override
                     public void execute() throws MojoExecutionException, MojoFailureException {
                         this.baseInitFolder = projectDir.getAbsolutePath();
-                        this.projectVersion = input.getProjectVersion();
-                        this.groupId = input.getGroupId();
-                        this.version = input.getVenusVersion();
-                        this.artifactId = input.getArtifactId();
-                        this.javaRelease = input.getJavaVersion();
-                        this.extensions = StringUtils.concat( ",", input.getExtensionList() );
+                        this.projectVersion = data.getProjectVersion();
+                        this.groupId = groupId;
+                        this.version = data.getVenusVersion();
+                        this.artifactId = artifactId;
+                        this.javaRelease = String.valueOf( data.getJavaVersion() );
+                        this.extensions = StringUtils.concat( ",", data.getExtensionList() );
                         this.addDocFacade = true;
                         this.force = true;
                         this.addVerifyPlugin = true;
@@ -86,13 +99,13 @@ public class ProjectRest {
                 };
                 mojoInit.execute();
                 zipFolder( realDir, buffer );
-                byte[] data = buffer.toByteArray();
-                output.setContent( Base64.getEncoder().encodeToString( data ) );
-                log.info( "zip size : {}", data.length );
+                byte[] byteArray = buffer.toByteArray();
+                output.setContent( Base64.getEncoder().encodeToString( byteArray ) );
+                log.info( "zip size : {}", byteArray.length );
                 checkIfInTempFolder( projectDir );    // security check
                 FileUtils.deleteDirectory( projectDir );
                 output.setMessage( String.format( "Project init OK : %s:%s, time:%s",
-                        input.getGroupId(), input.getArtifactId(),
+                        groupId, artifactId,
                         CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) ) );
             } catch ( Exception e ) {
                 log.warn( "Error generating document : "+e , e );
