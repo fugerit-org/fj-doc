@@ -111,15 +111,15 @@ public class ProjectRest {
     }
     public static void zipFolder(File sourceFolder, OutputStream fos) throws IOException {
         checkIfInTempFolder( sourceFolder );    // security check
-        ZipOutputStream zos = new ZipOutputStream(fos);
-        // Ensure the source folder exists
-        if (!sourceFolder.exists()) {
-            throw new IOException("The source folder does not exist: " + sourceFolder);
+        try (ZipOutputStream zos = new ZipOutputStream(fos)) {
+            // Ensure the source folder exists
+            if (!sourceFolder.exists()) {
+                throw new IOException("The source folder does not exist: " + sourceFolder);
+            }
+            zipFile(sourceFolder, sourceFolder.getName(), zos);
+            zos.flush();
+            fos.flush();
         }
-        zipFile(sourceFolder, sourceFolder.getName(), zos);
-        zos.flush();
-        zos.close();
-        fos.close();
     }
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zos) throws IOException {
         checkIfInTempFolder( fileToZip );    // security check
