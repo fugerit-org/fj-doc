@@ -22,5 +22,23 @@ public class TestP7MValidator extends TestDocValidatorFacade {
 		boolean ok = this.worker(FACADE, "png_as_p7m.p7m", false );
 		Assert.assertTrue( ok );
 	}
-	
+
+	@Test
+	public void testPkcs7Ok1() {
+		boolean ok = this.worker(FACADE, "pkcs7_test_ok1.p7m", true );
+		Assert.assertTrue( ok );
+	}
+
+	@Test
+	public void testPkcs7Ok2() {
+		boolean ok = this.worker(FACADE, "pkcs7_test_ok2.p7m", true );
+		Assert.assertTrue( ok );
+	}
+
+	@Test
+	public void testPkcs7Ko1() {
+		boolean ok = this.worker(FACADE, "pkcs7_test_ko1.p7m", false );
+		Assert.assertTrue( ok );
+	}
+
 }
