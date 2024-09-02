@@ -5,6 +5,7 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.basic.AbstractDocTypeValidator;
+import org.fugerit.java.doc.val.core.io.NopOutputStream;
 
 import java.io.InputStream;
 import java.io.OutputStream;
