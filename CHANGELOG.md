@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-val-p7m] P7MPemValidator and P7MRawValidator
+
 ## [8.7.6] - 2024-09-02
 
 ### Fixed

@@ -1,6 +1,8 @@
 package test.org.fugerit.java.doc.val.p7m;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
+import org.fugerit.java.doc.val.p7m.P7MPemValidator;
+import org.fugerit.java.doc.val.p7m.P7MRawValidator;
 import org.fugerit.java.doc.val.p7m.P7MValidator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -39,6 +41,20 @@ public class TestP7MValidator extends TestDocValidatorFacade {
 	public void testPkcs7Ko1() {
 		boolean ok = this.worker(FACADE, "pkcs7_test_ko1.p7m", false );
 		Assert.assertTrue( ok );
+	}
+
+	@Test
+	public void testP7MAsP7MRaValidator() {
+		Assert.assertTrue( this.worker(
+				DocValidatorFacade.newFacadeStrict( new P7MRawValidator() ), "pdf_as_pdf.p7m", true
+		) );
+	}
+
+	@Test
+	public void testPkcs7Ok1PemValidator() {
+		Assert.assertTrue( this.worker(
+				DocValidatorFacade.newFacadeStrict( new P7MPemValidator() ), "pkcs7_test_ok1.p7m", true
+		) );
 	}
 
 }
