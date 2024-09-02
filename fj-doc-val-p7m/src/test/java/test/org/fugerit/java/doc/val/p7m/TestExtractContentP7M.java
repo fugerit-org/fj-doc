@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class TestExtractContentP7M {
 
 	@Test
-	public void testDataProcess() throws IOException {
+	public void testDataProcess() {
 		Assert.assertThrows( CMSException.class , () -> P7MUtils.extractContentCMSSignedDataProcess( null, null ) ) ;
 	}
 
