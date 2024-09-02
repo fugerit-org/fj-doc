@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-val-p7m] failed to validate PKCS7 : unknown tag 31 encountered <https://github.com/fugerit-org/fj-doc/issues/188>
+
 ## [8.7.5] - 2024-08-29
 
 ### Changed
