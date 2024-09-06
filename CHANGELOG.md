@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 - [fj-doc-playground-quarkus] quarkus version 3.14.2
-- [fj-doc-playground-quarkus] changed base image eclipse-temurin:21.0.4_9-jre-alpine
+- [fj-doc-playground-quarkus] changed base image eclipse-temurin:21.0.4_7-jre-alpine
 - [fj-doc-val-p7m] Optimized P7MValidator (for previous behaviour use P7MLegacyValidator)
 
 ## [8.7.6] - 2024-09-02
