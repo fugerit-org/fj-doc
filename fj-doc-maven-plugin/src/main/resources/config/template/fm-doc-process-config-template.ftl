@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- generated from template '${templatePath}' on ${generationTime?string.iso} -->
 <freemarker-doc-process-config
         xmlns="https://freemarkerdocprocess.fugerit.org"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

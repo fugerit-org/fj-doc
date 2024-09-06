@@ -38,8 +38,12 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addVerifyPlugin", defaultValue = "true", required = true)
     protected boolean addVerifyPlugin;
 
-    @Parameter(property = "addJunit5", defaultValue = "false", required = false)
+    @Parameter(property = "addJunit5", defaultValue = "true", required = true)
     protected boolean addJunit5;
+
+
+    @Parameter(property = "addLombok", defaultValue = "true", required = true)
+    protected boolean addLombok;
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -52,6 +56,7 @@ public class MojoAdd extends AbstractMojo {
         context.setExcludeXmlApis( this.excludeXmlApis );
         context.setAddVerifyPlugin( this.addVerifyPlugin );
         context.setAddJunit5( this.addJunit5 );
+        context.setAddLombok( this.addLombok );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addVenusToMavenProject( context );
     }

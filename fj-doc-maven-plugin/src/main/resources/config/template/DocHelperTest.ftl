@@ -1,6 +1,8 @@
 <#import 'macro/DocHelperMacro.ftl' as dhm>
 // generated from template '${templatePath}' on ${generationTime?string.iso}
-package ${context.docConfigPackage};
+package test.${context.docConfigPackage};
+
+import ${context.docConfigPackage}.DocHelper;
 
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
@@ -8,6 +10,9 @@ import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 </#if>
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -19,11 +24,13 @@ import lombok.Getter;
 import lombok.AllArgsConstructor;
 </#if>
 
-<@dhm.createExampleJavadoc context=context junit=false/>
-public class DocHelperExample {
+<@dhm.createExampleJavadoc context=context junit=true/>
+<#if context.addLombok >@Slf4j</#if>
+class DocHelperTest {
 
-    public static void main(String[] args) {
-        <@dhm.createExampleBody context=context junit=false className='DocHelperExample'/>
+    @Test
+    void testDocProcess() {
+        <@dhm.createExampleBody context=context junit=true className='DocHelperTest'/>
     }
 
     <@dhm.createExampleModel context=context/>

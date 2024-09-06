@@ -66,15 +66,32 @@ public class BasicVenusFacade {
         context.getErrors().add( message );
     }
 
+    protected static Dependency createDependency( String groupId, String artifactId, String version, String scope ) {
+        Dependency dependency = new Dependency();
+        dependency.setGroupId( groupId );
+        dependency.setArtifactId( artifactId );
+        dependency.setVersion( version );
+        dependency.setScope( scope );
+        return dependency;
+    }
+
     protected static void addJunit5( Model model, VenusContext context ) throws IOException  {
         if ( context.isAddJunit5() ) {
-            Dependency junit5 = new Dependency();
-            junit5.setGroupId( "org.junit.jupiter" );
-            junit5.setArtifactId( "junit-jupiter" );
-            junit5.setScope( "test" );
+            Dependency junit5 = createDependency( "org.junit.jupiter", "junit-jupiter", null, "test" );
             addOrOverwrite( model.getDependencies(), junit5 );
         } else {
             log.debug( "skip addJunit5" );
+        }
+    }
+
+    protected static void addLombok( Model model, VenusContext context ) throws IOException  {
+        if ( context.isAddLombok() ) {
+            Dependency lombok = createDependency( "org.projectlombok", "lombok", null, "provided" );
+            addOrOverwrite( model.getDependencies(), lombok );
+            Dependency slf4jSimple = createDependency( "org.slf4j", "slf4j-simple", null, "test" );
+            addOrOverwrite( model.getDependencies(), slf4jSimple );
+        } else {
+            log.debug( "skip addLombok" );
         }
     }
 
@@ -116,6 +133,8 @@ public class BasicVenusFacade {
         }
         // addJunit5 parameter
         addJunit5( model, context );
+        // addLombok parameter
+        addLombok( model, context );
         log.info( "end dependencies size : {}", model.getDependencies().size() );
         addPlugin( context, model );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {

@@ -44,12 +44,14 @@ public class TestAddVenusFacade {
             boolean addFacade = false;
             boolean excludeXmlApis = false;
             boolean addVerifyPlugin = false;
-            boolean addJunit5 = false;
+            boolean addJunit5 = true;
+            boolean addLombok = true;
             if ( count == 0 ) {
                 moduleList = "base,freemarker";
                 addFacade = true;
                 addVerifyPlugin = true;
-                addJunit5 = true;
+                addJunit5 = false;
+                addLombok =  false;
             } else if ( count == 3 ) {
                 excludeXmlApis = true;
             }
@@ -58,6 +60,7 @@ public class TestAddVenusFacade {
             context.setAddDocFacace( addFacade );
             context.setAddVerifyPlugin( addVerifyPlugin );
             context.setAddJunit5( addJunit5 );
+            context.setAddLombok( addLombok );
             boolean result = AddVenusFacade.addVenusToMavenProject( context );
             Assert.assertTrue( result );
             Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );
@@ -79,6 +82,8 @@ public class TestAddVenusFacade {
                     this.force = true;
                     this.excludeXmlApis = true;
                     this.addVerifyPlugin = true;
+                    this.addJunit5 = true;
+                    this.addLombok = true;
                     super.execute();
                 }
             };

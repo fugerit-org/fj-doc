@@ -53,7 +53,8 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
 | addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
 | addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
-| addJunit5       | false    | false           | If set to true, it will add junit5 and basic test                                                                                 |
+| addJunit5       | true     | true            | If set to true, it will add junit5 (test scope) and basic test                                                                    |
+| addLombok       | true     | true            | If set to true, it will add lombok (provided scope) and slf4j-simple (test scope)                                                 |
 
 ### Add Fugerit Venus, available extensions
 
