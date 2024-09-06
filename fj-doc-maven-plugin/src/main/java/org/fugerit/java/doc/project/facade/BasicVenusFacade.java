@@ -66,6 +66,18 @@ public class BasicVenusFacade {
         context.getErrors().add( message );
     }
 
+    protected static void addJunit5( Model model, VenusContext context ) throws IOException  {
+        if ( context.isAddJunit5() ) {
+            Dependency junit5 = new Dependency();
+            junit5.setGroupId( "org.junit.jupiter" );
+            junit5.setArtifactId( "junit-jupiter" );
+            junit5.setScope( "test" );
+            addOrOverwrite( model.getDependencies(), junit5 );
+        } else {
+            log.debug( "skip addJunit5" );
+        }
+    }
+
     protected static void addExtensionList( File pomFile, VenusContext context ) throws IOException  {
         String[] extensionList = context.getExtensions().split( "," );
         ModelIO modelIO = new ModelIO();
@@ -102,6 +114,8 @@ public class BasicVenusFacade {
                 throw new ConfigRuntimeException( message );
             }
         }
+        // addJunit5 parameter
+        addJunit5( model, context );
         log.info( "end dependencies size : {}", model.getDependencies().size() );
         addPlugin( context, model );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {

@@ -53,6 +53,8 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
 | addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
 | addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
+| addJunit5       | false    | false           | If set to true, it will add junit5 and basic test                                                                                 |
+
 ### Add Fugerit Venus, available extensions
 
 | short name      | full name              | type handler | description                                                                                             |

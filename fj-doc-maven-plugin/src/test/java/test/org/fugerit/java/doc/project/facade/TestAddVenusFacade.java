@@ -44,10 +44,12 @@ public class TestAddVenusFacade {
             boolean addFacade = false;
             boolean excludeXmlApis = false;
             boolean addVerifyPlugin = false;
+            boolean addJunit5 = false;
             if ( count == 0 ) {
                 moduleList = "base,freemarker";
                 addFacade = true;
                 addVerifyPlugin = true;
+                addJunit5 = true;
             } else if ( count == 3 ) {
                 excludeXmlApis = true;
             }
@@ -55,6 +57,7 @@ public class TestAddVenusFacade {
             context.setExcludeXmlApis( excludeXmlApis );
             context.setAddDocFacace( addFacade );
             context.setAddVerifyPlugin( addVerifyPlugin );
+            context.setAddJunit5( addJunit5 );
             boolean result = AddVenusFacade.addVenusToMavenProject( context );
             Assert.assertTrue( result );
             Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );

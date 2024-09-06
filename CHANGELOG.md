@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [fj-doc-maven-plugin] addJunit5 parameter to hadd junit-jupiter dependency
 - [fj-doc-val-p7m] P7MPemValidator and P7MRawValidator
 
 ### Changed
-
 
 - [fj-doc-playground-quarkus] quarkus version 3.14.2
 - [fj-doc-playground-quarkus] changed base image eclipse-temurin:21.0.4_7-jre-alpine
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [fj-doc-playground-quarkus] Add project init function
-- fj-doc-maven-plugin is no on plugin management of fj-doc parent 
+- [fj-doc-maven-plugin] is no on plugin management of fj-doc parent 
 - [fj-doc-sample] fj-doc-maven-plugin:verify configuration
 
 ### Fixed
