@@ -19,11 +19,37 @@ import lombok.Getter;
 import lombok.AllArgsConstructor;
 </#if>
 
-<@dhm.createExampleJavadoc context=context junit=false/>
-public class DocHelperExample {
+/*
+* Class used to wrap data to be rendered in the document template
+*/
+<#if context.addLombok >@Getter
+@AllArgsConstructor
+</#if>
+public class People {
 
-    public static void main(String[] args) {
-        <@dhm.createExampleBody context=context junit=false className='DocHelperExample'/>
+    private String name;
+
+    private String surname;
+
+    private String title;
+<#if !context.addLombok >
+    public People(String name, String surname, String title) {
+        this.name = name;
+        this.surname = surname;
+        this.title = title;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+</#if>
 
 }

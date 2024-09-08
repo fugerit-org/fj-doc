@@ -1,6 +1,5 @@
 package org.fugerit.java.doc.project.facade;
 
-import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.*;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
@@ -9,13 +8,10 @@ import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.javagen.SimpleJavaGenerator;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
-import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.sql.Timestamp;
 import java.util.*;
 
 @Slf4j
@@ -26,15 +22,6 @@ public class AddVenusFacade extends BasicVenusFacade {
     private static final String EXAMPLE_FOLDER = "config/example/";
 
     private static final String LINE = "************************************************************************************************************************";
-
-    private static void processFile( String templatePath, File outputFile, Configuration configuration, Map<Object, Object> data ) throws IOException, TemplateException {
-        Template docTemplate = configuration.getTemplate( templatePath );
-        data.put( "templatePath", templatePath );
-        data.put( "generationTime", new Timestamp( System.currentTimeMillis() ) );
-        try ( Writer writer = new FileWriter( outputFile) ) {
-            docTemplate.process( data, writer );
-        }
-    }
 
     private static File toFile( File base, String packageName, String fileName ) {
         File folder = new File( base, packageName.replace( '.', '/' ) );
@@ -47,38 +34,35 @@ public class AddVenusFacade extends BasicVenusFacade {
         return file;
     }
 
-    private static void addSampleStructure( VenusContext context, Configuration configuration, Map<Object, Object> data ) throws IOException, TemplateException {
+    private static final String EXT_JAVA = ".java";
+
+    private static void addSampleStructure( VenusContext context, Configuration configuration, Map<String, Object> data ) throws IOException, TemplateException {
         if ( context.isAddJunit5() ) {
             log.debug( "add junit5 structure" );
             String fileBase = "DocHelperTest";
-            processFile( fileBase+".ftl",
-                    toFile( context.getTestJavaFolder(), "test."+context.getDocConfigPackage(), fileBase+".java" ),
+            FreemarkerTemplateFacade.processFile( fileBase+".ftl",
+                    toFile( context.getTestJavaFolder(), "test."+context.getDocConfigPackage(), fileBase+EXT_JAVA ),
                     configuration, data );
         } else {
             log.debug( "create DocHelperExample class" );
             String fileBase = "DocHelperExample";
-            processFile( fileBase+".ftl",
-                    toFile( context.getMainJavaFolder(), context.getDocConfigPackage(), fileBase+".java" ),
+            FreemarkerTemplateFacade.processFile( fileBase+".ftl",
+                    toFile( context.getMainJavaFolder(), context.getDocConfigPackage(), fileBase+EXT_JAVA ),
                     configuration, data );
         }
     }
 
     private static void addDocFacade( VenusContext context ) throws IOException, TemplateException, ConfigException {
         // freemarker configuration
-        Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
-        configuration.clearTemplateCache();
-        ClassTemplateLoader loader = new ClassTemplateLoader( AddVenusFacade.class, "/config/template/" );
-        configuration.setTemplateExceptionHandler( TemplateExceptionHandler.RETHROW_HANDLER );
-        configuration.setTemplateLoader( loader );
-        configuration.setDefaultEncoding(StandardCharsets.UTF_8.name());
+        Configuration configuration = FreemarkerTemplateFacade.getConfiguration();
         // config generation
-        Map<Object, Object> data = new HashMap<>();
+        Map<String, Object> data = new HashMap<>();
         data.put( "context" , context );
         File fmConfigFile = new File( context.getMainResourcesFolder(), context.getResourcePathFmConfigXml() );
         log.info( "fmConfigFile : {}, mk parent? : {}", fmConfigFile.getCanonicalPath(), fmConfigFile.getParentFile().mkdirs() );
         File templateDir = new File( fmConfigFile.getParentFile(), context.getTemplateSubPath() );
         log.info( "templateDir : {}, mk parent? : {}", templateDir.getCanonicalPath(), templateDir.mkdirs() );
-        processFile( "fm-doc-process-config-template.ftl", fmConfigFile, configuration, data );
+        FreemarkerTemplateFacade.processFile( "fm-doc-process-config-template.ftl", fmConfigFile, configuration, data );
         // copy sample template
         String fileName = "document.ftl";
         File documentExample = new File( templateDir, fileName );
@@ -106,6 +90,10 @@ public class AddVenusFacade extends BasicVenusFacade {
                 FileIO.writeString( fopConfigContent, fopConfig );
             }
         }
+        // create people data
+        String peopleBase = "People";
+        FreemarkerTemplateFacade.processFile( peopleBase+".ftl",
+                toFile( context.getMainJavaFolder(), context.getDocConfigPackage(), peopleBase+EXT_JAVA ) , data );
         // clear template cache
         configuration.clearTemplateCache();
     }

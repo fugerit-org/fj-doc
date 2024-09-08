@@ -3,6 +3,7 @@
 package test.${context.docConfigPackage};
 
 import ${context.docConfigPackage}.DocHelper;
+import ${context.docConfigPackage}.People;
 
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
@@ -32,7 +33,5 @@ class DocHelperTest {
     void testDocProcess() {
         <@dhm.createExampleBody context=context junit=true className='DocHelperTest'/>
     }
-
-    <@dhm.createExampleModel context=context/>
 
 }

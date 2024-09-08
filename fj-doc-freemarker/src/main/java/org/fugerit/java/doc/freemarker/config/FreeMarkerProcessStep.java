@@ -2,10 +2,8 @@ package org.fugerit.java.doc.freemarker.config;
 
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.HashMap;
 import java.util.Map;
 
-import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.base.process.DocProcessorBasic;

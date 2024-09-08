@@ -87,14 +87,22 @@ Project folder will be `./${artifactId}/`.
 
 ### Init Fugerit Venus, parameters
 
-| parameter      | required | default        | description          |
-|----------------|----------|----------------|----------------------|
-| groupId        | true     |                | new project group id |
-| artifactId     | true     |                | new project group id |
-| projectVersion | true     | 1.0.0-SNAPSHOT | new project version  |
-| javaRelease    | true     | 21             | java release version |
+| parameter      | required | default        | description                                             |
+|----------------|----------|----------------|---------------------------------------------------------|
+| groupId        | true     |                | new project group id                                    |
+| artifactId     | true     |                | new project group id                                    |
+| projectVersion | true     | 1.0.0-SNAPSHOT | new project version                                     |
+| javaRelease    | true     | 21             | java release version                                    |
+| flavour        | true     | vanilla        | the flavour for the new project (see below for options) |
 
 NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
+
+| flavour        | description                             | constraints | note                                                |
+|----------------|-----------------------------------------|-------------|-----------------------------------------------------|
+| vanilla        | basic Venus configuration               |             | a vanilla maven project will be configured          |
+| quarkus-latest | project based on quarkus latest version | java >= 17  | currently from the quarkus 3.X branch               |
+| quarkus-2      | project based on quarkus 2              | java >= 11  | 2.16.12.Final is the latest version for quarkus 2.x |
+| quarkus-3      | project based on quarkus 3              | java >= 17  | currently same as quarkus-latest                    |
 
 ## Goal : verify
 

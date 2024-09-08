@@ -1,0 +1,7 @@
+README.md
+.dockerignore
+src/main/docker/Dockerfile.native
+src/main/docker/Dockerfile.native-micro
+src/main/docker/Dockerfile.legacy-jar
+src/main/docker/Dockerfile.jvm
+src/main/resources/application.yml

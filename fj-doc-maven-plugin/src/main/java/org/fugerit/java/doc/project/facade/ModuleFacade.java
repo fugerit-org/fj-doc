@@ -1,5 +1,7 @@
 package org.fugerit.java.doc.project.facade;
 
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
+
 import java.util.*;
 
 public class ModuleFacade {
@@ -35,5 +37,19 @@ public class ModuleFacade {
     public static Collection<String> getModules() {
         return Collections.unmodifiableCollection( MODULES );
     }
+
+    public static List<String> toModuleList( String extensions ) {
+        List<String> list = new ArrayList<>();
+        for ( String currentModule : extensions.split( "," ) ) {
+            String currentModuleName = toModuleName( currentModule );
+            if ( isModuleSupported( currentModuleName ) ) {
+                list.add( currentModuleName );
+            } else {
+                throw new ConfigRuntimeException( String.format( "Module not supported : %s", currentModule ) );
+            }
+        }
+        return list;
+    }
+
 
 }

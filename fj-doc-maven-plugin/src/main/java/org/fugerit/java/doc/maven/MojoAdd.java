@@ -41,7 +41,6 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addJunit5", defaultValue = "true", required = true)
     protected boolean addJunit5;
 
-
     @Parameter(property = "addLombok", defaultValue = "true", required = true)
     protected boolean addLombok;
 
