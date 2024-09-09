@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.0] - 2024-09-09
+
 ### Added
 
 - [fj-doc-maven-plugin] goal init, flavour parameter (currently : vanilla, quarkus-3, quarkus-2)
