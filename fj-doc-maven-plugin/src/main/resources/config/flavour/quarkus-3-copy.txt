@@ -1,4 +1,3 @@
-README.md
 .dockerignore
 src/main/docker/Dockerfile.native
 src/main/docker/Dockerfile.native-micro

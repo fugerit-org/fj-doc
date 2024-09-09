@@ -1,4 +1,21 @@
-# getting-started
+# ${context.artifactId}
+
+## Overview
+
+This project has been initialized using [fj-doc-maven-plugin init goal](https://venusguides.fugerit.org/src/docs/wizard/fj-doc-maven-plugin_init.html).
+
+The quarkus 3 structure is similar to running the quarkus create goal : 
+
+```shell
+mvn io.quarkus.platform:quarkus-maven-plugin:3.14.2:create \
+-DprojectGroupId=${context.groupId} \
+-DprojectArtifactId=${context.artifactId} \
+-Dextensions='rest,rest-jackson,config-yaml,smallrye-openapi'
+```
+
+## Quarkus readme
+
+From here on, this is the original quarkus readme.
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
