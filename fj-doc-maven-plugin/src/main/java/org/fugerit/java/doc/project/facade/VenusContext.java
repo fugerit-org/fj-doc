@@ -3,6 +3,7 @@ package org.fugerit.java.doc.project.facade;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.Model;
 import org.fugerit.java.core.cfg.VersionUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -14,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @ToString
 public class VenusContext {
 
@@ -51,6 +53,15 @@ public class VenusContext {
     @Getter @Setter
     private boolean addVerifyPlugin;
 
+    @Getter @Setter
+    private boolean addJunit5;
+
+    @Getter @Setter
+    private boolean addLombok;
+
+    @Getter @Setter
+    private boolean addDependencyOnTop;
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );
@@ -63,6 +74,12 @@ public class VenusContext {
         this.extensions = extensions;
         this.errors = new ArrayList<>();
         this.modules = new HashSet<>();
+        this.addDocFacace = true;
+        this.force = false;
+        this.addVerifyPlugin = true;
+        this.addJunit5 = true;
+        this.addLombok = true;
+        this.addDependencyOnTop = false;
     }
 
     public String getGroupId() {
@@ -107,6 +124,30 @@ public class VenusContext {
 
     public boolean isPreVersion862() {
         return VersionCheck.isMajorThan( VERSION_NA_FULL_PROCESS, this.getVersion() );
+    }
+
+    private File getAndCreateFolder( File file ) {
+        if ( !file.exists() ) {
+            boolean result = file.mkdirs();
+            log.info( "folder doesn't exists: {}, mkdirs: ", file.getAbsolutePath(), result );
+        }
+        return file;
+    }
+
+    public File getMainJavaFolder() {
+        return this.getAndCreateFolder( new File( this.getProjectDir(), "src/main/java" ) );
+    }
+
+    public File getMainResourcesFolder() {
+        return this.getAndCreateFolder( new File( this.getProjectDir(), "src/main/resources" ) );
+    }
+
+    public File getTestJavaFolder() {
+        return this.getAndCreateFolder( new File( this.getProjectDir(), "src/test/java" ) );
+    }
+
+    public File getTestResourcesFolder() {
+        return this.getAndCreateFolder( new File( this.getProjectDir(), "src/test/resources" ) );
     }
 
 }

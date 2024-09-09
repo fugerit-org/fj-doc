@@ -17,10 +17,12 @@ public class FreeMarkerConstants {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> map = (Map<String, Object>)context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP );
 		if ( map == null ) {
-			map = new HashMap<>();
-			context.setAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP , map );
+			Map<String, Object> newMap = new HashMap<>();
+			context.setAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP , newMap );
+			return newMap;
+		} else {
+			return map;
 		}
-		return map;
 	}
 	
 }

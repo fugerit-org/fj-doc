@@ -73,6 +73,9 @@ public class ProjectRest {
                         this.addDocFacade = true;
                         this.force = true;
                         this.addVerifyPlugin = true;
+                        this.addJunit5 = true;
+                        this.addLombok = true;
+                        this.flavour = data.getFlavour();
                         super.execute();
                     }
                 };

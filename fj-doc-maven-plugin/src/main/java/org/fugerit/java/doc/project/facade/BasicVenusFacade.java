@@ -66,8 +66,36 @@ public class BasicVenusFacade {
         context.getErrors().add( message );
     }
 
+    protected static Dependency createDependency( String groupId, String artifactId, String version, String scope ) {
+        Dependency dependency = new Dependency();
+        dependency.setGroupId( groupId );
+        dependency.setArtifactId( artifactId );
+        dependency.setVersion( version );
+        dependency.setScope( scope );
+        return dependency;
+    }
+
+    protected static void addJunit5( Model model, VenusContext context ) throws IOException  {
+        if ( context.isAddJunit5() ) {
+            Dependency junit5 = createDependency( "org.junit.jupiter", "junit-jupiter", null, "test" );
+            addOrOverwrite( model.getDependencies(), junit5 );
+        } else {
+            log.debug( "skip addJunit5" );
+        }
+    }
+
+    protected static void addLombok( Model model, VenusContext context ) throws IOException  {
+        if ( context.isAddLombok() ) {
+            Dependency lombok = createDependency( "org.projectlombok", "lombok", null, "provided" );
+            addOrOverwrite( model.getDependencies(), lombok );
+            Dependency slf4jSimple = createDependency( "org.slf4j", "slf4j-simple", null, "test" );
+            addOrOverwrite( model.getDependencies(), slf4jSimple );
+        } else {
+            log.debug( "skip addLombok" );
+        }
+    }
+
     protected static void addExtensionList( File pomFile, VenusContext context ) throws IOException  {
-        String[] extensionList = context.getExtensions().split( "," );
         ModelIO modelIO = new ModelIO();
         Model model = readModel( modelIO, pomFile );
         // add pom data
@@ -89,19 +117,36 @@ public class BasicVenusFacade {
         // check if dependencies are already present
         model.getDependencies().forEach( d -> checkDependencies( context.isForce(), d ) );
         // configure dependencies
-        for ( String currentModule :  Arrays.asList( extensionList ) ) {
+        List<String> moduleList = ModuleFacade.toModuleListOptimizedOrder( context.getExtensions() );
+        log.info( "moduleList : {}", moduleList );
+        for ( String currentModule :  moduleList ) {
             String moduleName = ModuleFacade.toModuleName( currentModule );
             log.info( "Adding module : {}", moduleName );
-            if ( ModuleFacade.isModuleSupported( moduleName ) ) {
-                addCurrentModule( context, moduleName, model.getDependencies() );
-                context.getModules().add( currentModule );
-            } else {
-                String message = String.format( "Module not supported : %s", moduleName );
-                log.warn( "{}, supported modules are : ", message );
-                ModuleFacade.getModules().forEach( log::warn );
-                throw new ConfigRuntimeException( message );
-            }
+            // no need to check if module is supported , ModuleFacade.toModuleList() already does it
+            addCurrentModule( context, moduleName, model.getDependencies() );
+            context.getModules().add( moduleName );
         }
+        // set fj-doc modules on top?
+        if ( context.isAddDependencyOnTop() ) {
+            model.getDependencies().sort( ( d1, d2 ) -> {
+                String artifact1 = d1.getArtifactId();
+                String artifact2 = d2.getArtifactId();
+                // if both are Venus modules, order is preserved
+                if ( artifact1.startsWith( ModuleFacade.MODULE_PREFIX ) && artifact2.startsWith( ModuleFacade.MODULE_PREFIX ) ) {
+                    return 0;
+                // if the first dependency is a Venus module, it goes first
+                } else if ( artifact1.startsWith( ModuleFacade.MODULE_PREFIX ) ) {
+                    return -1;
+                // otherwise it goes after, order preserved
+                } else {
+                    return 1;
+                }
+            } );
+        }
+        // addJunit5 parameter
+        addJunit5( model, context );
+        // addLombok parameter
+        addLombok( model, context );
         log.info( "end dependencies size : {}", model.getDependencies().size() );
         addPlugin( context, model );
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {

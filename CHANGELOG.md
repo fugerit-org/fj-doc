@@ -9,14 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [fj-doc-maven-plugin] goal init, flavour parameter (currently : vanilla, quarkus-3, quarkus-2)
+- [fj-doc-maven-plugin] goal add, optimized order for fj-doc-* dependencies
+- [fj-doc-maven-plugin] addDependencyOnTop parameter to put fj-doc-* dependencies on top
+- [fj-doc-maven-plugin] addLombok parameter to add lombok dependency (will add slf4j-simple in test scope)
+- [fj-doc-maven-plugin] addJunit5 parameter to add junit-jupiter dependency (will skip main generation)
 - [fj-doc-val-p7m] P7MPemValidator and P7MRawValidator
 
 ### Changed
 
-
+- fj version 8.6.5
+- fj-bom version 1.6.6
 - [fj-doc-playground-quarkus] quarkus version 3.14.2
 - [fj-doc-playground-quarkus] changed base image eclipse-temurin:21.0.4_7-jre-alpine
 - [fj-doc-val-p7m] Optimized P7MValidator (for previous behaviour use P7MLegacyValidator)
+
+### Fixed
+
+- [fj-doc-maven-plugin] add goal, short name module recognition
 
 ## [8.7.6] - 2024-09-02
 
@@ -29,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [fj-doc-playground-quarkus] Add project init function
-- fj-doc-maven-plugin is no on plugin management of fj-doc parent 
+- [fj-doc-maven-plugin] is no on plugin management of fj-doc parent 
 - [fj-doc-sample] fj-doc-maven-plugin:verify configuration
 
 ### Fixed

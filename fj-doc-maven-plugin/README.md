@@ -43,16 +43,20 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 ### Add Fugerit Venus, parameters
 
-| parameter       | required | default         | description                                                                                                                       |
-|-----------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.5'), *advice*: **keep the default** unless a specific version is striclty needed. |
-| extensions      | true     | base,freemarker | List of fj-doc core modules to add (*)                                                                                            |
-| projectFolder   | true     | .               | Maven project base folder                                                                                                         |
-| addDocFacade    | true     | true            | If true, a stub doc configuration helper will be created                                                                          |
-| force           | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration)                                 |
-| excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
-| addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
-| addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
+| parameter          | required | default         | description                                                                                                                       |
+|--------------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| version            | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.5'), *advice*: **keep the default** unless a specific version is strictly needed. |
+| extensions         | true     | base,freemarker | List of fj-doc core modules to add (*)                                                                                            |
+| projectFolder      | true     | .               | Maven project base folder                                                                                                         |
+| addDocFacade       | true     | true            | If true, a stub doc configuration helper will be created                                                                          |
+| force              | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration)                                 |
+| excludeXmlApis     | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
+| addExclusions      | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
+| addVerifyPlugin    | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
+| addJunit5          | true     | true            | If set to true, it will add junit5 (test scope) and basic test                                                                    |
+| addLombok          | true     | true            | If set to true, it will add lombok (provided scope) and slf4j-simple (test scope)                                                 |
+| addDependencyOnTop | true     | false           | If set to true, added dependencies will be added before existing ones                                                             |
+
 ### Add Fugerit Venus, available extensions
 
 | short name      | full name              | type handler | description                                                                                             |
@@ -84,14 +88,22 @@ Project folder will be `./${artifactId}/`.
 
 ### Init Fugerit Venus, parameters
 
-| parameter      | required | default        | description          |
-|----------------|----------|----------------|----------------------|
-| groupId        | true     |                | new project group id |
-| artifactId     | true     |                | new project group id |
-| projectVersion | true     | 1.0.0-SNAPSHOT | new project version  |
-| javaRelease    | true     | 21             | java release version |
+| parameter      | required | default        | description                                             |
+|----------------|----------|----------------|---------------------------------------------------------|
+| groupId        | true     |                | new project group id                                    |
+| artifactId     | true     |                | new project group id                                    |
+| projectVersion | true     | 1.0.0-SNAPSHOT | new project version                                     |
+| javaRelease    | true     | 21             | java release version                                    |
+| flavour        | true     | vanilla        | the flavour for the new project (see below for options) |
 
 NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
+
+| flavour        | description                             | constraints | note                                                |
+|----------------|-----------------------------------------|-------------|-----------------------------------------------------|
+| vanilla        | basic Venus configuration               |             | a vanilla maven project will be configured          |
+| quarkus-latest | project based on quarkus latest version | java >= 17  | currently from the quarkus 3.X branch               |
+| quarkus-2      | project based on quarkus 2              | java >= 11  | 2.16.12.Final is the latest version for quarkus 2.x |
+| quarkus-3      | project based on quarkus 3              | java >= 17  | currently same as quarkus-latest                    |
 
 ## Goal : verify
 

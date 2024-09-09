@@ -2,7 +2,6 @@ package org.fugerit.java.doc.freemarker.config;
 
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.fugerit.java.doc.base.process.DocProcessContext;
@@ -25,17 +24,13 @@ public class FreeMarkerProcessStep extends DocProcessorBasic {
 		Configuration cfg = (Configuration) context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_CONFIG );
 		Template template = cfg.getTemplate( this.getParam01() );
 		@SuppressWarnings("unchecked")
-		Map<String, Object> map = (Map<String, Object>)context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_MAP );
-		if ( map == null ) {
-			map = new HashMap<>();
-		}
+		Map<String, Object> map = FreeMarkerConstants.getFreeMarkerMap( context );
 		FreemarkerApplyHelper.setupFreemarkerMap(cfg, map);
-		Writer out = new StringWriter();
-		template.process( map, out);
-		data.setCurrentXmlData( out.toString() );
+		try ( Writer out = new StringWriter() ) {
+			template.process( map, out);
+			data.setCurrentXmlData( out.toString() );
+		}
 		return res;
 	}
-
-
 
 }
