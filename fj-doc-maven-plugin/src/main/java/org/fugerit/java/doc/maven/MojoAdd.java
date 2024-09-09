@@ -44,6 +44,9 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addLombok", defaultValue = "true", required = true)
     protected boolean addLombok;
 
+    @Parameter(property = "addDependencyOnTop", defaultValue = "false", required = true)
+    protected boolean addDependencyOnTop;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         String foundVersion = VersionCheck.findVersion( this.version );
@@ -56,6 +59,7 @@ public class MojoAdd extends AbstractMojo {
         context.setAddVerifyPlugin( this.addVerifyPlugin );
         context.setAddJunit5( this.addJunit5 );
         context.setAddLombok( this.addLombok );
+        context.setAddDependencyOnTop( this.addDependencyOnTop );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addVenusToMavenProject( context );
     }

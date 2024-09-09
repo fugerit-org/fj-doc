@@ -43,18 +43,19 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 ### Add Fugerit Venus, parameters
 
-| parameter       | required | default         | description                                                                                                                       |
-|-----------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| version         | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.5'), *advice*: **keep the default** unless a specific version is striclty needed. |
-| extensions      | true     | base,freemarker | List of fj-doc core modules to add (*)                                                                                            |
-| projectFolder   | true     | .               | Maven project base folder                                                                                                         |
-| addDocFacade    | true     | true            | If true, a stub doc configuration helper will be created                                                                          |
-| force           | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration)                                 |
-| excludeXmlApis  | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
-| addExclusions   | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
-| addVerifyPlugin | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
-| addJunit5       | true     | true            | If set to true, it will add junit5 (test scope) and basic test                                                                    |
-| addLombok       | true     | true            | If set to true, it will add lombok (provided scope) and slf4j-simple (test scope)                                                 |
+| parameter          | required | default         | description                                                                                                                       |
+|--------------------|----------|-----------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| version            | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.5'), *advice*: **keep the default** unless a specific version is strictly needed. |
+| extensions         | true     | base,freemarker | List of fj-doc core modules to add (*)                                                                                            |
+| projectFolder      | true     | .               | Maven project base folder                                                                                                         |
+| addDocFacade       | true     | true            | If true, a stub doc configuration helper will be created                                                                          |
+| force              | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration)                                 |
+| excludeXmlApis     | false    | false           | It will exclude dependency xml-apis:xml-apis                                                                                      |
+| addExclusions      | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}                                         |
+| addVerifyPlugin    | true     | true            | If set to true, it will configure the 'verify' goal on the project                                                                |
+| addJunit5          | true     | true            | If set to true, it will add junit5 (test scope) and basic test                                                                    |
+| addLombok          | true     | true            | If set to true, it will add lombok (provided scope) and slf4j-simple (test scope)                                                 |
+| addDependencyOnTop | true     | false           | If set to true, added dependencies will be added before existing ones                                                             |
 
 ### Add Fugerit Venus, available extensions
 

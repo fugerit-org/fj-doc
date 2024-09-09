@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [fj-doc-maven-plugin] goal add, optimized order for fj-doc-* dependencies
+- [fj-doc-maven-plugin] addDependencyOnTop parameter to put fj-doc-* dependencies on top
 - [fj-doc-maven-plugin] addLombok parameter to add lombok dependency (will add slf4j-simple in test scope)
 - [fj-doc-maven-plugin] addJunit5 parameter to add junit-jupiter dependency (will skip main generation)
 - [fj-doc-val-p7m] P7MPemValidator and P7MRawValidator

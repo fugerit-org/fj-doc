@@ -59,6 +59,9 @@ public class VenusContext {
     @Getter @Setter
     private boolean addLombok;
 
+    @Getter @Setter
+    private boolean addDependencyOnTop;
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );
@@ -76,6 +79,7 @@ public class VenusContext {
         this.addVerifyPlugin = true;
         this.addJunit5 = true;
         this.addLombok = true;
+        this.addDependencyOnTop = false;
     }
 
     public String getGroupId() {

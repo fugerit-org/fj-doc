@@ -96,7 +96,6 @@ public class BasicVenusFacade {
     }
 
     protected static void addExtensionList( File pomFile, VenusContext context ) throws IOException  {
-        String[] extensionList = context.getExtensions().split( "," );
         ModelIO modelIO = new ModelIO();
         Model model = readModel( modelIO, pomFile );
         // add pom data
@@ -118,18 +117,28 @@ public class BasicVenusFacade {
         // check if dependencies are already present
         model.getDependencies().forEach( d -> checkDependencies( context.isForce(), d ) );
         // configure dependencies
-        for ( String currentModule :  Arrays.asList( extensionList ) ) {
+        List<String> moduleList = ModuleFacade.toModuleListOptimizedOrder( context.getExtensions() );
+        log.info( "moduleList : {}", moduleList );
+        for ( String currentModule :  moduleList ) {
             String moduleName = ModuleFacade.toModuleName( currentModule );
             log.info( "Adding module : {}", moduleName );
-            if ( ModuleFacade.isModuleSupported( moduleName ) ) {
-                addCurrentModule( context, moduleName, model.getDependencies() );
-                context.getModules().add( moduleName );
-            } else {
-                String message = String.format( "Module not supported : %s", moduleName );
-                log.warn( "{}, supported modules are : ", message );
-                ModuleFacade.getModules().forEach( log::warn );
-                throw new ConfigRuntimeException( message );
-            }
+            // no need to check if module is supported , ModuleFacade.toModuleList() already does it
+            addCurrentModule( context, moduleName, model.getDependencies() );
+            context.getModules().add( moduleName );
+        }
+        // set fj-doc modules on top?
+        if ( context.isAddDependencyOnTop() ) {
+            model.getDependencies().sort( ( d1, d2 ) -> {
+                String artifact1 = d1.getArtifactId();
+                String artifact2 = d2.getArtifactId();
+                if ( artifact1.startsWith( ModuleFacade.MODULE_PREFIX ) && artifact2.startsWith( ModuleFacade.MODULE_PREFIX ) ) {
+                    return 0;
+                } else if ( artifact1.startsWith( ModuleFacade.MODULE_PREFIX ) ) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            } );
         }
         // addJunit5 parameter
         addJunit5( model, context );
