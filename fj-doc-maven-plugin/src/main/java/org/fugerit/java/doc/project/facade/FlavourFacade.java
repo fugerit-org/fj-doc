@@ -39,10 +39,21 @@ public class FlavourFacade {
         log.info( "generate flavour : {}", context.getFlavour() );
         String actualFlavour = MAP_FLAVOURS.getProperty( context.getFlavour(), context.getFlavour() );
         if ( SUPPORTED_FLAVOURS.contains( actualFlavour ) ) {
+            checkFlavour( context, actualFlavour );
             initFlavour( context, actualFlavour );
         } else {
             throw new ConfigRuntimeException( String.format( "flavour not supported : %s", context.getFlavour() ) );
         }
+    }
+
+    public static void checkFlavour( FlavourContext context, String actualFlavour ) {
+        int javaVersion = Integer.parseInt( context.getJavaRelease() );
+        if ( FLAVOUR_QUARKUS_3.equals( actualFlavour ) && javaVersion < 17 ) {
+            throw new ConfigRuntimeException( "Minimum java version for quarkus 3 is 17" );
+        } else if ( FLAVOUR_QUARKUS_2.equals( actualFlavour ) && javaVersion != 11 ) {
+            log.info( "quarkus 2 is a legacy flavour, javaRelease %s will default to '11'", javaVersion );
+        }
+        log.info( "checkFlavour {} done", actualFlavour );
     }
 
     private static void initFlavour( FlavourContext context, String actualFlavour ) throws IOException, TemplateException {

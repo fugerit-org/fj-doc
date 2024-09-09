@@ -44,6 +44,12 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
+			<version>8.6.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-daogen-base</artifactId>
+			<version>1.8.2</version>
 		</dependency>
 	</dependencies>
 		

@@ -131,10 +131,13 @@ public class BasicVenusFacade {
             model.getDependencies().sort( ( d1, d2 ) -> {
                 String artifact1 = d1.getArtifactId();
                 String artifact2 = d2.getArtifactId();
+                // if both are Venus modules, order is preserved
                 if ( artifact1.startsWith( ModuleFacade.MODULE_PREFIX ) && artifact2.startsWith( ModuleFacade.MODULE_PREFIX ) ) {
                     return 0;
+                // if the first dependency is a Venus module, it goes first
                 } else if ( artifact1.startsWith( ModuleFacade.MODULE_PREFIX ) ) {
                     return -1;
+                // otherwise it goes after, order preserved
                 } else {
                     return 1;
                 }
