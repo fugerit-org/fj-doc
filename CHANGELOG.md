@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] goal add, new parameter : freemarkerVersion (default : 2.3.32)
+- [fj-doc-maven-plugin] goal init, new flavour : micronaut-4
 - [fj-doc-playground-quarkus] doc project init default version set to 8.8.0
 
 ## [8.8.0] - 2024-09-09

@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: org.fugerit.java.demo
+testFramework: junit
+sourceLanguage: java
+buildTool: maven
+features: [app-name, graalvm, http-client-test, java, java-application, junit, logback, maven, maven-enforcer-plugin, micronaut-aot, micronaut-http-validation, netty-server, openapi, openapi-explorer, readme, serialization-jackson, shade, static-resources, yaml, yaml-build]

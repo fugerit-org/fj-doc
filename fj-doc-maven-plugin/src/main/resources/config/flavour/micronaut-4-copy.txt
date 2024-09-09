@@ -1,0 +1,5 @@
+aot-jar.properties
+aot-native-image.properties
+openapi.properties
+micronaut-cli.yml
+src/main/resources/logback.xml

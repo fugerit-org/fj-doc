@@ -55,6 +55,7 @@ public class MojoInit extends MojoAdd {
                 this.projectFolder = initFolder.getCanonicalPath();
                 FlavourContext context = new FlavourContext( new File( this.projectFolder ), this.groupId, this.artifactId, this.projectVersion, this.javaRelease, this.flavour );
                 context.setModules( ModuleFacade.toModuleList( this.extensions ) );
+                context.setAddLombok( this.addLombok );
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 FlavourFacade.initProject( context );
             } );

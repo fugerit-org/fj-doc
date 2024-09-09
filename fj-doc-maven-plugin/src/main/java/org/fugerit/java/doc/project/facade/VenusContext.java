@@ -62,6 +62,9 @@ public class VenusContext {
     @Getter @Setter
     private boolean addDependencyOnTop;
 
+    @Getter @Setter
+    private String freemarkerVersion;
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );
@@ -80,6 +83,7 @@ public class VenusContext {
         this.addJunit5 = true;
         this.addLombok = true;
         this.addDependencyOnTop = false;
+        this.freemarkerVersion = FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_DEFAULT;
     }
 
     public String getGroupId() {
@@ -100,10 +104,6 @@ public class VenusContext {
 
     public String getResourcePathFmConfigXml() {
         return this.getArtificatIdForFolder()+"/fm-doc-process-config.xml";
-    }
-
-    public String getFreemarkerVersion() {
-        return FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST;
     }
 
     public String getDocConfigPackage() {

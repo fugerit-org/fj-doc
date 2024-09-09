@@ -53,7 +53,7 @@
                     log-exception="false"
                     mode="class"
                     path="/${context.artificatIdForFolder}/${context.templateSubPath}/"
-                    version="${context.freemarkerVersion}"
+                    version="${context.freemarkerVersion!'2.3.32'}"
                     wrap-unchecked-exceptions="true"
                     load-bundled-functions="true"
             />

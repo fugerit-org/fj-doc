@@ -56,6 +56,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | addJunit5          | true     | true            | If set to true, it will add junit5 (test scope) and basic test                                                                    |
 | addLombok          | true     | true            | If set to true, it will add lombok (provided scope) and slf4j-simple (test scope)                                                 |
 | addDependencyOnTop | true     | false           | If set to true, added dependencies will be added before existing ones                                                             |
+| freemarkerVersion  | true     | 2.3.32          | Freemarker compatibility version (max 2.3.33)                                                                                     |
 
 ### Add Fugerit Venus, available extensions
 

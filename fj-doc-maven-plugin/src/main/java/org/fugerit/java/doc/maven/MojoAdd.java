@@ -47,6 +47,9 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addDependencyOnTop", defaultValue = "false", required = true)
     protected boolean addDependencyOnTop;
 
+    @Parameter(property = "freemarkerVersion", defaultValue = "2.3.32", required = true)
+    protected String freemarkerVersion;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         String foundVersion = VersionCheck.findVersion( this.version );
@@ -60,6 +63,7 @@ public class MojoAdd extends AbstractMojo {
         context.setAddJunit5( this.addJunit5 );
         context.setAddLombok( this.addLombok );
         context.setAddDependencyOnTop( this.addDependencyOnTop );
+        context.setFreemarkerVersion( this.freemarkerVersion );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addVenusToMavenProject( context );
     }
