@@ -23,9 +23,11 @@ public class FlavourFacade {
 
     public static final String FLAVOUR_QUARKUS_3 = "quarkus-3";
 
+    public static final String FLAVOUR_QUARKUS_2 = "quarkus-2";
+
     public static final String FLAVOUR_QUARKUS_LATEST = "quarkus-latest";
 
-    public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3 ) ) );
+    public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2 ) ) );
 
     private static final Properties MAP_FLAVOURS = SafeFunction.get( () -> {
         Properties prop = new Properties();
