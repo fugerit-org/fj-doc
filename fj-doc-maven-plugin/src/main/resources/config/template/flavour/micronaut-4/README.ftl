@@ -1,5 +1,25 @@
 # ${context.artifactId}
 
+## Quickstart
+
+Requirement :
+- maven 3.9.x
+- java ${context.javaRelease}+
+
+1. Start the app
+
+```shell
+mvn mn:run
+```
+
+2. Try the app
+
+Open the [openapi-explorer](http://localhost:8080/swagger/views/openapi-explorer)
+
+Test available routes (for instance : [/doc/example.md](http://localhost:8080/doc/example.md))
+
+## Projects notes
+
 the project used as template has been created with the command :
 
 ```shell

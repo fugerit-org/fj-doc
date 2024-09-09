@@ -1,5 +1,23 @@
 # ${context.artifactId}
 
+## Quickstart
+
+Requirement :
+- maven 3.9.x
+- java ${context.javaRelease}+
+
+1. Start the app
+
+```shell
+mvn quarkus:dev
+```
+
+2. Try the app
+
+Open the [swagger-ui](http://localhost:8080/q/swagger-ui/)
+
+Test available paths (for instance : [/doc/example.md](http://localhost:8080/doc/example.md))
+
 ## Overview
 
 This project has been initialized using [fj-doc-maven-plugin init goal](https://venusguides.fugerit.org/src/docs/wizard/fj-doc-maven-plugin_init.html).

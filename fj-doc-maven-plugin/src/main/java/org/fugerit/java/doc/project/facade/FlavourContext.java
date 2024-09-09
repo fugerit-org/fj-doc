@@ -37,9 +37,7 @@ public class FlavourContext {
         StringBuilder buf = new StringBuilder();
         String[] split = base.split( splitString );
         for ( String part : split ) {
-            if ( part.length() > 0 ) {
-                buf.append( part.substring( 0, 1 ).toLowerCase()+part.substring( 1 ) );
-            }
+            buf.append( part.substring( 0, 1 ).toLowerCase()+part.substring( 1 ) );
         }
         return buf.toString();
     }
