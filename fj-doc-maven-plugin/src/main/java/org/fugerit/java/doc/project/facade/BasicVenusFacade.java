@@ -123,7 +123,7 @@ public class BasicVenusFacade {
             log.info( "Adding module : {}", moduleName );
             if ( ModuleFacade.isModuleSupported( moduleName ) ) {
                 addCurrentModule( context, moduleName, model.getDependencies() );
-                context.getModules().add( currentModule );
+                context.getModules().add( moduleName );
             } else {
                 String message = String.format( "Module not supported : %s", moduleName );
                 log.warn( "{}, supported modules are : ", message );

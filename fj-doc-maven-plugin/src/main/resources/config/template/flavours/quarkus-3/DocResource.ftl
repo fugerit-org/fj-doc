@@ -11,9 +11,13 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 
 import java.io.ByteArrayOutputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
+
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+import org.eclipse.microprofile.openapi.annotations.tags.Tags;
 
 @Slf4j
 @Path("/doc")
@@ -36,6 +40,10 @@ public class DocResource {
     }
 
 
+    @APIResponse(responseCode = "200", description = "The Markdown document content" )
+    @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
+    @Tags( { @Tag( name = "document" ), @Tag( name = "markdown" ) } )
+    @Operation( operationId = "markdownExample", summary =  "Generated an example Markdown document using Fugerit Venus Doc handler" )
     @GET
     @Produces("text/markdown")
     @Path("/example.md")
@@ -43,6 +51,10 @@ public class DocResource {
         return processDocument(DocConfig.TYPE_MD);
     }
 
+    @APIResponse(responseCode = "200", description = "The HTML document content" )
+    @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
+    @Tags( { @Tag( name = "document" ), @Tag( name = "html" ) } )
+    @Operation( operationId = "htmlExample", summary =  "Generated an example HTML document using Fugerit Venus Doc handler" )
     @GET
     @Produces(MediaType.TEXT_HTML)
     @Path("/example.html")
@@ -51,6 +63,10 @@ public class DocResource {
     }
 
     <#if context.modules?seq_contains("fj-doc-mod-fop")>
+    @APIResponse(responseCode = "200", description = "The PDF document content" )
+    @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
+    @Tags( { @Tag( name = "document" ), @Tag( name = "pdf" ) } )
+    @Operation( operationId = "pdfExample", summary =  "Generated an example PDF document using Fugerit Venus Doc handler" )
     @GET
     @Produces("application/pdf")
     @Path("/example.pdf")
@@ -60,15 +76,23 @@ public class DocResource {
     </#if>
 
     <#if context.modules?seq_contains("fj-doc-mod-poi")>
+    @APIResponse(responseCode = "200", description = "The Excel document content" )
+    @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
+    @Tags( { @Tag( name = "document" ), @Tag( name = "excel" ) } )
+    @Operation( operationId = "xlsxExample", summary =  "Generated an example Excel document using Fugerit Venus Doc handler" )
     @GET
     @Produces("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
     @Path("/example.xlsx")
-    public byte[] xslxExample() {
+    public byte[] xlsxExample() {
         return processDocument(DocConfig.TYPE_XLSX);
     }
     </#if>
 
     <#if context.modules?seq_contains("fj-doc-mod-opencsv")>
+    @APIResponse(responseCode = "200", description = "The CSV document content" )
+    @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
+    @Tags( { @Tag( name = "document" ), @Tag( name = "csv" ) } )
+    @Operation( operationId = "csvExample", summary =  "Generated an example CSV document using Fugerit Venus Doc handler" )
     @GET
     @Produces("text/csv")
     @Path("/example.csv")
