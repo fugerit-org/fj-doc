@@ -19,7 +19,7 @@ const DocProjectInit = () => {
 	const [artifactId, setArtifactId] = useState('fugerit-doc-demo'); // State to handle artifactId input
 	const [projectVersion, setProjectVersion] = useState('1.0.0-SNAPSHOT'); // State to handle projectVersion input
 	const [javaVersion, setJavaVersion] = useState('21'); // State to handle javaVersion selection
-	const [venusVersion, setVenusVersion] = useState('8.7.6'); // State to handle javaVersion selection
+	const [venusVersion, setVenusVersion] = useState('8.8.0'); // State to handle javaVersion selection
 	const [flavour, setFlavour] = useState('vanilla'); // State to handle javaVersion selection
 	const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button loading state
 	const [serverMessage, setServerMessage] = useState(''); // State to store the message from the server response
@@ -191,6 +191,7 @@ const DocProjectInit = () => {
 							onChange={handleVenusVersionChange}
 						>
 							{/* Allowed values for venusVersion */}
+							<MenuItem value={'8.8.0'}>8.8.0</MenuItem>
 							<MenuItem value={'8.7.6'}>8.7.6</MenuItem>
 							<MenuItem value={'8.7.5'}>8.7.5</MenuItem>
 							<MenuItem value={'8.7.4'}>8.7.4</MenuItem>

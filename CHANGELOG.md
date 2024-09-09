@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-playground-quarkus] doc project init default version set to 8.8.0
+
 ## [8.8.0] - 2024-09-09
 
 ### Added
