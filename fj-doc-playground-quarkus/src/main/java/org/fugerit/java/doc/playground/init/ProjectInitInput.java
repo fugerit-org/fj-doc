@@ -25,6 +25,9 @@ public class ProjectInitInput {
     @Pattern( regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL )
     @Getter @Setter private String venusVersion;
 
+    @Pattern( regexp = "[A-Za-z0-9- ]+", flags = Pattern.Flag.DOTALL )
+    @Getter @Setter private String flavour;
+
     @Getter @Setter private List<String> extensionList;
 
 }
