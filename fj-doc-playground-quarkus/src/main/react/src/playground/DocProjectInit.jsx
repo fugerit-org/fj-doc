@@ -208,8 +208,9 @@ const DocProjectInit = () => {
 							onChange={handleFlavourChange}
 						>
 							{/* Allowed values for flavour */}
-							<MenuItem value={'vanilla'}>Vanilla</MenuItem>
-							<MenuItem value={'quarkus-3'}>Quarkus 3</MenuItem>
+							<MenuItem value={'vanilla'}>Vanilla (Simple library project)</MenuItem>
+							<MenuItem value={'quarkus-3'}>Quarkus 3 (Recommended quarkus version)</MenuItem>
+							<MenuItem value={'quarkus-2'}>Quarkus 2 (Legacy quarkus version)</MenuItem>
 						</Select>
 					</FormControl>
 				</Grid>
