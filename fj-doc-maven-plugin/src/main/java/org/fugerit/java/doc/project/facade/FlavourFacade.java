@@ -54,7 +54,7 @@ public class FlavourFacade {
         // freemarker resources
         Map<String, Object> data = new HashMap<>();
         data.put( "context", context );
-        String freemarkerProcessYamlPath = String.format( "flavours/%s-fm-yml.ftl", actualFlavour );
+        String freemarkerProcessYamlPath = String.format( "flavour/%s-fm-yml.ftl", actualFlavour );
         log.info( "freemarkerProcessYamlPath process {}", freemarkerProcessYamlPath );
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         try ( StringWriter writer = new StringWriter() ) {
