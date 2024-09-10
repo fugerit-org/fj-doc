@@ -31,7 +31,7 @@
     @APIResponse(responseCode = "200", description = "The ${outputDescription} document content" )
     @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
     @Tags( { @Tag( name = "document" ), @Tag( name = "${outputDescription?lower_case}" ) } )
-    @Operation( operationId = "${outputDescription}Example", summary =  "Generated an example ${outputDescription} document using Fugerit Venus Doc handler" )
+    @Operation( operationId = "${outputDescription}Example", summary =  "Generates an example ${outputDescription} document using Fugerit Venus Doc handler" )
     @GET
     @Produces("${outputMime}")
     @Path("/example.${outputExtension}")
@@ -43,7 +43,14 @@
     <@createPathMethod context=context outputMime=outputMime outputExtension=outputExtension outputDescription=outputDescription/>
 </#macro>
 
+<#-- using https://javadoc.io/doc/io.swagger.core.v3/swagger-annotations/latest/index.html -->
 <#macro createSpringBootPath context outputMime outputExtension outputDescription>
+    @Operation( method = "GET", operationId = "${outputDescription}Example", tags = { "document", "${outputDescription?lower_case}" },
+        summary = "Generates an example ${outputDescription} document using Fugerit Venus Doc handler" )
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "The ${outputDescription} document content", content = { @Content(mediaType = "${outputMime}") } ),
+        @ApiResponse(responseCode = "500", description = "In case of an unexpected error" )
+    })
     @GetMapping(value = "/example.${outputExtension}", produces = "${outputMime}" )
     <@createPathMethod context=context outputMime=outputMime outputExtension=outputExtension outputDescription=outputDescription/>
 </#macro>
