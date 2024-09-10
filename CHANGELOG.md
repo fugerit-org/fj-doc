@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.1] - 2024-09-10
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal add, new parameter : freemarkerVersion (default : 2.3.32)
