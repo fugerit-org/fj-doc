@@ -29,7 +29,9 @@ public class FlavourFacade {
 
     public static final String FLAVOUR_MICRONAUT_4 = "micronaut-4";
 
-    public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2, FLAVOUR_MICRONAUT_4 ) ) );
+    public static final String FLAVOUR_SPRINGBOOT_3 = "springboot-3";
+
+    public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2, FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3 ) ) );
 
     private static final Properties MAP_FLAVOURS = SafeFunction.get( () -> {
         Properties prop = new Properties();

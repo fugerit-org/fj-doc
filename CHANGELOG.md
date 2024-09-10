@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] goal init, new flavour : springboot-3
 - [fj-doc-maven-plugin] goal init, Quarkus and Micronaut generation based on freemarker macros.
 
 ### Fixed

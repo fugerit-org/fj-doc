@@ -213,6 +213,7 @@ const DocProjectInit = () => {
 							<MenuItem value={'quarkus-3'}>Quarkus 3 (Recommended quarkus version)</MenuItem>
 							<MenuItem value={'quarkus-2'}>Quarkus 2 (Legacy quarkus version)</MenuItem>
 							<MenuItem value={'micronaut-4'}>Micronaut 4</MenuItem>
+							<MenuItem value={'micronaut-3'}>SpringBoot 3</MenuItem>
 						</Select>
 					</FormControl>
 				</Grid>

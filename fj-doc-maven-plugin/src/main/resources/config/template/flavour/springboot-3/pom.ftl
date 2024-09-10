@@ -8,9 +8,9 @@
 		<version>3.3.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>org.fugerit.java.template</groupId>
-	<artifactId>fugerit-springboot3-template</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>${context.groupId}</groupId>
+	<artifactId>${context.artifactId}</artifactId>
+	<version>${context.projectVersion}</version>
 	<name>fugerit-springboot3-template</name>
 	<description>Fugerit SpringBoot Template</description>
 	<url/>
@@ -27,12 +27,19 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>${context.javaRelease}</java.version>
+		<springdoc-openapi-ui-version>2.6.0</springdoc-openapi-ui-version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${r"${springdoc-openapi-ui-version}"}</version>
 		</dependency>
 
 		<dependency>

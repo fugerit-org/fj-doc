@@ -42,3 +42,8 @@
     @Get(uri="/example.${outputExtension}", produces="${outputMime}")
     <@createPathMethod context=context outputMime=outputMime outputExtension=outputExtension outputDescription=outputDescription/>
 </#macro>
+
+<#macro createSpringBootPath context outputMime outputExtension outputDescription>
+    @GetMapping(value = "/example.${outputExtension}", produces = "${outputMime}" )
+    <@createPathMethod context=context outputMime=outputMime outputExtension=outputExtension outputDescription=outputDescription/>
+</#macro>
