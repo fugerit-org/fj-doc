@@ -40,7 +40,7 @@ public class DocController {
     }
 
     @Get(uri="/example.html", produces="text/html")
-    public byte[] markdownHtml() {
+    public byte[] htmlExample() {
         return processDocument(DocConfig.TYPE_HTML);
     }
 
