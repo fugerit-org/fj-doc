@@ -245,7 +245,7 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 		}
 		HashSet<PoiCellStyleModel> styleSet = new HashSet<>();
 		this.handleSubmatrix(matrix, ignoreFormat, sheet, helper, styleSet);
-		log.info( "TOTAL STYLES : {}", styleSet.size() );
+		log.debug( "TOTAL STYLES : {}", styleSet.size() );
 		return matrix;
 	}
 	
