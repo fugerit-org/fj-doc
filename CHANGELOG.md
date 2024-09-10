@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.2] - 2024-09-10
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal init, new flavour : springboot-3
