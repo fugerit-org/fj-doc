@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'micronaut-4'
 - [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'springboot-3'
 - [fj-doc-playground-quarkus] added venus version 8.8.1 and 8.8.2 to doc project init
 

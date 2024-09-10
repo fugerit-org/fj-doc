@@ -1,17 +1,22 @@
 <#import '../flavour-macro.ftl' as fhm>
 package <@fhm.toProjectPackage context=context/>;
 
-import io.micronaut.http.annotation.*;
-
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
-
-import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Arrays;
 import java.util.List;
+
+import io.micronaut.http.annotation.*;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller("/doc")
