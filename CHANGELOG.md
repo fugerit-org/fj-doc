@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] goal init, Quarkus and Micronaut generation based on freemarker macros.
+
+### Fixed
+
+- [fj-doc-maven-plugin] goal init, micronaut-4 typo in Controller class name
+
 ## [8.8.1] - 2024-09-10
 
 ### Changed

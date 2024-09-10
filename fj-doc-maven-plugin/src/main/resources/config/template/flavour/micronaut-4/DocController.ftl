@@ -1,5 +1,4 @@
-<#import
-'../flavour-macro.ftl' as fhm>
+<#import '../flavour-macro.ftl' as fhm>
 package <@fhm.toProjectPackage context=context/>;
 
 import io.micronaut.http.annotation.*;
@@ -18,51 +17,22 @@ import java.util.List;
 @Controller("/doc")
 public class DocController {
 
-    byte[] processDocument(String handlerId) {
-        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            // creates the doc helper
-            DocHelper docHelper = new DocHelper();
-            // create custom data for the fremarker template 'document.ftl'
-            List<People> listPeople = Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King"));
-            // output generation
-            docHelper.getDocProcessConfig().fullProcess("document", DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);
-            // return the output
-            return baos.toByteArray();
-        } catch (Exception e) {
-            log.error(String.format("Error processing %s, error:%s", handlerId, e), e);
-            throw new ConfigRuntimeException(e);
-        }
-    }
+    <@fhm.createDocumentProcess context=context exceptionType='ConfigRuntimeException'/>
 
-    @Get(uri="/example.md", produces="text/markdown")
-    public byte[] markdownExample() {
-        return processDocument(DocConfig.TYPE_MD);
-    }
-
-    @Get(uri="/example.html", produces="text/html")
-    public byte[] htmlExample() {
-        return processDocument(DocConfig.TYPE_HTML);
-    }
-
+    <@fhm.createMicronautPath context=context outputMime="text/markdown" outputExtension="md" outputDescription="Markdown"/>
+    
+    <@fhm.createMicronautPath context=context outputMime="text/html" outputExtension="html" outputDescription="HTML"/>
+    
     <#if context.modules?seq_contains("fj-doc-mod-fop")>
-    @Get(uri="/example.pdf", produces="application/pdf")
-    public byte[] pdfExample() {
-        return processDocument(DocConfig.TYPE_PDF);
-    }
+    <@fhm.createMicronautPath context=context outputMime="application/pdf" outputExtension="pdf" outputDescription="PDF"/>
     </#if>
-
+    
     <#if context.modules?seq_contains("fj-doc-mod-poi")>
-    @Get(uri="/example.xlsx", produces="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-    public byte[] xlsxExample() {
-        return processDocument(DocConfig.TYPE_XLSX);
-    }
+    <@fhm.createMicronautPath context=context outputMime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" outputExtension="xlsx" outputDescription="Excel"/>
     </#if>
-
+    
     <#if context.modules?seq_contains("fj-doc-mod-opencsv")>
-    @Get(uri="/example.csv", produces="text/csv")
-    public byte[] csvExample() {
-        return processDocument(DocConfig.TYPE_CSV);
-    }
+    <@fhm.createMicronautPath context=context outputMime="text/csv" outputExtension="csv" outputDescription="CSV"/>
     </#if>
 
 }
