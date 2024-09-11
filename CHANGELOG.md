@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.3] - 2024-09-11
+
 ### Fixed
 
 [fj-doc-maven-plugin] m2e lifecycleMappingMetadata (xml is not valid) # 194  
