@@ -29,9 +29,13 @@ public class FlavourFacade {
 
     public static final String FLAVOUR_MICRONAUT_4 = "micronaut-4";
 
+    public static final String FLAVOUR_OPENLIBERTY = "openliberty";
+
     public static final String FLAVOUR_SPRINGBOOT_3 = "springboot-3";
 
-    public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet( new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2, FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3 ) ) );
+    public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(
+            new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2,
+                    FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3, FLAVOUR_OPENLIBERTY ) ) );
 
     private static final Properties MAP_FLAVOURS = SafeFunction.get( () -> {
         Properties prop = new Properties();
@@ -52,7 +56,8 @@ public class FlavourFacade {
 
     public static void checkFlavour( FlavourContext context, String actualFlavour ) {
         int javaVersion = Integer.parseInt( context.getJavaRelease() );
-        if ( ( FLAVOUR_QUARKUS_3.equals( actualFlavour ) || FLAVOUR_MICRONAUT_4.equals( actualFlavour ) ) && javaVersion < 17 ) {
+        if ( ( FLAVOUR_QUARKUS_3.equals( actualFlavour ) || FLAVOUR_MICRONAUT_4.equals( actualFlavour )
+                || FLAVOUR_SPRINGBOOT_3.equals( actualFlavour ) || FLAVOUR_OPENLIBERTY.equals( actualFlavour ) ) && javaVersion < 17 ) {
             throw new ConfigRuntimeException( String.format( "Minimum java version for %s is 17", actualFlavour ) );
         } else if ( FLAVOUR_QUARKUS_2.equals( actualFlavour ) && javaVersion != 11 ) {
             log.info( "quarkus 2 is a legacy flavour, javaRelease %s will default to '11'", javaVersion );

@@ -103,8 +103,11 @@ NOTE: it is possible to set any property from 'add' goal, except 'projectFolder'
 |----------------|-----------------------------------------|-------------|-----------------------------------------------------|
 | vanilla        | basic Venus configuration               |             | a vanilla maven project will be configured          |
 | quarkus-latest | project based on quarkus latest version | java >= 17  | currently from the quarkus 3.X branch               |
-| quarkus-2      | project based on quarkus 2              | java >= 11  | 2.16.12.Final is the latest version for quarkus 2.x |
+| quarkus-2      | project based on quarkus 2              | java == 11  | 2.16.12.Final is the latest version for quarkus 2.x |
 | quarkus-3      | project based on quarkus 3              | java >= 17  | currently same as quarkus-latest                    |
+| springboot-3   | project based on springboot 3           | java >= 17  | based on SpringBoot 3.x                             |
+| micronaut-4    | project based on micronaut 4            | java >= 17  | based on Micronaut 4.x                              |
+| openliberty    | project based on openliberty            | java >= 17  | based on OpenLiberty                                |
 
 ## Goal : verify
 
