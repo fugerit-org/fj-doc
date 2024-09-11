@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.4] - 2024-09-11
+
 ### Changed
 
 - [fj-doc-mod-openrtf-ext] handling doc-title, doc-subject, doc-author, doc-language, doc-creator #196
