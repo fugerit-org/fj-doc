@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+[fj-doc-maven-plugin] m2e lifecycleMappingMetadata (xml is not valid) # 194  
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'micronaut-4'
