@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+[fj-doc-mod-fop] default creator set to 'Apache FOP over Fugerit Venus DOC'
+
 ## [8.8.3] - 2024-09-11
 
 ### Fixed
