@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'openliberty' #193
+
+### Fixed
+
+- [fj-doc-playground-quarkus] springboot-3 flavour on doc project init
+
 ## [8.8.4] - 2024-09-11
 
 ### Changed
