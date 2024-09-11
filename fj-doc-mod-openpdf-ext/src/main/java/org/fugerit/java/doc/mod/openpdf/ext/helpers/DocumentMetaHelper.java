@@ -3,7 +3,6 @@ package org.fugerit.java.doc.mod.openpdf.ext.helpers;
 import com.lowagie.text.Document;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.function.UnsafeConsumer;
-import org.fugerit.java.core.function.UnsafeVoid;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 
@@ -21,19 +20,19 @@ public class DocumentMetaHelper {
         // setup meta properties
         metaWorker(
                 docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_TITLE),
-                v -> document.addTitle( v ) );
+                document::addTitle );
         metaWorker(
                 docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_AUTHOR),
-                v -> document.addAuthor( v ) );
+                document::addAuthor );
         metaWorker(
                 docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_SUBJECT),
-                v -> document.addSubject( v ) );
+                document::addSubject );
         metaWorker(
                 docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_LANGUAGE),
-                v -> document.setDocumentLanguage( v ) );
+                document::setDocumentLanguage );
         metaWorker(
                 docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_CREATOR, CREATOR_DEFAULT),
-                v -> document.addCreator( v ) );
+                document::addCreator );
 
     }
 
