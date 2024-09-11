@@ -10,6 +10,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.mod.openpdf.ext.helpers.DocumentMetaHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPDFConfigHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
 import org.fugerit.java.doc.mod.openrtf.ext.helpers.OpenRtfDocHandler;
@@ -44,6 +45,7 @@ public class RtfTypeHandler extends DocTypeHandlerDefault {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		RtfWriter2 rtfWriter2 = RtfWriter2.getInstance( document, baos );
 		OpenPpfDocHandler handler = new OpenRtfDocHandler( document, rtfWriter2 );
+		DocumentMetaHelper.handleDocMeta( document, docBase );
 		handler.handleDoc( docBase );
 		baos.writeTo( outputStream );
 		baos.close();

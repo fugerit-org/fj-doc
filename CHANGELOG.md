@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+[fj-doc-mod-openrtf-ext] handling doc-title, doc-subject, doc-author, doc-language, doc-creator #196
+[fj-doc-mod-openpdf-ext] handling doc-title, doc-subject, doc-author, doc-language, doc-creator #196
+[fj-doc-mod-openpdf-ext] default creator set to 'OpenPDF over Fugerit Venus DOC' #196
+[fj-doc-mod-fop] default creator set to 'Apache FOP over Fugerit Venus DOC'
+
 ## [8.8.3] - 2024-09-11
 
 ### Fixed

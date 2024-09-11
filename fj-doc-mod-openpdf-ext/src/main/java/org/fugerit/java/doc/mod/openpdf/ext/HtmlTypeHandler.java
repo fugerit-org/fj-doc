@@ -10,6 +10,7 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.mod.openpdf.ext.helpers.DocumentMetaHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPDFConfigHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
 import org.w3c.dom.Element;
@@ -38,6 +39,7 @@ public class HtmlTypeHandler extends DocTypeHandlerDefault {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		HtmlWriter.getInstance( document, baos );
 		OpenPpfDocHandler handler = new OpenPpfDocHandler( document, DocConfig.TYPE_HTML );
+		DocumentMetaHelper.handleDocMeta( document, docBase );
 		handler.handleDoc( docBase );
 		baos.writeTo( outputStream );
 		baos.close();

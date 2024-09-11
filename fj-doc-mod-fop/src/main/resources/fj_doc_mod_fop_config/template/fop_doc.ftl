@@ -47,7 +47,7 @@
 		        <#if (docBase.infoDocLanguage)??><dc:language><rdf:Bag><rdf:li>${docBase.infoDocLanguage}</rdf:li></rdf:Bag></dc:language></#if>
 		      </rdf:Description>
 		      <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
-		      	<xmp:CreatorTool><#if (docBase.infoDocCreator)??>${docBase.infoDocCreator}<#else>Apache FOP over Fugerit DOC</#if></xmp:CreatorTool>
+		      	<xmp:CreatorTool><#if (docBase.infoDocCreator)??>${docBase.infoDocCreator}<#else>Apache FOP over Fugerit Venus DOC</#if></xmp:CreatorTool>
 		      </rdf:Description>
 		    </rdf:RDF>
 		  </x:xmpmeta>
