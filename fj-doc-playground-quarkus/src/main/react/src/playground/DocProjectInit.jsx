@@ -191,6 +191,8 @@ const DocProjectInit = () => {
 							onChange={handleVenusVersionChange}
 						>
 							{/* Allowed values for venusVersion */}
+							<MenuItem value={'8.8.2'}>8.8.4</MenuItem>
+							<MenuItem value={'8.8.3'}>8.8.3</MenuItem>
 							<MenuItem value={'8.8.2'}>8.8.2</MenuItem>
 							<MenuItem value={'8.8.1'}>8.8.1</MenuItem>
 							<MenuItem value={'8.8.0'}>8.8.0</MenuItem>
