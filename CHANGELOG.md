@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.5] - 2024-09-12
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'openliberty' #193
