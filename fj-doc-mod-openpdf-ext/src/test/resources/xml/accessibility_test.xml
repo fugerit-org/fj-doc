@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 
+
+  <metadata>
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>
+ 	<!-- documenta meta information -->
+	<info name="doc-title">Basic example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+	<!-- additional properties -->
+	<info name="set-total-page">true</info>
+	<header-ext>
+		<para align="center">my header</para>
+	</header-ext>
+	<footer-ext>
+		<para align="left">test</para>
+		<para align="center">${r"${currentPage}"} / ${r"${pageCount}"}</para>
+		<para align="right">test</para>
+	</footer-ext>
+  </metadata>
+  <body>
+    	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
+    		<row header="true">
+    			<cell header="true"><para style="bold">Name</para></cell>
+    			<cell header="true"><para style="bold">Surname</para></cell>
+    			<cell header="true"><para style="bold">Title</para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Luthien]]></para></cell>
+    			<cell><para><![CDATA[Tinuviel]]></para></cell>
+    			<cell><para><![CDATA[Queen]]></para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Thorin]]></para></cell>
+    			<cell><para><![CDATA[Oakshield]]></para></cell>
+    			<cell><para><![CDATA[King]]></para></cell>
+    		</row>     	
+        		<row>
+    			<cell><phrase><![CDATA[Phrase]]></phrase></cell>
+    			<cell><phrase><![CDATA[Oakshield]]></phrase></cell>
+    			<cell><phrase><![CDATA[King]]></phrase></cell>
+    		</row>  
+    	</table>
+  </body>
+  
+</doc>

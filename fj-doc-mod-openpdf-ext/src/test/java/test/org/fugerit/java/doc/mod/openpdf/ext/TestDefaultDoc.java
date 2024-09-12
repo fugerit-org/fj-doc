@@ -29,7 +29,13 @@ class TestDefaultDoc extends TestDocBase {
 		BaseFont font = OpenPpfDocHandler.findFont( CUSTOM_FONT );
 		Assertions.assertNotNull(font);
 	}
-	
+
+	@Test
+	public void testAccessibility() {
+		boolean ok = this.testDocWorker( "accessibility_test" ,  DocConfig.TYPE_PDF );
+		Assertions.assertTrue(ok);
+	}
+
 	@Test
 	void testOpenPDF() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_PDF );
