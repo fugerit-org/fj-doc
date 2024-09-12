@@ -12,6 +12,9 @@ import Alert from '@mui/material/Alert';
 import appService from '../common/app-service';
 
 const DocProjectInit = () => {
+
+	const availableVersions = [ '8.8.5', '8.8.4', '8.8.3', '8.8.2', '8.8.1', '8.8.0', '8.7.6', '8.7.5', '8.7.4' ];
+
 	const [extensionList, setExtensionList] = useState([]); // State to store the list of extensions
 	const [selectedExtensions, setSelectedExtensions] = useState([]); // State to store selected extensions
 	const [loading, setLoading] = useState(true); // State to manage loading state
@@ -19,12 +22,11 @@ const DocProjectInit = () => {
 	const [artifactId, setArtifactId] = useState('fugerit-doc-demo'); // State to handle artifactId input
 	const [projectVersion, setProjectVersion] = useState('1.0.0-SNAPSHOT'); // State to handle projectVersion input
 	const [javaVersion, setJavaVersion] = useState('21'); // State to handle javaVersion selection
-	const [venusVersion, setVenusVersion] = useState('8.8.2'); // State to handle javaVersion selection
+	const [venusVersion, setVenusVersion] = useState(availableVersions[0]); // State to handle javaVersion selection
 	const [flavour, setFlavour] = useState('vanilla'); // State to handle javaVersion selection
 	const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button loading state
 	const [serverMessage, setServerMessage] = useState(''); // State to store the message from the server response
 	const [serverContent, setServerContent] = useState(''); // State to store the base64 encoded content from the server
-
 
 	// useEffect to fetch data from the API when the component mounts
 	useEffect(() => {
@@ -191,14 +193,7 @@ const DocProjectInit = () => {
 							onChange={handleVenusVersionChange}
 						>
 							{/* Allowed values for venusVersion */}
-							<MenuItem value={'8.8.2'}>8.8.4</MenuItem>
-							<MenuItem value={'8.8.3'}>8.8.3</MenuItem>
-							<MenuItem value={'8.8.2'}>8.8.2</MenuItem>
-							<MenuItem value={'8.8.1'}>8.8.1</MenuItem>
-							<MenuItem value={'8.8.0'}>8.8.0</MenuItem>
-							<MenuItem value={'8.7.6'}>8.7.6</MenuItem>
-							<MenuItem value={'8.7.5'}>8.7.5</MenuItem>
-							<MenuItem value={'8.7.4'}>8.7.4</MenuItem>
+							{availableVersions.map( currentVersion => <MenuItem value={currentVersion}>{currentVersion}</MenuItem> )}
 						</Select>
 					</FormControl>
 				</Grid>
