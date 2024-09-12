@@ -156,7 +156,8 @@ public class OpenPpfDocHandler {
 		int style = docPhrase.getStyle();
 		String fontName = docPhrase.getFontName();
 		Font f = createFont(fontName, docPhrase.getSize(), style, docHelper, docPhrase.getForeColor() );
-		return new Chunk( text, f );
+		Chunk c = new Chunk( text, f );
+		return c;
 	}	
 	
 	protected static Phrase createPhrase( DocPhrase docPhrase, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {

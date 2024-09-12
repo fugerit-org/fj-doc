@@ -19,7 +19,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.pdf.PdfWriter;
 
-public class PdfTypeHandler extends DocTypeHandlerDefault {
+public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf {
 
 	/**
 	 * 
@@ -27,9 +27,12 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 	private static final long serialVersionUID = 5459938865782356227L;
 	
 	public static final DocTypeHandler HANDLER = new PdfTypeHandler();
-	
+
+	private boolean activatePDFUA1;
+
 	public PdfTypeHandler() {
 		super( DocConfig.TYPE_PDF, OpenPpfDocHandler.MODULE );
+		this.setActivatePDFUA1( false );
 	}
 
 	@Override
@@ -66,8 +69,21 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 	}
 
 	@Override
+	public boolean isActivatePDFUA1() {
+		return this.activatePDFUA1;
+	}
+
+	@Override
+	public void setActivatePDFUA1(boolean value) {
+		this.setActivatePDFUA1( value );
+	}
+
+	@Override
 	protected void handleConfigTag(Element config) throws ConfigException {
 		super.handleConfigTag(config);
-		OpenPDFConfigHelper.handleConfig( config, this.getType() );
+		OpenPDFConfigHelper.handleConfig( config, this.getType(), this );
 	}
+
+
+
 }
