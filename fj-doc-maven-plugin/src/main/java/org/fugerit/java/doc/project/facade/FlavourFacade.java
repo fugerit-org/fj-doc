@@ -73,11 +73,11 @@ public class FlavourFacade {
     public static void checkFlavourVersion( FlavourContext context, String actualFlavour ) {
         // additional flavour config
         if ( StringUtils.isEmpty( context.getFlavourVersion() ) ) {
-            String flavourVersionDefault = FLAVOURS_DEFAULT_VERSION.getProperty( context.getFlavour() );
-            log.info( "using default flavourVersion : {} for flavour : {}", flavourVersionDefault, context.getFlavour() );
+            String flavourVersionDefault = FLAVOURS_DEFAULT_VERSION.getProperty( actualFlavour );
+            log.info( "using default flavourVersion : {} for flavour : {}", flavourVersionDefault, actualFlavour );
             context.setFlavourVersion( flavourVersionDefault );
         } else {
-            log.info( "overriding default flavourVersion : {} for flavour : {}", context.getFlavourVersion(), context.getFlavour() );
+            log.info( "overriding default flavourVersion : {} for flavour : {}", context.getFlavourVersion(), actualFlavour );
         }
     }
 
