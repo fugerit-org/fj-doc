@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.6] - 2024-09-13
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal init, new parameter : flavourVersion
@@ -16,7 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-maven-plugin] goal init, flavour openliberty, default openliberty version 24.0.0.9
 - [fj-doc-maven-plugin] goal init, flavour micronaut-4, default micronaut version 4.6.2
 - [fj-doc-maven-plugin] goal init, flavour quarkus-3, default quarkus version 3.14.3
-- [fj-doc-playground-quarkus] doc project init, default venus version 8.8.5
+- [fj-doc-playground-quarkus] doc project init, default venus version 8.8.6
+- [fj-doc-playground-quarkus] added venus version 8.8.5 and 8.8.6 to doc project init
 - [fj-doc-playground-quarkus] quarkus version set to 3.14.3
 
 ### Fixed
