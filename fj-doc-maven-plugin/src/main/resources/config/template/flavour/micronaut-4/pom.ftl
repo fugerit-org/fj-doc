@@ -11,7 +11,7 @@
   <parent>
     <groupId>io.micronaut.platform</groupId>
     <artifactId>micronaut-parent</artifactId>
-    <version>4.5.0</version>
+    <version>4.6.2</version>
   </parent>
   <properties>
     <packaging>jar</packaging>
