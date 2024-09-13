@@ -35,8 +35,6 @@ public class FlavourFacade {
 
     public static final String FLAVOUR_SPRINGBOOT_3 = "springboot-3";
 
-    private static final String VERSION_OPENLIBERTY = "20.0.0.9";
-
     private static final Properties FLAVOURS_DEFAULT_VERSION = PropsIO.loadFromClassLoaderSafe( "config/flavour/flavour_versions_default.properties" );
 
     public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(

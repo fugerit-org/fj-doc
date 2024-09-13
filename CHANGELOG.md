@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-playground-quarkus] doc project init, default venus version 8.8.5
 - [fj-doc-playground-quarkus] quarkus version set to 3.14.3
 
+###
+
+- [fj-doc-maven-plugin] goal init, generation of flavour 'vanilla' was bugged
+
 ## [8.8.5] - 2024-09-12
 
 ### Changed
