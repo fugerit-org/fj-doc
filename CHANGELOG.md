@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] goal init, new parameter : flavourVersion
+- [fj-doc-playground-quarkus] doc project init, added flavour version parameter
 - [fj-doc-maven-plugin] goal init, flavour quarkus-2, default quarkus version 2.16.12.Final
 - [fj-doc-maven-plugin] goal init, flavour springboot-3, default springboot version 3.3.3
 - [fj-doc-maven-plugin] goal init, flavour openliberty, default openliberty version 24.0.0.9

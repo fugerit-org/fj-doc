@@ -1,20 +1,20 @@
 <#import 'flavour-macro.ftl' as fhm>
 ---
-flavour: openliberty
+flavour: ${context.flavour}
 process:
-  - from: flavour/openliberty/pom.ftl
+  - from: flavour/${context.flavour}/pom.ftl
     to: ${context.projectFolder}/pom.xml
-  - from: flavour/openliberty/README.ftl
+  - from: flavour/${context.flavour}/README.ftl
     to: ${context.projectFolder}/README.md
-  - from: flavour/openliberty/gitignore.ftl
+  - from: flavour/${context.flavour}/gitignore.ftl
     to: ${context.projectFolder}/.gitignore
-  - from: flavour/openliberty/server.ftl
+  - from: flavour/${context.flavour}/server.ftl
     to: ${context.projectFolder}/src/main/liberty/config/server.xml
-  - from: flavour/openliberty/web.ftl
+  - from: flavour/${context.flavour}/web.ftl
     to: ${context.projectFolder}/src/main/webapp/WEB-INF/web.xml
-  - from: flavour/openliberty/RestApplication.ftl
+  - from: flavour/${context.flavour}/RestApplication.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/RestApplication.java
-  - from: flavour/openliberty/GreetingResource.ftl
+  - from: flavour/${context.flavour}/GreetingResource.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/GreetingResource.java
-  - from: flavour/openliberty/DocResource.ftl
+  - from: flavour/${context.flavour}/DocResource.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/DocResource.java

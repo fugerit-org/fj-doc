@@ -76,6 +76,7 @@ public class ProjectRest {
                         this.addJunit5 = true;
                         this.addLombok = true;
                         this.flavour = data.getFlavour();
+                        this.flavourVersion = data.getFlavourVersion();
                         super.execute();
                     }
                 };

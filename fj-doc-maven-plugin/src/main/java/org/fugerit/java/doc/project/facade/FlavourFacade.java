@@ -8,6 +8,7 @@ import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.project.facade.flavour.FlavourConfig;
 import org.fugerit.java.doc.project.facade.flavour.ProcessEntry;
 
@@ -32,6 +33,16 @@ public class FlavourFacade {
     public static final String FLAVOUR_OPENLIBERTY = "openliberty";
 
     public static final String FLAVOUR_SPRINGBOOT_3 = "springboot-3";
+
+    private static final Properties FLAVOURS_DEFAULT_VERSION = SafeFunction.get( () -> {
+        Properties versions = new Properties();
+        versions.setProperty( FLAVOUR_QUARKUS_3, "3.14.3" );
+        versions.setProperty( FLAVOUR_QUARKUS_2, "2.16.12.Final" );
+        versions.setProperty( FLAVOUR_MICRONAUT_4, "4.6.2" );
+        versions.setProperty( FLAVOUR_SPRINGBOOT_3, "3.3.3" );
+        versions.setProperty( FLAVOUR_OPENLIBERTY, "20.0.0.9" );
+        return versions;
+    } );
 
     public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(
             new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2,
@@ -63,6 +74,14 @@ public class FlavourFacade {
             log.info( "quarkus 2 is a legacy flavour, javaRelease %s will default to '11'", javaVersion );
         }
         log.info( "checkFlavour {} done", actualFlavour );
+        // additional flavour config
+        if ( StringUtils.isEmpty( context.getFlavourVersion() ) ) {
+            String flavourVersionDefault = FLAVOURS_DEFAULT_VERSION.getProperty( context.getFlavour() );
+            log.info( "using default flavourVersion : {} for flavour : {}", flavourVersionDefault, context.getFlavour() );
+            context.setFlavourVersion( flavourVersionDefault );
+        } else {
+            log.info( "overriding default flavourVersion : {} for flavour : {}", context.getFlavourVersion(), context.getFlavour() );
+        }
     }
 
     private static void initFlavour( FlavourContext context, String actualFlavour ) throws IOException, TemplateException {

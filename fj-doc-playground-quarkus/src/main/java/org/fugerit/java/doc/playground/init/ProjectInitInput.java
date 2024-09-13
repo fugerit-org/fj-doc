@@ -28,6 +28,9 @@ public class ProjectInitInput {
     @Pattern( regexp = "[A-Za-z0-9- ]+", flags = Pattern.Flag.DOTALL )
     @Getter @Setter private String flavour;
 
+    @Pattern( regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL )
+    @Getter @Setter private String flavourVersion;
+
     @Getter @Setter private List<String> extensionList;
 
 }

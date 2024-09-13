@@ -15,7 +15,7 @@
         <maven.compiler.release>${context.javaRelease}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <openliberty-runtime-version>24.0.0.9</openliberty-runtime-version>
+        <openliberty-runtime-version>${context.flavourVersion}</openliberty-runtime-version>
         <liberty-maven-plugin-version>3.10.3</liberty-maven-plugin-version>
         <microprofile-version>6.1</microprofile-version>
         <liberty.var.default.http.port>8080</liberty.var.default.http.port>
