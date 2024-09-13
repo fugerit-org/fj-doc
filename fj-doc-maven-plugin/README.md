@@ -99,6 +99,7 @@ Project folder will be `./${artifactId}/`.
 | flavourVersion | false    | see below      | override default framework version if supported (recommended : leave default or blank) |
 
 NOTE: 
+
 - it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
 
 | flavour        | description                             | constraints | note                                                | default flavourVersion |
