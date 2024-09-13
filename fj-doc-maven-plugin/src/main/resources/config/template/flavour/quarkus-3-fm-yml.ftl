@@ -1,22 +1,22 @@
 <#import 'flavour-macro.ftl' as fhm>
 ---
-flavour: quarkus-3
+flavour: ${context.flavour}
 process:
-  - from: flavour/quarkus-3/pom.ftl
+  - from: flavour/${context.flavour}/pom.ftl
     to: ${context.projectFolder}/pom.xml
-  - from: flavour/quarkus-3/README.ftl
+  - from: flavour/${context.flavour}/README.ftl
     to: ${context.projectFolder}/README.md
-  - from: flavour/quarkus-3/gitignore.ftl
+  - from: flavour/${context.flavour}/gitignore.ftl
     to: ${context.projectFolder}/.gitignore
-  - from: flavour/quarkus-3/GreetingConfig.ftl
+  - from: flavour/${context.flavour}/GreetingConfig.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/GreetingConfig.java
-  - from: flavour/quarkus-3/GreetingResource.ftl
+  - from: flavour/${context.flavour}/GreetingResource.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/GreetingResource.java
-  - from: flavour/quarkus-3/GreetingResourceTest.ftl
+  - from: flavour/${context.flavour}/GreetingResourceTest.ftl
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/GreetingResourceTest.java
-  - from: flavour/quarkus-3/GreetingResourceIT.ftl
+  - from: flavour/${context.flavour}/GreetingResourceIT.ftl
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/GreetingResourceIT.java
-  - from: flavour/quarkus-3/DocResource.ftl
+  - from: flavour/${context.flavour}/DocResource.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/DocResource.java
-  - from: flavour/quarkus-3/DocResourceTest.ftl
+  - from: flavour/${context.flavour}/DocResourceTest.ftl
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/DocResourceTest.java

@@ -32,6 +32,9 @@ public class MojoInit extends MojoAdd {
     @Parameter(property = "flavour", defaultValue = "vanilla", required = true)
     protected String flavour;
 
+    @Parameter(property = "flavourVersion", required = false)
+    protected String flavourVersion;
+
     public MojoInit() {
         this.baseInitFolder = ".";
     }
@@ -56,6 +59,7 @@ public class MojoInit extends MojoAdd {
                 FlavourContext context = new FlavourContext( new File( this.projectFolder ), this.groupId, this.artifactId, this.projectVersion, this.javaRelease, this.flavour );
                 context.setModules( ModuleFacade.toModuleList( this.extensions ) );
                 context.setAddLombok( this.addLombok );
+                context.setFlavourVersion( this.flavourVersion );
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 FlavourFacade.initProject( context );
             } );

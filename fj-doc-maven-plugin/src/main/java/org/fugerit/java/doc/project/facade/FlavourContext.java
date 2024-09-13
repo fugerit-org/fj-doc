@@ -1,10 +1,12 @@
 package org.fugerit.java.doc.project.facade;
 
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.util.List;
 
+@Slf4j
 @ToString
 @RequiredArgsConstructor
 public class FlavourContext {
@@ -32,6 +34,9 @@ public class FlavourContext {
 
     @Getter @Setter
     private boolean addLombok;
+
+    @Getter @Setter
+    private String flavourVersion;
 
     private String toClassName( String base, String splitString ) {
         StringBuilder buf = new StringBuilder();

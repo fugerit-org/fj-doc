@@ -22,8 +22,9 @@ const DocProjectInit = () => {
 	const [artifactId, setArtifactId] = useState('fugerit-doc-demo'); // State to handle artifactId input
 	const [projectVersion, setProjectVersion] = useState('1.0.0-SNAPSHOT'); // State to handle projectVersion input
 	const [javaVersion, setJavaVersion] = useState('21'); // State to handle javaVersion selection
-	const [venusVersion, setVenusVersion] = useState(availableVersions[0]); // State to handle javaVersion selection
-	const [flavour, setFlavour] = useState('vanilla'); // State to handle javaVersion selection
+	const [venusVersion, setVenusVersion] = useState(availableVersions[0]); // State to handle venusVersion selection
+	const [flavour, setFlavour] = useState('vanilla'); // State to handle flavour selection
+	const [flavourVersion, setFlavourVersion] = useState(''); // State to handle flavourVersion selection
 	const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button loading state
 	const [serverMessage, setServerMessage] = useState(''); // State to store the message from the server response
 	const [serverContent, setServerContent] = useState(''); // State to store the base64 encoded content from the server
@@ -80,9 +81,14 @@ const DocProjectInit = () => {
 		setVenusVersion(event.target.value);
 	};
 
-	// Handle change event for venusVersion select
+	// Handle change event for flavour select
 	const handleFlavourChange = (event) => {
 		setFlavour(event.target.value);
+	};
+
+	// Handle change event for flavourVersion select
+	const handleFlavourVersionChange = (event) => {
+		setFlavourVersion(event.target.value);
 	};
 
 	// Handle the submit button click
@@ -216,6 +222,17 @@ const DocProjectInit = () => {
 							<MenuItem value={'openliberty'}>OpenLiberty</MenuItem>
 						</Select>
 					</FormControl>
+				</Grid>
+				<Grid item xs={12} sm={12}>
+					{/* Text field for flavourVersion */}
+					<TextField
+						label="Flavour version, recommended : leave default (blank)"
+						variant="outlined"
+						fullWidth
+						margin="normal"
+						value={flavourVersion}
+						onChange={handleFlavourVersionChange}
+					/>
 				</Grid>
 				<Grid item xs={12} sm={12}>
 					{loading ? (

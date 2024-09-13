@@ -8,6 +8,8 @@ import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.util.PropsIO;
 import org.fugerit.java.doc.project.facade.flavour.FlavourConfig;
 import org.fugerit.java.doc.project.facade.flavour.ProcessEntry;
 
@@ -32,6 +34,8 @@ public class FlavourFacade {
     public static final String FLAVOUR_OPENLIBERTY = "openliberty";
 
     public static final String FLAVOUR_SPRINGBOOT_3 = "springboot-3";
+
+    private static final Properties FLAVOURS_DEFAULT_VERSION = PropsIO.loadFromClassLoaderSafe( "config/flavour/flavour_versions_default.properties" );
 
     public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(
             new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_2,
@@ -63,6 +67,18 @@ public class FlavourFacade {
             log.info( "quarkus 2 is a legacy flavour, javaRelease %s will default to '11'", javaVersion );
         }
         log.info( "checkFlavour {} done", actualFlavour );
+        checkFlavourVersion( context, actualFlavour );
+    }
+
+    public static void checkFlavourVersion( FlavourContext context, String actualFlavour ) {
+        // additional flavour config
+        if ( StringUtils.isEmpty( context.getFlavourVersion() ) ) {
+            String flavourVersionDefault = FLAVOURS_DEFAULT_VERSION.getProperty( actualFlavour );
+            log.info( "using default flavourVersion : {} for flavour : {}", flavourVersionDefault, actualFlavour );
+            context.setFlavourVersion( flavourVersionDefault );
+        } else {
+            log.info( "overriding default flavourVersion : {} for flavour : {}", context.getFlavourVersion(), actualFlavour );
+        }
     }
 
     private static void initFlavour( FlavourContext context, String actualFlavour ) throws IOException, TemplateException {
