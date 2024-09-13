@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { Grid, Typography, Paper } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import appService from '../common/app-service';
 
