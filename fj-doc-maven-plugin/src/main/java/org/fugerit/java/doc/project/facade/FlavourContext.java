@@ -2,7 +2,6 @@ package org.fugerit.java.doc.project.facade;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
-import org.fugerit.java.core.lang.helpers.StringUtils;
 
 import java.io.File;
 import java.util.List;

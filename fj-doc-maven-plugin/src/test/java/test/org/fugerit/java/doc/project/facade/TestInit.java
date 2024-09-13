@@ -79,6 +79,7 @@ public class TestInit {
         FlavourFacade.checkFlavour( context, FlavourFacade.FLAVOUR_QUARKUS_2 );
         FlavourFacade.checkFlavour( new FlavourContext( testFile, "group-id5", "artifact-id5", "3.0.0-SNAPSHOT", "11", "unsupported" ), FlavourFacade.FLAVOUR_QUARKUS_2 );
         context.setFlavourVersion(  "test" );
+        FlavourFacade.checkFlavourVersion( context, FlavourFacade.FLAVOUR_QUARKUS_2  );
         Assert.assertEquals( "test", context.getFlavourVersion() );
     }
 
