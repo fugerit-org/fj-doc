@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-freemarker] new simple asciidoc renderer
+
 ### Changed
 
 - [fj-doc-playground-quarkus] base image changed to registry.access.redhat.com/ubi9/openjdk-21:1.20-2.1725851045

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 
+
+  <metadata>
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>  
+  	<info name="excel-table-id">excel-table=print</info>
+ 	<!-- documenta meta information -->
+	<info name="doc-title">The asciidoc chronicles</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+	<!-- additional properties -->
+	<info name="set-total-page">true</info>
+	<info name="html-css-link">/css/test.css</info>
+	<!-- CSV options -->
+	<info name="csv-table-id">excel-table</info>
+	<header-ext>
+		<para align="center" fore-color="#eeeeee">header test</para>
+	</header-ext>
+	<footer-ext>
+		<para align="left">test</para>
+		<para align="center">${r"${currentPage}"} / ${r"${pageCount}"}</para>
+		<para align="right">test</para>
+	</footer-ext>
+	<bookmark-tree>
+		<bookmark ref="title">Test</bookmark>
+	</bookmark-tree>
+  </metadata>
+  <body>
+
+  		<h id="title" head-level="1">The asciidoc chronicles</h>
+
+	    <para>This is a normal paragraph</para>
+  		<para style="bold">This is a bold paragraph</para>
+	 	<para style="italic">This is an italic paragraph</para>
+	    <para style="bolditalic">This is a bold italic paragraph</para>
+
+	  <table columns="3" colwidths="30;30;40" width="100" id="excel-table" padding="2">
+		  <row header="true">
+			  <cell>
+				  <para style="bold">Name</para>
+			  </cell>
+			  <cell>
+				  <para style="bold">Surname</para>
+			  </cell>
+			  <cell>
+				  <para style="bold">Title</para>
+			  </cell>
+		  </row>
+		  <row>
+			  <cell>
+				  <para><![CDATA[Luthien]]></para>
+			  </cell>
+			  <cell>
+				  <para><![CDATA[Tinuviel]]></para>
+			  </cell>
+			  <cell>
+				  <para style="italic"><![CDATA[Queen]]></para>
+			  </cell>
+		  </row>
+		  <row>
+			  <cell>
+				  <para><![CDATA[Thorin]]></para>
+			  </cell>
+			  <cell>
+				  <para><![CDATA[Oakshield]]></para>
+			  </cell>
+			  <cell>
+				  <para style="italic"><![CDATA[King]]></para>
+			  </cell>
+		  </row>
+		  <row>
+			  <cell colspan="2">
+				  <phrase><![CDATA[Galadriel]]></phrase>
+			  </cell>
+			  <cell rowspan="2">
+				  <phrase style="italic"><![CDATA[Queen]]></phrase>
+			  </cell>
+		  </row>
+		  <row>
+			  <cell colspan="2">
+				  <phrase><![CDATA[Arwen]]></phrase>
+			  </cell>
+		  </row>
+	  </table>
+
+	  <page-break/>
+
+	  <list list-type="ol">
+		  <li>
+			  <para>Linux</para>
+			  <list list-type="ol">
+				  <li><para>Debian</para></li>
+				  <li><para>Red Hat</para></li>
+				  <li><para>Slackware</para></li>
+			  </list>
+		  </li>
+		  <li><para>Mac OS</para></li>
+		  <li><para>Windows</para>
+			  <list list-type="ul">
+				  <li><para>Windows 10</para></li>
+				  <li><para>Windows 11</para></li>
+			  </list>
+		  </li>
+	  </list>
+
+  </body>
+  
+</doc>
