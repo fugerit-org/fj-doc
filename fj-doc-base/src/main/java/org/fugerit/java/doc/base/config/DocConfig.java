@@ -32,9 +32,11 @@ public class DocConfig {
 	public static final String TYPE_XLSX = "xlsx";
 	
 	public static final String TYPE_FO = "fo";
-	
+
 	public static final String TYPE_MD = "md";
-	
+
+	public static final String TYPE_ADOC = "adoc";
+
 	public static final String TYPE_CSV = "csv";
 	
 	public static final String DOC_VERSION_COMPATIBILITY_2_X = "2-x";

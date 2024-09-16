@@ -23,6 +23,8 @@ public class TestDocList extends HelperDocT {
 		element.setId( TEST_ID );
 		element.setListType( DocList.LIST_TYPE_OL );
 		Assert.assertNotNull( this.worker( element ) );
+		Assert.assertFalse( element.isUnordered() );
+		Assert.assertTrue( element.isOrdered() );
 		element.setListType( DocList.LIST_TYPE_OLL );
 		Assert.assertNotNull( this.worker( element ) );
 		element.setListType( DocList.LIST_TYPE_OLN );
@@ -33,6 +35,8 @@ public class TestDocList extends HelperDocT {
 		Assert.assertNotNull( this.worker( element ) );
 		element.setListType( DocList.LIST_TYPE_ULM );
 		Assert.assertNotNull( this.worker( element ) );
+		Assert.assertTrue( element.isUnordered() );
+		Assert.assertFalse( element.isOrdered() );
 	}
 	
 }

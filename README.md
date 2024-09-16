@@ -89,7 +89,7 @@ There are five kinds of components (each components README.md contains module st
 * Doc format [![xsd](https://img.shields.io/badge/venus%20xsd-doc%202.1-purple.svg)](https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd)
 
 ### 2. Modules :
-* [FreeMarker template, (fj-doc-freemarker)](fj-doc-freemarker/README.md) (contains a simple renderer for [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) and [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java))
+* [FreeMarker template, (fj-doc-freemarker)](fj-doc-freemarker/README.md) (contains a simple renderer for [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) and [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java) and [ADOC](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/asciidoc/FreeMarkerAsciidocTypeHandler.java) )
 * [Apache POI Module (fj-doc-mod-poi)](fj-doc-mod-poi/README.md) ([XLS](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java)/[XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java))
 * [Apache FOP Module (fj-doc-mod-fop)](fj-doc-mod-fop/README.md) ([PDF](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/PdfFopTypeHandler.java)/[FO](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/FreeMarkerFopTypeHandler.java))
 * [OpenCSV Module (fj-doc-mod-opencsv)](fj-doc-mod-opencsv/README.md) ([CSV](fj-doc-mod-opencsv/src/main/java/org/fugerit/java/doc/mod/opencsv/OpenCSVTypeHandler.java))
@@ -102,6 +102,7 @@ There are five kinds of components (each components README.md contains module st
 * [MD EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java) - (fj-doc-base) output as Markdown extended (include tables) language
 * [HTML](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlTypeHandler.java) - (fj-doc-freemarker) output as html
 * [HTML FRAGMENT](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/html/FreeMarkerHtmlFragmentTypeHandler.java) - (fj-doc-freemarker) output as html body content only (no html, head or body tags)
+* [ADOC](fj-doc-freemarker/src/main/java/org/fugerit/java/doc/freemarker/asciidoc/FreeMarkerAsciidocTypeHandler.java) - (fj-doc-freemarker) output as asciidoc
 * [XLS](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLS using Apache POI
 * [XLSX](fj-doc-mod-poi/src/main/java/org/fugerit/java/doc/mod/poi/XlsPoiTypeHandler.java) - (fj-doc-mod-poi) output as Microsoft XLSX using Apache POI
 * [PDF](fj-doc-mod-fop/src/main/java/org/fugerit/java/doc/mod/fop/PdfFopTypeHandler.java) - (fj-doc-mod-fop) - output as PDF using Apache FOP

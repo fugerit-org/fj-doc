@@ -16,6 +16,9 @@
 		<!-- Type handlers for html using freemarker (fragment version, only generates body content no html or head part -->
 		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
 
+		<!-- Type handlers for asciidoc using freemarker -->
+		<docHandler id="asoc-fm" info="asoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
+
 		<!-- Simple default PDF FOP Type handler with no added configuration   -->
 		<docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler" unsafe="true" unsafeMode="log-message"/>
 
@@ -67,6 +70,10 @@
 
 	<docChain id="freemarker-verify-syntax-report" parent="base-freemarker">
 		<chainStep stepType="complex" map-all="1" template-path="${chainId}.ftl"/>
+	</docChain>
+
+	<docChain id="asciidoc" parent="base-freemarker-html">
+		<chainStep stepType="complex" template-path="asciidoc.ftl"/>
 	</docChain>
 
 </freemarker-doc-process-config>

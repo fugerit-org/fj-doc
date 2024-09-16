@@ -52,4 +52,12 @@ public class DocList extends DocContainer {
 		return clt;
 	}
 
+	public boolean isOrdered() {
+		return this.getListType().startsWith( "o" );
+	}
+
+	public boolean isUnordered() {
+		return !this.isOrdered();
+	}
+
 }
