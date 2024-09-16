@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.7] - 2024-09-16
+
 ### Added
 
 - [fj-doc-freemarker] new simple asciidoc renderer
