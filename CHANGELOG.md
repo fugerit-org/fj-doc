@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-playground-quarkus] base image changed to registry.access.redhat.com/ubi9/openjdk-21:1.20-2.1725851045
 - [fj-doc-playground-quarkus] quarkus version set to 3.14.4
 
 ## [8.8.6] - 2024-09-13
