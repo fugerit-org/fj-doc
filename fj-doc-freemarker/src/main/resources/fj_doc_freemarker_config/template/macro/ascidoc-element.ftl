@@ -51,7 +51,11 @@
 |===
 </#macro>
 
-<#macro handleImage docImage></#macro>
+<#macro handleImage docImage>
+<#if (docImage.scaling)??><#assign imageScaling=",${docImage.scaling}%,${docImage.scaling}%'"/><#else><#assign imageScaling=""/></#if>
+<#if (docImage.align)??></#if>
+image::data:image/${docImage.resolvedType};base64, ${docImage.resolvedBase64}[${docImage.alt!'NA'}${imageScaling}]
+</#macro>
 
 <#macro handleList docList level>
 <#list docList.elementList as li>
