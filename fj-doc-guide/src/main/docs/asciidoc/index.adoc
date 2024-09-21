@@ -1,0 +1,7 @@
+= Fugerit Venus Doc Guide
+// format attributes inclusions
+include::attributes/_attributes-pdf.adoc[]
+include::attributes/_attributes-common.adoc[]
+
+// Chapters inclusons
+include::chapters/00_introduction.adoc[]
