@@ -1,4 +1,4 @@
-
+[#maven-plugin-goal-add]
 === Goal 'add'
 
 This goal add Fugerit Venus Doc configuration to an existing maven project.

@@ -1,4 +1,4 @@
-
+[#maven-plugin-goal-verify]
 === Goal 'verify'
 
 verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.

@@ -29,7 +29,7 @@ mvn quarkus:dev
 
 Open the http://localhost:8080/q/swagger-ui/[Open swagger UI] to test available services.
 
-NOTE: See the xref:02_2_maven_plugin_init.adoc[Maven Plugin Goal Init] for further options.
+NOTE: See the link:#maven-plugin-goal-init[Maven Plugin Goal init] for further options.
 
 === Existing maven project
 
@@ -43,5 +43,5 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 Dependencies, project configuration and an example main will be added to the project.
 
-NOTE: See the xref:02_1_maven_plugin_add.adoc[Maven Plugin Goal Add] for further options.
+NOTE: See the link:#maven-plugin-goal-add[Maven Plugin Goal Add] for further options.
 

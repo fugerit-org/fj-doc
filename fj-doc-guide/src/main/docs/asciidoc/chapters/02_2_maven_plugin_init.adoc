@@ -1,4 +1,4 @@
-
+[#maven-plugin-goal-init]
 === Goal 'init'
 
 Create a new project and add Venus Doc Configuration to it.
