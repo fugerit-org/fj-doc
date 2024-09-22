@@ -15,3 +15,5 @@ include::chapters/02_2_maven_plugin_init.adoc[]
 include::chapters/02_3_maven_plugin_verify.adoc[]
 
 include::chapters/03_doc_format.adoc[]
+
+include::chapters/04_doc_freemarker.adoc[]
