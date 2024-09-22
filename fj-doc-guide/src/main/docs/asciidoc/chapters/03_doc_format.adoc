@@ -1,0 +1,65 @@
+<<<
+== The Doc Source Format
+
+The Doc Source Format is the basic of Fugerit Venus Doc library.
+
+=== XML Source Format
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+  <!--
+  	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
+  	For documentation on how to write a valid Venus Doc XML Meta Model refer to :
+  	https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html
+  -->
+
+  <metadata>
+	<!-- Margin for document : left;right;top;bottom -->
+	<info name="margins">10;10;10;30</info>
+	<!-- documenta meta information -->
+	<info name="doc-title">Hello World</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+  </metadata>
+  <body>
+	<para>Hello World!</para>
+  </body>
+
+</doc>
+----
+
+And you will get a project folder named after the artifactId.
+See the README.md in the project folder for further infos.
+
+In case of 'quarkus-3' flavour, for instance, simply :
+
+[source,shell]
+----
+cd fugerit-demo
+mvn quarkus:dev
+----
+
+Open the http://localhost:8080/q/swagger-ui/[Open swagger UI] to test available services.
+
+NOTE: See the xref:02_2_maven_plugin_init.adoc[Maven Plugin Goal Init] for further options.
+
+=== Existing maven project
+
+Just run the org.fugerit.java:fj-doc-maven-plugin:add plugin inside the folder containing your pom :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:add \
+-Dextensions=base,freemarker,mod-fop
+----
+
+Dependencies, project configuration and an example main will be added to the project.
+
+NOTE: See the xref:02_1_maven_plugin_add.adoc[Maven Plugin Goal Add] for further options.
+
