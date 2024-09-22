@@ -6,6 +6,13 @@ The Doc Source Format is the basic of Fugerit Venus Doc library.
 
 === XML Source Format
 
+When writing a sample Venus Document, it is possible to draw from some online resources :
+
+. https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd[Venus DOC XML Schema Definition] - Current version of the Venus DOC XSD, the main source for writing valid Venus document meta model.
+. https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html[Venus DOC XML Reference] - the informations contained in the previous XSD in HTML format for convenience.
+. https://venusdocs.fugerit.org/docs/html/doc_meta_info.html[Venus DOC meta informations reference] - documentations for existing 'info' properties for 'metadata' section.
+. https://docs.fugerit.org/fj-doc-playground/home/[Online Playground] - To test how the XML elements are rendered to documents by DocHandlers.
+
 [source,xml]
 ----
 <?xml version="1.0" encoding="utf-8"?>
@@ -17,7 +24,7 @@ The Doc Source Format is the basic of Fugerit Venus Doc library.
   <!--
   	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
   	For documentation on how to write a valid Venus Doc XML Meta Model refer to :
-  	https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html
+  	https://venusdocs.fugerit.org/guide/#doc-format-entry-point
   -->
 
   <metadata>
@@ -35,32 +42,164 @@ The Doc Source Format is the basic of Fugerit Venus Doc library.
 </doc>
 ----
 
-And you will get a project folder named after the artifactId.
-See the README.md in the project folder for further infos.
+=== JSON and YAML Source Format
 
-In case of 'quarkus-3' flavour, for instance, simply :
+It is possible to use JSON or YAML as source. It is just needed to follow some conversion rules.
 
-[source,shell]
+The conversion rules from xml to json/yaml are :
+
+. xml meta information are translated as top level property (xmlns etc.)
+. Every JSON/YAML object contains the information of a XML tag
+. "_t" special property contains the tag name (for example "_t" : "metadata")
+. "_v" special property contains the text content of an element
+. "_e" special property contains a list of child elements
+. any other xml attribute is mapped as a JSON/YAML property (for example "name" : "margins")
+
+NOTE: As it is possible to directly convert JSON and YAML, rules for YAML are the same as for JSON format.
+
+NOTE: All XML comments are ignored
+
+NOTE: For XML/JSON/YAML conversion a https://docs.fugerit.org/fj-doc-playground/home/[Online Playground] is available.
+
+Here is a simple JSON source document :
+
+[source,json]
 ----
-cd fugerit-demo
-mvn quarkus:dev
+{
+	"xmlns" : "http://javacoredoc.fugerit.org",
+	"xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd",
+	"xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+	"_t" : "doc",
+	"_e" : [ {
+		"_t" : "metadata",
+		"_e" : [ {
+			"name" : "margins",
+			"_t" : "info",
+			"_v" : "10;10;10;30"
+		}, {
+			"name" : "doc-title",
+			"_t" : "info",
+			"_v" : "Hello World"
+		}, {
+			"name" : "doc-author",
+			"_t" : "info",
+			"_v" : "fugerit79"
+		}, {
+			"name" : "doc-language",
+			"_t" : "info",
+			"_v" : "en"
+		} ]
+	}, {
+		"_t" : "body",
+		"_e" : [ {
+			"_t" : "para",
+			"_v" : "Hello World!"
+		} ]
+	} ]
+}
 ----
 
-Open the http://localhost:8080/q/swagger-ui/[Open swagger UI] to test available services.
+And the equivalent YAML :
 
-NOTE: See the xref:02_2_maven_plugin_init.adoc[Maven Plugin Goal Init] for further options.
-
-=== Existing maven project
-
-Just run the org.fugerit.java:fj-doc-maven-plugin:add plugin inside the folder containing your pom :
-
-[source,shell]
+[source,yaml]
 ----
-mvn org.fugerit.java:fj-doc-maven-plugin:add \
--Dextensions=base,freemarker,mod-fop
+---
+xmlns: "http://javacoredoc.fugerit.org"
+xsi:schemaLocation: "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd"
+xmlns:xsi: "http://www.w3.org/2001/XMLSchema-instance"
+_t: "doc"
+_e:
+- _t: "metadata"
+  _e:
+  - name: "margins"
+    _t: "info"
+    _v: "10;10;10;30"
+  - name: "doc-title"
+    _t: "info"
+    _v: "Basic example"
+  - name: "doc-subject"
+    _t: "info"
+    _v: "fj doc venus sample source xml"
+  - name: "doc-author"
+    _t: "info"
+    _v: "fugerit79"
+  - name: "doc-language"
+    _t: "info"
+    _v: "en"
+  - name: "default-font-name"
+    _t: "info"
+    _v: "TitilliumWeb"
+  - name: "excel-table-id"
+    _t: "info"
+    _v: "data-table=print"
+  - name: "csv-table-id"
+    _t: "info"
+    _v: "data-table"
+  - _t: "footer-ext"
+    _e:
+    - align: "right"
+      _t: "para"
+      _v: "${currentPage} / ${pageCount}"
+- _t: "body"
+  _e:
+  - _t: "para"
+    _v: "My sample title"
+  - padding: "2"
+    columns: "3"
+    width: "100"
+    id: "data-table"
+    colwidths: "30;30;40"
+    _t: "table"
+    _e:
+    - _t: "row"
+      _e:
+      - border-color: "#000000"
+        border-width: "1"
+        align: "center"
+        _t: "cell"
+        _e:
+        - style: "bold"
+          _t: "para"
+          _v: "Name"
+      - align: "center"
+        _t: "cell"
+        _e:
+        - style: "bold"
+          _t: "para"
+          _v: "Surname"
+      - align: "center"
+        _t: "cell"
+        _e:
+        - style: "bold"
+          _t: "para"
+          _v: "Title"
+    - _t: "row"
+      _e:
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Luthien"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Tinuviel"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Queen"
+    - _t: "row"
+      _e:
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Thorin"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Oakshield"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "King"
+
 ----
-
-Dependencies, project configuration and an example main will be added to the project.
-
-NOTE: See the xref:02_1_maven_plugin_add.adoc[Maven Plugin Goal Add] for further options.
-
