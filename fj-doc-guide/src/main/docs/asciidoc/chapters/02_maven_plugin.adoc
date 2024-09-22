@@ -1,0 +1,24 @@
+<<<
+== Maven Plugin
+
+Here is the Fugerit Doc Maven Plugin Documentation.
+
+Currently, three goals are available :
+
+[cols="1,1,4"]
+|===
+|goal |since |description
+
+| add
+| 8.6.0
+| add Venus Doc Configuration to an existing project.
+
+| init
+| 8.7.2
+| create a new project already configured (actually an extension to 'add' goal); a UI is available on the playground too.
+
+| verify
+| 8.7.0
+| verify the templates in a FreeMarker configuration (folder), note: it can be used on any Apache FreeMarker configuration, not only Fugerit Venus Doc.
+
+|===

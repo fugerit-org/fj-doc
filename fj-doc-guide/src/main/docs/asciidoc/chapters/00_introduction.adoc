@@ -1,5 +1,4 @@
-[colophon]
-= Introduction
+== Introduction
 
 [mermaid, title="Fugerit Venus Doc Mind Map (fj-doc)"]
 ....

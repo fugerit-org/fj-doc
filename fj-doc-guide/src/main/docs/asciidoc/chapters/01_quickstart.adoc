@@ -1,0 +1,47 @@
+<<<
+== Quickstart
+
+This section cover the creation of a new maven project, configured for Venus Doc.
+
+=== New maven project
+
+Just run the org.fugerit.java:fj-doc-maven-plugin:init plugin :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:init \
+-DgroupId=org.example.doc \
+-DartifactId=fugerit-demo \
+-Dflavour=quarkus-3 \
+-Dextensions=base,freemarker,mod-fop
+----
+
+And you will get a project folder named after the artifactId.
+See the README.md in the project folder for further infos.
+
+In case of 'quarkus-3' flavour, for instance, simply :
+
+[source,shell]
+----
+cd fugerit-demo
+mvn quarkus:dev
+----
+
+Open the http://localhost:8080/q/swagger-ui/[Open swagger UI] to test available services.
+
+NOTE: See the xref:02_2_maven_plugin_init.adoc[Maven Plugin Goal Init] for further options.
+
+=== Existing maven project
+
+Just run the org.fugerit.java:fj-doc-maven-plugin:add plugin inside the folder containing your pom :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:add \
+-Dextensions=base,freemarker,mod-fop
+----
+
+Dependencies, project configuration and an example main will be added to the project.
+
+NOTE: See the xref:02_1_maven_plugin_add.adoc[Maven Plugin Goal Add] for further options.
+
