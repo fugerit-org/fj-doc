@@ -51,8 +51,18 @@ jobs:
         run: mmdc --version
 
       - name: Convert AsciiDoc to HTML5
-        run: |
-          cd fj-doc-guide;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html
+        run: cd fj-doc-guide;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html
+
+      - name: Build Legacy Pages
+        uses: actions/jekyll-build-pages@main
+        with:
+          destination: "./fj-doc-guide/target/legacy/"
+
+      - name: Copy legacy site
+        run: cp -fr ./fj-doc-guide/target/legacy/ ./fj-doc-guide/target/site/
+
+      - name: Copy new site
+        run: cp -fr ./fj-doc-guide/target/generated-html5/ ./fj-doc-guide/target/site/guide/
 
       - name: Setup Pages
         uses: actions/configure-pages@main
@@ -61,7 +71,7 @@ jobs:
         uses: actions/upload-pages-artifact@main
         with:
           # Upload entire repository
-          path: './fj-doc-guide/target/generated-html5'
+          path: './fj-doc-guide/target/site'
 
       - name: Deploy to GitHub Pages
         id: deployment
