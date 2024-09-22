@@ -3,7 +3,8 @@
 include::attributes/_attributes-pdf.adoc[]
 include::attributes/_attributes-common.adoc[]
 
-// Chapters inclusons
+// Chapters inclusions
+
 include::chapters/00_introduction.adoc[]
 
 include::chapters/01_quickstart.adoc[]
