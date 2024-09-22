@@ -32,6 +32,7 @@ flowchart TD
     A[Fugerit Doc Flow] -->|starts| C{Mode}
     C -->|Static data| D[Fugerit Doc Format] -->|Renders| F(Output Format)
     C -->|Dynamic data| E[Freemarker pipeline + Data Model] --> |Generates| D(Fugerit Doc Format) -->|Renders| F(Output Format)
+    C -->|Scripting| G[Kotlin DSL + Data Binding] --> |Generates| D(Fugerit Doc Format) -->|Renders| F(Output Format)
 ....
 
 [.text-left]
