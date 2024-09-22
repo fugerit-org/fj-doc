@@ -1,0 +1,30 @@
+
+=== Goal 'init'
+
+Create a new project and add Venus Doc Configuration to it.
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:init \
+-DgroupId=org.example.doc \
+-DartifactId=fugerit-demo \
+-Dextensions=base,freemarker,mod-fop
+----
+
+Project folder will be `./${artifactId}/`.
+
+==== Goal 'init' available parameters
+
+[cols="4*", options="header"]
+|====================================================================================================================================
+| parameter      | required | default        | description
+| groupId        | true     |                | new project group id
+| artifactId     | true     |                | new project artifact id
+| projectVersion | true     | 1.0.0-SNAPSHOT | new project version
+| javaRelease    | true     | 21             | java release version
+| flavour        | true     | vanilla        | the flavour for the new project (see below for options)
+| flavourVersion | false    | see below      | override default framework version if supported (recommended : leave default or blank)
+|====================================================================================================================================
+
+NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
+

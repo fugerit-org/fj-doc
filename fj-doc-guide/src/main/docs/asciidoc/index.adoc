@@ -5,3 +5,10 @@ include::attributes/_attributes-common.adoc[]
 
 // Chapters inclusons
 include::chapters/00_introduction.adoc[]
+
+include::chapters/01_quickstart.adoc[]
+
+include::chapters/02_maven_plugin.adoc[]
+include::chapters/02_1_maven_plugin_add.adoc[]
+include::chapters/02_2_maven_plugin_init.adoc[]
+include::chapters/02_3_maven_plugin_verify.adoc[]

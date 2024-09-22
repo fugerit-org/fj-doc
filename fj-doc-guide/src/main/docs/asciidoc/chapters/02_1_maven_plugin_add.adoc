@@ -1,0 +1,47 @@
+
+=== Goal 'add'
+
+This goal add Fugerit Venus Doc configuration to an existing maven project.
+
+Simply run the plugin in the folder containing your project POM :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:add \
+-Dextensions=base,freemarker,mod-fop
+----
+
+==== Goal 'add' available parameters
+
+[cols="4*", options="header"]
+|====================================================================================================================================================================================
+| parameter          | required | default         | description
+| version            | true     | latest stable   | fj-doc version to add to the project (i.e. '8.7.5'), *advice*: **keep the default** unless a specific version is strictly needed.
+| extensions         | true     | base,freemarker | List of fj-doc core modules to add (*)
+| projectFolder      | true     | .               | Maven project base folder
+| addDocFacade       | true     | true            | If true, a stub doc configuration helper will be created
+| force              | false    | false           | Will force project setup even if fj-doc already configured (warning: can overwrite configuration)
+| excludeXmlApis     | false    | false           | It will exclude dependency xml-apis:xml-apis
+| addExclusions      | false    |                 | Add comma separated exclusion, for instance : xml-apis:xml-apis,${groupId}:${artificatId}
+| addVerifyPlugin    | true     | true            | If set to true, it will configure the 'verify' goal on the project
+| addJunit5          | true     | true            | If set to true, it will add junit5 (test scope) and basic test
+| addLombok          | true     | true            | If set to true, it will add lombok (provided scope) and slf4j-simple (test scope)
+| addDependencyOnTop | true     | false           | If set to true, added dependencies will be added before existing ones
+| freemarkerVersion  | true     | 2.3.32          | Freemarker compatibility version (max 2.3.33)
+|====================================================================================================================================================================================
+
+==== Available extensions.
+
+[cols="4*", options="header"]
+|==================================================================================================================================================================
+| short name      | full name              | type handler | description
+| base            | fj-doc-base            | md           | library base, xml as format for document template
+| freemarker      | fj-doc-freemarker      | html         | Template and configuration functionalities based on [Apache FreeMarker](https://freemarker.apache.org/)
+| mod-fop         | fj-doc-mod-fop         | fo, pdf      | Type handler based on [Apache FOP](https://xmlgraphics.apache.org/fop/)
+| mod-poi         | fj-doc-mod-poi         | xls, xlsx    | Type handler based on [Apache POI](https://poi.apache.org/)
+| mod-opencsv     | fj-doc-mod-opencsv     | opencsv      | Type handler based on [OpenCSV](https://opencsv.sourceforge.net/)
+| mod-openpdf-ext | fj-doc-mod-openpdf-ext | pdf          | Type handler based on [OpenPDF](https://github.com/LibrePDF/OpenPDF)
+| mod-openrtf-ext | fj-doc-mod-openrtf-ext | rtf          | Type handler based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)
+| base-json       | fj-doc-base-json       |              | add support to use json documents as format for document template
+| base-yaml       | fj-doc-base-yaml       |              | add support to use yaml documents as format for document template
+|==================================================================================================================================================================
