@@ -111,7 +111,7 @@
 			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
 		</#list>
 	<#else>	
-		<table style='width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
+		<table style='<@handleTableSpacing dc=docTable/> width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
 			<#if (docTableUtil.strictHeader)>
 				<thead>
 				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
@@ -156,6 +156,7 @@ white-space-collapse -> false : white-space-collapse: preserve; white-space: pre
 -->
 <#macro handlePadding amt dir><#if (amt > 0)> padding-${dir}: ${amt}px;</#if></#macro>
 <#macro handleSpacing dc><@handlePadding amt=dc.spaceBefore!0 dir='top'/><@handlePadding amt=((dc.leading!0)*10 + dc.spaceAfter!0) dir='bottom'/><@handlePadding amt=((dc.textIndent!0)*10 + dc.spaceLeft!0) dir='left'/><@handlePadding amt=dc.spaceRight!0 dir='right'/><#if dc.notWhiteSpaceCollapse> white-space-collapse: preserve; white-space: pre-wrap;</#if></#macro>
+<#macro handleTableSpacing dc><@handlePadding amt=dc.spaceBefore!0 dir='top'/><@handlePadding amt=((dc.leading!0)*10 + dc.spaceAfter!0) dir='bottom'/></#macro>
 
 <#macro handleAlign alignValue><#if alignValue = 1> text-align: left;<#elseif alignValue = 2> text-align: center;<#elseif alignValue = 3> text-align: right;<#elseif alignValue = 8 || alignValue = 9> text-align: justify;</#if></#macro>
 

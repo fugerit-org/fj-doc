@@ -9,7 +9,8 @@
     </footer-ext>
   </metadata>
   <body>
-    <table columns="3" colwidths="30;30;40" id="excel-table" padding="2" width="100">
+    <h head-level="1">Alternative sample doc</h>
+    <table space-before="30" columns="3" colwidths="30;30;40" id="excel-table" padding="2" width="100">
       <row>
         <cell align="center" back-color="#99aaee">
           <para>Name</para>
