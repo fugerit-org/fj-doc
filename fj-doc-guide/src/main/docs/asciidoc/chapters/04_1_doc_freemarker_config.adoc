@@ -1,0 +1,86 @@
+[#doc-freemarker-config]
+=== FreemarkerDocProcessConfig configuration
+
+The main configuration file is https://github.com/fugerit-org/fj-doc-quarkus-tutorial/blob/main/src/main/resources/fj-doc-quarkus-tutorial/fm-doc-process-config.xml[fm-doc-process-config.xml].
+
+Here you can find :
+
+* https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd[freemarker doc process config xsd]
+* https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html[freemarker doc process config reference]
+
+==== Element docHandlerConfig
+
+The main elements are the *<docHandlerConfig/>* containing the available output format doc handlers.
+
+[source,xml]
+----
+    <docHandlerConfig registerById="true">
+        <!-- Type handler for markdown format -->
+        <docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+        <!-- Type henalder for xml format, generates the source xml:doc -->
+        <docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+        <!-- Type handler for html using freemarker -->
+        <docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
+        <!-- Type handler for html using freemarker (fragment version, only generates body content no html or head part -->
+        <docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+        <!-- Type handler generating xls:fo style sheet -->
+        <docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
+        <!-- Type handler generating pdf -->
+        <docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fj-doc-quarkus-tutorial/fop-config.xml" fop-suppress-events="1"/>
+        </docHandler>
+        <!-- Type handler generating xls -->
+        <docHandler id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
+        <!-- Type handler generating xlsx -->
+        <docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
+    </docHandlerConfig>
+----
+
+==== Element docChain
+
+And the *<docChain/>* elements containing the configuration for the freemarker template and data model.
+
+Usually you will need at least one configuration step :
+
+[source,xml]
+----
+    <docChain id="shared">
+        <chainStep stepType="config">
+            <config
+                    id="fj_doc_config_fm_fjdocquarkustutorial"
+                    class="org.fugerit.java.tutorial.fjdocquarkustutorial.DocHelper"
+                    exception-handler="RETHROW_HANDLER"
+                    fallback-on-null-loop-variable="false"
+                    log-exception="false"
+                    mode="class"
+                    path="/fj-doc-quarkus-tutorial/template/"
+                    version="2.3.32"
+                    wrap-unchecked-exceptions="true"
+                    load-bundled-functions="true"
+            />
+        </chainStep>
+    </docChain>
+----
+
+And one or more document process step :
+
+[source,xml]
+----
+    <!-- example document chain -->
+    <docChain id="document" parent="shared">
+        <chainStep stepType="complex" map-atts="listPeople" template-path="${chainId}.ftl"/>
+    </docChain>
+----
+
+==== Build in step types
+
+[cols="3*", options="header"]
+|========================================================================================================================================
+| name     | type                                                                | description
+| config   | org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep         | responsable for freemarker and venus configuration
+| function | org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep       | add freemarker functions to the data model
+| complex  | org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep | it apply the freemarker template and render the output
+| map      | org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep            | Venus data model to Freemarker data model mapping
+|========================================================================================================================================
+
+NOTE:  Additional step can be added setting the fully qualified class name in the type attribute.
