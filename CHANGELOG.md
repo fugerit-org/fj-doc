@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- [fj-doc-mod-fop] handle space-before and space-after in table #206
+- [fj-doc-freemarker] handle space-before and space-after in table #206 [html]
+- [fj-doc-mod-fop] handle space-before and space-after in table #206 [pdf]
 
 ## [8.8.7] - 2024-09-16
 
