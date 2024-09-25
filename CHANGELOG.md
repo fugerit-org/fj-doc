@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.8] - 2024-09-25
+
 ### Changed
 
 - [fj-doc-playground-quarkus] quarkus version set to 3.15.0
