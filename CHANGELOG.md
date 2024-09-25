@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-playground-quarkus] quarkus version set to 3.15.0
 
+### Fixed
+
+- [fj-doc-mod-fop] handle space-before and space-after in table #206
+
 ## [8.8.7] - 2024-09-16
 
 ### Added
