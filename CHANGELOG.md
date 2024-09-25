@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [fj-doc-playground-quarkus] quarkus version set to 3.15.0
+- [fj-doc-maven-plugin] goal init, flavour springboot-3, default springboot version 3.3.4
 
 ### Fixed
 
