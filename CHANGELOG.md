@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-playground-quarkus] quarkus version set to 3.15.1
+- [fj-doc-maven-plugin] goal init, flavour quarkus-3, default quarkus version 3.15.1
+
 ## [8.8.8] - 2024-09-25
 
 ### Changed
