@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.8.9] - 2024-09-27
+
 ### Changed
 
 - [fj-doc-playground-quarkus] added options for new venus versions in playground
