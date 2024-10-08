@@ -1,0 +1,21 @@
+<<<
+[#doc-handlers]
+== Doc Handlers
+
+Doc Handler are modules responsible for rendering the output format.
+
+[mermaid, title="Fugerit Venus Doc - Dynamic Document Generation"]
+
+[mermaid, title="Fugerit Venus Doc - Doc Handlers"]
+....
+flowchart TB
+    D -->|picks| H
+    D(Fugerit Doc Format)
+    subgraph output
+    H{Doc Handler}
+    H -->|mod-fop| L[PDF] -->|Renders| F(Output Format)
+    H -->|mod-poi| M[XLSX] -->|Renders| F(Output Format)
+    H -->|...| N[...] -->|Renders| F(Output Format)
+    end
+....
+
