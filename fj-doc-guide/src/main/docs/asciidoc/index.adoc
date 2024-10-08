@@ -20,3 +20,6 @@ include::chapters/04_doc_freemarker.adoc[]
 include::chapters/04_1_doc_freemarker_config.adoc[]
 include::chapters/04_2_doc_freemarker_chain.adoc[]
 include::chapters/04_3_doc_freemarker_usage.adoc[]
+
+include::chapters/06_doc_handlers.adoc[]
+include::chapters/06_1_freemarker-html.adoc[]

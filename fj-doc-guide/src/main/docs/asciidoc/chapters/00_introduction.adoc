@@ -28,11 +28,20 @@ mindmap
 
 [mermaid, title="Fugerit Venus Doc Typical Flow"]
 ....
-flowchart TD
+flowchart TB
+    D -->|picks| H
+    subgraph source
     A[Fugerit Doc Flow] -->|starts| C{Mode}
-    C -->|Static data| D[Fugerit Doc Format] -->|Renders| F(Output Format)
-    C -->|Dynamic data| E[Freemarker pipeline + Data Model] --> |Generates| D(Fugerit Doc Format) -->|Renders| F(Output Format)
-    C -->|Scripting| G[Kotlin DSL + Data Binding] --> |Generates| D(Fugerit Doc Format) -->|Renders| F(Output Format)
+    C -->|Static data| D[Fugerit Doc Format]
+    C -->|Dynamic data| E[Freemarker pipeline + Data Model] --> |Generates| D(Fugerit Doc Format)
+    C -->|Scripting| G[Kotlin DSL + Data Binding] --> |Generates| D(Fugerit Doc Format)
+    end
+    subgraph output
+    H{Doc Handler}
+    H -->|mod-fop| L[PDF] -->|Renders| F(Output Format)
+    H -->|mod-poi| M[XLSX] -->|Renders| F(Output Format)
+    H -->|...| N[...] -->|Renders| F(Output Format)
+    end
 ....
 
 [.text-left]

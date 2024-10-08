@@ -1,0 +1,39 @@
+<<<
+[#doc-handler-freemarker]
+=== [fj-doc-freemarker]
+
+To use this doc handler, you will need to add the following dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-freemarker</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+[#doc-handler-freemarker-html]
+==== HTML
+
+This doc handler would render a full html document.
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
+----
+
+[#doc-handler-freemarker-fragment-html]
+==== Fragment HTML
+
+This doc handler would render only the body of the html document.
+(useful to inject the body as a fragment).
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+----
