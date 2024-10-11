@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-guide] new [asciidoc guide](https://venusdocs.fugerit.org/guide/)
+
 ### Fixed
 
 - [fj-doc-base] Fix log doc xml validation
