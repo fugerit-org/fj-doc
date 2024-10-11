@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<fop-version>2.9</fop-version>
+		<fop-version>2.10</fop-version>
 	</properties>
 	
 	<build>
