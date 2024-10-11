@@ -1,0 +1,247 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>fj-doc-guide</artifactId>
+
+	<parent>
+		<groupId>org.fugerit.java</groupId>
+		<artifactId>fj-doc</artifactId>
+		<version>8.8.10-SNAPSHOT</version>
+	</parent>
+
+	<name>fj-doc-guide</name>
+	<description>Guide project for Fugerit Venus Doc</description>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+	
+	<properties>
+		<!-- asciidoc properties -->
+		<asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
+		<asciidoctorj.pdf.version>2.3.15</asciidoctorj.pdf.version>
+		<asciidoctorj.version>2.5.12</asciidoctorj.version>
+		<asciidoctorj.diagram.version>2.3.0</asciidoctorj.diagram.version>
+		<asciidoctorj.diagram-plantuml.version>1.2024.3</asciidoctorj.diagram-plantuml.version>
+		<asciidoctorj.diagram-ditaamini.version>1.0.3</asciidoctorj.diagram-ditaamini.version>
+		<jruby.version>9.4.6.0</jruby.version>
+		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+		<pdf-output-folder>${project.build.directory}/generated-pdf</pdf-output-folder>
+		<html-output-folder>${project.build.directory}/generated-html5</html-output-folder>
+	</properties>
+
+	<build>
+		<defaultGoal>process-resources</defaultGoal>
+		<plugins>
+			<plugin>
+				<groupId>org.asciidoctor</groupId>
+				<artifactId>asciidoctor-maven-plugin</artifactId>
+				<version>${asciidoctor.maven.plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctorj-pdf</artifactId>
+						<version>${asciidoctorj.pdf.version}</version>
+					</dependency>
+					<!-- Comment this section to use the default jruby artifact provided by the plugin -->
+					<dependency>
+						<groupId>org.jruby</groupId>
+						<artifactId>jruby</artifactId>
+						<version>${jruby.version}</version>
+					</dependency>
+					<!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+					<dependency>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctorj</artifactId>
+						<version>${asciidoctorj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctorj-diagram</artifactId>
+						<version>${asciidoctorj.diagram.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctorj-diagram-plantuml</artifactId>
+						<version>${asciidoctorj.diagram-plantuml.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctorj-diagram-ditaamini</artifactId>
+						<version>${asciidoctorj.diagram-ditaamini.version}</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<requires>
+						<require>asciidoctor-diagram</require>
+					</requires>
+					<resources>
+						<resource>
+							<directory>src/main/docs/asciidoc</directory>
+							<excludes>
+								<exclude>resources/themes/**</exclude>
+							</excludes>
+						</resource>
+					</resources>
+					<sourceDirectory>src/main/docs/asciidoc</sourceDirectory>
+					<enableVerbose>true</enableVerbose>
+					<logHandler>
+						<outputToConsole>true</outputToConsole>
+					</logHandler>
+					<!-- Attributes common to all output formats -->
+					<attributes>
+						<attribute-missing>warn</attribute-missing>
+						<allow-uri-read>true</allow-uri-read>
+						<source-highlighter>rouge</source-highlighter>
+						<imagesdir>./resources/images</imagesdir>
+						<themesdir>./resources/themes</themesdir>
+						<revnumber>${project.version}</revnumber>
+						<revdate>${maven.build.timestamp}</revdate>
+						<revremark>Digital Version</revremark>
+						<organization>${project.organization.name}</organization>
+					</attributes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>asciidoc-to-pdf</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>process-asciidoc</goal>
+						</goals>
+						<configuration>
+							<backend>pdf</backend>
+							<doctype>book</doctype>
+							<sourceDocumentName>index.adoc</sourceDocumentName>
+							<outputDirectory>pdf-output-folder</outputDirectory>
+							<outputFile>${project.artifactId}-${project.version}.pdf</outputFile>
+							<attributes>
+								<pdf-theme>basic</pdf-theme>
+								<pdf-themesdir>${project.basedir}/src/main/docs/asciidoc/resources/themes</pdf-themesdir>
+								<icons>font</icons>
+								<pagenums/>
+								<toc/>
+								<idprefix/>
+								<idseparator>-</idseparator>
+							</attributes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>asciidoc-to-html</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>process-asciidoc</goal>
+						</goals>
+						<configuration>
+							<backend>html5</backend>
+							<outputDirectory>${html-output-folder}</outputDirectory>
+							<!--
+                            Scenarios for linking vs embedding assets:
+
+                            Link to both stylesheets and images::
+
+                              - don't set embedAssets option
+                              - set linkcss attribute to true
+                              - set imagesdir attribute to path relative to AsciiDoc source file
+
+                              <attributes>
+                                  <linkcss>true</linkcss>
+                                  <imagesdir>./images</imagesdir>
+                              </attributes>
+
+                            Embed stylesheets and images::
+
+                              - set embedAssets option to true
+                              - don't set linkcss attribute
+                              - set imagesdir attribute to path relative to project root
+
+                              <embedAssets>true</embedAssets>
+                              <attributes>
+                                  <imagesdir>src/docs/asciidoc/images</imagesdir>
+                              </attributes>
+
+                            Link to stylesheets but embed images::
+
+                              - set embedAssets option to true
+                              - set linkcss attribute to true
+                              - set imagesdir attribute to path relative to project root
+
+                              <embedAssets>true</embedAssets>
+                              <attributes>
+                                  <linkcss>true</linkcss>
+                                  <imagesdir>src/docs/asciidoc/images</imagesdir>
+                              </attributes>
+
+                            Embed stylesheets but link images (default)::
+
+                              - don't set embedAssets option
+                              - don't set linkcss attribute
+                              - set imagesdir attribute to path relative to AsciiDoc source file
+
+                              <attributes>
+                                  <imagesdir>./images</imagesdir>
+                              </attributes>
+
+                            IMPORTANT: When you enable image embedding, you must qualify the path with imagesdir, as shown above.
+                            -->
+							<attributes>
+								<source-highlighter>rouge</source-highlighter>
+								<imagesdir>resources/images</imagesdir>
+								<toc>left</toc>
+								<icons>font</icons>
+								<sectanchors>true</sectanchors>
+								<!-- set the idprefix to blank -->
+								<idprefix/>
+								<idseparator>-</idseparator>
+								<docinfo1>true</docinfo1>
+							</attributes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-core</artifactId>
+		</dependency>	
+	
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-freemarker</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-test-helper8</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>	
+		
+	</dependencies>
+
+	<organization>
+		<url>https://www.fugerit.org</url>
+		<name>Fugerit</name>
+	</organization>
+	
+	<url>https://www.fugerit.org/perm/venus/</url>
+
+</project>

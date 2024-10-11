@@ -1,0 +1,38 @@
+<<<
+[#doc-freemarker-entry-point]
+== Dynamic Data : Freemarker
+
+In a typical workflow, freemarker will be used to generate the Venus Doc Format.
+
+[mermaid, title="Fugerit Venus Doc - Dynamic Document Generation"]
+....
+stateDiagram-v2
+    state "FreeMarker template" as s1
+    state "DataModel" as s2
+    state "FreemarkerDocProcessConfig" as s3
+    state "Venus Doc Format" as s4
+    state "Output Format" as s5
+    s1 --> s3: Input
+    s2 --> s3: Input
+    s3 --> s4: Creates
+    s4 --> s5: Renders
+....
+
+This is a simple tutorial for Fugerit Venus Doc full usage.
+
+This tutorial is based on a quarkus project available at :
+https://github.com/fugerit-org/fj-doc-quarkus-tutorial[tutorial repository git].
+
+The project has been created with the command :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:init \
+-Dversion=8.8.8 \
+-DgroupId=org.fugerit.java-tutorial \
+-DartifactId=fj-doc-quarkus-tutorial \
+-Dflavour=quarkus-3 \
+-Dextensions=base,freemarker,mod-fop,mod-poi
+----
+
+

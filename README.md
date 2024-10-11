@@ -19,6 +19,8 @@ Framework to produce documents in different output formats starting from an XML 
 [![Online playground](https://img.shields.io/badge/Try%20Now-Online%20Playground-1AC736?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://docs.fugerit.org/fj-doc-playground/home/)
 [![Fugerit Github Project Conventions](https://img.shields.io/badge/Fugerit%20Org-Project%20Conventions-1A36C7?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://universe.fugerit.org/src/docs/conventions/index.html)
 
+[![view - Guide](https://img.shields.io/badge/view-Guide-blue?style=for-the-badge)](https://venusdocs.fugerit.org/guide/ "Go to project documentation")
+
 The Core library (fj-doc-base) is all you need to start, even though typically you will use at least : 
 * [fj-doc-base](fj-doc-base/README.md)
 * [fj-doc-freemarker](fj-doc-freemarker/README.md)

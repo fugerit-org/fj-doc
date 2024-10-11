@@ -1,0 +1,52 @@
+== Introduction
+
+[mermaid, title="Fugerit Venus Doc Mind Map (fj-doc)"]
+....
+mindmap
+  root((Venus<br/>Doc))
+    Fugerti Doc Source Format
+      XML Source - default
+      JSON Source
+      YAML Source
+      Kotlin Source
+    Output Format
+      PDF - fop
+      HTML - freemarker
+      Markdown - freemarker
+      Asciidoc - freemarker
+      Excel - poi
+      CSV - OpenCSV
+    Utilities
+      Freemarker Configuration
+      Auto documentation library
+      Configuration conversion tool
+      Maven Plugin
+      Table rendering
+      Format validation
+      Playground
+....
+
+[mermaid, title="Fugerit Venus Doc Typical Flow"]
+....
+flowchart TB
+    D -->|picks| H
+    subgraph source
+    A[Fugerit Doc Flow] -->|starts| C{Mode}
+    C -->|Static data| D[Fugerit Doc Format]
+    C -->|Dynamic data| E[Freemarker pipeline + Data Model] --> |Generates| D(Fugerit Doc Format)
+    C -->|Scripting| G[Kotlin DSL + Data Binding] --> |Generates| D(Fugerit Doc Format)
+    end
+    subgraph output
+    H{Doc Handler}
+    H -->|mod-fop| L[PDF] -->|Renders| F(Output Format)
+    H -->|mod-poi| M[XLSX] -->|Renders| F(Output Format)
+    H -->|...| N[...] -->|Renders| F(Output Format)
+    end
+....
+
+[.text-left]
+*Copyright*
+
+**@2024** Matteo Franci - **CC BY 4.0** - ATTRIBUTION 4.0 INTERNATIONAL - https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+
+All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names,trademarks and brands does not imply endorsement.

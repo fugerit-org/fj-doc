@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-base] Fix log doc xml validation
+
+## [8.8.9] - 2024-09-27
+
+### Changed
+
+- [fj-doc-maven-plugin] goal init, flavour micronaut, default micronaut version 4.6.3
+
 ## [8.8.9] - 2024-09-27
 
 ### Changed
