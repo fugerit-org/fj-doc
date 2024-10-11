@@ -78,7 +78,7 @@ public class DocValidator {
 			try ( PrintStream ps = new PrintStream( baos ) ) {
 				result.printErrorReport( ps );
 				if ( logger.isInfoEnabled() ) {
-					logger.info( "Validation issues : \n{}", String.valueOf( baos.toByteArray() ) );
+					logger.info( "Validation issues : \n{}", new String( baos.toByteArray() ) );
 				}
 			}	
 		} );
