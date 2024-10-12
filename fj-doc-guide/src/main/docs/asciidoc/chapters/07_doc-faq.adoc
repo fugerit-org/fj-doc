@@ -15,13 +15,13 @@ mvn org.fugerit.java:fj-doc-maven-plugin:init \
 -Dextensions=base,freemarker,mod-fop
 ----
 
-For more information see : xref:02_2_maven_plugin_init.adoc#maven-plugin-goal-init[Maven Plugin Goal Init].
+For more information see : link:#maven-plugin-goal-init[Maven Plugin Goal Init].
 
 
 [#doc-daq-validate-document]
 === How do I validate the doc format after freemarker processing?
 
-If using the xref:04_1_doc_freemarker_config.adoc#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
+If using the link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
 you can simply set to true the attributes :
 
 * validating="true"
@@ -39,4 +39,5 @@ For instance :
     failOnValidate="true">
 ----
 
-For more information see : xref:04_1_doc_freemarker_config.adoc#doc-freemarker-config-attributes[FreemarkerDocProcessConfig configuration : Attributes].
+For more information see :
+link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
