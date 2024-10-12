@@ -117,7 +117,7 @@
 							<backend>pdf</backend>
 							<doctype>book</doctype>
 							<sourceDocumentName>index.adoc</sourceDocumentName>
-							<outputDirectory>pdf-output-folder</outputDirectory>
+							<outputDirectory>${pdf-output-folder}</outputDirectory>
 							<outputFile>${project.artifactId}-${project.version}.pdf</outputFile>
 							<attributes>
 								<pdf-theme>basic</pdf-theme>
