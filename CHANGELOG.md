@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-mod-fop] fop-version set to 2.10
+- [fj-doc-playground-quarkus] kotlin.version set to 2.0.21
 - [fj-doc-freemarker] new CleanXmlFun and CleanTextFun <https://github.com/fugerit-org/fj-doc/issues/213>
 - [fj-doc-base] new DocXMLUtils utility <https://github.com/fugerit-org/fj-doc/issues/213>
 - [fj-doc-freemarker] new attribute : validating, failOnValidate, cleanSource
