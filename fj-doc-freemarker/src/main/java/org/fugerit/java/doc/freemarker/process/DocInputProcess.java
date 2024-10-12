@@ -8,14 +8,9 @@ import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
-import org.fugerit.java.doc.base.process.DocProcessContext;
 
-import javax.print.Doc;
 import java.io.StringReader;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.DoubleFunction;
-import java.util.function.Function;
+import java.util.function.*;
 
 @Slf4j
 public class DocInputProcess {
@@ -78,7 +73,7 @@ public class DocInputProcess {
         }
     };
 
-    public DocInputProcess(Function<DocInput, DocInput> docInputProcessFun) {
+    public DocInputProcess(UnaryOperator<DocInput> docInputProcessFun) {
         this.docInputProcessFun = docInputProcessFun;
     }
 

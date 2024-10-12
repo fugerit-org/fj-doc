@@ -13,6 +13,7 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
@@ -49,16 +50,25 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				String chainIdError = "error_chain";
 				log.info( "current config : {} -> {}", k, currentConfig );
 				try (ByteArrayOutputStream fos = new ByteArrayOutputStream() ) {
+					DocProcessContext context = DocProcessContext.newContext();
 					if ( k == 0 || k == 2 ) {
-						Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos ) );
+						Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos ) );
 					} else {
-						config.fullProcess( chainIdError, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
+						config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos );
 					}
 				}
 			}
 		}
 	}
-	
+
+	@Test
+	public void textCleanInput() {
+		String input = "test";
+		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_XML ) );
+		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_JSON ) );
+		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_YAML ) );
+	}
+
 	@Test
 	public void testConfigFail01() {
 		Assert.assertThrows( ConfigRuntimeException.class , () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" ) );

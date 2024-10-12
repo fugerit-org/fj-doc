@@ -54,7 +54,7 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	@Getter @Setter( AccessLevel.PACKAGE )
 	private boolean cleanSource;
 
-	private DocInputProcess docInputProcess;
+	private transient DocInputProcess docInputProcess;
 
 	protected FreemarkerDocProcessConfig() {
 		super();
