@@ -107,7 +107,7 @@ public class ProjectRest {
     }
     public static void checkIfInTempFolder( File file ) throws IOException {
         File tempDir = new File( System.getProperty("java.io.tmpdir") );
-        if ( !file.getCanonicalPath().startsWith( tempDir.getCanonicalPath() ) ) {
+        if ( !file.toPath().normalize().startsWith(tempDir.toPath().normalize()) ) {
             throw new IOException( file.getCanonicalPath() + " is not in temp folder" );
         }
     }
