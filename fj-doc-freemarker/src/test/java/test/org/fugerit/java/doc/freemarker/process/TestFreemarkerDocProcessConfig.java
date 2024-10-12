@@ -33,20 +33,29 @@ import test.org.fugerit.java.BasicTest;
 public class TestFreemarkerDocProcessConfig extends BasicTest {
 
 	@Test
-	public void testConfigRead001() {
-		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
-			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
-			String chainId = "sample_chain";
-			String type = DocConfig.TYPE_HTML;
-			log.info( "config {}", config.getChain( chainId ) );
-			Assert.assertNotNull( config );
-			try (FileOutputStream fos = new FileOutputStream( new File( "target", chainId+"."+type ) )  ) {
-				config.fullProcess( chainId, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
+	public void testConfigRead001() throws Exception {
+		String[] configList = { "fj_doc_test/freemarker-doc-process.xml", "fj_doc_test/freemarker-doc-process-1.xml", "fj_doc_test/freemarker-doc-process-2.xml", "fj_doc_test/freemarker-doc-process-3.xml" };
+		for (  int k=0 ;k<configList.length ;k++ ) {
+			String currentConfig = configList[k];
+			try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( currentConfig ) ) ) {
+				FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
+				String chainId = "sample_chain";
+				String type = DocConfig.TYPE_HTML;
+				log.info( "config {}", config.getChain( chainId ) );
+				Assert.assertNotNull( config );
+				try (FileOutputStream fos = new FileOutputStream( new File( "target", chainId+"_"+k+"."+type ) )  ) {
+					config.fullProcess( chainId, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
+				}
+				String chainIdError = "error_chain";
+				log.info( "current config : {} -> {}", k, currentConfig );
+				try (ByteArrayOutputStream fos = new ByteArrayOutputStream() ) {
+					if ( k == 0 || k == 2 ) {
+						Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos ) );
+					} else {
+						config.fullProcess( chainIdError, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
+					}
+				}
 			}
-		} catch (Exception e) {
-			String message = "Error : "+e;
-			log.error( message, e );
-			fail(message);
 		}
 	}
 	

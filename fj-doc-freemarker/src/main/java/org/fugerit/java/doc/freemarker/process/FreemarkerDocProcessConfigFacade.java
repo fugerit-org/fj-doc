@@ -55,7 +55,25 @@ public class FreemarkerDocProcessConfigFacade {
 	public static final String STEP_TYPE_COMPLEX = "complex";
 	
 	public static final String STEP_TYPE_MAP = "map";
-	
+
+	/**
+	 * If set to 'true' the FreemarkerDocProcessConfig will try to validate the source. (default: false)
+	 * NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.
+	 */
+	public static final String GENERAL_ATTRIBUTE_VALIDATING = "validating";
+
+	/**
+	 * If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning.
+	 * NOTE: NOTE: 'validating' is set to true, this attribute is ignored.
+	 */
+	public static final String GENERAL_ATTRIBUTE_FAIL_ON_VALIDATE = "failOnValidate";
+
+	/**
+	 * If set to 'true' the FreemarkerDocProcessConfig will try to clean the source (i.e. DocXmlUtils.cleanXml()). (default: false)
+	 * NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.
+	 */
+	public static final String GENERAL_ATTRIBUTE_CLEAN_SOURCE = "cleanSource";
+
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version ) throws ConfigException {
 		return ConfigException.get( () -> {
 			FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
@@ -225,6 +243,8 @@ public class FreemarkerDocProcessConfigFacade {
 			 dbf.setNamespaceAware( true );
 			 DocumentBuilder db = dbf.newDocumentBuilder();
 			 Document doc = db.parse( new InputSource( xmlReader ) );
+			 // config general attributes
+			 generalPropertiesSetup( config, doc.getDocumentElement() );
 			 // docHandlerConfig reading
 			 handleNodeList(config, doc);
 			 // docChain reading
@@ -238,7 +258,20 @@ public class FreemarkerDocProcessConfigFacade {
 		 }
 		 return result;
 	}
-	
+
+	private static String setupGeneralAttribute( String name, Element element ) {
+		String value = element.getAttribute( name );
+		log.info( "setupGeneralAttribute : name : {} value : {}", name, value );
+		return value;
+	}
+
+	private static void generalPropertiesSetup( FreemarkerDocProcessConfig config , Element root) {
+		config.setValidating( BooleanUtils.isTrue(  setupGeneralAttribute( GENERAL_ATTRIBUTE_VALIDATING, root ) ) );
+		config.setFailOnValidate( BooleanUtils.isTrue(  setupGeneralAttribute( GENERAL_ATTRIBUTE_FAIL_ON_VALIDATE, root ) ) );
+		config.setCleanSource( BooleanUtils.isTrue(  setupGeneralAttribute( GENERAL_ATTRIBUTE_CLEAN_SOURCE, root ) ) );
+		config.initDocInputProcess();
+	}
+
 	private static final Properties BUILT_IN_STEPS = new Properties();
 	private static final Properties BUILT_IN_STEPS_REVERSE = new Properties();
 	static {
