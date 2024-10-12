@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.junit.Assert;
@@ -17,9 +18,11 @@ public class TestDocProcessContext {
 
 	@Test
 	public void testContext1() {
-		DocProcessContext context = DocProcessContext.newContext( "c", "d" ).withAtt( "a" , "b" ).withDocBase( new DocBase() ).withDocType( DocConfig.TYPE_PDF );
+		DocProcessContext context = DocProcessContext.newContext( "c", "d" ).withSourceType(DocFacadeSource.SOURCE_TYPE_XML)
+				.withAtt( "a" , "b" ).withDocBase( new DocBase() ).withDocType( DocConfig.TYPE_PDF );
 		log.info( "context : {}", context );
 		Assert.assertEquals( "b" , context.getAttribute( "a" ) );
+		Assert.assertEquals( DocFacadeSource.SOURCE_TYPE_XML , context.getSourceType() );
 	}
 	
 	@Test

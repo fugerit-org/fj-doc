@@ -35,19 +35,19 @@
 			</xsd:sequence>
 			<xsd:attribute name="validating" type="xsd:boolean" use="optional" default="false">
 				<xsd:annotation>
-					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will try to validate the source.</xsd:documentation>
+					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will try to validate the source. (since 8.9.1)</xsd:documentation>
 					<xsd:documentation>NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="failOnValidate" type="xsd:boolean" use="optional" default="false">
 				<xsd:annotation>
-					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning.</xsd:documentation>
+					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning. (since 8.9.1)</xsd:documentation>
 					<xsd:documentation>NOTE: 'validating' is set to true, this attribute is ignored.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attribute name="cleanSource" type="xsd:boolean" use="optional" default="false">
 				<xsd:annotation>
-					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will try to clean the source (i.e. DocXmlUtils.cleanXml()).</xsd:documentation>
+					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will try to clean the source (i.e. DocXmlUtils.cleanXml()). (since 8.9.1)</xsd:documentation>
 					<xsd:documentation>NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
