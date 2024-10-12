@@ -8,6 +8,7 @@ Here you can find :
 * https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd[freemarker doc process config xsd]
 * https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html[freemarker doc process config reference]
 
+[#doc-freemarker-config-attributes]
 ==== Root element freemarker-doc-process-config
 
 This is the root configuration element :

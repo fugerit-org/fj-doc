@@ -1,0 +1,42 @@
+<<<
+[#doc-faq]
+== Frequently asked questions (FAQ)
+
+[#doc-daq-create-project]
+=== How do I create a new project using Fugerit Venus Doc?
+
+It is possible to simply run the plugin :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:init \
+-DgroupId=org.example.doc \
+-DartifactId=fugerit-demo \
+-Dextensions=base,freemarker,mod-fop
+----
+
+For more information see : xref:02_2_maven_plugin_init.adoc#maven-plugin-goal-init[Maven Plugin Goal Init].
+
+
+[#doc-daq-validate-document]
+=== How do I validate the doc format after freemarker processing?
+
+If using the xref:04_1_doc_freemarker_config.adoc#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
+you can simply set to true the attributes :
+
+* validating="true"
+* failOnValidate="true"
+
+For instance :
+
+[source,xml]
+----
+<freemarker-doc-process-config
+    xmlns="https://freemarkerdocprocess.fugerit.org"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd"
+    validating="true"
+    failOnValidate="true">
+----
+
+For more information see : xref:04_1_doc_freemarker_config.adoc#doc-freemarker-config-attributes[FreemarkerDocProcessConfig configuration : Attributes].
