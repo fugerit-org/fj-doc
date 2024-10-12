@@ -50,7 +50,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				String chainIdError = "error_chain";
 				log.info( "current config : {} -> {}", k, currentConfig );
 				try (ByteArrayOutputStream fos = new ByteArrayOutputStream() ) {
-					DocProcessContext context = DocProcessContext.newContext();
+					DocProcessContext context = DocProcessContext.newContext().withSourceType( DocFacadeSource.SOURCE_TYPE_XML );
 					if ( k == 0 || k == 2 ) {
 						Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos ) );
 					} else {
@@ -59,14 +59,6 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				}
 			}
 		}
-	}
-
-	@Test
-	public void textCleanInput() {
-		String input = "test";
-		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_XML ) );
-		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_JSON ) );
-		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_YAML ) );
 	}
 
 	@Test
