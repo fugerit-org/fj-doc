@@ -74,5 +74,13 @@ public class TestDocFacadeSource extends BasicTest {
 		DocFacadeSource facade = new DocFacadeSource( new DocFacadeSourceConfig().withFailOnSourceModuleNotFound(true) );
 		Assert.assertNull( facade.getParserForSource(-1) );
 	}
-	
+
+	@Test
+	public void textCleanInput() {
+		String input = "test";
+		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_XML ) );
+		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_JSON ) );
+		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_YAML ) );
+	}
+
 }

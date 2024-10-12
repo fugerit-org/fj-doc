@@ -2,11 +2,7 @@ package test.org.fugerit.java.doc.freemarker.process;
 
 import static org.junit.Assert.fail;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
+import java.io.*;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
@@ -17,6 +13,7 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
@@ -37,18 +34,33 @@ import test.org.fugerit.java.BasicTest;
 public class TestFreemarkerDocProcessConfig extends BasicTest {
 
 	@Test
-	public void testConfigRead001() {
-		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
-			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
-			log.info( "config {}", config.getChain( "sample_chain" ) );
-			Assert.assertNotNull( config );
-		} catch (Exception e) {
-			String message = "Error : "+e;
-			log.error( message, e );
-			fail(message);
+	public void testConfigRead001() throws Exception {
+		String[] configList = { "fj_doc_test/freemarker-doc-process.xml", "fj_doc_test/freemarker-doc-process-1.xml", "fj_doc_test/freemarker-doc-process-2.xml", "fj_doc_test/freemarker-doc-process-3.xml" };
+		for (  int k=0 ;k<configList.length ;k++ ) {
+			String currentConfig = configList[k];
+			try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( currentConfig ) ) ) {
+				FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
+				String chainId = "sample_chain";
+				String type = DocConfig.TYPE_HTML;
+				log.info( "config {}", config.getChain( chainId ) );
+				Assert.assertNotNull( config );
+				try (FileOutputStream fos = new FileOutputStream( new File( "target", chainId+"_"+k+"."+type ) )  ) {
+					config.fullProcess( chainId, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
+				}
+				String chainIdError = "error_chain";
+				log.info( "current config : {} -> {}", k, currentConfig );
+				try (ByteArrayOutputStream fos = new ByteArrayOutputStream() ) {
+					DocProcessContext context = DocProcessContext.newContext().withSourceType( DocFacadeSource.SOURCE_TYPE_XML );
+					if ( k == 0 || k == 2 ) {
+						Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos ) );
+					} else {
+						config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos );
+					}
+				}
+			}
 		}
 	}
-	
+
 	@Test
 	public void testConfigFail01() {
 		Assert.assertThrows( ConfigRuntimeException.class , () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" ) );

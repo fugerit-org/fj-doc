@@ -8,6 +8,7 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParser;
+import org.fugerit.java.doc.base.xml.DocXMLUtils;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -102,5 +103,13 @@ public class DocFacadeSource {
 		}
 		return docBase;
 	}
-	
+
+	public static String cleanSource( String source, int sourceType ) {
+		if ( sourceType == DocFacadeSource.SOURCE_TYPE_XML ) {
+			return DocXMLUtils.cleanXML( source );
+		} else {
+			return source;
+		}
+	}
+
 }

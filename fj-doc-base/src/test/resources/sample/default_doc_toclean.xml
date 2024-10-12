@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" > 
+
+  <metadata>
+  	<!-- Margin for document : left;right;top;bottom -->
+  	<info name="margins">10;10;10;30</info>  
+  	<info name="excel-table-id">excel-table=print</info>
+ 	<!-- documenta meta information -->
+	<info name="doc-title">Basic example</info>
+	<info name="doc-subject">fj doc venus sample source xml</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+	<!-- additional properties -->
+	<info name="set-total-page">true</info>
+	<info name="html-css-link">/css/test.css</info>
+	<header-ext>
+		<para align="center" fore-color="#eeeeee">header test</para>
+	</header-ext>
+	<footer-ext>
+		<para align="left">test</para>
+		<para align="center">${r"${currentPage}"} / ${r"${pageCount}"}</para>
+		<para align="right">test</para>
+	</footer-ext>
+	<bookmark-tree>
+		<bookmark ref="title">Test</bookmark>
+	</bookmark-tree>
+  </metadata>
+  <body>
+  		<h id="title" head-level="1">main title h1</h>
+  		<para id="to-clean">test clean special character starts. 	
+
+
+
+
+
+
+
+
+
+ 	
+
+  
+
+
+ 
+ 
+
+ 
+
+
+
+
+ 
+   
+
+ 
+
+
+ 
+
+
+
+
+
+ 
+ 
+
+
+ 
+ 
+
+
+
+
+
+
+ !, end test.</para>
+  </body>
+  
+</doc>

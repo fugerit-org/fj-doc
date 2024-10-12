@@ -3,9 +3,11 @@ package org.fugerit.java.doc.base.process;
 import java.io.Serializable;
 import java.util.Map;
 
+import lombok.Getter;
 import org.fugerit.java.core.lang.helpers.AttributesHolder;
 import org.fugerit.java.core.util.filterchain.MiniFilterContext;
 import org.fugerit.java.doc.base.config.DocInput;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 
 public class DocProcessContext extends MiniFilterContext implements Serializable, AttributesHolder {
@@ -18,7 +20,19 @@ public class DocProcessContext extends MiniFilterContext implements Serializable
 	public static final String ATT_NAME_DOC_BASE = "docBase";
 	
 	public static final String ATT_NAME_DOC_TYPE = "docType";
-	
+
+	@Getter
+	private int sourceType;
+
+	public DocProcessContext() {
+		this.sourceType = DocFacadeSource.SOURCE_TYPE_DEFAULT;
+	}
+
+	public DocProcessContext withSourceType( int sourceType ) {
+		this.sourceType = sourceType;
+		return this;
+	}
+
 	public DocProcessContext withDocInput( DocInput docInput ) {
 		return this.withDocBase( docInput.getDoc() ).withDocType( docInput.getType() );
 	}

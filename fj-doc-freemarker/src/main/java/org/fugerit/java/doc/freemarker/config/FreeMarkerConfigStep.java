@@ -17,10 +17,7 @@ import org.fugerit.java.doc.base.process.DocProcessorBasic;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
-import org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun;
-import org.fugerit.java.doc.freemarker.fun.SimpleMessageFun;
-import org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun;
-import org.fugerit.java.doc.freemarker.fun.TextWrapFun;
+import org.fugerit.java.doc.freemarker.fun.*;
 
 public class FreeMarkerConfigStep extends DocProcessorBasic {
 
@@ -151,6 +148,8 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 			map.put(TextWrapFun.DEFAULT_NAME, new TextWrapFun());
 			map.put(SimpleMessageFun.DEFAULT_NAME, new SimpleMessageFun());
 			map.put(SimpleSumLongFun.DEFAULT_NAME, new SimpleSumLongFun());
+			map.put(CleanXmlFun.DEFAULT_NAME, new CleanXmlFun());
+			map.put(CleanTextFun.DEFAULT_NAME, new CleanTextFun());
 		}
 		return res;
 	}

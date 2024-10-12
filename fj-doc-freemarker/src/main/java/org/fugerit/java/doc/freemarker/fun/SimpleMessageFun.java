@@ -14,7 +14,7 @@ public class SimpleMessageFun implements TemplateMethodModelEx {
 
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
-		FMFunHelper.checkFirstRequred( arguments );
+		FMFunHelper.checkFirstRequired( arguments );
 		String key = ((TemplateScalarModel)arguments.get( 0 )).getAsString();
 		Object[] args = new Object[ arguments.size()-1 ];
 		for ( int k=1; k<arguments.size(); k++ ) {

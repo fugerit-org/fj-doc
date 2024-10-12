@@ -5,7 +5,7 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd"
 	validating="true"
 	failOnValidate="true"
-	cleanSource="true">
+	cleanSource="false">
 
 	<docHandlerConfig>
 		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />

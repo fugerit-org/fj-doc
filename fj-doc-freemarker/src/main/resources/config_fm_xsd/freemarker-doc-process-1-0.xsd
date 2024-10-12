@@ -6,7 +6,7 @@
 	 *
 	 * @project    : org.fugerit.java.doc.base
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.2 (2023-09-26)
+	 * @version    : 1.0.0-rc.3 (2024-10-12)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -33,6 +33,24 @@
 				<xsd:element ref='fdp:docHandlerConfig' minOccurs="0" maxOccurs="1" />
 				<xsd:element ref='fdp:docChain' minOccurs="0" maxOccurs="unbounded" />
 			</xsd:sequence>
+			<xsd:attribute name="validating" type="xsd:boolean" use="optional" default="false">
+				<xsd:annotation>
+					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will try to validate the source. (since 8.9.1)</xsd:documentation>
+					<xsd:documentation>NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="failOnValidate" type="xsd:boolean" use="optional" default="false">
+				<xsd:annotation>
+					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning. (since 8.9.1)</xsd:documentation>
+					<xsd:documentation>NOTE: 'validating' is set to true, this attribute is ignored.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
+			<xsd:attribute name="cleanSource" type="xsd:boolean" use="optional" default="false">
+				<xsd:annotation>
+					<xsd:documentation>If set to 'true' the FreemarkerDocProcessConfig will try to clean the source (i.e. DocXmlUtils.cleanXml()). (since 8.9.1)</xsd:documentation>
+					<xsd:documentation>NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
 	

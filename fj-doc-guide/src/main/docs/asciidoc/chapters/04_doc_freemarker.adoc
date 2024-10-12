@@ -28,7 +28,6 @@ The project has been created with the command :
 [source,shell]
 ----
 mvn org.fugerit.java:fj-doc-maven-plugin:init \
--Dversion=8.8.8 \
 -DgroupId=org.fugerit.java-tutorial \
 -DartifactId=fj-doc-quarkus-tutorial \
 -Dflavour=quarkus-3 \

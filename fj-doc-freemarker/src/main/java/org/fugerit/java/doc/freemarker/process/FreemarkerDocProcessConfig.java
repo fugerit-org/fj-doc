@@ -5,6 +5,8 @@ import java.io.Reader;
 import java.io.Serializable;
 import java.util.Set;
 
+import lombok.AccessLevel;
+import lombok.Setter;
 import org.fugerit.java.core.cfg.xml.ListMapConfig;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.util.filterchain.MiniFilterChain;
@@ -28,7 +30,13 @@ import lombok.extern.slf4j.Slf4j;
 public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 
 	private static final long serialVersionUID = -6761081877582850120L;
-	
+
+	public static final boolean DEFAULT_VALIDATING = false;
+
+	public static final boolean DEFAULT_FAIL_ON_VALIDATE = false;
+
+	public static final boolean DEFAULT_CLEAN_SOURCE = false;
+
 	@Getter
 	private ListMapConfig<DocChainModel> docChainList;
 	
@@ -36,14 +44,33 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	private DocHandlerFacade facade;
 	
 	private DocProcessConfig docProcessConfig;
-	
+
+	@Getter @Setter( AccessLevel.PACKAGE )
+	private boolean validating;
+
+	@Getter @Setter( AccessLevel.PACKAGE )
+	private boolean failOnValidate;
+
+	@Getter @Setter( AccessLevel.PACKAGE )
+	private boolean cleanSource;
+
+	private transient DocInputProcess docInputProcess;
+
 	protected FreemarkerDocProcessConfig() {
 		super();
 		this.docChainList = new ListMapConfig<>();
 		this.facade = new DocHandlerFacade();
-		this.docProcessConfig = new DocProcessConfig();	
+		this.docProcessConfig = new DocProcessConfig();
+		this.validating = DEFAULT_VALIDATING;
+		this.failOnValidate = DEFAULT_FAIL_ON_VALIDATE;
+		this.cleanSource = DEFAULT_CLEAN_SOURCE;
+		this.initDocInputProcess();
 	}
-	
+
+	protected void initDocInputProcess() {
+		this.docInputProcess = DocInputProcess.newDocInputProcess( validating, failOnValidate, cleanSource );
+	}
+
 	private transient DefaultChainProvider defaultChain;
 	
 	protected void setDefaultChain( DefaultChainProvider defaultChain ) {
@@ -65,7 +92,8 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	public DocProcessData fullProcess( String chainId, DocProcessContext context, DocTypeHandler handler, DocOutput docOutput ) throws Exception {
 		DocProcessData data = new DocProcessData();
 		this.process(chainId, context, data);
-		handler.handle( DocInput.newInput( handler.getType() , data.getCurrentXmlReader() ) , docOutput );
+		DocInput docInput = this.docInputProcess.process( DocInput.newInput( handler.getType() , data.getCurrentXmlReader(), context.getSourceType() ) );
+		handler.handle( docInput , docOutput );
 		return data;
 	}
 	

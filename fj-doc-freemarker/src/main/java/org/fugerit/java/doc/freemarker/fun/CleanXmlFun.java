@@ -4,19 +4,23 @@ import freemarker.template.SimpleScalar;
 import freemarker.template.TemplateMethodModelEx;
 import freemarker.template.TemplateModelException;
 import freemarker.template.TemplateScalarModel;
-import org.fugerit.java.doc.base.helper.TextWrapHelper;
+import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.doc.base.xml.DocXMLUtils;
 
 import java.util.List;
 
-public class TextWrapFun implements TemplateMethodModelEx {
+@Slf4j
+public class CleanXmlFun implements TemplateMethodModelEx {
 
-	public static final String DEFAULT_NAME = "textWrap";
+	public static final String DEFAULT_NAME = "cleanXml";
 
 	@Override
 	public Object exec(@SuppressWarnings("rawtypes") List arguments) throws TemplateModelException {
 		FMFunHelper.checkFirstRequired( arguments );
 		String input = ((TemplateScalarModel)arguments.get( 0 )).getAsString();
-		return new SimpleScalar(TextWrapHelper.padZeroWithSpace( input ));
+		String output = DocXMLUtils.cleanXML( input );
+		log.debug( "cleanXML apply '{}' -> '{}'", input, output );
+		return new SimpleScalar(output);
 	}
 	
 }
