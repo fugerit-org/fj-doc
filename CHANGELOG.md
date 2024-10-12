@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [fj-doc-bas] new DocXMLUtils utility <https://github.com/fugerit-org/fj-doc/issues/213>
+- [fj-doc-freemarker] new CleanXmlFun and CleanTextFun <https://github.com/fugerit-org/fj-doc/issues/213>
+- [fj-doc-base] new DocXMLUtils utility <https://github.com/fugerit-org/fj-doc/issues/213>
 
 ## [8.9.0] - 2024-10-11
 

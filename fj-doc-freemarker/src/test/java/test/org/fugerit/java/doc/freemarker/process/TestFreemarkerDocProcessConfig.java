@@ -2,11 +2,7 @@ package test.org.fugerit.java.doc.freemarker.process;
 
 import static org.junit.Assert.fail;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
+import java.io.*;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
@@ -40,8 +36,13 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 	public void testConfigRead001() {
 		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
 			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfig(xmlReader);
-			log.info( "config {}", config.getChain( "sample_chain" ) );
+			String chainId = "sample_chain";
+			String type = DocConfig.TYPE_HTML;
+			log.info( "config {}", config.getChain( chainId ) );
 			Assert.assertNotNull( config );
+			try (FileOutputStream fos = new FileOutputStream( new File( "target", chainId+"."+type ) )  ) {
+				config.fullProcess( chainId, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
+			}
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );

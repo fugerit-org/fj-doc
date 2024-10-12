@@ -2,9 +2,11 @@
 <freemarker-doc-process-config
 	xmlns="https://freemarkerdocprocess.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" >
 
-
+	<docHandlerConfig>
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
+	</docHandlerConfig>
 
 	<docChain id="shared">
 		<chainStep stepType="config">
@@ -12,7 +14,7 @@
 				version="2.3.31"
 				path="/fj_doc_test/template/"
 				mode="class" 
-				class="org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade"
+				class="org.fugerit.java.doc.freemarker.fun.CleanXmlFun"
 				exception-handler="RETHROW_HANDLER"
 				log-exception="false"
 				wrap-unchecked-exceptions="true"
