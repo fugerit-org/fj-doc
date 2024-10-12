@@ -78,9 +78,9 @@ public class TestDocFacadeSource extends BasicTest {
 	@Test
 	public void textCleanInput() {
 		String input = "test";
-		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_XML ) );
-		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_JSON ) );
-		Assert.assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_YAML ) );
+		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_XML ) );
+		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_JSON ) );
+		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_YAML ) );
 	}
 
 }
