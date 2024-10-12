@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-bas] new DocXMLUtils utility <https://github.com/fugerit-org/fj-doc/issues/213>
+
+## [8.9.0] - 2024-10-11
+
 ### Added
 
 - [fj-doc-guide] new [asciidoc guide](https://venusdocs.fugerit.org/guide/)
