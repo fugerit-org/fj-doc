@@ -1,0 +1,14 @@
+[#doc-daq-create-project]
+=== How do I create a new project using Fugerit Venus Doc?
+
+It is possible to simply run the plugin :
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:init \
+-DgroupId=org.example.doc \
+-DartifactId=fugerit-demo \
+-Dextensions=base,freemarker,mod-fop
+----
+
+For more information see : link:#maven-plugin-goal-init[Maven Plugin Goal Init].

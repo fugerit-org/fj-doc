@@ -25,3 +25,6 @@ include::chapters/06_doc_handlers.adoc[]
 include::chapters/06_1_freemarker-html.adoc[]
 
 include::chapters/07_doc-faq.adoc[]
+include::chapters/07_001_doc-faq-create-project.adoc[]
+include::chapters/07_002_doc-faq-validate-document.adoc[]
+include::chapters/07_003_doc-faq-clean-source.adoc[]

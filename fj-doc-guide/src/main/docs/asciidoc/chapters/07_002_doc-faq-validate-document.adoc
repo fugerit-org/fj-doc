@@ -1,0 +1,30 @@
+[#doc-daq-validate-document]
+=== How do I validate the doc format after freemarker processing?
+
+If using the link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
+you can simply set to true the attributes :
+
+* validating="true"
+* failOnValidate="true" (if you want the generation to fail in case of validation errors)
+
+For instance :
+
+[source,xml]
+----
+<freemarker-doc-process-config
+    xmlns="https://freemarkerdocprocess.fugerit.org"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd"
+    validating="true"
+    failOnValidate="true">
+----
+
+On log you will find something like :
+
+* DocValidationResult failed!, errors : 2
+* Validation error 0, org.xml.sax.SAXParseException; lineNumber: 42; columnNumber: 22; cvc-complex-type.2.4.a: Invalid content was found starting with element '{"http://javacoredoc.fugerit.org":h}'. One of '{"http://javacoredoc.fugerit.org":phrase, "http://javacoredoc.fugerit.org":para}' is expected.
+* Validation error 1, org.xml.sax.SAXParseException; lineNumber: 49; columnNumber: 49; cvc-complex-type.3.2.2: Attribute 'attribute-not-allowed' is not allowed to appear in element 'para'.
+----
+
+For more information see :
+link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
