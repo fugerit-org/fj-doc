@@ -41,3 +41,30 @@ For instance :
 
 For more information see :
 link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
+
+[#doc-daq-clean-source-document]
+=== How do I clean source document before parsing to Doc Model?
+
+If using the link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
+you can simply set to true the attributes :
+
+* cleanSource="true"
+
+For instance :
+
+[source,xml]
+----
+<freemarker-doc-process-config
+    xmlns="https://freemarkerdocprocess.fugerit.org"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd"
+    cleanSource="true">
+----
+
+For instance for XML source, invalid characters will be stripped :
+
+\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD\u10000-\u10FFF
+See https://www.w3.org/TR/xml/#charsets and https://github.com/fugerit-org/fj-doc/issues/213
+
+For more information see :
+link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
