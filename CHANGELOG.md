@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-playground-quarkus] fj-service-helper-bom-version set to 1.4.3
+
 ## [8.9.1] - 2024-10-12
 
 ### Changed
