@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-playground-quarkus] fj-doc-ext-kotlin-version set to 0.4.1
 - [fj-doc-playground-quarkus] apply DocFacadeSource.cleanInput() to document generation playground
 - [fj-doc-playground-quarkus] fj-service-helper-bom-version set to 1.4.3
 
