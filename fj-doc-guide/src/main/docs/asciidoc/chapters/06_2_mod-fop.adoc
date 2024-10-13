@@ -1,0 +1,121 @@
+<<<
+[#doc-handler-freemarker]
+=== [fj-doc-freemarker]
+
+To use this doc handler, you will need to add the following dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-mod-fop</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+This module is based on link:https://xmlgraphics.apache.org/fop/[Apache FOP Project] for rendering and link:https://freemarker.apache.org/[Apache FreeMarker] for composing the source document model.
+
+Usually Apache FOP uses link:https://www.w3.org/TR/xslt-30/[XSL Transformations] as a mean of customizing the content. But here we follow the templating approach using link:https://freemarker.apache.org/docs/xgui_preface.html[FreeMarker].
+
+[#doc-handler-mod-fop-pdf-basic]
+==== Basic PDF DocHandler
+
+This doc handler would render a full PDF document with default FOP configuration.
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+        <!-- Type handler generating pdf -->
+        <docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
+----
+
+[#doc-handler-mod-fop-pdf-config]
+==== Custom configured PDF DocHandler
+
+For this DocHandler it is possible to customize some attributes, for instance :
+
+[source,xml]
+----
+        <!-- Type handler generating pdf -->
+        <docHandler id="pdf-fop-config" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fj-doc-quarkus-tutorial/fop-config.xml"
+             fop-pool-min="20" fop-pool-max="40" fop-suppress-events="1"/>
+        </docHandler>
+----
+
+[#doc-handler-mod-fop-pdf-config-ref]
+*docHandlerCustomConfig reference for org.fugerit.java.doc.mod.fop.PdfFopTypeHandler*
+
+[cols="2,1,1,6", options="header"]
+|========================================================================================================================================
+| name     | type  | default | description
+| *charset* anchor:doc-handler-mod-fop-pdf-config-charset[]  | _string_  | _UTF-8_ | This will set the charset to use.
+| *fop-config-mode* anchor:doc-handler-mod-fop-pdf-config-fop-config-mode[]  | _string_  |  | Custom fop configuration mode, possible values are : _classloader_ (path set *fop-config-classloader-path*) or _inline_ (child element).
+| *fop-config-classloader-path* anchor:doc-handler-mod-fop-pdf-config-fop-config-classloader-path[]  | _string_  |  | Path to link:https://xmlgraphics.apache.org/fop/2.10/configuration.html[Apache FOP Configuration file].
+| *fop-suppress-events* anchor:doc-handler-mod-fop-pdf-config-fop-config-mode[]  | _boolean_  | _false_ | If set to _true_ (or _1_), will try to suppress event logging (for example : new page).
+| *pdf-a-mode* anchor:doc-handler-mod-fop-pdf-config-pdf-a-mode[]  | _string_  |  | If present will set pdf-a-mode, possible values are : _PDF/A-1a_, _PDF/A-1b_, _PDF/A-2a_, _PDF/A-3a_
+| *pdf-ua-mode* anchor:doc-handler-mod-fop-pdf-config-pdf-ua-mode[]  | _string_  |  | If present, will set pdf-ua-mode, possible values are : _PDF/UA-1_. link:https://github.com/fugerit-org/fj-doc/issues/52[Partially compatible with pdf-a-mode].
+| *fop-pool-min* anchor:doc-handler-mod-fop-pdf-config-fop-pool-min[]  | _int_  | 0 | If present, it will create a fo user agent pool, this is the minimum size of the pool.
+| *fop-pool-max* anchor:doc-handler-mod-fop-pdf-config-fop-pool-max[]  | _int_  | 0 | If present, it will create a fo user agent pool, this is the maximum size fo the pool.
+|========================================================================================================================================
+
+NOTE: If *pdf-a-mode* is set, there will be a strict validation of the PDF (i.e. it will be checked if the font are all embedded and the images should comply to link:https://www.adobe.com/uk/acrobat/resources/document-files/pdf-types/pdf-a.html[PDF/A standard]).
+
+[#doc-handler-mod-fop-pdf-config-pdf-a]
+==== PDF/A DocHandler
+
+See also link:https://xmlgraphics.apache.org/fop/2.10/pdfa.html[Apache FOP PDF/A].
+
+Here is an example of PDF/A DocHandler with custom fop configuration :
+
+[source,xml]
+----
+		<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfa.xml" pdf-a-mode="PDF/A-1b"/>
+		</docHandler>
+----
+
+And here a link:https://venusdocs.fugerit.org/fj-doc-sample/src/main/resources/fop-config-pdfa.xml[sample configuration file].
+
+[#doc-handler-mod-fop-pdf-config-pdf-ua]
+==== PDF/UA DocHandler (inline configuration)
+
+[source,xml]
+----
+	<docHandlerConfig registerById="true">
+		<docHandler id="pdf_ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-ua-mode="PDF/UA-1">
+				<fop version="1.0">
+
+				  <strict-configuration>true</strict-configuration>
+				  <strict-validation>true</strict-validation>
+				  <base>.</base>
+				  <font-base>.</font-base>
+					<renderers>
+					   <renderer mime="application/pdf">
+					   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode>
+					   	  <pdf-a-mode>PDF/A-1b</pdf-a-mode>
+				      	  <version>1.4</version>
+					   </renderer>
+					</renderers>
+				  <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+				  <source-resolution>72</source-resolution>
+				  <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+				  <target-resolution>72</target-resolution>
+				  <default-page-settings height="11in" width="8.26in"/>
+				</fop>
+			</docHandlerCustomConfig>
+		</docHandler>
+----
+
+[#doc-handler-mod-fop-fo]
+==== FO DocHandler
+
+This doc handler would render a full link:https://xmlgraphics.apache.org/fop/fo.html[FO] intermediate document.
+
+[source,xml]
+----
+        <!-- Type handler generating xls:fo style sheet -->
+        <docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
+----
