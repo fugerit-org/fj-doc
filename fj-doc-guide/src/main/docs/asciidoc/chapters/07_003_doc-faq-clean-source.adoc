@@ -1,4 +1,5 @@
-[#doc-daq-clean-source-document]
+
+[#doc-faq-clean-source-document]
 === How do I clean source document before parsing to Doc Model?
 
 If using the link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
@@ -21,7 +22,7 @@ In case of XML source, invalid characters will be stripped :
 
 \u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD\u10000-\u10FFF
 
-See https://www.w3.org/TR/xml/#charsets and link:https://github.com/fugerit-org/fj-doc/issues/213[Github Issue 213 - An invalid XML character (Unicode: 0x2) was found in the element content]
+See https://www.w3.org/TR/xml/#charsets and link:https://github.com/fugerit-org/fj-doc/issues/213[GitHub Issue 213 - An invalid XML character (Unicode: 0x2) was found in the element content]
 
 For instance the following XML :
 

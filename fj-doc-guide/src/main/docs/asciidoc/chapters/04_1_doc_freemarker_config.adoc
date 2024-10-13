@@ -29,9 +29,9 @@ Aside from namespace declaration, it is possible to set some general attribute f
 [cols="1,1,1,7", options="header"]
 |========================================================================================================================================
 | name     | type  | default | description
-| *validating* anchor:doc-freemarker-config-attributes-validating[]  | _boolean_  | _false_ | If set to 'true' the FreemarkerDocProcessConfig will try to validate the source. (since 8.9.1), NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.
-| *failOnValidate* anchor:doc-freemarker-config-attributes-failOnValidate[]    | _boolean_  | _false_ | If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning. (since 8.9.1), NOTE: 'validating' is set to true, this attribute is ignored.
-| *cleanSource*  anchor:doc-freemarker-config-attributes-cleanSource[]    | _boolean_ | _false_ | If set to 'true' the FreemarkerDocProcessConfig will try to clean the source (i.e. DocXmlUtils.cleanXml()). (since 8.9.1), NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.
+| *validating* anchor:doc-freemarker-config-attributes-validating[]  | _boolean_  | _false_ | If set to 'true' the FreemarkerDocProcessConfig will try to validate the source. (since 8.9.1), NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage. See also link:#doc-faq-validate-document[FAQ].
+| *failOnValidate* anchor:doc-freemarker-config-attributes-failOnValidate[]    | _boolean_  | _false_ | If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning. (since 8.9.1), NOTE: 'validating' is set to true, this attribute is ignored. See also link:#doc-faq-validate-document[FAQ]
+| *cleanSource*  anchor:doc-freemarker-config-attributes-cleanSource[]    | _boolean_ | _false_ | If set to 'true' the FreemarkerDocProcessConfig will try to clean the source (i.e. DocXmlUtils.cleanXml()). (since 8.9.1), NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage. See also link:#doc-faq-clean-source-document[FAQ]
 |========================================================================================================================================
 
 ==== Element docHandlerConfig
