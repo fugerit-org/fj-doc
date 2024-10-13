@@ -1,5 +1,5 @@
 <<<
-[#doc-handler-freemarker]
+[#doc-handler-mod-fop]
 === [fj-doc-mod-fop]
 
 To use this doc handler, you will need to add the following dependency :
