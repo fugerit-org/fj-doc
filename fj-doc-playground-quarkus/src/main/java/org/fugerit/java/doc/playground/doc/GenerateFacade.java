@@ -51,10 +51,12 @@ public class GenerateFacade {
 	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
 		SafeFunction.apply( () -> {
 			SimpleCheckpoint checkpoint = new SimpleCheckpoint();
-			DocInput docInput = DocInput.newInput( type, reader , sourceType );
-			DocOutput docOutput = DocOutput.newOutput( baos );
-			handler.handle(docInput, docOutput);
-			log.info( "actual render, handler : {}, type : {}, sourceType : {}, time : {}", handler.getClass().getSimpleName(), type, sourceType, checkpoint.getFormatTimeDiffMillis() );
+			try ( Reader cleanReader = DocFacadeSource.cleanSource( reader, sourceType ) ) {
+				DocInput docInput = DocInput.newInput( type, cleanReader , sourceType );
+				DocOutput docOutput = DocOutput.newOutput( baos );
+				handler.handle(docInput, docOutput);
+				log.info( "actual render, handler : {}, type : {}, sourceType : {}, time : {}", handler.getClass().getSimpleName(), type, sourceType, checkpoint.getFormatTimeDiffMillis() );
+			}
 		} );
 	}
 	

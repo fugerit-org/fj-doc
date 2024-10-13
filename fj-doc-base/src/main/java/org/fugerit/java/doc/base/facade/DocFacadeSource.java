@@ -1,9 +1,12 @@
 package org.fugerit.java.doc.base.facade;
 
 import java.io.Reader;
+import java.io.StringReader;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -104,11 +107,17 @@ public class DocFacadeSource {
 		return docBase;
 	}
 
-	public static String cleanSource( String source, int sourceType ) {
+	public static Reader cleanSource( Reader source, int sourceType ) {
 		if ( sourceType == DocFacadeSource.SOURCE_TYPE_XML ) {
-			return DocXMLUtils.cleanXML( source );
+			return new StringReader(DocXMLUtils.cleanXML(SafeFunction.get(()->StreamIO.readString(source))));
 		} else {
 			return source;
+		}
+	}
+
+	public static String cleanSource( String source, int sourceType ) {
+		try ( StringReader reader = new StringReader( source) ) {
+			return SafeFunction.get(()->StreamIO.readString(cleanSource( reader, sourceType )));
 		}
 	}
 

@@ -9,6 +9,7 @@ import java.io.StringReader;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.facade.DocFacadeSourceConfig;
@@ -73,6 +74,14 @@ public class TestDocFacadeSource extends BasicTest {
 	public void testParseKO4() throws IOException {
 		DocFacadeSource facade = new DocFacadeSource( new DocFacadeSourceConfig().withFailOnSourceModuleNotFound(true) );
 		Assert.assertNull( facade.getParserForSource(-1) );
+	}
+
+	@Test
+	public void textCleanInputStream() throws IOException {
+		String input = "test";
+		assertEquals( input, StreamIO.readString( DocFacadeSource.cleanSource( new StringReader(input), DocFacadeSource.SOURCE_TYPE_XML ) ) );
+		assertEquals( input, StreamIO.readString( DocFacadeSource.cleanSource( new StringReader(input), DocFacadeSource.SOURCE_TYPE_JSON ) ) );
+		assertEquals( input, StreamIO.readString( DocFacadeSource.cleanSource( new StringReader(input), DocFacadeSource.SOURCE_TYPE_YAML ) ) );
 	}
 
 	@Test
