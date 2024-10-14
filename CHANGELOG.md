@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-playground-quarkus] fj-doc-ext-kotlin-version set to 0.4.2
+
 ## [8.9.2] - 2024-10-14
 
 ### Changed
