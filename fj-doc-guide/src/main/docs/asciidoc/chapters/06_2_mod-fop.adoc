@@ -1,6 +1,6 @@
 <<<
 [#doc-handler-mod-fop]
-=== [fj-doc-mod-fop]
+=== [fj-doc-mod-fop] A PDF/FO DocHandler
 
 To use this doc handler, you will need to add the following dependency :
 
