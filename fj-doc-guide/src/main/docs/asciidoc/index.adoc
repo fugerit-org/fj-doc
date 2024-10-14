@@ -15,6 +15,9 @@ include::chapters/02_2_maven_plugin_init.adoc[]
 include::chapters/02_3_maven_plugin_verify.adoc[]
 
 include::chapters/03_doc_format.adoc[]
+include::chapters/03_1_doc_format_xml.adoc[]
+include::chapters/03_2_doc_format_json_yaml.adoc[]
+include::chapters/03_3_doc_format_kotlin.adoc[]
 
 include::chapters/04_doc_freemarker.adoc[]
 include::chapters/04_1_doc_freemarker_config.adoc[]

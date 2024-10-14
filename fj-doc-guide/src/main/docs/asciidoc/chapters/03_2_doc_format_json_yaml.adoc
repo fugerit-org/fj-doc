@@ -1,0 +1,184 @@
+[#doc-format-entry-point-json-yaml]
+=== JSON and YAML Source Format
+
+It is possible to use JSON or YAML as source. It is just needed to follow some conversion rules.
+
+The conversion rules from xml to json/yaml are :
+
+. xml meta information are translated as top level property (xmlns etc.)
+. Every JSON/YAML object contains the information of a XML tag
+. "_t" special property contains the tag name (for example "_t" : "metadata")
+. "_v" special property contains the text content of an element
+. "_e" special property contains a list of child elements
+. any other xml attribute is mapped as a JSON/YAML property (for example "name" : "margins")
+
+NOTE: As it is possible to directly convert JSON and YAML, rules for YAML are the same as for JSON format.
+
+NOTE: All XML comments are ignored
+
+NOTE: For XML/JSON/YAML conversion a https://docs.fugerit.org/fj-doc-playground/home/[Online Playground] is available.
+
+Support for _JSON_ format needs the following dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-base-json</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+Here is a simple JSON source document :
+
+[source,json]
+----
+{
+	"xmlns" : "http://javacoredoc.fugerit.org",
+	"xsi:schemaLocation" : "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd",
+	"xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+	"_t" : "doc",
+	"_e" : [ {
+		"_t" : "metadata",
+		"_e" : [ {
+			"name" : "margins",
+			"_t" : "info",
+			"_v" : "10;10;10;30"
+		}, {
+			"name" : "doc-title",
+			"_t" : "info",
+			"_v" : "Hello World"
+		}, {
+			"name" : "doc-author",
+			"_t" : "info",
+			"_v" : "fugerit79"
+		}, {
+			"name" : "doc-language",
+			"_t" : "info",
+			"_v" : "en"
+		} ]
+	}, {
+		"_t" : "body",
+		"_e" : [ {
+			"_t" : "para",
+			"_v" : "Hello World!"
+		} ]
+	} ]
+}
+----
+
+Support for _YAML_ format needs the following dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-base-yaml</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+Here is the equivalent YAML :
+
+[source,yaml]
+----
+---
+xmlns: "http://javacoredoc.fugerit.org"
+xsi:schemaLocation: "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd"
+xmlns:xsi: "http://www.w3.org/2001/XMLSchema-instance"
+_t: "doc"
+_e:
+- _t: "metadata"
+  _e:
+  - name: "margins"
+    _t: "info"
+    _v: "10;10;10;30"
+  - name: "doc-title"
+    _t: "info"
+    _v: "Basic example"
+  - name: "doc-subject"
+    _t: "info"
+    _v: "fj doc venus sample source xml"
+  - name: "doc-author"
+    _t: "info"
+    _v: "fugerit79"
+  - name: "doc-language"
+    _t: "info"
+    _v: "en"
+  - name: "default-font-name"
+    _t: "info"
+    _v: "TitilliumWeb"
+  - name: "excel-table-id"
+    _t: "info"
+    _v: "data-table=print"
+  - name: "csv-table-id"
+    _t: "info"
+    _v: "data-table"
+  - _t: "footer-ext"
+    _e:
+    - align: "right"
+      _t: "para"
+      _v: "${currentPage} / ${pageCount}"
+- _t: "body"
+  _e:
+  - _t: "para"
+    _v: "My sample title"
+  - padding: "2"
+    columns: "3"
+    width: "100"
+    id: "data-table"
+    colwidths: "30;30;40"
+    _t: "table"
+    _e:
+    - _t: "row"
+      _e:
+      - border-color: "#000000"
+        border-width: "1"
+        align: "center"
+        _t: "cell"
+        _e:
+        - style: "bold"
+          _t: "para"
+          _v: "Name"
+      - align: "center"
+        _t: "cell"
+        _e:
+        - style: "bold"
+          _t: "para"
+          _v: "Surname"
+      - align: "center"
+        _t: "cell"
+        _e:
+        - style: "bold"
+          _t: "para"
+          _v: "Title"
+    - _t: "row"
+      _e:
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Luthien"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Tinuviel"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Queen"
+    - _t: "row"
+      _e:
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Thorin"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "Oakshield"
+      - _t: "cell"
+        _e:
+        - _t: "para"
+          _v: "King"
+
+----

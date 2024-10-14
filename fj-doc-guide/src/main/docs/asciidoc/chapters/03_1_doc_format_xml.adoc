@@ -1,0 +1,51 @@
+[#doc-format-entry-point-xml]
+=== XML Source Format
+
+When writing a sample Venus Document, it is possible to draw from some online resources :
+
+. https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd[Venus DOC XML Schema Definition] - Current version of the Venus DOC XSD, the main source for writing valid Venus document meta model.
+. https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html[Venus DOC XML Reference] - the informations contained in the previous XSD in HTML format for convenience.
+. https://venusdocs.fugerit.org/docs/html/doc_meta_info.html[Venus DOC meta informations reference] - documentations for existing 'info' properties for 'metadata' section.
+. https://docs.fugerit.org/fj-doc-playground/home/[Online Playground] - To test how the XML elements are rendered to documents by DocHandlers.
+
+Supported is provided by the base module dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-base</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+Here is an example xml :
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+  <!--
+  	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
+  	For documentation on how to write a valid Venus Doc XML Meta Model refer to :
+  	https://venusdocs.fugerit.org/guide/#doc-format-entry-point
+  -->
+
+  <metadata>
+	<!-- Margin for document : left;right;top;bottom -->
+	<info name="margins">10;10;10;30</info>
+	<!-- documenta meta information -->
+	<info name="doc-title">Hello World</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+  </metadata>
+  <body>
+	<para>Hello World!</para>
+  </body>
+
+</doc>
+----
