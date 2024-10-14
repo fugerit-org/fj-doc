@@ -18,7 +18,7 @@ This module is based on link:https://poi.apache.org/[Apache POI Project].
 [#doc-handler-mod-poi-basics]
 ==== POI Handler Basics
 
-The following informations apply to both xlsx and xls DocHandler.
+The following information apply to both xlsx and xls DocHandler.
 
 You will need at least a table, with an _id_ set. (in this example the id is *data-table*).
 

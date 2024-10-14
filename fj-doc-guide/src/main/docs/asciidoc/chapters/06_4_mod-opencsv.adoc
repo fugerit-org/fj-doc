@@ -1,0 +1,73 @@
+<<<
+[#doc-handler-mod-opencsv]
+=== [fj-doc-mod-opencsv] : a CSV DocHandler
+
+To use this doc handler, you will need to add the following dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-mod-opencsv</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+This module is based on link:https://opencsv.sourceforge.net/[OpenCSV].
+
+This doc handler would a CSV document.
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<!-- CSV type hanlder  -->
+<docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>
+----
+
+You will need at least a table, with an _id_ set. (in this example the id is *data-table*).
+
+And the link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#csv-table-id[csv-table-id] element with the comma separated enumeration of the table to render as sheet. :
+
+[source,xml]
+----
+<info name="csv-table-id">data-table</info>
+----
+
+Here is a full example.
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+xmlns="http://javacoredoc.fugerit.org"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+  <metadata>
+  	<info name="csv-table-id">data-table</info>
+  </metadata>
+  <body>
+    	<table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2">
+    		<row>
+    			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
+    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para style="bold">Title</para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Luthien]]></para></cell>
+    			<cell><para><![CDATA[Tinuviel]]></para></cell>
+    			<cell><para><![CDATA[Queen]]></para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Thorin]]></para></cell>
+    			<cell><para><![CDATA[Oakshield]]></para></cell>
+    			<cell><para><![CDATA[King]]></para></cell>
+    		</row>
+    	</table>
+  </body>
+</doc>
+----
+
+More elements specific to CSV format are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_csv[here].
+
+NOTE: In comparison to Xlsx Doc Handler the OpenCSV one is able to render only one table at once.
