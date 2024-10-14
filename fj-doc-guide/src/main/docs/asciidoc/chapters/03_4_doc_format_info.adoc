@@ -1,0 +1,38 @@
+[#doc-format-entry-point-info]
+=== Doc Format Info Element
+
+The _info_ element is available to setup some specific properties of the document.
+
+Here is a link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html[list of possible info element].
+
+For instance in this document we set following _info_ elements :
+
+* margin
+* doc-title
+* doc-author
+* doc-language
+
+Some DocHandler will ignore some info elements.
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+  <metadata>
+	<!-- Margin for document : left;right;top;bottom -->
+	<info name="margins">10;10;10;30</info>
+	<!-- documenta meta information -->
+	<info name="doc-title">Hello World</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-language">en</info>
+  </metadata>
+  <body>
+	<para>Hello World!</para>
+  </body>
+
+</doc>
+----
