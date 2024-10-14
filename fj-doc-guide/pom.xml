@@ -26,7 +26,7 @@
 		<asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
 		<asciidoctorj.pdf.version>2.3.15</asciidoctorj.pdf.version>
 		<asciidoctorj.version>2.5.12</asciidoctorj.version>
-		<asciidoctorj.diagram.version>2.3.0</asciidoctorj.diagram.version>
+		<asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
 		<asciidoctorj.diagram-plantuml.version>1.2024.3</asciidoctorj.diagram-plantuml.version>
 		<asciidoctorj.diagram-ditaamini.version>1.0.3</asciidoctorj.diagram-ditaamini.version>
 		<jruby.version>9.4.6.0</jruby.version>
