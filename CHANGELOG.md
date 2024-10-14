@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-playground-quarkus] apply DocFacadeSource.cleanInput() to document generation playground
 - [fj-doc-playground-quarkus] fj-service-helper-bom-version set to 1.4.3
 
+### Fixed
+
+- [fj-doc-base] doc-2-1.xsd, element **phrase**, **para**, **h** are now allowed as 
+  children for **para** and **h**.
+
 ## [8.9.1] - 2024-10-12
 
 ### Changed

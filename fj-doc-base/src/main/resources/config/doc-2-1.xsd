@@ -4,9 +4,9 @@
 	/*
 	 * @(#)doc-2-1.xsd
 	 *
-	 * @project    : org.fugerit.java.doc.base
+	 * @project    : fj-doc-base
 	 * @creation   : 2023-08-18
-	 * @version    : 2.1.0-rc.1 (2023-08-18)
+	 * @version    : 2.1.0-rc.2 (2024-10-14)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -478,6 +478,7 @@
 		<xsd:choice minOccurs='0' maxOccurs="unbounded">
 			<xsd:element ref="doc:phrase" />
 			<xsd:element ref="doc:para" />
+			<xsd:element ref="doc:h" />
 		</xsd:choice>	
 		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
@@ -499,6 +500,11 @@
 	</xsd:complexType>
 	
 	<xsd:complexType name="hType" mixed='true'>
+		<xsd:choice minOccurs='0' maxOccurs="unbounded">
+			<xsd:element ref="doc:phrase" />
+			<xsd:element ref="doc:para" />
+			<xsd:element ref="doc:h" />
+		</xsd:choice>
 		<xsd:attribute name='id' type='doc:idType' use='optional' />
 		<xsd:attribute name='style' type='doc:styleType' use='optional' />
 		<xsd:attribute name='align' type='doc:alignType' use='optional' />
