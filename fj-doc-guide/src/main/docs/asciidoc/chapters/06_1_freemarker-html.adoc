@@ -18,6 +18,12 @@ To use this doc handler, you will need to add the following dependency :
 
 This doc handler would render a full html document.
 
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _YES_
+
 Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
@@ -31,9 +37,33 @@ Add this element to *<docHandlerConfig/>* :
 This doc handler would render only the body of the html document.
 (useful to inject the body as a fragment).
 
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _YES_
+
 Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
 <docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+----
+
+[#doc-handler-freemarker-asciidoc]
+==== Asciidoc (ADOC)
+
+This doc handler would be rendered as an asciidoc document.
+
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _YES_
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<docHandler id="asciidoc-fm" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
 ----

@@ -22,6 +22,12 @@ Usually Apache FOP uses link:https://www.w3.org/TR/xslt-30/[XSL Transformations]
 
 This doc handler would render a full PDF document with default FOP configuration.
 
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _NO_ (As Apache FOP is not ready).
+
 Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
@@ -113,6 +119,12 @@ And here a link:https://venusdocs.fugerit.org/fj-doc-sample/src/main/resources/f
 ==== FO DocHandler
 
 This doc handler would render a full link:https://xmlgraphics.apache.org/fop/fo.html[FO] intermediate document.
+
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _YES_
 
 [source,xml]
 ----

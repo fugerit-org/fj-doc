@@ -73,6 +73,12 @@ More elements specific to excel format are available link:https://venusdocs.fuge
 
 This doc handler would a XLSX document.
 
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Only single table elements of the link:#doc-format-entry-point[Venus Doc Format] are rendered.
+- *native ready* : _NO_ (As Apache POI is not ready).
+
 Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
@@ -85,6 +91,12 @@ Add this element to *<docHandlerConfig/>* :
 ==== Xls DocHandler
 
 This doc handler would a XLS document.
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Only single table elements of the link:#doc-format-entry-point[Venus Doc Format] are rendered.
+- *native ready* : _NO_ (As Apache POI is not ready).
 
 Add this element to *<docHandlerConfig/>* :
 

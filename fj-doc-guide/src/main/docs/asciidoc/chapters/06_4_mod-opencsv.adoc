@@ -4,6 +4,12 @@
 
 To use this doc handler, you will need to add the following dependency :
 
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Only a single table element of the link:#doc-format-entry-point[Venus Doc Format] is rendered as a CSV document.
+- *native ready* : _YES_
+
 [source,xml]
 ----
 <dependency>

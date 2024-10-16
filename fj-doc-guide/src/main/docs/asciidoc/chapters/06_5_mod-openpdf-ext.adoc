@@ -4,6 +4,12 @@
 
 To use this doc handler, you will need to add the following dependency :
 
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Most elements of the link:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
+- *native ready* : _NO_ (As OpenPDF is not ready).
+
 [source,xml]
 ----
 <dependency>
@@ -64,6 +70,12 @@ Here is a custom configuration example :
 ==== [fj-doc-mod-openpdf-ext-html] : HTML DocHandler
 
 This doc handler would a HTML document.
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Most elements of the link:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
+- *native ready* : _NO_ (As OpenPDF is not ready).
 
 Add this element to *<docHandlerConfig/>* :
 

@@ -4,6 +4,12 @@
 
 To use this doc handler, you will need to add the following dependency :
 
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Most elements of the link:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
+- *native ready* : _NO_ (As OpenRTF is not ready).
+
 [source,xml]
 ----
 <dependency>
