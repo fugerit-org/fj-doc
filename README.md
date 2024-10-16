@@ -39,14 +39,6 @@ Full build is made by :
 
 `mvn clean install -P full,test`
 
-Or with the maven wrapper for linux : 
-
-`./mvnw clean install -P full,test`
-
-Or with the maven wrapper for windows : 
-
-`./mvnw clean install -P full,test`
-
 ### Run
 
 The Fugerit Venus Doc project is a library for generating documents to be included.
