@@ -86,6 +86,8 @@ Here is an example of PDF/A DocHandler with custom fop configuration :
 
 And here a link:https://venusdocs.fugerit.org/fj-doc-sample/src/main/resources/fop-config-pdfa.xml[sample configuration file].
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modfop-pdfa[fj-doc-quarkus-tutorial fop pdf/a example].
+
 [#doc-handler-mod-fop-pdf-config-pdf-ua]
 ==== PDF/UA DocHandler (inline configuration)
 
