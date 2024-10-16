@@ -31,6 +31,8 @@ Add this element to *<docHandlerConfig/>* :
 <docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8" />
 ----
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker[fj-doc-quarkus-tutorial base example].
+
 [#doc-handler-base-md-basic]
 ==== MarkDown (Basic)
 
@@ -48,3 +50,5 @@ Add this element to *<docHandlerConfig/>* :
 ----
 <docHandler id="md-basic" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerNoCommentsUTF8" />
 ----
+
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker[fj-doc-quarkus-tutorial base example].

@@ -31,6 +31,8 @@ Add this element to *<docHandlerConfig/>* :
 <docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
 ----
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker[fj-doc-quarkus-tutorial base example].
+
 [#doc-handler-freemarker-fragment-html]
 ==== Fragment HTML
 
@@ -50,6 +52,8 @@ Add this element to *<docHandlerConfig/>* :
 <docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
 ----
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker[fj-doc-quarkus-tutorial base example].
+
 [#doc-handler-freemarker-asciidoc]
 ==== Asciidoc (ADOC)
 
@@ -67,3 +71,5 @@ Add this element to *<docHandlerConfig/>* :
 ----
 <docHandler id="asciidoc-fm" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
 ----
+
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker[fj-doc-quarkus-tutorial base example].

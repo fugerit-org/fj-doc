@@ -34,6 +34,8 @@ Add this element to *<docHandlerConfig/>* :
 <docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler"/>
 ----
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modopenpdfext[fj-doc-quarkus-tutorial openpdf ext example].
+
 More elements specific to fixed size formats, like PDF, are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_fixed[here].
 
 [#doc-handler-mod-openpdf-ext-pdf-ref]
@@ -85,3 +87,4 @@ Add this element to *<docHandlerConfig/>* :
 <docHandler id="openpdf-html" info="openpdf-html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler"/>
 ----
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modopenpdfext[fj-doc-quarkus-tutorial openpdf ext example].

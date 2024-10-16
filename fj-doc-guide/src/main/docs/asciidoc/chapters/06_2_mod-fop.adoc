@@ -36,6 +36,8 @@ Add this element to *<docHandlerConfig/>* :
         <docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
 ----
 
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modfop[fj-doc-quarkus-tutorial fop example].
+
 [#doc-handler-mod-fop-pdf-config]
 ==== Custom configured PDF DocHandler
 
@@ -126,8 +128,12 @@ This doc handler would render a full link:https://xmlgraphics.apache.org/fop/fo.
 - *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
 - *native ready* : _YES_
 
+Add this element to *<docHandlerConfig/>* :
+
 [source,xml]
 ----
         <!-- Type handler generating xls:fo style sheet -->
         <docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
 ----
+
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modfop[fj-doc-quarkus-tutorial fop example].
