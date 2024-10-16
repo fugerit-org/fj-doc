@@ -47,4 +47,12 @@ public class DocController {
     <@fhm.createSpringBootPath context=context outputMime="text/csv" outputExtension="csv" outputDescription="CSV"/>
     </#if>
 
+    <#if context.modules?seq_contains("fj-doc-mod-openpdf-ext")>
+    <@fhm.createSpringBootPathPrefix context=context outputMime="application/pdf" outputExtension="pdf" outputDescription="OpenPDF" pathPrefix='/openpdf'/>
+    <@fhm.createSpringBootPathPrefix context=context outputMime="text/html" outputExtension="html" outputDescription="OpenPDFHTML" pathPrefix='/openpdf'/>
+    </#if>
+    <#if context.modules?seq_contains("fj-doc-mod-openrtf-ext")>
+    <@fhm.createSpringBootPath context=context outputMime="application/rtf" outputExtension="rtf" outputDescription="RTF"/>
+    </#if>
+
 }

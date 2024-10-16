@@ -26,7 +26,6 @@ class DocResourceTest {
         given().when().get("/doc/example.adoc").then().statusCode(200);
     }
     </#if>
-
     <#if context.modules?seq_contains("fj-doc-mod-fop")>
     @Test
     void testPdf() {
@@ -43,6 +42,22 @@ class DocResourceTest {
     @Test
     void testCsv() {
         given().when().get("/doc/example.csv").then().statusCode(200);
+    }
+    </#if>
+    <#if context.modules?seq_contains("fj-doc-mod-openpdf-ext")>
+    @Test
+    void testOpenPDF() {
+        given().when().get("/doc/openpdf/example.pdf").then().statusCode(200);
+    }
+    @Test
+    void testOpenPDFHTML() {
+        given().when().get("/doc/openpdf/example.html").then().statusCode(200);
+    }
+    </#if>
+    <#if context.modules?seq_contains("fj-doc-mod-openrtf-ext")>
+    @Test
+    void testOpenRTF() {
+        given().when().get("/doc/openrtf/example.rtf").then().statusCode(200);
     }
     </#if>
 

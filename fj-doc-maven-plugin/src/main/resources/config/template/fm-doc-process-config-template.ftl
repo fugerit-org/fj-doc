@@ -45,6 +45,16 @@
         <!-- Type handler generating csv -->
         <docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>
         </#if>
+        <#if context.modules?seq_contains("fj-doc-mod-openpdf-ext")>
+        <!-- OpenPDF type hanlder  -->
+        <docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler"/>
+        <!-- OpenHTML type hanlder  -->
+        <docHandler id="openpdf-html" info="openpdf-html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler"/>
+        </#if>
+        <#if context.modules?seq_contains("fj-doc-mod-openrtf-ext")>
+        <!-- OpenPDF type hanlder  -->
+        <docHandler id="openrtf" info="openrtf" type="org.fugerit.java.doc.mod.openrtf.ext.RtfTypeHandler"/>
+        </#if>
     </docHandlerConfig>
 
     <docChain id="shared">

@@ -81,7 +81,7 @@ Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
-<!-- OpenPDF type hanlder  -->
+<!-- OpenHTML type hanlder  -->
 <docHandler id="openpdf-html" info="openpdf-html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler"/>
 ----
 

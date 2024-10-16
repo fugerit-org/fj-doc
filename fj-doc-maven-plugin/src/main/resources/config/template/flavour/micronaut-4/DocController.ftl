@@ -44,4 +44,12 @@ public class DocController {
     <@fhm.createMicronautPath context=context outputMime="text/csv" outputExtension="csv" outputDescription="CSV"/>
     </#if>
 
+    <#if context.modules?seq_contains("fj-doc-mod-openpdf-ext")>
+    <@fhm.createMicronautPathPrefix context=context outputMime="application/pdf" outputExtension="pdf" outputDescription="OpenPDF" pathPrefix='/openpdf'/>
+    <@fhm.createMicronautPathPrefix context=context outputMime="text/html" outputExtension="html" outputDescription="OpenPDFHTML" pathPrefix='/openpdf'/>
+    </#if>
+    <#if context.modules?seq_contains("fj-doc-mod-openrtf-ext")>
+    <@fhm.createMicronautPath context=context outputMime="application/rtf" outputExtension="rtf" outputDescription="RTF"/>
+    </#if>
+
 }
