@@ -30,7 +30,11 @@ public class DocController {
     <@fhm.createSpringBootPath context=context outputMime="text/markdown" outputExtension="md" outputDescription="Markdown"/>
     
     <@fhm.createSpringBootPath context=context outputMime="text/html" outputExtension="html" outputDescription="HTML"/>
-    
+
+    <#if context.asciidocFreemarkerHandlerAvailable>
+    <@fhm.createSpringBootPath context=context outputMime="text/asciidoc" outputExtension="adoc" outputDescription="AsciiDoc"/>
+    </#if>
+
     <#if context.modules?seq_contains("fj-doc-mod-fop")>
     <@fhm.createSpringBootPath context=context outputMime="application/pdf" outputExtension="pdf" outputDescription="PDF"/>
     </#if>

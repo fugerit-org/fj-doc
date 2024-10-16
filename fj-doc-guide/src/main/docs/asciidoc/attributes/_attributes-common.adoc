@@ -1,10 +1,9 @@
 :author: Matteo Franci
 :revnumber: v1.0.0
-:revdate: June XX, 2024
+:revdate: October 15, 2024
 :email: m@fugerit.org
-:description: This is a comparison of a simple online demo photobook \
-implemented with three popular java cloud ready framework.
-:keywords: java, graalvm, spring, springboot, quarkus, micronaut
+:description: Fugerit Doc Venus : document generation framework
+:keywords: java, xml, json, yaml, kotlin, pdf, html, xlsx, csv, document generation
 :encoding: utf-8
 :lang: en
 :toc: left

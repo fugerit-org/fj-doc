@@ -2,22 +2,17 @@ package org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.*;
-import org.apache.maven.plugin.lifecycle.Execution;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.helper.HelperIOException;
-import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
-import org.fugerit.java.doc.freemarker.tool.FreeMarkerTemplateSyntaxVerifier;
 import org.maxxq.maven.dependency.ModelIO;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-import java.util.stream.Collectors;
 
 @Slf4j
 public class BasicVenusFacade {

@@ -23,6 +23,10 @@
         <docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
         <!-- Type handler for html using freemarker (fragment version, only generates body content no html or head part -->
         <docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+        <#if context.asciidocFreemarkerHandlerAvailable>
+        <!-- type handler for asciidoc using freemarker -->
+        <docHandler id="asciidoc-fm" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
+        </#if>
         <#if context.modules?seq_contains("fj-doc-mod-fop")>
         <!-- Type handler generating xls:fo style sheet -->
         <docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />

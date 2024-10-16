@@ -50,8 +50,8 @@ jobs:
       - name: Verify Mermaid CLI installation
         run: mmdc --version
 
-      - name: Convert AsciiDoc to HTML5
-        run: cd fj-doc-guide;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html
+      - name: Convert AsciiDoc to HTML5 and PDF
+        run: cd fj-doc-guide;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html asciidoctor:process-asciidoc@asciidoc-to-pdf
 
       - name: Build Legacy Pages
         uses: actions/jekyll-build-pages@main
@@ -63,6 +63,9 @@ jobs:
 
       - name: Copy new site
         run: cp -fr ./fj-doc-guide/target/generated-html5/ ./fj-doc-guide/target/site/guide/
+
+      - name: Copy pdf buide
+        run: cp -fr ./fj-doc-guide/target/generated-pdf/fj-doc-guide-*.pdf ./fj-doc-guide/target/site/guide/fj-doc-guide.pdf
 
       - name: Setup Pages
         uses: actions/configure-pages@main

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] support for asciidoc doc handler (fj-doc-version 8.8.7+)
+- [fj-doc-maven-plugin] updated readme information for quarkus-3 flavour
+- [fj-doc-guide] added pdf documentation
+- [fj-doc-playground-quarkus] fj-doc-ext-kotlin-version set to 0.4.2
+
 ## [8.9.2] - 2024-10-14
 
 ### Changed

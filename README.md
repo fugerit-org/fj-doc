@@ -19,7 +19,8 @@ Framework to produce documents in different output formats starting from an XML 
 [![Online playground](https://img.shields.io/badge/Try%20Now-Online%20Playground-1AC736?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://docs.fugerit.org/fj-doc-playground/home/)
 [![Fugerit Github Project Conventions](https://img.shields.io/badge/Fugerit%20Org-Project%20Conventions-1A36C7?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://universe.fugerit.org/src/docs/conventions/index.html)
 
-[![view - Guide](https://img.shields.io/badge/view-Guide-blue?style=for-the-badge)](https://venusdocs.fugerit.org/guide/ "Go to project documentation")
+[![HTML - Guide](https://img.shields.io/badge/HTML-Guide-blue?style=for-the-badge)](https://venusdocs.fugerit.org/guide/ "Go to project HTML documentation")
+[![PDF - Guide](https://img.shields.io/badge/PDF-Guide-red?style=for-the-badge)](https://venusdocs.fugerit.org/guide/fj-doc-guide.pdf "Go to project PDF documentation")
 
 The Core library (fj-doc-base) is all you need to start, even though typically you will use at least : 
 * [fj-doc-base](fj-doc-base/README.md)
@@ -37,14 +38,6 @@ Clone :
 Full build is made by : 
 
 `mvn clean install -P full,test`
-
-Or with the maven wrapper for linux : 
-
-`./mvnw clean install -P full,test`
-
-Or with the maven wrapper for windows : 
-
-`./mvnw clean install -P full,test`
 
 ### Run
 

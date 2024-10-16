@@ -18,6 +18,10 @@ Open the [swagger-ui](http://localhost:8080/q/swagger-ui/)
 
 Test available paths (for instance : [/doc/example.md](http://localhost:8080/doc/example.md))
 
+NOTE:
+- Powered by Quarkus ${context.flavourVersion}
+- Using Fugerit Venus Doc ${context.version} (extensions : ${context.extensions})
+
 ## Overview
 
 This project has been initialized using [fj-doc-maven-plugin init goal](https://venusguides.fugerit.org/src/docs/wizard/fj-doc-maven-plugin_init.html).
@@ -25,7 +29,7 @@ This project has been initialized using [fj-doc-maven-plugin init goal](https://
 The quarkus 3 structure is similar to running the quarkus create goal : 
 
 ```shell
-mvn io.quarkus.platform:quarkus-maven-plugin:3.14.2:create \
+mvn io.quarkus.platform:quarkus-maven-plugin:${context.flavourVersion}:create \
 -DprojectGroupId=${context.groupId} \
 -DprojectArtifactId=${context.artifactId} \
 -Dextensions='rest,rest-jackson,config-yaml,smallrye-openapi'

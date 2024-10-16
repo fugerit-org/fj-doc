@@ -1,0 +1,107 @@
+<<<
+[#doc-handler-mod-poi]
+=== [fj-doc-mod-poi] : a XLS/XLSX DocHandler
+
+To use this doc handler, you will need to add the following dependency :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-mod-poi</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+This module is based on link:https://poi.apache.org/[Apache POI Project].
+
+[#doc-handler-mod-poi-basics]
+==== POI Handler Basics
+
+The following information apply to both xlsx and xls DocHandler.
+
+You will need at least a table, with an _id_ set. (in this example the id is *data-table*).
+
+And the link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#excel-table-id[excel-table-id] element with the comma separated enumeration of the table to render as sheet. :
+
+[source,xml]
+----
+<info name="excel-table-id">data-table=print</info>
+----
+
+The given table (*data-table*) will be rendered as the named sheet (*print*) in the couple : *$tableId*=*$sheetName*.
+
+Here is a full example.
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+xmlns="http://javacoredoc.fugerit.org"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+  <metadata>
+  	<!-- property specific for xls/xlsx -->
+  	<info name="excel-table-id">data-table=print</info>
+  </metadata>
+  <body>
+    	<table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2">
+    		<row>
+    			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
+    			<cell align="center"><para style="bold">Surname</para></cell>
+    			<cell align="center"><para style="bold">Title</para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Luthien]]></para></cell>
+    			<cell><para><![CDATA[Tinuviel]]></para></cell>
+    			<cell><para><![CDATA[Queen]]></para></cell>
+    		</row>
+       		<row>
+    			<cell><para><![CDATA[Thorin]]></para></cell>
+    			<cell><para><![CDATA[Oakshield]]></para></cell>
+    			<cell><para><![CDATA[King]]></para></cell>
+    		</row>
+    	</table>
+  </body>
+</doc>
+----
+
+More elements specific to excel format are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_xls[here].
+
+[#doc-handler-mod-poi-xlsx]
+==== Xlsx DocHandler
+
+This doc handler would a XLSX document.
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Only single table elements of the link:#doc-format-entry-point[Venus Doc Format] are rendered.
+- *native ready* : _NO_ (As Apache POI is not ready).
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<!-- XLSX type hanlder  -->
+<docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
+----
+
+[#doc-handler-mod-poi-xls]
+==== Xls DocHandler
+
+This doc handler would a XLS document.
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Only single table elements of the link:#doc-format-entry-point[Venus Doc Format] are rendered.
+- *native ready* : _NO_ (As Apache POI is not ready).
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<!-- XLSX type hanlder  -->
+<docHandler id="xls-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
+----

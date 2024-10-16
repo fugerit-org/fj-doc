@@ -1,0 +1,87 @@
+<<<
+[#doc-handler-mod-openpdf-ext]
+=== [fj-doc-mod-openpdf-ext] : a PDF and HTML DocHandler
+
+To use this doc handler, you will need to add the following dependency :
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Most elements of the link:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
+- *native ready* : _NO_ (As OpenPDF is not ready).
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-mod-openpdf-ext</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+This module is based on link:https://github.com/LibrePDF/OpenPDF/[OpenPDF] (based on a fork of iText).
+
+[#doc-handler-mod-openpdf-ext-pdf]
+==== [fj-doc-mod-openpdf-ext-pdf] : PDF DocHandler
+
+This doc handler would a PDF document.
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<!-- OpenPDF type hanlder  -->
+<docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler"/>
+----
+
+More elements specific to fixed size formats, like PDF, are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_fixed[here].
+
+[#doc-handler-mod-openpdf-ext-pdf-ref]
+*docHandlerCustomConfig reference for org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler"*
+
+[cols="2,1,1,6", options="header"]
+|========================================================================================================================================
+| name     | type  | default | description
+| *charset* anchor:doc-handler-mod-openpdf-ext-pdf-charset[]  | _string_  | _UTF-8_ | This will set the charset to use.
+|========================================================================================================================================
+
+Additionaly *fonts* can be configured as child elements of *docHandlerCustomConfig*
+
+[cols="2,1,1,6", options="header"]
+|========================================================================================================================================
+| name     | type  | default | description
+| *name* anchor:doc-handler-mod-openpdf-ext-pdf-font-name[]  | _string_  |  | Name of the font
+| *path* anchor:doc-handler-mod-openpdf-ext-pdf-font-path[]  | _string_  |  | Path of the font (in classloader of file)
+|========================================================================================================================================
+
+Here is a custom configuration example :
+
+[source,xml]
+----
+<!-- OpenPDF type hanlder  -->
+<docHandler id="openpdf" info="openpdf" type="org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8">
+        <font name="TitilliumWeb" path="font/TitilliumWeb-Regular.ttf"/>
+    </docHandlerCustomConfig>
+</docHandler>
+----
+
+[#doc-handler-mod-openpdf-ext-html]
+==== [fj-doc-mod-openpdf-ext-html] : HTML DocHandler
+
+This doc handler would a HTML document.
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Most elements of the link:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
+- *native ready* : _NO_ (As OpenPDF is not ready).
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<!-- OpenPDF type hanlder  -->
+<docHandler id="openpdf-html" info="openpdf-html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler"/>
+----
+

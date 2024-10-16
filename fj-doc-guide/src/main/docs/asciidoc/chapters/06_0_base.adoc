@@ -1,0 +1,50 @@
+<<<
+[#doc-handler-base]
+=== [fj-doc-base]
+
+Here are described the doc handlers included in the basic module, which usually is always included :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-base</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+[#doc-handler-base-md-ext]
+==== MarkDown (Extended)
+
+This doc handler would render a MarkDown (Extended) document. The Basic and Extended version only differ for table management. Basic version will render tables in html.
+
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _YES_
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8" />
+----
+
+[#doc-handler-base-md-basic]
+==== MarkDown (Basic)
+
+This doc handler would render a MarkDown (Basic) document. The Basic and Extended version only differ for table management. Basic version will render tables in html.
+
+*In brief* :
+
+- *compliance level* : _HIGH_
+- *compliance detail* : All generic link:#doc-format-entry-point[Venus Doc Format] elements are supported.
+- *native ready* : _YES_
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<docHandler id="md-basic" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerNoCommentsUTF8" />
+----

@@ -9,6 +9,7 @@ import org.fugerit.java.core.function.UnsafeVoid;
 import org.fugerit.java.doc.project.facade.FlavourFacade;
 import org.fugerit.java.doc.project.facade.FlavourContext;
 import org.fugerit.java.doc.project.facade.ModuleFacade;
+import org.fugerit.java.doc.project.facade.VersionCheck;
 
 import java.io.File;
 
@@ -60,6 +61,8 @@ public class MojoInit extends MojoAdd {
                 context.setModules( ModuleFacade.toModuleList( this.extensions ) );
                 context.setAddLombok( this.addLombok );
                 context.setFlavourVersion( this.flavourVersion );
+                context.setVersion( VersionCheck.findVersion( this.version ) );
+                context.setExtensions( this.extensions );
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 FlavourFacade.initProject( context );
             } );
