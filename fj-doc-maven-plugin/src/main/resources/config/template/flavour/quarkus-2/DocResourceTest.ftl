@@ -20,6 +20,13 @@ class DocResourceTest {
         given().when().get("/doc/example.html").then().statusCode(200);
     }
 
+    <#if context.asciidocFreemarkerHandlerAvailable>
+    @Test
+    void testAsciiDoc() {
+        given().when().get("/doc/example.adoc").then().statusCode(200);
+    }
+    </#if>
+
     <#if context.modules?seq_contains("fj-doc-mod-fop")>
     @Test
     void testPdf() {

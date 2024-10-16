@@ -58,4 +58,8 @@ public class FlavourContext {
         return toClassName( res, "\\." );
     }
 
+    public boolean isAsciidocFreemarkerHandlerAvailable() {
+        return VersionCheck.isMajorThan( VenusContext.VERSION_ASCIIDOC_FREEMARKER_HANDLER, this.getVersion() );
+    }
+
 }
