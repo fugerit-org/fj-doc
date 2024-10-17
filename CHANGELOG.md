@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [fj-doc-maven-plugin] removed annotation @Tags for quarkus X flavour
+- [fj-doc-maven-plugin] removed unused dependencies for quarkus X flavour
 
 ### Fixed
 
