@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-maven-plugin] Fix path test openrtf quarkus X 
+
 ## [8.9.4] - 2024-10-16
 
 ### Changed

@@ -59,7 +59,7 @@ class DocResourceTest {
     <#if context.modules?seq_contains("fj-doc-mod-openrtf-ext")>
     @Test
     void testOpenRTF() {
-        given().when().get("/doc/openrtf/example.rtf").then().statusCode(200);
+        given().when().get("/doc/example.rtf").then().statusCode(200);
     }
     </#if>
 
