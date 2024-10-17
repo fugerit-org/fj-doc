@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] removed annotation @Tags for quarkus X flavour
+
 ### Fixed
 
-- [fj-doc-maven-plugin] Fix path test openrtf quarkus X 
+- [fj-doc-maven-plugin] Fix path test openrtf quarkus X flavour
 
 ## [8.9.4] - 2024-10-16
 

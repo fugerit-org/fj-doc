@@ -30,7 +30,8 @@
 <#macro createQuarkusPathPrefix context outputMime outputExtension outputDescription pathPrefix>
     @APIResponse(responseCode = "200", description = "The ${outputDescription} document content" )
     @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
-    @Tags( { @Tag( name = "document" ), @Tag( name = "${outputDescription?lower_case}" ) } )
+    @Tag( name = "document" )
+    @Tag( name = "${outputDescription?lower_case}" )
     @Operation( operationId = "${outputDescription}Example", summary = "Example ${outputDescription} generation",
         description =  "Generates an example ${outputDescription} document using Fugerit Venus Doc handler" )
     @GET
