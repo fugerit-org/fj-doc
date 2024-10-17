@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.9.5] - 2024-10-17
+
 ### Changed
 
 - [fj-doc-maven-plugin] removed annotation @Tags for quarkus X flavour

@@ -13,7 +13,7 @@ import appService from '../common/app-service';
 
 const DocProjectInit = () => {
 
-    const availableVersions = [ '8.9.4', '8.9.3', '8.9.2', '8.9.1', '8.9.0', '8.8.9', '8.8.8', '8.8.7', '8.8.6', '8.8.5', '8.8.4', '8.8.3', '8.8.2', '8.8.1', '8.8.0', '8.7.6', '8.7.5', '8.7.4' ];
+    const availableVersions = [ '8.9.5', '8.9.4', '8.9.3', '8.9.2', '8.9.1', '8.9.0', '8.8.9', '8.8.8', '8.8.7', '8.8.6', '8.8.5', '8.8.4', '8.8.3', '8.8.2', '8.8.1', '8.8.0', '8.7.6', '8.7.5', '8.7.4' ];
 
 	const [extensionList, setExtensionList] = useState([]); // State to store the list of extensions
 	const [selectedExtensions, setSelectedExtensions] = useState([]); // State to store selected extensions
