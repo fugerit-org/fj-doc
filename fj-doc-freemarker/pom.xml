@@ -50,6 +50,12 @@
 
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-yaml</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-test-helper8</artifactId>
 			<scope>test</scope>
 			<exclusions>

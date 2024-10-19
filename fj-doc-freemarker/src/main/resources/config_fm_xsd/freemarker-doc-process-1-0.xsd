@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-freemarker
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.3 (2024-10-12)
+	 * @version    : 1.0.0-rc.4 (2024-10-20)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -147,6 +147,11 @@
 				<xsd:documentation>A chain parent (will inherits all the chainStep)</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
+		<xsd:attribute name="sourceType" type="fdp:sourceType" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>The source type : xml (default), json or yaml</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
 	</xsd:complexType>	
 
 	<xsd:element name='chainStep' type="fdp:chainStepType">
@@ -265,6 +270,17 @@
 				<xsd:documentation>Value map attribute</xsd:documentation>
 			</xsd:annotation>						
 		</xsd:attribute>
-	</xsd:complexType>		
+	</xsd:complexType>
+
+	<xsd:simpleType name="sourceType">
+		<xsd:annotation>
+			<xsd:documentation>The source type</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="xml"></xsd:enumeration>
+			<xsd:enumeration value="json"></xsd:enumeration>
+			<xsd:enumeration value="yaml"></xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
 
 </xsd:schema>

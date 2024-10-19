@@ -33,9 +33,11 @@ import test.org.fugerit.java.BasicTest;
 @Slf4j
 public class TestFreemarkerDocProcessConfig extends BasicTest {
 
+	private static final String MAIN_CONFIG = "fj_doc_test/freemarker-doc-process.xml";
+
 	@Test
 	public void testConfigRead001() throws Exception {
-		String[] configList = { "fj_doc_test/freemarker-doc-process.xml", "fj_doc_test/freemarker-doc-process-1.xml", "fj_doc_test/freemarker-doc-process-2.xml", "fj_doc_test/freemarker-doc-process-3.xml" };
+		String[] configList = { MAIN_CONFIG, "fj_doc_test/freemarker-doc-process-1.xml", "fj_doc_test/freemarker-doc-process-2.xml", "fj_doc_test/freemarker-doc-process-3.xml" };
 		for (  int k=0 ;k<configList.length ;k++ ) {
 			String currentConfig = configList[k];
 			try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( currentConfig ) ) ) {
@@ -58,6 +60,25 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 					}
 				}
 			}
+		}
+	}
+
+	@Test
+	public void testSource() throws Exception {
+		FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://"+MAIN_CONFIG );
+		String[] chainId = { "xml", "json", "yaml" };
+		for ( int k=0 ;k<chainId.length ;k++ ) {
+			String currentChainId = "asciidoc-"+chainId[k];
+			String type = DocConfig.TYPE_HTML;
+			File outputFile = new File( "target", "test_source_"+currentChainId+"."+type );
+			log.info( "currentChainId : {}, currentSourceType : {}", currentChainId, outputFile );
+			try ( FileOutputStream fos = new FileOutputStream( outputFile ) ) {
+				config.fullProcess( currentChainId, DocProcessContext.newContext(), type, fos );
+			}
+		}
+		try ( ByteArrayOutputStream os = new ByteArrayOutputStream() ) {
+			DocProcessContext context = DocProcessContext.newContext();
+			Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( "not-exists", context, DocConfig.TYPE_HTML, os ) );
 		}
 	}
 
