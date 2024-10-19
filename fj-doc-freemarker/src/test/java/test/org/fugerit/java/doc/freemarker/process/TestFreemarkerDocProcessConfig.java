@@ -76,6 +76,10 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				config.fullProcess( currentChainId, DocProcessContext.newContext(), type, fos );
 			}
 		}
+		try ( ByteArrayOutputStream os = new ByteArrayOutputStream() ) {
+			DocProcessContext context = DocProcessContext.newContext();
+			Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( "not-exists", context, DocConfig.TYPE_HTML, os ) );
+		}
 	}
 
 	@Test

@@ -43,11 +43,12 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 
 	public static final boolean DEFAULT_CLEAN_SOURCE = false;
 
-	private static final Map<String, Integer> SOURCE_MAP = new HashMap<String, Integer>() {{
-		put( DocConfig.TYPE_XML, Integer.valueOf( DocFacadeSource.SOURCE_TYPE_XML ) );
-		put( "json", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_JSON ) );
-		put( "yaml", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_YAML ) );
-	}};
+	private static final Map<String, Integer> SOURCE_MAP = new HashMap<>();
+	static {
+		SOURCE_MAP.put( DocConfig.TYPE_XML, Integer.valueOf( DocFacadeSource.SOURCE_TYPE_XML ) );
+		SOURCE_MAP.put( "json", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_JSON ) );
+		SOURCE_MAP.put( "yaml", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_YAML ) );
+	}
 
 	@Getter
 	private ListMapConfig<DocChainModel> docChainList;
