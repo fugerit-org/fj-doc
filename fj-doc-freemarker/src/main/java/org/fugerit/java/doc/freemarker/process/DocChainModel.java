@@ -30,7 +30,9 @@ public class DocChainModel implements IdConfigType, KeyString, Serializable {
 	@Getter @Setter private String mapAtts = MAP_ATTS_DEFAULT;
 	
 	@Getter @Setter private String parent;
-	
+
+	@Getter @Setter private String sourceType;
+
 	@Getter @Setter private Properties mapAttsEnum;
 
 	@Getter  private List<ChainStepModel> chainStepList = new ArrayList<>();

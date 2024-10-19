@@ -34,4 +34,16 @@
 		<chainStep stepType="complex" template-path="${chainId}.ftl"/>
 	</docChain>
 
+	<docChain id="asciidoc-xml" parent="shared">
+		<chainStep stepType="complex" template-path="${chainId}.ftl"/>
+	</docChain>
+
+	<docChain sourceType="json" id="asciidoc-json" parent="shared">
+		<chainStep stepType="complex" template-path="${chainId}.ftl"/>
+	</docChain>
+
+	<docChain sourceType="yaml" id="asciidoc-yaml" parent="shared">
+		<chainStep stepType="complex" template-path="${chainId}.ftl"/>
+	</docChain>
+
 </freemarker-doc-process-config>
