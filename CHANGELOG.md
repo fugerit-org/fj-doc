@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.9.7] - 2024-10-20
+
+### Added
+
+- [fj-doc-freemarker] new FreeMarkerSkipProcessStep (skipfm) <https://github.com/fugerit-org/fj-doc/issues/225>
+
 ## [8.9.6] - 2024-10-20
 
 ### Added
