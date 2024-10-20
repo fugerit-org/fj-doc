@@ -46,7 +46,9 @@ _e:
       _v: "test"
     - align: "center"
       _t: "para"
-      _v: "${r"${currentPage}"} / ${r"${pageCount}"}"
+      # if going throw freemarker processing should be :
+      # "${r"${currentPage}"} / ${r"${pageCount}"}"
+      _v: "${currentPage} / ${pageCount}"
     - align: "right"
       _t: "para"
       _v: "test"

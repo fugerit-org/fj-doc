@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.freemarker.process;
 import static org.junit.Assert.fail;
 
 import java.io.*;
+import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
@@ -17,6 +18,9 @@ import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
+import org.fugerit.java.doc.freemarker.config.FreeMarkerConstants;
+import org.fugerit.java.doc.freemarker.config.FreeMarkerSkipProcessStep;
+import org.fugerit.java.doc.freemarker.config.FreemarkerApplyHelper;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8;
@@ -76,10 +80,28 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				config.fullProcess( currentChainId, DocProcessContext.newContext(), type, fos );
 			}
 		}
+		// test template does not exist
 		try ( ByteArrayOutputStream os = new ByteArrayOutputStream() ) {
 			DocProcessContext context = DocProcessContext.newContext();
 			Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( "not-exists", context, DocConfig.TYPE_HTML, os ) );
 		}
+	}
+
+	@Test
+	public void testSkipFM() throws Exception {
+		DocProcessContext context = DocProcessContext.newContext();
+		DocProcessData data = new DocProcessData();
+		FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
+		configStep.setParam01( "FJ_DOC_TEST_CUSTOM" );
+		Properties customConfig = new Properties();
+		customConfig.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE, FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE_CLASS );
+		customConfig.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH, "/fj_doc_test/template/" );
+		configStep.setCustomConfig( customConfig );
+		configStep.process( context, data );
+		// test skip fm
+		FreeMarkerSkipProcessStep step = new FreeMarkerSkipProcessStep();
+		step.setParam01( "asciidoc-xml.ftl" );
+		step.process( context, data );
 	}
 
 	@Test

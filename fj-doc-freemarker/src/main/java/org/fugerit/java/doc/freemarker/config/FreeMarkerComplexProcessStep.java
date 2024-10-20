@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.regex.ParamFinder;
@@ -22,21 +23,25 @@ public class FreeMarkerComplexProcessStep extends FreeMarkerProcessStep {
 	
 	public static final String ATT_MAP_ALL = "map-all";
 	public static final String ATT_MAP_ATTS = "map-atts";
-	
+
+	public static String overrideTemplatePath( Properties atts, String chainId ) throws ConfigException {
+		String templatePath = atts.getProperty( ATT_TEMPLATE_PATH );
+		if ( StringUtils.isEmpty( templatePath ) ) {
+			throw new ConfigException( "Template must be provided" );
+		}
+		ParamFinder finder = ParamFinder.newFinder();
+		Properties params = new Properties();
+		params.setProperty( CHAIN_ID_PARAM , chainId );
+		templatePath = finder.substitute( templatePath , params );
+		return templatePath;
+	}
+
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {
 		Properties atts = this.getCustomConfig();
 		// override template path
 		if ( StringUtils.isEmpty( this.getParam01() ) ) {
-			String templatePath = atts.getProperty( ATT_TEMPLATE_PATH );
-			if ( StringUtils.isEmpty( templatePath ) ) {
-				throw new ConfigException( "Template must be provided" );
-			}
-			ParamFinder finder = ParamFinder.newFinder();
-			Properties params = new Properties();
-			params.setProperty( CHAIN_ID_PARAM , this.getChainId() );
-			templatePath = finder.substitute( templatePath , params );
-			this.setParam01( templatePath );
+			this.setParam01( overrideTemplatePath( atts, this.getChainId() ) );
 		}
 		// map attributes
 		Map<String, Object> map = FreeMarkerConstants.getFreeMarkerMap( context );
