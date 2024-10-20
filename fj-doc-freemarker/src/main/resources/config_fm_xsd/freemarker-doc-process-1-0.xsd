@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-freemarker
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.4 (2024-10-20)
+	 * @version    : 1.0.0-rc.5 (2024-10-20)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -147,9 +147,9 @@
 				<xsd:documentation>A chain parent (will inherits all the chainStep)</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
-		<xsd:attribute name="sourceType" type="fdp:sourceType" use="optional">
+		<xsd:attribute name="sourceType" type="fdp:sourceType" use="optional" default="xml">
 			<xsd:annotation>
-				<xsd:documentation>The source type : xml (default), json or yaml</xsd:documentation>
+				<xsd:documentation>The source type : xml (default), json or yaml. (since 8.9.6)</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>	
@@ -168,7 +168,7 @@
 		</xsd:choice>
 		<xsd:attribute name="stepType" type="xsd:string" use="required">
 			<xsd:annotation>
-				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex'</xsd:documentation>
+				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex', 'skipfm' (skip FreeMarkerProcessing)</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
 		<xsd:attribute name="map-atts" type="xsd:string" use="optional">

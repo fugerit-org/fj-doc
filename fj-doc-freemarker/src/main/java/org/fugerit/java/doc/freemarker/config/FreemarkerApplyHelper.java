@@ -26,8 +26,8 @@ public class FreemarkerApplyHelper {
 	public static void addStaticAccess( Configuration cfg, Map<String, Object> map, String key, Class<?> c ) throws TemplateModelException {
 		BeansWrapper wrapper = new BeansWrapperBuilder( cfg.getIncompatibleImprovements() ).build();
 		TemplateHashModel staticModels = wrapper.getStaticModels();
-		TemplateHashModel docConfigStatis = (TemplateHashModel) staticModels.get( c.getName() );
-		map.put( key , docConfigStatis);
+		TemplateHashModel docConfigStatic = (TemplateHashModel) staticModels.get( c.getName() );
+		map.put( key , docConfigStatic);
 	}
 	
 }

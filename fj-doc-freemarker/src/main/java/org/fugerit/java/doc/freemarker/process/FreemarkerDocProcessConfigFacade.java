@@ -23,10 +23,7 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep;
-import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
-import org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep;
-import org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep;
+import org.fugerit.java.doc.freemarker.config.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -47,13 +44,30 @@ public class FreemarkerDocProcessConfigFacade {
 	public static final String ATT_CHAIN_STEP = "chainStep";
 	
 	public static final String ATT_STEP_TYPE = "stepType";
-	
+
+	/**
+	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep
+	 */
 	public static final String STEP_TYPE_CONFIG = "config";
-	
+
+	/**
+	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep
+	 */
 	public static final String STEP_TYPE_FUNCTION = "function";
-	
+
+	/**
+	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep
+	 */
 	public static final String STEP_TYPE_COMPLEX = "complex";
-	
+
+	/**
+	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerSkipProcessStep
+	 */
+	public static final String STEP_TYPE_SKIPFM = "skipfm";
+
+	/**
+	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep
+	 */
 	public static final String STEP_TYPE_MAP = "map";
 
 	/**
@@ -278,6 +292,7 @@ public class FreemarkerDocProcessConfigFacade {
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_CONFIG , FreeMarkerConfigStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_FUNCTION , FreeMarkerFunctionStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_COMPLEX , FreeMarkerComplexProcessStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_SKIPFM , FreeMarkerSkipProcessStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_MAP , FreeMarkerMapStep.class.getName() );
 		BUILT_IN_STEPS.keySet().stream().forEach( k -> BUILT_IN_STEPS_REVERSE.put( BUILT_IN_STEPS.get( k ) , k ) );
 	}

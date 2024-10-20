@@ -100,13 +100,35 @@ And one or more document process step :
 
 ==== Build in step types
 
-[cols="3*", options="header"]
+[cols="1,2,3", options="header"]
 |========================================================================================================================================
-| name     | type                                                                | description
-| config   | org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep         | responsable for freemarker and venus configuration
-| function | org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep       | add freemarker functions to the data model
-| complex  | org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep | it apply the freemarker template and render the output
-| map      | org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep            | Venus data model to Freemarker data model mapping
+
+| name
+| type
+| description
+
+| config
+| org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerConfigStep
+| responsable for freemarker and venus configuration
+
+| function
+| org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerFunctionStep
+| add freemarker functions to the data model
+
+| complex
+| org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerComplexProcessStep
+| it apply the freemarker template and render the output
+
+| map
+| org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerMapStep
+| Venus data model to Freemarker data model mapping
+
+| skipfm
+| org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerSkipProcessStep
+| When using this step, freemarker apply template will be skipped. (Since _8.9.7_)
+
 |========================================================================================================================================
 
 NOTE:  Additional step can be added setting the fully qualified class name in the type attribute.
+
+NOTE: When using *skipfm* no FreeMarker template syntax should be used in the template.

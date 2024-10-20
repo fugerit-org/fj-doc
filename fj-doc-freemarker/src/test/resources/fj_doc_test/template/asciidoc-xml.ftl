@@ -23,7 +23,11 @@
 	</header-ext>
 	<footer-ext>
 		<para align="left">test</para>
-		<para align="center">${r"${currentPage}"} / ${r"${pageCount}"}</para>
+		<!--
+			if going throw freemarker processing should be :
+			${r"${currentPage}"} / ${r"${pageCount}"}
+		-->
+		<para align="center">${currentPage} / ${pageCount}</para>
 		<para align="right">test</para>
 	</footer-ext>
 	<bookmark-tree>
