@@ -30,11 +30,7 @@ public class TestKotlinParser {
 	public static final boolean EXCEPTION = true;
 	
 	private static final Logger logger = LoggerFactory.getLogger( TestKotlinParser.class );
-	
-	private boolean validateWorker( String path, boolean valid, boolean exception ) {
-		return this.validateWorker(path, valid, exception, false);
-	}
-	
+
 	private boolean validateWorker( String path, boolean valid, boolean exception, boolean parseVersion ) {
 		String fullPath = "doc-dsl-sample/"+path+".kts";
 		logger.info( "validate -> {}, valid : {}, exception : {}, parseVersion : {}", fullPath, valid, exception, parseVersion );
