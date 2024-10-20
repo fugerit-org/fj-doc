@@ -149,7 +149,7 @@
 		</xsd:attribute>
 		<xsd:attribute name="sourceType" type="fdp:sourceType" use="optional" default="xml">
 			<xsd:annotation>
-				<xsd:documentation>The source type : xml (default), json or yaml. (since 8.9.6)</xsd:documentation>
+				<xsd:documentation>The source type : xml (default), json, yaml or kotlin. (since 8.9.6)</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>	
