@@ -2,17 +2,13 @@ package org.fugerit.java.doc.freemarker.config;
 
 import freemarker.cache.TemplateLoader;
 import freemarker.template.Configuration;
-import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.io.StreamIO;
-import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
-import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 import java.util.Properties;
 
 public class FreeMarkerSkipProcessStep extends FreeMarkerProcessStep {
@@ -37,11 +33,11 @@ public class FreeMarkerSkipProcessStep extends FreeMarkerProcessStep {
 		}
 		Configuration cfg = (Configuration) context.getAttribute( FreeMarkerConstants.ATT_FREEMARKER_CONFIG );
 		TemplateLoader templateLoader = cfg.getTemplateLoader();
-		Object templateSource = templateLoader.findTemplateSource( this.getParam01() );
-		try (Reader reader  = templateLoader.getReader( templateSource, StandardCharsets.UTF_8.name() ) ) {
-			data.setCurrentXmlData(StreamIO.readString( reader ) );
-		}
 		String path = this.getParam01();
+		Object templateSource = templateLoader.findTemplateSource( path );
+		try (Reader reader  = templateLoader.getReader( templateSource, StandardCharsets.UTF_8.name() ) ) {
+			data.setCurrentXmlData(StreamIO.readString(reader));
+		}
 		return CONTINUE;
 	}
 	

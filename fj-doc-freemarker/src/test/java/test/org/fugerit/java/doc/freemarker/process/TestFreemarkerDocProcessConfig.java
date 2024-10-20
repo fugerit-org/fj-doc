@@ -102,6 +102,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 		FreeMarkerSkipProcessStep step = new FreeMarkerSkipProcessStep();
 		step.setParam01( "asciidoc-xml.ftl" );
 		step.process( context, data );
+		Assert.assertNotNull( data.getCurrentXmlData() );
 	}
 
 	@Test
