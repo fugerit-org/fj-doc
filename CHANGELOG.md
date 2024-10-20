@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-base-kotlin] support to use kotlin script (KTS) as source <https://github.com/fugerit-org/fj-doc/issues/222>
+- [fj-doc-lib-kotlin] kotlin utilities <https://github.com/fugerit-org/fj-doc/issues/222>
+
 ## [8.9.7] - 2024-10-20
 
 ### Added
