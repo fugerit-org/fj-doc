@@ -10,6 +10,8 @@ import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Properties;
+
 class GenerateKotlinTest {
 
     static AutodocModel parseLast() throws ConfigException {
@@ -26,12 +28,26 @@ class GenerateKotlinTest {
     @Test
     void testGeneration() {
         SafeFunction.apply( () -> {
+            Properties props = PropsIO.loadFromClassLoader( "generate-kotlin/config.properties" );
             GenerateKotlinConfig config = new GenerateKotlinConfig(
-                    PropsIO.loadFromClassLoader( "generate-kotlin/config.properties" ),
+                    props,
                     parseLast());
             GenerateKotlinFacade.generate( config );
             Assertions.assertNotNull( config );
+            // additional tests
+            Assertions.assertNotNull( config.toCheckTypeFun( "test" ) );
+            props.setProperty( "source-output-folder", "target/gen-test" );
+            GenerateKotlinFacade.generate( config );
         } );
+    }
+
+    @Test
+    void testConfig() {
+        Properties props = new Properties();
+        AutodocModel autodocModel = new AutodocModel( null );
+        Assertions.assertThrows( NullPointerException.class, () -> new GenerateKotlinConfig( null, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new GenerateKotlinConfig( props, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new GenerateKotlinConfig( null, autodocModel ) );
     }
 
 }
