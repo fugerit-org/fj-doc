@@ -16,10 +16,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TestKotlinParser {
 
@@ -77,6 +76,15 @@ public class TestKotlinParser {
 	public void testParse() {
 		Assert.assertTrue( this.parseWorker( "sample-2" ) );
 		Assert.assertTrue( this.parseWorker( "sample-2-coverage" ) );
+	}
+
+	@Test
+	public void testDslDocToXml() throws IOException {
+		Map<String, Object> dataModel = new HashMap<>();
+		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "doc-dsl-sample/sample-2.kts" ) ) ) {
+			String xml = DocKotlinParser.dslDocToXml( reader, dataModel );
+			Assert.assertNotNull( xml );
+		}
 	}
 
 }

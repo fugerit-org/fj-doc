@@ -13,6 +13,7 @@ dslDoc {
             expectedSize( 100 )
             phrase("a")
             barcode { text( "a" ) }
+            numbered(true)
         }
         footerExt {
             h( "title 2" )
@@ -24,6 +25,7 @@ dslDoc {
             expectedSize( 100 )
             phrase("a")
             barcode { text( "a" ) }
+            numbered(true)
         }
         bookmarkTree {
             bookmark( "Bookmark 1" ).ref( "bookmark1" )

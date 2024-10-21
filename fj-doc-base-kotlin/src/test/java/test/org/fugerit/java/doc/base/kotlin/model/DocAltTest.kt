@@ -58,6 +58,12 @@ class DocAltTest : TestCase() {
         "src/test/resources/doc-dsl-sample/sample-2-coverage-a.kts",
         "src/test/resources/doc-dsl-sample/sample-2-coverage-b.kts",
         "src/test/resources/doc-dsl-sample/sample-2-coverage-c.kts",
+        "src/test/resources/doc-dsl-sample/sample-2-coverage-d.kts",
+        "src/test/resources/doc-dsl-sample/sample-2-coverage-e.kts",
+        "src/test/resources/doc-dsl-sample/sample-2-coverage-f.kts",
+        "src/test/resources/doc-dsl-sample/sample-2-coverage-g.kts",
+        "src/test/resources/doc-dsl-sample/sample-2-coverage-h.kts",
+        "src/test/resources/doc-dsl-sample/sample-2-coverage-i.kts",
         "src/test/resources/doc-dsl-sample/sample-2-coverage.kts"
     ).forEach {
         Assertions.assertEquals(
