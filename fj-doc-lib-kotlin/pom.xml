@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>fj-doc-lib-kotlin</artifactId>
+
+	<parent>
+		<groupId>org.fugerit.java</groupId>
+		<artifactId>fj-doc</artifactId>
+		<version>8.9.8-SNAPSHOT</version>
+	</parent>
+
+	<name>fj-doc-lib-kotlin</name>
+	<description>API for generating documentation for Venus Project</description>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-lib-autodoc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-stdlib</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jetbrains.kotlin</groupId>
+			<artifactId>kotlin-scripting-jsr223</artifactId>
+			<version>${kotlin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-freemarker</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit-jupiter-api-version}</version>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<organization>
+		<url>https://www.fugerit.org</url>
+		<name>Fugerit</name>
+	</organization>
+	
+	<url>https://www.fugerit.org/perm/venus/</url>
+
+</project>

@@ -8,12 +8,14 @@ Supported is provided by the base module dependency.
 ----
 <dependency>
     <groupId>org.fugerit.java</groupId>
-    <artifactId>fj-doc-ext-kotlin</artifactId>
-    <version>${fj-doc-ext-kotlin-version}</version>
+    <artifactId>fj-doc-base-kotlin</artifactId>
+    <version>${fj-doc-version}</version>
 </dependency>
 ----
 
-NOTE: At the moment kotlin (KTS) support is still experimental. The link:https://github.com/fugerit-org/fj-doc-ext-kotlin[Kotlin extension] is maintained on a separate repository.
+NOTE: At the moment kotlin (KTS) support is still experimental.
+
+NOTE: When adding this extension, all the kotlin runtime must be included too.
 
 Kotlin source is based on a custom DSL (Domain Specific Language).
 The link:https://github.com/fugerit-org/fj-doc-ext-kotlin/blob/main/src/main/java/org/fugerit/java/doc/base/kotlin/dsl/dslDoc.kt[Fugerit Doc Kotlin DSL] is basically a mapping of the xsd.

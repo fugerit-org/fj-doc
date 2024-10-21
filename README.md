@@ -79,8 +79,9 @@ There are five kinds of components (each components README.md contains module st
 ### 1. Framework core :
 
 * [Core library (fj-doc-base)](fj-doc-base/README.md) (contains a simple renderer for [Markdown BASIC](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownBasicTypeHandler.java) and [Markdown EXT](fj-doc-base/src/main/java/org/fugerit/java/doc/base/typehandler/markdown/SimpleMarkdownExtTypeHandler.java))
-* [Json extension (fj-doc-base-json)](fj-doc-base-json/README.md) (allow for using json as document generator instead of standard xml generator) [since 0.7.0]
-* [Yaml extension (fj-doc-base-yaml)](fj-doc-base-yaml/README.md) (allow for using yaml as document generator instead of standard xml generator) [since 0.7.0]
+* [Json extension (fj-doc-base-json)](fj-doc-base-json/README.md) (allow using json as document generator instead of standard xml generator) [since 0.7.0]
+* [Yaml extension (fj-doc-base-yaml)](fj-doc-base-yaml/README.md) (allow using yaml as document generator instead of standard xml generator) [since 0.7.0]
+* [Kotlin extension (fj-doc-base-kotlin)](fj-doc-base-kotlin/README.md) (allow kotlin script, KTS, as document generator instead of standard xml generator) [since 8.10.0]
 * Doc format [![xsd](https://img.shields.io/badge/venus%20xsd-doc%202.1-purple.svg)](https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd)
 
 ### 2. Modules :
@@ -112,6 +113,7 @@ There are five kinds of components (each components README.md contains module st
 * [Simple table (fj-doc-lib-singletable)](fj-doc-lib-simpletable/README.md) - offers a simple API for creating a document made of a table.
 * [XSD Autodoc (fj-doc-lib-autodoc)](fj-doc-lib-autodoc/README.md) - offers a simple api for documenting the Venus library (to a limited extent some features can be used on any xsd).
 * [Doc type validation (fj-doc-val)](fj-doc-val/README.md) - simple utilities for validating file type.
+* [Kotlin utilities (fj-doc-lib-kotlin)](fj-doc-lib-kotlin/README.md) - This library provides some helper for the kotlin language. The first one is a utility to generate a kotlin DSL mapping an XSD.
 
 ### 5. Tutorial :
 * [Samples and Quickstart (fj-doc-sample)](fj-doc-sample/README.md)

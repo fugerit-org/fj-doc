@@ -68,8 +68,13 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base-json</artifactId>
-		</dependency>	
-		
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-base-kotlin</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-base-yaml</artifactId>
