@@ -25,7 +25,7 @@ public class FreeMarkerKotlinStep extends DocProcessorBasic {
 
 	public static final String ATT_KTS_PATH = "kts-path";
 
-	private static Class<?>[] PARAM_TYPES = { Reader.class, Map.class };
+	private static final Class<?>[] PARAM_TYPES = { Reader.class, Map.class };
 
 	private int sourceType;
 

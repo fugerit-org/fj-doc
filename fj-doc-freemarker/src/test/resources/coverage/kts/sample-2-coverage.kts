@@ -38,12 +38,12 @@ dslDoc {
             table {
                 row()
                 row {
-                    cell { para( "col 1" )  }
-                    cell { para( "col 2" )  }
+                    cell { para( "col 1g" )  }
+                    cell { para( "col 2g" )  }
                 }.header( true )
                 row {
-                    cell { para( "data 1" )  }
-                    cell { para( "data 2" )  }
+                    cell { para( "data 1g" )  }
+                    cell { para( "data 2g" )  }
                 }
             }.width( 100 ).columns( 2 ).colwidths( "50;50" )
             para()
@@ -60,7 +60,7 @@ dslDoc {
     body {
         h( "head level 1" ).headLevel( 1 ).align( "center" ).id( "bookmark1" )
         h( "head level 2" ).headLevel( 2 ).id( "second title" ).style( "italic" ).fontName( "Arial" ).size( 10 ).format( "{}" )
-            .backColor( "#000000" ).foreColor( "#ffffff" ).type( "number" ).textIndent( 1 ).whiteSpaceCollapse( true )
+            .backColor( "#000010" ).foreColor( "#ffff00" ).type( "number" ).textIndent( 2 ).whiteSpaceCollapse( false )
             .spaceLeft( 1 ).spaceAfter( 1 ).spaceBefore( 1 ).spaceRight( 1 )
         para( "Concise paragraph" )
             .align( "center" )
@@ -83,30 +83,30 @@ dslDoc {
             .leading( 3 ).link( "#a" ).anchor( "a" ).whiteSpaceCollapse( true )
         table {
             row {
-                cell { para( "col 1" )  }.type( "string" )
-                cell { para( "col 2" )  }
-                cell { para( "col 3" )  }
+                cell { para( "col 1a" )  }.type( "string" )
+                cell { para( "col 2b" )  }
+                cell { para( "col 3c" )  }
             }.header( true ).id( "headerRow" )
             row {
-                cell { para( "data 1" )  }.borderColorBottom( "#000000" ).borderColorLeft( "#000000" ).borderColorRight( "#000000" ).borderColorTop( "#ffffff" )
-                cell { para( "data 2 and 3" ).style( "italic" )  }.colspan( 2 ).rowspan( 1 ).align( "center" )
-            }.id( "firstRow" )
+                cell { para( "data 1a" )  }.borderColorBottom( "#dd0000" ).borderColorLeft( "#ee0000" ).borderColorRight( "#ff0000" ).borderColorTop( "#ffffff" )
+                cell { para( "data 2 and 3b" ).style( "italic" )  }.colspan( 2 ).rowspan( 1 ).align( "center" )
+            }.id( "firstRowA" )
             row {
-                cell { nbsp { length( 1 ) } }.valign( "middle" ).backColor( "#000000" ).foreColor( "#ffffff" )
-                cell { phrase( "test" ) }.borderColorTop( "#000000" ).borderColorLeft( "#000000" ).borderColorRight( "#000000" ).borderColorBottom( "#000000" )
-                cell { br {} }.borderWidth( 1 ).borderColor( "#ffffff" ).borderWidthBottom( 1 ).borderWidthLeft( 1 ).borderWidthRight( 1 ).borderWidthTop( 1 )
+                cell { nbsp { length( 1 ) } }.valign( "middle" ).backColor( "#000033" ).foreColor( "#ffffff" )
+                cell { phrase( "test" ) }.borderColorTop( "#000055" ).borderColorLeft( "#000044" ).borderColorRight( "#aa0000" ).borderColorBottom( "#000000" )
+                cell { br {} }.borderWidth( 1 ).borderColor( "#ddffff" ).borderWidthBottom( 1 ).borderWidthLeft( 1 ).borderWidthRight( 1 ).borderWidthTop( 1 )
             }
             row {
                 cell { barcode().text( "test"  ) }.header( true ).id( "cellid1" )
                 cell {
                     h( "test").headLevel(5)
-                    image().align( "center" ).alt( "avatar" ).url( "https://avatars.githubusercontent.com/u/37816284?s=96&v=4" ).scaling( 80 )
+                    image().align( "center" ).alt( "avatar" ).url( "https://avatars.githubusercontent.com/u/3781?s=96&v=4" ).scaling( 60 )
                 }
-                cell { table { row { cell { para("cell 1") }  } }.columns( 1 ).colwidths( "100" ).width( 100 ) }
+                cell { table { row { cell { para("cell 1a") }  } }.columns( 1 ).colwidths( "100" ).width( 90 ) }
             }
             row {
                 cell {
-                    table { row { cell { para("cell 2") } } }.columns( 1 ).width( 100 ).colwidths( "100" )
+                    table { row { cell { para("cell 2b") } } }.columns( 1 ).width( 100 ).colwidths( "100" )
                 }.colspan( 3 )
             }
             row().cell()
