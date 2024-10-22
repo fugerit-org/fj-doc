@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-freemarker
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.5 (2024-10-20)
+	 * @version    : 1.0.0-rc.6 (2024-10-22)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -168,7 +168,9 @@
 		</xsd:choice>
 		<xsd:attribute name="stepType" type="xsd:string" use="required">
 			<xsd:annotation>
-				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex', 'skipfm' (skip FreeMarkerProcessing)</xsd:documentation>
+				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex',</xsd:documentation>
+				<xsd:documentation>'skipfm' (skip FreeMarkerProcessing)</xsd:documentation>
+				<xsd:documentation>'kotlin' (skip FreeMarkerProcessing, and use kotlin script, kts-path must be set, dataModel map can still be used and will be bound to the script)</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
 		<xsd:attribute name="map-atts" type="xsd:string" use="optional">
@@ -183,8 +185,14 @@
 		</xsd:attribute>
 		<xsd:attribute name="template-path" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation>Free marker template path</xsd:documentation>
+				<xsd:documentation>Free marker template path (relative to template base path provided in 'config' step).</xsd:documentation>
 			</xsd:annotation>		
+		</xsd:attribute>
+		<xsd:attribute name="kts-path" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>Kotlin script (KTS) path in classpath (FreeMarker template base is ignored).</xsd:documentation>
+				<xsd:documentation>(in 'kotlin' step it is possible to use 'template-path' as an alias for this attribute).</xsd:documentation>
+			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>	
 

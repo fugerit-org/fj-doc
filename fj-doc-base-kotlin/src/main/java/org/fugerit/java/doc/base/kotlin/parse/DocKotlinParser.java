@@ -52,7 +52,7 @@ public class DocKotlinParser extends AbstractDocParser {
             Object obj = engine.eval( StreamIO.readString( reader ) );
             log.debug( "kts eval script : {}", checkpoint.getFormatTimeDiffMillis() );
             String xml = obj.toString();
-            log.info( "kts toXml : {}", checkpoint.getFormatTimeDiffMillis() );
+            log.debug( "kts toXml : {}", checkpoint.getFormatTimeDiffMillis() );
             return xml;
         } );
     }

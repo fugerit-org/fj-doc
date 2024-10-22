@@ -5,15 +5,13 @@ import org.fugerit.java.core.cfg.ConfigRuntimeException
 import org.fugerit.java.doc.base.config.DocInput
 import org.fugerit.java.doc.base.config.DocOutput
 import org.fugerit.java.doc.base.kotlin.dsl.*
-import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
+import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerUTF8
 import org.junit.jupiter.api.Assertions
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import java.awt.SystemColor.text
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.StringReader
-import java.util.*
 import javax.script.ScriptContext
 import javax.script.ScriptEngineManager
 
@@ -91,7 +89,7 @@ class DocAltTest : TestCase() {
         )
 
     private fun renderHtml( doc: Doc ) {
-        val handler = FreeMarkerHtmlTypeHandlerUTF8.HANDLER;
+        val handler = SimpleMarkdownExtTypeHandlerUTF8.HANDLER;
         val buffer = ByteArrayOutputStream()
         val input =  DocInput.newInput( handler.type, StringReader( doc.toString() ) )
         val output =  DocOutput.newOutput( buffer )
