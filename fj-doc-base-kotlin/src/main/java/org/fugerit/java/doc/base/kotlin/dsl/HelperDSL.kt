@@ -14,10 +14,16 @@ import java.io.StringWriter
 class HelperDSL {
 
     fun interface Element {
+        /**
+         * Renders the content of the element.
+         */
         fun render(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document)
     }
 
     class TextElement(val text: String) : Element {
+        /**
+         * Renders the content of the element.
+         */
         override fun render(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document) {
             xmlParent.appendChild( xmlDocument.createTextNode( text ) )
         }
@@ -155,6 +161,9 @@ class HelperDSL {
     }
 
     abstract class TagWithText(name: String) : Tag(name) {
+        /**
+         * Adds add text content to the element.
+         */
         operator fun String.unaryPlus() {
             children.add(TextElement(this))
         }

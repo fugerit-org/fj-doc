@@ -33,10 +33,14 @@ public class GenerateKotlinFacade {
         String fileName = config.getProperty( GenerateKotlinConfig.CONFIG_MAIN_FUN )+".kt";
         String fileNameImport = config.getProperty( GenerateKotlinConfig.CONFIG_MAIN_FUN )+"Kt";
         String rootName = config.toKotlinClass( element.getName() );
+        String dslDocumentation = "/**\n" +
+                " * The base function for this domain specific language.\n" +
+                " */\n";
         String content = "@file:JvmName(\""+fileNameImport+"\")\n" +
                 ENDLINE +
                 PACKAGE+config.getProperty( GenerateKotlinConfig.CONFIG_PACKAGE )+ENDLINE +
                 ENDLINE +
+                dslDocumentation +
                 "fun "+ config.getProperty( GenerateKotlinConfig.CONFIG_MAIN_FUN )+"(block: "+rootName+".() -> Unit): "+rootName+" =\n" +
                 "    "+rootName+"().apply(block)";
         File dslFile = new File( config.getPackageFolder(), fileName );
@@ -121,6 +125,9 @@ public class GenerateKotlinFacade {
         final StringBuilder builder = new StringBuilder();
         // set text for text element
         if ( isTextElement ) {
+            builder.append( "    /**\n" +
+                    "     * Function to set text content for this element.\n" +
+                    "     */\n" );
             builder.append( "\n   fun setText( value: String ) { addKid( HelperDSL.TextElement( value ) ) }\n\n" );
         }
         // functions for elements

@@ -52,6 +52,9 @@ class DocAltTest : TestCase() {
         return parsedDsl;
     }
 
+    /**
+     * testScriptCoverage
+     */
     fun testScriptCoverage() = arrayListOf<String>(
         "src/test/resources/doc-dsl-sample/sample-2-coverage-a.kts",
         "src/test/resources/doc-dsl-sample/sample-2-coverage-b.kts",
@@ -70,6 +73,9 @@ class DocAltTest : TestCase() {
         )
     }
 
+    /**
+     * testScript
+     */
     fun testScript() =
         Assertions.assertEquals( "http://javacoredoc.fugerit.org",
             testScriptWorker( "src/test/resources/doc-dsl-sample/sample-2.kts" ).attributes["xmlns"]
@@ -83,6 +89,9 @@ class DocAltTest : TestCase() {
         "testList" to arrayListOf( "1", "2", "3", "4", "5", "6", "7", "8", "9" )
     )
 
+    /**
+     * testScriptParams
+     */
     fun testScriptParams() =
         Assertions.assertEquals( "http://javacoredoc.fugerit.org",
             testScriptWorkerBind( "src/test/resources/doc-dsl-sample/sample-2-params.kts", true, params ).attributes["xmlns"]
@@ -97,6 +106,9 @@ class DocAltTest : TestCase() {
         log.info( "print html output \n{}", buffer.toString() )
     }
 
+    /**
+     * testFail
+     */
     fun testFail() {
         val helper = HelperDSL()
         val textTag = HelperDSL.TextElement( "text" )

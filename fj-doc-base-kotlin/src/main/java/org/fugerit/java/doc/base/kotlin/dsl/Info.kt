@@ -8,6 +8,9 @@ package org.fugerit.java.doc.base.kotlin.dsl
 class Info( text: String = "" ) : HelperDSL.TagWithText( "info" ) {
 
    init { setText(text) }
+    /**
+     * Function to set text content for this element.
+     */
 
    fun setText( value: String ) { addKid( HelperDSL.TextElement( value ) ) }
 

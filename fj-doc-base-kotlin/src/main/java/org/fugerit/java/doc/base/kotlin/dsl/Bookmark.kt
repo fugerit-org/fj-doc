@@ -8,6 +8,9 @@ package org.fugerit.java.doc.base.kotlin.dsl
 class Bookmark( text: String = "" ) : HelperDSL.TagWithText( "bookmark" ) {
 
    init { setText(text) }
+    /**
+     * Function to set text content for this element.
+     */
 
    fun setText( value: String ) { addKid( HelperDSL.TextElement( value ) ) }
 
