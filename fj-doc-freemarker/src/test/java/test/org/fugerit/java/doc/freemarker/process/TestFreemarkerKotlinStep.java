@@ -2,11 +2,13 @@ package test.org.fugerit.java.doc.freemarker.process;
 
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.doc.base.kotlin.parse.DocKotlinParser;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConstants;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerKotlinStep;
+import org.fugerit.java.doc.json.parse.DocJsonParser;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -42,6 +44,9 @@ public class TestFreemarkerKotlinStep {
         customConfig.setProperty( FreeMarkerKotlinStep.ATT_KTS_PATH, KTS_PATH_SAMPLE );
         stepOk.process( context, data );
         Assert.assertNotNull( data.getCurrentXmlData() );
+        // convert test
+        Assert.assertThrows( ConfigRuntimeException.class, () -> FreeMarkerKotlinStep.convertOrExceptiopn( stepOk ) );
+        Assert.assertNotNull( FreeMarkerKotlinStep.convertOrExceptiopn( new DocKotlinParser() ) );
     }
 
 }

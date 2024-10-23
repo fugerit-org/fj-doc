@@ -8,6 +8,7 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.kotlin.parse.DocKotlinParser;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.parser.DocEvalWithDataModel;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
@@ -81,8 +82,9 @@ public class TestKotlinParser {
 	@Test
 	public void testDslDocToXml() throws IOException {
 		Map<String, Object> dataModel = new HashMap<>();
+		DocEvalWithDataModel eval = new DocKotlinParser();
 		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "doc-dsl-sample/sample-2.kts" ) ) ) {
-			String xml = DocKotlinParser.dslDocToXml( reader, dataModel );
+			String xml = eval.evalWithDataModel( reader, dataModel );
 			Assert.assertNotNull( xml );
 		}
 	}

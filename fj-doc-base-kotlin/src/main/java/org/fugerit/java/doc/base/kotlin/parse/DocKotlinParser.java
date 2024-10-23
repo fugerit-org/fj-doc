@@ -9,8 +9,11 @@ import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.AbstractDocParser;
+import org.fugerit.java.doc.base.parser.DocEvalWithDataModel;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
+import org.fugerit.java.script.helper.EvalScript;
+import org.fugerit.java.script.helper.EvalScriptWithJsonDataModel;
 
 import javax.script.Bindings;
 import javax.script.ScriptContext;
@@ -22,7 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Slf4j
-public class DocKotlinParser extends AbstractDocParser {
+public class DocKotlinParser extends AbstractDocParser implements DocEvalWithDataModel {
 
     private DocXmlParser docXmlParser;
 
@@ -31,35 +34,23 @@ public class DocKotlinParser extends AbstractDocParser {
         this.docXmlParser = new DocXmlParser();
     }
 
-    private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static EvalScript evalScript = new EvalScriptWithJsonDataModel( "kts" );
+
+    @Override
+    public String evalWithDataModel(Reader reader, Map<String, Object> dataModel) {
+        return dslDocToXml(reader, dataModel);
+    }
 
     public static String dslDocToXml(Reader reader, Map<String, Object> dataModel ) {
-        return SafeFunction.get( () -> {
-            SimpleCheckpoint checkpoint = new SimpleCheckpoint();
-            ScriptEngineManager manager = new ScriptEngineManager();
-            log.debug( "kts create script manager : {}", checkpoint.getFormatTimeDiffMillis() );
-            ScriptEngine engine =  manager.getEngineByExtension( "kts" );
-            log.debug( "kts create script engine : {}", checkpoint.getFormatTimeDiffMillis() );
-            if ( dataModel != null ) {
-                Bindings bindings = engine.createBindings();
-                log.debug( "kts create script bindings : {}", checkpoint.getFormatTimeDiffMillis() );
-                LinkedHashMap<String, Object> data = MAPPER.convertValue( dataModel, LinkedHashMap.class );
-                log.debug( "kts read json data : {}", checkpoint.getFormatTimeDiffMillis() );
-                bindings.put( "data", data );
-                engine.setBindings( bindings, ScriptContext.ENGINE_SCOPE );
-            }
-            log.debug( "kts set bindings : {}", checkpoint.getFormatTimeDiffMillis() );
-            Object obj = engine.eval( StreamIO.readString( reader ) );
-            log.debug( "kts eval script : {}", checkpoint.getFormatTimeDiffMillis() );
-            String xml = obj.toString();
-            log.debug( "kts toXml : {}", checkpoint.getFormatTimeDiffMillis() );
-            return xml;
-        } );
+        Object res = evalScript.evalKts( reader, dataModel );
+        String xml = res.toString();
+        log.debug( "evalWithDataModel xml content : \n{}", xml );
+        return xml;
     }
 
     @Override
     protected DocValidationResult validateWorker(Reader reader, boolean parseVersion) throws DocException {
-        try ( StringReader xmlReader = new StringReader( dslDocToXml( reader, null) ) ) {
+        try ( StringReader xmlReader = new StringReader( evalWithDataModel( reader, null) ) ) {
             if ( parseVersion ) {
                 return this.docXmlParser.validateVersionResult( xmlReader );
             } else {
@@ -70,7 +61,7 @@ public class DocKotlinParser extends AbstractDocParser {
 
     @Override
     protected DocBase parseWorker(Reader reader) throws DocException {
-        try ( StringReader xmlReader = new StringReader( dslDocToXml( reader, null) ) ) {
+        try ( StringReader xmlReader = new StringReader( evalWithDataModel( reader, null) ) ) {
             return this.docXmlParser.parse( xmlReader );
         }
     }

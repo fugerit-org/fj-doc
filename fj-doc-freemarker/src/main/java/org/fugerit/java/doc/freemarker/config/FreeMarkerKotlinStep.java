@@ -6,6 +6,7 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.lang.helpers.reflect.MethodHelper;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.base.parser.DocEvalWithDataModel;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
@@ -25,7 +26,13 @@ public class FreeMarkerKotlinStep extends DocProcessorBasic {
 
 	public static final String ATT_KTS_PATH = "kts-path";
 
-	private static final Class<?>[] PARAM_TYPES = { Reader.class, Map.class };
+	public static DocEvalWithDataModel convertOrExceptiopn( Object obj ) {
+		if ( obj instanceof DocEvalWithDataModel ) {
+			return (DocEvalWithDataModel) obj;
+		} else {
+			throw new ConfigRuntimeException(String.format( "Connect cast to %s : %s", DocEvalWithDataModel.class, obj ) );
+		}
+	}
 
 	private int sourceType;
 
@@ -56,8 +63,8 @@ public class FreeMarkerKotlinStep extends DocProcessorBasic {
 		} else {
 			log.debug( "{} : {}", ATT_KTS_PATH, ktsPath );
 			try (InputStreamReader reader = new InputStreamReader(ClassHelper.loadFromDefaultClassLoader( ktsPath ))) {
-				Object[] paramValues = { reader, dataModel };
-				String xml = (String)MethodHelper.invoke( docParser, "dslDocToXml", PARAM_TYPES, paramValues );
+				DocEvalWithDataModel eval = convertOrExceptiopn( docParser );
+				String xml = eval.evalWithDataModel( reader, dataModel );
 				data.setCurrentXmlData( xml );
 			}
 		}
