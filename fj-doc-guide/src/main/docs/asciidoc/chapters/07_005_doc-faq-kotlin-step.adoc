@@ -1,0 +1,98 @@
+
+[#doc-faq-kotlin-step]
+=== How do I configure kotlin step in FreemarkerDocProcessConfig?
+
+As stated in the link:#doc-format-entry-point-kotlin[Kotlin Source Format] documentation
+
+First of all we need to add the kotlin source support to our project :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-base-kotlin</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+Then let's create this very simple script in the resource folder of the project  *kts/kotlin-01.kts* :
+
+[source,kotlin]
+----
+import org.fugerit.java.doc.base.kotlin.dsl.dslDoc
+
+dslDoc {
+    meta {
+        info( "DSL Kotlin Sample" ).name( "doc-title" )
+        info( "10;10;10;30" ).name( "margins" )
+        info( "fugerit79" ).name( "dock-author" )
+        info( "en" ).name( "doc-language" )
+        info( "data-table=print" ).name( "excel-table-id" )
+    }
+    body {
+        table {
+            row {
+                cell { para( "Name" ) }.align( "center" )
+                cell { para( "Surname" ) }.align( "center" )
+                cell { para( "Title" ) }.align( "center" )
+            }.header( true )
+            attListMap( data, "userList" ).forEach( { e -> row {
+                cell { para( attStr( e, "name" ) ) }
+                cell { para( attStr( e, "surname" ) ) }
+                cell { para( attStr( e, "title" ) ) }
+            } } )
+        }.width( 100 ).columns( 3 ).colwidths( "30;30;40" ).id( "data-table" ).padding( 2 )
+    }
+}
+----
+
+Then we should create the FreemarkerDocProcessConfig configuration (or modify existing one) inside our resources folder *config/freemarker-doc-process.xml* :
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" >
+
+	<docHandlerConfig registerById="true">
+		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+	</docHandlerConfig>
+
+	<docChain id="kotlin-01">
+		<chainStep stepType="kotlin" kts-path="kts/kotlin-01.kts"/>
+	</docChain>
+
+</freemarker-doc-process-config>
+----
+
+NOTE: stepType _kotlin_ is standalone and it does not freemarker configuration step.
+
+NOTE: stepType _kotlin_ uses attribute _kts-path_, which resolve the path in the class loader.
+
+Then we can create and use our configuration :
+
+[source,java]
+----
+FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://config/freemarker-doc-process.xml" );
+List<UserModel> userList = new ArrayList<>();
+userList.add( new UserModel( "Queen" , "Luthien", "Tinuviel" ) );
+userList.add( new UserModel( "King" , "Thorin", "Oakshield" ) );
+userList.add( new UserModel( "Strider" , "Aragorn II", null ) );
+DocProcessContext context = DocProcessContext.newContext( "list", userList );
+try ( FileOutputStream os = FileOutputStream( ... ) ) {
+    config.fullProcess( "kotlin-01", context, DocConfig.TYPE_MD, os );
+}
+----
+
+The result should be something like :
+
+[source,md]
+----
+| Name | Surname | Title  |
+|---------------|---------------|---------------|
+| Luthien | Tinuviel | Queen  |
+| Thorin | Oakshield | King  |
+| Aragorn II | null | Strider  |
+----

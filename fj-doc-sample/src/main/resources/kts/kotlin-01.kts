@@ -3,6 +3,10 @@ import org.fugerit.java.doc.base.kotlin.dsl.dslDoc
 dslDoc {
     meta {
         info( "DSL Kotlin Sample" ).name( "doc-title" )
+        info( "10;10;10;30" ).name( "margins" )
+        info( "fugerit79" ).name( "dock-author" )
+        info( "en" ).name( "doc-language" )
+        info( "data-table=print" ).name( "excel-table-id" )
     }
     body {
         table {
