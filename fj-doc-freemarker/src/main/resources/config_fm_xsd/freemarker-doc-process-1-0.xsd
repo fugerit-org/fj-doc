@@ -169,8 +169,8 @@
 		<xsd:attribute name="stepType" type="xsd:string" use="required">
 			<xsd:annotation>
 				<xsd:documentation>Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex',</xsd:documentation>
-				<xsd:documentation>'skipfm' (skip FreeMarkerProcessing)</xsd:documentation>
-				<xsd:documentation>'kotlin' (skip FreeMarkerProcessing, and use kotlin script, kts-path must be set, dataModel map can still be used and will be bound to the script)</xsd:documentation>
+				<xsd:documentation>'skipfm' (skip FreeMarkerProcessing, since 8.9.7)</xsd:documentation>
+				<xsd:documentation>'kotlin' (skip FreeMarkerProcessing, since 8.10.0, use kotlin script, kts-path must be set, dataModel map can still be used and will be bound to the script)</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
 		<xsd:attribute name="map-atts" type="xsd:string" use="optional">

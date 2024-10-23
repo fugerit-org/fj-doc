@@ -127,6 +127,10 @@ And one or more document process step :
 | org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerSkipProcessStep
 | When using this step, freemarker apply template will be skipped. (Since _8.9.7_)
 
+| kotlin
+| org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerKotlinStep
+| When using this step, freemarker apply template will be skipped. It uses kotlin script, kts-path must be set, dataModel map can still be used and will be bound to the script (Since _8.10.0_)
+
 |========================================================================================================================================
 
 NOTE:  Additional step can be added setting the fully qualified class name in the type attribute.

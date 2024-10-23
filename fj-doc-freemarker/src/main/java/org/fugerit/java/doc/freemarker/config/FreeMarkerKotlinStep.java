@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
-import org.fugerit.java.core.lang.helpers.reflect.MethodHelper;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.parser.DocEvalWithDataModel;
 import org.fugerit.java.doc.base.parser.DocParser;
@@ -13,9 +12,14 @@ import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.base.process.DocProcessorBasic;
 
 import java.io.InputStreamReader;
-import java.io.Reader;
+
 import java.util.Map;
 
+/**
+ * When using this step, freemarker apply template will be skipped. It uses kotlin script, kts-path must be set, dataModel map can still be used and will be bound to the script
+ *
+ * @since 8.10.0
+ */
 @Slf4j
 public class FreeMarkerKotlinStep extends DocProcessorBasic {
 
