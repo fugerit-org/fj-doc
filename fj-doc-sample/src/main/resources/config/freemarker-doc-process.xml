@@ -141,6 +141,10 @@
 	
 	<docChain id="pdf_a_test" parent="shared">
 		<chainStep stepType="complex" template-path="pdf_a_test.ftl"/>
-	</docChain>	
+	</docChain>
+
+	<docChain id="kotlin-01" parent="shared">
+		<chainStep stepType="kotlin" kts-path="kts/kotlin-01.kts"/>
+	</docChain>
 
 </freemarker-doc-process-config>
