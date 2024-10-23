@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Pl represents the pl element.
+ *
+ * This class will provide function to handle all pl attributes and kids 
+ */
 class Pl : HelperDSL.TagWithText( "pl" ) {
     /**
      * Creates a new default Phrase instance.

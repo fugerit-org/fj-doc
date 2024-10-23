@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Body represents the body element.
+ *
+ * This class will provide function to handle all body attributes and kids 
+ */
 class Body : HelperDSL.TagWithText( "body" ) {
     /**
      * Creates a new default Para instance.

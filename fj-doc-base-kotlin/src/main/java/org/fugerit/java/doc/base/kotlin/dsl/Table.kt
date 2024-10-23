@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Table represents the table element.
+ *
+ * This class will provide function to handle all table attributes and kids 
+ */
 class Table : HelperDSL.TagWithText( "table" ) {
     /**
      * Creates a new default Row instance.

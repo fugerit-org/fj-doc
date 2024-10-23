@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Bookmark represents the bookmark element.
+ *
+ * This class will provide function to handle all bookmark attributes and kids 
+ */
 class Bookmark( text: String = "" ) : HelperDSL.TagWithText( "bookmark" ) {
 
    init { setText(text) }

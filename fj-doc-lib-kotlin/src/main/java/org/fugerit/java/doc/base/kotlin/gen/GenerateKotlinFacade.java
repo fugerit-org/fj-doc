@@ -183,8 +183,13 @@ public class GenerateKotlinFacade {
                 handleRoot( config, element );
                 textInit = config.getProperty( GenerateKotlinConfig.CONFIG_ROOT_INIT, textInit );
             }
+            String classDocumentaton = "/**\n" +
+                    " * "+kotlinClass+" represents the "+element.getName()+" element.\n" +
+                    " *\n" +
+                    " * This class will provide function to handle all "+element.getName()+" attributes and kids \n" +
+                    " */\n";
             String content = PACKAGE+config.getProperty( GenerateKotlinConfig.CONFIG_PACKAGE )+ENDLINE +
-                    ENDLINE +
+                    ENDLINE + classDocumentaton +
                     "class "+kotlinClass+textConstructor+" : HelperDSL.TagWithText( \""+element.getName()+"\" ) {\n" +
                     textInit +
                     handleElementFun( config, element, isTextElement ) + ENDLINE +

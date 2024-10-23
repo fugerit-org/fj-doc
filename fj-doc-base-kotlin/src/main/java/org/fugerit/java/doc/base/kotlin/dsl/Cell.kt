@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Cell represents the cell element.
+ *
+ * This class will provide function to handle all cell attributes and kids 
+ */
 class Cell : HelperDSL.TagWithText( "cell" ) {
     /**
      * Creates a new default Para instance.

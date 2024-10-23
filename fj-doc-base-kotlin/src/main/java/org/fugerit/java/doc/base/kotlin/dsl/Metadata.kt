@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Metadata represents the metadata element.
+ *
+ * This class will provide function to handle all metadata attributes and kids 
+ */
 class Metadata : HelperDSL.TagWithText( "metadata" ) {
     /**
      * Creates a new default Info instance.

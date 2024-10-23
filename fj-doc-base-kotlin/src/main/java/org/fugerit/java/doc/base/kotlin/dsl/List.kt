@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * List represents the list element.
+ *
+ * This class will provide function to handle all list attributes and kids 
+ */
 class List : HelperDSL.TagWithText( "list" ) {
     /**
      * Creates a new default Li instance.

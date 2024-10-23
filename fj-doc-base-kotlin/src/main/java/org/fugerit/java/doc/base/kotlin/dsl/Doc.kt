@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Doc represents the doc element.
+ *
+ * This class will provide function to handle all doc attributes and kids 
+ */
 class Doc : HelperDSL.TagWithText( "doc" ) {
 	init {
 		att( "xmlns", "http://javacoredoc.fugerit.org" )

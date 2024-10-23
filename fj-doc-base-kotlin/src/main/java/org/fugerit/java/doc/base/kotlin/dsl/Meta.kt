@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Meta represents the meta element.
+ *
+ * This class will provide function to handle all meta attributes and kids 
+ */
 class Meta : HelperDSL.TagWithText( "meta" ) {
     /**
      * Creates a new default Info instance.

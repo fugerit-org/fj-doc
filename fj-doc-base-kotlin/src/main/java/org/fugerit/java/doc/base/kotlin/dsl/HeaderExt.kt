@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * HeaderExt represents the header-ext element.
+ *
+ * This class will provide function to handle all header-ext attributes and kids 
+ */
 class HeaderExt : HelperDSL.TagWithText( "header-ext" ) {
     /**
      * Creates a new default Para instance.

@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Phrase represents the phrase element.
+ *
+ * This class will provide function to handle all phrase attributes and kids 
+ */
 class Phrase( text: String = "" ) : HelperDSL.TagWithText( "phrase" ) {
 
    init { setText(text) }

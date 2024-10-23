@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Header represents the header element.
+ *
+ * This class will provide function to handle all header attributes and kids 
+ */
 class Header : HelperDSL.TagWithText( "header" ) {
     /**
      * Creates a new default Para instance.

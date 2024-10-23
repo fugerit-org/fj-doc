@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * FooterExt represents the footer-ext element.
+ *
+ * This class will provide function to handle all footer-ext attributes and kids 
+ */
 class FooterExt : HelperDSL.TagWithText( "footer-ext" ) {
     /**
      * Creates a new default Para instance.

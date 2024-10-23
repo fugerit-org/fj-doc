@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Info represents the info element.
+ *
+ * This class will provide function to handle all info attributes and kids 
+ */
 class Info( text: String = "" ) : HelperDSL.TagWithText( "info" ) {
 
    init { setText(text) }

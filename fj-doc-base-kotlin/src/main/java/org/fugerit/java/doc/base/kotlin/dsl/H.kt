@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * H represents the h element.
+ *
+ * This class will provide function to handle all h attributes and kids 
+ */
 class H( text: String = "" ) : HelperDSL.TagWithText( "h" ) {
 
    init { setText(text) }

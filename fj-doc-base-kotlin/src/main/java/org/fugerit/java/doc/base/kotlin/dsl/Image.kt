@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Image represents the image element.
+ *
+ * This class will provide function to handle all image attributes and kids 
+ */
 class Image : HelperDSL.TagWithText( "image" ) {
 
     /**

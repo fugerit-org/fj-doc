@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Barcode represents the barcode element.
+ *
+ * This class will provide function to handle all barcode attributes and kids 
+ */
 class Barcode : HelperDSL.TagWithText( "barcode" ) {
 
     /**

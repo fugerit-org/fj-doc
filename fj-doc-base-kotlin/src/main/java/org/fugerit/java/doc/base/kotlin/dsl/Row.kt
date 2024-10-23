@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Row represents the row element.
+ *
+ * This class will provide function to handle all row attributes and kids 
+ */
 class Row : HelperDSL.TagWithText( "row" ) {
     /**
      * Creates a new default Cell instance.

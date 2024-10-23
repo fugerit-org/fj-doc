@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Footer represents the footer element.
+ *
+ * This class will provide function to handle all footer attributes and kids 
+ */
 class Footer : HelperDSL.TagWithText( "footer" ) {
     /**
      * Creates a new default Para instance.

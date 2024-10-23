@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Nbsp represents the nbsp element.
+ *
+ * This class will provide function to handle all nbsp attributes and kids 
+ */
 class Nbsp : HelperDSL.TagWithText( "nbsp" ) {
 
     /**

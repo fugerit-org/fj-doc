@@ -1,5 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
+/**
+ * Para represents the para element.
+ *
+ * This class will provide function to handle all para attributes and kids 
+ */
 class Para( text: String = "" ) : HelperDSL.TagWithText( "para" ) {
 
    init { setText(text) }
