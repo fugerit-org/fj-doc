@@ -66,6 +66,12 @@ public class FreemarkerDocProcessConfigFacade {
 	public static final String STEP_TYPE_SKIPFM = "skipfm";
 
 	/**
+	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerKotlinProcessStep
+	 */
+	public static final String STEP_TYPE_KOTLIN = "kotlin";
+
+
+	/**
 	 * Corresponding to type : org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep
 	 */
 	public static final String STEP_TYPE_MAP = "map";
@@ -294,6 +300,7 @@ public class FreemarkerDocProcessConfigFacade {
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_COMPLEX , FreeMarkerComplexProcessStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_SKIPFM , FreeMarkerSkipProcessStep.class.getName() );
 		BUILT_IN_STEPS.setProperty( STEP_TYPE_MAP , FreeMarkerMapStep.class.getName() );
+		BUILT_IN_STEPS.setProperty( STEP_TYPE_KOTLIN , FreeMarkerKotlinStep.class.getName() );
 		BUILT_IN_STEPS.keySet().stream().forEach( k -> BUILT_IN_STEPS_REVERSE.put( BUILT_IN_STEPS.get( k ) , k ) );
 	}
 	public static Properties getBuiltInStepsReverse() {

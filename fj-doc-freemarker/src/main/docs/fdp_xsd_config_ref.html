@@ -439,7 +439,7 @@
 		<span >sourceType</span>
 				</td>
 				<td id="cell_2_1"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
-		<span >The source type : xml (default), json or yaml. (since 8.9.6)</span>
+		<span >The source type : xml (default), json, yaml or kotlin. (since 8.9.6)</span>
 				</td>
 				<td id="cell_2_2"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
 		<span >sourceType , base : string , enumeration : [ xml , json , yaml ]</span>
@@ -479,7 +479,7 @@
 		<span >stepType</span>
 				</td>
 				<td id="cell_0_1"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
-		<span >Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex', 'skipfm' (skip FreeMarkerProcessing)</span>
+		<span >Can be a java type value implementing DocProcessorBasic or a fixed value for 'config', 'map', 'function', 'complex', 'skipfm' (skip FreeMarkerProcessing, since 8.9.7) 'kotlin' (skip FreeMarkerProcessing, since 8.10.0, use kotlin script, kts-path must be set, dataModel map can still be used and will be bound to the script)</span>
 				</td>
 				<td id="cell_0_2"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
 		<span >string</span>
@@ -512,9 +512,20 @@
 		<span >template-path</span>
 				</td>
 				<td id="cell_3_1"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
-		<span >Free marker template path</span>
+		<span >Free marker template path (relative to template base path provided in 'config' step).</span>
 				</td>
 				<td id="cell_3_2"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
+		<span >string</span>
+				</td>
+		</tr>				
+		<tr>
+				<td id="cell_4_0"  style=" width: 20%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
+		<span >kts-path</span>
+				</td>
+				<td id="cell_4_1"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
+		<span >Kotlin script (KTS) path in classpath (FreeMarker template base is ignored). (in 'kotlin' step it is possible to use 'template-path' as an alias for this attribute).</span>
+				</td>
+				<td id="cell_4_2"  style=" width: 40%; border-top: 1px solid black; border-bottom: 1px solid black; border-left: 1px solid black; border-right: 1px solid black; padding: 2px;">
 		<span >string</span>
 				</td>
 		</tr>				

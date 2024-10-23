@@ -29,11 +29,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           sonar-token: ${{ secrets.SONAR_TOKEN }}
-          snyk-token: ${{ secrets.SNYK_TOKEN }}
-          snyk-image: fj-doc-playground-quarkus
-          snyk-args: --file=fj-doc-playground-quarkus/Dockerfile
-          snyk-dockercontext: fj-doc-playground-quarkus
-          snyk-dockertag: fj-doc-playground-quarkus
+          #snyk-token: ${{ secrets.SNYK_TOKEN }}
+          #snyk-image: fj-doc-playground-quarkus
+          #snyk-args: --file=fj-doc-playground-quarkus/Dockerfile
+          #snyk-dockercontext: fj-doc-playground-quarkus
+          #snyk-dockertag: fj-doc-playground-quarkus
           maven-additional-profiles: ',buildreact'
           disable-maven-dependency-submission: ${{ vars.DISABLE_MAVEN_DEPENDENCY_SUBMISSION }}
           disable-upload-sarif: ${{ vars.DISABLE_UPLOAD_SARIF }}

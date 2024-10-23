@@ -1,22 +1,23 @@
 [#doc-format-entry-point-kotlin]
 === Kotlin Source Format (Experimental)
 
-
 Supported is provided by the base module dependency.
 
 [source,xml]
 ----
 <dependency>
     <groupId>org.fugerit.java</groupId>
-    <artifactId>fj-doc-ext-kotlin</artifactId>
-    <version>${fj-doc-ext-kotlin-version}</version>
+    <artifactId>fj-doc-base-kotlin</artifactId>
+    <version>${fj-doc-version}</version>
 </dependency>
 ----
 
-NOTE: At the moment kotlin (KTS) support is still experimental. The link:https://github.com/fugerit-org/fj-doc-ext-kotlin[Kotlin extension] is maintained on a separate repository.
+NOTE: At the moment kotlin (KTS) support is still experimental.
+
+NOTE: When adding this extension, all the kotlin runtime must be included too.
 
 Kotlin source is based on a custom DSL (Domain Specific Language).
-The link:https://github.com/fugerit-org/fj-doc-ext-kotlin/blob/main/src/main/java/org/fugerit/java/doc/base/kotlin/dsl/dslDoc.kt[Fugerit Doc Kotlin DSL] is basically a mapping of the xsd.
+The link:https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base-kotlin/src/main/java/org/fugerit/java/doc/base/kotlin/dsl/dslDoc.kt[Fugerit Doc Kotlin DSL] is basically a mapping of the xsd.
 
 Here is a sample kotlin source document :
 
@@ -56,3 +57,20 @@ dslDoc {
     }
 }
 ----
+
+==== DocKotlinParser
+
+The _DocKotlinParser_ provides a utility to eval the kotlin script with data model :
+
+[source,java]
+----
+try ( Reader ktsReader = ... ) {
+    Map<String,Object> dataModel = ...
+    String xml = DocKotlinParser.dslDocToXml( ktsReader, dataModel );
+}
+----
+And when using link:https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/src/main/java/org/fugerit/java/doc/base/facade/DocFacadeSource.java[DocFacadeSource] it is available with the source type _SOURCE_TYPE_KOTLIN_ (value:9).
+
+==== FreeMarkerKotlinStep
+
+A new _FreeMarkerKotlinStep_ is also available inside the link:#doc-freemarker-config[FreemarkerDocProcessConfig]

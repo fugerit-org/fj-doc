@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-freemarker] new step type 'kotlin' <https://github.com/fugerit-org/fj-doc/issues/222>
+- [fj-doc-base-kotlin] support to use kotlin script (KTS) as source <https://github.com/fugerit-org/fj-doc/issues/222>
+- [fj-doc-lib-kotlin] kotlin utilities <https://github.com/fugerit-org/fj-doc/issues/222>
+
 ## [8.9.7] - 2024-10-20
 
 ### Added
@@ -917,7 +923,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - fj-bom version set to 1.3.1
-- Added build metadata to artifacts (https://github.com/fugerit-org/fj-bom/issues/2) (#54)
+- Added build metadata to artifacts <https://github.com/fugerit-org/fj-bom/issues/2> (#54)
 - Sonar Cloud Maven Build set to use maven profile sonarfugerit and github environmental variable for sonarKey (#54)
 - New changelog style based on : <https://github.com/olivierlacan/keep-a-changelog> (#53)
 - some link in the README.md

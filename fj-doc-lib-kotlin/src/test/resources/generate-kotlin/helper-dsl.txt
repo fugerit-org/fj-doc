@@ -1,0 +1,144 @@
+
+import org.fugerit.java.core.cfg.ConfigRuntimeException
+import org.fugerit.java.core.log.LogFacade
+import org.fugerit.java.core.util.checkpoint.CheckpointUtils
+import org.fugerit.java.core.xml.dom.DOMIO
+import java.io.StringWriter
+
+/**
+ * Helper for this Domain Specific Language.
+ *
+ * Inspired by :
+ * https://kotlinlang.org/docs/type-safe-builders.html#scope-control-dslmarker
+ */
+class HelperDSL {
+
+    /**
+     * Base interface for a element.
+     */
+    fun interface Element {
+        /**
+         * Renders the content of the element.
+         */
+        fun render(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document)
+    }
+
+    /**
+     * Base class for a text element.
+     */
+    class TextElement(val text: String) : Element {
+        /**
+         * Renders the content of the element.
+         */
+        override fun render(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document) {
+            xmlParent.appendChild( xmlDocument.createTextNode( text ) )
+        }
+    }
+
+    @DslMarker
+    /**
+     * Base marker.
+     */
+    annotation class DocTagMarker
+
+    @DocTagMarker
+    /**
+     * Base class for a tag.
+     */
+    abstract class Tag(val name: String) : Element {
+        val children = arrayListOf<Element>()
+        val attributes = hashMapOf<String, String>()
+
+        protected fun <T : Element> initTag(tag: T, init: T.() -> Unit): T {
+            tag.init()
+            addKid( tag )
+            return tag
+        }
+
+        override fun render(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document) {
+            val xmlElement = xmlDocument.createElement( name )
+            xmlParent.appendChild( xmlElement )
+            helper(xmlElement, xmlDocument)
+        }
+
+        private fun helper(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document) {
+            attributes.forEach { a -> xmlParent.setAttribute( a.key, a.value ) }
+            children.forEach { e -> e.render(xmlParent, xmlDocument) }
+        }
+
+        protected fun <T : Element, V> setAtt( tag : T, name : String, value: V, check: (v: V) -> Boolean = {_->true} ) : T {
+            if ( check( value ) ) {
+                att( name, value.toString() )
+            } else {
+                throw ConfigRuntimeException( "Check failed for attribute, name : '$name', value : '$value'" )
+            }
+            return tag
+        }
+
+        protected fun att( name : String, value: String ) {
+            attributes.put( name, value )
+        }
+
+        protected fun addKid( element : Element ) {
+            children.add( element )
+        }
+
+        /**
+         * Retrieves a list attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
+        fun attList(data: Map<*, *>, key: String): kotlin.collections.List<*> = data[key] as kotlin.collections.List<*>
+
+        /**
+         * Retrieves a list of map attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
+        @Suppress("UNCHECKED_CAST")
+        fun attListMap(data: Map<*, *>, key: String): kotlin.collections.List<Map<*, *>> = attList( data, key ) as kotlin.collections.List<Map<*, *>>
+
+        /**
+         * Retrieves a map attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
+        fun attMap(data: Map<*, *>, key: String): kotlin.collections.Map<*, *> = data[key] as kotlin.collections.Map<*, *>
+
+        /**
+         * Retrieves a string attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
+        fun attStr(data: Map<*, *>, key: String): String = data[key].toString()
+
+EXTRA-FUN
+
+        /**
+         * Convert this dsl to xml.
+         * @return the xml as a string
+         */
+        fun toXml(): String {
+            val startTime = System.currentTimeMillis();
+            val xmlDocument = DOMIO.newSafeDocumentBuilderFactory().newDocumentBuilder().newDocument();
+            val xmlRoot = xmlDocument.createElement(name)
+            helper(xmlRoot, xmlDocument)
+            val writer = StringWriter()
+            DOMIO.writeDOMIndent( xmlRoot, writer )
+            LogFacade.getLog().debug( "toXml time : {}", CheckpointUtils.formatTimeDiffMillis( startTime, System.currentTimeMillis() ) )
+            return writer.toString()
+        }
+
+        override fun toString(): String = toXml()
+
+    }
+
+    /**
+     * Base class for a tag with text content.
+     */
+    abstract class TagWithText(name: String) : Tag(name) {
+        /**
+         * Adds add text content to the element.
+         */
+        operator fun String.unaryPlus() {
+            children.add(TextElement(this))
+        }
+    }
+
+}
