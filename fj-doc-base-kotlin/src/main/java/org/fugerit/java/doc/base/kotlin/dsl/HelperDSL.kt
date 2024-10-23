@@ -6,11 +6,12 @@ import org.fugerit.java.core.util.checkpoint.CheckpointUtils
 import org.fugerit.java.core.xml.dom.DOMIO
 import java.io.StringWriter
 
-/*
+/**
+ * Helper for this Domain Specific Language.
+ *
  * Inspired by :
  * https://kotlinlang.org/docs/type-safe-builders.html#scope-control-dslmarker
  */
-
 class HelperDSL {
 
     /**
@@ -36,6 +37,9 @@ class HelperDSL {
     }
 
     @DslMarker
+    /**
+     * Base marker.
+     */
     annotation class DocTagMarker
 
     @DocTagMarker

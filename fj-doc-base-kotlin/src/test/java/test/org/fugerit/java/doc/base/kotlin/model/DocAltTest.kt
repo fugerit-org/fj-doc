@@ -15,6 +15,9 @@ import java.io.StringReader
 import javax.script.ScriptContext
 import javax.script.ScriptEngineManager
 
+/**
+ * DocDsl testing.
+ */
 class DocAltTest : TestCase() {
 
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
