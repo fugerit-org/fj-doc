@@ -27,7 +27,7 @@ class GenerateKotlinTest {
 
     @Test
     void testGeneration() {
-        SafeFunction.apply( () -> {
+        Assertions.assertNotNull( SafeFunction.get( () -> {
             Properties props = PropsIO.loadFromClassLoader( "generate-kotlin/config.properties" );
             GenerateKotlinConfig config = new GenerateKotlinConfig(
                     props,
@@ -38,7 +38,8 @@ class GenerateKotlinTest {
             Assertions.assertNotNull( config.toCheckTypeFun( "test" ) );
             props.setProperty( "source-output-folder", "target/gen-test" );
             GenerateKotlinFacade.generate( config );
-        } );
+            return config;
+        } ) );
     }
 
     @Test

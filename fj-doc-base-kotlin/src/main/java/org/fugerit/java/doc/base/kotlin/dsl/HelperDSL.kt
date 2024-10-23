@@ -13,6 +13,9 @@ import java.io.StringWriter
 
 class HelperDSL {
 
+    /**
+     * Base interface for a element.
+     */
     fun interface Element {
         /**
          * Renders the content of the element.
@@ -20,6 +23,9 @@ class HelperDSL {
         fun render(xmlParent: org.w3c.dom.Element, xmlDocument: org.w3c.dom.Document)
     }
 
+    /**
+     * Base class for a text element.
+     */
     class TextElement(val text: String) : Element {
         /**
          * Renders the content of the element.
@@ -33,6 +39,9 @@ class HelperDSL {
     annotation class DocTagMarker
 
     @DocTagMarker
+    /**
+     * Base class for a tag.
+     */
     abstract class Tag(val name: String) : Element {
         val children = arrayListOf<Element>()
         val attributes = hashMapOf<String, String>()
@@ -160,6 +169,9 @@ class HelperDSL {
 
     }
 
+    /**
+     * Base class for a tag with text content.
+     */
     abstract class TagWithText(name: String) : Tag(name) {
         /**
          * Adds add text content to the element.
