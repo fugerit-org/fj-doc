@@ -57,11 +57,12 @@ public class GenerateKotlinConfig {
         return s.substring( 0, 1 ).toLowerCase()+s.substring( 1 );
     }
 
-    public String toCheckTypeFun( String typeName ) {
+    public String toCheckTypeFun( final String typeName ) {
+        String useTypeName = typeName;
         if ( typeName.toLowerCase().endsWith( "type" ) ) {
-            typeName = typeName.substring( 0, typeName.length()-4 );
+            useTypeName = typeName.substring( 0, typeName.length()-4 );
         }
-        String[] split = typeName.split( ":" );
+        String[] split = useTypeName.split( ":" );
         if ( split.length > 1 ) {
             return toKotlinFun( split[1] );
         } else {
