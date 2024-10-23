@@ -7,6 +7,10 @@ class Info( text: String = "" ) : HelperDSL.TagWithText( "info" ) {
    fun setText( value: String ) { addKid( HelperDSL.TextElement( value ) ) }
 
 
+    /**
+     * Function handling name attribute of the Info with generic check on type.
+     * @return the value for the name attribute.
+     */
    fun name( value: String ): Info = setAtt( this, "name", value )
 
 }

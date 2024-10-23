@@ -150,8 +150,16 @@ public class GenerateKotlinFacade {
                 }
                 String extraFun = "protected fun <T : Element> "+checkFunName+"Type( tag : T, name : String, v: "+typeFun+") : T = setAtt( tag, name, v"+checkFunRef+" ) ";
                 config.getExtraFun().add( extraFun );
+                builder.append( "    /**\n" +
+                        "     * Function handling "+kotlinkFun+" attribute of the "+kotlinClassElement+" with specific check on type.\n" +
+                        "     * @return the value for the "+kotlinkFun+" attribute.\n" +
+                        "     */\n" );
                 builder.append( FUN+kotlinkFun+"( value: "+typeFun+" ): "+kotlinClassElement+" = "+checkFunName+"Type( this, \""+a.getRawName()+"\", value )\n" );
             } else {
+                builder.append( "    /**\n" +
+                        "     * Function handling "+kotlinkFun+" attribute of the "+kotlinClassElement+" with generic check on type.\n" +
+                        "     * @return the value for the "+kotlinkFun+" attribute.\n" +
+                        "     */\n" );
                 builder.append( FUN+kotlinkFun+"( value: "+typeFun+" ): "+kotlinClassElement+" = setAtt( this, \""+a.getRawName()+"\", value )"+checkFun+ENDLINE );
             }
         } );

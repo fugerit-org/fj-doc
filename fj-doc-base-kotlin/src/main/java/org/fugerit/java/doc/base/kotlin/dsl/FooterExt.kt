@@ -44,9 +44,25 @@ class FooterExt : HelperDSL.TagWithText( "footer-ext" ) {
        return initTag(H(text), init);
    }
 
+    /**
+     * Function handling align attribute of the FooterExt with specific check on type.
+     * @return the value for the align attribute.
+     */
    fun align( value: String ): FooterExt = alignType( this, "align", value )
+    /**
+     * Function handling numbered attribute of the FooterExt with generic check on type.
+     * @return the value for the numbered attribute.
+     */
    fun numbered( value: Boolean ): FooterExt = setAtt( this, "numbered", value )
+    /**
+     * Function handling borderWidth attribute of the FooterExt with specific check on type.
+     * @return the value for the borderWidth attribute.
+     */
    fun borderWidth( value: Int ): FooterExt = borderWidthType( this, "border-width", value )
+    /**
+     * Function handling expectedSize attribute of the FooterExt with generic check on type.
+     * @return the value for the expectedSize attribute.
+     */
    fun expectedSize( value: Int ): FooterExt = setAtt( this, "expected-size", value )
 
 }

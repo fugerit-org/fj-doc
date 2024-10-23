@@ -30,6 +30,10 @@ class Li : HelperDSL.TagWithText( "li" ) {
        return initTag(Pl(), init);
    }
 
+    /**
+     * Function handling id attribute of the Li with specific check on type.
+     * @return the value for the id attribute.
+     */
    fun id( value: String ): Li = idType( this, "id", value )
 
 }

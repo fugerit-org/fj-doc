@@ -30,9 +30,25 @@ class Footer : HelperDSL.TagWithText( "footer" ) {
        return initTag(H(text), init);
    }
 
+    /**
+     * Function handling align attribute of the Footer with specific check on type.
+     * @return the value for the align attribute.
+     */
    fun align( value: String ): Footer = alignType( this, "align", value )
+    /**
+     * Function handling numbered attribute of the Footer with generic check on type.
+     * @return the value for the numbered attribute.
+     */
    fun numbered( value: Boolean ): Footer = setAtt( this, "numbered", value )
+    /**
+     * Function handling borderWidth attribute of the Footer with specific check on type.
+     * @return the value for the borderWidth attribute.
+     */
    fun borderWidth( value: Int ): Footer = borderWidthType( this, "border-width", value )
+    /**
+     * Function handling expectedSize attribute of the Footer with generic check on type.
+     * @return the value for the expectedSize attribute.
+     */
    fun expectedSize( value: Int ): Footer = setAtt( this, "expected-size", value )
 
 }
