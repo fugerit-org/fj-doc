@@ -65,13 +65,29 @@ class HelperDSL {
             children.add( element )
         }
 
+        /**
+         * Retrieves a list attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
         fun attList(data: Map<*, *>, key: String): kotlin.collections.List<*> = data[key] as kotlin.collections.List<*>
 
+        /**
+         * Retrieves a list of map attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
         @Suppress("UNCHECKED_CAST")
         fun attListMap(data: Map<*, *>, key: String): kotlin.collections.List<Map<*, *>> = attList( data, key ) as kotlin.collections.List<Map<*, *>>
 
+        /**
+         * Retrieves a map attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
         fun attMap(data: Map<*, *>, key: String): kotlin.collections.Map<*, *> = data[key] as kotlin.collections.Map<*, *>
 
+        /**
+         * Retrieves a string attribute with a given [key] from a [data] map.
+         * @return the attribute value
+         */
         fun attStr(data: Map<*, *>, key: String): String = data[key].toString()
 
 		private var checkFun0 : (v: String) -> Boolean =  { v -> setOf( "center", "right", "left", "justify", "justifyall" ).contains( v ) }
@@ -119,6 +135,10 @@ class HelperDSL {
 		protected fun <T : Element> headLevelType( tag : T, name : String, v: Int) : T = setAtt( tag, name, v, checkFun16 ) 
 
 
+        /**
+         * Convert this dsl to xml.
+         * @return the xml as a string
+         */
         fun toXml(): String {
             val startTime = System.currentTimeMillis();
             val xmlDocument = DOMIO.newSafeDocumentBuilderFactory().newDocumentBuilder().newDocument();
