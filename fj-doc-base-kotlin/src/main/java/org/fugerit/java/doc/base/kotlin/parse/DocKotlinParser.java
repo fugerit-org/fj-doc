@@ -34,7 +34,11 @@ public class DocKotlinParser extends AbstractDocParser implements DocEvalWithDat
         this.docXmlParser = new DocXmlParser();
     }
 
-    private static EvalScript evalScript = new EvalScriptWithJsonDataModel( "kts" );
+    /*
+     * This will create an eval script utility.
+     * The data model will be transformed to a json model with default name 'data'.
+     */
+    private static EvalScript evalScript = EvalScriptWithJsonDataModel.newEvalScriptWithJsonDataModel( "kts" );
 
     @Override
     public String evalWithDataModel(Reader reader, Map<String, Object> dataModel) {
@@ -42,7 +46,7 @@ public class DocKotlinParser extends AbstractDocParser implements DocEvalWithDat
     }
 
     public static String dslDocToXml(Reader reader, Map<String, Object> dataModel ) {
-        Object res = evalScript.evalKts( reader, dataModel );
+        Object res = evalScript.handle( reader, dataModel );
         String xml = res.toString();
         log.debug( "evalWithDataModel xml content : \n{}", xml );
         return xml;

@@ -36,6 +36,8 @@ import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.script.helper.EvalScript;
+import org.fugerit.java.script.helper.EvalScriptWithDataModel;
 
 import javax.script.Bindings;
 import javax.script.ScriptContext;
@@ -49,6 +51,8 @@ public class GenerateFacade {
 	private static final String FTL_DIRECTIVE = "<#ftl";
 
 	private static final ObjectMapper MAPPER = new ObjectMapper();
+
+	private static final EvalScript EVAL_SCRIPT = new EvalScriptWithDataModel( "kts" );	// no need for data model json transformation
 
 	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
 		SafeFunction.apply( () -> {
@@ -127,7 +131,7 @@ public class GenerateFacade {
 			try ( StringReader jsonReader = new StringReader(ktsJsonData) ) {
 				LinkedHashMap<String, Object> data = MAPPER.readValue( jsonReader, LinkedHashMap.class );
 				log.info( "kts read json data : {}", checkpoint.getFormatTimeDiffMillis() );
-				String xml = DocKotlinParser.dslDocToXml( reader, data );
+				String xml = EVAL_SCRIPT.handle( reader, data ).toString();
 				log.info( "kts eval with DocKotlinParser : {}", checkpoint.getFormatTimeDiffMillis() );
 				try ( StringReader xmlReader = new StringReader( xml) ) {
 					this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
