@@ -6,12 +6,24 @@ class H( text: String = "" ) : HelperDSL.TagWithText( "h" ) {
 
    fun setText( value: String ) { addKid( HelperDSL.TextElement( value ) ) }
 
+    /**
+     * Creates a new default Phrase instance.
+     * @return the new instance.
+     */
    fun phrase( text: String = "", init: Phrase.() -> Unit = {} ): Phrase {
        return initTag(Phrase(text), init);
    }
+    /**
+     * Creates a new default Para instance.
+     * @return the new instance.
+     */
    fun para( text: String = "", init: Para.() -> Unit = {} ): Para {
        return initTag(Para(text), init);
    }
+    /**
+     * Creates a new default H instance.
+     * @return the new instance.
+     */
    fun h( text: String = "", init: H.() -> Unit = {} ): H {
        return initTag(H(text), init);
    }

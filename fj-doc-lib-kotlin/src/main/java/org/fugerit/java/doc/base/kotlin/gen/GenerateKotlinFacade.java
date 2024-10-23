@@ -89,6 +89,10 @@ public class GenerateKotlinFacade {
             String kotlinClass = config.toKotlinClass( e.getRawName() );
             String kotlinFun = config.toKotlinFun( e.getRawName() );
             String textConstructor = isTextElementSub ? " text: String = \"\"," : "";
+            builder.append( "    /**\n" +
+                    "     * Creates a new default "+kotlinClass+" instance.\n" +
+                    "     * @return the new instance.\n" +
+                    "     */\n" );
             builder.append( FUN+kotlinFun+"("+textConstructor+" init: "+kotlinClass+".() -> Unit = {} ): "+kotlinClass+" {\n" );
             builder.append( "       return initTag("+kotlinClass+"(" +(isTextElementSub ? "text" : "")+ "), init);\n" );
             builder.append( "   }\n" );

@@ -1,27 +1,59 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
 class Cell : HelperDSL.TagWithText( "cell" ) {
+    /**
+     * Creates a new default Para instance.
+     * @return the new instance.
+     */
    fun para( text: String = "", init: Para.() -> Unit = {} ): Para {
        return initTag(Para(text), init);
    }
+    /**
+     * Creates a new default Table instance.
+     * @return the new instance.
+     */
    fun table( init: Table.() -> Unit = {} ): Table {
        return initTag(Table(), init);
    }
+    /**
+     * Creates a new default Image instance.
+     * @return the new instance.
+     */
    fun image( init: Image.() -> Unit = {} ): Image {
        return initTag(Image(), init);
    }
+    /**
+     * Creates a new default Phrase instance.
+     * @return the new instance.
+     */
    fun phrase( text: String = "", init: Phrase.() -> Unit = {} ): Phrase {
        return initTag(Phrase(text), init);
    }
+    /**
+     * Creates a new default Nbsp instance.
+     * @return the new instance.
+     */
    fun nbsp( init: Nbsp.() -> Unit = {} ): Nbsp {
        return initTag(Nbsp(), init);
    }
+    /**
+     * Creates a new default Br instance.
+     * @return the new instance.
+     */
    fun br( init: Br.() -> Unit = {} ): Br {
        return initTag(Br(), init);
    }
+    /**
+     * Creates a new default Barcode instance.
+     * @return the new instance.
+     */
    fun barcode( init: Barcode.() -> Unit = {} ): Barcode {
        return initTag(Barcode(), init);
    }
+    /**
+     * Creates a new default H instance.
+     * @return the new instance.
+     */
    fun h( text: String = "", init: H.() -> Unit = {} ): H {
        return initTag(H(text), init);
    }

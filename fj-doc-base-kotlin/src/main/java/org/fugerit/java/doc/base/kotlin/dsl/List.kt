@@ -1,6 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
 class List : HelperDSL.TagWithText( "list" ) {
+    /**
+     * Creates a new default Li instance.
+     * @return the new instance.
+     */
    fun li( init: Li.() -> Unit = {} ): Li {
        return initTag(Li(), init);
    }

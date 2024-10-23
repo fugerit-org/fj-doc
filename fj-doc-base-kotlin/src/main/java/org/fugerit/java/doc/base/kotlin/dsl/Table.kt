@@ -1,6 +1,10 @@
 package org.fugerit.java.doc.base.kotlin.dsl
 
 class Table : HelperDSL.TagWithText( "table" ) {
+    /**
+     * Creates a new default Row instance.
+     * @return the new instance.
+     */
    fun row( init: Row.() -> Unit = {} ): Row {
        return initTag(Row(), init);
    }
