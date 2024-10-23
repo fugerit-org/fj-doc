@@ -17,6 +17,7 @@ import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.base.kotlin.parse.DocKotlinParser;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
 import org.fugerit.java.doc.freemarker.fun.SimpleMessageFun;
@@ -45,8 +46,9 @@ import javax.script.ScriptEngineManager;
 @ApplicationScoped
 public class GenerateFacade {
 
-
 	private static final String FTL_DIRECTIVE = "<#ftl";
+
+	private static final ObjectMapper MAPPER = new ObjectMapper();
 
 	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
 		SafeFunction.apply( () -> {
@@ -97,9 +99,8 @@ public class GenerateFacade {
 			String chainId = "current_"+System.currentTimeMillis();
 			Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
 			log.info( "ftlx create configuration : {}", checkpoint.getFormatTimeDiffMillis() );
-			ObjectMapper mapper = new ObjectMapper();
 			try ( StringReader jsonReader = new StringReader(freemarkerJsonData) ) {
-				JsonNode node = mapper.readTree( jsonReader ); // parse json node to sanitize input
+				JsonNode node = MAPPER.readTree( jsonReader ); // parse json node to sanitize input
 				log.info( "read json : {}", checkpoint.getFormatTimeDiffMillis() );
 				this.handleConfiguration(configuration, node, StreamIO.readString( reader ), chainId );
 				log.info( "ftlx handle configuration : {}", checkpoint.getFormatTimeDiffMillis() );
@@ -123,23 +124,11 @@ public class GenerateFacade {
 	private void handleKts( DocTypeHandler handler, String type, Reader reader, ByteArrayOutputStream baos, String ktsJsonData ) {
 		SafeFunction.apply( () -> {
 			SimpleCheckpoint checkpoint = new SimpleCheckpoint();
-			ScriptEngineManager manager = new ScriptEngineManager();
-			log.info( "kts create script manager : {}", checkpoint.getFormatTimeDiffMillis() );
-			ScriptEngine engine =  manager.getEngineByExtension( "kts" );
-			log.info( "kts create script engine : {}", checkpoint.getFormatTimeDiffMillis() );
-			Bindings bindings = engine.createBindings();
-			log.info( "kts create script bindings : {}", checkpoint.getFormatTimeDiffMillis() );
-			ObjectMapper mapper = new ObjectMapper();
 			try ( StringReader jsonReader = new StringReader(ktsJsonData) ) {
-				LinkedHashMap<String, Object> data = mapper.readValue( jsonReader, LinkedHashMap.class );
+				LinkedHashMap<String, Object> data = MAPPER.readValue( jsonReader, LinkedHashMap.class );
 				log.info( "kts read json data : {}", checkpoint.getFormatTimeDiffMillis() );
-				bindings.put( "data", data );
-				engine.setBindings( bindings, ScriptContext.ENGINE_SCOPE );
-				log.info( "kts set bindings : {}", checkpoint.getFormatTimeDiffMillis() );
-				Object obj = engine.eval( StreamIO.readString( reader ) );
-				log.info( "kts eval script : {}", checkpoint.getFormatTimeDiffMillis() );
-				String xml = obj.toString();
-				log.info( "kts toXml : {}", checkpoint.getFormatTimeDiffMillis() );
+				String xml = DocKotlinParser.dslDocToXml( reader, data );
+				log.info( "kts eval with DocKotlinParser : {}", checkpoint.getFormatTimeDiffMillis() );
 				try ( StringReader xmlReader = new StringReader( xml) ) {
 					this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
 					log.info( "kts render document : {}", checkpoint.getFormatTimeDiffMillis() );
