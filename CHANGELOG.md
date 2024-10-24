@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed 
 
-- [fj-doc-playground-quarkus] quarkus.rest.path in stead of quarkus.resteasy-reactive.path in REST reactive environment https://github.com/quarkusio/quarkus/issues/35794
+- [fj-doc-playground-quarkus] quarkus.rest.path in stead of quarkus.resteasy-reactive.path in REST reactive environment <https://github.com/quarkusio/quarkus/issues/35794>
 
 ## [8.10.1] - 2024-10-23
 
