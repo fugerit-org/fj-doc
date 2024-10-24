@@ -1,7 +1,6 @@
 package test.org.fugerit.java.doc.sample.facade;
 
 import org.fugerit.java.doc.base.config.DocConfig;
-import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.junit.Assert;
 import org.junit.Test;

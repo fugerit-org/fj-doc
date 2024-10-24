@@ -5,6 +5,8 @@ import org.fugerit.java.core.log.LogFacade
 import org.fugerit.java.core.util.checkpoint.CheckpointUtils
 import org.fugerit.java.core.xml.dom.DOMIO
 import java.io.StringWriter
+import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.databind.ObjectMapper
 
 /**
  * Helper for this Domain Specific Language.
@@ -108,6 +110,12 @@ class HelperDSL {
          * @return the attribute value
          */
         fun attStr(data: Map<*, *>, key: String): String = data[key].toString()
+
+        /**
+         * Convert a complex map [data] in a simple map (made only of simple types : String, Number, Boolean, Object as Map, Array).
+         * @return the simple map
+         */
+        fun simpleMap(data: Map<*, *>): Map<*, *> = ObjectMapper().convertValue( data, object : TypeReference<LinkedHashMap<*, *>>() {})
 
 		private var checkFun0 : (v: String) -> Boolean =  { v -> setOf( "center", "right", "left", "justify", "justifyall" ).contains( v ) }
 		private var checkFun1 : (v: Int) -> Boolean =  { v -> v in 0..32 }
