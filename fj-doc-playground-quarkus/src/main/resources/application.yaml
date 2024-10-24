@@ -11,7 +11,7 @@ quarkus:
       Cache-Control:
         value: no-cache
 
-  resteasy-reactive:
+  rest:
     path: /fj-doc-playground/api
 
     
