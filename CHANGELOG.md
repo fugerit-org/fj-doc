@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-playground-quarkus] init supported versions review : '8.9.1', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6'
+
 ## [8.10.1] - 2024-10-23
 
 ### Changed
