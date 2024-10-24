@@ -34,7 +34,7 @@ flowchart TB
     A[Fugerit Doc Flow] -->|starts| C{Mode}
     C -->|Static data| D[Fugerit Doc Format]
     C -->|Dynamic data| E[Freemarker pipeline + Data Model] --> |Generates| D(Fugerit Doc Format)
-    C -->|Scripting| G[Kotlin DSL + Data Binding] --> |Generates| D(Fugerit Doc Format)
+    C -->|Scripting| G[Kotlin DSL + Data Binding] --> |Generates| D(Fugerit Doc Format *)
     end
     subgraph output
     H{Doc Handler}
@@ -43,6 +43,12 @@ flowchart TB
     H -->|...| N[...] -->|Renders| F(Output Format)
     end
 ....
+
+(*) link:#doc-format-entry-point[Fugerit Doc Format] is the core of the Venus Doc Framework and comes into a few flavours :
+
+- link:#doc-format-entry-point-xml[XML], default
+- link:#doc-format-entry-point-json-yaml[JSON] and link:#doc-format-entry-point-json-yaml[YAML] alternatives
+- link:#doc-format-entry-point-kotlin[KOTLIN] Domain Specific Language
 
 [.text-left]
 *Copyright*
