@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<fj-script-helper-version>2.0.0</fj-script-helper-version>
+		<fj-script-helper-version>2.0.2</fj-script-helper-version>
 		<kotlin.version>2.0.21</kotlin.version>
 	</properties>
 	
