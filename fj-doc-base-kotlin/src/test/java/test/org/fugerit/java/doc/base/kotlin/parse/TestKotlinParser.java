@@ -12,12 +12,15 @@ import org.fugerit.java.doc.base.parser.DocEvalWithDataModel;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
+import org.fugerit.java.script.helper.EvalScript;
+import org.fugerit.java.script.helper.EvalScriptWithDataModel;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -85,6 +88,19 @@ public class TestKotlinParser {
 		DocEvalWithDataModel eval = new DocKotlinParser();
 		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "doc-dsl-sample/sample-2.kts" ) ) ) {
 			String xml = eval.evalWithDataModel( reader, dataModel );
+			Assert.assertNotNull( xml );
+		}
+	}
+
+	@Test
+	public void testWithComplexDataModel() throws IOException {
+		Map<String, Object> dataModel = new HashMap<>();
+		dataModel.put( "docTitle", "Complex map conversion example title" );
+		dataModel.put( "listPeople", Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King")));
+		EvalScript eval = new EvalScriptWithDataModel( "kts" );
+		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "doc-dsl-sample/sample-map.kts" ) ) ) {
+			String xml = eval.handle( reader, dataModel ).toString();
+			logger.info( "xml : \n{}", xml );
 			Assert.assertNotNull( xml );
 		}
 	}
