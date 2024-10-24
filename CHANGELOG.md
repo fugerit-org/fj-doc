@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- [fj-mod-lib-kotlin] fj-script-helper-version set to 2.0.2
+- [fj-mod-lib-kotlin] fj-script-helper-version set to 2.0.3
 - [fj-mod-lib-kotlin] added simpleMap conversion function to HelperDSL <https://github.com/fugerit-org/fj-doc/issues/229>
 - [fj-doc-playground-quarkus] init supported versions review : '8.10.1', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6'
 - [fj-doc-playground-quarkus] io.quarkus:quarkus-webjars-locator relocated to io.quarkus:quarkus-web-dependency-locator
