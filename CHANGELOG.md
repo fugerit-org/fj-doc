@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-bom version 1.6.7
 - [repository] new issue template
 - [documentation] README review to better refer to guide
 - [fj-doc-mod-fop] PdfFopTypeHandler now concat PDFA and PDFUA mode in format field if both present (i.e. 'PDF/A-1b_PDF/UA-1')
