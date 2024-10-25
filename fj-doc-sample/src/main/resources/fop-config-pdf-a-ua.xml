@@ -18,7 +18,8 @@
 	-->
 	<renderers>
 	   <renderer mime="application/pdf">
-	   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode>
+	   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode> 
+	   	  <pdf-a-mode>PDF/A-1b</pdf-a-mode>
       	  <version>1.4</version>
 		  <fonts>
 			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">

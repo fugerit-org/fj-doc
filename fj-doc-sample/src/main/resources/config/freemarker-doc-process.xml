@@ -4,7 +4,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
-	<docHandlerConfig registerById="true">
+	<docHandlerConfig registerById="true" allowDuplicatedId="true">
 		<docHandler id="pdf_ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua.xml" pdf-ua-mode="PDF/UA-1"/>
 		</docHandler>
@@ -25,12 +25,12 @@
 					-->
 					<renderers>
 					   <renderer mime="application/pdf">
-					   	  <!-- 
-					   	  	It seems setting both PDF/A and PDF/UA profile leads to this error on PDF/A validation : 
+					   	  <!--
+					   	  	It seems setting both PDF/A and PDF/UA profile leads to this error on PDF/A validation :
 					   	  	"XMP property pdfuaid:part not defined in current schema."
 					   	  	Where PDF/UA validation succeds
-					   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode> 
-					   	  
+					   	  <pdf-ua-mode>PDF/UA-1</pdf-ua-mode>
+
 					   	  PDF/A checked with : https://avepdf.com/en/pdfa-validation ( and Adobe )
 					   	  PDF/UA checked with : https://check.axes4.com/en/
 					   	  -->
@@ -42,15 +42,15 @@
 					        </font>
 							<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
 					          <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
-					        </font>	        
+					        </font>
 							<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="full">
 					          <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
-					        </font>	        
+					        </font>
 							<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="full">
 					          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
-					        </font>	     
+					        </font>
 						  </fonts>
-					   </renderer> 
+					   </renderer>
 					</renderers>
 				  <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
 				  <source-resolution>72</source-resolution>
@@ -65,31 +65,31 @@
 		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
 		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
 		<docHandler id="xls-poi" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
-		<docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
+		<docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
 		<docHandler id="fo-fop" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
 		<docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
 			<!--
-			Starting with fj-doc-mod-fop version 0.5.2 there is a new attribute : 
+			Starting with fj-doc-mod-fop version 0.5.2 there is a new attribute :
 			'fop-config-mode'
 			Accepting three possible values :
-			
+
 			1) fop-config-mode='default' (is optional, if nothing is specified it is the default)
-			
+
 			2) fop-config-mode='classloader'
 			Example : <config fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml"/>
-			With an optinal attribute : 
+			With an optinal attribute :
 			'fop-config-resover-type' (which default to 'org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper')
-			
+
 			3) fop-config-mode='classloader-legacy' [deprecated, equal to the previous method of classloading, see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
-			Example 1: <config fop-config-mode='classloader-legacy' fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/> 
+			Example 1: <config fop-config-mode='classloader-legacy' fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 			Note for compatibilty reason, if attributes 'fop-config-classloader-path' and 'font-base-classloader-path' are both set, the mode switch to fop-config-mode='classloader-legacy'
 			Example 2 : <config fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>
 			-->
 			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml" fop-suppress-events="1"/>
 		</docHandler>
-		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />	
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
 		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
-		<docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>		
+		<docHandler id="csv-opencsv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler"/>
 		<!-- test for unsafe DocTypeHandler: this class does not exist, the error will be traced but the initialization will end -->
 		<docHandler id="pdf-unsafe" info="pdf" type="org.fugerit.java.doc.pdf.UnsafeDocHandler" unsafe="true" unsafeMode="log-trace"/>
 	</docHandlerConfig>

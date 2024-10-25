@@ -33,8 +33,7 @@ public class BasicFacadeTest {
 	public static final String PDF_A_FOP = "pdf_a-fop";
 	
 	public static final String PDF_UA_FOP = "pdf_ua-fop";
-	
-	
+
 	protected final static Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
 	
 	public static final String BASIC_OUTPUT_PATH = "target/sample_out";
