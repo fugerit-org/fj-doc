@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.10.2] - 2024-10-25
+
 ### Changed
 
 - [fj-mod-lib-kotlin] fj-script-helper-version set to 2.0.3
