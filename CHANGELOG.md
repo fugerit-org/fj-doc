@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] module base-kotlin is now accepted.
 - fj-bom version 1.6.7
 - [repository] new issue template
 - [documentation] README review to better refer to guide

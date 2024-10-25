@@ -25,6 +25,7 @@ public class ModuleFacade {
             toModuleName( "base" ),
             toModuleName( "base-json" ),
             toModuleName( "base-yaml" ),
+            toModuleName( "base-kotlin" ),
             toModuleName( "freemarker" ),
             toModuleName( "mod-poi" ),
             toModuleName( "mod-fop" ),
