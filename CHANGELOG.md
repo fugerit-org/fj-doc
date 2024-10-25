@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [repository] new issue template
 - [documentation] README review to better refer to guide
 
 ## [8.10.2] - 2024-10-25

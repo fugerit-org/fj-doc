@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Do you have any questions about Fugerit Venus Doc usage?
+    url: https://github.com/fugerit-org/fj-doc/discussions/categories/q-a
+    about: For any question adn answer on the project
+  - name: Do you have any ideas for new futures or improvements?
+    url: https://github.com/fugerit-org/fj-doc/discussions/categories/ideas
+    about: Contribute with your feedback to improve the framework
+  - name: Where can i find the documentation?
+    url: https://venusdocs.fugerit.org/guide/
+    about: The official guide where is explained how to setup and use Fugerit Venus Doc

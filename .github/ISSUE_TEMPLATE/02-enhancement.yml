@@ -1,0 +1,72 @@
+name: "Propose an enhancement"
+description: "If you have any ideas to improve Fugerit Venus Doc"
+title: "[ENHANCEMENT]: "
+labels: ["enhancement"]
+#assignees:
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting a new issue, please verify if a similar one exists to avoid duplicates.
+
+        If you want, check the [guide](https://venusdocs.fugerit.org/guide/) too, 
+        in order to verify if similar feature already exists.
+      
+        This section is intended to propose detailed enhancement to the project.
+        If you have only a brief idea consider before opening a 
+        [discussion](https://github.com/fugerit-org/fj-doc/discussions/categories/ideas)
+
+        Thanks in advance
+  - type: dropdown
+    id: type
+    attributes:
+      label: Enhancement type
+      description: Which type of enhancement are you proposing?
+      multiple: true
+      options:
+        - Extension to the Doc Format
+        - New doc handler
+        - New source format
+        - Improvements of existing feature
+        - Other
+  - type: dropdown
+    id: contributing
+    attributes:
+      label: Do you want to contribute?
+      description: You want and you ara available to contribute in the enhancement development, testing and/or documentation?
+      multiple: true
+      options:
+        - development
+        - testing
+        - documentation
+        - all
+    validations:
+      required: false
+  - type: input
+    id: goalDescription
+    attributes:
+      label: Goal of the proposal
+      description: Provide a description of the goal you want to achive
+    validations:
+      required: true
+  - type: input
+    id: briefDescription
+    attributes:
+      label: Brief description
+      description: Provide a brief description of the enhancement
+    validations:
+      required: true
+  - type: textarea
+    id: detailedDescription
+    attributes:
+      label: Detailed description
+      description: Provide a brief description of the enhancement
+    validations:
+      required: true
+  - type: textarea
+    id: pocAvailable
+    attributes:
+      label: Is a proof of concept available
+      description: If a POC is available, provide information to use it (link to repository, instructions).
+    validations:
+      required: false
