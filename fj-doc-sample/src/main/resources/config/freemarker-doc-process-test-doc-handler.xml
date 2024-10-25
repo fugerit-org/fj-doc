@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
+
+	<docHandlerConfig registerById="true" allowDuplicatedId="true">
+		<docHandler id="pdf-a-ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8"
+									customId="TEST"
+									fop-config-mode="classloader"
+									fop-config-classloader-path="fop-config-pdf-a-ua.xml"
+									pdf-a-mode="PDF/A-1b"
+									pdf-ua-mode="PDF/UA-1"/>
+		</docHandler>
+		<docHandler id="pdf_ua-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-pdfua.xml" pdf-ua-mode="PDF/UA-1"/>
+		</docHandler>
+		<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+			<docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-a-mode="PDF/A-1b">
+				<fop version="1.0">
+					<!-- Strict user configuration -->
+					<strict-configuration>true</strict-configuration>
+					<!-- Strict FO validation -->
+					<strict-validation>true</strict-validation>
+					<!-- Base URL for resolving relative URLs -->
+					<base>.</base>
+					<!-- Font Base URL for resolving relative font URLs -->
+					<font-base>.</font-base>
+					<!--
+						NOTE: for PDF/A format all fonts, even the basic ones, myst be fully embdedded.
+						https://xmlgraphics.apache.org/fop/2.8/pdfa.htm
+					-->
+					<renderers>
+						<renderer mime="application/pdf">
+							<!--
+                                It seems setting both PDF/A and PDF/UA profile leads to this error on PDF/A validation :
+                                "XMP property pdfuaid:part not defined in current schema."
+                                Where PDF/UA validation succeds
+                            <pdf-ua-mode>PDF/UA-1</pdf-ua-mode>
+
+                            PDF/A checked with : https://avepdf.com/en/pdfa-validation ( and Adobe )
+                            PDF/UA checked with : https://check.axes4.com/en/
+                            -->
+							<pdf-a-mode>PDF/A-1b</pdf-a-mode>
+							<version>1.4</version>
+							<fonts>
+								<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">
+									<font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
+								</font>
+								<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
+									<font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
+								</font>
+								<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="full">
+									<font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
+								</font>
+								<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="full">
+									<font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
+								</font>
+							</fonts>
+						</renderer>
+					</renderers>
+					<!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+					<source-resolution>72</source-resolution>
+					<!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+					<target-resolution>72</target-resolution>
+					<!-- default page-height and page-width, in case
+                         value is specified as auto -->
+					<default-page-settings height="11in" width="8.26in"/>
+				</fop>
+			</docHandlerCustomConfig>
+		</docHandler>
+	</docHandlerConfig>
+
+	<docChain id="shared">
+		<chainStep stepType="config">
+			<config id="FJ_SAMPLE_TEST_PDF_A_UA" version="2.3.33" path="/free_marker/"/>
+		</chainStep>
+		<chainStep stepType="function">
+			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
+			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+		</chainStep>
+		<chainStep stepType="test.org.fugerit.java.doc.sample.freemarker.TestFreeMarker01DataStep"/>
+		<chainStep stepType="map">
+			<map name="list" value="userList"/>
+			<map name="testBase64Img" value="testBase64Img"/>
+		</chainStep>
+	</docChain>
+
+	<docChain id="pdf_a_test" parent="shared">
+		<chainStep stepType="complex" template-path="pdf_a_test.ftl"/>
+	</docChain>
+
+</freemarker-doc-process-config>

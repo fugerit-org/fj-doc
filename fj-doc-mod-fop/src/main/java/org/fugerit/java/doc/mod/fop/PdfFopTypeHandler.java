@@ -225,7 +225,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			log.info( "pdf a mode -> {} : {}", ATT_PDF_A_MODE, pdfAModConfig );
 			if ( VALID_PDF_A_MODES.contains( pdfAModConfig ) ) {
 				this.setPdfAMode( pdfAModConfig );
-				this.setFormat( pdfAModConfig );
+				this.setFormat( StringUtils.concat( "_", pdfAModConfig, pdfUAModConfig ) );
 			} else {
 				throw new ConfigException( ATT_PDF_A_MODE+" not valid : "+pdfAModConfig+"( valid modes are : "+VALID_PDF_A_MODES+")" );
 			}
@@ -289,7 +289,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	@Override
 	public String toString() {
-		return super.toString()+"[poolMin="+this.getFopPoolMin()+",poolMax="+this.getFopPoolMax()+"]";
+		return super.toString()+String.format( "[pdfAmode=%s,pdfUAmode=,%s,poolMin=%s,poolMax=%s]", this.getPdfAMode(), this.getPdfUAMode(), this.getFopPoolMin(), this.getFopPoolMax() );
 	}
 
 }
