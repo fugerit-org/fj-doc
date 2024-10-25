@@ -3,6 +3,7 @@ package org.fugerit.java.doc.mod.fop;
 import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
@@ -225,7 +226,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			log.info( "pdf a mode -> {} : {}", ATT_PDF_A_MODE, pdfAModConfig );
 			if ( VALID_PDF_A_MODES.contains( pdfAModConfig ) ) {
 				this.setPdfAMode( pdfAModConfig );
-				this.setFormat( StringUtils.concat( "_", pdfAModConfig, pdfUAModConfig ) );
+				this.setFormat( StringUtils.concat( "_", Arrays.asList( pdfAModConfig, pdfUAModConfig ).stream().filter( s -> s!=null ).collect(Collectors.toList()) ) );
 			} else {
 				throw new ConfigException( ATT_PDF_A_MODE+" not valid : "+pdfAModConfig+"( valid modes are : "+VALID_PDF_A_MODES+")" );
 			}
