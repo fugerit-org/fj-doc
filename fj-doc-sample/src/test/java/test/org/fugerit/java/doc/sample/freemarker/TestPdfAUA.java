@@ -1,6 +1,5 @@
 package test.org.fugerit.java.doc.sample.freemarker;
 
-import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
@@ -10,6 +9,9 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileOutputStream;
 
+/*
+ * Test case or issue : https://github.com/fugerit-org/fj-doc/issues/52
+ */
 public class TestPdfAUA {
 
 	private static final String PDF_A_UA_FOP = "pdf-a-ua-fop";

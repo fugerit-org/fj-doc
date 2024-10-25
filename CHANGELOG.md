@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-playground-quarkus] quarkus.rest.path in stead of quarkus.resteasy-reactive.path in REST reactive environment <https://github.com/quarkusio/quarkus/issues/35794>
 - [fj-doc-mod-fop] set of profile PDF-UA
+- [fj-doc-mod-fop] fail to create a PDF which is both compliant to PDF/A-1b and PDF/UA-1 <https://github.com/fugerit-org/fj-doc/issues/52>
 
 ## [8.10.1] - 2024-10-23
 
