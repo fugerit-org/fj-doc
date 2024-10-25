@@ -1,9 +1,6 @@
 package org.fugerit.java.doc.mod.fop;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStreamReader;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.*;
 
@@ -168,7 +165,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			foUserAgent.getRendererOptions().put( ATT_PDF_A_MODE, this.getPdfAMode() );
 		}
 		if ( StringUtils.isNotEmpty( this.getPdfUAMode() ) ) {
-			foUserAgent.getRendererOptions().put( ATT_PDF_UA_MODE, this.getPdfAMode() );
+			foUserAgent.getRendererOptions().put( ATT_PDF_UA_MODE, this.getPdfUAMode() );
 		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
@@ -179,21 +176,28 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		return PoolUtils.handleFopWrap( toRelease, this.pool, this.getFopPoolMin(), this.getFopPoolMax(), this::newFopWrap );
 	}
 
+	private byte[] getXlsFoContent(DocInput docInput) throws Exception {
+		try (ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
+			DocOutput bufferOutput = DocOutput.newOutput( buffer );
+			super.handle(docInput, bufferOutput);
+			return buffer.toByteArray();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-		DocOutput bufferOutput = DocOutput.newOutput( buffer );
-		super.handle(docInput, bufferOutput);
-		// the XML file which provides the input
-		StreamSource xmlSource = new StreamSource( new InputStreamReader( new ByteArrayInputStream( buffer.toByteArray() ), this.getCharset() ) );
-		FopConfigWrap fopWrap = this.fopWrapSupplier.get();
-		Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
-		TransformerFactory factory = TransformerFactory.newInstance();
-		Transformer transformer = factory.newTransformer();
-		Result res = new SAXResult(fop.getDefaultHandler());
-		transformer.transform(xmlSource, res);
-		this.fopWrapConsumer.accept( fopWrap );
+		try ( ByteArrayInputStream input = new ByteArrayInputStream(this.getXlsFoContent(docInput) ) ) {
+			// the XML file which provides the input
+			StreamSource xmlSource = new StreamSource( new InputStreamReader( input, this.getCharset() ) );
+			FopConfigWrap fopWrap = this.fopWrapSupplier.get();
+			Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
+			TransformerFactory factory = TransformerFactory.newInstance();
+			Transformer transformer = factory.newTransformer();
+			Result res = new SAXResult(fop.getDefaultHandler());
+			transformer.transform(xmlSource, res);
+			this.fopWrapConsumer.accept( fopWrap );
+		}
 	}
 
 	@Override
