@@ -1,0 +1,125 @@
+name: "Report a bug"
+description: "Submit a but on Fugerit Venus Doc"
+title: "[BUG]: "
+labels: ["bug"]
+#assignees:
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before submitting a new issue, please verify if a similar one exists to avoid duplicates.
+        
+        In the title, if possible, add reference to the affected module in the format : 
+        
+        [module]
+        
+        for instance : 
+        
+        [fj-doc-freemarker]
+        
+        If you have any doubt about behaviour, consider : 
+        
+        * reading the [guide](https://venusdocs.fugerit.org/guide/)
+        * asking a [question](https://github.com/fugerit-org/fj-doc/discussions/categories/q-a)
+        
+        Thanks in advance
+  - type: dropdown
+    id: module
+    attributes:
+      label: Module
+      description: Choose the main module affected by the bug, or *fj-doc* if multiple/all modules are affected.
+      multiple: true
+      options:
+        - fj-doc - multiple or all modules
+        - fj-doc-base - framework core (and Venus Doc Format - XML)
+        - fj-doc-base-json - Venus Doc Format JSON
+        - fj-doc-base-yaml - Venus Doc Format YAML
+        - fj-doc-base-kotlin - Venus Doc Format Kotlin Domain Specific Language (DSL)
+        - fj-doc-freemarker - Dynamic Data Model and FreeMarker configuration
+        - fj-doc-mod-fop - PDF, XSL-FO doc handler based on Apache FOP
+        - fj-doc-mod-poi - XLS, XLSX doc handler based on Apache POI
+        - fj-doc-mod-opencsv - CSV doc handler based on OpenCSV
+        - fj-doc-mod-openpdf-ext - PDF doc handler based on OpenPDF
+        - fj-doc-mod-openrtf-ext - RTF doc handler based on OpenRTF
+        - fj-doc-mod-lib-autodoc - Bundled library for XSD auto documentation
+        - fj-doc-mod-lib-simpletable - Bundled library handling simple table data model
+        - fj-doc-mod-lib-simpletable-import - Bundled library handling simple table import from Excel / CSV
+        - fj-doc-mod-lib-kotlin - Bundled library generating Kotlin DSL based on XSD
+        - fj-doc-maven-plugin - Maven plugin to setup new/existing projects and validate freemarker templates
+        - fj-doc-sample - Sample library
+        - fj-doc-playground-quarkus - The Quarkus 3 based playground
+        - fj-doc-guide - AsciiDoc guide generation
+        - fj-doc-val - The document validation extension (any submodule)
+    validations:
+      required: true
+  - type: input
+    id: expectedBehaviour
+    attributes:
+      label: Expected Behavior
+      description: Describe the expected behaviour of the software
+    validations:
+      required: true
+  - type: input
+    id: currentBehaviour
+    attributes:
+      label: Current Behavior
+      description: Describe the current behaviour of the software
+    validations:
+      required: true
+  - type: dropdown
+    id: blocking
+    attributes:
+      label: Is blocking?
+      description: Is the bug blocking for activities?
+      multiple: true
+      options:
+        - no, it is possible to operate some how
+        - yes, but a workaround mitigating it exists
+        - yes, no work around exists
+  - type: textarea
+    id: workarondExists
+    attributes:
+      label: A work around exists?
+      description: If you have found a work around, please describe it.
+    validations:
+      required: false
+  - type: textarea
+    id: reproSteps
+    attributes:
+      label: Steps to reproduces
+      description: Describe how to reproduces the issue in a clear and detailed way.
+      placeholder: |
+        1.
+        2.
+        3.
+        ...
+    validations:
+      required: false
+  - type: textarea
+    id: pocAvailable
+    attributes:
+      label: Is a proof of concept available
+      description: If a POC is available, provide information to use it (link to repository, instructions).
+    validations:
+      required: false
+  - type: textarea
+    id: contextInformation
+    attributes:
+      label: Context information
+      description: Provide any informations about the context, Operating system and version, Java vendor and version etc.
+    validations:
+      required: false
+  - type: textarea
+    id: otherInformation
+    attributes:
+      label: Other information
+      description: Any other information you want to provide
+    validations:
+      required: false
+  - type: textarea
+    id: proposedSolution
+    attributes:
+      label: Proposed solution
+      description: If you have any idea of possible solution, please provide it.
+    validations:
+      required: false
