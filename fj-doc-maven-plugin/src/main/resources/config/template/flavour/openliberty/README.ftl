@@ -20,7 +20,7 @@ Test available paths (for instance : [/doc/example.md](http://localhost:8080/doc
 
 ## Overview
 
-This project has been initialized using [fj-doc-maven-plugin init goal](https://venusguides.fugerit.org/src/docs/wizard/fj-doc-maven-plugin_init.html).
+This project has been initialized using [fj-doc-maven-plugin init goal](https://venusdocs.fugerit.org/guide/#maven-plugin-goal-init).
 
 The OpenLiberty structure is similar to using [https://openliberty.io/start/](https://openliberty.io/start/)
 

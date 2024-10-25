@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project has been initialized using [fj-doc-maven-plugin init goal](https://venusguides.fugerit.org/src/docs/wizard/fj-doc-maven-plugin_init.html).
+This project has been initialized using [fj-doc-maven-plugin init goal](https://venusdocs.fugerit.org/guide/#maven-plugin-goal-init).
 
 The quarkus 3 structure is similar to running the quarkus create goal : 
 

@@ -105,7 +105,7 @@ class Home extends Component {
 					Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tags (for instance 'latest' stable or specific version). 
 			  </Grid>
 			  <Grid item xs={12} align="left">
-					<p>For general documentation on Venus, see <a href="https://venusguides.fugerit.org/">Venus Guides</a> and <a href="https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html">Doc Format Summary</a></p>
+					<p>For general documentation on Venus, see <a href="https://venusdocs.fugerit.org/guide/">Venus Docs</a> and <a href="https://venusdocs.fugerit.org/guide/#doc-format-entry-point">Doc Format Summary</a></p>
 			  </Grid>
 			  <Grid item xs={12} align="left">
 					<Info/>

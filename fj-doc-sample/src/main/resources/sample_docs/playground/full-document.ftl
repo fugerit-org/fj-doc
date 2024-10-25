@@ -8,13 +8,13 @@
   <#--
   	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) FreeMarker Template XML (ftl[x]).
   	For consideration of Venus Fugerit Doc and Apache FreeMarker integration see :
-  	https://venusguides.fugerit.org/src/docs/common/doc_format_freemarker.html
+  	https://venusdocs.fugerit.org/guide/#doc-freemarker-entry-point
   	The result will be a : 
   -->
   <!--
   	This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
   	For documentation on how to write a valid Venus Doc XML Meta Model refer to : 
-  	https://venusguides.fugerit.org/src/docs/common/doc_format_summary.html
+  	https://venusdocs.fugerit.org/guide/#doc-format-entry-point
   -->
 
   <metadata>
