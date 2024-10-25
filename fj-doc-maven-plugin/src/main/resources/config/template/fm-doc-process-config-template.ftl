@@ -8,7 +8,7 @@
     <#-- configuration version 001 -->
     <!--
     Documentation :
-    https://venusguides.fugerit.org/
+    https://venusdocs.fugerit.org/guide/
 
     Configuration reference :
     https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html

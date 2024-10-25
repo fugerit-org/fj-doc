@@ -22,7 +22,7 @@
   	  
   <admeta:admProperty>
     <admeta:name>html-css-link</admeta:name>
-    <admeta:description>https://venusguides.fugerit.org/src/css/default_venus_docs_style.css</admeta:description>
+    <admeta:description>https://venusdocs.fugerit.org/fj-doc-guide/src/css/default_venus_docs_style.css</admeta:description>
   </admeta:admProperty>
 
   <admeta:admChangelog>

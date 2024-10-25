@@ -12,6 +12,6 @@ public class AutodocModule {
 		this.version = CURRENT_VERSION;
 	}
 	
-	public static final String DEFAULT_HTML_CSS_LINK = "https://venusguides.fugerit.org/src/css/default_venus_docs_style.css";
+	public static final String DEFAULT_HTML_CSS_LINK = "https://venusdocs.fugerit.org/fj-doc-guide/src/css/default_venus_docs_style.css";
 	
 }

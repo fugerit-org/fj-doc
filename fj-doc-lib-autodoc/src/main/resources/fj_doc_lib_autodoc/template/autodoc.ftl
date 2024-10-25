@@ -19,7 +19,7 @@
 		<info name="doc-title">${autodocModel.title}</info>
 		<info name="doc-language">en</info> 
 		<!-- style -->
-		<info name="html-css-link">https://venusguides.fugerit.org/src/css/default_venus_docs_style.css</info> 
+		<info name="html-css-link">https://venusdocs.fugerit.org/fj-doc-guide/src/css/default_venus_docs_style.css</info>
 	</metadata>
 	<body>
 		
