@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] goal init/add - support for base-json, base-yaml and base-kotlin example <https://github.com/fugerit-org/fj-doc/issues/231>
 - [fj-doc-maven-plugin] module base-kotlin is now accepted.
 - fj-bom version 1.6.7
 - [repository] new issue template
