@@ -93,4 +93,20 @@
     </docChain>
     </#if>
 
+    <#if context.modules?seq_contains("fj-doc-base-kotlin")>
+    <!-- example document chain Kotlin DSL + FreeMarker -->
+    <docChain id="document-kotlin" parent="shared" sourceType="kotlin">
+        <chainStep stepType="complex" map-all="true" template-path="${r"${chainId}"}.ftl"/>
+    </docChain>
+    <!-- example document chain Pure Kotlin DSL Script (KTS)
+        NOTE :
+         * no need for FreeMarker configuration (no parent chain)
+         * 'kotlin' stepType instead of 'complex' stepType
+         * 'kts-path' instead of 'template-path' (and the path is in the classpath, not from the FreeMarker template base).
+     -->
+    <docChain id="document-kotlin-pure">
+        <chainStep stepType="kotlin" map-atts="listPeople" kts-path="${context.artificatIdForFolder}/${context.templateSubPath}/document-kotlin.kts"/>
+    </docChain>
+    </#if>
+
 </freemarker-doc-process-config>

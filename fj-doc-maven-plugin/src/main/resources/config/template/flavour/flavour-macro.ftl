@@ -11,6 +11,9 @@
             List<People> listPeople = Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King"));
             <#if context.modules?seq_contains("fj-doc-base-json")>// json source supported, if you want to try it, use the chainId "document-json"</#if>
             <#if context.modules?seq_contains("fj-doc-base-yaml")>// yaml source supported, if you want to try it, use the chainId "document-yaml"</#if>
+            <#if context.modules?seq_contains("fj-doc-base-kotlin")>// kotlin source supported, if you want to try it,
+            // use the chainId "document-kotlin" for FreeMarker + Kotlin
+            // or "document-kotlin-pure" for pure Kotlin</#if>
             String chainId = "document";
             // output generation
             docHelper.getDocProcessConfig().fullProcess(chainId, DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);

@@ -19,7 +19,7 @@ import java.util.UUID;
 public class TestInit {
 
     private String getVersion() {
-        return "8.7.1";
+        return "8.10.3";
     }
 
     private File initConfigWorker( String flavour ) {
@@ -41,7 +41,7 @@ public class TestInit {
                     this.artifactId = "fugerit-test-"+currentFlavour;
                     this.javaRelease = "21";
                     this.version = getVersion();
-                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-base-kotlin,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
                     this.addDocFacade = true;
                     this.force = true;
                     this.excludeXmlApis = true;

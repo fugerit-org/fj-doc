@@ -9,11 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [CONTRIBUTING.md](CONTRIBUTING.md) section.
+- [CONTRIBUTING.md](CONTRIBUTING.md) section
 
 ### Changed
 
 - Added sourceType 'kotlin' to freemarker-doc-process-1-0.xsd
+- [fj-doc-maven-plugin] goal init/add - support for base-kotlin example <https://github.com/fugerit-org/fj-doc/issues/236>
 
 ### Fixed
 
