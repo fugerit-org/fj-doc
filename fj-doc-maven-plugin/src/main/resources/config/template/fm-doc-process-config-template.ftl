@@ -74,9 +74,23 @@
         </chainStep>
     </docChain>
 
-    <!-- example document chain -->
+    <!-- example document chain xml -->
     <docChain id="document" parent="shared">
-        <chainStep stepType="complex" map-atts="listPeople" template-path="${r"${chainId}"}.ftl"/>
+        <chainStep stepType="complex" map-all="true" template-path="${r"${chainId}"}.ftl"/>
     </docChain>
+
+    <#if context.modules?seq_contains("fj-doc-base-json")>
+    <!-- example document chain json -->
+    <docChain id="document-json" parent="shared" sourceType="json">
+        <chainStep stepType="complex" map-all="true" template-path="${r"${chainId}"}.ftl"/>
+    </docChain>
+    </#if>
+
+    <#if context.modules?seq_contains("fj-doc-base-yaml")>
+    <!-- example document chain yaml -->
+    <docChain id="document-yaml" parent="shared" sourceType="yaml">
+        <chainStep stepType="complex" map-all="true" template-path="${r"${chainId}"}.ftl"/>
+    </docChain>
+    </#if>
 
 </freemarker-doc-process-config>

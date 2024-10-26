@@ -52,6 +52,14 @@ public class AddVenusFacade extends BasicVenusFacade {
         }
     }
 
+    private static void copyTemplate( String fileName, File templateDir ) throws IOException {
+        File documentExample = new File( templateDir, fileName );
+        try ( InputStream documentExampleIS = ClassHelper.loadFromDefaultClassLoader( EXAMPLE_FOLDER+fileName ) ) {
+            String documentContent = StreamIO.readString( documentExampleIS );
+            FileIO.writeString( documentContent, documentExample );
+        }
+    }
+
     private static void addDocFacade( VenusContext context ) throws IOException, TemplateException, ConfigException {
         // freemarker configuration
         Configuration configuration = FreemarkerTemplateFacade.getConfiguration();
@@ -64,11 +72,12 @@ public class AddVenusFacade extends BasicVenusFacade {
         log.info( "templateDir : {}, mk parent? : {}", templateDir.getCanonicalPath(), templateDir.mkdirs() );
         FreemarkerTemplateFacade.processFile( "fm-doc-process-config-template.ftl", fmConfigFile, configuration, data );
         // copy sample template
-        String fileName = "document.ftl";
-        File documentExample = new File( templateDir, fileName );
-        try ( InputStream documentExampleIS = ClassHelper.loadFromDefaultClassLoader( EXAMPLE_FOLDER+fileName ) ) {
-            String documentContent = StreamIO.readString( documentExampleIS );
-            FileIO.writeString( documentContent, documentExample );
+        copyTemplate( "document.ftl", templateDir );
+        if ( context.getModules().contains( "fj-doc-base-json" ) ) {
+            copyTemplate( "document-json.ftl", templateDir );
+        }
+        if ( context.getModules().contains( "fj-doc-base-yaml" ) ) {
+            copyTemplate( "document-yaml.ftl", templateDir );
         }
         // create doc config
         File sourceFolder = context.getMainJavaFolder();

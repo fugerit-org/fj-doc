@@ -16,7 +16,7 @@
         https://venusdocs.fugerit.org/guide/#doc-format-entry-point
     -->
 
-    <#assign defaultTitle="My sample title">
+    <#assign defaultTitle="My sample title XML">
 
     <metadata>
         <!-- Margin for document : left;right;top;bottom -->
