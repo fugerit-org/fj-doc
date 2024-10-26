@@ -13,7 +13,7 @@ import appService from '../common/app-service';
 
 const DocProjectInit = () => {
 
-    const availableVersions = [ '8.10.2', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
+    const availableVersions = [ '8.10.3', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
 
 	const [extensionList, setExtensionList] = useState([]); // State to store the list of extensions
 	const [selectedExtensions, setSelectedExtensions] = useState([]); // State to store selected extensions
