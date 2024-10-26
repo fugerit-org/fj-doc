@@ -23,6 +23,27 @@ public class FreeMarkerComplexProcessStep extends FreeMarkerProcessStep {
 	public static final String ATT_MAP_ALL = "map-all";
 	public static final String ATT_MAP_ATTS = "map-atts";
 
+	public static Map<String, Object> handleMap(DocProcessContext context, Properties atts) {
+		Map<String, Object> map = FreeMarkerConstants.getFreeMarkerMap( context );
+		boolean mapAll = BooleanUtils.isTrue( atts.getProperty( ATT_MAP_ALL ) );
+		if ( mapAll ) {
+			map.putAll( context.toMap() );
+		} else {
+			String mapAtts = atts.getProperty( ATT_MAP_ATTS );
+			if ( StringUtils.isNotEmpty( mapAtts ) ) {
+				String[] keys = mapAtts.split( "," );
+				for ( int k=0; k<keys.length; k++ ) {
+					String key = keys[k];
+					Object value = context.getAttribute( key );
+					if ( value != null ) {
+						map.put( key , value );
+					}
+				}
+			}
+		}
+		return map;
+	}
+
 	public static String overrideTemplatePath( Properties atts, String chainId ) throws ConfigException {
 		String templatePath = atts.getProperty( ATT_TEMPLATE_PATH );
 		if ( StringUtils.isEmpty( templatePath ) ) {
@@ -43,23 +64,7 @@ public class FreeMarkerComplexProcessStep extends FreeMarkerProcessStep {
 			this.setParam01( overrideTemplatePath( atts, this.getChainId() ) );
 		}
 		// map attributes
-		Map<String, Object> map = FreeMarkerConstants.getFreeMarkerMap( context );
-		boolean mapAll = BooleanUtils.isTrue( atts.getProperty( ATT_MAP_ALL ) );
-		if ( mapAll ) {
-			map.putAll( context.toMap() );
-		} else {
-			String mapAtts = atts.getProperty( ATT_MAP_ATTS );
-			if ( StringUtils.isNotEmpty( mapAtts ) ) {
-				String[] keys = mapAtts.split( "," );
-				for ( int k=0; k<keys.length; k++ ) {
-					String key = keys[k];
-					Object value = context.getAttribute( key );
-					if ( value != null ) {
-						map.put( key , value );
-					}
-				}
-			}
-		}
+		Map<String, Object> map = handleMap( context, atts );
 		FreemarkerApplyHelper.setupFreemarkerMap(context, map);
 		return super.process(context, data);
 	}
