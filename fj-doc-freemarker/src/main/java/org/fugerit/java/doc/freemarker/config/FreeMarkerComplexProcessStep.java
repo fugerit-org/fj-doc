@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.regex.ParamFinder;
@@ -35,9 +36,7 @@ public class FreeMarkerComplexProcessStep extends FreeMarkerProcessStep {
 				for ( int k=0; k<keys.length; k++ ) {
 					String key = keys[k];
 					Object value = context.getAttribute( key );
-					if ( value != null ) {
-						map.put( key , value );
-					}
+					SafeFunction.applyIfNotNull( value , () -> map.put( key, value ) );
 				}
 			}
 		}
