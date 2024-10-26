@@ -19,7 +19,7 @@ import java.util.UUID;
 public class TestInit {
 
     private String getVersion() {
-        return "8.10.3";
+        return "8.10.4";
     }
 
     private File initConfigWorker( String flavour ) {

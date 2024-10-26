@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.10.4] - 2024-10-27
+
 ### Added
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) section
