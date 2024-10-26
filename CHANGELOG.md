@@ -13,12 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [8.10.3] - 2024-10-26
+
 - [fj-doc-maven-plugin] goal init/add - support for base-json, base-yaml and base-kotlin example <https://github.com/fugerit-org/fj-doc/issues/231>
 - [fj-doc-maven-plugin] module base-kotlin is now accepted.
 - fj-bom version 1.6.7
 - [repository] new issue template
 - [documentation] README review to better refer to guide
 - [fj-doc-mod-fop] PdfFopTypeHandler now concat PDFA and PDFUA mode in format field if both present (i.e. 'PDF/A-1b_PDF/UA-1')
+- [fj-doc-maven-plugin] goal init, flavour quarkus-3, default springboot version 3.16.0
+- [fj-doc-playground-quarkus] set quarkus version 3.16.0
 
 ## [8.10.2] - 2024-10-25
 
