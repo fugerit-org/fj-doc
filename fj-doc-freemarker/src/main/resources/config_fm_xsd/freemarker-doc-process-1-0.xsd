@@ -288,6 +288,7 @@
 			<xsd:enumeration value="xml"></xsd:enumeration>
 			<xsd:enumeration value="json"></xsd:enumeration>
 			<xsd:enumeration value="yaml"></xsd:enumeration>
+			<xsd:enumeration value="kotlin"></xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
 

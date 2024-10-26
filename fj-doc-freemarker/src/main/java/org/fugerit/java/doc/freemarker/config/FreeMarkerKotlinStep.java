@@ -51,7 +51,7 @@ public class FreeMarkerKotlinStep extends DocProcessorBasic {
 	@Override
 	public int process(DocProcessContext context, DocProcessData data) throws Exception {
 		int res = super.process(context, data);
-		Map<String, Object> dataModel = FreeMarkerConstants.getFreeMarkerMap( context );
+		Map<String, Object> dataModel = FreeMarkerComplexProcessStep.handleMap( context, this.getCustomConfig() );
 		DocParser docParser = DocFacadeSource.getInstance().getParserForSource( this.sourceType );
 		if ( docParser == null ) {
 			throw new ConfigRuntimeException( String.format( "Unsupported source type : %s", this.sourceType ) );

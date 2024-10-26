@@ -79,6 +79,10 @@ public class AddVenusFacade extends BasicVenusFacade {
         if ( context.getModules().contains( "fj-doc-base-yaml" ) ) {
             copyTemplate( "document-yaml.ftl", templateDir );
         }
+        if ( context.getModules().contains( "fj-doc-base-kotlin" ) ) {
+            copyTemplate( "document-kotlin.kts", templateDir );
+            copyTemplate( "document-kotlin.ftl", templateDir );
+        }
         // create doc config
         File sourceFolder = context.getMainJavaFolder();
         log.info( "sourceFolder : {}, mk parent? : {}", sourceFolder.getCanonicalPath(), sourceFolder.mkdirs() );
