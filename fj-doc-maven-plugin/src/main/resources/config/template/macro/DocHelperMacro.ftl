@@ -21,16 +21,19 @@
             DocHelper docHelper = new DocHelper();
             // create custom data for the fremarker template 'document.ftl'
             List<People> listPeople = Arrays.asList( new People( "Luthien", "Tinuviel", "Queen" ), new People( "Thorin", "Oakshield", "King" ) );
+            <#if context.modules?seq_contains("fj-doc-base-json")>// json source supported, if you want to try it, use the chainId "document-json"</#if>
+            <#if context.modules?seq_contains("fj-doc-base-yaml")>// yaml source supported, if you want to try it, use the chainId "document-yaml"</#if>
+            String chainId = "document";
             <#if context.preVersion862 >
             // find the handler for the output :
             DocTypeHandler docTypeHandler = docHelper.getDocProcessConfig().getFacade().findHandler(DocConfig.TYPE_MD);
             // output generation
-            docHelper.getDocProcessConfig().fullProcess( "document", DocProcessContext.newContext( "listPeople", listPeople ), docTypeHandler, DocOutput.newOutput( baos ) );
+            docHelper.getDocProcessConfig().fullProcess( chainId, DocProcessContext.newContext( "listPeople", listPeople ), docTypeHandler, DocOutput.newOutput( baos ) );
             <#else>
             // handler id
             String handlerId = DocConfig.TYPE_MD;
             // output generation
-            docHelper.getDocProcessConfig().fullProcess( "document", DocProcessContext.newContext( "listPeople", listPeople ), handlerId, baos );
+            docHelper.getDocProcessConfig().fullProcess( chainId, DocProcessContext.newContext( "listPeople", listPeople ), handlerId, baos );
             </#if>
             // print the output
             <#if context.addLombok >log.info( "html output : \n{}", new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );<#else>System.out.println( "html output : \n"+ new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );</#if>

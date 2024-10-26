@@ -9,8 +9,11 @@
             DocHelper docHelper = new DocHelper();
             // create custom data for the fremarker template 'document.ftl'
             List<People> listPeople = Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King"));
+            <#if context.modules?seq_contains("fj-doc-base-json")>// json source supported, if you want to try it, use the chainId "document-json"</#if>
+            <#if context.modules?seq_contains("fj-doc-base-yaml")>// yaml source supported, if you want to try it, use the chainId "document-yaml"</#if>
+            String chainId = "document";
             // output generation
-            docHelper.getDocProcessConfig().fullProcess("document", DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);
+            docHelper.getDocProcessConfig().fullProcess(chainId, DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);
             // return the output
             return baos.toByteArray();
         } catch (Exception e) {
