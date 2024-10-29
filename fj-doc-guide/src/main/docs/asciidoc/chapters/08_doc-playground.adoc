@@ -1,0 +1,47 @@
+<<<
+[#doc-playground]
+== Fugerit Venus Doc Quarkus Playground
+
+The quarkus playground is a standalone stateless application showing the capabilities of Fugerit Venus Doc.
+
+Three version are available :
+
+. link:https://docs.fugerit.org/fj-doc-playground/home/[Online playground]
+. link:https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general[Docker Hub repository]
+. link:https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-playground-quarkus#readme[Local project build]
+
+[mermaid, title="Quarkus Playground Menu"]
+....
+mindmap
+  root((Home))
+    Doc Conversion
+      From
+        XML
+        JSON
+        YAML
+      To
+        XML
+        JSON
+        YAML
+    Doc Editor and Generator
+      Source type
+        FreeMarker Template
+        XML
+        JSON
+        YAML
+      Doc Handler
+        HTML
+        PDF FOP
+        PDF/A FOP
+        XLSX
+        MarkDown
+        Venus XML Doc
+        XSL-FO
+        CDV
+        PDF OpenPDF
+        RTF OpenRTF
+    Other Utilities
+      Doc Project Init
+      Doc Type Validator
+      Doc Config Convert
+....
