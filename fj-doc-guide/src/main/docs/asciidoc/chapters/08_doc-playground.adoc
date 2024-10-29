@@ -40,6 +40,7 @@ mindmap
         CDV
         PDF OpenPDF
         RTF OpenRTF
+        AsciiDoc
     Other Utilities
       Doc Project Init
       Doc Type Validator

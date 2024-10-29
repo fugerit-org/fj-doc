@@ -69,6 +69,7 @@
 		<docHandler id="pdf" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
 		<docHandler id="html" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
 		<docHandler id="csv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8" />
+		<docHandler id="adoc" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
 	</docHandlerConfig>
 
 </freemarker-doc-process-config>

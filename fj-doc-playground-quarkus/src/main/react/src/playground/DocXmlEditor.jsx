@@ -239,6 +239,19 @@ class DocXmlEditor extends Component {
 							value={decodedStringAtoB}
 							width='100%'
 						/>
+			} else if ( this.state.docFormat === 'ADOC' ) {
+				let decodedStringAtoB = this.myAtob(this.state.docOutput);
+				outputData = <AceEditor
+					mode='text'
+					theme="xcode"
+					name="DOC_ADOC_OUTPUT"
+					editorProps={{ $blockScrolling: true }}
+					enableBasicAutocompletion={true}
+					enableLiveAutocompletion={true}
+					enableSnippets={true}
+					value={decodedStringAtoB}
+					width='100%'
+				/>
 			}
 			outputData = <Fragment>{outputData}<p>Generation time : {this.state.generationTime}</p></Fragment>
 		} else if ( this.state.outputMessage != null ) {
@@ -302,6 +315,7 @@ class DocXmlEditor extends Component {
 					    <MenuItem value='CSV'>CSV</MenuItem>
 					    <MenuItem value='OPENPDF'>PDF (openpdf)</MenuItem>
 					    <MenuItem value='OPENRTF'>RTF (openrtf)</MenuItem>
+						<MenuItem value='ADOC'>AsciiDoc</MenuItem>
 					  </Select>
 					</FormControl>	
 			  </Grid>
