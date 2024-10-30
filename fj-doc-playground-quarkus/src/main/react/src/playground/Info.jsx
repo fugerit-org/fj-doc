@@ -1,39 +1,29 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import appService from '../common/app-service';
 
-class Info extends Component {
+const Info = () => {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			metaInfo: null
-		}
-	}
+	const [metaInfo, setMetaInfo] = useState(null)
 
-	componentDidMount() {
-		let reactState = this;
+	useEffect(() => {
 		appService.doAjaxMultipart('GET', '/meta/info', null).then(response => {
 			if (response.success) {
-				reactState.setState({
-					metaInfo: response.result
-				})
-			} else {
-				reactState.setState({
-					supportedExtensions: null
-				})
+				setMetaInfo( response.result )
 			}
 		})
-	}
+	}, []);
 
-	render() {
+	const handleContent = () => {
 		let printInfo = 'loading info...';
-		if ( this.state.metaInfo != null ) {
-			printInfo = Object.keys(this.state.metaInfo).map((key, index) => <span key={index}><strong>{key}</strong>={this.state.metaInfo[key]} </span>)
+		if ( metaInfo != null ) {
+			printInfo = Object.keys(metaInfo).map((key, index) => <span key={index}><strong>{key}</strong>={metaInfo[key]} </span>)
 		}
 		return <Fragment>
 			<p>Info : {printInfo}</p>
 		</Fragment>
 	}
+
+	return handleContent()
 
 }
 
