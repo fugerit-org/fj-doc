@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import { FormControl, Select, MenuItem, Grid, FormLabel, Button } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
@@ -11,99 +11,80 @@ import "ace-builds/src-noconflict/mode-yaml";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
 
-class DocConversion extends Component {
+const DocConversion = ({handleOpenDialog, key, from, to}) => {
 
-	constructor(props) {
-		super(props);
-		this.handleGenerate = this.handleGenerate.bind(this);
-		this.handleFormat = this.handleFormat.bind(this);
-		this.handleDoc = this.handleDoc.bind(this);
-		this.handleEditorContent = this.handleEditorContent.bind(this);
-		console.log( this.props.from )
-		this.state = {
-			inputFormat: this.props.from == null ? 'XML' : this.props.from,
-			outputFormat: this.props.to == null ? '' : this.props.to,
-			docOutput: '',
-			prettyPrint: true
-		}
-	}
+	const [inputFormat, setInputFormat] = useState(from == null ? 'XML' : from)
+	const [outputFormat, setOutputFormat] = useState(from == null ? 'JSON' : from)
+	const [docContent, setDocContent] = useState('')
+	const [docOutput, setDocOutput] = useState('')
 
-	handleGenerateOnlyFormat = (e) => {
-		this.setState( { prettyPrint: false }, () => this.handleGenerate( e ) );
+	const handleGenerateOnlyFormat = (e) => {
+		handleGenerate( e, false )
 	};
 	
-	handleGeneratePrettyPrint = (e) => {
-		this.setState( { prettyPrint: true }, () => this.handleGenerate( e ) );
+	const handleGeneratePrettyPrint = (e) => {
+		handleGenerate( e, true )
 	};
 
-	handleGenerate = (e) => {
+	const handleGenerate = (e, prettyPrint) => {
 		e.preventDefault();
-		if (this.state.outputFormat == null) {
-			this.props.handleOpenDialog("Select an output format");
+		if (outputFormat == null) {
+			handleOpenDialog("Select an output format");
 		} else {
-			let reactState = this;
-				appService.doAjaxJson('POST', '/convert/doc', this.state).then(response => {
+			let payload = {}
+			payload.inputFormat = inputFormat
+			payload.outputFormat = outputFormat
+			payload.docContent = docContent
+			payload.prettyPrint = prettyPrint
+				appService.doAjaxJson('POST', '/convert/doc', payload).then(response => {
 					if (response.success) {
-						reactState.setState({
-							docOutput: response.result.docOutput
-						})
+						setDocOutput(response.result.docOutput)
 					} else if ( response.result.message != null ) {
-						this.props.handleOpenDialog( response.result.message + ' (' + response.status+")" );
+						handleOpenDialog( response.result.message + ' (' + response.status+")" );
 					} else {
-						this.props.handleOpenDialog( 'Generic error (' + response.status+")" );
+						handleOpenDialog( 'Generic error (' + response.status+")" );
 					}
 				})
 		}
 	};
 
-	handleInputFormat = (e) => {
-		e.preventDefault();
-		this.setState({
-			inputFormat: e.target.value,
-		});
+	const handleInputFormat = (e) => {
+		e.preventDefault()
+		setInputFormat( e.target.value )
+	}
+
+	const handleFormat = (e) => {
+		e.preventDefault()
+		setOutputFormat( e.target.value )
+	}
+
+	const handleDoc = ( newValue ) => {
+		setDocContent( newValue )
 	};
 
-	handleFormat = (e) => {
-		e.preventDefault();
-		this.setState({			
-			outputFormat: e.target.value,
-		});
-	};
+	const handleEditorContent = ( content ) => {
+		setDocContent( content )
+	}
 
-	handleDoc( newValue ) {
-		this.setState({
-			outputFormat: this.state.outputFormat,
-			docContent: newValue
-		}); 
-	};
-
-	handleEditorContent = ( content ) => {
-		this.setState(
-			{ 
-				docContent: content			 
-			}
-		);
-	};
-
-	render() {
+	const handleContent = () => {
 
 		let editorInFormat = 'xml';
-		if ( this.state.inputFormat != null ) {
-			editorInFormat = this.state.inputFormat.toLowerCase()
+		if ( inputFormat != null ) {
+			editorInFormat = inputFormat.toLowerCase()
 		}
 
 		let editorOutFormat = 'xml';
-		if ( this.state.outputFormat != null ) {
-			editorOutFormat = this.state.outputFormat.toLowerCase()
+		if ( outputFormat != null ) {
+			editorOutFormat = outputFormat.toLowerCase()
 		}
 	
 		return <Fragment>
 
 			<Grid container spacing={1}>
 			  <Grid item xs={12}>
-						<DocCatalog key={this.state.inputFormat}
-							currentType={this.state.inputFormat}
-							handleEditorContent={this.handleEditorContent}
+						<DocCatalog key={inputFormat}
+							currentType={inputFormat}
+							handleEditorContent={handleEditorContent}
 						/>
 			  </Grid>
 			  <Grid item xs={6} md={3}>
@@ -113,8 +94,8 @@ class DocConversion extends Component {
 					<FormControl fullWidth>
 					  <Select
 					    id="input-type-select"
-					    onChange={this.handleInputFormat}
-						value={this.state.inputFormat}
+					    onChange={handleInputFormat}
+						value={inputFormat}
 					  >
 					    <MenuItem value='XML'>XML</MenuItem>
 					    <MenuItem value='JSON'>JSON</MenuItem>
@@ -129,11 +110,10 @@ class DocConversion extends Component {
 					<FormControl fullWidth>
 					  <Select
 					    id="output-type-select"
-					    onChange={this.handleFormat}
-						value={this.state.outputFormat}
+					    onChange={handleFormat}
+						value={outputFormat}
 						displayEmpty
 					  >
-					  	<MenuItem value=''>Select output format</MenuItem>
 					    <MenuItem value='JSON'>JSON</MenuItem>
 					    <MenuItem value='YAML'>YAML</MenuItem>
 					    <MenuItem value='XML'>XML</MenuItem>
@@ -141,10 +121,10 @@ class DocConversion extends Component {
 					</FormControl>	
 			  </Grid>
 			  <Grid item xs={6}>
-				<Button variant="contained" onClick={this.handleGeneratePrettyPrint}>Convert and pretty print</Button>		
+				<Button variant="contained" onClick={handleGeneratePrettyPrint}>Convert and pretty print</Button>		
 			  </Grid>
 			  <Grid item xs={6}>
-				<Button variant="contained" onClick={this.handleGenerateOnlyFormat}>Only convert</Button>		
+				<Button variant="contained" onClick={handleGenerateOnlyFormat}>Only convert</Button>		
 			  </Grid>
 			  <Grid item xs={12} md={6}>
 						<AceEditor
@@ -155,8 +135,8 @@ class DocConversion extends Component {
 							enableBasicAutocompletion={true}
 							enableLiveAutocompletion={true}
 							enableSnippets={true}
-							value={this.state.docContent}
-							onChange={this.handleDoc}
+							value={docContent}
+							onChange={handleDoc}
 							width='100%'
 						/>
 			  </Grid>
@@ -167,7 +147,7 @@ class DocConversion extends Component {
 						name="DOC_OUTPUT"
 						editorProps={{ $blockScrolling: true }}
 						readOnly={true}
-						value={this.state.docOutput}
+						value={docOutput}
 						width='100%'
 					/>
 			  </Grid>
@@ -175,6 +155,8 @@ class DocConversion extends Component {
 
 		</Fragment>
 	}
+
+	return handleContent();
 
 }
 
