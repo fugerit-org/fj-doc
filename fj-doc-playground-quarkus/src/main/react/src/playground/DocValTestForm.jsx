@@ -1,73 +1,53 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Input, Grid, FormLabel, Button, List, ListItem, ListItemText } from "@mui/material";
 import appService from '../common/app-service';
 
-class DocValTestForm extends Component {
+const DocValTestForm = () => {
 
-	constructor(props) {
-		super(props);
-		this.sendForValidation = this.sendForValidation.bind(this);
-		this.prepareSend = this.prepareSend.bind(this);
-		this.state = {
-			fileToValidate: null,
-			supportedExtensions: null,
-			validationResult: null
-		}
-	}
+	const [fileToValidate, setFileToValidate] = useState(null)
+	const [supportedExtensions, setSupportedExtensions] = useState(null)
+	const [validationResult, swtValidationResult] = useState(null)
 
-	componentDidMount() {
-		let reactState = this;
+	useEffect(() => {
 		appService.doAjaxMultipart('GET', '/val/supported_extensions', null).then(response => {
 			if (response.success) {
-				reactState.setState({
-					supportedExtensions: response.result
-				})
+				setSupportedExtensions( response.result )
 			} else {
-				reactState.setState({
-					supportedExtensions: null
-				})
+				setSupportedExtensions( null )
 			}
 		})
-	}
+	}, []);
 
-	sendForValidation = (e) => {
+	const sendForValidation = (e) => {
 		e.preventDefault();
-		if (this.state.fileToValidate == null) {
+		if (fileToValidate == null) {
 			alert('File non provided');
 		} else {
 			let formData = new FormData();
-			formData.append('file', this.state.fileToValidate);
-
-			let reactState = this;
+			formData.append('file', fileToValidate)
 			appService.doAjaxMultipart('POST', '/val/check', formData).then(response => {
 				if (response.success) {
-					reactState.setState({
-						validationResult: response.result?.message
-					})
+					swtValidationResult( response.result?.message )
 				} else {
-					reactState.setState({
-						validationResult: response.status
-					})
+					swtValidationResult( response.status )
 				}
 			})
 		}
 	};
 
-	prepareSend = (e) => {
+	const prepareSend = (e) => {
 		e.preventDefault();
-		this.setState({
-			fileToValidate: e.target.files[0]
-		})
+		setFileToValidate( e.target.files[0] )
 	};
 
-	render() {
+	const handleContent = () => {
 		let message = <Fragment></Fragment>
-		if (this.state.validationResult != null) {
-			message = <b>Validation result : {this.state.validationResult} </b>
+		if (validationResult != null) {
+			message = <b>Validation result : {validationResult} </b>
 		}
-		let supportedExtensions = <Fragment></Fragment>;
-		if (this.state.supportedExtensions != null) {
-			supportedExtensions = <List variant="secondary">Supported extensions : {this.state.supportedExtensions.map(d => <ListItem key={d}><ListItemText>{d}</ListItemText></ListItem>)}</List>
+		let supportedExtensionsShow = <Fragment></Fragment>;
+		if (supportedExtensions != null) {
+			supportedExtensionsShow = <List variant="secondary">Supported extensions : {supportedExtensions.map(d => <ListItem key={d}><ListItemText>{d}</ListItemText></ListItem>)}</List>
 		}
 
 		return (
@@ -82,20 +62,22 @@ class DocValTestForm extends Component {
 				  			<FormLabel>Doc Type File validation example:</FormLabel>
 				  		</Grid>
 				  		<Grid item xs={12}>
-				  			<Input type='file' onChange={this.prepareSend}/>
+				  			<Input type='file' onChange={prepareSend}/>
 				  		</Grid>
 				  		<Grid item xs={12}>
-				  			<Button variant="contained" component="label" onClick={this.sendForValidation}>Send</Button>
+				  			<Button variant="contained" component="label" onClick={sendForValidation}>Send</Button>
 				  		</Grid>
 				  	</Grid>
 				  </Grid>
 				  <Grid item xs={6} md={3}>
-				    {supportedExtensions}
+				    {supportedExtensionsShow}
 				  </Grid>
 				 </Grid>
 			</Fragment>
 		);
 	}
+
+	return handleContent()
 
 }
 
