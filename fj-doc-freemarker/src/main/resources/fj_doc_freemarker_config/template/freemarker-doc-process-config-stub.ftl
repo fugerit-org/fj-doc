@@ -5,13 +5,13 @@
     xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" > 	
 
 	<!--
-		Configuration stub version : 005 (2023-10-14)
+		Configuration stub version : 006 (2024-10-31)
 	-->
 
 	<#assign stubHandler=stubParams['stub-handler']!'1'>
 	<#if stubHandler == '1'>
 	
-	<docHandlerConfig>
+	<docHandlerConfig registerById="${stubParams['registerById']!'false'}" allowDuplicatedId="${stubParams['allowDuplicatedId']!'false'}">
 
 		<!-- Type handler for markdown format -->
 		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />

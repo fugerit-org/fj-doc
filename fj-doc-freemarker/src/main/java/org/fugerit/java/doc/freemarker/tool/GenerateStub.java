@@ -32,7 +32,17 @@ public class GenerateStub {
 	 * Generate the docChain stub ('0' = enabled, default = '1')
 	 */
 	public static final String PARAM_STUB_CHAIN = "stub-chain";
-	
+
+	/**
+	 * Set the attribute registerById for element docHandlerConfig ('true' = enabled, default = 'false')
+	 */
+	public static final String PARAM_REGISTER_BY_ID = "registerById";
+
+	/**
+	 * Set the attribute allowDuplicatedId for element docHandlerConfig ('true' = enabled, default = 'false')
+	 */
+	public static final String PARAM_ALLOW_DUPLICATED_ID = "allowDuplicatedId";
+
 	/**
 	 * Enable FOP basic type handler in stub ('1' = enabled, default = '0')
 	 */
