@@ -17,7 +17,6 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 const DocXmlEditor = ({handleOpenDialog}) => {
 
-	const [renderCatalog, setRenderCatalog] = useState(true)
 	const [inputFormat, setInputFormat] = useState('FTLX')
 	const [outputFormat, setOutputFormat] = useState('HTML')
 	const [docContent, setDocContent] = useState('')
@@ -70,7 +69,6 @@ const DocXmlEditor = ({handleOpenDialog}) => {
 
 	const handleInputFormat = (e) => {
 		e.preventDefault();
-		setRenderCatalog( true )
 		setInputFormat( e.target.value )
 		setValidationEnabled( (e.target.value !== 'FTLX' && e.target.value !== 'KTS' ) )
 	};
