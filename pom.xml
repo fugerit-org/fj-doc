@@ -34,7 +34,7 @@
 	    <jajarta-jaxb-impl-version>4.0.5</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.0.21</kotlin.version>
-		<junit-jupiter-api-version>5.10.2</junit-jupiter-api-version>
+		<junit-jupiter-api-version>5.11.3</junit-jupiter-api-version>
 	</properties>
 
 	<licenses>
