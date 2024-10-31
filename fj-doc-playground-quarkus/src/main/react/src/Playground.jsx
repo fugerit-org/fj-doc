@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 
 import {
 	BrowserRouter as Router,
@@ -18,38 +18,25 @@ import { Dialog, DialogTitle, Button, Grid, MenuItem, Select } from "@mui/materi
 
 const homepage = '/fj-doc-playground/home';
 
-class Playground extends Component {
+const Playground = () => {
 
-	constructor(props) {
-		super(props);
-		this.handleOpenDialog = this.handleOpenDialog.bind(this);
-		this.handleCloseDialog = this.handleCloseDialog.bind(this);
-		this.state =  {  dialogMessage: null }
-	}
+	const [dialogMessage, setDialogMessage] = useState(null)
 
-	handleCloseDialog = () => {
-		this.setState(
-			{ 
-				dialogMessage: null				 
-			}
-		);
+	const handleCloseDialog = () => {
+		setDialogMessage( null )
 	};
 
-	handleOpenDialog = ( message ) => {
-		this.setState(
-			{ 
-				dialogMessage: message				 
-			}
-		);
+	const handleOpenDialog = ( message ) => {
+		setDialogMessage( message )
 	};
 
-	render() {
+	const handleContent = () => {
 		
 		let dialog = <Fragment></Fragment>;
-		if ( this.state?.dialogMessage != null) {
+		if ( dialogMessage != null) {
 			dialog = <Dialog open={true}>
-        		<DialogTitle>{this.state.dialogMessage}</DialogTitle>
-				<Button  color="primary" onClick={this.handleCloseDialog} autoFocus>Close</Button>        		
+        		<DialogTitle>{dialogMessage}</DialogTitle>
+				<Button  color="primary" onClick={handleCloseDialog} autoFocus>Close</Button>        		
         	</Dialog>
 		}
 		
@@ -84,14 +71,14 @@ class Playground extends Component {
 					{dialog}
 	
 					<Routes>
-						<Route path={homepage + "/doc_fun/doc_xml_editor"} element={<DocXmlEditor handleOpenDialog={this.handleOpenDialog} />} />
-						<Route path={homepage + "/doc_fun/doc_conversion"} element={<DocConversion handleOpenDialog={this.handleOpenDialog} />} key='def' />
-						<Route path={homepage + "/doc_fun/doc_conversion_x2x"} element={<DocConversion handleOpenDialog={this.handleOpenDialog} key='x2x' from='XML' to='XML' />} />
-						<Route path={homepage + "/doc_fun/doc_conversion_j2j"} element={<DocConversion handleOpenDialog={this.handleOpenDialog} key='j2j' from='JSON' to='JSON' />} />
-						<Route path={homepage + "/doc_fun/doc_conversion_y2y"} element={<DocConversion handleOpenDialog={this.handleOpenDialog} key='y2y' from='YAML' to='YAML' />} />
-						<Route path={homepage + "/doc_fun/doc_type_validator"} element={<DevValTestForm handleOpenDialog={this.handleOpenDialog} />} />
-						<Route path={homepage + "/doc_fun/doc_config_convert"} element={<DocConfigConvert handleOpenDialog={this.handleOpenDialog} />} />
-						<Route path={homepage + "/doc_fun/doc_project_init"} element={<DocProjectInit handleOpenDialog={this.handleOpenDialog} />} />
+						<Route path={homepage + "/doc_fun/doc_xml_editor"} element={<DocXmlEditor handleOpenDialog={handleOpenDialog} />} />
+						<Route path={homepage + "/doc_fun/doc_conversion"} element={<DocConversion handleOpenDialog={handleOpenDialog} />} key='def' />
+						<Route path={homepage + "/doc_fun/doc_conversion_x2x"} element={<DocConversion handleOpenDialog={handleOpenDialog} key='x2x' from='XML' to='XML' />} />
+						<Route path={homepage + "/doc_fun/doc_conversion_j2j"} element={<DocConversion handleOpenDialog={handleOpenDialog} key='j2j' from='JSON' to='JSON' />} />
+						<Route path={homepage + "/doc_fun/doc_conversion_y2y"} element={<DocConversion handleOpenDialog={handleOpenDialog} key='y2y' from='YAML' to='YAML' />} />
+						<Route path={homepage + "/doc_fun/doc_type_validator"} element={<DevValTestForm handleOpenDialog={handleOpenDialog} />} />
+						<Route path={homepage + "/doc_fun/doc_config_convert"} element={<DocConfigConvert handleOpenDialog={handleOpenDialog} />} />
+						<Route path={homepage + "/doc_fun/doc_project_init"} element={<DocProjectInit handleOpenDialog={handleOpenDialog} />} />
 						<Route path="*" element={<Home />} />
 					</Routes>
 
@@ -99,6 +86,8 @@ class Playground extends Component {
 			</Router>
 		);
 	}
+
+	return handleContent()
 
 }
 
