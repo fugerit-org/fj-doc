@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-playground-quarkus] base image registry.access.redhat.com/ubi9/openjdk-21:1.20-2.1729773471
 - [fj-doc-playground-quarkus] added output format ADOC (AsciiDoc)
+- [fj-doc-playground-quarkus] quarkus-version 3.16.1
+- [fj-doc-maven-plugin] goal init, flavour quarkus-3, default version 3.16.1
 
 ## [8.10.4] - 2024-10-27
 
