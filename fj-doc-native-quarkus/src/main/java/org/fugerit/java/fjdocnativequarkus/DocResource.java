@@ -22,7 +22,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tags;
 @Path("/doc")
 public class DocResource {
 
-    byte[] processDocument(String handlerId) {
+    public byte[] processDocument(String handlerId) {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             // creates the doc helper
             DocHelper docHelper = new DocHelper();
