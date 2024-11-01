@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [fj-doc-native-quarkus] native metadata test project <https://github.com/fugerit-org/fj-doc/issues/246>
+- [fj-doc-native-quarkus] native metadata test project and workflow <https://github.com/fugerit-org/fj-doc/issues/246>
 
 ### Changed
 
