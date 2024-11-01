@@ -22,70 +22,95 @@ flowchart TB
 [#doc-handler-module-handlers]
 === DocHandler Module Index
 
-[cols="4,2,1,3", options="header"]
+[cols="4,2,1,3,3", options="header"]
 |========================================================================================================================================
-| doc-handler     | module | type | description
+
+| doc-handler
+| module
+| type
+| description
+| notes
 
 | link:#doc-handler-base-md-ext[org.fugerit.java.doc.base.typehandler.markdown.&#8203;SimpleMarkdownExtTypeHandlerNoCommentsUTF8]
 | link:#doc-handler-base[fj-doc-base]
 | MD
 | Renders a MarkDown (Extended) document.
+| native ready (1)
 
 | link:#doc-handler-base-md-basic[org.fugerit.java.doc.base.typehandler.markdown.&#8203;SimpleMarkdownBasicTypeHandlerNoCommentsUTF8]
 | link:#doc-handler-base[fj-doc-base]
 | MD
 | Renders a MarkDown (Basic) document (tables are rendered as HTML).
+| native ready (1)
 
 | link:#doc-handler-freemarker-html[org.fugerit.java.doc.freemarker.html.&#8203;FreeMarkerHtmlTypeHandlerEscapeUTF8]
 | link:#doc-handler-freemarker[fj-doc-freemarker]
 | HTML
 | Renders HTML documents using link:https://freemarker.apache.org/[Apache FreeMarker template engine].
+| native ready (1)
 
 | link:#doc-handler-freemarker-fragment-html[org.fugerit.java.doc.freemarker.html.&#8203;FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8]
 | link:#doc-handler-freemarker[fj-doc-freemarker]
 | HTML Fragment
 | Same as above, but an HTML fragment is just the body of the HTML document.
+| native ready (1)
+
+| link:#doc-handler-freemarker-asciidoc[org.fugerit.java.doc.freemarker.asciidoc.&#8203;FreeMarkerAsciidocTypeHandlerUTF8]
+| link:#doc-handler-freemarker[fj-doc-freemarker]
+| ADOC
+| Renders AsciiDoc documents using link:https://freemarker.apache.org/[Apache FreeMarker template engine].
+| native ready (1)
 
 | link:#doc-handler-mod-fop-pdf-basic[org.fugerit.java.doc.mod.fop.&#8203;PdfFopTypeHandler]
 | link:#doc-handler-mod-fop[fj-doc-mod-fop]
 | PDF (PDF/A, PDF/UA)
 | A PDF doc handler based on link:https://xmlgraphics.apache.org/fop/[Apache FOP Project]. It offers options for PDF/A and PDF/UA formats.
+|
 
 | link:#doc-handler-mod-fop-fo[org.fugerit.java.doc.mod.fop.&#8203;FreeMarkerFopTypeHandlerUTF8]
 | link:#doc-handler-mod-fop[fj-doc-mod-fop]
 | FO (XLS-FO)
 | A link:https://www.w3.org/2002/08/XSLFOsummary.html[XLS-FO] doc handler based on link:https://xmlgraphics.apache.org/fop/[Apache FOP Project].
+|
 
 | link:#doc-handler-mod-poi-xlsx[org.fugerit.java.doc.mod.poi.&#8203;XlsxPoiTypeHandler]
 | link:#doc-handler-mod-poi[fj-doc-mod-poi]
 | XLSX
 | Generates an XLSX document using link:https://poi.apache.org/[Apache POI Project].
+|
 
 | link:#doc-handler-mod-poi-xls[org.fugerit.java.doc.mod.poi.&#8203;XlsPoiTypeHandler]
 | link:#doc-handler-mod-poi[fj-doc-mod-poi]
 | XLS
 | Generates an XLS document using link:https://poi.apache.org/[Apache POI Project].
+|
 
 | link:#doc-handler-mod-opencsv[org.fugerit.java.doc.mod.opencsv.&#8203;OpenCSVTypeHandler]
 | link:#doc-handler-mod-opencsv[fj-doc-mod-opencsv]
 | CSV
 | Generates a CSV document using link:https://opencsv.sourceforge.net/[OpenCSV].
+|
 
 | link:#doc-handler-mod-openpdf-ext-pdf[org.fugerit.java.doc.mod.openpdf.ext.&#8203;PdfTypeHandler]
 | link:#doc-handler-mod-openpdf-ext[fj-doc-mod-openpdf-ext] | PDF
 | Generates a PDF document using link:https://github.com/LibrePDF/OpenPDF/[OpenPDF].
+|
 
 | link:#doc-handler-mod-openpdf-ext-html[org.fugerit.java.doc.mod.openpdf.ext.&#8203;HtmlTypeHandler]
 | link:#doc-handler-mod-openpdf-ext[fj-doc-mod-openpdf-ext]
 | HTML
 | Generates a HTML document using link:https://github.com/LibrePDF/OpenPDF/[OpenPDF].
+|
 
 | link:#doc-handler-mod-openrtf-ext[org.fugerit.java.doc.mod.openrtf.ext.&#8203;RtfTypeHandler]
 | link:#doc-handler-mod-openrtf-ext[fj-doc-mod-openpdf-ext]
 | RTF
 | Generates a RTF document using link:https://github.com/LibrePDF/OpenRTF[OpenRTF].
+|
 
 |========================================================================================================================================
+
+NOTE: (1) Native Ready means that the GraalVM metadata are included in the release.
 
 Each section describing a specific doc handler will contain this quick reference :
 

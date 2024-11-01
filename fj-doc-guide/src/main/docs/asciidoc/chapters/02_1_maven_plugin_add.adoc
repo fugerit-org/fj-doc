@@ -32,62 +32,75 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 ==== Available extensions.
 
-[cols="4*", options="header"]
+[cols="5*", options="header"]
 |==================================================================================================================================================================
 
 | short name
 | full name
 | type handler
 | description
+| notes
 
 | base
 | fj-doc-base
 | md
 | library base, xml as format for document template
-
-| freemarker
-| fj-doc-freemarker
-| html
-| Template and configuration functionalities based on [Apache FreeMarker](https://freemarker.apache.org/)
-
-| mod-fop
-| fj-doc-mod-fop
-| fo, pdf
-| Type handler based on [Apache FOP](https://xmlgraphics.apache.org/fop/)
-
-| mod-poi
-| fj-doc-mod-poi
-| xls, xlsx
-| Type handler based on [Apache POI](https://poi.apache.org/)
-
-| mod-opencsv
-| fj-doc-mod-opencsv
-| opencsv
-| Type handler based on [OpenCSV](https://opencsv.sourceforge.net/)
-
-| mod-openpdf-ext
-| fj-doc-mod-openpdf-ext
-| pdf
-| Type handler based on [OpenPDF](https://github.com/LibrePDF/OpenPDF)
-
-| mod-openrtf-ext
-| fj-doc-mod-openrtf-ext
-| rtf
-| Type handler based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)
+| native ready (1)
 
 | base-json
 | fj-doc-base-json
 |
 | add support to use json documents as format for document template
+|
 
 | base-yaml
 | fj-doc-base-yaml
 |
 | add support to use yaml documents as format for document template
+|
 
 | base-kotlin
 | fj-doc-base-kotlin
 |
 | add support to use Kotlin DSL script (KTS) as format for document template
+|
+
+| freemarker
+| fj-doc-freemarker
+| html
+| Template and configuration functionalities based on [Apache FreeMarker](https://freemarker.apache.org/)
+| native ready (1)
+
+| mod-fop
+| fj-doc-mod-fop
+| fo, pdf
+| Type handler based on [Apache FOP](https://xmlgraphics.apache.org/fop/)
+|
+
+| mod-poi
+| fj-doc-mod-poi
+| xls, xlsx
+| Type handler based on [Apache POI](https://poi.apache.org/)
+|
+
+| mod-opencsv
+| fj-doc-mod-opencsv
+| opencsv
+| Type handler based on [OpenCSV](https://opencsv.sourceforge.net/)
+|
+
+| mod-openpdf-ext
+| fj-doc-mod-openpdf-ext
+| pdf
+| Type handler based on [OpenPDF](https://github.com/LibrePDF/OpenPDF)
+|
+
+| mod-openrtf-ext
+| fj-doc-mod-openrtf-ext
+| rtf
+| Type handler based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)
+|
 
 |==================================================================================================================================================================
+
+NOTE: (1) Native Ready means that the GraalVM metadata are included in the release.
