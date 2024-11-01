@@ -1,5 +1,7 @@
 # fj-doc-native-quarkus
 
+![GraalVM Ready](https://img.shields.io/badge/GraalVM-Ready-orange?style=plastic)
+
 ## Quickstart
 
 Requirement :

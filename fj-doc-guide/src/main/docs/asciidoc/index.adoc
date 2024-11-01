@@ -8,6 +8,7 @@ include::attributes/_attributes-common.adoc[]
 include::chapters/00_introduction.adoc[]
 include::chapters/00_1_what_is.adoc[]
 include::chapters/00_2_release_notes.adoc[]
+include::chapters/00_3_native_support.adoc[]
 
 include::chapters/01_quickstart.adoc[]
 
