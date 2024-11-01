@@ -1,5 +1,5 @@
 [#doc-what-is]
-=== What is Fugerit Venus Doc
+=== What is Fugerit Venus Doc?
 
 Fugerit Venus Doc is a document generation framework.
 
