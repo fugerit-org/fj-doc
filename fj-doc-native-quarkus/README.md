@@ -1,11 +1,11 @@
-# ${context.artifactId}
+# fj-doc-native-quarkus
 
 ## Quickstart
 
 Requirement :
 
 - maven 3.9.x
-- java ${context.javaRelease}+
+- java 21+
 
 1. Start the app
 
@@ -20,8 +20,8 @@ Open the [swagger-ui](http://localhost:8080/q/swagger-ui/)
 Test available paths (for instance : [/doc/example.md](http://localhost:8080/doc/example.md))
 
 NOTE:
-- Powered by Quarkus ${context.flavourVersion}
-- Using Fugerit Venus Doc ${context.version} (extensions : ${context.extensions})
+- Powered by Quarkus 3.16.1
+- Using Fugerit Venus Doc 8.10.5 (extensions : fj-doc-base,fj-doc-freemarker)
 
 ## Overview
 
@@ -30,9 +30,9 @@ This project has been initialized using [fj-doc-maven-plugin init goal](https://
 The quarkus 3 structure is similar to running the quarkus create goal : 
 
 ```shell
-mvn io.quarkus.platform:quarkus-maven-plugin:${context.flavourVersion}:create \
--DprojectGroupId=${context.groupId} \
--DprojectArtifactId=${context.artifactId} \
+mvn io.quarkus.platform:quarkus-maven-plugin:3.16.1:create \
+-DprojectGroupId=org.fugerit.java \
+-DprojectArtifactId=fj-doc-native-quarkus \
 -Dextensions='rest,rest-jackson,config-yaml,smallrye-openapi'
 ```
 

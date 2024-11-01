@@ -6,11 +6,9 @@ import jakarta.enterprise.event.Observes;
 import lombok.extern.slf4j.Slf4j;
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
-import java.util.Arrays;
-
 @Slf4j
 @ApplicationScoped
-@RegisterForReflection( targets = { DocHelper.class } )
+@RegisterForReflection( targets = { DocHelper.class, People.class } )
 public class AppInit {
 
     void onStart(@Observes StartupEvent ev) {
