@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- generated from template 'fm-doc-process-config-template.ftl' on 2024-11-01T20:36:51.311Z -->
+<freemarker-doc-process-config
+        xmlns="https://freemarkerdocprocess.fugerit.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" >
+
+    <!--
+    Documentation :
+    https://venusdocs.fugerit.org/guide/
+
+    Configuration reference :
+    https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html
+    -->
+
+    <docHandlerConfig registerById="true">
+        <!-- Type handler for markdown format -->
+        <docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+        <!-- Type henalder for xml format, generates the source xml:doc -->
+        <docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+        <!-- Type handler for html using freemarker -->
+        <docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
+        <!-- Type handler for html using freemarker (fragment version, only generates body content no html or head part -->
+        <docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+        <!-- type handler for asciidoc using freemarker -->
+        <docHandler id="asciidoc-fm" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
+    </docHandlerConfig>
+
+    <docChain id="shared">
+        <chainStep stepType="config">
+            <config
+                    id="fj_doc_config_fm_fjdocnativequarkus"
+                    class="org.fugerit.java.fjdocnativequarkus.DocHelper"
+                    exception-handler="RETHROW_HANDLER"
+                    fallback-on-null-loop-variable="false"
+                    log-exception="false"
+                    mode="class"
+                    path="/fj-doc-native-quarkus/template/"
+                    version="2.3.32"
+                    wrap-unchecked-exceptions="true"
+                    load-bundled-functions="true"
+            />
+        </chainStep>
+    </docChain>
+
+    <!-- example document chain xml -->
+    <docChain id="document" parent="shared">
+        <chainStep stepType="complex" map-all="true" template-path="${chainId}.ftl"/>
+    </docChain>
+
+
+
+
+</freemarker-doc-process-config>
