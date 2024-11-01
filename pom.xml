@@ -115,6 +115,7 @@
 		<module>fj-doc-sample</module>
 		<module>fj-doc-guide</module>
 		<module>fj-doc-playground-quarkus</module>
+		<module>fj-doc-native-quarkus</module>
 	</modules>
 
 	<dependencyManagement>

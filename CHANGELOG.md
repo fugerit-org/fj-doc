@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-native-quarkus] native metadata test project and workflow <https://github.com/fugerit-org/fj-doc/issues/246>
+
+### Changed
+
+- [fj-doc-maven-plugin] flavour quarkus-3 native configuration
+- [fj-doc-maven-plugin] added quarkus-freemarker dependency to flavour quarkus-3
+
 ## [8.10.5] - 2024-11-01
 
 ### Changed

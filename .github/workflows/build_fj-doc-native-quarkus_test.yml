@@ -1,0 +1,61 @@
+# CI native modules build and test
+#
+# v1.0.0
+#
+# This workflow will use the qurkus project :
+# fj-doc-native-quarkus
+#
+# to test native enabled modules of https://github.com/fugerit-org/fj-doc :
+# fj-doc-base
+# fj-doc-freemarker
+#
+# see https://venusdocs.fugerit.org/guide/#doc-handler-module-handlers
+
+name: CI native modules build and test
+
+on:
+  push:
+    branches:
+      - 246-enhancement-graalvm-metadata-testing
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+
+      # checkout
+      - uses: actions/checkout@main
+        with:
+          fetch-depth: 0
+
+      # setup latest GraalVM LTS
+      - uses: actions/setup-java@main
+        with:
+          distribution: 'graalvm' # See 'Supported distributions' for available options
+          java-version: '21'
+
+      - name: Cache Maven packages
+        uses: actions/cache@main
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+      # build all projects modules
+      - name: Build project
+        run: mvn clean install
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # build and test native module (quarkus project)
+      - name: Native build and test
+        run: |
+          cd fj-doc-native-quarkus
+          mvn package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -P test
+
