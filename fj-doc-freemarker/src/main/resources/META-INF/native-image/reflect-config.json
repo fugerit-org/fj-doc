@@ -1,0 +1,2174 @@
+[ {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInstance",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newInstance",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator$1",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "characters",
+    "parameterTypes" : [ "[C", "int", "int" ]
+  }, {
+    "name" : "declaration",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "endDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "endElement",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "endPrefixMapping",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "error",
+    "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
+  }, {
+    "name" : "fatalError",
+    "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "ignorableWhitespace",
+    "parameterTypes" : [ "[C", "int", "int" ]
+  }, {
+    "name" : "notationDecl",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "processingInstruction",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "resolveEntity",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "setDocumentLocator",
+    "parameterTypes" : [ "org.xml.sax.Locator" ]
+  }, {
+    "name" : "skippedEntity",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "startDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "startElement",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "org.xml.sax.Attributes" ]
+  }, {
+    "name" : "startPrefixMapping",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unparsedEntityDecl",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "warning",
+    "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.ChainStepModel",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAttributes",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getStepType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAttributes",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setStepType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.DefaultChainProvider",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "newDefaultChain",
+    "parameterTypes" : [ "java.lang.String" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.DocChainModel",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getChainStepList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMapAtts",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMapAttsEnum",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParent",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSourceType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getTemplatePath",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setMapAtts",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setMapAttsEnum",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParent",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setSourceType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setTemplatePath",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.DocInputProcess",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.util.function.UnaryOperator" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newDocInputProcess",
+    "parameterTypes" : [ "boolean", "boolean", "boolean" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerConfigHelper",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "fullProcess",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "java.lang.String", "java.io.OutputStream" ]
+  }, {
+    "name" : "fullProcess",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "java.lang.String", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "fullProcess",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.config.DocTypeHandler", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "getChain",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getChainCache",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocChainList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFacade",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKeys",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isCleanSource",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isFailOnValidate",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isValidating",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData", "org.fugerit.java.doc.base.config.DocTypeHandler", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "java.io.OutputStream", "boolean" ]
+  }, {
+    "name" : "setChain",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.core.util.filterchain.MiniFilterChain" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getBuiltInStepsReverse",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "loadConfig",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "loadConfigSafe",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "newSimpleConfig",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "newSimpleConfig",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getXsdVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "logResult",
+    "parameterTypes" : [ "org.fugerit.java.core.xml.sax.SAXParseResult" ]
+  }, {
+    "name" : "logValidation",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "validate",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFmDocChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isEscapeTextAsHtml",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setEscapeTextAsHtml",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "withEscapeTextAsHtml",
+    "parameterTypes" : [ "boolean" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFmDocChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isEscapeTextAsHtml",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setEscapeTextAsHtml",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "withEscapeTextAsHtml",
+    "parameterTypes" : [ "boolean" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFmDocChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isEscapeTextAsHtml",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setEscapeTextAsHtml",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "withEscapeTextAsHtml",
+    "parameterTypes" : [ "boolean" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerComplexProcessStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handleMap",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "java.util.Properties" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "overrideTemplatePath",
+    "parameterTypes" : [ "java.util.Properties", "java.lang.String" ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerConstants",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFreeMarkerMap",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerFunctionStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerKotlinStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "convertOrExceptiopn",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerMapStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerProcessStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreeMarkerSkipProcessStep",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
+  }, {
+    "name" : "config",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "genKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getChainId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultBehaviour",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDescription",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getParam01",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "process",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
+  }, {
+    "name" : "setChainId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCustomConfig",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setParam01",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.config.FreemarkerApplyHelper",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "addStaticAccess",
+    "parameterTypes" : [ "freemarker.template.Configuration", "java.util.Map", "java.lang.String", "java.lang.Class" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setupFreemarkerMap",
+    "parameterTypes" : [ "freemarker.template.Configuration", "java.util.Map" ]
+  }, {
+    "name" : "setupFreemarkerMap",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "java.util.Map" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.CleanTextFun",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.CleanXmlFun",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.FMFunHelper",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "checkFirstRequired",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "checkFirstRequiredWithMessage",
+    "parameterTypes" : [ "java.util.List", "java.lang.String" ]
+  }, {
+    "name" : "checkParameterNumber",
+    "parameterTypes" : [ "java.util.List", "int" ]
+  }, {
+    "name" : "checkParameterNumberWithMessage",
+    "parameterTypes" : [ "java.util.List", "int", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.SimpleMessageFun",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.freemarker.fun.TextWrapFun",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "java.lang.Class",
+  "methods" : [ {
+    "name" : "getSimpleName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCanonicalName",
+    "parameterTypes" : [ ]
+  } ]
+} ]

@@ -1,0 +1,4474 @@
+[ {
+  "name" : "org.fugerit.java.doc.base.model.DocBackground",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocBarcode",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getText",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocBase",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocBackground",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocBody",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocBookmarkTree",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocFooter",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocHeader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocMeta",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementById",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfo",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoDocAuthor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoDocCreator",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoDocLanguage",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoDocSubject",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoDocTitle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoDocVersion",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoPageHeight",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoPageWidth",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMarginBottom",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMarginLeft",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMarginRight",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMarginTop",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getStableInfo",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getXsdVersion",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isUseFooter",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isUseHeader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "print",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBase", "java.io.PrintStream" ]
+  }, {
+    "name" : "setDocBackground",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBackground" ]
+  }, {
+    "name" : "setDocBody",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocContainer" ]
+  }, {
+    "name" : "setDocBookmarkTree",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBookmarkTree" ]
+  }, {
+    "name" : "setDocFooter",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocFooter" ]
+  }, {
+    "name" : "setDocHeader",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHeader" ]
+  }, {
+    "name" : "setDocMeta",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocContainer" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "setStableInfo",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "setXsdVersion",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocBookmark",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getRef",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getTitle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setRef",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setTitle",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocBookmarkTree",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocBorders",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBorders" ]
+  }, {
+    "name" : "createBorders",
+    "parameterTypes" : [ "java.util.Properties", "java.lang.String" ]
+  }, {
+    "name" : "createBorders",
+    "parameterTypes" : [ "java.util.Properties", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getBorderColorBottom",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderColorLeft",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderColorRight",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderColorTop",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidthBottom",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidthLeft",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidthRight",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidthTop",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPaddingBottom",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPaddingLeft",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPaddingRight",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPaddingTop",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setBorderColorBottom",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBorderColorLeft",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBorderColorRight",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBorderColorTop",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBorderWidthBottom",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBorderWidthLeft",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBorderWidthRight",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBorderWidthTop",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setPaddingBottom",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setPaddingLeft",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setPaddingRight",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setPaddingTop",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocBr",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAnchor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFontName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInternalLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLeading",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOriginalStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getText",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getWhiteSpaceCollapse",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isInternal",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAnchor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFontName",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setLeading",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setLink",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setOriginalStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setWhiteSpaceCollapse",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocCell",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCSpan",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getColumnSpan",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocBorders",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getRSpan",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getRowSpan",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getValign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isHeader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setCSpan",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setDocBorders",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBorders" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setHeader",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setRSpan",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setValign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocContainer",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocElement",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocFooter",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidth",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getExpectedSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isBasic",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isNumbered",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isUseFooter",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBasic",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setBorderWidth",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setExpectedSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setNumbered",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setUseFooter",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocHeader",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidth",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getExpectedSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isBasic",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isNumbered",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isUseHeader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBasic",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setBorderWidth",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setExpectedSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setNumbered",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setUseHeader",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocHeaderFooter",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBorderWidth",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getExpectedSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isBasic",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isNumbered",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBasic",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setBorderWidth",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setExpectedSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setNumbered",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocHelper",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "filterText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocImage",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAcceptedImageTypes",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getAlt",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBase64",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getResolvedBase64",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getResolvedType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getScaling",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getUrl",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setAlt",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBase64",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setScaling",
+    "parameterTypes" : [ "java.lang.Integer" ]
+  }, {
+    "name" : "setType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setUrl",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocInfo",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getContent",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setContent",
+    "parameterTypes" : [ "java.lang.StringBuilder" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setName",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocLi",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getContent",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSecondContent",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isContentList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isSecondList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocList",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClt",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getHtmlType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getListType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isOrdered",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isUnordered",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setListType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocNbsp",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAnchor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFontName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInternalLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLeading",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLength",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOriginalStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getText",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getWhiteSpaceCollapse",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isInternal",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAnchor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFontName",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setLeading",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setLength",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setLink",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setOriginalStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setWhiteSpaceCollapse",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocPageBreak",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocPara",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFontName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getHeadLevel",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLeading",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOriginalStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpaceAfter",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpaceBefore",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpaceLeft",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpaceRight",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getText",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getTextIndent",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getWhiteSpaceCollapse",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isNotWhiteSpaceCollapse",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parseStyle",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "parseStyle",
+    "parameterTypes" : [ "java.lang.String", "int" ]
+  }, {
+    "name" : "setAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFontName",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFormat",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setHeadLevel",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setLeading",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setOriginalStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setSpaceAfter",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setSpaceBefore",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setSpaceLeft",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setSpaceRight",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setTextIndent",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setType",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setWhiteSpaceCollapse",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocPhrase",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAnchor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFontName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInternalLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLeading",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOriginalStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getStyle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getText",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getWhiteSpaceCollapse",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isInternal",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAnchor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFontName",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setLeading",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setLink",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setOriginalStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setStyle",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setWhiteSpaceCollapse",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocRow",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isHeader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setHeader",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocStyle",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocTable",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "addElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement" ]
+  }, {
+    "name" : "containerSize",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "docElements",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlt",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getBackColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getColWithds",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getColumns",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getElementList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getForeColor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPadding",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getRenderMode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpaceAfter",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpaceBefore",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSpacing",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getUtil",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getWidth",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setAlt",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setColWithds",
+    "parameterTypes" : [ "[I" ]
+  }, {
+    "name" : "setColumns",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setForeColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setPadding",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setRenderMode",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setSpaceAfter",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setSpaceBefore",
+    "parameterTypes" : [ "java.lang.Float" ]
+  }, {
+    "name" : "setSpacing",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setWidth",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.DocText",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getHAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getVAlign",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setHAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setVAlign",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocCharsetProvider$1",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultProvider",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newProvider",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "resolveCharset",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "setDefaultProvider",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocCharsetProvider" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocCharsetProvider",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultProvider",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newProvider",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "resolveCharset",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "setDefaultProvider",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocCharsetProvider" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocConfig",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getVersionConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocConstants",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getEuro",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInstance",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocException",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.Throwable" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.lang.Throwable" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Throwable" ]
+  }, {
+    "name" : "addSuppressed",
+    "parameterTypes" : [ "java.lang.Throwable" ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeVoid" ]
+  }, {
+    "name" : "apply",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeVoid", "org.fugerit.java.core.function.UnsafeConsumer" ]
+  }, {
+    "name" : "applySilent",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeVoid" ]
+  }, {
+    "name" : "applyWithMessage",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeVoid", "java.lang.String" ]
+  }, {
+    "name" : "convertEx",
+    "parameterTypes" : [ "java.lang.Exception" ]
+  }, {
+    "name" : "convertEx",
+    "parameterTypes" : [ "java.lang.String", "java.lang.Exception" ]
+  }, {
+    "name" : "convertExMethod",
+    "parameterTypes" : [ "java.lang.String", "java.lang.Exception" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "fillInStackTrace",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "get",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeSupplier" ]
+  }, {
+    "name" : "get",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeSupplier", "org.fugerit.java.core.function.UnsafeConsumer" ]
+  }, {
+    "name" : "getCause",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLocalizedMessage",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMessage",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSilent",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeSupplier" ]
+  }, {
+    "name" : "getStackTrace",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSuppressed",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getWithMessage",
+    "parameterTypes" : [ "org.fugerit.java.core.function.UnsafeSupplier", "java.lang.String" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "initCause",
+    "parameterTypes" : [ "java.lang.Throwable" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "printStackTrace",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "printStackTrace",
+    "parameterTypes" : [ "java.io.PrintWriter" ]
+  }, {
+    "name" : "printStackTrace",
+    "parameterTypes" : [ "java.io.PrintStream" ]
+  }, {
+    "name" : "setStackTrace",
+    "parameterTypes" : [ "[Ljava.lang.StackTraceElement;" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocInput",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDoc",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getReader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSource",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase" ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "java.io.Reader" ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader" ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "java.io.Reader", "int" ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocOutput",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.io.OutputStream" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOs",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getResult",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newOutput",
+    "parameterTypes" : [ "java.io.OutputStream" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocResult",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "clear",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "errorCount",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "errors",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "fatalCount",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "fatals",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "fatalsAndErrors",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getError",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "getFatal",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "getWarning",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isPartialSuccess",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isTotalSuccess",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "printErrorReport",
+    "parameterTypes" : [ "java.io.PrintStream" ]
+  }, {
+    "name" : "putError",
+    "parameterTypes" : [ "java.lang.Exception" ]
+  }, {
+    "name" : "putFatal",
+    "parameterTypes" : [ "java.lang.Exception" ]
+  }, {
+    "name" : "putWarning",
+    "parameterTypes" : [ "java.lang.Exception" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "warningCount",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "warnings",
+    "parameterTypes" : [ ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerDecorator",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocTypeHandler" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerDefault",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "java.nio.charset.Charset" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "java.nio.charset.Charset", "java.lang.String" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerXML",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.DocVersion",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "compare",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocVersion", "org.fugerit.java.doc.base.config.DocVersion" ]
+  }, {
+    "name" : "compare",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "compareTo",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "compareTo",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocVersion" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMajor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMinor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newVersion",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "stringVersion",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.config.InitHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "initDoc",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocTypeHandler" ]
+  }, {
+    "name" : "initDoc",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocTypeHandler", "boolean" ]
+  }, {
+    "name" : "initDocAll",
+    "parameterTypes" : [ "java.util.Collection" ]
+  }, {
+    "name" : "initDocAllAsync",
+    "parameterTypes" : [ "java.util.Collection" ]
+  }, {
+    "name" : "initDocAsync",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocTypeHandler" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.AbstractDocParser",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSourceType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "validate",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersionResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.DocEvalWithDataModel",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "evalWithDataModel",
+    "parameterTypes" : [ "java.io.Reader", "java.util.Map" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.DocParser",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "getSourceType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "validate",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersionResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.DocParserContext",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "createXsdVersionXmlns",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "endDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "findXsdVersion",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocBase",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handleEndElement",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "handleStartElement",
+    "parameterTypes" : [ "java.lang.String", "java.util.Properties" ]
+  }, {
+    "name" : "handleText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "startDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.DocParserHelper",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getContainerNames",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInstance",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isContainerElement",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.DocParserUtil",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "doubleNested",
+    "parameterTypes" : [ "java.util.Properties", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "doubleNestedWithDefaultInt",
+    "parameterTypes" : [ "java.util.Properties", "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.parser.DocValidationResult",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "evaluateResult",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getErrorList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoList",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getInfoMap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLogger",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getResultCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isResultOk",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newDefaultKOResult",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newDefaultNotDefinedResult",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newDefaultNotSupportedResult",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newDefaultOKResult",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setResultCode",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocValidator$1",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "characters",
+    "parameterTypes" : [ "[C", "int", "int" ]
+  }, {
+    "name" : "declaration",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "endDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "endElement",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "endPrefixMapping",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "error",
+    "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
+  }, {
+    "name" : "fatalError",
+    "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "ignorableWhitespace",
+    "parameterTypes" : [ "[C", "int", "int" ]
+  }, {
+    "name" : "notationDecl",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "processingInstruction",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "resolveEntity",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "setDocumentLocator",
+    "parameterTypes" : [ "org.xml.sax.Locator" ]
+  }, {
+    "name" : "skippedEntity",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "startDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "startElement",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "org.xml.sax.Attributes" ]
+  }, {
+    "name" : "startPrefixMapping",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unparsedEntityDecl",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "warning",
+    "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocContentHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper", "boolean" ]
+  }, {
+    "name" : "attsToProperties",
+    "parameterTypes" : [ "org.xml.sax.Attributes" ]
+  }, {
+    "name" : "characters",
+    "parameterTypes" : [ "[C", "int", "int" ]
+  }, {
+    "name" : "declaration",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "endDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "endElement",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "endPrefixMapping",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocBase",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "ignorableWhitespace",
+    "parameterTypes" : [ "[C", "int", "int" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "processingInstruction",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "setDocumentLocator",
+    "parameterTypes" : [ "org.xml.sax.Locator" ]
+  }, {
+    "name" : "skippedEntity",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "startDocument",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "startElement",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "org.xml.sax.Attributes" ]
+  }, {
+    "name" : "startPrefixMapping",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocModelUtils",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parseHtmlColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocStyleAlignHelper",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getAlign",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getValign",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parseStyle",
+    "parameterTypes" : [ "java.lang.String", "int" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocValidator",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getXsdVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "logResult",
+    "parameterTypes" : [ "org.fugerit.java.core.xml.sax.SAXParseResult", "org.slf4j.Logger" ]
+  }, {
+    "name" : "logValidation",
+    "parameterTypes" : [ "java.io.Reader", "org.slf4j.Logger" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "validate",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocXMLUtils",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "cleanText",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "cleanXML",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.DocXmlParser",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper", "boolean" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "fillDocValidationResultHelper",
+    "parameterTypes" : [ "org.fugerit.java.core.xml.sax.SAXParseResult", "org.fugerit.java.doc.base.parser.DocValidationResult" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSourceType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isFailWhenElementNotFound",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "validate",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersionResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.xml.SAXUtils",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newSafeFactory",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newSafeFactory",
+    "parameterTypes" : [ "java.util.Map" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.AbstractCustomMarkdownTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isPrintComments",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.MarkdownBasicDocFacade",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.io.PrintWriter" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.io.PrintWriter", "boolean" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handleDoc",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBase" ]
+  }, {
+    "name" : "handleElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleElements",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleImage",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocImage", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleList",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocList", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handlePara",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocPara", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handlePhrase",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocPhrase", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleTable",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocTable", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.MarkdownExtDocFacade",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.io.PrintWriter" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.io.PrintWriter", "boolean" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handleDoc",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBase" ]
+  }, {
+    "name" : "handleElement",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocElement", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleElements",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleImage",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocImage", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleList",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocList", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handlePara",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocPara", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handlePhrase",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocPhrase", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "handleTable",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocTable", "org.fugerit.java.doc.base.model.DocContainer", "org.fugerit.java.doc.base.helper.DocTypeFacadeHelper" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "boolean" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isPrintComments",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerNoCommentsUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "boolean" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isPrintComments",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerUTF8",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "org.fugerit.java.doc.base.model.util.DocTableUtil",
+  "fields" : [ ],
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocTable" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDataRows",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getHeaderRows",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isStrictHeader",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "java.lang.Class",
+  "methods" : [ {
+    "name" : "getSimpleName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCanonicalName",
+    "parameterTypes" : [ ]
+  } ]
+} ]

@@ -21,10 +21,7 @@ mvn install -Dnative -Ptest
 2. Run the app
 
 ```shell
-git clone https://github.com/fugerit-org/fj-doc
-mvn clean install
-cd fj-doc-native-quarkus
-mvn install -Dnative -Ptest
+./target/fj-doc-native-quarkus*-runner
 ```
 
 3. Test the app
