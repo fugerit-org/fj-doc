@@ -15,6 +15,7 @@
         <quarkus.platform.version>${context.flavourVersion}</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
+        <quarkus-freemarker-version>1.1.0</quarkus-freemarker-version>
     </properties>
 
     <dependencyManagement>
@@ -50,6 +51,13 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
+        <#if context.modules?seq_contains("fj-doc-mod-poi")>
+        <dependency>
+            <groupId>io.quarkiverse.freemarker</groupId>
+            <artifactId>quarkus-freemarker</artifactId>
+            <version>{r"${quarkus-freemarker-version}"}</version>
+        </dependency>
+        </#if>
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
