@@ -2,24 +2,7 @@
   "bundles": [],
   "resources": {
     "includes": [
-      {
-        "pattern": "fj_doc_freemarker_config/fm-freemarker-doc-process-config.xml"
-      },
-      {
-        "pattern": "fj_doc_freemarker_config/template/freemarker-doc-process-config-stub.ftl"
-      },
-      {
-        "pattern": "fj_doc_freemarker_config/template/html_doc.ftl"
-      },
-      {
-        "pattern": "fj_doc_freemarker_config/template/html_fragment.ftl"
-      },
-      {
-        "pattern": "fj_doc_freemarker_config/template/macro/html_element.ftl"
-      },
-      {
-        "pattern": "fj_doc_freemarker_config/template/macro/html_element_1-x.ftl"
-      }
+      {"pattern": "fj_doc_freemarker_config/.*$"}
     ]
   }
 }
