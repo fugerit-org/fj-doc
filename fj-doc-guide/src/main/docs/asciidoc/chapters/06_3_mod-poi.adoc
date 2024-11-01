@@ -76,7 +76,7 @@ This doc handler would a XLSX document.
 *In brief* :
 
 - *compliance level* : _MEDIUM_
-- *compliance detail* : Only single table elements of the link:#doc-format-entry-point[Venus Doc Format] are rendered.
+- *compliance detail* : Only single table elements of the xref:#doc-format-entry-point[Venus Doc Format] are rendered.
 - *native ready* : _NO_ (As Apache POI is not ready).
 
 Add this element to *<docHandlerConfig/>* :
@@ -97,7 +97,7 @@ This doc handler would a XLS document.
 *In brief* :
 
 - *compliance level* : _MEDIUM_
-- *compliance detail* : Only single table elements of the link:#doc-format-entry-point[Venus Doc Format] are rendered.
+- *compliance detail* : Only single table elements of the xref:#doc-format-entry-point[Venus Doc Format] are rendered.
 - *native ready* : _NO_ (As Apache POI is not ready).
 
 Add this element to *<docHandlerConfig/>* :

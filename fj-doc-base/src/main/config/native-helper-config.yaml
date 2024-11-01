@@ -1,0 +1,15 @@
+#Sample native helper config file
+---
+generate:
+  - packageName: org.fugerit.java.doc.base.model
+    mode: all
+  - packageName: org.fugerit.java.doc.base.config
+    mode: all
+  - packageName: org.fugerit.java.doc.base.parser
+    mode: all
+  - packageName: org.fugerit.java.doc.base.xml
+    mode: all
+  - packageName: org.fugerit.java.doc.base.typehandler.markdown
+    mode: all
+  - className: org.fugerit.java.doc.base.model.util.DocTableUtil
+    mode: all

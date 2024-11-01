@@ -26,7 +26,48 @@
 	</properties>
 	
 	<build>
-		
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>native-helper-maven-plugin</artifactId>
+				<version>${native-helper-maven-plugin-version}</version>
+				<executions>
+					<execution>
+						<id>generate-native-configuration</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<createParentDirectory>true</createParentDirectory>
+							<nativeHelperConfigPath>${project.basedir}/src/main/config/native-helper-config.yaml</nativeHelperConfigPath>
+							<reflectConfigJsonOutputPath>${project.build.directory}/generated-resources/reflect-config-custom.json</reflectConfigJsonOutputPath>
+							<warnOnError>false</warnOnError>
+						</configuration>
+					</execution>
+					<execution>
+						<id>merge-native-configuration</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>merge</goal>
+						</goals>
+						<configuration>
+							<reflectConfigJsonFiles>
+								<reflectConfigJsonFile>${project.build.directory}/generated-resources/reflect-config-custom.json</reflectConfigJsonFile>
+								<reflectConfigJsonFile>${project.basedir}/src/main/config/reflect-config-nhg.json</reflectConfigJsonFile>
+							</reflectConfigJsonFiles>
+							<reflectConfigJsonOutputPath>${project.build.outputDirectory}/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
+							<createParentDirectory>true</createParentDirectory>
+							<warnOnError>false</warnOnError>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
 	</build>
 
 	<dependencies>

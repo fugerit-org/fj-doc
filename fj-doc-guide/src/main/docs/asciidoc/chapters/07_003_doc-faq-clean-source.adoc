@@ -2,7 +2,7 @@
 [#doc-faq-clean-source-document]
 === How do I clean source document before parsing to Doc Model?
 
-If using the link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
+If using the xref:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
 you can simply set to true the attributes :
 
 * cleanSource="true"
@@ -39,4 +39,4 @@ Would be cleaned to :
 ----
 
 For more information see :
-link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
+xref:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
