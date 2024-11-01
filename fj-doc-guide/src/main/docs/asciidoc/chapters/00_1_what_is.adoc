@@ -8,4 +8,3 @@ It is based a xref:#doc-format-entry-point[source format] to describe the docume
 It heavenly relies on link:https://freemarker.apache.org[Apache FreeMarker] for source format composition.
 
 The source format can be rendered to different output formats through xref:#doc-handlers[Doc Handlers]. (the actual rendering often depends on other open source libraries like link:https://xmlgraphics.apache.org/fop/[Apache FOP] or link:https://opencsv.sourceforge.net/[OpenCSV]).
-
