@@ -1,7 +1,7 @@
 [#doc-faq-validate-document]
 === How do I validate the doc format after freemarker processing?
 
-If using the link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
+If using the xref:#doc-freemarker-config[FreemarkerDocProcessConfig configuration]
 you can simply set to true the attributes :
 
 * validating="true"
@@ -26,4 +26,4 @@ On log you will find something like :
 * Validation error 1, org.xml.sax.SAXParseException; lineNumber: 49; columnNumber: 49; cvc-complex-type.3.2.2: Attribute 'attribute-not-allowed' is not allowed to appear in element 'para'.
 
 For more information see :
-link:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].
+xref:#doc-freemarker-config[FreemarkerDocProcessConfig configuration : Attributes].

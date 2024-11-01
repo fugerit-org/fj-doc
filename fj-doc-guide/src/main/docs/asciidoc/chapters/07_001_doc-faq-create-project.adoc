@@ -11,4 +11,4 @@ mvn org.fugerit.java:fj-doc-maven-plugin:init \
 -Dextensions=base,freemarker,mod-fop
 ----
 
-For more information see : link:#maven-plugin-goal-init[Maven Plugin Goal Init].
+For more information see : xref:#maven-plugin-goal-init[Maven Plugin Goal Init].

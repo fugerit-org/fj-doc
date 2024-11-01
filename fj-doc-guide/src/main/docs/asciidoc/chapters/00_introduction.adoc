@@ -44,11 +44,11 @@ flowchart TB
     end
 ....
 
-(*) link:#doc-format-entry-point[Fugerit Doc Format] is the core of the Venus Doc Framework and comes into a few flavours :
+(*) xref:#doc-format-entry-point[Fugerit Doc Format] is the core of the Venus Doc Framework and comes into a few flavours :
 
-- link:#doc-format-entry-point-xml[XML], default
-- link:#doc-format-entry-point-json-yaml[JSON] and link:#doc-format-entry-point-json-yaml[YAML] alternatives
-- link:#doc-format-entry-point-kotlin[KOTLIN] Domain Specific Language
+- xref:#doc-format-entry-point-xml[XML], default
+- xref:#doc-format-entry-point-json-yaml[JSON] and xref:#doc-format-entry-point-json-yaml[YAML] alternatives
+- xref:#doc-format-entry-point-kotlin[KOTLIN] Domain Specific Language
 
 [.text-left]
 *Copyright*

@@ -73,4 +73,4 @@ And when using link:https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/
 
 ==== FreeMarkerKotlinStep
 
-A new _FreeMarkerKotlinStep_ is also available inside the link:#doc-freemarker-config[FreemarkerDocProcessConfig]
+A new _FreeMarkerKotlinStep_ is also available inside the xref:#doc-freemarker-config[FreemarkerDocProcessConfig]
