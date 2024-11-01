@@ -51,11 +51,11 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
-        <#if context.modules?seq_contains("fj-doc-mod-poi")>
+        <#if context.modules?seq_contains("fj-doc-freemarker")>
         <dependency>
             <groupId>io.quarkiverse.freemarker</groupId>
             <artifactId>quarkus-freemarker</artifactId>
-            <version>{r"${quarkus-freemarker-version}"}</version>
+            <version>${r"${quarkus-freemarker-version}"}</version>
         </dependency>
         </#if>
         <dependency>
