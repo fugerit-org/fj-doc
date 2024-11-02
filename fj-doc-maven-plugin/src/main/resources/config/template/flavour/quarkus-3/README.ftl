@@ -4,8 +4,8 @@
 
 Requirement :
 
-- maven 3.9.x
-- java ${context.javaRelease}+
+* maven 3.9.x
+* java ${context.javaRelease}+
 
 1. Start the app
 
