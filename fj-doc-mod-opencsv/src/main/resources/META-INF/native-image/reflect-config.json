@@ -3,7 +3,6 @@
     "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
   },
   "name" : "org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler",
-  "fields" : [ ],
   "methods" : [ {
     "name" : "<init>",
     "parameterTypes" : [ ]
@@ -88,7 +87,6 @@
     "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
   },
   "name" : "org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8",
-  "fields" : [ ],
   "methods" : [ {
     "name" : "<init>",
     "parameterTypes" : [ ]
@@ -170,7 +168,6 @@
   } ]
 }, {
   "name" : "java.lang.Class",
-  "fields" : [ ],
   "methods" : [ {
     "name" : "getCanonicalName",
     "parameterTypes" : [ ]

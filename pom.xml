@@ -29,7 +29,7 @@
 	    <fj-doc-version>${project.version}</fj-doc-version>
 		<fj-doc-maven-plugin-version>${fj-doc-version}</fj-doc-maven-plugin-version>
 	    <fj-xml-to-json-version>1.2.0</fj-xml-to-json-version>
-		<native-helper-maven-plugin-version>1.4.5</native-helper-maven-plugin-version>
+		<native-helper-maven-plugin-version>1.4.6</native-helper-maven-plugin-version>
 		<!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.2</jajarta-jaxb-version>
 	    <jajarta-jaxb-impl-version>4.0.5</jajarta-jaxb-impl-version>

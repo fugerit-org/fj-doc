@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- native-helper-maven-plugin version set to 1.4.6
 - [fj-doc-native-quarkus] added build arg : -H:+UnlockExperimentalVMOptions
 
 ## [8.10.8] - 2024-11-02
