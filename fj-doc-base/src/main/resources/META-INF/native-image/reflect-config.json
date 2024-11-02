@@ -1,4 +1,7 @@
 [ {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBackground",
   "fields" : [ ],
   "methods" : [ {
@@ -51,6 +54,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBarcode",
   "fields" : [ ],
   "methods" : [ {
@@ -109,6 +115,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBase",
   "fields" : [ ],
   "methods" : [ {
@@ -251,6 +260,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBookmark",
   "fields" : [ ],
   "methods" : [ {
@@ -303,6 +315,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBookmarkTree",
   "fields" : [ ],
   "methods" : [ {
@@ -355,6 +370,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBorders",
   "fields" : [ ],
   "methods" : [ {
@@ -470,6 +488,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocBr",
   "fields" : [ ],
   "methods" : [ {
@@ -582,6 +603,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocCell",
   "fields" : [ ],
   "methods" : [ {
@@ -694,6 +718,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocContainer",
   "fields" : [ ],
   "methods" : [ {
@@ -746,6 +773,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocElement",
   "fields" : [ ],
   "methods" : [ {
@@ -786,6 +816,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocFooter",
   "fields" : [ ],
   "methods" : [ {
@@ -874,6 +907,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocHeader",
   "fields" : [ ],
   "methods" : [ {
@@ -962,6 +998,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocHeaderFooter",
   "fields" : [ ],
   "methods" : [ {
@@ -1044,6 +1083,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocHelper",
   "fields" : [ ],
   "methods" : [ {
@@ -1081,6 +1123,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocImage",
   "fields" : [ ],
   "methods" : [ {
@@ -1166,6 +1211,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocInfo",
   "fields" : [ ],
   "methods" : [ {
@@ -1218,6 +1266,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocLi",
   "fields" : [ ],
   "methods" : [ {
@@ -1282,6 +1333,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocList",
   "fields" : [ ],
   "methods" : [ {
@@ -1352,6 +1406,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocNbsp",
   "fields" : [ ],
   "methods" : [ {
@@ -1470,6 +1527,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocPageBreak",
   "fields" : [ ],
   "methods" : [ {
@@ -1510,6 +1570,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocPara",
   "fields" : [ ],
   "methods" : [ {
@@ -1679,6 +1742,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocPhrase",
   "fields" : [ ],
   "methods" : [ {
@@ -1791,6 +1857,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocRow",
   "fields" : [ ],
   "methods" : [ {
@@ -1849,6 +1918,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocStyle",
   "fields" : [ ],
   "methods" : [ {
@@ -1865,6 +1937,9 @@
     "parameterTypes" : [ "java.lang.String" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocTable",
   "fields" : [ ],
   "methods" : [ {
@@ -1986,6 +2061,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.DocText",
   "fields" : [ ],
   "methods" : [ {
@@ -2038,6 +2116,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocCharsetProvider$1",
   "fields" : [ ],
   "methods" : [ {
@@ -2081,6 +2162,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocCharsetProvider",
   "fields" : [ ],
   "methods" : [ {
@@ -2127,6 +2211,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocConfig",
   "fields" : [ ],
   "methods" : [ {
@@ -2164,6 +2251,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocConstants",
   "fields" : [ ],
   "methods" : [ {
@@ -2204,6 +2294,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocException",
   "fields" : [ ],
   "methods" : [ {
@@ -2211,16 +2304,16 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "java.lang.Throwable" ]
+    "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "java.lang.String" ]
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Throwable" ]
   }, {
     "name" : "<init>",
     "parameterTypes" : [ "java.lang.String", "java.lang.Throwable" ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Throwable" ]
+    "parameterTypes" : [ "java.lang.Throwable" ]
   }, {
     "name" : "addSuppressed",
     "parameterTypes" : [ "java.lang.Throwable" ]
@@ -2301,10 +2394,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "printStackTrace",
-    "parameterTypes" : [ "java.io.PrintWriter" ]
+    "parameterTypes" : [ "java.io.PrintStream" ]
   }, {
     "name" : "printStackTrace",
-    "parameterTypes" : [ "java.io.PrintStream" ]
+    "parameterTypes" : [ "java.io.PrintWriter" ]
   }, {
     "name" : "setStackTrace",
     "parameterTypes" : [ "[Ljava.lang.StackTraceElement;" ]
@@ -2322,6 +2415,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocInput",
   "fields" : [ ],
   "methods" : [ {
@@ -2353,16 +2449,16 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "newInput",
-    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase" ]
-  }, {
-    "name" : "newInput",
     "parameterTypes" : [ "java.lang.String", "java.io.Reader" ]
   }, {
     "name" : "newInput",
-    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader" ]
+    "parameterTypes" : [ "java.lang.String", "java.io.Reader", "int" ]
   }, {
     "name" : "newInput",
-    "parameterTypes" : [ "java.lang.String", "java.io.Reader", "int" ]
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase" ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader" ]
   }, {
     "name" : "newInput",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int" ]
@@ -2386,6 +2482,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocOutput",
   "fields" : [ ],
   "methods" : [ {
@@ -2429,6 +2528,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocResult",
   "fields" : [ ],
   "methods" : [ {
@@ -2514,6 +2616,9 @@
     "parameterTypes" : [ ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocTypeHandler",
   "fields" : [ ],
   "methods" : [ {
@@ -2539,6 +2644,9 @@
     "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerDecorator",
   "fields" : [ ],
   "methods" : [ {
@@ -2546,10 +2654,10 @@
     "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocTypeHandler" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -2621,6 +2729,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerDefault",
   "fields" : [ ],
   "methods" : [ {
@@ -2709,6 +2820,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerXML",
   "fields" : [ ],
   "methods" : [ {
@@ -2791,6 +2905,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8",
   "fields" : [ ],
   "methods" : [ {
@@ -2798,10 +2915,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -2873,14 +2990,17 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.DocVersion",
   "fields" : [ ],
   "methods" : [ {
     "name" : "compare",
-    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocVersion", "org.fugerit.java.doc.base.config.DocVersion" ]
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
   }, {
     "name" : "compare",
-    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocVersion", "org.fugerit.java.doc.base.config.DocVersion" ]
   }, {
     "name" : "compareTo",
     "parameterTypes" : [ "java.lang.Object" ]
@@ -2928,6 +3048,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.config.InitHandler",
   "fields" : [ ],
   "methods" : [ {
@@ -2974,6 +3097,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.AbstractDocParser",
   "fields" : [ ],
   "methods" : [ {
@@ -3026,6 +3152,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocEvalWithDataModel",
   "fields" : [ ],
   "methods" : [ {
@@ -3033,6 +3162,9 @@
     "parameterTypes" : [ "java.io.Reader", "java.util.Map" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocParser",
   "fields" : [ ],
   "methods" : [ {
@@ -3040,10 +3172,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "parse",
-    "parameterTypes" : [ "java.io.Reader" ]
+    "parameterTypes" : [ "java.io.InputStream" ]
   }, {
     "name" : "parse",
-    "parameterTypes" : [ "java.io.InputStream" ]
+    "parameterTypes" : [ "java.io.Reader" ]
   }, {
     "name" : "validate",
     "parameterTypes" : [ "java.io.Reader" ]
@@ -3058,6 +3190,9 @@
     "parameterTypes" : [ "java.io.Reader" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocParserContext",
   "fields" : [ ],
   "methods" : [ {
@@ -3119,6 +3254,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocParserHelper",
   "fields" : [ ],
   "methods" : [ {
@@ -3162,6 +3300,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocParserUtil",
   "fields" : [ ],
   "methods" : [ {
@@ -3199,6 +3340,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocValidationResult",
   "fields" : [ ],
   "methods" : [ {
@@ -3269,6 +3413,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocValidator$1",
   "fields" : [ ],
   "methods" : [ {
@@ -3354,6 +3501,9 @@
     "parameterTypes" : [ "org.xml.sax.SAXParseException" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocContentHandler",
   "fields" : [ ],
   "methods" : [ {
@@ -3436,6 +3586,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocModelUtils",
   "fields" : [ ],
   "methods" : [ {
@@ -3470,6 +3623,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocStyleAlignHelper",
   "fields" : [ ],
   "methods" : [ {
@@ -3510,6 +3666,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocValidator",
   "fields" : [ ],
   "methods" : [ {
@@ -3556,6 +3715,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocXMLUtils",
   "fields" : [ ],
   "methods" : [ {
@@ -3593,6 +3755,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.DocXmlParser",
   "fields" : [ ],
   "methods" : [ {
@@ -3663,6 +3828,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.xml.SAXUtils",
   "fields" : [ ],
   "methods" : [ {
@@ -3700,6 +3868,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.AbstractCustomMarkdownTypeHandler",
   "fields" : [ ],
   "methods" : [ {
@@ -3779,6 +3950,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.MarkdownBasicDocFacade",
   "fields" : [ ],
   "methods" : [ {
@@ -3840,6 +4014,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.MarkdownExtDocFacade",
   "fields" : [ ],
   "methods" : [ {
@@ -3901,6 +4078,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandler",
   "fields" : [ ],
   "methods" : [ {
@@ -3908,10 +4088,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "java.nio.charset.Charset" ]
+    "parameterTypes" : [ "boolean" ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "boolean" ]
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
   }, {
     "name" : "<init>",
     "parameterTypes" : [ "java.nio.charset.Charset", "boolean" ]
@@ -3992,6 +4172,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerNoCommentsUTF8",
   "fields" : [ ],
   "methods" : [ {
@@ -3999,10 +4182,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -4074,6 +4257,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandlerUTF8",
   "fields" : [ ],
   "methods" : [ {
@@ -4081,10 +4267,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -4156,6 +4342,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler",
   "fields" : [ ],
   "methods" : [ {
@@ -4163,10 +4352,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "java.nio.charset.Charset" ]
+    "parameterTypes" : [ "boolean" ]
   }, {
     "name" : "<init>",
-    "parameterTypes" : [ "boolean" ]
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
   }, {
     "name" : "<init>",
     "parameterTypes" : [ "java.nio.charset.Charset", "boolean" ]
@@ -4247,6 +4436,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8",
   "fields" : [ ],
   "methods" : [ {
@@ -4254,10 +4446,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -4329,6 +4521,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerUTF8",
   "fields" : [ ],
   "methods" : [ {
@@ -4336,10 +4531,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -4411,6 +4606,9 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.model.util.DocTableUtil",
   "fields" : [ ],
   "methods" : [ {
@@ -4461,14 +4659,15 @@
   } ]
 }, {
   "name" : "java.lang.Class",
+  "fields" : [ ],
   "methods" : [ {
-    "name" : "getSimpleName",
+    "name" : "getCanonicalName",
     "parameterTypes" : [ ]
   }, {
     "name" : "getName",
     "parameterTypes" : [ ]
   }, {
-    "name" : "getCanonicalName",
+    "name" : "getSimpleName",
     "parameterTypes" : [ ]
   } ]
 } ]

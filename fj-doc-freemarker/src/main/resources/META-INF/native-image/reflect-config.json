@@ -418,13 +418,13 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "process",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "java.io.OutputStream", "boolean" ]
+  }, {
+    "name" : "process",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
   }, {
     "name" : "process",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData", "org.fugerit.java.doc.base.config.DocTypeHandler", "org.fugerit.java.doc.base.config.DocOutput" ]
-  }, {
-    "name" : "process",
-    "parameterTypes" : [ "java.lang.String", "java.lang.String", "org.fugerit.java.doc.base.process.DocProcessContext", "java.io.OutputStream", "boolean" ]
   }, {
     "name" : "setChain",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.core.util.filterchain.MiniFilterChain" ]
@@ -641,10 +641,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -726,10 +726,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -908,10 +908,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -993,10 +993,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -1175,10 +1175,10 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "org.w3c.dom.Element" ]
+    "parameterTypes" : [ "java.util.Properties" ]
   }, {
     "name" : "configure",
-    "parameterTypes" : [ "java.util.Properties" ]
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
   }, {
     "name" : "configureProperties",
     "parameterTypes" : [ "java.io.InputStream" ]
@@ -2161,14 +2161,15 @@
   } ]
 }, {
   "name" : "java.lang.Class",
+  "fields" : [ ],
   "methods" : [ {
-    "name" : "getSimpleName",
+    "name" : "getCanonicalName",
     "parameterTypes" : [ ]
   }, {
     "name" : "getName",
     "parameterTypes" : [ ]
   }, {
-    "name" : "getCanonicalName",
+    "name" : "getSimpleName",
     "parameterTypes" : [ ]
   } ]
 } ]

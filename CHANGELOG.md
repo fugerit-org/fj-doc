@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- native-helper-maven-plugin version set to 1.4.5
+
+### Fixed
+
+- native metadata sort
+
 ## [8.10.6] - 2024-11-01
 
 ### Added
