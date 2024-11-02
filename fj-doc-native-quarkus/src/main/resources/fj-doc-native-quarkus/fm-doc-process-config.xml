@@ -24,6 +24,8 @@
         <docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
         <!-- type handler for asciidoc using freemarker -->
         <docHandler id="asciidoc-fm" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
+        <!-- type handler for csv using opencsv -->
+        <docHandler id="csv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8" />
     </docHandlerConfig>
 
     <docChain id="shared">

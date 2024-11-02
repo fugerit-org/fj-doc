@@ -82,8 +82,17 @@ public class DocResource {
         return processDocument(DocConfig.TYPE_ADOC);
     }
 
-
-
-
+    @APIResponse(responseCode = "200", description = "The CSV document content" )
+    @APIResponse(responseCode = "500", description = "In case of an unexpected error" )
+    @Tag( name = "document" )
+    @Tag( name = "csv" )
+    @Operation( operationId = "AsciiDocExample", summary = "Example CSV generation",
+            description =  "Generates an example CSV document using Fugerit Venus Doc handler" )
+    @GET
+    @Produces("text/csv")
+    @Path("/example.csv")
+    public byte[] csvExample() {
+        return processDocument(DocConfig.TYPE_CSV);
+    }
 
 }
