@@ -16,7 +16,7 @@ name: CI native modules build and test
 on:
   push:
     branches:
-      - 246-enhancement-graalvm-metadata-testing
+      - develop
   pull_request:
     types:
       - opened
