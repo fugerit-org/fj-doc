@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.10.7] - 2024-11-02
+
 ### Changed
 
 - native-helper-maven-plugin version set to 1.4.5

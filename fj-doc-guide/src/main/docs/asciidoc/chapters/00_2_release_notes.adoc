@@ -3,6 +3,12 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modification to project, the release notes just refers to most important changes.
 
+[#doc-release-notes-8-10-7]
+==== Version 8.10.7 [2024-11-02]
+
+* Native metadata for fj-doc-base and fj-doc-freemarker are sorted in a stable way.
+* Added test of native modules against built executable.
+
 [#doc-release-notes-8-10-6]
 ==== Version 8.10.6 [2024-11-01]
 
