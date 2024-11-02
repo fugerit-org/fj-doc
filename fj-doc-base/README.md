@@ -16,9 +16,6 @@ All basic features are implemented (plus helpers for other modules).
 
 *Since* : fj-doc 0.1
   
-*Native support* :  
-Enabled since version 1.4.0-rc.001, This module should fully support native image. (*reflect-config.json* and *resources-config.json* have been added and there is no dependent library without native support)
-  
 *Quickstart* :
 
 This module is based on [DocHandlerFacade](src/main/java/org/fugerit/java/doc/base/facade/DocHandlerFacade.java)

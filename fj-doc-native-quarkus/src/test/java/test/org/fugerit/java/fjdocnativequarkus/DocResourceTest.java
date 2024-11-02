@@ -27,6 +27,11 @@ class DocResourceTest {
     }
 
     @Test
+    void testCsv() {
+        given().when().get("/doc/example.csv").then().statusCode(200);
+    }
+
+    @Test
     void testException() {
         DocResource resoure = new DocResource();
         Assertions.assertThrows( WebApplicationException.class, () -> resoure.processDocument( "not-exists" ) );
