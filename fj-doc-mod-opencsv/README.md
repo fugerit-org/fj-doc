@@ -6,6 +6,7 @@
 
 [![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc-mod-opencsv.svg)](https://mvnrepository.com/artifact/org.fugerit.java/fj-doc-mod-opencsv) 
 [![javadoc](https://javadoc.io/badge2/org.fugerit.java/fj-doc-mod-opencsv/javadoc.svg)](https://javadoc.io/doc/org.fugerit.java/fj-doc-mod-opencsv)
+![GraalVM Ready](https://img.shields.io/badge/GraalVM-Ready-orange?style=plastic)
 
 *Status* :  
 Basic features implemented. (Sample JUnit [TestFreeMarker01](../fj-doc-sample/src/test/java/test/org/fugerit/java/doc/sample/freemarker/TestFreeMarker01.java) is now working).  

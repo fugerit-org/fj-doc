@@ -89,7 +89,7 @@ flowchart TB
 | xref:#doc-handler-mod-opencsv[fj-doc-mod-opencsv]
 | CSV
 | Generates a CSV document using link:https://opencsv.sourceforge.net/[OpenCSV].
-|
+| native ready (1)
 
 | xref:#doc-handler-mod-openpdf-ext-pdf[org.fugerit.java.doc.mod.openpdf.ext.&#8203;PdfTypeHandler]
 | xref:#doc-handler-mod-openpdf-ext[fj-doc-mod-openpdf-ext] | PDF
