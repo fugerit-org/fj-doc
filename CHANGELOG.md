@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-native-quarkus] added quarkus integration tests
+
 ## [8.10.7] - 2024-11-02
 
 ### Changed

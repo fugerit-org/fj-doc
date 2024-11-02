@@ -21,7 +21,6 @@
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <compiler-plugin.version>3.13.0</compiler-plugin.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <fj-doc-version>8.10.5</fj-doc-version>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
   </properties>
   <dependencyManagement>
@@ -30,13 +29,6 @@
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>${quarkus.platform.artifact-id}</artifactId>
         <version>${quarkus.platform.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.fugerit.java</groupId>
-        <artifactId>fj-doc</artifactId>
-        <version>${fj-doc-version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
