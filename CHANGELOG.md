@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.10.8] - 2024-11-02
+
 ### Changed
 
 - [fj-doc-mod-opencsv] added GraalVM native metadata to csv format
