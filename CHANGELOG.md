@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - native-helper-maven-plugin version set to 1.4.5
+- workflow "CI native modules build and test" added test against native executable
 
 ### Fixed
 

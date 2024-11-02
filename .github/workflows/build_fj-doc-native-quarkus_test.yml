@@ -53,9 +53,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # build and test native module (quarkus project)
+      # build and test native module (quarkus project, see https://quarkus.io/guides/building-native-image)
       - name: Native build and test
         run: |
           cd fj-doc-native-quarkus
           mvn package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -P test
+          mvn test-compile failsafe:integration-test -Dnative
 
