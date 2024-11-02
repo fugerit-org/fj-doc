@@ -3,5 +3,6 @@ greeting:
 
 quarkus:
   native:
-    additional-build-args: -H:IncludeResources=fj-doc-native-quarkus/fm-doc-process-config.xml,\
+    additional-build-args: -H:+UnlockExperimentalVMOptions,\
+      -H:IncludeResources=fj-doc-native-quarkus/fm-doc-process-config.xml,\
       -H:IncludeResources=fj-doc-native-quarkus/template/document.ftl
