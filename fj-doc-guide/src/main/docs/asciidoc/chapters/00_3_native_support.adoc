@@ -7,3 +7,5 @@ xref:#doc-handlers[Modules] with native support are marked as *native ready*.
 
 There is a test project link:https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-native-quarkus[fj-doc-native-quarkus]
 and a link:https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml[GitHub workflow].
+
+NOTE: Most metadata have been generated from configuration using link:https://github.com/fugerit-org/native-helper-maven-plugin[native-helper-maven-plugin].
