@@ -14,9 +14,6 @@ For the intrinsic limitations of the CSV format, is possible to choose a single 
   
 *Since* : fj-doc 0.6
   
-*Native support*  :  
-Disabled, native support will be added in a future release. OpenCSV native support must be verified.
-  
 *Quickstart* :  
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md).  
 NOTE: If you have any special need you can open a pull request or create your own handler based on this.
