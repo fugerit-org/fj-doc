@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- [fj-doc-maven-plugin] fix versione check for AsciiDoc example
+- [fj-doc-maven-plugin] fix version check for AsciiDoc example
 
 ## [8.10.8] - 2024-11-02
 

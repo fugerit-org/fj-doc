@@ -59,7 +59,7 @@ public class FlavourContext {
     }
 
     public boolean isAsciidocFreemarkerHandlerAvailable() {
-        return VersionCheck.isMajorThan( VenusContext.VERSION_ASCIIDOC_FREEMARKER_HANDLER, this.getVersion() );
+        return VersionCheck.isMajorThan( this.getVersion(), VenusContext.VERSION_ASCIIDOC_FREEMARKER_HANDLER );
     }
 
 }
