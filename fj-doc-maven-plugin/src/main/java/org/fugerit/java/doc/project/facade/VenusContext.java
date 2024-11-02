@@ -125,7 +125,7 @@ public class VenusContext {
     }
 
     public boolean isAsciidocFreemarkerHandlerAvailable() {
-        return VersionCheck.isMajorThan( VERSION_ASCIIDOC_FREEMARKER_HANDLER, this.getVersion() );
+        return VersionCheck.isMajorThan( this.getVersion(), VERSION_ASCIIDOC_FREEMARKER_HANDLER );
     }
 
     public boolean isPreVersion862() {

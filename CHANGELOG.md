@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - native-helper-maven-plugin version set to 1.4.6
 - [fj-doc-native-quarkus] added build arg : -H:+UnlockExperimentalVMOptions
 
+### Fixed
+
+- [fj-doc-maven-plugin] fix versione check for AsciiDoc example
+
 ## [8.10.8] - 2024-11-02
 
 ### Changed
