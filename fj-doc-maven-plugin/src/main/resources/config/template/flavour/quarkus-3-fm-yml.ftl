@@ -16,6 +16,8 @@ process:
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/GreetingResourceTest.java
   - from: flavour/${context.flavour}/GreetingResourceIT.ftl
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/GreetingResourceIT.java
+  - from: flavour/${context.flavour}/DocResourceIT.ftl
+    to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/DocResourceIT.java
   - from: flavour/${context.flavour}/DocResource.ftl
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/DocResource.java
   - from: flavour/${context.flavour}/application.ftl

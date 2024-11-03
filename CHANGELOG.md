@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - native-helper-maven-plugin version set to 1.4.6
 - [fj-doc-native-quarkus] added build arg : -H:+UnlockExperimentalVMOptions
+- [fj-doc-maven-plugin] Added integration test to goal init, flavour : quarkus-3
 
 ### Fixed
 
