@@ -5,23 +5,51 @@
 Requirement :
 
 * maven 3.9.x
-* java ${context.javaRelease}+
+* java ${context.javaRelease}+ (GraalVM for native version)
 
-1. Start the app
+1. Verify the app
+
+```shell
+mvn verify
+```
+
+2. Start the app
 
 ```shell
 mvn quarkus:dev
 ```
 
-2. Try the app
+3. Try the app
 
 Open the [swagger-ui](http://localhost:8080/q/swagger-ui/)
 
 Test available paths (for instance : [/doc/example.md](http://localhost:8080/doc/example.md))
 
 NOTE:
-- Powered by Quarkus ${context.flavourVersion}
-- Using Fugerit Venus Doc ${context.version} (extensions : ${context.extensions})
+
+* Powered by Quarkus ${context.flavourVersion}
+* Using Fugerit Venus Doc ${context.version} (extensions : ${context.extensions})
+
+## Native version
+
+If you picked only native modules, you should be able to build and run the AOT version (GraalVM 21+ needed).
+
+Further documentation :
+
+* [List of modules and native support](https://venusdocs.fugerit.org/guide/#available-extensions)
+* [Fugerit Venus Doc native support introduction](https://venusdocs.fugerit.org/guide/#doc-native-support)
+
+1. Build and verify
+
+```shell
+mvn package -Dnative
+```
+
+2. Start
+
+```shell
+./target/${context.artifactId}-${context.projectVersion}-runner
+```
 
 ## Overview
 
