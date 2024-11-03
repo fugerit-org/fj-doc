@@ -15,7 +15,7 @@ Requirement :
 git clone https://github.com/fugerit-org/fj-doc
 mvn clean install
 cd fj-doc-native-quarkus
-mvn install -Dnative -Ptest
+mvn package -Dnative -Ptest
 ```
 
 2. Run the app
