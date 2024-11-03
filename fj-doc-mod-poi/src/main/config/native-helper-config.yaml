@@ -1,0 +1,6 @@
+#Sample native helper config file
+---
+generate:
+  - packageName: org.fugerit.java.doc.mod.poi
+    mode: all
+    typeReachable: org.fugerit.java.doc.base.facade.DocFacadeSource
