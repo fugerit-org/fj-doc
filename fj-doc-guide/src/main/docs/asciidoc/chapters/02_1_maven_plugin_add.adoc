@@ -30,6 +30,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | freemarkerVersion  | true     | 2.3.32          | Freemarker compatibility version (max 2.3.33)
 |====================================================================================================================================================================================
 
+[#available-extensions]
 ==== Available extensions.
 
 [cols="5*", options="header"]
@@ -87,7 +88,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | fj-doc-mod-opencsv
 | opencsv
 | Type handler based on [OpenCSV](https://opencsv.sourceforge.net/)
-|
+| native ready (1)
 
 | mod-openpdf-ext
 | fj-doc-mod-openpdf-ext

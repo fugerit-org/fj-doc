@@ -3,13 +3,9 @@
 
 The full GraalVM support is currently under development.
 
-xref:#doc-handlers[Modules] with native support are marked as *native ready*.
+xref:#doc-handlers[Doc handlers] with native support are marked as *native ready*.
 
-Currently *native ready* modules :
-
-. fj-doc-base
-. fj-doc-freemarker
-. fj-doc-mod-opencsv
+Currently *native ready* modules can be found xref:#available-extensions[here].
 
 There is a test project link:https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-native-quarkus[fj-doc-native-quarkus]
 and a link:https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml[GitHub workflow].

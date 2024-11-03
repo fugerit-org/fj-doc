@@ -3,6 +3,12 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modification to project, the release notes just refers to most important changes.
 
+[#doc-release-notes-8-10-9]
+==== Version 8.10.9 [2024-11-03]
+
+* [fj-doc-maven-plugin] fix version check for AsciiDoc example
+* Native support minor fixes
+
 [#doc-release-notes-8-10-8]
 ==== Version 8.10.8 [2024-11-02]
 
