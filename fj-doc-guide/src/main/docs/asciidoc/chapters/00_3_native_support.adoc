@@ -14,4 +14,6 @@ Currently *native ready* modules :
 There is a test project link:https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-native-quarkus[fj-doc-native-quarkus]
 and a link:https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml[GitHub workflow].
 
+Additional here is a simple project created with xref:#maven-plugin-goal-init[fj-doc-maven-plugin:init] : <https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/branch-native-latest>
+
 NOTE: Most metadata have been generated from configuration using link:https://github.com/fugerit-org/native-helper-maven-plugin[native-helper-maven-plugin].
