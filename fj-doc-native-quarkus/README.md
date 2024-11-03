@@ -31,3 +31,4 @@ Open available test paths, for instance :
 * <http://localhost:8080/doc/example.md>
 * <http://localhost:8080/doc/example.html>
 * <http://localhost:8080/doc/example.adoc>
+* <http://localhost:8080/doc/example.csv>
