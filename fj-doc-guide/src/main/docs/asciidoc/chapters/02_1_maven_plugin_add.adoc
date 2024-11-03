@@ -86,7 +86,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 
 | mod-opencsv
 | fj-doc-mod-opencsv
-| opencsv
+| csv
 | Type handler based on [OpenCSV](https://opencsv.sourceforge.net/)
 | native ready (1)
 
