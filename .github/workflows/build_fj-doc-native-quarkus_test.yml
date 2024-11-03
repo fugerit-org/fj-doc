@@ -58,7 +58,7 @@ jobs:
         run: |
           cd fj-doc-native-quarkus
           echo "*** 1. build native executable ***"
-          mvn package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -P test
+          mvn verify package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -P test
           echo "*** 2. test native executable ***"
-          mvn test-compile failsafe:integration-test -Dnative
+          mvn verify test-compile failsafe:integration-test -Dnative
 
