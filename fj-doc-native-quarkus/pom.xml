@@ -13,7 +13,7 @@
 
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
-    <surefire-plugin.version>3.3.1</surefire-plugin.version>
+    <surefire-plugin.version>3.5.2</surefire-plugin.version>
     <quarkus-freemarker-version>1.1.0</quarkus-freemarker-version>
     <quarkus.platform.version>3.16.1</quarkus.platform.version>
     <skipITs>true</skipITs>
