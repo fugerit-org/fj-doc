@@ -15,7 +15,7 @@
     <maven.compiler.release>17</maven.compiler.release>
     <surefire-plugin.version>3.5.2</surefire-plugin.version>
     <quarkus-freemarker-version>1.1.0</quarkus-freemarker-version>
-    <quarkus.platform.version>3.16.1</quarkus.platform.version>
+    <quarkus.platform.version>${quarkus-version}</quarkus.platform.version>
     <skipITs>true</skipITs>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>

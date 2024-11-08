@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- quarkus-version set to 3.16.2 across al the modules
 - xsd-parser-version set to 1.2.17
 
 ## [8.10.9] - 2024-11-03
