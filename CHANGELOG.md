@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-playground-quarkus] show quakus version
 - quarkus-version set to 3.16.3 across al the modules
 - xsd-parser-version set to 1.2.18
 

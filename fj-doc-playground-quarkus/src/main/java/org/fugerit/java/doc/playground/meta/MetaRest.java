@@ -4,6 +4,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.PropsIO;
 import org.fugerit.java.doc.playground.RestHelper;
 
@@ -20,6 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @Path("/meta")
 public class MetaRest {
 
+	@ConfigProperty( name = "quarkus.platform.version", defaultValue = "unset" )
+	String quarkusPlatformVersion;
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/version")
@@ -27,6 +33,7 @@ public class MetaRest {
 		return RestHelper.defaultHandle( () -> {
 			Properties buildProps = PropsIO.loadFromClassLoader( "build.properties" );
 			log.info( "buildProps : {}", buildProps );
+
 			return Response.ok().entity( buildProps ).build();
 		} );
 	}
@@ -39,6 +46,8 @@ public class MetaRest {
 	public Response getInfo() {
 		return RestHelper.defaultHandle( () -> {
 			Map<String, String> info = new LinkedHashMap<>();
+			info.put( "quarkus.version", io.quarkus.builder.Version.getVersion() );
+			SafeFunction.applyIfNotNull( this.quarkusPlatformVersion, () -> info.put( "quarkus.platform.version", this.quarkusPlatformVersion ) );
 			for ( String key : ADD_PROPS ) {
 				info.put( key , System.getProperty( key ) );
 			}
