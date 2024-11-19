@@ -1,25 +1,34 @@
 package org.fugerit.java.doc.val.p7m;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
-import org.fugerit.java.doc.val.core.DocTypeValidator;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
+import org.fugerit.java.doc.val.core.DocValidatorTypeCheck;
 import org.fugerit.java.doc.val.core.basic.AbstractDocTypeValidator;
 
 import lombok.Getter;
 import lombok.Setter;
 
 public class P7MContentValidator extends AbstractDocTypeValidator {
+
+	public static final boolean DEFAULT_PROCEED_ON_INNTER_CHECK = Boolean.FALSE;
+
+	@Getter @Setter private DocValidatorTypeCheck facade;
+
+	@Getter private boolean proceedOnInnerTypeCheck;
 	
-	@Getter @Setter private DocValidatorFacade facade;
-	
-	public P7MContentValidator(DocValidatorFacade facade) {
+	public P7MContentValidator(DocValidatorFacade facade, boolean proceedOnInnerTypeCheck) {
 		super( P7MValidator.MIME_TYPE, P7MValidator.EXTENSION );
-		this.facade = facade;
+		this.facade = DocValidatorTypeCheck.newInstance( facade );
+		this.proceedOnInnerTypeCheck = proceedOnInnerTypeCheck;
+	}
+
+	public P7MContentValidator(DocValidatorFacade facade) {
+		this( facade, DEFAULT_PROCEED_ON_INNTER_CHECK );
 	}
 
 	public P7MContentValidator() {
@@ -28,34 +37,43 @@ public class P7MContentValidator extends AbstractDocTypeValidator {
 	
 	@Override
 	public DocTypeValidationResult validate(InputStream is) {
-		return this.validationHelper( () -> {
+		return this.validationHelper( () -> this.checkInnerType( is ) );
+	}
+
+	public String checkInnerType(InputStream is ) {
+		return SafeFunction.get( () -> {
 			try ( ByteArrayOutputStream os = new ByteArrayOutputStream() ) {
 				P7MUtils.extractContent(is, os);
-				if ( this.getFacade() != null ) {
-					boolean isValid = false;
-					for ( DocTypeValidator validator : this.getFacade().validators() ) {
-						try ( ByteArrayInputStream bis = new ByteArrayInputStream( os.toByteArray() ) ) {
-							if ( validator.check( bis ) ) {
-								isValid = true;
-								break;
-							}
-						}
-					}
-					if ( !isValid ) {
+				if ( this.facade.getFacade() != null ) {
+					String mimeType = this.facade.checkType( os.toByteArray() );
+					if ( mimeType != null || this.proceedOnInnerTypeCheck ) {
+						return mimeType;
+					} else {
 						throw new ConfigRuntimeException( "Content not valid for this validator facade!" );
 					}
+				} else {
+					return null;
 				}
 			}
 		} );
 	}
 	
 	public P7MContentValidator withDocValidatorFacade( DocValidatorFacade facade ) {
-		this.setFacade( facade );
+		this.setFacade( DocValidatorTypeCheck.newInstance( facade ) );
 		return this;
 	}
-	
+
+	public P7MContentValidator withProceedOnInnerTypeCheck( boolean proceedOnInnerTypeCheck ) {
+		this.proceedOnInnerTypeCheck = proceedOnInnerTypeCheck;
+		return this;
+	}
+
 	public static P7MContentValidator newValidator( DocValidatorFacade facade ) {
-		return new P7MContentValidator().withDocValidatorFacade(facade);
+		return newValidator( facade, DEFAULT_PROCEED_ON_INNTER_CHECK );
+	}
+
+	public static P7MContentValidator newValidator( DocValidatorFacade facade, boolean proceedOnInnerTypeCheck ) {
+		return new P7MContentValidator().withDocValidatorFacade(facade).withProceedOnInnerTypeCheck( proceedOnInnerTypeCheck );
 	}
 	
 }

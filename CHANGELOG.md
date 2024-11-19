@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-val-core] DocValidatorTypeCheck facade to check file type
+- [fj-doc-val-p7m] check the inner type on P7MContentValidator
+
 ### Changed
 
 - [fj-doc-playground-quarkus] show quakus version
