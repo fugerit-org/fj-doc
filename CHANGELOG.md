@@ -7,12 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.11.1] - 2024-11-19
+
+### Fixed
+
+- [fj-doc-val-*] fix doc validation <https://github.com/fugerit-org/fj-doc/issues/262>
+
 ## [8.11.0] - 2024-11-19
 
 ### Added
 
-- [fj-doc-val-core] DocValidatorTypeCheck facade to check file type
-- [fj-doc-val-p7m] check the inner type on P7MContentValidator
+- [fj-doc-val-core] DocValidatorTypeCheck facade to check file type <https://github.com/fugerit-org/fj-doc/issues/260>
+- [fj-doc-val-p7m] check the inner type on P7MContentValidator <https://github.com/fugerit-org/fj-doc/issues/260>
 
 ### Changed
 
