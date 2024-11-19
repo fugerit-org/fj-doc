@@ -3,6 +3,8 @@ package org.fugerit.java.doc.val.p7m;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
+import lombok.extern.slf4j.Slf4j;
+import org.bouncycastle.cms.CMSException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
@@ -13,6 +15,7 @@ import org.fugerit.java.doc.val.core.basic.AbstractDocTypeValidator;
 import lombok.Getter;
 import lombok.Setter;
 
+@Slf4j
 public class P7MContentValidator extends AbstractDocTypeValidator {
 
 	public static final boolean DEFAULT_PROCEED_ON_INNTER_CHECK = Boolean.FALSE;
@@ -51,10 +54,11 @@ public class P7MContentValidator extends AbstractDocTypeValidator {
 					} else {
 						throw new ConfigRuntimeException( "Content not valid for this validator facade!" );
 					}
-				} else {
-					return null;
 				}
+			} catch (CMSException e) {
+				log.warn( String.format( "Error on inner check : %s", e ) );
 			}
+			return null;
 		} );
 	}
 	

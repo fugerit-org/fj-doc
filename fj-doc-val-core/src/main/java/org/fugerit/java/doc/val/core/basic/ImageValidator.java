@@ -1,6 +1,5 @@
 package org.fugerit.java.doc.val.core.basic;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
 import java.util.Iterator;
@@ -11,7 +10,6 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import org.fugerit.java.core.lang.helpers.JavaVersionHelper;
-import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
 
@@ -54,23 +52,19 @@ public class ImageValidator extends AbstractDocTypeValidator {
 	private int javaMajorVersionRequired;
 	
 	@Override
-	public DocTypeValidationResult validate(InputStream is) throws IOException {
-		DocTypeValidationResult result = DocTypeValidationResult.newFail();
+	public DocTypeValidationResult validate(InputStream is) {
 		try ( ImageInputStream iis = ImageIO.createImageInputStream( is ) ) {
 			Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName( this.format );
-			while (readers.hasNext()) {
-			    try {        
-			        ImageReader reader = readers.next();
-			        reader.setInput(iis);
-			        reader.read(0);
-			        result.setResultCode( Result.RESULT_CODE_OK );
-			        break;
-			    } catch (IOException exp) {
-			    	log.debug( "checkImage {}", exp.getMessage() );
-			    }
-			}			
+			if (readers.hasNext()) {
+				ImageReader reader = readers.next();
+				reader.setInput(iis);
+				reader.read(0);
+				return DocTypeValidationResult.newOk();
+			}
+		}  catch (Exception exp) {
+			log.debug( "checkImage (v2) {}", exp.getMessage() );
 		}
-		return result;
+		return DocTypeValidationResult.newFail();
 	}
 
 	protected ImageValidator(String mimeType, Set<String> supportedExtensions, String format, int javaMajorVersionRequired) {
