@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.11.0] - 2024-11-19
+
 ### Added
 
 - [fj-doc-val-core] DocValidatorTypeCheck facade to check file type
