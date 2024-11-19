@@ -64,6 +64,11 @@ public class TestP7MContentValidator extends TestDocValidatorFacade {
 	}
 
 	@Test
+	public void testKO() {
+		Assert.assertNull( this.worker( CONTENT_JPG_PROCEED, "docx_as_docx.docx" ) );
+	}
+
+	@Test
 	public void testProccedKo() {
 		Assert.assertNull( this.worker( CONTENT_JPG_PROCEED,  FILENAME_PDF_AS_P7M ) );
 	}
