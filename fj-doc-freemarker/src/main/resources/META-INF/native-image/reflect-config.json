@@ -1973,6 +1973,45 @@
   "condition" : {
     "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
   },
+  "name" : "org.fugerit.java.doc.freemarker.fun.FormatLocalDateTimeFun",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
   "name" : "org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun",
   "methods" : [ {
     "name" : "<init>",

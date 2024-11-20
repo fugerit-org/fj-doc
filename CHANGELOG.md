@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-freemarker] new function formatDateTime
+
 ### Changed
 
 - quarkus-version set to 3.16.4 across al the modules

@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.freemarker.process;
 import static org.junit.Assert.fail;
 
 import java.io.*;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigException;
@@ -123,7 +124,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 	
 	
 	private void templateTesting( FreemarkerDocProcessConfig config ) {
-		DocProcessContext context = DocProcessContext.newContext( "test", "testString" );
+		DocProcessContext context = DocProcessContext.newContext( "test", "testString" ).withAtt( "testDate", LocalDateTime.now() );
 		runTestEx( () -> {
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				config.process( "test_01", DocConfig.TYPE_MD, context, baos, false );

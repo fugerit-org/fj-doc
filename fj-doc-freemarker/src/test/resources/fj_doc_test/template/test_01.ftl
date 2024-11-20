@@ -30,7 +30,7 @@
  
   <body>
   
-  		<h head-level="1">Heading test level 1 default font</h>
+  		<h head-level="1">Heading test level 1 default font <#if testDate??>${formatDateTime(testDate)}</#if></h>
   		
   		<h head-level="1">Heading test level 1 TitilliumWeb</h>
   		
