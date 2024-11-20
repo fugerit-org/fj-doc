@@ -98,7 +98,8 @@ And one or more document process step :
     </docChain>
 ----
 
-==== Build in step types
+[#doc-freemarker-config-built-in-types]
+==== Built-in step types
 
 [cols="1,2,3", options="header"]
 |========================================================================================================================================
@@ -113,7 +114,7 @@ And one or more document process step :
 
 | function
 | org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerFunctionStep
-| add freemarker functions to the data model
+| add freemarker functions to the data model (some xref:#doc-freemarker-config-built-in-functions[built-in functions] are available)
 
 | complex
 | org.fugerit.java.doc.freemarker.config.&#8203;FreeMarkerComplexProcessStep
@@ -136,3 +137,54 @@ And one or more document process step :
 NOTE:  Additional step can be added setting the fully qualified class name in the type attribute.
 
 NOTE: When using *skipfm* no FreeMarker template syntax should be used in the template.
+
+
+[#doc-freemarker-config-built-in-functions]
+==== Built-in functions
+
+[cols="1,2,3,3", options="header"]
+|========================================================================================================================================
+
+| name
+| type
+| description
+| parameters
+
+| imageBase64CLFun
+| org.fugerit.java.doc.freemarker.fun.&#8203;ImageBase64CLFun
+| tries to load from classpath an image and converts it to base64
+| (1) - classloader path of the image to convert
+
+| textWrap
+| org.fugerit.java.doc.freemarker.fun.&#8203;TextWrapFun
+| convert a text with \&#8203; characters (useful for long words on pdf)
+| (1) - the text to wrap with \&#8203;
+
+| messageFormat
+| org.fugerit.java.doc.freemarker.fun.&#8203;SimpleMessageFun
+| formats text with stardard MessageFormat
+| (1) - the pattern, (2+) - parameters for message format
+
+| sumLong
+| org.fugerit.java.doc.freemarker.fun.&#8203;SimpleSumLongFun
+| sums numbers
+| (1+) - numbers to sum
+
+| cleanXml
+| org.fugerit.java.doc.freemarker.fun.&#8203;CleanXmlFun
+| cleans invalid xml characters with the regex _[^\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD\u10000-\u10FFF]+_
+| (1) - the text to clean
+
+| cleanText
+| org.fugerit.java.doc.freemarker.fun.&#8203;CleanTextFun
+| cleans text with given regex
+| (1) - the text to clean, (2) - regex for the pattern to remove
+
+| formatDateTime
+| org.fugerit.java.doc.freemarker.fun.&#8203;FormatLocalDateTimeFun
+| formats a LocalDate, LocalTime or LocalDateTime
+| (1) - the date/time to format, (2) - the format pattern
+
+|========================================================================================================================================
+
+NOTE: These functions can all be loaded at once with the config step attribute _load-bundled-functions="true"_.
