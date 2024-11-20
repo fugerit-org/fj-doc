@@ -133,7 +133,7 @@ const DocProjectInit = () => {
 	};
 
 	return (
-		<Box sx={{ width: 800, margin: '20px auto', padding: 2 }}>
+		<Box sx={{width: 800, margin: '20px auto', padding: 2}}>
 			<Typography variant="h5" gutterBottom>Fugerit Venus Doc Project Initialization</Typography>
 
 			<Grid container spacing={2}>
@@ -199,7 +199,8 @@ const DocProjectInit = () => {
 							onChange={handleVenusVersionChange}
 						>
 							{/* Allowed values for venusVersion */}
-							{availableVersions.map( currentVersion => <MenuItem value={currentVersion}>{currentVersion}</MenuItem> )}
+							{availableVersions.map(currentVersion => <MenuItem
+								value={currentVersion}>{currentVersion}</MenuItem>)}
 						</Select>
 					</FormControl>
 				</Grid>
@@ -236,10 +237,10 @@ const DocProjectInit = () => {
 				</Grid>
 				<Grid item xs={12} sm={12}>
 					{loading ? (
-						<CircularProgress /> // Show loading spinner while data is being fetched
+						<CircularProgress/> // Show loading spinner while data is being fetched
 					) : (
 						<FormControl fullWidth margin="normal">
-							<InputLabel id="extension-multi-select-label">Select Extensions</InputLabel>
+							<InputLabel id="extension-multi-select-label">Select Extensions (*)</InputLabel>
 							<Select
 								labelId="extension-multi-select-label"
 								id="extension-multi-select"
@@ -259,6 +260,10 @@ const DocProjectInit = () => {
 				</Grid>
 			</Grid>
 
+			<div>(*) Refer to the <a target={"_blank"} href={"https://venusdocs.fugerit.org/guide/#doc-handler-module-handlers"}>guide</a> to
+				know which format are supported by each extension.
+			</div>
+
 			{/* Button to submit the form */}
 			<Button
 				variant="contained"
@@ -266,26 +271,14 @@ const DocProjectInit = () => {
 				fullWidth
 				onClick={handleSubmit}
 				disabled={isSubmitting} // Disable button while submitting
-				sx={{ marginTop: 2 }}
+				sx={{marginTop: 2}}
 			>
 				{isSubmitting ? 'Submitting...' : 'Create Project'}
 			</Button>
 
-
-
-
-
-
-
-
-
-
-
-
-
 			{/* Display server message if present */}
 			{serverMessage && (
-				<Alert severity="info" sx={{ marginTop: 2 }}>
+				<Alert severity="info" sx={{marginTop: 2}}>
 					{serverMessage}
 				</Alert>
 			)}
