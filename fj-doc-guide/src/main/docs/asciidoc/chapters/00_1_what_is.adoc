@@ -1,10 +1,111 @@
 [#doc-what-is]
 === What is Fugerit Venus Doc?
 
-Fugerit Venus Doc is a document generation framework.
-
-It is based a xref:#doc-format-entry-point[source format] to describe the document structure (available in XML (default), JSON, YAML and Kotlin).
-
-It heavenly relies on link:https://freemarker.apache.org[Apache FreeMarker] for source format composition.
+link:https://github.com/fugerit-org/fj-doc[Fugerit Venus Doc] is a document generation framework, largely based on link:https://freemarker.apache.org/[Apache FreeMarker template] engine and on a xref:#doc-format-entry-point[custom document format] (available in XML (default), JSON, YAML and Kotlin).
 
 The source format can be rendered to different output formats through xref:#doc-handlers[Doc Handlers]. (the actual rendering often depends on other open source libraries like link:https://xmlgraphics.apache.org/fop/[Apache FOP] or link:https://opencsv.sourceforge.net/[OpenCSV]).
+
+Here is a diagram showing the usage of the framework on a typical scenario.
+
+. Using XML as document source format
+. Picking two output format (HTML and MarkDown)
+
+[mermaid, title="Fugerit Venus Doc engine"]
+....
+flowchart TD
+    T --> F
+    J --> F
+    I1 --> D1 --> R1
+    I2 --> D2 --> R2
+    F --> O --> D1
+    O --> D2
+    subgraph FreeMarker Template
+            T["#lt;doc#gt;
+            #lt;metadata#gt;...#lt;/metadata#gt;
+            #lt;body#gt;
+            ...
+            #lt;para#gt;Hello ?{name}!#lt;/para#gt;
+            ...
+            #lt;/body#gt;
+            #lt;/doc#gt;"]
+            style T text-align:left
+    end
+    subgraph Doc Process Context
+        J["...
+            model.setName(#quot;Venus#quot;);
+            ..."]
+            style J text-align:left
+    end
+    subgraph Output Document Selection
+        I1(HTML)
+        I2(MarkDown)
+        I3(PDF)
+    end
+    subgraph Venus FreeMarker Doc Process
+            F(("Apache
+            FreeMarker"))
+            O["#lt;doc#gt;
+            #lt;metadata#gt;...#lt;/metadata#gt;
+            #lt;body#gt;
+            ...
+            #lt;h head-level=#quot;2#quot;#gt;Hello Venus!#lt;/h#gt;
+            ...
+            #lt;/body#gt;
+            #lt;/doc#gt;"]
+            style O text-align:left
+            D1(("HTML
+            Doc Handler"))
+            D2(("MarkDown
+            Doc Handler"))
+    end
+    subgraph HTML Document
+        R1["#lt;html#gt;
+        ...
+        #lt;h2#gt;Hello World!#lt;/h2#gt;
+        ...
+        #lt;/html#gt;"]
+        style R1 text-align:left
+    end
+    subgraph MarkDown Document
+        R2["...
+        ## Hello World!
+        ..."]
+        style R2 text-align:left
+    end
+....
+
+For who is familiar with Apache FreeMarker this is basically an evolution of its approach :
+
+[mermaid, title="Apache FreeMarker template engine"]
+....
+flowchart TD
+    T --> F
+    J --> F
+    F --> O
+    subgraph Template
+            T["#lt;html#gt;
+            ...
+            Hello ?{name}!
+            ...
+            #lt;/html#gt;"]
+            style T text-align:left
+    end
+    subgraph Java Objects
+        J["...
+            model.setName(#quot;World#quot;);
+            ..."]
+            style J text-align:left
+    end
+    F(("Apache
+    FreeMarker"))
+    subgraph Output
+        O["#lt;html#gt;
+        ...
+        Hello World!
+        ...
+        #lt;/html#gt;"]
+        style O text-align:left
+    end
+....
+
+NOTE: This diagram is a reproduction of the one in link:https://freemarker.apache.org/[What is Apache FreeMarker?] page.
