@@ -32,7 +32,7 @@ flowchart TD
     end
     subgraph Doc Process Context
         J["...
-            model.setName(#quot;Venus#quot;);
+            model.setName(#quot;Venus ♀#quot;);
             ..."]
             style J text-align:left
     end
@@ -61,14 +61,14 @@ flowchart TD
     subgraph HTML Document
         R1["#lt;html#gt;
         ...
-        #lt;h2#gt;Hello World!#lt;/h2#gt;
+        #lt;h2#gt;Hello Venus ♀!#lt;/h2#gt;
         ...
         #lt;/html#gt;"]
         style R1 text-align:left
     end
     subgraph MarkDown Document
         R2["...
-        ## Hello World!
+        ## Hello Venus ♀!
         ..."]
         style R2 text-align:left
     end
