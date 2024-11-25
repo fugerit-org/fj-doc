@@ -11,7 +11,11 @@ import { Grid, Typography } from '@mui/material';
 import Alert from '@mui/material/Alert';
 import appService from '../common/app-service';
 
-const DocProjectInit = () => {
+const DocProjectInit = ({setHelpContent}) => {
+
+	useEffect(() => {
+		setHelpContent('doc-project-init');
+	}, [])
 
     const availableVersions = [ '8.11.2', '8.10.9', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
 

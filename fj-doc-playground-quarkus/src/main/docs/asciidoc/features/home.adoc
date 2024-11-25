@@ -1,0 +1,10 @@
+
+<<<
+[#doc-playground-home]
+== Playground for Venus - Fugerit Doc Generation Framework
+
+This is the link:https://github.com/fugerit-org/fj-doc[Venus] Online Playground.
+
+It is possible to run it locally too using the pre-buildt link:https://hub.docker.com/r/fugeritorg/fj-doc-playground-quarkus[Docker images].
+
+NOTE: for full documentation check the link:https://venusdocs.fugerit.org/guide/[online guide].

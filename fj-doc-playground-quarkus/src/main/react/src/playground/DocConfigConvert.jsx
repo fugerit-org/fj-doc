@@ -11,7 +11,7 @@ import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
 
-const DocConfigConvert = ({handleOpenDialog}) => {
+const DocConfigConvert = ({handleOpenDialog, setHelpContent}) => {
 
 	const [docContent, setDocContent] = useState('')
 	const [docOutput, setDocOutput] = useState('')
@@ -19,7 +19,8 @@ const DocConfigConvert = ({handleOpenDialog}) => {
 	const [outputMessage, setOutputMessage] = useState(null)
 
 	useEffect(() => {
-		loadStub()
+		loadStub();
+		setHelpContent('doc-config-convert');
 	}, []);
 
 	const loadStub = () => {

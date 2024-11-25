@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment, useEffect} from 'react';
 
 import { Link } from "react-router-dom";
 
@@ -18,13 +18,18 @@ import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
 import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Info from './Info';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 
 const homepage = '/fj-doc-playground/home';
 
 const cmdDockerRun = 'docker run -it -p 8080:8080 --name fj-doc-playground-quarkus fugeritorg/fj-doc-playground-quarkus:snapshot';
 
-const Home = () => {
+const Home = ({setHelpContent}) => {
+
+	useEffect(() => {
+		setHelpContent('home');
+	}, [])
 
 	return <Fragment>
 		<h1>This is a playground for <a href="https://github.com/fugerit-org/fj-doc">Venus (fj-doc)</a> project.</h1>
@@ -104,11 +109,15 @@ const Home = () => {
 				Note : See <a href="https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general">docker repository</a> for more tags (for instance 'latest' stable or specific version).
 		  </Grid>
 		  <Grid item xs={12} align="left">
-				<p>For general documentation on Venus, see <a href="https://venusdocs.fugerit.org/guide/">Venus Docs</a> and <a href="https://venusdocs.fugerit.org/guide/#doc-format-entry-point">Doc Format Summary</a></p>
+			  <p>
+				  Here you can find the guide to this playground in
+				  <a href={"/fj-doc-playground/home/help/fj-doc-playground-quarkus.pdf"}><PictureAsPdfIcon/></a> format.
+				  For general documentation on Venus, see <a href="https://venusdocs.fugerit.org/guide/">Venus Docs</a>
+				  and <a href="https://venusdocs.fugerit.org/guide/#doc-format-entry-point">Doc Format Summary</a></p>
 		  </Grid>
-		  <Grid item xs={12} align="left">
+			<Grid item xs={12} align="left">
 				<Info/>
-		  </Grid>
+			</Grid>
 		</Grid>
 
 	</Fragment>

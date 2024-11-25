@@ -1,0 +1,11 @@
+
+<<<
+[#doc-playground-type-validator]
+== Doc Type Validator
+
+The Doc Type Validator helper, is a simple interface to test the
+link:https://github.com/fugerit-org/fj-doc/tree/main/fj-doc-val[Doc Type Validator modules].
+
+Simply upload a file (on the left) to check if it is valid according to one of the supported formats (on the right).
+
+NOTE: This is just a demo version. Currently really useful for any real scenario.

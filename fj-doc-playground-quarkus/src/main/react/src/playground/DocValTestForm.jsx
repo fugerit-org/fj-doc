@@ -2,13 +2,14 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Input, Grid, FormLabel, Button, List, ListItem, ListItemText } from "@mui/material";
 import appService from '../common/app-service';
 
-const DocValTestForm = () => {
+const DocValTestForm = ({setHelpContent}) => {
 
 	const [fileToValidate, setFileToValidate] = useState(null)
 	const [supportedExtensions, setSupportedExtensions] = useState(null)
 	const [validationResult, swtValidationResult] = useState(null)
 
 	useEffect(() => {
+		setHelpContent('doc-type-validator');
 		appService.doAjaxMultipart('GET', '/val/supported_extensions', null).then(response => {
 			if (response.success) {
 				setSupportedExtensions( response.result )

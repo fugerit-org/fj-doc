@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, {useState, Fragment, useEffect} from 'react';
 import { FormControl, Select, MenuItem, Grid, FormLabel, Button } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
@@ -11,7 +11,11 @@ import "ace-builds/src-noconflict/mode-yaml";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
 
-const DocConversion = ({handleOpenDialog, key, from, to}) => {
+const DocConversion = ({handleOpenDialog, key, from, to, setHelpContent}) => {
+
+	useEffect(() => {
+		setHelpContent('doc-conversion');
+	}, [])
 
 	const [inputFormat, setInputFormat] = useState(from == null ? 'XML' : from)
 	const [outputFormat, setOutputFormat] = useState(from == null ? 'JSON' : from)

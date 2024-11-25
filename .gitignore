@@ -106,3 +106,4 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/java,maven,eclipse
 
 /.apt_generated/
+/fj-doc-playground-quarkus/src/main/react/public/help/
