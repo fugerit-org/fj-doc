@@ -1,0 +1,90 @@
+
+<<<
+[#doc-playground-config-convert]
+== Doc Config Conversion tool
+
+link:https://github.com/fugerit-org/fj-doc[Venus Project] use to have a different configuration setup in teh past
+(previous to version 1.3).
+
+This configuration is still supported, but it's now considered legacy. The *Doc Config Conversion tool* helps to convert the old configuration model to the new one.
+
+The old configuration model, consisted of two different XML files :
+
+=== 1. Doc Process Config File
+
+It starts with _<doc-process/>_ element and looks like :
+
+[source,xml]
+----
+<doc-process>
+	<chain id="shared">
+		<step id="step-01" defaultBehaviour="CONTINUE"
+			description="Apache FreeMarker Configuration"
+			type="org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep"
+			param01="FJ_DOC_LIB_AUTODOC">
+            <!-- more configuration -->
+		</step>
+    </chain>
+    <!-- more configuration -->
+</doc-process>
+----
+
+=== 2. Doc Handler Config file
+
+[source,xml]
+----
+<doc-handler-config user-catalog="default-complete">
+
+	<factory id="unsafe-test">
+		<data id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8" />
+		<data id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8" />
+	</factory>
+
+</doc-handler-config>
+----
+
+The Doc Configuration conversion tool, accept as input the *Doc Process Config* XML file in the first text area, and some parameters in the second text area, like:
+
+[source,text]
+----
+# if stub handers=1, sample type handler configuration will be created
+stub-handler=1
+# docHandlerConfig attributes values
+registerById=true
+allowDuplicatedId=true
+----
+
+The result will be something like :
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+xmlns="https://freemarkerdocprocess.fugerit.org"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" >
+
+	<docHandlerConfig registerById="true" allowDuplicatedId="true">
+		<!-- Type handler for markdown format -->
+		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
+		<!-- Type henalder for xml format, generates the source xml:doc -->
+		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+
+		<!-- Type handlers for html using freemarker -->
+		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
+		<!-- Type handlers for html using freemarker (fragment version, only generates body content no html or head part -->
+		<docHandler id="html-fragment-fm" info="fhtml" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8" />
+	</docHandlerConfig>
+
+
+	<docChain id="shared">
+		<chainStep stepType="config">
+			<config
+				id="FJ_DOC_LIB_AUTODOC"
+			/>
+		</chainStep>
+	</docChain>
+
+
+</freemarker-doc-process-config>
+----

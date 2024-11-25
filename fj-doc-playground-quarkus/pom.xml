@@ -301,14 +301,160 @@
 			</build>
 		</profile>	
 
-
 		<profile>
 
 			<id>buildreact</id>
 
+			<properties>
+				<!-- asciidoc properties -->
+				<asciidoctor.maven.plugin.version>3.1.1</asciidoctor.maven.plugin.version>
+				<asciidoctorj.pdf.version>2.3.19</asciidoctorj.pdf.version>
+				<asciidoctorj.version>3.0.0</asciidoctorj.version>
+				<asciidoctorj.diagram.version>2.3.1</asciidoctorj.diagram.version>
+				<asciidoctorj.diagram-plantuml.version>1.2024.5</asciidoctorj.diagram-plantuml.version>
+				<asciidoctorj.diagram-ditaamini.version>1.0.3</asciidoctorj.diagram-ditaamini.version>
+				<jruby.version>9.4.9.0</jruby.version>
+				<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+				<html-output-folder-no-toc>${project.basedir}/src/main/react/public/help</html-output-folder-no-toc>
+				<pdf-output-folder>${html-output-folder-no-toc}</pdf-output-folder>
+			</properties>
+
 			<build>
 
 				<plugins>
+
+					<plugin>
+						<groupId>org.asciidoctor</groupId>
+						<artifactId>asciidoctor-maven-plugin</artifactId>
+						<version>${asciidoctor.maven.plugin.version}</version>
+						<dependencies>
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj-pdf</artifactId>
+								<version>${asciidoctorj.pdf.version}</version>
+							</dependency>
+							<!-- Comment this section to use the default jruby artifact provided by the plugin -->
+							<dependency>
+								<groupId>org.jruby</groupId>
+								<artifactId>jruby</artifactId>
+								<version>${jruby.version}</version>
+							</dependency>
+							<!-- Comment this section to use the default AsciidoctorJ artifact provided by the plugin -->
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj</artifactId>
+								<version>${asciidoctorj.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj-diagram</artifactId>
+								<version>${asciidoctorj.diagram.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj-diagram-plantuml</artifactId>
+								<version>${asciidoctorj.diagram-plantuml.version}</version>
+							</dependency>
+							<dependency>
+								<groupId>org.asciidoctor</groupId>
+								<artifactId>asciidoctorj-diagram-ditaamini</artifactId>
+								<version>${asciidoctorj.diagram-ditaamini.version}</version>
+							</dependency>
+						</dependencies>
+						<configuration>
+							<requires>
+								<require>asciidoctor-diagram</require>
+							</requires>
+							<resources>
+								<resource>
+									<directory>src/main/docs/asciidoc</directory>
+									<excludes>
+										<exclude>resources/themes/**</exclude>
+									</excludes>
+								</resource>
+							</resources>
+							<sourceDirectory>src/main/docs/asciidoc</sourceDirectory>
+							<enableVerbose>true</enableVerbose>
+							<logHandler>
+								<outputToConsole>true</outputToConsole>
+							</logHandler>
+							<!-- Attributes common to all output formats -->
+							<attributes>
+								<attribute-missing>warn</attribute-missing>
+								<allow-uri-read>true</allow-uri-read>
+								<source-highlighter>rouge</source-highlighter>
+								<imagesdir>./resources/images</imagesdir>
+								<themesdir>./resources/themes</themesdir>
+								<revnumber>${project.version}</revnumber>
+								<revdate>${maven.build.timestamp}</revdate>
+								<revremark>Digital Version</revremark>
+								<organization>${project.organization.name}</organization>
+							</attributes>
+						</configuration>
+						<executions>
+							<execution>
+								<id>asciidoc-to-pdf</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>process-asciidoc</goal>
+								</goals>
+								<configuration>
+									<backend>pdf</backend>
+									<doctype>book</doctype>
+									<sourceDocumentName>index.adoc</sourceDocumentName>
+									<outputDirectory>${pdf-output-folder}</outputDirectory>
+									<outputFile>${project.artifactId}.pdf</outputFile>
+									<attributes>
+										<pdf-theme>basic</pdf-theme>
+										<pdf-themesdir>${project.basedir}/src/main/docs/asciidoc/resources/themes</pdf-themesdir>
+										<icons>font</icons>
+										<pagenums/>
+										<toc/>
+										<idprefix/>
+										<idseparator>-</idseparator>
+									</attributes>
+								</configuration>
+							</execution>
+							<execution>
+								<id>asciidoc-to-html</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>process-asciidoc</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>asciidoc-to-html-no-toc</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>process-asciidoc</goal>
+								</goals>
+								<configuration>
+									<backend>html5</backend>
+									<outputDirectory>${html-output-folder-no-toc}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>src/main/docs/asciidoc/features/</directory>
+											<excludes>
+												<exclude>resources/themes/**</exclude>
+											</excludes>
+										</resource>
+									</resources>
+									<sourceDirectory>src/main/docs/asciidoc/features/</sourceDirectory>
+									<attributes>
+										<source-highlighter>rouge</source-highlighter>
+										<imagesdir>resources/images</imagesdir>
+										<icons>font</icons>
+										<no-toc/>
+										<sectanchors>true</sectanchors>
+										<!-- set the idprefix to blank -->
+										<idprefix/>
+										<idseparator>-</idseparator>
+										<docinfo1>true</docinfo1>
+									</attributes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>

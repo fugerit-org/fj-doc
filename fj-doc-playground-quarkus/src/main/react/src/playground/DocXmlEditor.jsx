@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { FormControl, Select, MenuItem, TextField, Grid, FormLabel, Button } from "@mui/material";
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
@@ -15,7 +15,11 @@ import "ace-builds/src-noconflict/mode-markdown";
 import "ace-builds/src-noconflict/theme-xcode";
 import "ace-builds/src-noconflict/ext-language_tools";
 
-const DocXmlEditor = ({handleOpenDialog}) => {
+const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
+
+	useEffect(() => {
+		setHelpContent('doc-generator');
+	}, [])
 
 	const [inputFormat, setInputFormat] = useState('FTLX')
 	const [outputFormat, setOutputFormat] = useState('HTML')

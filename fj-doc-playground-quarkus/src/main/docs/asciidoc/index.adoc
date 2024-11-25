@@ -1,0 +1,13 @@
+= Fugerit Online Playground Guide
+// format attributes inclusions
+include::attributes/_attributes-pdf.adoc[]
+include::attributes/_attributes-common.adoc[]
+
+// Chapters inclusions
+
+include::features/home.adoc[]
+
+
+include::features/doc-type-validator.adoc[]
+
+include::features/doc-config-convert.adoc[]

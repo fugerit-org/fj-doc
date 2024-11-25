@@ -1,0 +1,10 @@
+
+<<<
+[#doc-playground-conversion]
+== Doc Conversion (XML/JSON/YAML)
+
+This page allow conversion from/to XML/JSON/YAML format.
+
+It also allows pretty print.
+
+For istance it is possible to indent XML or JSON format.

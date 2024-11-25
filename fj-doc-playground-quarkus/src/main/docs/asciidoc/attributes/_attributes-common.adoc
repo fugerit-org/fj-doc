@@ -1,0 +1,14 @@
+:author: Matteo Franci
+:revnumber: v1.0.0
+:revdate: October 15, 2024
+:email: m@fugerit.org
+:description: Venus Online Playground Guide
+:keywords: java, xml, json, yaml, kotlin, pdf, html, xlsx, csv, document generation
+:encoding: utf-8
+:lang: en
+:toc: left
+:hardbreaks-option:
+:sectnums:
+:sectnumlevels: 3
+:!figure-caption:
+:!chapter-signifier:

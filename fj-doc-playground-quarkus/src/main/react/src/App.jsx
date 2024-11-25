@@ -12,7 +12,7 @@ const TITLE = 'Venus (fj-doc) playground';
 
 function App() {
 
-    const [state, setState] = useState({ currentState: themes.at( 0 ).theme });
+    const [state, setState] = useState({ currentState: themes.at( 2 ).theme });
 
     return (
         <ThemeProvider theme={state.currentState}>

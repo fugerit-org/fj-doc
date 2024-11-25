@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import PageHelp from './common/PageHelp'
 
 import {
 	BrowserRouter as Router,
@@ -19,6 +20,9 @@ import { Dialog, DialogTitle, Button, Grid, MenuItem, Select } from "@mui/materi
 const homepage = '/fj-doc-playground/home';
 
 const Playground = () => {
+
+	const [helpContent, setHelpContent] = useState('home');
+	const [buttonText, setButtonText] = useState('?');
 
 	const [dialogMessage, setDialogMessage] = useState(null)
 
@@ -46,10 +50,15 @@ const Playground = () => {
 
 					<Version/>
 
-					<Grid container spacing={4} columns={{ xs: 16 }}>
-					  <Grid item xs={3}><Link to={homepage}><Button color="primary">Home</Button></Link></Grid>
-					  <Grid item xs={4}><Link to={homepage + "/doc_fun/doc_xml_editor"}><Button color="primary">Doc editor and generator</Button></Link></Grid>
-					  <Grid item xs={4}>
+					<Grid container spacing={4} columns={{ xs: 12 }}>
+					  <Grid item xs={1}>
+						  <PageHelp buttonText={buttonText} helpContent={helpContent}/>
+					  </Grid>
+						<Grid item xs={2}>
+							<Link to={homepage}><Button color="primary">Home</Button></Link>
+						</Grid>
+					  <Grid item xs={3}><Link to={homepage + "/doc_fun/doc_xml_editor"}><Button color="primary">Doc editor and generator</Button></Link></Grid>
+					  <Grid item xs={3}>
 						  <Select id='conversionSelect' defaultValue='def'>
 							  <MenuItem id='def' selected={true} value='def'><Link to={homepage + "/doc_fun/doc_conversion"}><Button color="primary">Doc Conversion (XML/JSON/YAML)</Button></Link></MenuItem>
 							  <MenuItem id='xmlToXml' selected={true} value='xmlToXml'><Link to={homepage + "/doc_fun/doc_conversion_x2x"}><Button color="primary">Doc Conversion (XML to XML)</Button></Link></MenuItem>
@@ -57,7 +66,7 @@ const Playground = () => {
 							  <MenuItem id='yamlToYaml' selected={true} value='yamlToYaml'><Link to={homepage + "/doc_fun/doc_conversion_y2y"}><Button color="primary">Doc Conversion (YAML to YAML)</Button></Link></MenuItem>
 						  </Select>
 					  </Grid>
-					  <Grid item xs={4}>
+					  <Grid item xs={3}>
 							<Select id='toolSelect' defaultValue='def'>
 								<MenuItem id='docProjectInit' selected={true} value='def'><Grid item xs={4}><Link to={homepage + "/doc_fun/doc_project_init"}><Button color="primary">Doc project init</Button></Link></Grid></MenuItem>
 								<MenuItem id='docValidator' selected={true} value='docValidator'><Grid item xs={4}><Link to={homepage + "/doc_fun/doc_type_validator"}><Button color="primary">Doc Type Validator</Button></Link></Grid></MenuItem>
@@ -71,15 +80,15 @@ const Playground = () => {
 					{dialog}
 	
 					<Routes>
-						<Route path={homepage + "/doc_fun/doc_xml_editor"} element={<DocXmlEditor handleOpenDialog={handleOpenDialog} />} />
-						<Route path={homepage + "/doc_fun/doc_conversion"} element={<DocConversion handleOpenDialog={handleOpenDialog} />} key='def' />
-						<Route path={homepage + "/doc_fun/doc_conversion_x2x"} element={<DocConversion handleOpenDialog={handleOpenDialog} key='x2x' from='XML' to='XML' />} />
-						<Route path={homepage + "/doc_fun/doc_conversion_j2j"} element={<DocConversion handleOpenDialog={handleOpenDialog} key='j2j' from='JSON' to='JSON' />} />
-						<Route path={homepage + "/doc_fun/doc_conversion_y2y"} element={<DocConversion handleOpenDialog={handleOpenDialog} key='y2y' from='YAML' to='YAML' />} />
-						<Route path={homepage + "/doc_fun/doc_type_validator"} element={<DevValTestForm handleOpenDialog={handleOpenDialog} />} />
-						<Route path={homepage + "/doc_fun/doc_config_convert"} element={<DocConfigConvert handleOpenDialog={handleOpenDialog} />} />
-						<Route path={homepage + "/doc_fun/doc_project_init"} element={<DocProjectInit handleOpenDialog={handleOpenDialog} />} />
-						<Route path="*" element={<Home />} />
+						<Route path={homepage + "/doc_fun/doc_xml_editor"} element={<DocXmlEditor handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent}/>} />
+						<Route path={homepage + "/doc_fun/doc_conversion"} element={<DocConversion handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent}/>} key='def' />
+						<Route path={homepage + "/doc_fun/doc_conversion_x2x"} element={<DocConversion handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent} key='x2x' from='XML' to='XML' />} />
+						<Route path={homepage + "/doc_fun/doc_conversion_j2j"} element={<DocConversion handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent} key='j2j' from='JSON' to='JSON' />} />
+						<Route path={homepage + "/doc_fun/doc_conversion_y2y"} element={<DocConversion handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent} key='y2y' from='YAML' to='YAML' />} />
+						<Route path={homepage + "/doc_fun/doc_type_validator"} element={<DevValTestForm handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent}/>} />
+						<Route path={homepage + "/doc_fun/doc_config_convert"} element={<DocConfigConvert handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent}/>} />
+						<Route path={homepage + "/doc_fun/doc_project_init"} element={<DocProjectInit handleOpenDialog={handleOpenDialog} setHelpContent={setHelpContent}/>} />
+						<Route path="*" element={<Home setHelpContent={setHelpContent}/>} />
 					</Routes>
 
 				</div>

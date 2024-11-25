@@ -1,0 +1,38 @@
+
+<<<
+[#doc-playground-generator]
+== Doc Editor and Generator
+
+This tool is the core of the application. It gives you the change to really test the link:https://github.com/fugerit-org/fj-doc[Venus Document Generation Framework].
+
+=== 1. Pick a source type
+
+You can pick 5 source options (when choosing one the _Document samples catalog_ will automatically update with relevant examples) :
+
+. link:https://venusdocs.fugerit.org/guide/#doc-freemarker-entry-point[FTLX] - FreeMarker template XML _(*)_
+. link:https://venusdocs.fugerit.org/guide/#doc-format-entry-point-xml[XML]
+. link:https://venusdocs.fugerit.org/guide/#doc-format-entry-point-json-yaml[JSON]
+. link:https://venusdocs.fugerit.org/guide/#doc-format-entry-point-json-yaml[YAML]
+. link:https://venusdocs.fugerit.org/guide/#doc-format-entry-point-kotlin[KTS]
+(Kotlin)
+
+NOTE: _(*)_ Using a freemarker template to generate a link:https://venusdocs.fugerit.org/guide/#doc-format-entry-point[DOC XML Format] is the best supported scenario. Other input options are mainly for people not familiar with XML or Apache FreeMarker.
+
+=== 2. Pick an output format
+
+You can choose among multiple output format. Each based on a specific link:https://venusdocs.fugerit.org/guide/#doc-handler-module-handlers[Doc Handler].
+
+
+=== 3. Customize the input
+
+Creato or modify input source. (For FTLX and KTS add JSON data model if you want).
+
+=== 4. Generate document
+
+Click on the *Generate document*, usually preview or download options will be available.
+
+In case of error, a message will be shown.
+
+=== Extra : Validate document
+
+XML, JSON and YAML document support the _Validate document_ function.

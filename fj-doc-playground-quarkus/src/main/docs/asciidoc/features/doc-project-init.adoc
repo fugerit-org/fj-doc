@@ -1,0 +1,22 @@
+
+<<<
+[#doc-playground-project-init]
+== Doc Project Initialization
+
+This function is user interface for the link:https://venusdocs.fugerit.org/guide/#maven-plugin-goal-init[Venus Maven Plugin : Init Goal].
+
+For instance selecting :
+
+- *Group ID* : org.example.demo
+- *Artifact ID* : venus-demo
+- *Project Version* : 1.0.0
+- *Java Version* : 17
+- *Venus Version* : 8.11.2
+- *Flavour* : Quarkus 3
+- *Extensions* : fj-doc-base,fj-doc-freemarker,fj-doc-mod-fop (1)
+
+Will creates a new link:https://quarkus.io/[Quarkus 3] project with support and examples to generate documents in MarkDown, HTML, AsciiDOC, XSL-FO and PDF.
+
+The project will be a single zip containing a maven project and all the needed resource with a proof of concept document generation. (in a similar way to link:https://start.spring.io/[Spring Initializr] or link:https://code.quarkus.io/[Quarkus Project Launcher]).
+
+(1) Check the documentation to know which formats are supported by each link:https://venusdocs.fugerit.org/guide/#doc-handler-module-handlers[module].
