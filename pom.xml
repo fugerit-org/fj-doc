@@ -114,9 +114,9 @@
 		<module>fj-doc-tool</module>
 		<module>fj-doc-maven-plugin</module>
 		<module>fj-doc-sample</module>
-		<module>fj-doc-guide</module>
 		<module>fj-doc-playground-quarkus</module>
 		<module>fj-doc-native-quarkus</module>
+		<module>fj-doc-guide</module>
 	</modules>
 
 	<dependencyManagement>
