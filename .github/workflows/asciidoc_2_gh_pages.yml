@@ -50,8 +50,11 @@ jobs:
       - name: Verify Mermaid CLI installation
         run: mmdc --version
 
-      - name: Convert AsciiDoc to HTML5 and PDF
-        run: mvn clean asciidoctor:process-asciidoc@asciidoc-to-html asciidoctor:process-asciidoc@asciidoc-to-pdf -P buildreact
+      - name: Convert AsciiDoc to HTML5 and PDF Guide
+        run: cd fj-doc-guide;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html asciidoctor:process-asciidoc@asciidoc-to-pdf
+
+      - name: Convert AsciiDoc to HTML5 Playground
+        run: cd fj-doc-playground-quarkus;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html -Pbuildreact
 
       - name: Build Legacy Pages
         uses: actions/jekyll-build-pages@main
