@@ -315,7 +315,7 @@
 				<asciidoctorj.diagram-ditaamini.version>1.0.3</asciidoctorj.diagram-ditaamini.version>
 				<jruby.version>9.4.9.0</jruby.version>
 				<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
-				<html-output-folder-no-toc>${project.basedir}/src/main/react/public/help</html-output-folder-no-toc>
+				<html-output-folder-no-toc>${project.basedir}/src/main/react/public/help/</html-output-folder-no-toc>
 				<pdf-output-folder>${html-output-folder-no-toc}</pdf-output-folder>
 			</properties>
 
@@ -416,13 +416,6 @@
 								</configuration>
 							</execution>
 							<execution>
-								<id>asciidoc-to-html</id>
-								<phase>generate-resources</phase>
-								<goals>
-									<goal>process-asciidoc</goal>
-								</goals>
-							</execution>
-							<execution>
 								<id>asciidoc-to-html-no-toc</id>
 								<phase>generate-resources</phase>
 								<goals>
@@ -445,6 +438,28 @@
 										<imagesdir>resources/images</imagesdir>
 										<icons>font</icons>
 										<no-toc/>
+										<sectanchors>true</sectanchors>
+										<!-- set the idprefix to blank -->
+										<idprefix/>
+										<idseparator>-</idseparator>
+										<docinfo1>true</docinfo1>
+									</attributes>
+								</configuration>
+							</execution>
+							<execution>
+								<id>asciidoc-to-html</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>process-asciidoc</goal>
+								</goals>
+								<configuration>
+									<backend>html5</backend>
+									<outputDirectory>target/adoc-html5</outputDirectory>
+									<attributes>
+										<source-highlighter>rouge</source-highlighter>
+										<imagesdir>resources/images</imagesdir>
+										<icons>font</icons>
+										<toc>left</toc>
 										<sectanchors>true</sectanchors>
 										<!-- set the idprefix to blank -->
 										<idprefix/>

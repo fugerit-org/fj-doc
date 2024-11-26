@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-playground-quarkus] added documentation <https://github.com/fugerit-org/fj-doc/issues/265>
+
 ### Changed
 
 - quarkus-version set to 3.17.0 across al the modules
