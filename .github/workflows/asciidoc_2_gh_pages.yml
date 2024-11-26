@@ -50,6 +50,9 @@ jobs:
       - name: Verify Mermaid CLI installation
         run: mmdc --version
 
+      - name: Build playground
+        run: cd fj-doc-playground-quarkus;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html
+
       - name: Convert AsciiDoc to HTML5 and PDF
         run: cd fj-doc-guide;mvn clean asciidoctor:process-asciidoc@asciidoc-to-html asciidoctor:process-asciidoc@asciidoc-to-pdf
 
