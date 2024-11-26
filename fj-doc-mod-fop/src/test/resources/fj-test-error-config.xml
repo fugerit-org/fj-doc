@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+        xmlns="https://freemarkerdocprocess.fugerit.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd" >
+
+    <!--
+        Configuration stub version : 006 (2024-10-31)
+    -->
+
+
+    <docHandlerConfig registerById="true" allowDuplicatedId="false">
+
+        <!-- Simple default PDF FOP Type handler with no added configuration   -->
+        <docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
+
+        <!-- PDF FOP Type handler, set charset to UTF-8, needs a fop configuration file in a specific class loader path -->
+        <docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" fop-config-mode="classloader" fop-config-classloader-path="fop-config-not-exists.xml"/>
+        </docHandler>
+
+    </docHandlerConfig>
+
+
+    <docChain id="shared">
+        <chainStep stepType="config">
+            <config
+                    id="FJ_DOC_LIB_AUTODOC"
+                    class="org.fugerit.java.doc.lib.autodoc.AutodocModule"
+                    exception-handler="RETHROW_HANDLER"
+                    fallback-on-null-loop-variable="false"
+                    log-exception="false"
+                    mode="class"
+                    path="/fj_doc_lib_autodoc/template/"
+                    version="2.3.29"
+                    wrap-unchecked-exceptions="true"
+            />
+        </chainStep>
+    </docChain>
+
+
+</freemarker-doc-process-config>

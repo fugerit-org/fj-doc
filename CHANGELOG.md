@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-mod-fop] better init check for PdfFopTypeHandler
 - quarkus-version set to 3.17.0 across al the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.0
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.3.6

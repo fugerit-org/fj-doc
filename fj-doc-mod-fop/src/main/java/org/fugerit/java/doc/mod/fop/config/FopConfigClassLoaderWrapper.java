@@ -12,6 +12,7 @@ import org.apache.fop.apps.FopFactory;
 import org.apache.fop.apps.FopFactoryBuilder;
 import org.apache.xmlgraphics.io.ResourceResolver;
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
@@ -68,6 +69,9 @@ public class FopConfigClassLoaderWrapper implements FopConfig, Serializable {
 		this.fopConfigPath = fopConfigPath;
 		this.fopConfigData = SafeFunction.get( () -> {
 			try ( InputStream fopConfigStream = ClassHelper.loadFromDefaultClassLoader( this.getFopConfigPath() ) ) {
+				if ( fopConfigStream == null ) {
+					throw new ConfigRuntimeException( String.format( "Cannot find fop config path %s", this.getFopConfigPath() ) );
+				}
 				return StreamIO.readBytes( fopConfigStream );
 			}
 		} );
