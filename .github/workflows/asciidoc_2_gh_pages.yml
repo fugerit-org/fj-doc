@@ -51,7 +51,7 @@ jobs:
         run: mmdc --version
 
       - name: Convert AsciiDoc to HTML5 and PDF
-        run: mvn install asciidoctor:process-asciidoc@asciidoc-to-html asciidoctor:process-asciidoc@asciidoc-to-pdf
+        run: mvn install asciidoctor:process-asciidoc@asciidoc-to-html asciidoctor:process-asciidoc@asciidoc-to-pdf -P buildreact
 
       - name: Build Legacy Pages
         uses: actions/jekyll-build-pages@main
