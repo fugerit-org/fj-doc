@@ -98,7 +98,7 @@ public class FreemarkerDocProcessConfigFacade {
 
 	public static final String ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE = "FreemarkerDocProcessConfig configuration path not found";
 
-	public static final Consumer<Throwable> EX_CONSUMER_LOAD_CONFIG = (e) -> {
+	public static final Consumer<Throwable> EX_CONSUMER_LOAD_CONFIG = e -> {
 		Throwable ex = e;
 		while ( ex.getCause() != null ) {
 			ex = ex.getCause();

@@ -229,6 +229,8 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 			log.error( String.format( "Error : %s", e ), e );
 			Assert.assertTrue( e.getMessage().contains( FreemarkerDocProcessConfigFacade.ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE ) );
 		}
+		Exception testEx = new ConfigRuntimeException( "ex1", new ConfigRuntimeException( "ex0" ) );
+		Assert.assertThrows( ConfigRuntimeException.class, () -> FreemarkerDocProcessConfigFacade.EX_CONSUMER_LOAD_CONFIG.accept( testEx ) );
 	}
 	
 }
