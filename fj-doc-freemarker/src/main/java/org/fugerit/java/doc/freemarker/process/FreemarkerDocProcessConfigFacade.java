@@ -1,8 +1,10 @@
 package org.fugerit.java.doc.freemarker.process;
 
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
+import java.util.function.Consumer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -94,6 +96,20 @@ public class FreemarkerDocProcessConfigFacade {
 	 */
 	public static final String GENERAL_ATTRIBUTE_CLEAN_SOURCE = "cleanSource";
 
+	public static final String ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE = "FreemarkerDocProcessConfig configuration path not found";
+
+	public static final Consumer<Throwable> EX_CONSUMER_LOAD_CONFIG = (e) -> {
+		Throwable ex = e;
+		while ( ex.getCause() != null ) {
+			ex = ex.getCause();
+		}
+		log.warn( "****************************************************************************" );
+		log.warn( "* Configuration error (going to throw a ConfigRuntimeException)," );
+		log.warn( "* Original exception is {} : {} *", ex.getClass().getName(), ex.getMessage() );
+		log.warn( "****************************************************************************" );
+		throw new ConfigRuntimeException(e);
+	};
+
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version ) throws ConfigException {
 		return ConfigException.get( () -> {
 			FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
@@ -149,10 +165,16 @@ public class FreemarkerDocProcessConfigFacade {
 	public static FreemarkerDocProcessConfig loadConfigSafe( String configPath ) {
 		log.info( "loadConfigSafe config path : {}", configPath );
 		FreemarkerDocProcessConfig config = null;
-		try ( Reader xmlReader = new InputStreamReader(StreamHelper.resolveStream( configPath ) ) ) {
-			config = loadConfig(xmlReader);
+		try (InputStream is = StreamHelper.resolveStream( configPath ) ) {
+			if ( is != null ) {
+				try ( Reader xmlReader = new InputStreamReader( is ) ) {
+					config = loadConfig(xmlReader);
+				}
+			} else {
+				throw new ConfigRuntimeException( String.format( "%s, configPath : %s", ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE, configPath ) );
+			}
 		} catch (Exception | NoClassDefFoundError | ExceptionInInitializerError e) {
-			throw new ConfigRuntimeException( e );
+			EX_CONSUMER_LOAD_CONFIG.accept( e );
 		}
 		return config;
 	}

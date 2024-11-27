@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-mod-fop] better logging for FreemarkerDocProcessConfigFacade.loadConfigSafe()
+
 ## [8.11.3] - 2024-11-27
 
 ### Added

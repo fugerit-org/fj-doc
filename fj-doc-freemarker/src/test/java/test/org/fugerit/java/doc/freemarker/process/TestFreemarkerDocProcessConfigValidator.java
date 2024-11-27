@@ -58,7 +58,7 @@ public class TestFreemarkerDocProcessConfigValidator {
 			this.failEx(e);
 		}
 	}
-	
+
 	@Test
 	public void testValidateLoggerKo() {
 		String fullPath = "fj_doc_test/freemarker-doc-process_ko.xml";

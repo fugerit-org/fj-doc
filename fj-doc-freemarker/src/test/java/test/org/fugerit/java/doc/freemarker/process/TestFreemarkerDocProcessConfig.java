@@ -218,6 +218,17 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 		} );
 		Assert.assertTrue( Boolean.TRUE );
 	}
-	
+
+	@Test
+	public void testLoadConfigKo() {
+		String fullPath = "fj_doc_test/freemarker-doc-process_ko.xml";
+		Assert.assertThrows( ConfigRuntimeException.class, () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( fullPath ) );
+		try {
+			FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" );
+		} catch (ConfigRuntimeException e) {
+			log.error( String.format( "Error : %s", e ), e );
+			Assert.assertTrue( e.getMessage().contains( FreemarkerDocProcessConfigFacade.ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE ) );
+		}
+	}
 	
 }
