@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -98,7 +99,7 @@ public class FreemarkerDocProcessConfigFacade {
 
 	public static final String ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE = "FreemarkerDocProcessConfig configuration path not found";
 
-	public static final Consumer<Throwable> EX_CONSUMER_LOAD_CONFIG = e -> {
+	public static final Function<Throwable, ConfigRuntimeException> EX_CONSUMER_LOAD_CONFIG = e -> {
 		Throwable ex = e;
 		while ( ex.getCause() != null ) {
 			ex = ex.getCause();
@@ -107,7 +108,7 @@ public class FreemarkerDocProcessConfigFacade {
 		log.warn( "* Configuration error (going to throw a ConfigRuntimeException)," );
 		log.warn( "* Original exception is {} : {} *", ex.getClass().getName(), ex.getMessage() );
 		log.warn( "****************************************************************************" );
-		throw new ConfigRuntimeException(e);
+		return new ConfigRuntimeException(e);
 	};
 
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version ) throws ConfigException {
@@ -174,7 +175,7 @@ public class FreemarkerDocProcessConfigFacade {
 				throw new ConfigRuntimeException( String.format( "%s, configPath : %s", ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE, configPath ) );
 			}
 		} catch (Exception | NoClassDefFoundError | ExceptionInInitializerError e) {
-			EX_CONSUMER_LOAD_CONFIG.accept( e );
+			throw EX_CONSUMER_LOAD_CONFIG.apply( e );
 		}
 		return config;
 	}
