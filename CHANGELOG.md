@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - quarkus-version set to 3.17.2 across al the modules
+- [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.0
 
 ## [8.11.4] - 2024-11-27
 
