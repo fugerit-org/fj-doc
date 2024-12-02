@@ -24,7 +24,7 @@ flowchart TD
             #lt;metadata#gt;...#lt;/metadata#gt;
             #lt;body#gt;
             ...
-            #lt;para#gt;Hello ?{name}!#lt;/para#gt;
+            #lt;h head-level='2'#gt;Hello ?{name}!#lt;/para#gt;
             ...
             #lt;/body#gt;
             #lt;/doc#gt;"]
@@ -48,7 +48,7 @@ flowchart TD
             #lt;metadata#gt;...#lt;/metadata#gt;
             #lt;body#gt;
             ...
-            #lt;h head-level=#quot;2#quot;#gt;Hello Venus!#lt;/h#gt;
+            #lt;h head-level=#quot;2#quot;#gt;Hello Venus ♀!#lt;/h#gt;
             ...
             #lt;/body#gt;
             #lt;/doc#gt;"]
