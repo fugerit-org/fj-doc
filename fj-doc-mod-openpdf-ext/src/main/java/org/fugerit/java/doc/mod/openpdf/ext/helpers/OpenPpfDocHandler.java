@@ -8,41 +8,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import com.lowagie.text.*;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.helper.SourceResolverHelper;
-import org.fugerit.java.doc.base.model.DocBarcode;
-import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.model.DocElement;
-import org.fugerit.java.doc.base.model.DocFooter;
-import org.fugerit.java.doc.base.model.DocHeader;
-import org.fugerit.java.doc.base.model.DocHeaderFooter;
-import org.fugerit.java.doc.base.model.DocImage;
-import org.fugerit.java.doc.base.model.DocInfo;
-import org.fugerit.java.doc.base.model.DocPageBreak;
-import org.fugerit.java.doc.base.model.DocPara;
-import org.fugerit.java.doc.base.model.DocPhrase;
-import org.fugerit.java.doc.base.model.DocStyle;
-import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.model.*;
 import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
 
-import com.lowagie.text.Anchor;
-import com.lowagie.text.BadElementException;
-import com.lowagie.text.Chunk;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Element;
-import com.lowagie.text.Font;
-import com.lowagie.text.Header;
-import com.lowagie.text.HeaderFooter;
-import com.lowagie.text.Image;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.Rectangle;
 import com.lowagie.text.html.HtmlTags;
 import com.lowagie.text.pdf.Barcode;
 import com.lowagie.text.pdf.Barcode128;
@@ -277,12 +253,12 @@ public class OpenPpfDocHandler {
 	}
 	
 	protected void handleHeaderExt( DocHeader docHeader, PdfHelper pdfHelper, OpenPdfHelper docHelper ) throws DocumentException {
-		log.trace( "docHelper : {}", docHelper );
+		log.trace( "handleHeaderExt docHelper : {}", docHelper );
 		pdfHelper.setDocHeader( docHeader );
 	}
 	
 	protected void handleFooterExt( DocFooter docFooter, PdfHelper pdfHelper, OpenPdfHelper docHelper ) throws DocumentException {
-		log.trace( "docHelper : {}", docHelper );
+		log.trace( "handleFooterExt docHelper : {}", docHelper );
 		pdfHelper.setDocFooter( docFooter ); 
 	}
 	
@@ -352,11 +328,7 @@ public class OpenPpfDocHandler {
 	}
 	
 	public static void handleElementsSafe( Document document, Iterator<DocElement> itDoc, OpenPdfHelper docHelper ) {
-		try {
-			handleElements(document, itDoc, docHelper);
-		} catch (Exception e) {
-			throw new ConfigRuntimeException( e );
-		}
+		SafeFunction.apply( () -> handleElements(document, itDoc, docHelper) );
 	}
 	
 	public static void handleElements( Document document, Iterator<DocElement> itDoc, OpenPdfHelper docHelper ) throws DocumentException, IOException {
@@ -389,10 +361,28 @@ public class OpenPpfDocHandler {
 			if ( addElement ) {
 				documentParent.add( result );	
 			}
+		} else if ( docElement instanceof DocList) {
+			result = createList( (DocList)docElement, document, addElement, docHelper );
+			if ( addElement ) {
+				documentParent.add( result );
+			}
 		} else if ( docElement instanceof DocPageBreak ) {
 			document.newPage();
 		}
 		return result;
+	}
+
+	private static com.lowagie.text.List createList( DocList docList, Document document, boolean addElement, OpenPdfHelper docHelper ) throws IOException {
+		com.lowagie.text.List list = new com.lowagie.text.List( docList.isOrdered() );
+		for (  DocElement element : docList.getElementList() ) {
+			DocLi li = (DocLi) element;
+			if ( li.getContent() instanceof DocPara ) {
+				list.add( new ListItem( createPara( (DocPara)li.getContent(), docHelper ) ) );
+			} else {
+				throw new ConfigRuntimeException( String.format( "unsupported type %s", element.getClass().getSimpleName() ) );
+			}
+		}
+		return list;
 	}
 	
 	private void handleHeaderFooterElement( DocElement docElement, float inputLeading, OpenPdfHelper docHelper , Phrase phrase ) throws DocumentException, IOException {
