@@ -1,0 +1,19 @@
+
+[#doc-faq-endline-fop]
+=== PDF FOP doc handler ignores endline?
+
+Usually xref:#doc-handler-mod-fop-pdf-basic[PDF FOP doc handler] will ignore endline.
+
+To have endline actually be processed, it is possible to use the link:https://venusdocs.fugerit.org/fj-doc-base/src/main/docs/doc_xsd_config_ref.html#para[white-space-collapse='preserve'] attribute (when applicable).
+
+Here is an link:https://github.com/fugerit-org/code-samples/blob/main/code-samples-fj-doc/src/main/resources/code-samples-fj-doc/template/endline-fop.ftl#L28[example] :
+
+[source,xml]
+----
+    <para>This will be rendered
+as a single line.</para>
+    <para white-space-collapse="preserve">This will be rendered
+as two lines.</para>
+----
+
+NOTE: when getting data from outside the template, endline should be property encoded (for instance with *\n* in properties file).
