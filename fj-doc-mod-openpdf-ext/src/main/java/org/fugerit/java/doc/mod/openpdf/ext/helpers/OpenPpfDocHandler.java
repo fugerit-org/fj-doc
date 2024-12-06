@@ -337,42 +337,38 @@ public class OpenPpfDocHandler {
 			getElement(document, docElement, true, docHelper );
 		}
 	}
-	
+
+	public static void checkAddElement( DocumentParent documentParent, boolean addElement, Element result ) {
+		if ( addElement ) {
+			documentParent.add( result );
+		}
+	}
+
 	public static Element getElement( Document document, DocElement docElement, boolean addElement, OpenPdfHelper docHelper ) throws DocumentException, IOException {
 		Element result = null;
 		DocumentParent documentParent = new DocumentParent( document );
 		if ( docElement instanceof DocPhrase ) {
 			result = createPhrase( (DocPhrase)docElement, docHelper );
-			if ( addElement ) {
-				documentParent.add( result );	
-			}
+			checkAddElement( documentParent, addElement, result );
 		} else if ( docElement instanceof DocPara ) {
 			result = createPara( (DocPara)docElement, docHelper );
-			if ( addElement ) {
-				documentParent.add( result );	
-			}
+			checkAddElement( documentParent, addElement, result );
 		} else if ( docElement instanceof DocTable ) {
 			result = OpenPdfDocTableHelper.createTable( (DocTable)docElement, docHelper );
-			if ( addElement ) {
-				document.add( result );	
-			}
+			checkAddElement( documentParent, addElement, result );
 		} else if ( docElement instanceof DocImage ) {
 			result = createImage( (DocImage)docElement );
-			if ( addElement ) {
-				documentParent.add( result );	
-			}
+			checkAddElement( documentParent, addElement, result );
 		} else if ( docElement instanceof DocList) {
-			result = createList( (DocList)docElement, document, addElement, docHelper );
-			if ( addElement ) {
-				documentParent.add( result );
-			}
+			result = createList( (DocList)docElement, docHelper );
+			checkAddElement( documentParent, addElement, result );
 		} else if ( docElement instanceof DocPageBreak ) {
 			document.newPage();
 		}
 		return result;
 	}
 
-	private static com.lowagie.text.List createList( DocList docList, Document document, boolean addElement, OpenPdfHelper docHelper ) throws IOException {
+	private static com.lowagie.text.List createList( DocList docList, OpenPdfHelper docHelper ) throws IOException {
 		com.lowagie.text.List list = new com.lowagie.text.List( docList.isOrdered() );
 		for (  DocElement element : docList.getElementList() ) {
 			DocLi li = (DocLi) element;
