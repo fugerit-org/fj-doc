@@ -189,6 +189,16 @@
       <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-openrtf-ext(rtf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>suppress-wrong-type-error</admeta:name>
+      <admeta:description>If set to 'a' or 'true' it will set suppress some type error.</admeta:description>
+      <admeta:defaultValue>false</admeta:defaultValue>
+      <admeta:since>8.11.5</admeta:since>
+      <admeta:supportedType>pdf</admeta:supportedType>
+      <admeta:supportedType>rtf</admeta:supportedType>
+      <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
+      <admeta:supportedHandler>fj-doc-mod-openrtf-ext(rtf)</admeta:supportedHandler>
+    </admeta:admMetaInfo>
   </admeta:admSection>
 
   <admeta:admSection>

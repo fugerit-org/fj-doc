@@ -375,10 +375,10 @@ public class OpenPpfDocHandler {
 				if ( li.getContent() instanceof DocPara ) {
 					list.add( new ListItem( createPara( (DocPara)li.getContent(), docHelper ) ) );
 				} else {
-					throw new IOException( String.format( "unsupported type %s", li.getContent().getClass().getSimpleName() ) );
+					docHelper.handelError( String.format( "unsupported type %s", li.getContent().getClass().getSimpleName() ) );
 				}
 			} else {
-				throw new IOException( String.format( "wrong children%s", element.getClass().getSimpleName() ) );
+				docHelper.handelError( String.format( "wrong children%s", element.getClass().getSimpleName() )  );
 			}
 		}
 		return list;
