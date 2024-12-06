@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Properties;
 
 import com.lowagie.text.*;
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.regex.ParamFinder;
@@ -371,11 +370,15 @@ public class OpenPpfDocHandler {
 	private static com.lowagie.text.List createList( DocList docList, OpenPdfHelper docHelper ) throws IOException {
 		com.lowagie.text.List list = new com.lowagie.text.List( docList.isOrdered() );
 		for (  DocElement element : docList.getElementList() ) {
-			DocLi li = (DocLi) element;
-			if ( li.getContent() instanceof DocPara ) {
-				list.add( new ListItem( createPara( (DocPara)li.getContent(), docHelper ) ) );
+			if ( element instanceof DocLi ) {
+				DocLi li = (DocLi) element;
+				if ( li.getContent() instanceof DocPara ) {
+					list.add( new ListItem( createPara( (DocPara)li.getContent(), docHelper ) ) );
+				} else {
+					throw new IOException( String.format( "unsupported type %s", li.getContent().getClass().getSimpleName() ) );
+				}
 			} else {
-				throw new ConfigRuntimeException( String.format( "unsupported type %s", element.getClass().getSimpleName() ) );
+				throw new IOException( String.format( "wrong children%s", element.getClass().getSimpleName() ) );
 			}
 		}
 		return list;
