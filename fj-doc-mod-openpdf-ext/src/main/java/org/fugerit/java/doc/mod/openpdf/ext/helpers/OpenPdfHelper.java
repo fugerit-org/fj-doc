@@ -1,9 +1,14 @@
 package org.fugerit.java.doc.mod.openpdf.ext.helpers;
 
+import java.io.IOException;
 import java.util.Properties;
 
 import com.lowagie.text.pdf.PdfWriter;
+import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 
+@Slf4j
 public class OpenPdfHelper {
 
 	public OpenPdfHelper() {
@@ -58,6 +63,14 @@ public class OpenPdfHelper {
 
 	public void setPdfWriter(PdfWriter pdfWriter) {
 		this.pdfWriter = pdfWriter;
+	}
+
+	public void handelError( String message ) throws IOException {
+		if (BooleanUtils.isTrue( this.getParams().getProperty(GenericConsts.DOC_SUPPRESS_WRONG_TYPE_ERROR ) ) ) {
+			log.warn( "Suppressed type error : {}", message );
+		} else {
+			throw new IOException(message);
+		}
 	}
 	
 }

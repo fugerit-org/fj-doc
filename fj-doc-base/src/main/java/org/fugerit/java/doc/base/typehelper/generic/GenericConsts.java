@@ -194,6 +194,11 @@ public class GenericConsts {
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#default-font-style">See 'default-font-style' documentation.</a>
 	 */
 	public static final String DOC_DEFAULT_FONT_STYLE = "default-font-style";
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#suppress-wrong-type-error">See 'suppress-wrong-type-error' documentation.</a>
+	 */
+	public static final String DOC_SUPPRESS_WRONG_TYPE_ERROR = "suppress-wrong-type-error";
 	
 	
 }

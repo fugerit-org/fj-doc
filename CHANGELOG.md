@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-mod-doc-openpdf-ext] basic list implementation
+- info suppress-wrong-type-error, some type error will be ignored if set to true and '1'
+
 ### Changed
 
 - quarkus-version set to 3.17.2 across al the modules

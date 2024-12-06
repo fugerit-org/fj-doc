@@ -25,7 +25,7 @@ public class TestPdfHelper {
 	
 	@Test
 	public void testTandleElementSafe() {
-		Assert.assertThrows( ConfigRuntimeException.class , () -> OpenPpfDocHandler.handleElementsSafe(null, null, null) );
+		Assert.assertThrows( NullPointerException.class , () -> OpenPpfDocHandler.handleElementsSafe(null, null, null) );
 	}
 	
 	@Test
