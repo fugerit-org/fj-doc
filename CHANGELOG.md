@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.11.5] - 2024-12-06
+
 ### Added
 
 - [fj-mod-doc-openpdf-ext] basic list implementation
