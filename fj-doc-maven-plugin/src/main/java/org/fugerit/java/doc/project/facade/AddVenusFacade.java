@@ -91,8 +91,12 @@ public class AddVenusFacade extends BasicVenusFacade {
         DocConfigGenerator javaGenerator = new DocConfigGenerator( context );
         Properties generatorProps = new Properties();
         javaGenerator.init( sourceFolder, context.getDocConfigPackage()+"."+context.getDocConfigClass(), SimpleJavaGenerator.STYLE_CLASS, generatorProps);
-        javaGenerator.generate();
-        javaGenerator.write();
+        if ( javaGenerator.getJavaFile().exists() ) {
+            log.info( "DocHelper generator skip, already exists : {}", javaGenerator.getJavaFile().getCanonicalPath() );
+        } else {
+            javaGenerator.generate();
+            javaGenerator.write();
+        }
         // add sample structure
         addSampleStructure( context, configuration, data );
         if ( context.getModules().contains( "fj-doc-mod-fop" ) ) {
