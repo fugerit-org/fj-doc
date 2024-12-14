@@ -1,6 +1,6 @@
 <<<
 [#doc-optimize-startup]
-== Eager vs Lazy initialization
+=== Eager vs Lazy initialization
 
 By default, Fugerit Venus Doc has a lazy initialization approach.
 
