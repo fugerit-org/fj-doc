@@ -62,4 +62,8 @@ public class FlavourContext {
         return VersionCheck.isMajorThan( this.getVersion(), VenusContext.VERSION_ASCIIDOC_FREEMARKER_HANDLER );
     }
 
+    public String getResourcePathFmConfigXml() {
+        return VenusContext.toResourcePathFmConfigXml( this.getArtifactId() );
+    }
+
 }

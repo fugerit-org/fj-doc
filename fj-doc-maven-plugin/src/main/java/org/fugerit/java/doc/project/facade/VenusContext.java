@@ -19,6 +19,18 @@ import java.util.Set;
 @ToString
 public class VenusContext {
 
+    public static String toArtificatIdForFolder( String artifactId ) {
+        return artifactId.toLowerCase();
+    }
+
+    public static String toArtificatIdForName( String artifactId ) {
+        return toArtificatIdForFolder( artifactId ).replace( "-", "" );
+    }
+
+    public static String toResourcePathFmConfigXml( String artifactId ) {
+        return toArtificatIdForFolder( artifactId )+"/fm-doc-process-config.xml";
+    }
+
     public static final String VERSION_ASCIIDOC_FREEMARKER_HANDLER = "8.8.6";
 
     public static final String VERSION_NA_VERIFY_PLUGIN = "8.7.2";
@@ -97,15 +109,15 @@ public class VenusContext {
     }
 
     public String getArtificatIdForFolder() {
-        return this.getMavenModel().getArtifactId().toLowerCase();
+        return toArtificatIdForFolder( this.getMavenModel().getArtifactId() );
     }
 
     public String getArtificatIdForName() {
-        return this.getArtificatIdForFolder().replace( "-", "" ).toLowerCase();
+        return toArtificatIdForName( this.getMavenModel().getArtifactId() );
     }
 
     public String getResourcePathFmConfigXml() {
-        return this.getArtificatIdForFolder()+"/fm-doc-process-config.xml";
+        return toResourcePathFmConfigXml( this.getMavenModel().getArtifactId() );
     }
 
     public String getDocConfigPackage() {

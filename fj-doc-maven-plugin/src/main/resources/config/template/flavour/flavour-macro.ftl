@@ -3,10 +3,15 @@
 <#macro toProjectPackage context>${context.groupId}.${context.artifactId?replace("-","")}</#macro>
 
 <#macro createDocumentProcess context exceptionType>
+    // creates the doc helper
+    DocHelper docHelper = new DocHelper();
+    <@createDocumentProcessNoHelper context=context exceptionType=exceptionType/>
+</#macro>
+
+<#macro createDocumentProcessNoHelper context exceptionType>
     byte[] processDocument(String handlerId) {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
-            // creates the doc helper
-            DocHelper docHelper = new DocHelper();
+
             // create custom data for the fremarker template 'document.ftl'
             List<People> listPeople = Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King"));
             <#if context.modules?seq_contains("fj-doc-base-json")>// json source supported, if you want to try it, use the chainId "document-json"</#if>
@@ -14,9 +19,12 @@
             <#if context.modules?seq_contains("fj-doc-base-kotlin")>// kotlin source supported, if you want to try it,
             // use the chainId "document-kotlin" for FreeMarker + Kotlin
             // or "document-kotlin-pure" for pure Kotlin</#if>
+            <#if context.addLombok >
+            log.info( "processDocument handlerId : {}", handlerId );
+            </#if>
             String chainId = "document";
             // output generation
-            docHelper.getDocProcessConfig().fullProcess(chainId, DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);
+            this.docHelper.getDocProcessConfig().fullProcess(chainId, DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);
             // return the output
             return baos.toByteArray();
         } catch (Exception e) {

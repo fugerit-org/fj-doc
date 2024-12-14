@@ -26,3 +26,5 @@ process:
     to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/AppInit.java
   - from: flavour/${context.flavour}/DocResourceTest.ftl
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/DocResourceTest.java
+  - from: flavour/${context.flavour}/DocHelper.ftl
+    to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/DocHelper.java
