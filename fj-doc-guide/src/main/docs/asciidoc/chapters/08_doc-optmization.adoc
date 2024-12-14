@@ -1,0 +1,5 @@
+<<<
+[#doc-optimization]
+== Optimizations
+
+In this chapter the main Venus optimizations ara described.
