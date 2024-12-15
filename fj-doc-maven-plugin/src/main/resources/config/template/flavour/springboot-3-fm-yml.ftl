@@ -18,3 +18,7 @@ process:
     to: ${context.projectFolder}/src/test/java/test/<@fhm.toProjectPackageFolder context=context/>/${context.artifactIdAsClassName}ApplicationTests.java
   - from: flavour/${context.flavour}/application.ftl
     to: ${context.projectFolder}/src/main/resources/application.yaml
+  - from: flavour/${context.flavour}/AppInit.ftl
+    to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/AppInit.java
+  - from: flavour/${context.flavour}/DocHelper.ftl
+    to: ${context.projectFolder}/src/main/java/<@fhm.toProjectPackageFolder context=context/>/DocHelper.java
