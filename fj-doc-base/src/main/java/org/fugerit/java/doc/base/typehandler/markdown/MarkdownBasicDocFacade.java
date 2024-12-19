@@ -111,7 +111,7 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 		// test
 		this.handleText(docPara.getText(), docPara.getStyle() );
 		if ( body ) {
-			this.writer.println( "  " );	// endline with two white spaces	
+			this.writer.println( "  \n" );	// endline with two white spaces
 		} else {
 			this.writer.print( " " );
 		}
