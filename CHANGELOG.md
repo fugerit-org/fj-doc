@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.11.6] - 2024-12-19
+
 ### Changed
 
 - fixed endline for markdown format
