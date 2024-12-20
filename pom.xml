@@ -36,7 +36,7 @@
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.1.0</kotlin.version>
 		<junit-jupiter-api-version>5.11.3</junit-jupiter-api-version>
-		<quarkus-version>3.17.4</quarkus-version>
+		<quarkus-version>3.17.5</quarkus-version>
 	</properties>
 
 	<licenses>
