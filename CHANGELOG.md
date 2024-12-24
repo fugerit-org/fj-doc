@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- freemarker-version 2.3.34
 - quarkus-version set to 3.17.5 across al the modules
 
 ## [8.11.6] - 2024-12-19
