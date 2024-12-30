@@ -24,6 +24,7 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 	public static final String ATT_DEFAULT = "FreeMarkerConfigStep.DEFAULT";
 	
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION = "version";
+	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_34 = "2.3.34";
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_33 = "2.3.33";
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_32 = "2.3.32";
 	public static final String ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_31 = "2.3.31";
