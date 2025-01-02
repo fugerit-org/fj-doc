@@ -54,7 +54,7 @@
 								<reflectConfigJsonFile>${project.build.directory}/generated-resources/reflect-config-custom.json</reflectConfigJsonFile>
 								<reflectConfigJsonFile>${project.basedir}/src/main/config/reflect-config-nhg.json</reflectConfigJsonFile>
 							</reflectConfigJsonFiles>
-							<reflectConfigJsonOutputPath>${project.basedir}/src/main/resources/META-INF/native-image/reflect-config.json</reflectConfigJsonOutputPath>
+							<reflectConfigJsonOutputPath>${project.basedir}/src/main/resources/META-INF/native-image/${project.groupId}/${project.artifactId}/reflect-config.json</reflectConfigJsonOutputPath>
 							<createParentDirectory>true</createParentDirectory>
 							<warnOnError>false</warnOnError>
 						</configuration>
