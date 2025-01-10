@@ -7,13 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.11.8] - 2025-01-10
+
 ### Changed
 
 - subfolder for native embedded configuration file <https://github.com/fugerit-org/fj-doc/issues/276>
 - freemarker-version 2.3.34
 - quarkus-version set to 3.17.6 across al the modules
 
-## [8.11.6] - 2024-12-19
+## [8.11.7] - 2024-12-19
 
 ### Changed
 
