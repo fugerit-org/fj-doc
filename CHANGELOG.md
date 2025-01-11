@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.11.9] - 2025-01-11
+
 ### Fixed
 
 - Fix native support for Apache FreeMarker <https://github.com/fugerit-org/fj-doc/issues/278>
