@@ -11,7 +11,7 @@
 	</parent>
 
 	<name>fj-doc-mod-opencsv</name>
-	<description>Renderer for CSV using OpenCSV</description>
+	<description>Fugerit Venus Doc Module. Contains doc handler for CSV format (based on com.opencsv:opencsv).</description>
 
 	<licenses>
 		<license>

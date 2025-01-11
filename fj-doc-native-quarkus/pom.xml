@@ -14,7 +14,6 @@
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <surefire-plugin.version>3.5.2</surefire-plugin.version>
-    <quarkus-freemarker-version>1.1.0</quarkus-freemarker-version>
     <quarkus.platform.version>${quarkus-version}</quarkus.platform.version>
     <skipITs>true</skipITs>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -54,11 +53,6 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.quarkiverse.freemarker</groupId>
-      <artifactId>quarkus-freemarker</artifactId>
-      <version>${quarkus-freemarker-version}</version>
     </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>

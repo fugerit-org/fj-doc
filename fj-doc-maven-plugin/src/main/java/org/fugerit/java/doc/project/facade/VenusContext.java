@@ -37,6 +37,8 @@ public class VenusContext {
 
     public static final String VERSION_NA_FULL_PROCESS = "8.6.2";
 
+    public static final String VERSION_NA_FREEMARKER_NATIVE = "8.11.8";
+
     @Getter
     private File projectDir;
 

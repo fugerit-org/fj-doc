@@ -15,7 +15,7 @@
         <quarkus.platform.version>${context.flavourVersion}</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
-        <quarkus-freemarker-version>1.1.0</quarkus-freemarker-version>
+        <freemarker-native-version>1.0.0</freemarker-native-version>
     </properties>
 
     <dependencyManagement>
@@ -52,11 +52,13 @@
             <artifactId>quarkus-arc</artifactId>
         </dependency>
         <#if context.modules?seq_contains("fj-doc-freemarker")>
+        <#if !context.freeMarkerNativeAvailable >
         <dependency>
-            <groupId>io.quarkiverse.freemarker</groupId>
-            <artifactId>quarkus-freemarker</artifactId>
-            <version>${r"${quarkus-freemarker-version}"}</version>
+            <groupId>io.fugerit.java</groupId>
+            <artifactId>freemarker-natice</artifactId>
+            <version>${r"${freemarker-native-version}"}</version>
         </dependency>
+        </#if>
         </#if>
         <dependency>
             <groupId>io.quarkus</groupId>

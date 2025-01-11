@@ -66,4 +66,8 @@ public class FlavourContext {
         return VenusContext.toResourcePathFmConfigXml( this.getArtifactId() );
     }
 
+    public boolean isFreeMarkerNativeAvailable() {
+        return VersionCheck.isMajorThan( this.getVersion(), VenusContext.VERSION_NA_FREEMARKER_NATIVE );
+    }
+
 }
