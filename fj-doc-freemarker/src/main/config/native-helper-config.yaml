@@ -3,18 +3,18 @@
 generate:
   - className: org.fugerit.java.doc.freemarker.helper.FreeMarkerDocProcess
     mode: all
-    typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
+    #typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
   - packageName: org.fugerit.java.doc.freemarker.process
     mode: all
   - packageName: org.fugerit.java.doc.freemarker.html
     mode: all
-    typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
+    #typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
   - packageName: org.fugerit.java.doc.freemarker.asciidoc
     mode: all
-    typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
+    #typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
   - packageName: org.fugerit.java.doc.freemarker.config
     mode: all
-    typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
+    #typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
   - packageName: org.fugerit.java.doc.freemarker.fun
     mode: all
-    typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig
+    #typeReachable: org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig

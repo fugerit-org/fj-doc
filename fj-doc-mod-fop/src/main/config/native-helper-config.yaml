@@ -1,0 +1,7 @@
+#Sample native helper config file
+---
+generate:
+  - packageName: org.fugerit.java.doc.mod.fop
+    mode: all
+  - packageName: org.fugerit.java.doc.mod.fop.config
+    mode: all

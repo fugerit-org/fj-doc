@@ -1,0 +1,652 @@
+[ {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.FopConfig",
+  "methods" : [ {
+    "name" : "newFactory",
+    "parameterTypes" : [ ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.FopConfigDefault",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newFactory",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.FopConfigWrap",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.apache.fop.apps.FopFactory", "org.apache.fop.apps.FOUserAgent" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFoUserAgent",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopFactory",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "java.nio.charset.Charset" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.InitFopHandler",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "initDoc",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "initDocAsync",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.PdfFopTypeHandler",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "boolean", "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "boolean", "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "org.fugerit.java.doc.mod.fop.FopConfig" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "org.fugerit.java.doc.mod.fop.FopConfig", "boolean", "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfig", "boolean", "boolean" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopPoolMax",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopPoolMin",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPdfAMode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPdfUAMode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isAccessibility",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isKeepEmptyTags",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isSuppressEvents",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFopConfig",
+    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfig" ]
+  }, {
+    "name" : "setFopPoolMax",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setFopPoolMin",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setPdfAMode",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setPdfUAMode",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setSuppressEvents",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.PoolUtils",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handleFopWrap",
+    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfigWrap", "java.util.List", "int", "int", "org.fugerit.java.core.function.UnsafeSupplier" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "canHandle",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOutputStream",
+    "parameterTypes" : [ "java.net.URI" ]
+  }, {
+    "name" : "getResolver",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getResource",
+    "parameterTypes" : [ "java.net.URI" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "wrap",
+    "parameterTypes" : [ "org.apache.xmlgraphics.io.ResourceResolver" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "[B", "org.apache.xmlgraphics.io.ResourceResolver" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "org.apache.xmlgraphics.io.ResourceResolver" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomResourceResolver",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopConfigPath",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "newFactory",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig"
+  },
+  "name" : "org.fugerit.java.doc.mod.fop.config.ResourceResolverWrapper",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.apache.xmlgraphics.io.ResourceResolver" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getOutputStream",
+    "parameterTypes" : [ "java.net.URI" ]
+  }, {
+    "name" : "getResolver",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getResource",
+    "parameterTypes" : [ "java.net.URI" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "wrap",
+    "parameterTypes" : [ "org.apache.xmlgraphics.io.ResourceResolver" ]
+  } ]
+}, {
+  "name" : "java.lang.Class",
+  "methods" : [ {
+    "name" : "getCanonicalName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSimpleName",
+    "parameterTypes" : [ ]
+  } ]
+} ]
