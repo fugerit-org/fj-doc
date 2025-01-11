@@ -9,6 +9,7 @@ import org.fugerit.java.doc.maven.MojoInit;
 import org.fugerit.java.doc.project.facade.FlavourContext;
 import org.fugerit.java.doc.project.facade.FlavourFacade;
 import org.fugerit.java.doc.project.facade.ModuleFacade;
+import org.fugerit.java.doc.project.facade.VenusContext;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,6 +18,8 @@ import java.util.UUID;
 
 @Slf4j
 public class TestInit {
+
+    private static final String FREEMARKER_NATIVE_AVAILABLE = "8.11.9";
 
     private String getVersion() {
         return "8.10.5";
@@ -81,6 +84,10 @@ public class TestInit {
         context.setFlavourVersion(  "test" );
         FlavourFacade.checkFlavourVersion( context, FlavourFacade.FLAVOUR_QUARKUS_2  );
         Assert.assertEquals( "test", context.getFlavourVersion() );
+        context.setVersion( VenusContext.VERSION_NA_FREEMARKER_NATIVE );
+        Assert.assertFalse( context.isFreeMarkerNativeAvailable() );
+        context.setVersion( FREEMARKER_NATIVE_AVAILABLE );
+        Assert.assertTrue( context.isFreeMarkerNativeAvailable() );
     }
 
 }

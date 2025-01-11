@@ -22,7 +22,8 @@
 	</licenses>
 	
 	<properties>
-		<freemarker-version>2.3.34</freemarker-version>	
+		<freemarker-version>2.3.34</freemarker-version>
+		<freemarker-native-version>1.0.0</freemarker-native-version>
 	</properties>
 	
 	<build>
@@ -77,6 +78,12 @@
 		    <groupId>org.freemarker</groupId>
 		    <artifactId>freemarker</artifactId>
 		    <version>${freemarker-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>freemarker-native</artifactId>
+			<version>${freemarker-native-version}</version>
 		</dependency>
 
 		<dependency>
