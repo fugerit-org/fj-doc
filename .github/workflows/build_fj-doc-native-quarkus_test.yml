@@ -17,6 +17,7 @@ on:
   push:
     branches:
       - develop
+      - assessment/native_image
   pull_request:
     types:
       - opened
@@ -25,8 +26,14 @@ on:
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        distribution: [ 'graalvm' ]
+        java: [ '21', '23' ]
+        os: [ 'ubuntu-latest' ]
+    name: Build native image ${{ matrix.os }} ${{ matrix.java }} (${{ matrix.distribution }})
+
     steps:
 
       # checkout
@@ -37,8 +44,8 @@ jobs:
       # setup latest GraalVM LTS
       - uses: actions/setup-java@main
         with:
-          distribution: 'graalvm' # See 'Supported distributions' for available options
-          java-version: '21'
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.java }}
 
       - name: Cache Maven packages
         uses: actions/cache@main

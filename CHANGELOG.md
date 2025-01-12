@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- better native AOT compatibility workflow
+
 ## [8.11.9] - 2025-01-11
 
 ### Fixed
