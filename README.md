@@ -10,8 +10,11 @@ Framework to produce documents in different output formats starting from an XML 
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=fugerit-org_fj-doc&metric=coverage)](https://sonarcloud.io/summary/new_code?id=fugerit-org_fj-doc)
 [![Known Vulnerabilities](https://snyk.io/test/github/fugerit-org/fj-doc/badge.svg)](https://snyk.io/test/github/fugerit-org/fj-doc)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/58d93495dce94c618c4299cd80eb19f1)](https://app.codacy.com/gh/fugerit-org/fj-doc/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-![build and scan](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_package.yml/badge.svg)
 [![Docker images](https://img.shields.io/badge/dockerhub-images-important.svg?logo=Docker)](https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general)
+
+![build and scan](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_package.yml/badge.svg)
+[![CI maven compatibility check](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_compatibility.yml/badge.svg?branch=branch-compatibility)](https://github.com/fugerit-org/fj-doc/actions/workflows/build_maven_compatibility.yml)
+[![CI native modules build and test](https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml/badge.svg?branch=develop)](https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml)
 
 [![Java runtime version](https://img.shields.io/badge/run%20on-java%208+-%23113366.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java8.html)
 [![Java build version](https://img.shields.io/badge/build%20on-java%2017+-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java17.html)
