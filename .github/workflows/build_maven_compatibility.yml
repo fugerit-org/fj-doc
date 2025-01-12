@@ -48,6 +48,23 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Maven build
         run: mvn clean install -P full,coverage
+  check-graal:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        distribution: [ 'graalvm' ]
+        java: [ '21', '23' ]
+        os: [ 'ubuntu-latest' ]
+    name: Java ${{ matrix.os }} ${{ matrix.java }} (${{ matrix.distribution }}) compatibility check
+    steps:
+      - uses: actions/checkout@main
+      - name: Setup java
+        uses: actions/setup-java@main
+        with:
+          distribution: ${{ matrix.distribution }}
+          java-version: ${{ matrix.java }}
+      - name: Maven build
+        run: mvn clean install -P full,coverage
   check-ms:
     runs-on: ${{ matrix.os }}
     strategy:

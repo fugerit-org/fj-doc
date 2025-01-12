@@ -17,7 +17,6 @@ on:
   push:
     branches:
       - develop
-      - assessment/native_image
   pull_request:
     types:
       - opened
