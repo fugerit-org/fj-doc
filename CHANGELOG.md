@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - better native AOT compatibility workflow
 
+### Changed
+
+- quarkus-version set to 3.17.7 across al the modules
+
 ## [8.11.9] - 2025-01-11
 
 ### Fixed
