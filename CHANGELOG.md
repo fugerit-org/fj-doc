@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - quarkus-version set to 3.17.7 across al the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.4
+- [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.1
 
 ## [8.11.9] - 2025-01-11
 
