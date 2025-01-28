@@ -13,8 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.2
 - [fj-doc-val-pdfbox] pdfbox version 2.0.33
-- quarkus-version set to 3.18.0 across al the modules
+- quarkus-version set to 3.18.0 across all the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.4
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.1
 
@@ -25,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fix native support for Apache FreeMarker <https://github.com/fugerit-org/fj-doc/issues/278>
 - subfolder for native embedded configuration file <https://github.com/fugerit-org/fj-doc/issues/276>
 - freemarker-version 2.3.34
-- quarkus-version set to 3.17.6 across al the modules
+- quarkus-version set to 3.17.6 across all the modules
 
 ## [8.11.8] - 2025-01-10
 
@@ -33,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - subfolder for native embedded configuration file <https://github.com/fugerit-org/fj-doc/issues/276>
 - freemarker-version 2.3.34
-- quarkus-version set to 3.17.6 across al the modules
+- quarkus-version set to 3.17.6 across all the modules
 
 ## [8.11.7] - 2024-12-19
 
@@ -45,7 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- quarkus-version set to 3.17.4 across al the modules
+- quarkus-version set to 3.17.4 across all the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.2
 - [fj-doc-maven-plugin] goal init, flavour quarkus-3 added eager init example #270
 - [fj-doc-maven-plugin] goal init, flavour springboot-3 added eager init example #269
@@ -59,7 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- quarkus-version set to 3.17.3 across al the modules
+- quarkus-version set to 3.17.3 across all the modules
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.0
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.1
 - [fj-doc-maven-plugin] openliberty flavour version set to 24.0.0.11
@@ -79,7 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [fj-doc-mod-fop] better init check for PdfFopTypeHandler
-- quarkus-version set to 3.17.0 across al the modules
+- quarkus-version set to 3.17.0 across all the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.0
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.3.6
 
@@ -91,7 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- quarkus-version set to 3.16.4 across al the modules
+- quarkus-version set to 3.16.4 across all the modules
 
 ## [8.11.1] - 2024-11-19
 
@@ -109,7 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - [fj-doc-playground-quarkus] show quakus version
-- quarkus-version set to 3.16.3 across al the modules
+- quarkus-version set to 3.16.3 across all the modules
 - xsd-parser-version set to 1.2.18
 
 ## [8.10.9] - 2024-11-03
