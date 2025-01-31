@@ -66,6 +66,8 @@ public class MojoInit extends MojoAdd {
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 FlavourFacade.initProject( context );
             } );
+            super.groupIdOverride = this.groupId;
+            super.artifactIdOverride = this.artifactId;
             super.execute();
         }
 

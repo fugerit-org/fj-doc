@@ -50,6 +50,10 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "freemarkerVersion", defaultValue = "2.3.32", required = true)
     protected String freemarkerVersion;
 
+    protected String groupIdOverride;
+
+    protected String artifactIdOverride;
+
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
         String foundVersion = VersionCheck.findVersion( this.version );
@@ -64,8 +68,10 @@ public class MojoAdd extends AbstractMojo {
         context.setAddLombok( this.addLombok );
         context.setAddDependencyOnTop( this.addDependencyOnTop );
         context.setFreemarkerVersion( this.freemarkerVersion );
+        context.setGroupIdOverride( this.groupIdOverride );
+        context.setArtifactIdOverride( this.artifactIdOverride );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
-        AddVenusFacade.addVenusToMavenProject( context );
+        AddVenusFacade.addToProject( context );
     }
 
 }
