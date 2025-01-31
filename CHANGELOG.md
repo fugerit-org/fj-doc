@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- concurrency setup for GitHub workflows
+
 ### Fixed
 
 - [fj-doc-playground-quarkus] project init - quarkus-3-gradle-kts flavour available

@@ -15,6 +15,11 @@ on:
   release:
     types: [published]
 
+# only allow one workflow at time on the give activation
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build

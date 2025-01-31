@@ -13,6 +13,11 @@ on:
     branches:
       - branch-compatibility
 
+# only allow one workflow at time on the give activation
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   check-main:
     runs-on: ${{ matrix.os }}

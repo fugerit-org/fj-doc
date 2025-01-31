@@ -23,6 +23,11 @@ on:
       - synchronize
       - reopened
 
+# only allow one workflow at time on the give activation
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}

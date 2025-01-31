@@ -11,6 +11,11 @@ on:
     branches:
     - branch-deploy
 
+# only allow one workflow at time on the give activation
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   build:
 
