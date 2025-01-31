@@ -64,9 +64,9 @@ public class TestAddVenusFacade {
             context.setAddJunit5( addJunit5 );
             context.setAddLombok( addLombok );
             context.setAddDependencyOnTop( addDependencyOnTop );
-            boolean result = AddVenusFacade.addVenusToMavenProject( context );
+            boolean result = AddVenusFacade.addToProject( context );
             Assert.assertTrue( result );
-            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );
+            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addToProject( context ) );
             count++;
         }
     }
@@ -98,7 +98,7 @@ public class TestAddVenusFacade {
     @Test
     public void testFail() {
         VenusContext context = new VenusContext( new File( "target" ), this.getVersion(),"base" );
-        boolean result = AddVenusFacade.addVenusToMavenProject( context );
+        boolean result = AddVenusFacade.addToProject( context );
         Assert.assertFalse( result );
     }
 
@@ -107,7 +107,7 @@ public class TestAddVenusFacade {
         for ( String currentConfig : Arrays.asList( "ko1-pom" ) ) {
             File projectDir = this.initConfigWorker(currentConfig);
             VenusContext context = new VenusContext( projectDir, this.getVersion(), "base,not-exists" );
-            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addVenusToMavenProject( context ) );
+            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addToProject( context ) );
         }
     }
 

@@ -5,11 +5,13 @@ import org.apache.maven.model.*;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.io.helper.HelperIOException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.maxxq.maven.dependency.ModelIO;
 
 import java.io.*;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -147,6 +149,33 @@ public class BasicVenusFacade {
         try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
             modelIO.writeModelToStream( model, pomStream );
         }
+    }
+
+    private static final String CONST_IMPLEMENTATION = "implementation";
+
+    protected static void addExtensionGradleKtsList( File gradleFile, VenusContext context ) throws IOException  {
+        // note, this will currently only work for very simple build.gradle.kts files
+        String gradleFileContent = FileIO.readString( gradleFile );
+        String valVersion = String.format( "val fjDocVersion = \"%s\"\n\ndependencies", context.getVersion() );
+        gradleFileContent = gradleFileContent.replaceFirst( "dependencies", valVersion );
+        List<String> moduleListGradle = ModuleFacade.toModuleListOptimizedOrder( context.getExtensions() );
+        Collections.reverse( moduleListGradle );
+        log.info( "moduleListGradle : {}", moduleListGradle );
+        for ( String currentModule :  moduleListGradle ) {
+            String moduleNameGradle = ModuleFacade.toModuleName( currentModule );
+            String currentImplementation = String.format( "implementation\\(\"org.fugerit.java:%s:\\$fjDocVersion\"\\)%n    implementation", moduleNameGradle );
+            log.info( "Adding module to gradle file : {}, substitution : {}", moduleNameGradle, currentImplementation );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, currentImplementation );
+            context.getModules().add( moduleNameGradle );
+        }
+        if (context.isAddLombok() ) {
+            String lombokVersion = "1.18.36";
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "compileOnly\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "annotationProcessor\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testCompileOnly\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testAnnotationProcessor\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
+        }
+        FileIO.writeString( gradleFileContent, gradleFile );
     }
 
     private static void addPlugin( VenusContext context, Model model ) throws IOException {

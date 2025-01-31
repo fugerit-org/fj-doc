@@ -22,7 +22,7 @@ public class TestInit {
     private static final String FREEMARKER_NATIVE_AVAILABLE = "8.11.9";
 
     private String getVersion() {
-        return "8.10.5";
+        return "8.10.9";
     }
 
     private File initConfigWorker( String flavour ) {
@@ -31,38 +31,54 @@ public class TestInit {
         return outputFolder;
     }
 
+    private MojoInit createMojoInit( File projectDir, String currentFlavour ) {
+        return new MojoInit() {
+            @Override
+            public void execute() throws MojoExecutionException, MojoFailureException {
+                this.baseInitFolder = projectDir.getAbsolutePath();
+                this.projectVersion = "1.0.0-SNAPSHOT";
+                this.groupId = "org.fugerit.java.test.gradle";
+                this.artifactId = "fugerit-test-"+currentFlavour;
+                this.javaRelease = "21";
+                this.version = getVersion();
+                this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-base-kotlin,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                this.addDocFacade = true;
+                this.force = true;
+                this.excludeXmlApis = true;
+                this.addVerifyPlugin = true;
+                this.addJunit5 = true;
+                this.addLombok = true;
+                this.flavour = currentFlavour;
+                super.execute();
+            }
+        };
+    }
+
+    @Test
+    public void testMojoQuarkus3GradleKts() throws MojoExecutionException, MojoFailureException {
+        String currentFlavour = FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE_KTS;
+        File projectDir = this.initConfigWorker(currentFlavour);
+        createMojoInit( projectDir, currentFlavour ).execute();
+        Assert.assertTrue( projectDir.exists() );
+    }
+
     @Test
     public void testMojoInit() throws MojoExecutionException, MojoFailureException {
         for ( String currentFlavour : FlavourFacade.SUPPORTED_FLAVOURS ) {
-            File projectDir = this.initConfigWorker(currentFlavour);
-            MojoInit mojoInit = new MojoInit() {
-                @Override
-                public void execute() throws MojoExecutionException, MojoFailureException {
-                    this.baseInitFolder = projectDir.getAbsolutePath();
-                    this.projectVersion = "1.0.0-SNAPSHOT";
-                    this.groupId = "org.fugerit.java.test";
-                    this.artifactId = "fugerit-test-"+currentFlavour;
-                    this.javaRelease = "21";
-                    this.version = getVersion();
-                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-base-kotlin,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
-                    this.addDocFacade = true;
-                    this.force = true;
-                    this.excludeXmlApis = true;
-                    this.addVerifyPlugin = true;
-                    this.addJunit5 = true;
-                    this.addLombok = true;
-                    this.flavour = currentFlavour;
-                    super.execute();
-                }
-            };
-            mojoInit.execute();
-            Assert.assertTrue( projectDir.exists() );
-            Assert.assertThrows( MojoFailureException.class, () -> mojoInit.execute() );
-            Assert.assertThrows( MojoFailureException.class, () -> mojoInit.apply( () -> {
-                if ( Boolean.TRUE ) {
-                    throw new ConfigException( "Scenario excetion" );
-                }
-            } ) );
+            if ( FlavourFacade.isGradleKtsFlavour( currentFlavour ) ) {
+                log.info( "skip gradle flavour {}", currentFlavour );
+            } else {
+                File projectDir = this.initConfigWorker(currentFlavour);
+                MojoInit mojoInit = createMojoInit( projectDir, currentFlavour );
+                mojoInit.execute();
+                Assert.assertTrue( projectDir.exists() );
+                Assert.assertThrows( MojoFailureException.class, () -> mojoInit.execute() );
+                Assert.assertThrows( MojoFailureException.class, () -> mojoInit.apply( () -> {
+                    if ( Boolean.TRUE ) {
+                        throw new ConfigException( "Scenario excetion" );
+                    }
+                } ) );
+            }
         }
     }
 

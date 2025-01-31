@@ -1,7 +1,9 @@
 package org.fugerit.java.doc.project.facade;
 
-import freemarker.template.*;
+import freemarker.template.Configuration;
+import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.maven.model.Model;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.FileIO;
@@ -11,8 +13,12 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 @Slf4j
 public class AddVenusFacade extends BasicVenusFacade {
@@ -115,24 +121,52 @@ public class AddVenusFacade extends BasicVenusFacade {
         configuration.clearTemplateCache();
     }
 
-    public static boolean addVenusToMavenProject( VenusContext context ) {
+    public static boolean addToProject( VenusContext context ) {
         return SafeFunction.get( () -> {
             File pomFile = new File( context.getProjectDir(), "pom.xml" );
-            log.info( "project dir : {}", context.getProjectDir().getCanonicalPath() );
             if ( pomFile.exists() ) {
-                addExtensionList( pomFile, context );
-                if ( context.isAddDocFacace() ) {
-                    addDocFacade( context );
-                    if ( context.isAddJunit5() ) {
-                        log.info( "Generation complete:\n{}\n* For usage open the example junit : {} *\n{}", LINE, "test."+context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Test", LINE );
-                    } else {
-                        log.info( "Generation complete:\n{}\n* For usage open the example main() : {} *\n{}", LINE, context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Example", LINE );
-                    }
-                    log.info( "for documentation refer to https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-maven-plugin/README.md" );
-                }
+                return addVenusToMavenProject( pomFile, context );
             } else {
-                addErrorAndLog( String.format( "No pom file in project dir : %s", pomFile.getCanonicalPath() ), context );
-                return false;
+                File gradleFile = new File( context.getProjectDir(), "build.gradle.kts" );
+                if ( gradleFile.exists() ) {
+                    return addVenusToGradleKtsProject( gradleFile, context );
+                } else {
+                    addErrorAndLog( String.format( "No pom or gradle file in project dir : %s", pomFile.getCanonicalPath() ), context );
+                    return false;
+                }
+            }
+        } );
+    }
+
+    public static boolean addVenusToMavenProject( File pomFile, VenusContext context ) {
+        return SafeFunction.get( () -> {
+            log.info( "maven project dir : {}", context.getProjectDir().getCanonicalPath() );
+            addExtensionList( pomFile, context );
+            if ( context.isAddDocFacace() ) {
+                addDocFacade( context );
+                if ( context.isAddJunit5() ) {
+                    log.info( "Generation complete:\n{}\n* For usage open the example junit : {} *\n{}", LINE, "test."+context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Test", LINE );
+                } else {
+                    log.info( "Generation complete:\n{}\n* For usage open the example main() : {} *\n{}", LINE, context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Example", LINE );
+                }
+                log.info( "for documentation refer to https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-maven-plugin/README.md" );
+            }
+            return true;
+        } );
+    }
+
+    public static boolean addVenusToGradleKtsProject( File gradleFile, VenusContext context ) {
+        return SafeFunction.get( () -> {
+            log.info( "gradle project dir : {}", context.getProjectDir().getCanonicalPath() );
+            addExtensionGradleKtsList( gradleFile, context );
+            if ( context.isAddDocFacace() ) {
+                if ( context.getMavenModel() == null ) {
+                    Model model = new Model();
+                    model.setGroupId(context.getGroupIdOverride());
+                    model.setArtifactId(context.getArtifactIdOverride());
+                    context.setMavenModel(model);
+                }
+                addDocFacade( context );
             }
             return true;
         } );

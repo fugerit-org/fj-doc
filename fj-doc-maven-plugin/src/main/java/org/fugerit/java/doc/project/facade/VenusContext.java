@@ -81,6 +81,12 @@ public class VenusContext {
     @Getter @Setter
     private String freemarkerVersion;
 
+    @Getter @Setter
+    private String groupIdOverride;
+
+    @Getter @Setter
+    private String artifactIdOverride;
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );
