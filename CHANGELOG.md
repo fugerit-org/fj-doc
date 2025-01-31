@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.2
 - [fj-doc-val-pdfbox] pdfbox version 2.0.33
-- quarkus-version set to 3.18.0 across all the modules
+- quarkus-version set to 3.18.1 across all the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.4
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.1
 
