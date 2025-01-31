@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add quarkus-3-gradle-kts flavour <https://github.com/fugerit-org/fj-doc/issues/284>
 - better native AOT compatibility workflow
 
 ### Changed
