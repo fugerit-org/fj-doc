@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.0] - 2025-01-31
+
 ### Added
 
 - Add quarkus-3-gradle-kts flavour <https://github.com/fugerit-org/fj-doc/issues/284>
