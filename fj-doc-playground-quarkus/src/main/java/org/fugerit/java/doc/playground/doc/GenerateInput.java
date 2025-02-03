@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class GenerateInput extends BasicInput {
-    
-	@Setter @Getter private String freemarkerJsonData;
-	
+
+    @Setter
+    @Getter
+    private String freemarkerJsonData;
+
 }

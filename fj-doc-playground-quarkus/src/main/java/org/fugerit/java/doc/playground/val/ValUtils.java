@@ -12,13 +12,15 @@ import java.io.IOException;
 @Slf4j
 public class ValUtils {
 
-    private ValUtils() {}
-    public static Response doIfInTmpFolder(File tempFile,  UnsafeSupplier<Response, Exception> fun ) throws IOException {
+    private ValUtils() {
+    }
+
+    public static Response doIfInTmpFolder(File tempFile, UnsafeSupplier<Response, Exception> fun) throws IOException {
         Response res = null;
-        if ( FileIO.isInTmpFolder( tempFile ) ) {
-            res = HelperIOException.get( fun::get );
+        if (FileIO.isInTmpFolder(tempFile)) {
+            res = HelperIOException.get(fun::get);
         } else {
-            res = Response.status( Response.Status.UNAUTHORIZED ).build();
+            res = Response.status(Response.Status.UNAUTHORIZED).build();
         }
         return res;
     }

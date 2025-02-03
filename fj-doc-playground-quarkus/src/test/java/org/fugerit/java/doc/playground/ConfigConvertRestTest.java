@@ -16,38 +16,37 @@ import static io.restassured.RestAssured.given;
 @Slf4j
 class ConfigConvertRestTest {
 
-	private byte[] getInput( String path ) {
-		return SafeFunction.get( () ->  {
-			String json = StreamIO.readString( ClassHelper.loadFromDefaultClassLoader( "request/payload/"+path ) );
-			log.info( "payload : {}", json );
-			return json.getBytes();	
-		} );
-	}
-	
-	private void testWorker( String apiPath, String jsonPayloadPath, int expectedStatus ) {
-        given()
-        .when()
-        .accept( MediaType.APPLICATION_JSON )
-        .contentType( MediaType.APPLICATION_JSON )
-        .body( getInput( jsonPayloadPath ) )
-        .post( TestConsts.BASE_API_PATH+apiPath )
-        .then()
-           .statusCode(expectedStatus);
-	}
-	
-    @Test
-    void testConvertConfig() {
-		this.testWorker( "/config/convert", "convert_config/test_convert_config_1.json", 200 );
-		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
+    private byte[] getInput(String path) {
+        return SafeFunction.get(() -> {
+            String json = StreamIO.readString(ClassHelper.loadFromDefaultClassLoader("request/payload/" + path));
+            log.info("payload : {}", json);
+            return json.getBytes();
+        });
     }
 
-	@Test
-	void testConvertError() {
-		this.testWorker( "/config/convert", "convert_config/test_convert_config_error.json", 200 );
-		this.testWorker( "/config/convert", "convert_config/test_convert_config_ni1.json", 200 );
-		this.testWorker( "/config/convert", "convert_config/test_convert_config_ni2.json", 200 );
-		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
-	}
+    private void testWorker(String apiPath, String jsonPayloadPath, int expectedStatus) {
+        given()
+                .when()
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(getInput(jsonPayloadPath))
+                .post(TestConsts.BASE_API_PATH + apiPath)
+                .then()
+                .statusCode(expectedStatus);
+    }
 
+    @Test
+    void testConvertConfig() {
+        this.testWorker("/config/convert", "convert_config/test_convert_config_1.json", 200);
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
+    }
+
+    @Test
+    void testConvertError() {
+        this.testWorker("/config/convert", "convert_config/test_convert_config_error.json", 200);
+        this.testWorker("/config/convert", "convert_config/test_convert_config_ni1.json", 200);
+        this.testWorker("/config/convert", "convert_config/test_convert_config_ni2.json", 200);
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
+    }
 
 }

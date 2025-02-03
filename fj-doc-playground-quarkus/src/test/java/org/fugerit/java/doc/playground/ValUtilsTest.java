@@ -11,15 +11,15 @@ import java.io.IOException;
 class ValUtilsTest {
 
     @Test
-    void testDoIfInTmpFolder401() throws IOException  {
+    void testDoIfInTmpFolder401() throws IOException {
         Response response = ValUtils.doIfInTmpFolder(new File("/"), () -> null);
-        Assertions.assertEquals( Response.Status.UNAUTHORIZED.getStatusCode(),  response.getStatus() );
+        Assertions.assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());
     }
 
     @Test
-    void testDoIfInTmpFolder200() throws IOException  {
-        Response response = ValUtils.doIfInTmpFolder( new File( System.getProperty( "java.io.tmpdir" ), "test.txt" ), () -> null);
-        Assertions.assertNull( response );
+    void testDoIfInTmpFolder200() throws IOException {
+        Response response = ValUtils.doIfInTmpFolder(new File(System.getProperty("java.io.tmpdir"), "test.txt"), () -> null);
+        Assertions.assertNull(response);
     }
 
 }

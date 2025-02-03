@@ -21,52 +21,54 @@ import static io.restassured.RestAssured.given;
 @Slf4j
 class InitRestTest {
 
-	private byte[] getInput( String path ) {
-		return SafeFunction.get( () ->  {
-			String json = StreamIO.readString( ClassHelper.loadFromDefaultClassLoader( path ) );
-			log.info( "payload : {}", json );
-			return json.getBytes();	
-		} );
-	}
-	
-	private void testWorker( String apiPath, String jsonPayloadPath, int code ) {
-        given()
-        .when()
-        .accept( MediaType.APPLICATION_JSON )
-        .contentType( MediaType.APPLICATION_JSON )
-        .body( getInput( jsonPayloadPath ) )
-        .post( TestConsts.BASE_API_PATH+apiPath )
-        .then()
-           .statusCode(code);
-	}
-	
-    @Test
-    void testInit() {
-		this.testWorker( "/project/init", "request/payload/init/init_ok_1.json", 200 );
-		this.testWorker( "/project/init", "request/payload/init/init_ko_1.json", 200 );
-		this.testWorker( "/project/init", "request/payload/init/init_ko_2.json", 400 );
-		this.testWorker( "/project/init", "request/payload/init/init_ko_3.json", 400 );
-		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
+    private byte[] getInput(String path) {
+        return SafeFunction.get(() -> {
+            String json = StreamIO.readString(ClassHelper.loadFromDefaultClassLoader(path));
+            log.info("payload : {}", json);
+            return json.getBytes();
+        });
     }
 
-	@Test
-	void testExtensionList() {
-		given()
-				.when()
-				.accept( MediaType.APPLICATION_JSON )
-				.contentType( MediaType.APPLICATION_JSON )
-				.get( TestConsts.BASE_API_PATH+"/project/extensions-list" )
-				.then()
-				.statusCode(200);
-		Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
-	}
+    private void testWorker(String apiPath, String jsonPayloadPath, int code) {
+        given()
+                .when()
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(getInput(jsonPayloadPath))
+                .post(TestConsts.BASE_API_PATH + apiPath)
+                .then()
+                .statusCode(code);
+    }
 
-	@Test
-	void checkZipFunction() {
-		Assertions.assertTrue( ProjectRest.ensureEndWithSlash( "test1" ).endsWith( "/" ) );
-		Assertions.assertTrue( ProjectRest.ensureEndWithSlash( "test2/" ).endsWith( "/" ) );
-		Assertions.assertThrows( IOException.class, () -> ProjectRest.checkIfInTempFolder( new File( System.getProperty( "user.dir" ) )) );
-		Assertions.assertThrows( IOException.class, () -> ProjectRest.zipFolder( new File( "/"+System.currentTimeMillis()+"/not-exist" ), new ByteArrayOutputStream() ) );
-	}
-    
+    @Test
+    void testInit() {
+        this.testWorker("/project/init", "request/payload/init/init_ok_1.json", 200);
+        this.testWorker("/project/init", "request/payload/init/init_ko_1.json", 200);
+        this.testWorker("/project/init", "request/payload/init/init_ko_2.json", 400);
+        this.testWorker("/project/init", "request/payload/init/init_ko_3.json", 400);
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
+    }
+
+    @Test
+    void testExtensionList() {
+        given()
+                .when()
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .get(TestConsts.BASE_API_PATH + "/project/extensions-list")
+                .then()
+                .statusCode(200);
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
+    }
+
+    @Test
+    void checkZipFunction() {
+        Assertions.assertTrue(ProjectRest.ensureEndWithSlash("test1").endsWith("/"));
+        Assertions.assertTrue(ProjectRest.ensureEndWithSlash("test2/").endsWith("/"));
+        Assertions.assertThrows(IOException.class,
+                () -> ProjectRest.checkIfInTempFolder(new File(System.getProperty("user.dir"))));
+        Assertions.assertThrows(IOException.class, () -> ProjectRest
+                .zipFolder(new File("/" + System.currentTimeMillis() + "/not-exist"), new ByteArrayOutputStream()));
+    }
+
 }

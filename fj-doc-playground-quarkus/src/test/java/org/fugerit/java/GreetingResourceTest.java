@@ -14,11 +14,11 @@ class GreetingResourceTest {
     @Test
     void testHelloEndpoint() {
         given()
-          .when().get( TestConsts.BASE_API_PATH+"/hello" )
-          .then()
+                .when().get(TestConsts.BASE_API_PATH + "/hello")
+                .then()
                 .body(is("Hello from RESTEasy Reactive"))
                 .statusCode(200);
-        Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
     }
 
 }

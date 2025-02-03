@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Test;
 
 class TestGenerateFacade {
 
-	private GenerateFacade facade = new GenerateFacade();
-	
-	@Test
-	void testFacadeCsv() throws ConfigException, IOException {
-		GenerateInput input = new GenerateInput();
-		input.setOutputFormat( DocConfig.TYPE_CSV );
-		Assertions.assertNotNull( facade.findHandler(input) );
-	}
-		
+    private GenerateFacade facade = new GenerateFacade();
+
+    @Test
+    void testFacadeCsv() throws ConfigException, IOException {
+        GenerateInput input = new GenerateInput();
+        input.setOutputFormat(DocConfig.TYPE_CSV);
+        Assertions.assertNotNull(facade.findHandler(input));
+    }
+
 }

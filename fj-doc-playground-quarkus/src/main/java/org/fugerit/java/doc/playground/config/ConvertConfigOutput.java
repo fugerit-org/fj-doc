@@ -6,8 +6,12 @@ import org.fugerit.java.doc.playground.facade.BasicOutput;
 
 public class ConvertConfigOutput extends BasicOutput {
 
-	@Setter @Getter private String generationTime;
-	
-	@Setter @Getter private String docOutputBase64;
-	
+    @Setter
+    @Getter
+    private String generationTime;
+
+    @Setter
+    @Getter
+    private String docOutputBase64;
+
 }

@@ -13,22 +13,25 @@ import jakarta.ws.rs.core.Response;
 @QuarkusTest
 class TestRestHelper {
 
-	@Test
-	void test500() {
-		Assertions.assertEquals( Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
-				RestHelper.defaultHandle( () -> { throw new IOException( "scenario exception" ); } ).getStatus() );
-	}
-	
-	@Test
-	void test400() {
-		Assertions.assertEquals( Response.Status.BAD_REQUEST.getStatusCode(),
-				RestHelper.defaultHandle( () -> null ).getStatus() );
-	}
+    @Test
+    void test500() {
+        Assertions.assertEquals(Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+                RestHelper.defaultHandle(() -> {
+                    throw new IOException("scenario exception");
+                }).getStatus());
+    }
 
-	@Test
-	void testFindCause() {
-		Assertions.assertEquals( ConfigRuntimeException.class, RestHelper.findCause( new ConfigRuntimeException( "a" ) ).getClass() );
-		Assertions.assertEquals( ConfigRuntimeException.class, RestHelper.findCause( new ConfigException( new ConfigRuntimeException( "a" ) ) ).getClass() );
-	}
+    @Test
+    void test400() {
+        Assertions.assertEquals(Response.Status.BAD_REQUEST.getStatusCode(),
+                RestHelper.defaultHandle(() -> null).getStatus());
+    }
+
+    @Test
+    void testFindCause() {
+        Assertions.assertEquals(ConfigRuntimeException.class, RestHelper.findCause(new ConfigRuntimeException("a")).getClass());
+        Assertions.assertEquals(ConfigRuntimeException.class,
+                RestHelper.findCause(new ConfigException(new ConfigRuntimeException("a"))).getClass());
+    }
 
 }

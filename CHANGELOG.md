@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-playground-quarkus] quarkus-info extension
 - concurrency setup for GitHub workflows
 
 ### Fixed

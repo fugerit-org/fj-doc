@@ -7,6 +7,8 @@ import lombok.Setter;
 
 public class ConvertInput extends BasicInput {
 
-	@Getter @Setter private boolean prettyPrint;
-	
+    @Getter
+    @Setter
+    private boolean prettyPrint;
+
 }

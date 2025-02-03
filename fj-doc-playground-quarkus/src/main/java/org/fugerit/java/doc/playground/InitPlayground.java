@@ -13,25 +13,26 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ApplicationScoped
 public class InitPlayground {
-	
-	public static final String OUTPUT_FORMAT_PDF_A = "pdfa";
-	
-	private static final FreemarkerDocProcessConfig PROCESS_CONFIG = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://playground-config/fm-playground-doc-process.xml" );
-	
-	public static final DocTypeHandler PDF_FOP_TYPE_HANDLER = PROCESS_CONFIG.getFacade().findHandler( "pdf-fop" );
-	
-	public static final DocTypeHandler PDFA_FOP_TYPE_HANDLER = PROCESS_CONFIG.getFacade().findHandler( "PDF/A-1a" );
-	
-	void onStart(@Observes StartupEvent ev) {
-		log.info( "InitPlayground start {}", ev );
-		InitHandler.initDocAsync( PDF_FOP_TYPE_HANDLER );
-		log.info( "InitPlayground PDF_FOP_TYPE_HANDLER  -> {}", PDF_FOP_TYPE_HANDLER );
-		log.info( "InitPlayground PDFA_FOP_TYPE_HANDLER -> {}", PDFA_FOP_TYPE_HANDLER );
-		log.info( "InitPlayground end" );
-	}
-	
-	public static DocTypeHandler findHandler( String id ) {
-		return PROCESS_CONFIG.getFacade().findHandler( id );
-	}
-	
+
+    public static final String OUTPUT_FORMAT_PDF_A = "pdfa";
+
+    private static final FreemarkerDocProcessConfig PROCESS_CONFIG = FreemarkerDocProcessConfigFacade
+            .loadConfigSafe("cl://playground-config/fm-playground-doc-process.xml");
+
+    public static final DocTypeHandler PDF_FOP_TYPE_HANDLER = PROCESS_CONFIG.getFacade().findHandler("pdf-fop");
+
+    public static final DocTypeHandler PDFA_FOP_TYPE_HANDLER = PROCESS_CONFIG.getFacade().findHandler("PDF/A-1a");
+
+    void onStart(@Observes StartupEvent ev) {
+        log.info("InitPlayground start {}", ev);
+        InitHandler.initDocAsync(PDF_FOP_TYPE_HANDLER);
+        log.info("InitPlayground PDF_FOP_TYPE_HANDLER  -> {}", PDF_FOP_TYPE_HANDLER);
+        log.info("InitPlayground PDFA_FOP_TYPE_HANDLER -> {}", PDFA_FOP_TYPE_HANDLER);
+        log.info("InitPlayground end");
+    }
+
+    public static DocTypeHandler findHandler(String id) {
+        return PROCESS_CONFIG.getFacade().findHandler(id);
+    }
+
 }

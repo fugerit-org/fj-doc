@@ -5,6 +5,8 @@ import lombok.Setter;
 
 public class BasicOutput {
 
-	@Setter @Getter private String message;
-	
+    @Setter
+    @Getter
+    private String message;
+
 }

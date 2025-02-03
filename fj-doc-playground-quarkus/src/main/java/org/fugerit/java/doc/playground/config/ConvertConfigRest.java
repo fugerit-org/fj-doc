@@ -20,27 +20,27 @@ import java.util.Base64;
 @Path("/config")
 public class ConvertConfigRest {
 
-	private ConvertConfigFacade facade = new ConvertConfigFacade();
+    private ConvertConfigFacade facade = new ConvertConfigFacade();
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/convert")
-	public Response document( ConvertConfigInput input) {
-		return RestHelper.defaultHandle( () -> {
-			long time = System.currentTimeMillis();
-			ConvertConfigOutput output = new ConvertConfigOutput();
-			try {
-				String data = facade.convertHelper(input);
-				output.setDocOutputBase64( Base64.getEncoder().encodeToString( data.getBytes( StandardCharsets.UTF_8 ) ) );
-				output.setGenerationTime( CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) );
-			} catch ( Exception e ) {
-				log.warn( String.format( "Error converting configuration : %s", e.getMessage() ) , e );
-				Throwable te = RestHelper.findCause(e);
-				output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
-			}
-			return Response.ok().entity( output ).build();
-		} );
-	}
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/convert")
+    public Response document(ConvertConfigInput input) {
+        return RestHelper.defaultHandle(() -> {
+            long time = System.currentTimeMillis();
+            ConvertConfigOutput output = new ConvertConfigOutput();
+            try {
+                String data = facade.convertHelper(input);
+                output.setDocOutputBase64(Base64.getEncoder().encodeToString(data.getBytes(StandardCharsets.UTF_8)));
+                output.setGenerationTime(CheckpointUtils.formatTimeDiffMillis(time, System.currentTimeMillis()));
+            } catch (Exception e) {
+                log.warn(String.format("Error converting configuration : %s", e.getMessage()), e);
+                Throwable te = RestHelper.findCause(e);
+                output.setMessage(te.getClass().getName() + " :\n" + te.getMessage());
+            }
+            return Response.ok().entity(output).build();
+        });
+    }
 
 }

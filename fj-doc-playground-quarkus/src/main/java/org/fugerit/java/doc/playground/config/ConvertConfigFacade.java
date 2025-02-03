@@ -12,19 +12,19 @@ import java.util.Properties;
 @ApplicationScoped
 public class ConvertConfigFacade {
 
-	public String convertHelper(ConvertConfigInput input) throws Exception {
-		String result = null;
-		if ( input.getDocContent() != null && input.getFreemarkerJsonData() != null ) {
-			try (StringReader paramsReader = new StringReader( input.getFreemarkerJsonData() );
-				 InputStream reader = new ByteArrayInputStream( input.getDocContent().getBytes( StandardCharsets.UTF_8 ) );
-				 Writer writer = new StringWriter() ) {
-				Properties params = new Properties();
-				params.load( paramsReader );
-				GenerateStub.generate( writer, params, reader );
-				result = writer.toString();
-			}
-		}
-		return result;
-	}
+    public String convertHelper(ConvertConfigInput input) throws Exception {
+        String result = null;
+        if (input.getDocContent() != null && input.getFreemarkerJsonData() != null) {
+            try (StringReader paramsReader = new StringReader(input.getFreemarkerJsonData());
+                    InputStream reader = new ByteArrayInputStream(input.getDocContent().getBytes(StandardCharsets.UTF_8));
+                    Writer writer = new StringWriter()) {
+                Properties params = new Properties();
+                params.load(paramsReader);
+                GenerateStub.generate(writer, params, reader);
+                result = writer.toString();
+            }
+        }
+        return result;
+    }
 
 }

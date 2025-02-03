@@ -5,10 +5,12 @@ import lombok.Setter;
 
 public class ProjectInitOutput {
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String message;
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String content;
 
 }

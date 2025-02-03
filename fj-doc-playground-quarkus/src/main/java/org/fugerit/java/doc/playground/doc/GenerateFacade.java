@@ -48,142 +48,145 @@ import javax.script.ScriptEngineManager;
 @ApplicationScoped
 public class GenerateFacade {
 
-	private static final String FTL_DIRECTIVE = "<#ftl";
+    private static final String FTL_DIRECTIVE = "<#ftl";
 
-	private static final ObjectMapper MAPPER = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
-	private static final EvalScript EVAL_SCRIPT = new EvalScriptWithDataModel( "kts" );	// no need for data model json transformation
+    private static final EvalScript EVAL_SCRIPT = new EvalScriptWithDataModel("kts"); // no need for data model json transformation
 
-	private void doHandle( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos ) {
-		SafeFunction.apply( () -> {
-			SimpleCheckpoint checkpoint = new SimpleCheckpoint();
-			try ( Reader cleanReader = DocFacadeSource.cleanSource( reader, sourceType ) ) {
-				DocInput docInput = DocInput.newInput( type, cleanReader , sourceType );
-				DocOutput docOutput = DocOutput.newOutput( baos );
-				handler.handle(docInput, docOutput);
-				log.info( "actual render, handler : {}, type : {}, sourceType : {}, time : {}", handler.getClass().getSimpleName(), type, sourceType, checkpoint.getFormatTimeDiffMillis() );
-			}
-		} );
-	}
-	
-	private void handleConfiguration( Configuration configuration, JsonNode node, String templateData, String chainId ) {
-		StringTemplateLoader loader = new StringTemplateLoader();
-		StringBuilder chainData = new StringBuilder();
-		ObjectNode oNode = (ObjectNode) node;
-		Iterator<String> fieldNames = oNode.fieldNames();
-		int ftlDirectiveStartIndex = templateData.indexOf( FTL_DIRECTIVE );
-		String ftlData = templateData;
-		if ( ftlDirectiveStartIndex != -1 ) {
-			int ftlDirectiveEndIndex = ftlData.indexOf( ">" );
-			String ftlDirective = ftlData.substring( 0, ftlDirectiveEndIndex+1 );
-			log.debug( "ftlDirective : {}", ftlDirective );
-			chainData.append( ftlDirective );
-			ftlData = ftlData.substring( ftlDirectiveEndIndex+1 );
-		}
-		while ( fieldNames.hasNext() ) {
-			String currentName = fieldNames.next();
-			String currentValue = node.get( currentName ).toString();
-			log.debug( "handleConfiguration() set var {} -> {}", currentName, currentValue );
-			chainData.append( "<#assign " );
-			chainData.append( currentName );
-			chainData.append( "=" );
-			chainData.append( currentValue );
-			chainData.append( ">");
-		}
-		chainData.append( ftlData );
-		loader.putTemplate( chainId , chainData.toString() );
-		configuration.setTemplateExceptionHandler( TemplateExceptionHandler.RETHROW_HANDLER );
-		configuration.setTemplateLoader( loader );
-	}
+    private void doHandle(DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos) {
+        SafeFunction.apply(() -> {
+            SimpleCheckpoint checkpoint = new SimpleCheckpoint();
+            try (Reader cleanReader = DocFacadeSource.cleanSource(reader, sourceType)) {
+                DocInput docInput = DocInput.newInput(type, cleanReader, sourceType);
+                DocOutput docOutput = DocOutput.newOutput(baos);
+                handler.handle(docInput, docOutput);
+                log.info("actual render, handler : {}, type : {}, sourceType : {}, time : {}",
+                        handler.getClass().getSimpleName(), type, sourceType, checkpoint.getFormatTimeDiffMillis());
+            }
+        });
+    }
 
-	private void handleFtlx( DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos, String freemarkerJsonData ) {
-		SafeFunction.apply( () -> {
-			SimpleCheckpoint checkpoint = new SimpleCheckpoint();
-			// volatile FreeMarker Template configuration
-			String chainId = "current_"+System.currentTimeMillis();
-			Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
-			log.info( "ftlx create configuration : {}", checkpoint.getFormatTimeDiffMillis() );
-			try ( StringReader jsonReader = new StringReader(freemarkerJsonData) ) {
-				JsonNode node = MAPPER.readTree( jsonReader ); // parse json node to sanitize input
-				log.info( "read json : {}", checkpoint.getFormatTimeDiffMillis() );
-				this.handleConfiguration(configuration, node, StreamIO.readString( reader ), chainId );
-				log.info( "ftlx handle configuration : {}", checkpoint.getFormatTimeDiffMillis() );
-				Template currentChain = configuration.getTemplate( chainId );
-				log.info( "ftlx get template : {}", checkpoint.getFormatTimeDiffMillis() );
-				Map<Object, Object> data = new HashMap<>();
-				data.put( "messageFormat" , new SimpleMessageFun() );
-				try ( StringWriter writer = new StringWriter() ) {
-					currentChain.process( data , writer );
-					log.info( "ftlx process chain : {}", checkpoint.getFormatTimeDiffMillis() );
-					try ( StringReader ftlReader = new StringReader( writer.toString() ) ) {
-						this.doHandle(handler, type, sourceType, ftlReader, baos);
-						log.info( "ftlx render document : {}", checkpoint.getFormatTimeDiffMillis() );
-					}
-				}
-			}
-			configuration.clearTemplateCache();
-		} );
-	}
+    private void handleConfiguration(Configuration configuration, JsonNode node, String templateData, String chainId) {
+        StringTemplateLoader loader = new StringTemplateLoader();
+        StringBuilder chainData = new StringBuilder();
+        ObjectNode oNode = (ObjectNode) node;
+        Iterator<String> fieldNames = oNode.fieldNames();
+        int ftlDirectiveStartIndex = templateData.indexOf(FTL_DIRECTIVE);
+        String ftlData = templateData;
+        if (ftlDirectiveStartIndex != -1) {
+            int ftlDirectiveEndIndex = ftlData.indexOf(">");
+            String ftlDirective = ftlData.substring(0, ftlDirectiveEndIndex + 1);
+            log.debug("ftlDirective : {}", ftlDirective);
+            chainData.append(ftlDirective);
+            ftlData = ftlData.substring(ftlDirectiveEndIndex + 1);
+        }
+        while (fieldNames.hasNext()) {
+            String currentName = fieldNames.next();
+            String currentValue = node.get(currentName).toString();
+            log.debug("handleConfiguration() set var {} -> {}", currentName, currentValue);
+            chainData.append("<#assign ");
+            chainData.append(currentName);
+            chainData.append("=");
+            chainData.append(currentValue);
+            chainData.append(">");
+        }
+        chainData.append(ftlData);
+        loader.putTemplate(chainId, chainData.toString());
+        configuration.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        configuration.setTemplateLoader(loader);
+    }
 
-	private void handleKts( DocTypeHandler handler, String type, Reader reader, ByteArrayOutputStream baos, String ktsJsonData ) {
-		SafeFunction.apply( () -> {
-			SimpleCheckpoint checkpoint = new SimpleCheckpoint();
-			try ( StringReader jsonReader = new StringReader(ktsJsonData) ) {
-				LinkedHashMap<String, Object> data = MAPPER.readValue( jsonReader, LinkedHashMap.class );
-				log.info( "kts read json data : {}", checkpoint.getFormatTimeDiffMillis() );
-				String xml = EVAL_SCRIPT.handle( reader, data ).toString();
-				log.info( "kts eval with DocKotlinParser : {}", checkpoint.getFormatTimeDiffMillis() );
-				try ( StringReader xmlReader = new StringReader( xml) ) {
-					this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
-					log.info( "kts render document : {}", checkpoint.getFormatTimeDiffMillis() );
-				}
-			}
-		} );
-	}
-	
-	public byte[] generateHelper( GenerateInput input, DocTypeHandler handler) throws Exception {
-		byte[] result = null;
-		if ( input.getDocContent() != null ) {
-			try ( StringReader reader = new StringReader( input.getDocContent() );
-					ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
-				int sourceType = DocFacadeSource.SOURCE_TYPE_XML;
-				if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( input.getInputFormat() ) ) {
-					sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
-				} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( input.getInputFormat() ) ) {
-					sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
-				}
-				String type = input.getOutputFormat().toLowerCase();
-				log.info( "output format : {}", type );
-				if ( InputFacade.FORMAT_FTLX.equalsIgnoreCase( input.getInputFormat() ) ) {
-					this.handleFtlx(handler, type, sourceType, reader, baos, input.getFreemarkerJsonData());
-				} else if ( InputFacade.FORMAT_KTS.equalsIgnoreCase( input.getInputFormat() ) ) {
-					this.handleKts(handler, type, reader, baos, input.getFreemarkerJsonData());
-				} else {
-					this.doHandle(handler, type, sourceType, reader, baos);
-				}
-				result =  baos.toByteArray();
-			}
-		}
-		return result;
-	}
+    private void handleFtlx(DocTypeHandler handler, String type, int sourceType, Reader reader, ByteArrayOutputStream baos,
+            String freemarkerJsonData) {
+        SafeFunction.apply(() -> {
+            SimpleCheckpoint checkpoint = new SimpleCheckpoint();
+            // volatile FreeMarker Template configuration
+            String chainId = "current_" + System.currentTimeMillis();
+            Configuration configuration = new Configuration(
+                    new Version(FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST));
+            log.info("ftlx create configuration : {}", checkpoint.getFormatTimeDiffMillis());
+            try (StringReader jsonReader = new StringReader(freemarkerJsonData)) {
+                JsonNode node = MAPPER.readTree(jsonReader); // parse json node to sanitize input
+                log.info("read json : {}", checkpoint.getFormatTimeDiffMillis());
+                this.handleConfiguration(configuration, node, StreamIO.readString(reader), chainId);
+                log.info("ftlx handle configuration : {}", checkpoint.getFormatTimeDiffMillis());
+                Template currentChain = configuration.getTemplate(chainId);
+                log.info("ftlx get template : {}", checkpoint.getFormatTimeDiffMillis());
+                Map<Object, Object> data = new HashMap<>();
+                data.put("messageFormat", new SimpleMessageFun());
+                try (StringWriter writer = new StringWriter()) {
+                    currentChain.process(data, writer);
+                    log.info("ftlx process chain : {}", checkpoint.getFormatTimeDiffMillis());
+                    try (StringReader ftlReader = new StringReader(writer.toString())) {
+                        this.doHandle(handler, type, sourceType, ftlReader, baos);
+                        log.info("ftlx render document : {}", checkpoint.getFormatTimeDiffMillis());
+                    }
+                }
+            }
+            configuration.clearTemplateCache();
+        });
+    }
 
-	public DocTypeHandler findHandler( BasicInput input ) {
-		DocTypeHandler handler = null;
-		if ( StringUtils.isNotEmpty( input.getOutputFormat() ) ) {
-			String outputFormat = input.getOutputFormat().toLowerCase();
-			handler = InitPlayground.findHandler( outputFormat );
-		}
-		return handler;
-	}
-	
-	public DocParser findParser( BasicInput input ) {
-		int sourceType = DocFacadeSource.SOURCE_TYPE_XML;
-		if ( InputFacade.FORMAT_JSON.equalsIgnoreCase( input.getInputFormat() ) ) {
-			sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
-		} else if ( InputFacade.FORMAT_YAML.equalsIgnoreCase( input.getInputFormat() ) ) {
-			sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
-		}
-		return DocFacadeSource.getInstance().getParserForSource( sourceType );
-	}
+    private void handleKts(DocTypeHandler handler, String type, Reader reader, ByteArrayOutputStream baos, String ktsJsonData) {
+        SafeFunction.apply(() -> {
+            SimpleCheckpoint checkpoint = new SimpleCheckpoint();
+            try (StringReader jsonReader = new StringReader(ktsJsonData)) {
+                LinkedHashMap<String, Object> data = MAPPER.readValue(jsonReader, LinkedHashMap.class);
+                log.info("kts read json data : {}", checkpoint.getFormatTimeDiffMillis());
+                String xml = EVAL_SCRIPT.handle(reader, data).toString();
+                log.info("kts eval with DocKotlinParser : {}", checkpoint.getFormatTimeDiffMillis());
+                try (StringReader xmlReader = new StringReader(xml)) {
+                    this.doHandle(handler, type, DocFacadeSource.SOURCE_TYPE_XML, xmlReader, baos);
+                    log.info("kts render document : {}", checkpoint.getFormatTimeDiffMillis());
+                }
+            }
+        });
+    }
+
+    public byte[] generateHelper(GenerateInput input, DocTypeHandler handler) throws Exception {
+        byte[] result = null;
+        if (input.getDocContent() != null) {
+            try (StringReader reader = new StringReader(input.getDocContent());
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+                int sourceType = DocFacadeSource.SOURCE_TYPE_XML;
+                if (InputFacade.FORMAT_JSON.equalsIgnoreCase(input.getInputFormat())) {
+                    sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
+                } else if (InputFacade.FORMAT_YAML.equalsIgnoreCase(input.getInputFormat())) {
+                    sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
+                }
+                String type = input.getOutputFormat().toLowerCase();
+                log.info("output format : {}", type);
+                if (InputFacade.FORMAT_FTLX.equalsIgnoreCase(input.getInputFormat())) {
+                    this.handleFtlx(handler, type, sourceType, reader, baos, input.getFreemarkerJsonData());
+                } else if (InputFacade.FORMAT_KTS.equalsIgnoreCase(input.getInputFormat())) {
+                    this.handleKts(handler, type, reader, baos, input.getFreemarkerJsonData());
+                } else {
+                    this.doHandle(handler, type, sourceType, reader, baos);
+                }
+                result = baos.toByteArray();
+            }
+        }
+        return result;
+    }
+
+    public DocTypeHandler findHandler(BasicInput input) {
+        DocTypeHandler handler = null;
+        if (StringUtils.isNotEmpty(input.getOutputFormat())) {
+            String outputFormat = input.getOutputFormat().toLowerCase();
+            handler = InitPlayground.findHandler(outputFormat);
+        }
+        return handler;
+    }
+
+    public DocParser findParser(BasicInput input) {
+        int sourceType = DocFacadeSource.SOURCE_TYPE_XML;
+        if (InputFacade.FORMAT_JSON.equalsIgnoreCase(input.getInputFormat())) {
+            sourceType = DocFacadeSource.SOURCE_TYPE_JSON;
+        } else if (InputFacade.FORMAT_YAML.equalsIgnoreCase(input.getInputFormat())) {
+            sourceType = DocFacadeSource.SOURCE_TYPE_YAML;
+        }
+        return DocFacadeSource.getInstance().getParserForSource(sourceType);
+    }
 
 }

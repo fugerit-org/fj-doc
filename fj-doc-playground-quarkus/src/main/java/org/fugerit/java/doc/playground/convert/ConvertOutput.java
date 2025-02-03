@@ -4,14 +4,14 @@ import org.fugerit.java.doc.playground.facade.BasicOutput;
 
 public class ConvertOutput extends BasicOutput {
 
-	private String docOutput;
+    private String docOutput;
 
-	public String getDocOutput() {
-		return docOutput;
-	}
+    public String getDocOutput() {
+        return docOutput;
+    }
 
-	public void setDocOutput(String docOutput) {
-		this.docOutput = docOutput;
-	}
+    public void setDocOutput(String docOutput) {
+        this.docOutput = docOutput;
+    }
 
 }

@@ -8,24 +8,25 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class RestHelper {
 
-	private RestHelper() {}
+    private RestHelper() {
+    }
 
-	public static Throwable findCause( Throwable o ) {
-		return o.getCause() != null ? findCause( o.getCause() ) : o;
-	}
+    public static Throwable findCause(Throwable o) {
+        return o.getCause() != null ? findCause(o.getCause()) : o;
+    }
 
-	public static Response defaultHandle( UnsafeSupplier<Response, Exception> fun ) {
-		Response res = null;
-		try {
-			res = fun.get();
-			if ( res == null ) {
-				res = Response.status(Response.Status.BAD_REQUEST).build();
-			}
-		} catch (Exception e) {
-			log.info("Error : " + e, e);
-			res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
-		}
-		return res;
-	}
-	
+    public static Response defaultHandle(UnsafeSupplier<Response, Exception> fun) {
+        Response res = null;
+        try {
+            res = fun.get();
+            if (res == null) {
+                res = Response.status(Response.Status.BAD_REQUEST).build();
+            }
+        } catch (Exception e) {
+            log.info("Error : " + e, e);
+            res = Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        return res;
+    }
+
 }

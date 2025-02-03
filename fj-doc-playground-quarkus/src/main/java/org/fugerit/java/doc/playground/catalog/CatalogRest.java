@@ -25,62 +25,62 @@ import jakarta.ws.rs.core.Response;
 @Path("/catalog")
 public class CatalogRest {
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/list/type/{type}")
-	public Response catalogListFilterType( @PathParam("type") String type ) {
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list/type/{type}")
+    public Response catalogListFilterType(@PathParam("type") String type) {
 
-		return RestHelper.defaultHandle( () -> Response.ok().entity( 
-					DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
-						.stream().filter( e -> type.equalsIgnoreCase( e.getType() ) ).map( 
-								e -> new OptionItem( e.getId(), e.getDescription() ) 
-						).toList() ).build()
-		);
-	}
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/list")
-	public Response catalogList() {
-		return RestHelper.defaultHandle( () -> Response.ok().entity( 
-					DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
-						.stream().map( 
-								e -> new OptionItem( e.getId(), e.getDescription() ) 
-						).toList() ).build()
-		);
-	}
-	
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/entry/{id}")
-	public Response catalogEntry( @PathParam("id") String id ) {
-		return RestHelper.defaultHandle( () -> {
-			DocCatalogSample catalog = DocCatalogSample.getInstance();
-			DocCatalogEntry entry = catalog.getPlaygroundCoreCatalog().get( id );
-			try ( Reader reader = catalog.entryReader( entry ) ) {
-				CatalogOutput output = new CatalogOutput();
-				output.setDocOutput( StreamIO.readString( reader ) );
-				if ( StringUtils.isNotEmpty( entry.getJsonDataPath() ) ) {
-					output.setJsonData( StreamIO.readString( catalog.entryReaderJsonData( entry ) ) );
-				}
-				return Response.ok().entity( output ).build();
-			}
-		} );
-	}
+        return RestHelper.defaultHandle(() -> Response.ok().entity(
+                DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
+                        .stream().filter(e -> type.equalsIgnoreCase(e.getType())).map(
+                                e -> new OptionItem(e.getId(), e.getDescription()))
+                        .toList())
+                .build());
+    }
 
-	@GET
-	@Produces(MediaType.TEXT_PLAIN)
-	@Path("/res/{id}")
-	public Response catalogRes( @PathParam("id") String id ) {
-		return RestHelper.defaultHandle( () -> {
-			try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "catalog_res/"+id )) {
-				if ( is == null ) {
-					return Response.status(Response.Status.NOT_FOUND).build();
-				} else {
-					return Response.ok().entity( StreamIO.readString( is ) ).build();
-				}
-			}
-		} );
-	}
-	
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/list")
+    public Response catalogList() {
+        return RestHelper.defaultHandle(() -> Response.ok().entity(
+                DocCatalogSample.getInstance().getPlaygroundCoreCatalog()
+                        .stream().map(
+                                e -> new OptionItem(e.getId(), e.getDescription()))
+                        .toList())
+                .build());
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/entry/{id}")
+    public Response catalogEntry(@PathParam("id") String id) {
+        return RestHelper.defaultHandle(() -> {
+            DocCatalogSample catalog = DocCatalogSample.getInstance();
+            DocCatalogEntry entry = catalog.getPlaygroundCoreCatalog().get(id);
+            try (Reader reader = catalog.entryReader(entry)) {
+                CatalogOutput output = new CatalogOutput();
+                output.setDocOutput(StreamIO.readString(reader));
+                if (StringUtils.isNotEmpty(entry.getJsonDataPath())) {
+                    output.setJsonData(StreamIO.readString(catalog.entryReaderJsonData(entry)));
+                }
+                return Response.ok().entity(output).build();
+            }
+        });
+    }
+
+    @GET
+    @Produces(MediaType.TEXT_PLAIN)
+    @Path("/res/{id}")
+    public Response catalogRes(@PathParam("id") String id) {
+        return RestHelper.defaultHandle(() -> {
+            try (InputStream is = ClassHelper.loadFromDefaultClassLoader("catalog_res/" + id)) {
+                if (is == null) {
+                    return Response.status(Response.Status.NOT_FOUND).build();
+                } else {
+                    return Response.ok().entity(StreamIO.readString(is)).build();
+                }
+            }
+        });
+    }
+
 }

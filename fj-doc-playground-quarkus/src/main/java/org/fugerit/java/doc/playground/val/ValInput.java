@@ -12,12 +12,12 @@ public class ValInput {
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
     private FileUpload file;
 
-	public FileUpload getFile() {
-		return file;
-	}
+    public FileUpload getFile() {
+        return file;
+    }
 
-	public void setFile(FileUpload file) {
-		this.file = file;
-	}
-    
+    public void setFile(FileUpload file) {
+        this.file = file;
+    }
+
 }

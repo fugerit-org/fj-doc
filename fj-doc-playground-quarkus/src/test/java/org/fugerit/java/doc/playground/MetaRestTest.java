@@ -10,25 +10,25 @@ import io.quarkus.test.junit.QuarkusTest;
 
 @QuarkusTest
 class MetaRestTest {
-	
+
     @Test
-    void testMetaOk() {   	
+    void testMetaOk() {
         given()
-        .when()
-        .get( TestConsts.BASE_API_PATH+"/meta/version" )
-        .then()
-           .statusCode(200);
-        Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
+                .when()
+                .get(TestConsts.BASE_API_PATH + "/meta/version")
+                .then()
+                .statusCode(200);
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
     }
-    
+
     @Test
-    void testMetaInfoOk() {   	
+    void testMetaInfoOk() {
         given()
-        .when()
-        .get( TestConsts.BASE_API_PATH+"/meta/info" )
-        .then()
-           .statusCode(200);
-        Assertions.assertTrue( Boolean.TRUE );  // the condition is actually checked by rest assured
+                .when()
+                .get(TestConsts.BASE_API_PATH + "/meta/info")
+                .then()
+                .statusCode(200);
+        Assertions.assertTrue(Boolean.TRUE); // the condition is actually checked by rest assured
     }
 
 }

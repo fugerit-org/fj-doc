@@ -33,33 +33,33 @@ public class ProjectRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/extensions-list")
     public Response extensionsList() {
-        return RestHelper.defaultHandle( () -> Response.ok().entity(
+        return RestHelper.defaultHandle(() -> Response.ok().entity(
                 ModuleFacade.getModules().stream().sorted()
                         .map(
-                                m -> new OptionItem(m, m)
-                        ).toList() ).build()
-        );
+                                m -> new OptionItem(m, m))
+                        .toList())
+                .build());
     }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/init")
-    public Response init( @Valid ProjectInitInput data ) {
-        return RestHelper.defaultHandle( () -> {
+    public Response init(@Valid ProjectInitInput data) {
+        return RestHelper.defaultHandle(() -> {
             long time = System.currentTimeMillis();
             ProjectInitOutput output = new ProjectInitOutput();
             String groupIdData = data.getGroupId();
             String artifactIdData = data.getArtifactId();
-            try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
+            try (ByteArrayOutputStream buffer = new ByteArrayOutputStream()) {
                 String tempDir = System.getProperty("java.io.tmpdir");
-                File projectDir = new File( tempDir, artifactIdData+"_"+ System.currentTimeMillis() );
+                File projectDir = new File(tempDir, artifactIdData + "_" + System.currentTimeMillis());
                 projectDir.mkdir();
-                log.info( "tempDir : {}, outputFolder : {}", tempDir, projectDir);
-                checkIfInTempFolder( projectDir );    // security check
-                File realDir = new File( projectDir, artifactIdData );
-                checkIfInTempFolder( realDir );    // security check
-                log.info( "project init folder : {}", realDir.getAbsolutePath() );
+                log.info("tempDir : {}, outputFolder : {}", tempDir, projectDir);
+                checkIfInTempFolder(projectDir); // security check
+                File realDir = new File(projectDir, artifactIdData);
+                checkIfInTempFolder(realDir); // security check
+                log.info("project init folder : {}", realDir.getAbsolutePath());
                 MojoInit mojoInit = new MojoInit() {
                     @Override
                     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -68,8 +68,8 @@ public class ProjectRest {
                         this.groupId = groupIdData;
                         this.version = data.getVenusVersion();
                         this.artifactId = artifactIdData;
-                        this.javaRelease = String.valueOf( data.getJavaVersion() );
-                        this.extensions = StringUtils.concat( ",", data.getExtensionList() );
+                        this.javaRelease = String.valueOf(data.getJavaVersion());
+                        this.extensions = StringUtils.concat(",", data.getExtensionList());
                         this.addDocFacade = true;
                         this.force = true;
                         this.addVerifyPlugin = true;
@@ -81,48 +81,52 @@ public class ProjectRest {
                     }
                 };
                 mojoInit.execute();
-                zipFolder( realDir, buffer );
+                zipFolder(realDir, buffer);
                 byte[] byteArray = buffer.toByteArray();
-                output.setContent( Base64.getEncoder().encodeToString( byteArray ) );
-                log.info( "zip size : {}", byteArray.length );
-                checkIfInTempFolder( projectDir );    // security check
-                FileUtils.deleteDirectory( projectDir );
-                output.setMessage( String.format( "Project init OK : %s:%s, time:%s",
+                output.setContent(Base64.getEncoder().encodeToString(byteArray));
+                log.info("zip size : {}", byteArray.length);
+                checkIfInTempFolder(projectDir); // security check
+                FileUtils.deleteDirectory(projectDir);
+                output.setMessage(String.format("Project init OK : %s:%s, time:%s",
                         groupIdData, artifactIdData,
-                        CheckpointUtils.formatTimeDiffMillis( time , System.currentTimeMillis() ) ) );
-            } catch ( Exception e ) {
-                log.warn( "Error generating document : "+e , e );
+                        CheckpointUtils.formatTimeDiffMillis(time, System.currentTimeMillis())));
+            } catch (Exception e) {
+                log.warn("Error generating document : " + e, e);
                 Throwable te = RestHelper.findCause(e);
-                output.setMessage( te.getClass().getName()+" :\n"+te.getMessage() );
+                output.setMessage(te.getClass().getName() + " :\n" + te.getMessage());
             }
-            return Response.ok().entity( output ).build();
-        } );
+            return Response.ok().entity(output).build();
+        });
     }
-    public static String ensureEndWithSlash( String name ) {
-        if ( name.endsWith( "/" ) ) {
+
+    public static String ensureEndWithSlash(String name) {
+        if (name.endsWith("/")) {
             return name;
         } else {
-            return name+"/";
+            return name + "/";
         }
     }
-    public static void checkIfInTempFolder( File file ) throws IOException {
-        File tempDir = new File( System.getProperty("java.io.tmpdir") );
-        if ( !file.toPath().normalize().startsWith(tempDir.toPath().normalize()) ) {
-            throw new IOException( file.getCanonicalPath() + " is not in temp folder" );
+
+    public static void checkIfInTempFolder(File file) throws IOException {
+        File tempDir = new File(System.getProperty("java.io.tmpdir"));
+        if (!file.toPath().normalize().startsWith(tempDir.toPath().normalize())) {
+            throw new IOException(file.getCanonicalPath() + " is not in temp folder");
         }
     }
+
     public static void zipFolder(File sourceFolder, OutputStream fos) throws IOException {
-        checkIfInTempFolder( sourceFolder );    // security check
+        checkIfInTempFolder(sourceFolder); // security check
         try (ZipOutputStream zos = new ZipOutputStream(fos)) {
             zipFile(sourceFolder, sourceFolder.getName(), zos);
             zos.flush();
             fos.flush();
         }
     }
+
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zos) throws IOException {
-        checkIfInTempFolder( fileToZip );    // security check
+        checkIfInTempFolder(fileToZip); // security check
         if (fileToZip.isDirectory()) {
-            zos.putNextEntry(new ZipEntry( ensureEndWithSlash( fileName ) ));
+            zos.putNextEntry(new ZipEntry(ensureEndWithSlash(fileName)));
             zos.closeEntry();
             File[] children = fileToZip.listFiles();
             for (File childFile : children) {
@@ -133,7 +137,7 @@ public class ProjectRest {
         try (FileInputStream fis = new FileInputStream(fileToZip)) {
             ZipEntry zipEntry = new ZipEntry(fileName);
             zos.putNextEntry(zipEntry);
-            StreamIO.pipeStream( fis, zos, StreamIO.MODE_CLOSE_NONE );
+            StreamIO.pipeStream(fis, zos, StreamIO.MODE_CLOSE_NONE);
         }
 
     }

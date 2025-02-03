@@ -10,27 +10,44 @@ import java.util.List;
 
 public class ProjectInitInput {
 
-    @Pattern( regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL )
-    @Getter @Setter private String groupId;
+    @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
+    @Getter
+    @Setter
+    private String groupId;
 
-    @Pattern( regexp = "[A-Za-z0-9-]+", flags = Pattern.Flag.DOTALL )
-    @Getter @Setter private String artifactId;
+    @Pattern(regexp = "[A-Za-z0-9-]+", flags = Pattern.Flag.DOTALL)
+    @Getter
+    @Setter
+    private String artifactId;
 
-    @Pattern( regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL )
-    @Getter @Setter private String projectVersion;
+    @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
+    @Getter
+    @Setter
+    private String projectVersion;
 
-    @Min( 8 ) @Max( 21 )
-    @Getter @Setter private Long javaVersion;
+    @Min(8)
+    @Max(21)
+    @Getter
+    @Setter
+    private Long javaVersion;
 
-    @Pattern( regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL )
-    @Getter @Setter private String venusVersion;
+    @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
+    @Getter
+    @Setter
+    private String venusVersion;
 
-    @Pattern( regexp = "[A-Za-z0-9- ]+", flags = Pattern.Flag.DOTALL )
-    @Getter @Setter private String flavour;
+    @Pattern(regexp = "[A-Za-z0-9- ]+", flags = Pattern.Flag.DOTALL)
+    @Getter
+    @Setter
+    private String flavour;
 
-    @Pattern( regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL )
-    @Getter @Setter private String flavourVersion;
+    @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
+    @Getter
+    @Setter
+    private String flavourVersion;
 
-    @Getter @Setter private List<String> extensionList;
+    @Getter
+    @Setter
+    private List<String> extensionList;
 
 }

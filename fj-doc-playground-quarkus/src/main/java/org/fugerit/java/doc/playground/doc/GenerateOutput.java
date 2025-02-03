@@ -7,8 +7,12 @@ import lombok.Setter;
 
 public class GenerateOutput extends BasicOutput {
 
-	@Setter @Getter private String generationTime;
-	
-	@Setter @Getter private String docOutputBase64;
-	
+    @Setter
+    @Getter
+    private String generationTime;
+
+    @Setter
+    @Getter
+    private String docOutputBase64;
+
 }
