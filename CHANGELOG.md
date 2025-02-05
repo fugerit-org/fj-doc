@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-playground-quarkus] quarkus-info extension
 - concurrency setup for GitHub workflows
+- quarkus-version set to 3.18.2 across all the modules
 
 ### Fixed
 
