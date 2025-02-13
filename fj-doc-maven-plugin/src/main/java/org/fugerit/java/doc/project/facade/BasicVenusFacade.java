@@ -153,27 +153,40 @@ public class BasicVenusFacade {
 
     private static final String CONST_IMPLEMENTATION = "implementation";
 
-    protected static void addExtensionGradleKtsList( File gradleFile, VenusContext context ) throws IOException  {
+    private static String formatGroovy( String dependency, String version, boolean kts ) {
+        if ( kts ) {
+            return String.format( "\\(\"%s:%s\"\\)", dependency, version );
+        } else {
+            return String.format( " '%s:%s'", dependency, version );
+        }
+    }
+
+    protected static void addExtensionGradleList( File gradleFile, VenusContext context, boolean kts ) throws IOException  {
         // note, this will currently only work for very simple build.gradle.kts files
         String gradleFileContent = FileIO.readString( gradleFile );
-        String valVersion = String.format( "val fjDocVersion = \"%s\"\n\ndependencies", context.getVersion() );
-        gradleFileContent = gradleFileContent.replaceFirst( "dependencies", valVersion );
+        String fjDocVersion = context.getVersion();
+        if ( kts ) {
+            String valVersion = String.format( "def fjDocVersion = '%s'\n\ndependencies", context.getVersion() );
+            valVersion = String.format( "val fjDocVersion = \"%s\"\n\ndependencies", context.getVersion() );
+            gradleFileContent = gradleFileContent.replaceFirst( "dependencies", valVersion );
+            fjDocVersion = "\\$fjDocVersion";
+        }
         List<String> moduleListGradle = ModuleFacade.toModuleListOptimizedOrder( context.getExtensions() );
         Collections.reverse( moduleListGradle );
         log.info( "moduleListGradle : {}", moduleListGradle );
         for ( String currentModule :  moduleListGradle ) {
             String moduleNameGradle = ModuleFacade.toModuleName( currentModule );
-            String currentImplementation = String.format( "implementation\\(\"org.fugerit.java:%s:\\$fjDocVersion\"\\)%n    implementation", moduleNameGradle );
+            String currentImplementation = String.format( "implementation %s%n    implementation", formatGroovy( "org.fugerit.java:"+moduleNameGradle, fjDocVersion, kts ),  moduleNameGradle );
             log.info( "Adding module to gradle file : {}, substitution : {}", moduleNameGradle, currentImplementation );
             gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, currentImplementation );
             context.getModules().add( moduleNameGradle );
         }
         if (context.isAddLombok() ) {
             String lombokVersion = "1.18.36";
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "compileOnly\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "annotationProcessor\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testCompileOnly\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testAnnotationProcessor\\(\"org.projectlombok:lombok:%s\"\\)%n    %s", lombokVersion, CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "compileOnly%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "annotationProcessor%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testCompileOnly%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testAnnotationProcessor%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
         }
         FileIO.writeString( gradleFileContent, gradleFile );
     }

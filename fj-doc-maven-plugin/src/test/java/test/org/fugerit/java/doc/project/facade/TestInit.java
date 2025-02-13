@@ -14,6 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.UUID;
 
 @Slf4j
@@ -55,11 +56,12 @@ public class TestInit {
     }
 
     @Test
-    public void testMojoQuarkus3GradleKts() throws MojoExecutionException, MojoFailureException {
-        String currentFlavour = FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE_KTS;
-        File projectDir = this.initConfigWorker(currentFlavour);
-        createMojoInit( projectDir, currentFlavour ).execute();
-        Assert.assertTrue( projectDir.exists() );
+    public void testMojoQuarkus3GradleGroovyAndKts() throws MojoExecutionException, MojoFailureException {
+        for ( String currentFlavour : Arrays.asList( FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE, FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE_KTS ) ) {
+            File projectDir = this.initConfigWorker(currentFlavour);
+            createMojoInit( projectDir, currentFlavour ).execute();
+            Assert.assertTrue( projectDir.exists() );
+        }
     }
 
     @Test
