@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.1] - 2025-02-15
+
 ### Added
 
 - Add quarkus-3-gradle (groovy) flavour <https://github.com/fugerit-org/fj-doc/issues/293>
