@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add quarkus-3-gradle (groovy) flavour <https://github.com/fugerit-org/fj-doc/issues/293>
+
 ### Changed
 
 - [fj-doc-playground-quarkus] quarkus-info extension

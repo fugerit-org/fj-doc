@@ -33,6 +33,7 @@ NOTE: it is possible to set any property from 'add' goal, except 'projectFolder'
 |====================================================================================================================================
 | flavour      | model | description
 | quarkus-3        | maven | Based on link:https://quarkus.io/[Quarkus 3], with maven packaging
+| quarkus-3-gradle | gradle | Based on link:https://quarkus.io/[Quarkus 3], with gradle packaging
 | quarkus-3-gradle-kts | gradle-kts | Based on link:https://quarkus.io/[Quarkus 3], with gradle kotlin packaging
 | quarkus-2        | maven | Based on link:https://quarkus.io/[Quarkus 2], with maven packaging
 | micronaut-4        | maven | Based on link:https://micronaut.io/[Micronatut], with maven packaging

@@ -25,6 +25,8 @@ public class FlavourFacade {
 
     public static final String FLAVOUR_QUARKUS_3 = "quarkus-3";
 
+    public static final String FLAVOUR_QUARKUS_3_GRADLE = "quarkus-3-gradle";
+
     public static final String FLAVOUR_QUARKUS_3_GRADLE_KTS = "quarkus-3-gradle-kts";
 
     public static final String FLAVOUR_QUARKUS_2 = "quarkus-2";
@@ -40,11 +42,11 @@ public class FlavourFacade {
     private static final Properties FLAVOURS_DEFAULT_VERSION = PropsIO.loadFromClassLoaderSafe( "config/flavour/flavour_versions_default.properties" );
 
     public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(
-            new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_3_GRADLE_KTS, FLAVOUR_QUARKUS_2,
-                    FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3, FLAVOUR_OPENLIBERTY ) ) );
+            new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_3_GRADLE, FLAVOUR_QUARKUS_3_GRADLE_KTS,
+                    FLAVOUR_QUARKUS_2, FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3, FLAVOUR_OPENLIBERTY ) ) );
 
     public static boolean isGradleKtsFlavour(String flavour ) {
-        return FLAVOUR_QUARKUS_3_GRADLE_KTS.equals( flavour );
+        return FLAVOUR_QUARKUS_3_GRADLE_KTS.equals( flavour ) || FLAVOUR_QUARKUS_3_GRADLE.equals( flavour );
     }
 
     private static final Properties MAP_FLAVOURS = SafeFunction.get( () -> {

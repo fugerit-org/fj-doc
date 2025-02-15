@@ -127,12 +127,17 @@ public class AddVenusFacade extends BasicVenusFacade {
             if ( pomFile.exists() ) {
                 return addVenusToMavenProject( pomFile, context );
             } else {
-                File gradleFile = new File( context.getProjectDir(), "build.gradle.kts" );
-                if ( gradleFile.exists() ) {
-                    return addVenusToGradleKtsProject( gradleFile, context );
+                File gradleFileKts = new File( context.getProjectDir(), "build.gradle.kts" );
+                if ( gradleFileKts.exists() ) {
+                    return addVenusToGradleProject( gradleFileKts, context, true );
                 } else {
-                    addErrorAndLog( String.format( "No pom or gradle file in project dir : %s", pomFile.getCanonicalPath() ), context );
-                    return false;
+                    File gradleFile = new File( context.getProjectDir(), "build.gradle" );
+                    if ( gradleFile.exists() ) {
+                        return addVenusToGradleProject( gradleFile, context, false );
+                    } else {
+                        addErrorAndLog(String.format("No pom or gradle file in project dir : %s", pomFile.getCanonicalPath()), context);
+                        return false;
+                    }
                 }
             }
         } );
@@ -155,10 +160,10 @@ public class AddVenusFacade extends BasicVenusFacade {
         } );
     }
 
-    public static boolean addVenusToGradleKtsProject( File gradleFile, VenusContext context ) {
+    public static boolean addVenusToGradleProject( File gradleFile, VenusContext context, boolean kts ) {
         return SafeFunction.get( () -> {
             log.info( "gradle project dir : {}", context.getProjectDir().getCanonicalPath() );
-            addExtensionGradleKtsList( gradleFile, context );
+            addExtensionGradleList( gradleFile, context, kts );
             if ( context.isAddDocFacace() ) {
                 if ( context.getMavenModel() == null ) {
                     Model model = new Model();
