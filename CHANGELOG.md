@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- quarkus-version set to 3.18.4 across all the modules
+
 ## [8.12.1] - 2025-02-15
 
 ### Added
