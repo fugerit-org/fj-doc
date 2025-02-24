@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-playground-quarkus] base image 1.21-1.1739376167
 - quarkus-version set to 3.19.0 across all the modules
 
 ## [8.12.1] - 2025-02-15
