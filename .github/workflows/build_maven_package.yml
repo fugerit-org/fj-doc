@@ -22,7 +22,7 @@ on:
 
 # only allow one workflow at time on the give activation
 concurrency:
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}_${{ github.ref_name }}
   cancel-in-progress: true
 
 jobs:
