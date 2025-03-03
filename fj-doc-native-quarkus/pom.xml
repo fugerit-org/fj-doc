@@ -21,6 +21,7 @@
     <compiler-plugin.version>3.14.0</compiler-plugin.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <maven.compiler.proc>full</maven.compiler.proc>
   </properties>
   <dependencyManagement>
     <dependencies>
