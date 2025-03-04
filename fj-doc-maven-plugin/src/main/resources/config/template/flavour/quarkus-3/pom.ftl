@@ -16,7 +16,6 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
         <freemarker-native-version>1.0.0</freemarker-native-version>
-        <maven.compiler.proc>full</maven.compiler.proc>
     </properties>
 
     <dependencyManagement>
@@ -131,6 +130,15 @@
     </build>
 
     <profiles>
+        <profile>
+            <id>jdk23</id>
+            <activation>
+                <jdk>[23,)</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.proc>full</maven.compiler.proc>
+            </properties>
+        </profile>
         <profile>
             <id>native</id>
             <activation>
