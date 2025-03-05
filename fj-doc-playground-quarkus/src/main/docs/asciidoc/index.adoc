@@ -7,6 +7,11 @@ include::attributes/_attributes-common.adoc[]
 
 include::features/home.adoc[]
 
+include::features/doc-generator.adoc[]
+
+include::features/doc-conversion.adoc[]
+
+include::features/doc-project-init.adoc[]
 
 include::features/doc-type-validator.adoc[]
 
