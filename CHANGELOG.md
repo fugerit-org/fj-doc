@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- quarkus-version set to 3.19.2 across all the modules
+
 ### Fixed
 
 - [BUG]: Error in JDK 23, does it support JDK 23? <https://github.com/fugerit-org/fj-doc/issues/302>
