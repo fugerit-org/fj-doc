@@ -7,11 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+**Changed**
 
 - quarkus-version set to 3.19.2 across all the modules
 
-### Fixed
+**Fixed**
 
 - [CHORE]: [CHORE]: playground documentation not updated <https://github.com/fugerit-org/fj-doc/issues/310>
 - [BUG]: Error in JDK 23, does it support JDK 23? <https://github.com/fugerit-org/fj-doc/issues/302>
@@ -19,39 +19,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.12.2] - 2025-02-28
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] base image 1.21-1.1739376167
 - quarkus-version set to 3.19.1 across all the modules
 
-### Fixed
+**Fixed**
 
 - Use UBI9 based Quarkus micro image for quarkus 3 <https://github.com/fugerit-org/fj-doc/issues/298>
 
 ## [8.12.1] - 2025-02-15
 
-### Added
+**Added**
 
 - Add quarkus-3-gradle (groovy) flavour <https://github.com/fugerit-org/fj-doc/issues/293>
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] quarkus-info extension
 - concurrency setup for GitHub workflows
 - quarkus-version set to 3.18.3 across all the modules
 
-### Fixed
+**Fixed**
 
 - [fj-doc-playground-quarkus] project init - quarkus-3-gradle-kts flavour available
 
 ## [8.12.0] - 2025-01-31
 
-### Added
+**Added**
 
 - Add quarkus-3-gradle-kts flavour <https://github.com/fugerit-org/fj-doc/issues/284>
 - better native AOT compatibility workflow
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.2
 - [fj-doc-val-pdfbox] pdfbox version 2.0.33
@@ -61,7 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.11.9] - 2025-01-11
 
-### Fixed
+**Fixed**
 
 - Fix native support for Apache FreeMarker <https://github.com/fugerit-org/fj-doc/issues/278>
 - subfolder for native embedded configuration file <https://github.com/fugerit-org/fj-doc/issues/276>
@@ -70,7 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.11.8] - 2025-01-10
 
-### Changed
+**Changed**
 
 - subfolder for native embedded configuration file <https://github.com/fugerit-org/fj-doc/issues/276>
 - freemarker-version 2.3.34
@@ -78,13 +78,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.11.7] - 2024-12-19
 
-### Changed
+**Changed**
 
 - fixed endline for markdown format
 
 ## [8.11.6] - 2024-12-15
 
-### Changed
+**Changed**
 
 - quarkus-version set to 3.17.4 across all the modules
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.2
@@ -93,12 +93,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.11.5] - 2024-12-06
 
-### Added
+**Added**
 
 - [fj-mod-doc-openpdf-ext] basic list implementation
 - info suppress-wrong-type-error, some type error will be ignored if set to true and '1'
 
-### Changed
+**Changed**
 
 - quarkus-version set to 3.17.3 across all the modules
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.0
@@ -107,17 +107,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.11.4] - 2024-11-27
 
-### Changed
+**Changed**
 
 - [fj-doc-mod-fop] better logging for FreemarkerDocProcessConfigFacade.loadConfigSafe()
 
 ## [8.11.3] - 2024-11-27
 
-### Added
+**Added**
 
 - [fj-doc-playground-quarkus] added documentation <https://github.com/fugerit-org/fj-doc/issues/265>
 
-### Changed
+**Changed**
 
 - [fj-doc-mod-fop] better init check for PdfFopTypeHandler
 - quarkus-version set to 3.17.0 across all the modules
@@ -126,28 +126,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.11.2] - 2024-11-20
 
-### Added
+**Added**
 
 - [fj-doc-freemarker] new function formatDateTime
 
-### Changed
+**Changed**
 
 - quarkus-version set to 3.16.4 across all the modules
 
 ## [8.11.1] - 2024-11-19
 
-### Fixed
+**Fixed**
 
 - [fj-doc-val-*] fix doc validation <https://github.com/fugerit-org/fj-doc/issues/262>
 
 ## [8.11.0] - 2024-11-19
 
-### Added
+**Added**
 
 - [fj-doc-val-core] DocValidatorTypeCheck facade to check file type <https://github.com/fugerit-org/fj-doc/issues/260>
 - [fj-doc-val-p7m] check the inner type on P7MContentValidator <https://github.com/fugerit-org/fj-doc/issues/260>
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] show quakus version
 - quarkus-version set to 3.16.3 across all the modules
@@ -155,48 +155,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.10.9] - 2024-11-03
 
-### Changed
+**Changed**
 
 - native-helper-maven-plugin version set to 1.4.6
 - [fj-doc-native-quarkus] added build arg : -H:+UnlockExperimentalVMOptions
 - [fj-doc-maven-plugin] added information for flavour quarkus-3 native version
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] fix version check for AsciiDoc example
 
 ## [8.10.8] - 2024-11-02
 
-### Changed
+**Changed**
 
 - [fj-doc-mod-opencsv] added GraalVM native metadata to csv format
 - [fj-doc-native-quarkus] added quarkus integration tests
 
 ## [8.10.7] - 2024-11-02
 
-### Changed
+**Changed**
 
 - native-helper-maven-plugin version set to 1.4.5
 - workflow "CI native modules build and test" added test against native executable
 
-### Fixed
+**Fixed**
 
 - native metadata sort
 
 ## [8.10.6] - 2024-11-01
 
-### Added
+**Added**
 
 - [fj-doc-native-quarkus] native metadata test project and workflow <https://github.com/fugerit-org/fj-doc/issues/246>
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] flavour quarkus-3 native configuration
 - [fj-doc-maven-plugin] added quarkus-freemarker dependency to flavour quarkus-3
 
 ## [8.10.5] - 2024-11-01
 
-### Changed
+**Changed**
 
 - [fj-doc-freemarker] generate stub and config conversion now supports registerById and allowDuplicatedId attributes
 - [fj-doc-playground-quarkus] base image registry.access.redhat.com/ubi9/openjdk-21:1.20-2.1729773471
@@ -207,16 +207,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.10.4] - 2024-10-27
 
-### Added
+**Added**
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) section
 
-### Changed
+**Changed**
 
 - Added sourceType 'kotlin' to freemarker-doc-process-1-0.xsd
 - [fj-doc-maven-plugin] goal init/add - support for base-kotlin example <https://github.com/fugerit-org/fj-doc/issues/236>
 
-### Fixed
+**Fixed**
 
 - [fj-doc-freemarker] kotlin step, attribute map
 
@@ -233,7 +233,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.10.2] - 2024-10-25
 
-### Changed
+**Changed**
 
 - [fj-mod-lib-kotlin] fj-script-helper-version set to 2.0.3
 - [fj-mod-lib-kotlin] added simpleMap conversion function to HelperDSL <https://github.com/fugerit-org/fj-doc/issues/229>
@@ -242,7 +242,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-playground-quarkus] added quarkus-smallrye-openapi
 - [fj-doc-maven-plugin] goal init, flavour springboot-3, default springboot version 3.3.5
 
-### Fixed 
+**Fixed** 
 
 - [fj-doc-playground-quarkus] quarkus.rest.path in stead of quarkus.resteasy-reactive.path in REST reactive environment <https://github.com/quarkusio/quarkus/issues/35794>
 - [fj-doc-mod-fop] set of profile PDF-UA
@@ -250,13 +250,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.10.1] - 2024-10-23
 
-### Changed
+**Changed**
 
 - [fj-doc-base-kotlin] fj-script-helper version set to 2.0.0
 
 ## [8.10.0] - 2024-10-23
 
-### Added
+**Added**
 
 - [fj-doc-freemarker] new step type 'kotlin' <https://github.com/fugerit-org/fj-doc/issues/222>
 - [fj-doc-base-kotlin] support to use kotlin script (KTS) as source <https://github.com/fugerit-org/fj-doc/issues/222>
@@ -264,36 +264,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.9.7] - 2024-10-20
 
-### Added
+**Added**
 
 - [fj-doc-freemarker] new FreeMarkerSkipProcessStep (skipfm) <https://github.com/fugerit-org/fj-doc/issues/225>
 
 ## [8.9.6] - 2024-10-20
 
-### Added
+**Added**
 
 - [fj-doc-freemarker] support for source type in FreemarkerDocProcessConfig <https://github.com/fugerit-org/fj-doc/issues/223>
 
 ## [8.9.5] - 2024-10-17
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] removed annotation @Tags for quarkus X flavour
 - [fj-doc-maven-plugin] removed unused dependencies for quarkus X flavour
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] Fix path test openrtf quarkus X flavour
 
 ## [8.9.4] - 2024-10-16
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] support for openpdf-ext and openrtf-ext modules
 
 ## [8.9.3] - 2024-10-16
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] support for asciidoc doc handler (fj-doc-version 8.8.7+)
 - [fj-doc-maven-plugin] updated readme information for quarkus-3 flavour
@@ -302,20 +302,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.9.2] - 2024-10-14
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] fj-doc-ext-kotlin-version set to 0.4.1
 - [fj-doc-playground-quarkus] apply DocFacadeSource.cleanInput() to document generation playground
 - [fj-doc-playground-quarkus] fj-service-helper-bom-version set to 1.4.3
 
-### Fixed
+**Fixed**
 
 - [fj-doc-base] doc-2-1.xsd, element **phrase**, **para**, **h** are now allowed as 
   children for **para** and **h**.
 
 ## [8.9.1] - 2024-10-12
 
-### Changed
+**Changed**
 
 - [fj-doc-mod-fop] fop-version set to 2.10
 - [fj-doc-playground-quarkus] kotlin.version set to 2.0.21
@@ -325,17 +325,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.9.0] - 2024-10-11
 
-### Added
+**Added**
 
 - [fj-doc-guide] new [asciidoc guide](https://venusdocs.fugerit.org/guide/)
 
-### Fixed
+**Fixed**
 
 - [fj-doc-base] Fix log doc xml validation
 
 ## [8.8.9] - 2024-09-27
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] goal init, flavour micronaut, default micronaut version 4.6.3
 - [fj-doc-playground-quarkus] added options for new venus versions in playground
@@ -344,31 +344,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.8.8] - 2024-09-25
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] quarkus version set to 3.15.0
 - [fj-doc-maven-plugin] goal init, flavour springboot-3, default springboot version 3.3.4
 - [fj-doc-maven-plugin] goal init, flavour quarkus-3, default quarkus version 3.15.0
 
-### Fixed
+**Fixed**
 
 - [fj-doc-freemarker] handle space-before and space-after in table #206 [html]
 - [fj-doc-mod-fop] handle space-before and space-after in table #206 [pdf]
 
 ## [8.8.7] - 2024-09-16
 
-### Added
+**Added**
 
 - [fj-doc-freemarker] new simple asciidoc renderer
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] base image changed to registry.access.redhat.com/ubi9/openjdk-21:1.20-2.1725851045
 - [fj-doc-playground-quarkus] quarkus version set to 3.14.4
 
 ## [8.8.6] - 2024-09-13
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] goal init, new parameter : flavourVersion
 - [fj-doc-playground-quarkus] doc project init, added flavour version parameter
@@ -381,23 +381,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-playground-quarkus] added venus version 8.8.5 and 8.8.6 to doc project init
 - [fj-doc-playground-quarkus] quarkus version set to 3.14.3
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] goal init, generation of flavour 'vanilla' was bugged
 
 ## [8.8.5] - 2024-09-12
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'openliberty' #193
 
-### Fixed
+**Fixed**
 
 - [fj-doc-playground-quarkus] springboot-3 flavour on doc project init
 
 ## [8.8.4] - 2024-09-11
 
-### Changed
+**Changed**
 
 - [fj-doc-mod-openrtf-ext] handling doc-title, doc-subject, doc-author, doc-language, doc-creator #196
 - [fj-doc-mod-openpdf-ext] handling doc-title, doc-subject, doc-author, doc-language, doc-creator #196
@@ -407,11 +407,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.8.3] - 2024-09-11
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] m2e lifecycleMappingMetadata (xml is not valid) # 194  
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'micronaut-4'
 - [fj-doc-maven-plugin] goal init, added openapi documentation for flavour 'springboot-3'
@@ -419,18 +419,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.8.2] - 2024-09-10
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] goal init, new flavour : springboot-3
 - [fj-doc-maven-plugin] goal init, Quarkus and Micronaut generation based on freemarker macros.
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] goal init, micronaut-4 typo in Controller class name
 
 ## [8.8.1] - 2024-09-10
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] goal add, new parameter : freemarkerVersion (default : 2.3.32)
 - [fj-doc-maven-plugin] goal init, new flavour : micronaut-4
@@ -438,7 +438,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.8.0] - 2024-09-09
 
-### Added
+**Added**
 
 - [fj-doc-maven-plugin] goal init, flavour parameter (currently : vanilla, quarkus-3, quarkus-2)
 - [fj-doc-maven-plugin] goal add, optimized order for fj-doc-* dependencies
@@ -447,7 +447,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-maven-plugin] addJunit5 parameter to add junit-jupiter dependency (will skip main generation)
 - [fj-doc-val-p7m] P7MPemValidator and P7MRawValidator
 
-### Changed
+**Changed**
 
 - fj version 8.6.5
 - fj-bom version 1.6.6
@@ -455,67 +455,67 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [fj-doc-playground-quarkus] changed base image eclipse-temurin:21.0.4_7-jre-alpine
 - [fj-doc-val-p7m] Optimized P7MValidator (for previous behaviour use P7MLegacyValidator)
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] add goal, short name module recognition
 
 ## [8.7.6] - 2024-09-02
 
-### Fixed
+**Fixed**
 
 - [fj-doc-val-p7m] failed to validate PKCS7 : unknown tag 31 encountered <https://github.com/fugerit-org/fj-doc/issues/188>
 
 ## [8.7.5] - 2024-08-29
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] Add project init function
 - [fj-doc-maven-plugin] is no on plugin management of fj-doc parent 
 - [fj-doc-sample] fj-doc-maven-plugin:verify configuration
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] Could not find goal 'verify' <https://github.com/fugerit-org/fj-doc/issues/180>
 
 ## [8.7.4] - 2024-08-28
 
-### Fixed
+**Fixed**
 
 - docker build
 
 ## [8.7.3] - 2024-08-28
 
-### Fixed
+**Fixed**
 
 - [fj-doc-mod-fop] java.lang.IllegalArgumentException: Not supported: http://javax.xml.XMLConstants/property/accessExternalDTD
 
 ## [8.7.2] - 2024-08-28
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] added init fugerit venus goal
 - [fj-doc-maven-plugin] build order changed, now will build before fj-doc-sample
 - [fj-doc-maven-plugin] new param 'reportOutputFormat' (default 'html') of 'verify' plugin
 
-### Removed
+**Removed**
 
 - obsolete [docgen](https://mtmacdonald.github.io/docgen/docs/index.html) folder.
 
 ## [8.7.1] - 2024-08-25
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] new param 'addVerifyPlugin' (default 'true') of 'add' plugin
 
 ## [8.7.0] - 2024-08-25
 
-### Added
+**Added**
 
 - [fj-doc-maven-plugin] verify plugin using FreeMarkerTemplateSyntaxVerifier
 - [fj-doc-maven-plugin] m2e lifecycle configuration
 - [fj-doc-freemarker] tool FreeMarkerTemplateSyntaxVerifier (check for FreeMarker templates syntax) with report
 
-### Fixed
+**Fixed**
 
 - [fj-doc-freemarker] back color handling in html check
 - [fj-doc-maven-plugin] removed template reference to font.
@@ -523,13 +523,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.6.5] - 2024-08-23
 
-### Fixed
+**Fixed**
 
 - [fj-doc-maven-plugin] groupId from parent
 
 ## [8.6.4] - 2024-08-22
 
-### Changed
+**Changed**
 
 - [fj-doc-playground-quarkus] quarkus version set to 3.14.0
 - [fj-doc-maven-plugin] new parameter excludeXmlApis (could be needed with quarkus)
@@ -537,13 +537,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.6.3] - 2024-08-21
 
-### Changed
+**Changed**
 
 - [fj-doc-mod-openpdf-ext] revert openpdf to version 1.3.43
 
 ## [8.6.2] - 2024-08-21
 
-### Changed
+**Changed**
 
 - [fj-doc-val-pdfbox] pdfbox version 2.0.32
 - [fj-doc-mod-openpdf-ext] openpdf version 1.4.2
@@ -554,19 +554,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.6.1] - 2024-08-21
 
-### Changed
+**Changed**
 
 - [fj-doc-maven-plugin] check if module exists 
 
 ## [8.6.0] - 2024-08-21
 
-### Added
+**Added**
 
 - fj-doc-maven-plugin (configure a maven project for Fugerit Venus Doc usage)
 
 ## [8.5.2] - 2024-08-14
 
-### Changed
+**Changed**
 
 - [base] new findHandlerRequired() method
 - [freemarker] new fullProcess() by handler id method
@@ -576,23 +576,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.5.1] - 2024-08-09
 
-### Added
+**Added**
 
 - [playground-quarkus] Config conversion user interface
 - [freemarker] text wrap function (using zero with space `&#8203;`)
 
-### Changed
+**Changed**
 
 - [playground-quarkus] quarkus-version set to 3.13.1
 
 ## [8.5.0] - 2024-08-03
 
-### Added
+**Added**
 
 - [mod-fop] fop-pool-min and fop-pool-max properties (fop configuration can be now resued)
 - [playground-quarkus] added kotlin input <https://github.com/fugerit-org/fj-doc-ext-kotlin/>
 
-### Changed
+**Changed**
 
 - DocTypeHandlerDefault.toString() has more informations now,
   and a customID generated from UUID when the class is created
@@ -606,7 +606,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.4.6] - 2024-04-21
 
-### Changed
+**Changed**
 
 - xsd-parser-version set to 1.2.13 <https://github.com/xmlet/XsdParser/issues/67>
 - openpdf version set to 1.3.43
@@ -619,13 +619,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.5] - 2024-03-19
 
-### Added
+**Added**
 
 - html-charset property for freemarker(html) renderer
 - [fj-doc-lib-autodoc] alternate template with additional
   schema handling <https://github.com/fugerit-org/fj-doc/issues/135>
 
-### Changed
+**Changed**
 
 - xsd-parser-version set to 1.2.10 <https://github.com/xmlet/XsdParser/issues/63>
 - fj-version set to 8.5.3
@@ -634,11 +634,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.4] - 2024-02-28
 
-### Added
+**Added**
 
 - [codacy](https://www.codacy.com/) badge
 
-### Changed
+**Changed**
 
 - fj-xml-to-json-version set to 1.2.0
 - exec-plugin.version set to 3.2.0
@@ -647,7 +647,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-bom set to 1.6.1
 - [playground-quarkus] quarkus-version set to 3.8.1
 
-### Fixed
+**Fixed**
 
 - security issue on html include
 - security issue on Dockerfile
@@ -655,17 +655,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.3] - 2024-02-20
 
-### Changed
+**Changed**
 
 - [xsd-parser-version 1.2.7](https://github.com/xmlet/XsdParser/issues/57)
 
-### Fixed
+**Fixed**
 
 - [playground-quarkus] doc conversion shortcut for xml, json and yaml
 
 ## [3.4.2] - 2024-02-19
 
-### Changed
+**Changed**
 
 - openpdf-version set to 1.3.40 <https://github.com/fugerit-org/fj-doc/discussions/128>
 - xsd-parser-version set to 1.2.6
@@ -680,13 +680,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.1] - 2024-02-11
 
-### Added
+**Added**
 
 - docker publish workflow
 - [fugerit org github project conventions](https://universe.fugerit.org/src/docs/conventions/index.html) reference
 - snyk status badge and scan
 
-### Changed
+**Changed**
 
 - new deploy workflow
 - workflows review and documentation
@@ -696,12 +696,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.4.0] - 2024-02-04
 
-### Added
+**Added**
 
 - fj-doc-mod-openpdf-ext, PDF and HTML renderer based on [OpenPDF](https://github.com/LibrePDF/OpenPDF)
 - fj-doc-mod-openrtf-ext, RTF renderer based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)
 
-### Changed
+**Changed**
 
 - Setup java 17 for code ql workflow
 - Switch to codeql actions v3
@@ -714,24 +714,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.3.1] - 2024-01-10
 
-### Added
+**Added**
 
 - fj-doc-mod-opencsv, new OpenCSVTypeHandlerUTF8 handler
 - fj-doc-base, new SimpleMarkdownBasicTypeHandlerNoCommentsUTF8 and SimpleMarkdownExtTypeHandlerNoCommentsUTF8 handlers
 
-### Changed
+**Changed**
 
 - fj-doc-playground-quarkus, switched to freemarker doc process config xml
 - fj-doc-sample, fj-doc-mod-openpdf version set to 1.3.0
 - fj-doc-sample, setup fop-config fod pdf/a doc handler as inline
 
-### Fixed
+**Fixed**
 
 - freemarker-doc-process-1-0.xsd, docHandlerCustomConfigType now accepts any child elements
 
 ## [3.3.0] - 2024-01-05
 
-### Changed
+**Changed**
 
 - fj-doc-mod-fop, now fop configuration can be inline
 - fj-doc-freemarker, freemarker-doc-process-1-0.xsd now allows any child element in docHandlerCustomConfigType
@@ -739,11 +739,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.2.5] - 2023-12-23
 
-### Added
+**Added**
 
 - [playground-quarkus] sample for table align
 
-### Changed
+**Changed**
 
 - [playground-quarkus] quarkus-version set to 3.6.4
 - Added java 21 to github action workflow for compatibility check
@@ -753,15 +753,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.2.4] - 2023-12-07
 
-### Added
+**Added**
 
 - [playground-quarkus] xsl-fo output (as of mod-fop format)
 
-### Changed
+**Changed**
 
 - [playground-quarkus] quarkus-version set to 3.6.1
 
-### Fixed
+**Fixed**
 
 - [mod-fop] fix cell vertifcal align #104
 
@@ -770,32 +770,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [val-p7m] P7MContentValidator (validate p7m and possibly its content with a facade)
 - [val-pdfbox] PdfboxStrictValidator (uses not lenient parser)
 
-### Changed
+**Changed**
 
 - [val-pdfbox] pdfbox version 2.0.30
 - [core] meta info 'table-border-collapse' [documentation improvement](https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-border-collapse)
 
 ## [3.2.2] - 2023-11-30
 
-### Added
+**Added**
 
 - [core] 'table-border-collapse' document info to setup default border collapse behavior
 
-### Changed
+**Changed**
 
 - [mod-fop] support for table cell back-color attribute
 - [playground-quarkus] quarkus-version set to 3.6.0
 
 ## [3.2.1] - 2023-11-22
 
-### Added
+**Added**
 
 - [val-p7m] utility to extract p7m content
 - [val-core] XmlValidator for simple xml doc type validation
 - [val] P7MValidator in full validator facade
 - [playground-quarkus] P7MValidator in validator feature
 
-### Changed
+**Changed**
 
 - [playground-quarkus] docker image eclipse-temurin:21.0.1_12-jre-alpine
 - [playground-quarkus] quarkus-version set to 3.5.2
@@ -807,22 +807,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.2.0] - 2023-11-02
 
-### Added
+**Added**
 
 - [val-p7m] module for p7m validation
 
-### Changed
+**Changed**
 
 - [playground-quarkus] changed docker base image to 21.0.1_12-jre-ubi9-minimal
 - [playground-quarkus] added no cache headers
 
 ## [3.1.9] - 2023-10-31
 
-### Added
+**Added**
 
 - init handler with exception suppression
 
-### Changed
+**Changed**
 
 - Added init handler with exception suppression
 - [playground-quarkus] set docker image to eclipse-temurin:21.0.1_12-jdk
@@ -834,7 +834,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.1.8] - 2023-10-22
 
-### Added
+**Added**
 
 - [playground-quarkus] csv output format
 - [fj-doc-mod-opencsv] 'csv-line-end' property to override the default line terminator (\n) 
@@ -850,120 +850,120 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [playground-quarkus] os.arch info in home page
 - [playground-quarkus] generation error output 
 
-### Changed
+**Changed**
 
 - [playground-quarkus] home page provides the 'snapshot' image tag (instead of previous 'latest').
 - [playground-quarkus] code review to remove bootstrap
 - [playground-quarkus] default html type handler set to FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8
 
-### Fixed
+**Fixed**
 
 - [playground-quarkus] <#ftl> directive handling
 
 ## [3.1.7] - 2023-10-21
 
-### Added
+**Added**
 
 - [playground-quarkus] markdown output
 - [playground-quarkus] document catalog filter by input type
 - [playground-quarkus] system info in home page
 
-### Changed
+**Changed**
 
 - [playground-quarkus] set -Dfile. encoding="UTF-8" on quarkus image
 - [playground-quarkus] better json custom data handling in samples
 - [playground-quarkus] base docker image set to amazoncorretto:21
 
-### Fixed
+**Fixed**
 
 - utf8 read function
 - [playground-quarkus] link in home page
 
 ## [3.1.6] - 2023-10-15
 
-### Added
+**Added**
 
 - [playground-quarkus] Run locally instruction
 
-### Changed
+**Changed**
 
 - [playground-quarkus] favicon and logo
 
-### Fixed
+**Fixed**
 
 - [Server-side template injection](https://github.com/fugerit-org/fj-doc/security/code-scanning/9)
 
 ## [3.1.5] - 2023-10-15
 
-### Added
+**Added**
 
 - Maven wrapper
 - Public [Playground docker repository](https://hub.docker.com/repository/docker/fugeritorg/fj-doc-playground-quarkus/general)
 - Dockerfile for playground and instructions
 - FreeMarker Template sample features on fj-doc-playground-quarkus (91)
 
-### Changed
+**Changed**
 
 - quarkus version set to 3.4.3
 
 ## [3.1.4] - 2023-10-14
 
-### Added
+**Added**
 
 - [fj-doc-freemarker] config attribute for FreeMarkerDocHelperTypeHandler : escapeTextAsHtml
 - [fj-doc-freemarker] FreeMarkerHtmlTypeHandlerEscapeUTF8 with default escapeTextAsHtml=true and UTF8 charset
 - [fj-doc-freemarker] FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8 with default escapeTextAsHtml=true and UTF8 charset
 - [fj-doc-freemarker] output_format xml test
 
-### Changed
+**Changed**
 
 - [fj-doc-freemarker] FreeMarkerHtmlTypeHandlerEscapeUTF8 and FreeMarkerHtmlFragmentTypeHandlerEscapeUTF8 set as default for config stub generation
 
-### Removed
+**Removed**
 
 - reference to fj-doc-mod-poi5 in README.md
 
 ## [3.1.3] - 2023-10-03
 
-### Added
+**Added**
 
 - FormatTypeConsts methods for standardDateParse() and standardNumberParse()
 
-### Changed
+**Changed**
 
 - FreeMarkerHtmlTypeHandler, element 'para', more attributes are evaluated : space-left, space-right, white-space-collapse, leading, text-indent
 - PdfFopTypeHandler, element 'para', attribute leading evaluated
 
 ## [3.1.2] - 2023-10-02
 
-### Added
+**Added**
 
 - methods to initAll handlers at once in InitHandler utility
 
-### Fixed
+**Fixed**
 
 - InitHandler initialization of PDF/A fop handlers failed if a font was not found.
 
 ## [3.1.1] - 2023-10-01
 
-### Changed
+**Changed**
 
 - java and maven badges link
 
-### Fixed
+**Fixed**
 
 - LICENSE place holder
 - page-break tag now rendered in html as `</div><div>` by freemarker html type handler
 
 ## [3.1.0] - 2023-10-01
 
-### Added
+**Added**
 
 - new config attribute 'fop-suppress-events' top mod-fop
 - fj-xml-to-json 0.1.1 dependency
 - [next generation json format support](fj-doc-base-json/src/main/docs/xml_conversion_ng.md) [experimental]
 
-### Changed
+**Changed**
 
 - refactor of json and yaml format to use [fj-xml-to-json](https://github.com/fugerit-org/fj-xml-to-json)
 - fj-bom set to 1.4.7
@@ -975,7 +975,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - increased test coverage of fj-doc-base module
 - DocXmlParser can now be set to fail when elements are unknown
 
-### Fixed
+**Fixed**
 
 - DocHandlerFacade.findHandler() was not looking for all registered handlers in some case.
 - Fixed missing attributes 'map-all' in complex step xsd.
@@ -983,89 +983,89 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [3.0.9] - 2023-09-24
 
-### Changed
+**Changed**
 
 - fj-doc-mod-openpdf-version set to 1.1.0-sa.1
 - jajarta-jaxb-version set to 4.0.1
 
 ## [3.0.8] - 2023-09-23
 
-### Added
+**Added**
 
 - Code of conduct badge and file
 - [Sample jdk compatibility check workflow on branch develop](.github/workflows/build_maven_compatibility.yml)
 
-### Changed
+**Changed**
 
 - quarkus version set to 3.4.1
 - fj-bom set to 1.4.2
 - fj-version set to 8.3.8
 - [Sonar cloud workflow merged in maven build](.github/workflows/deploy_maven_package.yml)
 
-### Removed
+**Removed**
 
 - Sonar cloud workflow yml removed. (after being merged with maven build)
 
-### Fixed
+**Fixed**
 
 - [GHSA-4f4r-wgv2-jjvg](https://github.com/advisories/GHSA-4f4r-wgv2-jjvg) [CVE-2023-4853](https://nvd.nist.gov/vuln/detail/CVE-2023-4853)
 
-### Security
+**Security**
 
 - [Quarkus HTTP vulnerable to incorrect evaluation of permissions](https://github.com/fugerit-org/fj-doc/security/dependabot/23) resolved. (fix GHSA-4f4r-wgv2-jjvg)
 
 ## [3.0.7] - 2023-09-20
 
-### Changed
+**Changed**
 
 - fj-core set to 8.3.7
 
 ## [3.0.6] - 2023-09-19
 
-### Added
+**Added**
 
 - method FreemarkerDocProcessConfig.fullProcess() with minimal parameters, generating the document and returning xml data.
 
-### Changed
+**Changed**
 
 - fj-core set to 8.3.6
 
-### Fixed
+**Fixed**
 
 - now default chain in FreemarkerDocProcessConfig.newSimpleConfig() maps all attributes to freemarker template.
 
 ## [3.0.5] - 2023-09-17
 
-### Added
+**Added**
 
 - added java/maven badges
 
-### Changed
+**Changed**
 
 - fj-core set to 8.3.5
 - all Sonar Cloud issues addressed
 
 ## [3.0.4] - 2023-09-15
 
-### Changed
+**Changed**
 
 - fj-bom set to 1.4.0 (fj-test-helper8 now managed by parent pom)
 
-### Fixed
+**Fixed**
 
 - Javadoc generation with java 17
 
-### Security
+**Security**
 
 - [Apache Commons Compress denial of service vulnerability](https://github.com/fugerit-org/fj-doc/security/dependabot/22)
 
 ## [3.0.3] - 2023-09-13
 
-### Added
+**Added**
 
 - [maven deploy workflow](.github/workflows/deploy_maven_package.yml)
 
-### Changed
+**Changed**
 
 - fj-core set to 8.2.8
 - fj-test-helper8 set to 0.5.0
@@ -1073,69 +1073,69 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [2.0.2] - 2023-09-05
 
-### Changed
+**Changed**
 
 - fj-bom set to 1.3.6 (poi-version set to 5.2.3)
 
 ## [2.0.1] - 2023-09-05
 
-### Removed
+**Removed**
 
 - FopConfigClassLoader (previously deprecated) (#61)
 
 ## [2.0.0] - 2023-09-05
 
-### Changed
+**Changed**
 
 - The apache poi5+ is now the default version required (and java11+ unless the poi version is overridden )
 - FreemarkerDocProcessConfigFacade.newSimpleConfig() has a new method accepting the free marker version as a parameter.
 - SimpleTableDocConfig.newConfig() now works in legacy mode (freemarker 2.3.29), and there are new methods for setting freemarker version
 
-### Removed
+**Removed**
 
 - The module fj-doc-mod-poi5 has beend removed as now the module fj-doc-mod-poi requires apache poi 5+
 
 ## [1.5.11] - 2023-09-04
 
-### Added
+**Added**
 
 - [workflow codeql on branch main](.github/workflows/codeql-analysis.yml)
 
-### Security
+**Security**
 
 - module fj-doc-val-poi now use poi5-version 5.2.3 (#61) [CVE-2022-26336](https://github.com/advisories/GHSA-mqvp-7rrg-9jxc) (NOTE: now this module will only work with java 11+, unless Apache POI version is overridden) 
 
 ## [1.5.10] - 2023-09-04
 
-### Added
+**Added**
 
 - [dependabot](.github/dependabot.yml) configuration
 
-### Changed
+**Changed**
 
 - fj-core set to 8.2.6
 - sample module [fj-doc-mod-itext](https://github.com/fugerit-org/fj-doc-mod-itext/) substituted by [fj-doc-mod-openpdf](https://github.com/fugerit-org/fj-doc-mod-openpdf/)
 - reference to https://keepachangelog.com/ v1.1.0 in changelog
 
-### Removed
+**Removed**
 
 - removed unsupported modules fj-doc-bom, fj-doc-bom-core, fj-doc-bom-fop
 
-### Security
+**Security**
 
 - fj-bom set to 1.3.5 (#59) [CVE-2016-1000352](https://github.com/advisories/GHSA-w285-wf9q-5w69) [CVE-2016-1000344](https://github.com/advisories/GHSA-2j2x-hx4g-2gf4) [CVE-2016-1000343](https://github.com/advisories/GHSA-rrvx-pwf8-p59p) [CVE-2016-1000342](https://github.com/advisories/GHSA-qcj7-g2j5-g7r3) [CVE-2016-1000338](https://github.com/advisories/GHSA-4vhj-98r6-424h) [CVE-2018-1000180](https://github.com/advisories/GHSA-xqj7-j8j5-f2xr) [CVE-2023-33201](https://github.com/advisories/GHSA-hr8g-6v94-x4m9) [CVE-2020-15522](https://github.com/advisories/GHSA-6xx3-rg99-gc3p) [CVE-2020-26939](https://github.com/advisories/GHSA-72m5-fvvv-55m6) [CVE-2016-1000345](https://github.com/advisories/GHSA-9gp4-qrff-c648) [CVE-2015-7940](https://github.com/advisories/GHSA-4mv7-cq75-3qjm) [CVE-2016-1000341](https://github.com/advisories/GHSA-r9ch-m4fh-fc7q) [CVE-2016-1000339](https://github.com/advisories/GHSA-c8xf-m4ff-jcxj) [CVE-2021-3803](https://github.com/advisories/GHSA-rp65-9cf3-cjxr) [CVE-2016-1000346](https://github.com/advisories/GHSA-fjqm-246c-mwqg) 
 - apache fop version set to 2.9 (#58) [CVE-2022-44729](https://github.com/advisories/GHSA-gq5f-xv48-2365) [CVE-2022-44729](https://github.com/advisories/GHSA-gq5f-xv48-2365) [CVE-2022-44730](https://github.com/advisories/GHSA-2474-2566-3qxp) 
 
 ## [1.5.9] - 2023-09-04
 
-### Added
+**Added**
 
 - tag element (HEAD) to scm element. (pom.xml)
 - issueManagement element (pom.xml, url : https://github.com/fugerit-org/fj-doc/issues )
 - dependency fj-tester-helper8 set to 0.4.1
 - [workflow](.github/workflows/build_maven_package.yml) for package testing and dependency upload
 
-### Changed
+**Changed**
 
 - fj-bom set to 1.3.3
 - fj-bom set to 8.2.4
@@ -1143,33 +1143,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - module playground quarkus quarkus.platform.group-id set to 'io.quarkus', version set to '3.3.1'
 - playground samples doc version set to 2.1
 
-### Fixed
+**Fixed**
 
 - scm url (.git was missing at the end).
 
 ## [1.5.8] - 2023-09-01
 
-### Added
+**Added**
 
 - Unit test for DocValidator and FreemarkerDocProcessConfigValidator (#56)
 
-### Fixed
+**Fixed**
 
 - Prohibit xml external entities on DocValidator and FreemarkerDocProcessConfigValidator (#56)
 
-### Changed
+**Changed**
 
 - Added assertions to TestPOI junit
 
 ## [1.5.7] - 2023-09-01
 
-### Added
+**Added**
 
 - xsd badge
 - keep a changelog badge
 - maven repo central and javadoc badges to modules
 
-### Changed
+**Changed**
 
 - fj-bom version set to 1.3.1
 - Added build metadata to artifacts <https://github.com/fugerit-org/fj-bom/issues/2> (#54)
@@ -1177,12 +1177,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New changelog style based on : <https://github.com/olivierlacan/keep-a-changelog> (#53)
 - some link in the README.md
 
-### Removed
+**Removed**
 
 - index.md
 
 ## [1.5.6 and previous]
 
-### Changed
+**Changed**
 
 - only the [release notes](docgen/release-notes.txt) are available.
