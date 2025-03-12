@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- workflow "CI native modules build and test" test for ubuntu arm and windows <https://github.com/fugerit-org/fj-doc/issues/313>
+
 ### Changed
 
 - quarkus-version set to 3.19.2 across all the modules
