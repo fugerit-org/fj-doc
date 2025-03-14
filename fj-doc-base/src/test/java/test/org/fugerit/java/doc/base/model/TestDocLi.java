@@ -3,13 +3,13 @@ package test.org.fugerit.java.doc.base.model;
 import org.fugerit.java.doc.base.model.DocLi;
 import org.fugerit.java.doc.base.model.DocList;
 import org.fugerit.java.doc.base.model.DocPara;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocLi extends HelperDocT {
+class TestDocLi extends HelperDocT {
 
 	
 	private String worker( DocLi element ) {
@@ -24,36 +24,36 @@ public class TestDocLi extends HelperDocT {
 	}
 	
 	@Test
-	public void testElement1() {
+	void testElement1() {
 		DocLi element = new DocLi();
 		element.setId( TEST_ID );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.getElementList().add( new DocPara() );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.getElementList().add( new DocList() );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 	}
 	
 	@Test
-	public void testElement2() {
+	void testElement2() {
 		DocLi element = new DocLi();
 		element.setId( TEST_ID );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.getElementList().add( new DocPara() );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.getElementList().add( new DocPara() );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 	}
 	
 	@Test
-	public void testElement3() {
+	void testElement3() {
 		DocLi element = new DocLi();
 		element.setId( TEST_ID );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.getElementList().add( new DocList() );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.getElementList().add( new DocList() );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 	}
 	
 }

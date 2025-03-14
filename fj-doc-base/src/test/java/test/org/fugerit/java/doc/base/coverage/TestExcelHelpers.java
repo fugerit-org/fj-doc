@@ -10,57 +10,57 @@ import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperConsts;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperUtils;
 import org.fugerit.java.doc.base.typehelper.excel.MatrixCell;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestExcelHelpers {
+class TestExcelHelpers {
 
 	@Test
-	public void testTesoveTemplateStreamOk() throws IOException {
+	void testTesoveTemplateStreamOk() throws IOException {
 		DocBase docBase = new DocBase();
 		docBase.setStableInfo( new Properties() );
 		docBase.getStableInfo().setProperty( ExcelHelperConsts.PROP_XLS_TEMPLATE , "cl://txt/test.txt" );
 		String text = StreamIO.readString( ExcelHelperUtils.resoveTemplateStream( docBase ) );
-		Assert.assertEquals( "test text" , text );
+		Assertions.assertEquals( "test text" , text );
 	}
 	
 	@Test
-	public void testTesoveTemplateStreamFail() throws IOException {
+	void testTesoveTemplateStreamFail() throws IOException {
 		DocBase docBase = new DocBase();
 		docBase.setStableInfo( new Properties() );
 		docBase.getStableInfo().setProperty( ExcelHelperConsts.PROP_XLS_TEMPLATE , "cl://txt/not_found.txt" );
-		Assert.assertThrows( IOException.class , () -> ExcelHelperUtils.resoveTemplateStream( docBase ) );
+		Assertions.assertThrows( IOException.class , () -> ExcelHelperUtils.resoveTemplateStream( docBase ) );
 	}
 	
 	@Test
-	public void testTesoveTemplateStreamNoProp() throws IOException {
+	void testTesoveTemplateStreamNoProp() throws IOException {
 		DocBase docBase = new DocBase();
 		docBase.setStableInfo( new Properties() );
-		Assert.assertNull( ExcelHelperUtils.resoveTemplateStream( docBase ) );
+		Assertions.assertNull( ExcelHelperUtils.resoveTemplateStream( docBase ) );
 	}
 	
 	@Test
-	public void testPrepareNumber() throws IOException {
-		Assert.assertEquals( "1000.5", ExcelHelperUtils.prepareNumber( "1.000,5" ) );
-		Assert.assertEquals( "10", ExcelHelperUtils.prepareNumber( "10" ) );
+	void testPrepareNumber() throws IOException {
+		Assertions.assertEquals( "1000.5", ExcelHelperUtils.prepareNumber( "1.000,5" ) );
+		Assertions.assertEquals( "10", ExcelHelperUtils.prepareNumber( "10" ) );
 	}
 	
 	@Test
-	public void testMatrixCell() {
+	void testMatrixCell() {
 		DocCell cell = new DocCell();
 		cell.setDocBorders( new DocBorders() );
 		cell.getDocBorders().setBorderWidthBottom( 1 );
 		MatrixCell mc = new MatrixCell( cell , cell );
-		Assert.assertNotNull( mc.getBorders() );
+		Assertions.assertNotNull( mc.getBorders() );
 		cell.setRSpan( 2 );
 		cell.setCSpan( 2 );
-		Assert.assertEquals( 0, mc.getBorders().getBorderWidthBottom() );
+		Assertions.assertEquals( 0, mc.getBorders().getBorderWidthBottom() );
 		DocCell newCell = new DocCell();
 		mc.setCell( newCell );
-		Assert.assertEquals( 0, mc.getBorders().getBorderWidthBottom() );
+		Assertions.assertEquals( 0, mc.getBorders().getBorderWidthBottom() );
 		cell.setRSpan( 1 );
 		cell.setCSpan( 1 );
-		Assert.assertEquals( 1, mc.getBorders().getBorderWidthBottom() );
+		Assertions.assertEquals( 1, mc.getBorders().getBorderWidthBottom() );
 	}
 	
 }

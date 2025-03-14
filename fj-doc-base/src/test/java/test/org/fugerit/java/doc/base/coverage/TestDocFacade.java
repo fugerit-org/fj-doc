@@ -17,16 +17,16 @@ import org.fugerit.java.doc.base.model.DocImage;
 import org.fugerit.java.doc.base.model.DocRow;
 import org.fugerit.java.doc.base.model.DocTable;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestDocFacade {
+class TestDocFacade {
 
 	private static final String DEF_PATH = "coverage/xml/default_doc.xml";
 	
 	private void additionalTest( DocBase doc ) {
 		DocTable table = (DocTable)doc.getElementById( "excel-table" );
-		Assert.assertNotNull( table );
+		Assertions.assertNotNull( table );
 		TableMatrix matrix = new TableMatrix( table.containerSize() , table.getColumns() );
 		Iterator<DocElement> itRows = table.docElements();
 		while ( itRows.hasNext() ) {
@@ -37,10 +37,10 @@ public class TestDocFacade {
 				matrix.setNext( cell , cell.getRowSpan(), cell.getColumnSpan() );
 			}
 		}
-		Assert.assertNotNull( matrix );
-		Assert.assertNotNull( matrix.getParent( 1, 1 ) );
-		Assert.assertNotNull( matrix.getBorders( 1, 1 ) );
-		Assert.assertFalse( matrix.isCellEmpty( 1, 1 ) );
+		Assertions.assertNotNull( matrix );
+		Assertions.assertNotNull( matrix.getParent( 1, 1 ) );
+		Assertions.assertNotNull( matrix.getBorders( 1, 1 ) );
+		Assertions.assertFalse( matrix.isCellEmpty( 1, 1 ) );
 		for ( int r=0; r<matrix.getRowCount(); r++ ) {
 			for ( int c=0; c<matrix.getColumnCount(); c++ ) {
 				matrix.getCell( r , c );	
@@ -53,15 +53,15 @@ public class TestDocFacade {
 				DocImage img = (DocImage)e;
 				SafeFunction.apply( () -> {
 					byte[] data = SourceResolverHelper.resolveImage( img );
-					Assert.assertNotNull( data );
+					Assertions.assertNotNull( data );
 				});
 			}
 		} );
 	}
 	
 	@Test
-	public void testParse001() {
-		Assert.assertNotNull(
+	void testParse001() {
+		Assertions.assertNotNull(
 			SafeFunction.get( () -> {
 				try ( InputStream reader = ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) {
 					DocBase doc =  DocFacade.parse( reader );
@@ -73,8 +73,8 @@ public class TestDocFacade {
 	}
 	
 	@Test
-	public void testParseRE001() {
-		Assert.assertNotNull( SafeFunction.get( () -> {
+	void testParseRE001() {
+		Assertions.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
 				 return DocFacade.parseRE( reader );
 			}
@@ -82,8 +82,8 @@ public class TestDocFacade {
 	}
 	
 	@Test
-	public void testParseRE002() {
-		Assert.assertNotNull( SafeFunction.get( () -> {
+	void testParseRE002() {
+		Assertions.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
 				 return DocFacade.parseRE( reader, DocFacadeSource.SOURCE_TYPE_XML );
 			}
@@ -91,8 +91,8 @@ public class TestDocFacade {
 	}
 	
 	@Test
-	public void testValidate001() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void testValidate001() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
 				 return DocFacade.validate( reader );
 			}
@@ -100,8 +100,8 @@ public class TestDocFacade {
 	}
 	
 	@Test
-	public void testParse002() {
-		Assert.assertNotNull( SafeFunction.get( () -> {
+	void testParse002() {
+		Assertions.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( DEF_PATH ) ) ) {
 				 return DocFacade.parse( reader, new DocHelper() );
 			}

@@ -1,13 +1,13 @@
 package test.org.fugerit.java.doc.base.model;
 
 import org.fugerit.java.doc.base.model.DocList;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocList extends HelperDocT {
+class TestDocList extends HelperDocT {
 
 	
 	private String worker( DocList element ) {
@@ -18,25 +18,25 @@ public class TestDocList extends HelperDocT {
 	}
 	
 	@Test
-	public void testElement() {
+	void testElement() {
 		DocList element = new DocList();
 		element.setId( TEST_ID );
 		element.setListType( DocList.LIST_TYPE_OL );
-		Assert.assertNotNull( this.worker( element ) );
-		Assert.assertFalse( element.isUnordered() );
-		Assert.assertTrue( element.isOrdered() );
+		Assertions.assertNotNull( this.worker( element ) );
+		Assertions.assertFalse( element.isUnordered() );
+		Assertions.assertTrue( element.isOrdered() );
 		element.setListType( DocList.LIST_TYPE_OLL );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.setListType( DocList.LIST_TYPE_OLN );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.setListType( DocList.LIST_TYPE_UL );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.setListType( DocList.LIST_TYPE_ULD );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 		element.setListType( DocList.LIST_TYPE_ULM );
-		Assert.assertNotNull( this.worker( element ) );
-		Assert.assertTrue( element.isUnordered() );
-		Assert.assertFalse( element.isOrdered() );
+		Assertions.assertNotNull( this.worker( element ) );
+		Assertions.assertTrue( element.isUnordered() );
+		Assertions.assertFalse( element.isOrdered() );
 	}
 	
 }

@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.base.xml;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -10,14 +10,15 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.XMLException;
 import org.fugerit.java.core.xml.sax.SAXParseResult;
 import org.fugerit.java.doc.base.xml.DocValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import org.fugerit.java.test.helper.core.io.ReaderFail;
 
 import lombok.extern.slf4j.Slf4j;
-import test.org.fugerit.java.helpers.io.ReaderFail;
 
 @Slf4j
-public class TestDocValidator {
+class TestDocValidator {
 
 	private static final String VALID_XML_PATH = "sample/doc_test_01.xml";
 	
@@ -28,7 +29,7 @@ public class TestDocValidator {
 	}
 	
 	@Test
-	public void testValidate() {
+	void testValidate() {
 		String fullPath = VALID_XML_PATH;
 		log.info( "validate -> {}", fullPath );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( fullPath );
@@ -37,14 +38,14 @@ public class TestDocValidator {
 			boolean ok = result.isPartialSuccess();
 			DocValidator.logResult(result, log);
 			log.info( "Validation result {}", ok );
-			Assert.assertTrue( ok );
+			Assertions.assertTrue( ok );
 		} catch (Exception e) {
 			this.failEx(e);
 		}
 	}
 	
 	@Test
-	public void testValidateVersion() {
+	void testValidateVersion() {
 		String fullPath = VALID_XML_PATH;
 		log.info( "validate -> {}", fullPath );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( fullPath );
@@ -53,43 +54,43 @@ public class TestDocValidator {
 			boolean ok = result.isPartialSuccess();
 			DocValidator.logResult(result, log);
 			log.info( "Validation result {}", ok );
-			Assert.assertTrue( ok );
+			Assertions.assertTrue( ok );
 		} catch (Exception e) {
 			this.failEx(e);
 		}
 	}
 	
 	@Test
-	public void testValidateLoggerKo() {
+	void testValidateLoggerKo() {
 		String fullPath = "sample/doc_test_02_ko.xml";
 		log.info( "validate -> {}", fullPath );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( fullPath );
 				Reader reader = new InputStreamReader(is)) {
 			boolean ok = DocValidator.logValidation(reader, log);
 			log.info( "Validation result {}", ok );
-			Assert.assertTrue( !ok );
+			Assertions.assertTrue( !ok );
 		} catch (Exception e) {
 			this.failEx(e);
 		}
 	}
 	
 	@Test
-	public void testValidateLoggerOk() {
+	void testValidateLoggerOk() {
 		String fullPath = VALID_XML_PATH;
 		log.info( "validate -> {}", fullPath );
 		try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( fullPath );
 				Reader reader = new InputStreamReader(is)) {
 			boolean ok = DocValidator.logValidation(reader, log);
 			log.info( "Validation result {}", ok );
-			Assert.assertTrue( ok );
+			Assertions.assertTrue( ok );
 		} catch (Exception e) {
 			this.failEx(e);
 		}
 	}
 	
 	@Test
-	public void testValidateFail() {
-		Assert.assertThrows( XMLException.class, () -> {
+	void testValidateFail() {
+		Assertions.assertThrows( XMLException.class, () -> {
 			try ( Reader reader = new ReaderFail() ) {
 				SAXParseResult result = DocValidator.validate( reader );
 				fail( "Should not get here : "+result );
@@ -98,8 +99,8 @@ public class TestDocValidator {
 	}
 
 	@Test
-	public void testValidateVersionFail() {
-		Assert.assertThrows( XMLException.class, () -> {
+	void testValidateVersionFail() {
+		Assertions.assertThrows( XMLException.class, () -> {
 			try ( Reader reader = new ReaderFail() ) {
 				SAXParseResult result = DocValidator.validateVersion( reader );
 				fail( "Should not get here : "+result );
@@ -108,8 +109,8 @@ public class TestDocValidator {
 	}
 
 	@Test
-	public void testValidateLoggerFail() {
-		Assert.assertThrows( XMLException.class, () -> {
+	void testValidateLoggerFail() {
+		Assertions.assertThrows( XMLException.class, () -> {
 			try ( Reader reader = new ReaderFail() ) {
 				boolean result = DocValidator.logValidation( reader, log );
 				fail( "Should not get here : "+result );
@@ -118,8 +119,8 @@ public class TestDocValidator {
 	}
 	
 	@Test
-	public void testGetXsdVersion() {
-		Assert.assertThrows( XMLException.class, () -> {
+	void testGetXsdVersion() {
+		Assertions.assertThrows( XMLException.class, () -> {
 			try ( Reader reader = new ReaderFail() ) {
 				String result = DocValidator.getXsdVersion(reader);
 				fail( "Should not get here : "+result );

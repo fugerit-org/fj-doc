@@ -1,13 +1,13 @@
 package test.org.fugerit.java.doc.base.model;
 
 import org.fugerit.java.doc.base.model.DocNbsp;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocNbsp extends HelperDocT {
+class TestDocNbsp extends HelperDocT {
 
 	private String worker( DocNbsp element ) {
 		this.baseTest( element );
@@ -16,11 +16,11 @@ public class TestDocNbsp extends HelperDocT {
 	}
 	
 	@Test
-	public void testElement() {
+	void testElement() {
 		DocNbsp element = new DocNbsp();
 		element.setId( TEST_ID );
 		element.setLength( 10 );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 	}
 	
 }

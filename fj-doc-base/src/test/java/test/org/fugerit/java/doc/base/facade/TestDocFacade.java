@@ -4,15 +4,15 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
 
+import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.facade.DocFacade;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-import test.org.fugerit.java.BasicTest;
-
-public class TestDocFacade extends BasicTest {
+@Slf4j
+class TestDocFacade {
 
 	public static final boolean VALID = true;
 	public static final boolean NOT_VALID = false;
@@ -24,23 +24,23 @@ public class TestDocFacade extends BasicTest {
 	private boolean testValidateWorker( String path, boolean valid, boolean exception ) {
 		return SafeFunction.get(() -> {
 			try ( Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( path ) ) ) {
-				logger.info( "path : {}, valid: {}, exception: {} ", path, valid, exception );
+				log.info( "path : {}, valid: {}, exception: {} ", path, valid, exception );
 				Properties params = new Properties();
 				boolean validResult = DocFacade.validate( reader , params );
-				Assert.assertEquals( "Validation result" , valid, validResult );
+				Assertions.assertEquals( valid, validResult );
 				return true;
 			}
 		});
 	}
 	
 	@Test
-	public void testOk01() {
-		Assert.assertTrue( this.testValidateWorker( "sample/doc_test_01.xml", VALID, NO_EXCEPTION ) );
+	void testOk01() {
+		Assertions.assertTrue( this.testValidateWorker( "sample/doc_test_01.xml", VALID, NO_EXCEPTION ) );
 	}
 
 	@Test
-	public void testKo02() {
-		Assert.assertTrue( this.testValidateWorker( "sample/doc_test_02_ko.xml", NOT_VALID, NO_EXCEPTION ) );
+	void testKo02() {
+		Assertions.assertTrue( this.testValidateWorker( "sample/doc_test_02_ko.xml", NOT_VALID, NO_EXCEPTION ) );
 	}
 	
 }

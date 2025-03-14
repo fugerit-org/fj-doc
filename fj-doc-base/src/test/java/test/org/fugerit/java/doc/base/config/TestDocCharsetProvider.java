@@ -1,19 +1,19 @@
 package test.org.fugerit.java.doc.base.config;
 
 import org.fugerit.java.doc.base.config.DocCharsetProvider;
-import org.junit.Assert;
-import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestDocCharsetProvider {
+class TestDocCharsetProvider {
 
 	@Test
-	public void testProvider() {
+	void testProvider() {
 		DocCharsetProvider.setDefaultProvider( DocCharsetProvider.getDefaultProvider() );
 		log.info( "test : {}", DocCharsetProvider.getDefaultProvider() );
-		Assert.assertNotNull( DocCharsetProvider.getDefaultProvider() );
+		Assertions.assertNotNull( DocCharsetProvider.getDefaultProvider() );
 	}
 	
 }

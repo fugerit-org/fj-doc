@@ -5,25 +5,25 @@ import java.util.Map;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.doc.base.xml.SAXUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestSAXUtils {
+class TestSAXUtils {
 	
 	@Test
-	public void testNewSafeInstance() {
-		Assert.assertNotNull(SafeFunction.get( () -> SAXUtils.newSafeFactory() ) );
+	void testNewSafeInstance() {
+		Assertions.assertNotNull(SafeFunction.get( () -> SAXUtils.newSafeFactory() ) );
 	}
 	
 	@Test
-	public void testNewInstanceFail() {
+	void testNewInstanceFail() {
 		Map<String, Boolean> features = new HashMap<>();
 		features.put( "http://xml.org/sax/features/external-general-entities" , false);
 		features.put( "feature-not-exists" , false);
-		Assert.assertThrows( ConfigRuntimeException.class, () -> SAXUtils.newSafeFactory(features) );
+		Assertions.assertThrows( ConfigRuntimeException.class, () -> SAXUtils.newSafeFactory(features) );
 	}
 
 }

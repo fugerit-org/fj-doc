@@ -3,13 +3,13 @@ package test.org.fugerit.java.doc.base.model;
 import java.util.Properties;
 
 import org.fugerit.java.doc.base.model.DocBorders;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocBoders extends HelperDocT {
+class TestDocBoders extends HelperDocT {
 
 	private static final String DEFAULT_WIDTH_AND_PADDING = "2";
 	
@@ -19,20 +19,20 @@ public class TestDocBoders extends HelperDocT {
 	}
 	
 	@Test
-	public void testElement() {
+	void testElement() {
 		DocBorders element = new DocBorders();
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 	}
 	
 	@Test
-	public void testFrom() {
+	void testFrom() {
 		Properties atts = new Properties();
 		atts.setProperty( DocBorders.ATTRIBUTE_NAME_BORDER_WIDTH , DEFAULT_WIDTH_AND_PADDING );
 		DocBorders element = DocBorders.createBorders(atts, DEFAULT_WIDTH_AND_PADDING );
 		DocBorders copyFull = new DocBorders( element );
 		DocBorders copyVoid = new DocBorders( null );
-		Assert.assertEquals( DEFAULT_WIDTH_AND_PADDING , String.valueOf( copyFull.getBorderWidthBottom() ) );
-		Assert.assertNotEquals( DEFAULT_WIDTH_AND_PADDING , String.valueOf( copyVoid.getBorderWidthBottom() ) );
+		Assertions.assertEquals( DEFAULT_WIDTH_AND_PADDING , String.valueOf( copyFull.getBorderWidthBottom() ) );
+		Assertions.assertNotEquals( DEFAULT_WIDTH_AND_PADDING , String.valueOf( copyVoid.getBorderWidthBottom() ) );
 	}
 	
 }

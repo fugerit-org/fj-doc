@@ -31,18 +31,17 @@ import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHan
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerUTF8;
 import org.fugerit.java.doc.base.xml.DocXmlParser;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
-import test.org.fugerit.java.BasicTest;
 
 @Slf4j
-public class TestCoverage extends BasicTest {
+class TestCoverage {
 
 	private final static String[] TEST_LIST = { "default_doc", "doc_test_01", "default_doc_alt", "default_doc_missing_tag", "default_doc_fail1", "default_doc_fail2", "default_doc_empty" };
 	
@@ -69,7 +68,7 @@ public class TestCoverage extends BasicTest {
 			}
 		};
 	
-	@BeforeClass
+	@BeforeAll
 	public static void init() {
 		Arrays.asList( HANDLERS ).forEach( h -> SafeFunction.apply( () -> InitHandler.initDoc( h ) ) );
 	}
@@ -91,9 +90,9 @@ public class TestCoverage extends BasicTest {
 	}
 	
 	@Test
-	public void test02() {
-		Arrays.asList( TEST_LIST ).stream().forEach( c -> Assert.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) ) );
-		Assert.assertTrue( Boolean.TRUE );
+	void test02() {
+		Arrays.asList( TEST_LIST ).stream().forEach( c -> Assertions.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) ) );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 	private static final Configuration CFG = SafeFunction.get( () -> {
@@ -111,7 +110,7 @@ public class TestCoverage extends BasicTest {
 	
 	private boolean workerAlt( String c ) {
 		SimpleValue<Boolean> res = new SimpleValue<>(false);
-		runTestEx( () -> {
+		SafeFunction.apply( () -> {
 			String path = "coverage/xml/"+c+".xml";
 			Template temp = CFG.getTemplate("/html_doc.ftl");
 			Map<String, Object> root = new HashMap<>();
@@ -132,15 +131,15 @@ public class TestCoverage extends BasicTest {
 	}
 
 	@Test
-	public void test01() {
-		Arrays.asList( TEST_LIST ).stream().forEach( c -> Assert.assertTrue( this.workerAlt( c ) ) );
-		Assert.assertTrue( Boolean.TRUE );
+	void test01() {
+		Arrays.asList( TEST_LIST ).stream().forEach( c -> Assertions.assertTrue( this.workerAlt( c ) ) );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 	
 	@Test
-	public void test03() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void test03() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			File file = new File( "target/test_output.md" );
 			SimpleDocFacade.produce( SimpleMarkdownExtTypeHandler.HANDLER , "cl://coverage/xml/default_doc.xml", file );			
 			return file.exists();
@@ -148,7 +147,7 @@ public class TestCoverage extends BasicTest {
 	}
 
 	@Test
-	public void test04() {
+	void test04() {
 		int res = SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "coverage/xml/default_doc.xml" ) );
 				  ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
@@ -156,14 +155,14 @@ public class TestCoverage extends BasicTest {
 				return buffer.toByteArray().length;
 			}
 		} );
-		Assert.assertNotEquals( 0, res );
+		Assertions.assertNotEquals( 0, res );
 	}
 	
 	@Test
-	public void testXsdVersion() {
+	void testXsdVersion() {
 		String version = DocParserContext.createXsdVersionXmlns( DocVersion.VERSION_2_1.stringVersion() );
 		log.info( "version : {}", version );
-		Assert.assertTrue( version.endsWith( "doc-2-1.xsd" ) );
+		Assertions.assertTrue( version.endsWith( "doc-2-1.xsd" ) );
 	}
 	
 }

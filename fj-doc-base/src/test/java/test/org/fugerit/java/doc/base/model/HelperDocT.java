@@ -5,7 +5,7 @@ import org.fugerit.java.doc.base.model.DocElement;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class HelperDocT {
+class HelperDocT {
 
 	public static final String TEST_ID = "1";
 	
