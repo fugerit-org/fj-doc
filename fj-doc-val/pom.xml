@@ -55,6 +55,12 @@
 			<artifactId>fj-doc-val-p7m</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<organization>
