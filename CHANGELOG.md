@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-bom version 1.7.2
+- fj-xml-to-json-version 2.0.1
 - quarkus-version set to 3.19.3 across all the modules
 
 ### Fixed

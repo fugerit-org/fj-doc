@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.fugerit.java</groupId>
 		<artifactId>fj-bom</artifactId>
-		<version>1.7.1</version>
+		<version>1.7.2</version>
 		<relativePath/>
 	</parent>
 
@@ -28,7 +28,7 @@
 	    <fj-version>8.6.6</fj-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
 		<fj-doc-maven-plugin-version>${fj-doc-version}</fj-doc-maven-plugin-version>
-	    <fj-xml-to-json-version>1.2.0</fj-xml-to-json-version>
+	    <fj-xml-to-json-version>2.0.1</fj-xml-to-json-version>
 		<native-helper-maven-plugin-version>1.4.6</native-helper-maven-plugin-version>
 		<!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.2</jajarta-jaxb-version>
