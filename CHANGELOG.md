@@ -14,14 +14,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - fj-bom version 1.7.2
-- fj-xml-to-json-version 2.0.1
+- fj-xml-to-json-version 1.2.1
 - quarkus-version set to 3.19.3 across all the modules
 
 ### Fixed
 
-- [CHORE]: [CHORE]: playground documentation not updated <https://github.com/fugerit-org/fj-doc/issues/310>
+- [CHORE]: playground documentation not updated <https://github.com/fugerit-org/fj-doc/issues/310>
 - [BUG]: Error in JDK 23, does it support JDK 23? <https://github.com/fugerit-org/fj-doc/issues/302>
 - [BUG]: compatibility build with oracle and microsoft 17 jvm <https://github.com/fugerit-org/fj-doc/issues/304>
+- [CHORE]: junit-jupiter-version 5.12.1 from fj-bom not compatible with quarkus 3 <https://github.com/fugerit-org/fj-doc/issues/315>
 
 ## [8.12.2] - 2025-02-28
 
