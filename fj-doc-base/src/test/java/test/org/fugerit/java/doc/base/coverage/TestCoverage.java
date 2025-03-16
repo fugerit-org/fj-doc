@@ -69,7 +69,7 @@ class TestCoverage {
 		};
 	
 	@BeforeAll
-	public static void init() {
+	static void init() {
 		Arrays.asList( HANDLERS ).forEach( h -> SafeFunction.apply( () -> InitHandler.initDoc( h ) ) );
 	}
 	

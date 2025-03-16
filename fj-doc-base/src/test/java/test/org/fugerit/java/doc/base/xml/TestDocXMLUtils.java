@@ -16,7 +16,7 @@ import java.io.StringReader;
 class TestDocXMLUtils {
 
     @Test
-    public void cleanXml() throws IOException, DocException {
+    void cleanXml() throws IOException, DocException {
         try ( InputStream stream = ClassHelper.loadFromDefaultClassLoader( "sample/default_doc_toclean.xml" ) ) {
             String text = StreamIO.readString( stream );
             try (StringReader reader = new StringReader( text ) ) {

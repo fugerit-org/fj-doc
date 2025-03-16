@@ -63,13 +63,13 @@ class TestDocFacadeSource {
 	}
 	
 	@Test
-	void testParseKO3() throws IOException {
+	void testParseKO3() {
 		DocFacadeSource facade = new DocFacadeSource( new DocFacadeSourceConfig( true ) );
 		assertThrows( ConfigRuntimeException.class , () -> facade.getParserForSource(DocFacadeSource.SOURCE_TYPE_JSON_NG) );
 	}
 	
 	@Test
-	void testParseKO4() throws IOException {
+	void testParseKO4() {
 		DocFacadeSource facade = new DocFacadeSource( new DocFacadeSourceConfig().withFailOnSourceModuleNotFound(true) );
 		Assertions.assertNull( facade.getParserForSource(-1) );
 	}
