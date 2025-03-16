@@ -14,26 +14,26 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.facade.ProcessDocFacade;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestProcessDocFacade {
+class TestProcessDocFacade {
 
 	public static final String TEST_PROCESS_PATH = "coverage/config/doc-process-autodoc.xml";
 	
 	public static final String TEST_CHAIN_ID = "test-chain";
 	
 	@Test
-	public void test001() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void test001() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			ProcessDocFacade facade = ProcessDocFacade.newFacade( 
 					"cl://"+TEST_PROCESS_PATH,
 					"cl://coverage/config/doc-handler-sample.xml", 
 					"test" );	
-			Assert.assertNotNull( facade );
+			Assertions.assertNotNull( facade );
 			DocProcessContext context = DocProcessContext.newContext();
 			// test base
 			try ( ByteArrayOutputStream buffer = new ByteArrayOutputStream() ) {
@@ -54,25 +54,25 @@ public class TestProcessDocFacade {
 	}
 	
 	@Test
-	public void test002() {
-		Assert.assertNotNull( SafeFunction.get( () -> DocProcessConfig.loadConfigSafe( "cl://"+TEST_PROCESS_PATH ) ) );
+	void test002() {
+		Assertions.assertNotNull( SafeFunction.get( () -> DocProcessConfig.loadConfigSafe( "cl://"+TEST_PROCESS_PATH ) ) );
 	}
 	
 	@Test
-	public void test003() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void test003() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( TEST_PROCESS_PATH ) ) {
 				DocProcessConfig facade = new DocProcessConfig();
 				DocProcessConfig.loadConfig(is, facade);	
 				ListMapConfig<MiniFilterConfigEntry> config = facade.getListMap( TEST_CHAIN_ID);
 				MiniFilterChain chain = facade.getChainCache( TEST_CHAIN_ID );
-				Assert.assertNotNull( facade );
-				Assert.assertNotNull( config );
-				Assert.assertNotNull( chain );
-				Assert.assertNotNull( facade.getGeneralProps() );
-				Assert.assertNotNull( facade.getKeys() );
-				Assert.assertNotNull( facade.getIdSet() );
-				Assert.assertNotNull( facade.getDataList( TEST_CHAIN_ID ) );
+				Assertions.assertNotNull( facade );
+				Assertions.assertNotNull( config );
+				Assertions.assertNotNull( chain );
+				Assertions.assertNotNull( facade.getGeneralProps() );
+				Assertions.assertNotNull( facade.getKeys() );
+				Assertions.assertNotNull( facade.getIdSet() );
+				Assertions.assertNotNull( facade.getDataList( TEST_CHAIN_ID ) );
 				facade.setChain( TEST_CHAIN_ID , chain );
 				return Boolean.TRUE;
 			}

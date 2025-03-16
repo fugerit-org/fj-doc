@@ -1,10 +1,10 @@
 package test.org.fugerit.java.doc.base.model;
 
 import org.fugerit.java.doc.base.model.DocBackground;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestDocBackground extends HelperDocT {
+class TestDocBackground extends HelperDocT {
 
 	private String worker( DocBackground element ) {
 		this.baseTest(element);
@@ -12,10 +12,10 @@ public class TestDocBackground extends HelperDocT {
 	}
 	
 	@Test
-	public void testElement() {
+	void testElement() {
 		DocBackground element = new DocBackground();
 		element.setId( TEST_ID );
-		Assert.assertNotNull( this.worker( element ) );
+		Assertions.assertNotNull( this.worker( element ) );
 	}
 	
 }

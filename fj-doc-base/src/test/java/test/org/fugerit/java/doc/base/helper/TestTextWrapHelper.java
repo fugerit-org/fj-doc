@@ -1,17 +1,17 @@
 package test.org.fugerit.java.doc.base.helper;
 
 import org.fugerit.java.doc.base.helper.TextWrapHelper;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestTextWrapHelper {
+class TestTextWrapHelper {
 
     @Test
-    public void testWrap() {
+    void testWrap() {
         String input = "123";
         String test = "1"+TextWrapHelper.ZERO_WITH_SPACE+"2"+TextWrapHelper.ZERO_WITH_SPACE+"3"+TextWrapHelper.ZERO_WITH_SPACE;
         String out = TextWrapHelper.padZeroWithSpace( input );
-        Assert.assertEquals( test, out );
+        Assertions.assertEquals( test, out );
     }
 
 }

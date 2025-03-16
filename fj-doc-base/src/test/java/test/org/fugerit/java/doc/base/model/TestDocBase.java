@@ -6,16 +6,16 @@ import org.fugerit.java.doc.base.model.DocFooter;
 import org.fugerit.java.doc.base.model.DocHeader;
 import org.fugerit.java.doc.base.model.DocInfo;
 import org.fugerit.java.doc.base.model.DocPara;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocBase {
+class TestDocBase {
 
 	@Test
-	public void test1() {
+	void test1() {
 		DocBase docBase = new DocBase();
 		docBase.setDocMeta( new DocContainer() );
 		DocInfo info = new DocInfo();
@@ -47,9 +47,9 @@ public class TestDocBase {
 		log.info( "info 8 : {}", docBase.isUseFooter() );
 		log.info( "info 9 : {}", docBase.isUseHeader() );
 		DocBase.print(docBase, System.out);
-		Assert.assertNotNull( docBase );
-		Assert.assertNull( docBase.getDocBackground() );
-		Assert.assertNull( docBase.getDocBookmarkTree() );
+		Assertions.assertNotNull( docBase );
+		Assertions.assertNull( docBase.getDocBackground() );
+		Assertions.assertNull( docBase.getDocBookmarkTree() );
 	}
 	
 }

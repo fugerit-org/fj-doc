@@ -17,60 +17,60 @@ import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.facade.DocHandlerFactory;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownBasicTypeHandler;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocHandlerFacade {
+class TestDocHandlerFacade {
 
 	private static final String XML_TEST_PATH = "coverage/xml/default_doc.xml";
 	
 	@Test
-	public void testDocFacade() throws Exception {
+	void testDocFacade() throws Exception {
 		// test register
 		DocHandlerFacade facade = new DocHandlerFacade();
 		String testId = "test-id";
 		facade.registerHandlerAndId( "test-id" , SimpleMarkdownBasicTypeHandler.HANDLER );
-		Assert.assertNotNull( facade.findHandler( testId ) );
+		Assertions.assertNotNull( facade.findHandler( testId ) );
 		facade.registerHandlerAndId( testId, SimpleMarkdownBasicTypeHandler.HANDLER, true ); // only log duplicate
-		Assert.assertThrows( ConfigRuntimeException.class , () -> facade.registerHandlerAndId( testId, SimpleMarkdownBasicTypeHandler.HANDLER, false ) );
+		Assertions.assertThrows( ConfigRuntimeException.class , () -> facade.registerHandlerAndId( testId, SimpleMarkdownBasicTypeHandler.HANDLER, false ) );
 		facade.registerHandler( SimpleMarkdownBasicTypeHandler.HANDLER, true, false ); // only log duplicate
-		Assert.assertThrows( ConfigException.class , () -> facade.registerHandler( SimpleMarkdownBasicTypeHandler.HANDLER, true, true ) );
+		Assertions.assertThrows( ConfigException.class , () -> facade.registerHandler( SimpleMarkdownBasicTypeHandler.HANDLER, true, true ) );
 		// test direct 1 ok
 		try ( Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( XML_TEST_PATH ) );
 				ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 			facade.direct( reader , SimpleMarkdownBasicTypeHandler.HANDLER.getType() , baos );
-			Assert.assertNotEquals( 0 , baos.toByteArray().length );
+			Assertions.assertNotEquals( 0 , baos.toByteArray().length );
 		}
 		// test direct 2 ok
 		try ( Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( XML_TEST_PATH ) );
 				ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 			facade.direct( reader , SimpleMarkdownBasicTypeHandler.HANDLER.getType() , DocOutput.newOutput(baos) );
-			Assert.assertNotEquals( 0 , baos.toByteArray().length );
+			Assertions.assertNotEquals( 0 , baos.toByteArray().length );
 		}
 		// test direct 3 ko
 		try ( Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( XML_TEST_PATH ) );
 				ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
-			Assert.assertThrows( ConfigException.class , () -> facade.direct( reader , "not-exists" , baos ) );
+			Assertions.assertThrows( ConfigException.class , () -> facade.direct( reader , "not-exists" , baos ) );
 		}
 		// print handlers
 		for ( DocTypeHandler handler : facade.handlers() ) {
 			log.info( "current handler {}", handler );
 		}
 		DocHandlerFactory.register( new FactoryCatalog() );
-		Assert.assertFalse( facade.listHandlersForType( SimpleMarkdownBasicTypeHandler.HANDLER.getType() ).isEmpty() );
+		Assertions.assertFalse( facade.listHandlersForType( SimpleMarkdownBasicTypeHandler.HANDLER.getType() ).isEmpty() );
 		facade.logHandlersInfo();
 		// findHandlerRequired
-		Assert.assertNotNull( facade.findHandlerRequired( DocConfig.TYPE_MD ) );
-		Assert.assertThrows( ConfigRuntimeException.class, () -> facade.findHandlerRequired( "not-found" ) );
+		Assertions.assertNotNull( facade.findHandlerRequired( DocConfig.TYPE_MD ) );
+		Assertions.assertThrows( ConfigRuntimeException.class, () -> facade.findHandlerRequired( "not-found" ) );
 	}
 	
 	@Test
-	public void testFullMap() {
+	void testFullMap() {
 		DocHandlerFacade facade = new DocHandlerFacade();
-		Assert.assertNotNull( SafeFunction.get( () -> {
+		Assertions.assertNotNull( SafeFunction.get( () -> {
 			// for full map testing
 			facade.registerHandlerAndId( "test-1" , new TestDocTypeHandler( DocConfig.TYPE_PDF , DocConfig.FORMAT_PDF_A_1B ), true );
 			facade.registerHandlerAndId( "test-2" , new TestDocTypeHandler( DocConfig.TYPE_PDF , DocConfig.TYPE_PDF ), true );

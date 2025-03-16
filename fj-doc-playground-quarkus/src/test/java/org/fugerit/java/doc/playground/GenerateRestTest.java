@@ -9,7 +9,6 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.playground.doc.GenerateRest;
-import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +24,7 @@ class GenerateRestTest {
     void testAddRow() {
         SimpleTable simpleTable = SimpleTableFacade.newTable(100);
         GenerateRest.addRow(simpleTable, 1, "error", "test");
-        Assert.assertEquals(1, simpleTable.getRows().size());
+        Assertions.assertEquals(1, simpleTable.getRows().size());
     }
 
     private byte[] getInput(String path) {

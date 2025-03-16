@@ -79,10 +79,16 @@
 		    <version>2.3.34</version>
 		    <scope>test</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
-			<artifactId>fj-test-helper8</artifactId>
+			<artifactId>fj-test-helper-core</artifactId>
 			<scope>test</scope>
 			<exclusions>
 				<exclusion>
@@ -90,7 +96,7 @@
 					<artifactId>*</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>		
+		</dependency>
 
 	</dependencies>
 

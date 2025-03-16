@@ -43,7 +43,13 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-xml-to-json</artifactId>
-		</dependency>	
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 
