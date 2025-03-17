@@ -1,6 +1,5 @@
 package test.org.fugerit.java.doc.freemarker.process;
 
-import static org.junit.Assert.fail;
 
 import java.io.*;
 import java.time.LocalDateTime;
@@ -29,19 +28,19 @@ import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator;
-import org.junit.Assert;
-import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import test.org.fugerit.java.BasicTest;
 
 @Slf4j
-public class TestFreemarkerDocProcessConfig extends BasicTest {
+class TestFreemarkerDocProcessConfig extends BasicTest {
 
 	private static final String MAIN_CONFIG = "fj_doc_test/freemarker-doc-process.xml";
 
 	@Test
-	public void testConfigRead001() throws Exception {
+	void testConfigRead001() throws Exception {
 		String[] configList = { MAIN_CONFIG, "fj_doc_test/freemarker-doc-process-1.xml", "fj_doc_test/freemarker-doc-process-2.xml", "fj_doc_test/freemarker-doc-process-3.xml" };
 		for (  int k=0 ;k<configList.length ;k++ ) {
 			String currentConfig = configList[k];
@@ -50,7 +49,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				String chainId = "sample_chain";
 				String type = DocConfig.TYPE_HTML;
 				log.info( "config {}", config.getChain( chainId ) );
-				Assert.assertNotNull( config );
+				Assertions.assertNotNull( config );
 				try (FileOutputStream fos = new FileOutputStream( new File( "target", chainId+"_"+k+"."+type ) )  ) {
 					config.fullProcess( chainId, DocProcessContext.newContext(), DocConfig.TYPE_HTML, fos );
 				}
@@ -59,7 +58,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				try (ByteArrayOutputStream fos = new ByteArrayOutputStream() ) {
 					DocProcessContext context = DocProcessContext.newContext().withSourceType( DocFacadeSource.SOURCE_TYPE_XML );
 					if ( k == 0 || k == 2 ) {
-						Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos ) );
+						Assertions.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos ) );
 					} else {
 						config.fullProcess( chainIdError, context, DocConfig.TYPE_HTML, fos );
 					}
@@ -69,7 +68,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 	}
 
 	@Test
-	public void testSource() throws Exception {
+	void testSource() throws Exception {
 		FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://"+MAIN_CONFIG );
 		String[] chainId = { "xml", "json", "yaml" };
 		for ( int k=0 ;k<chainId.length ;k++ ) {
@@ -84,12 +83,12 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 		// test template does not exist
 		try ( ByteArrayOutputStream os = new ByteArrayOutputStream() ) {
 			DocProcessContext context = DocProcessContext.newContext();
-			Assert.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( "not-exists", context, DocConfig.TYPE_HTML, os ) );
+			Assertions.assertThrows( ConfigRuntimeException.class, () -> config.fullProcess( "not-exists", context, DocConfig.TYPE_HTML, os ) );
 		}
 	}
 
 	@Test
-	public void testSkipFM() throws Exception {
+	void testSkipFM() throws Exception {
 		DocProcessContext context = DocProcessContext.newContext();
 		DocProcessData data = new DocProcessData();
 		FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
@@ -103,23 +102,23 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 		FreeMarkerSkipProcessStep step = new FreeMarkerSkipProcessStep();
 		step.setParam01( "asciidoc-xml.ftl" );
 		step.process( context, data );
-		Assert.assertNotNull( data.getCurrentXmlData() );
+		Assertions.assertNotNull( data.getCurrentXmlData() );
 	}
 
 	@Test
-	public void testConfigFail01() {
-		Assert.assertThrows( ConfigRuntimeException.class , () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" ) );
+	void testConfigFail01() {
+		Assertions.assertThrows( ConfigRuntimeException.class , () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" ) );
 	}
 	
 	@Test
-	public void testConfigFail02() {
+	void testConfigFail02() {
 		Reader reader = null;
-		Assert.assertThrows( ConfigException.class , () -> FreemarkerDocProcessConfigFacade.loadConfig( reader ) );
+		Assertions.assertThrows( ConfigException.class , () -> FreemarkerDocProcessConfigFacade.loadConfig( reader ) );
 	}
 	
 	@Test
-	public void testConfigSec() {
-		Assert.assertNotNull( FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_test/freemarker-doc-process_sec.xml" ) );
+	void testConfigSec() {
+		Assertions.assertNotNull( FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_test/freemarker-doc-process_sec.xml" ) );
 	}
 	
 	
@@ -138,12 +137,12 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 		runTestEx( () -> {
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				// need to make it work in the future!
-				Assert.assertThrows( NullPointerException.class, () -> {
+				Assertions.assertThrows( NullPointerException.class, () -> {
 					config.process( "test_01_inline", DocConfig.TYPE_MD, context, baos, false );
 				} );
 			}
 		} );
-		Assert.assertThrows( ConfigException.class , () -> {
+		Assertions.assertThrows( ConfigException.class , () -> {
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				config.process( "test_01_fail", DocConfig.TYPE_MD, context, baos, false );
 			}
@@ -151,45 +150,45 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 	}
 	
 	@Test
-	public void testConfigRead002() {
+	void testConfigRead002() {
 		FreemarkerDocProcessConfig config = 
 				FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj_doc_test/freemarker-doc-process_alt.xml" );
-		Assert.assertNotNull( config );
+		Assertions.assertNotNull( config );
 		this.templateTesting(config);
 		log.info( "keys : {}", config.getKeys() );
 	}
 	
 	@Test
-	public void testConfigValidate001() {
+	void testConfigValidate001() {
 		try ( Reader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "fj_doc_test/freemarker-doc-process.xml" ) ) ) {
 			FreemarkerDocProcessConfigValidator.logValidation( xmlReader );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );
-			fail(message);
+			Assertions.fail(message);
 		}
 	}
 	
 	@Test
-	public void testNewSimpleConfig() {
+	void testNewSimpleConfig() {
 		try {
-			Assert.assertNotNull( FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-001",  "/template").getChainCache( "test" ) );
+			Assertions.assertNotNull( FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-001",  "/template").getChainCache( "test" ) );
 		} catch (Exception e) {
 			this.failEx(e);
 		}
 	}
 	
 	@Test
-	public void testNewSimpleConfigVersion() {
+	void testNewSimpleConfigVersion() {
 		try {
-			Assert.assertNotNull( FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-002",  "/template", FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_31 ).getChainCache( "test" ) );
+			Assertions.assertNotNull( FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-002",  "/template", FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_2_3_31 ).getChainCache( "test" ) );
 		} catch (Exception e) {
 			this.failEx(e);
 		}
 	}
 	
 	@Test
-	public void testProcess() {
+	void testProcess() {
 		SafeFunction.apply( () -> {
 			FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.newSimpleConfig( "simple-config-003",  "/fj_doc_test/template/" );
 			config.getFacade().registerHandler( FreeMarkerHtmlTypeHandlerUTF8.HANDLER );
@@ -197,7 +196,7 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 			try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 				DocProcessData data = config.fullProcess( "test_02" ,
 						DocProcessContext.newContext(), DocConfig.TYPE_HTML, baos );
-				Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
+				Assertions.assertNotEquals( 0 , data.getCurrentXmlData().length() );
 			}
 			// test process 1
 			// handler list :
@@ -210,27 +209,27 @@ public class TestFreemarkerDocProcessConfig extends BasicTest {
 				try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
 					DocProcessData data = new DocProcessData();
 					config.process( "test_02" , DocProcessContext.newContext( "testKey", "<test/>" ), data, FreeMarkerHtmlTypeHandlerUTF8.HANDLER, DocOutput.newOutput(baos) );
-					Assert.assertNotEquals( 0 , data.getCurrentXmlData().length() );
+					Assertions.assertNotEquals( 0 , data.getCurrentXmlData().length() );
 					File file = new File( "target/test_02_handler_"+k+".xml" );
 					FileIO.writeBytes( data.getCurrentXmlData().getBytes() , file );
 				}
 			}
 		} );
-		Assert.assertTrue( Boolean.TRUE );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 
 	@Test
-	public void testLoadConfigKo() {
+	void testLoadConfigKo() {
 		String fullPath = "fj_doc_test/freemarker-doc-process_ko.xml";
-		Assert.assertThrows( ConfigRuntimeException.class, () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( fullPath ) );
+		Assertions.assertThrows( ConfigRuntimeException.class, () -> FreemarkerDocProcessConfigFacade.loadConfigSafe( fullPath ) );
 		try {
 			FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://not-exists.xml" );
 		} catch (ConfigRuntimeException e) {
 			log.error( String.format( "Error : %s", e ), e );
-			Assert.assertTrue( e.getMessage().contains( FreemarkerDocProcessConfigFacade.ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE ) );
+			Assertions.assertTrue( e.getMessage().contains( FreemarkerDocProcessConfigFacade.ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE ) );
 		}
 		Exception testEx = new ConfigRuntimeException( "ex1", new ConfigRuntimeException( "ex0" ) );
-		Assert.assertEquals( ConfigRuntimeException.class,  FreemarkerDocProcessConfigFacade.EX_CONSUMER_LOAD_CONFIG.apply( testEx ).getClass() );
+		Assertions.assertEquals( ConfigRuntimeException.class,  FreemarkerDocProcessConfigFacade.EX_CONSUMER_LOAD_CONFIG.apply( testEx ).getClass() );
 	}
 	
 }
