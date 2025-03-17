@@ -14,8 +14,8 @@ import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.script.helper.EvalScript;
 import org.fugerit.java.script.helper.EvalScriptWithDataModel;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,13 +24,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestKotlinParser {
+class TestKotlinParser {
 
-	public static final boolean VALID = true;
-	public static final boolean NOT_VALID = false;
+	static final boolean VALID = true;
+	static final boolean NOT_VALID = false;
 	
-	public static final boolean NO_EXCEPTION = false;
-	public static final boolean EXCEPTION = true;
+	static final boolean NO_EXCEPTION = false;
+	static final boolean EXCEPTION = true;
 	
 	private static final Logger logger = LoggerFactory.getLogger( TestKotlinParser.class );
 
@@ -48,7 +48,7 @@ public class TestKotlinParser {
 				for ( String error : result.getInfoList() ) {
 					logger.info( "Validation info {}", error );
 				}
-				Assert.assertEquals( "Validation result" , valid, result.isResultOk() );
+				Assertions.assertEquals( valid, result.isResultOk() );
 				return result.isResultOk();
 			}
 		} );
@@ -71,29 +71,29 @@ public class TestKotlinParser {
 	}
 
 	@Test
-	public void testValidate() {
-		Assert.assertTrue( this.validateWorker( "sample-2", true, false, false ) );
-		Assert.assertTrue( this.validateWorker( "sample-2", true, false, true ) );
+	void testValidate() {
+		Assertions.assertTrue( this.validateWorker( "sample-2", true, false, false ) );
+		Assertions.assertTrue( this.validateWorker( "sample-2", true, false, true ) );
 	}
 
 	@Test
-	public void testParse() {
-		Assert.assertTrue( this.parseWorker( "sample-2" ) );
-		Assert.assertTrue( this.parseWorker( "sample-2-coverage" ) );
+	void testParse() {
+		Assertions.assertTrue( this.parseWorker( "sample-2" ) );
+		Assertions.assertTrue( this.parseWorker( "sample-2-coverage" ) );
 	}
 
 	@Test
-	public void testDslDocToXml() throws IOException {
+	void testDslDocToXml() throws IOException {
 		Map<String, Object> dataModel = new HashMap<>();
 		DocEvalWithDataModel eval = new DocKotlinParser();
 		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "doc-dsl-sample/sample-2.kts" ) ) ) {
 			String xml = eval.evalWithDataModel( reader, dataModel );
-			Assert.assertNotNull( xml );
+			Assertions.assertNotNull( xml );
 		}
 	}
 
 	@Test
-	public void testWithComplexDataModel() throws IOException {
+	void testWithComplexDataModel() throws IOException {
 		Map<String, Object> dataModel = new HashMap<>();
 		dataModel.put( "docTitle", "Complex map conversion example title" );
 		dataModel.put( "listPeople", Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King")));
@@ -101,7 +101,7 @@ public class TestKotlinParser {
 		try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "doc-dsl-sample/sample-map.kts" ) ) ) {
 			String xml = eval.handle( reader, dataModel ).toString();
 			logger.info( "xml : \n{}", xml );
-			Assert.assertNotNull( xml );
+			Assertions.assertNotNull( xml );
 		}
 	}
 

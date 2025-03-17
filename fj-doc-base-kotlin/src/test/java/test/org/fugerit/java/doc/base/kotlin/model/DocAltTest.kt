@@ -1,12 +1,12 @@
 package test.org.fugerit.java.doc.base.kotlin.model
 
-import junit.framework.TestCase
 import org.fugerit.java.core.cfg.ConfigRuntimeException
 import org.fugerit.java.doc.base.config.DocInput
 import org.fugerit.java.doc.base.config.DocOutput
 import org.fugerit.java.doc.base.kotlin.dsl.*
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerUTF8
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.ByteArrayOutputStream
@@ -18,7 +18,7 @@ import javax.script.ScriptEngineManager
 /**
  * DocDsl testing.
  */
-class DocAltTest : TestCase() {
+class DocAltTest {
 
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
@@ -58,6 +58,7 @@ class DocAltTest : TestCase() {
     /**
      * testScriptCoverage
      */
+    @Test
     fun testScriptCoverage() = arrayListOf<String>(
         "src/test/resources/doc-dsl-sample/sample-2-coverage-a.kts",
         "src/test/resources/doc-dsl-sample/sample-2-coverage-b.kts",
@@ -79,6 +80,7 @@ class DocAltTest : TestCase() {
     /**
      * testScript
      */
+    @Test
     fun testScript() =
         Assertions.assertEquals( "http://javacoredoc.fugerit.org",
             testScriptWorker( "src/test/resources/doc-dsl-sample/sample-2.kts" ).attributes["xmlns"]
@@ -95,6 +97,7 @@ class DocAltTest : TestCase() {
     /**
      * testScriptParams
      */
+    @Test
     fun testScriptParams() =
         Assertions.assertEquals( "http://javacoredoc.fugerit.org",
             testScriptWorkerBind( "src/test/resources/doc-dsl-sample/sample-2-params.kts", true, params ).attributes["xmlns"]
@@ -112,6 +115,7 @@ class DocAltTest : TestCase() {
     /**
      * testFail
      */
+    @Test
     fun testFail() {
         val helper = HelperDSL()
         val textTag = HelperDSL.TextElement( "text" )
