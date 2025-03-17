@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add quarkus-3-properties (maven) flavour <https://github.com/fugerit-org/fj-doc/issues/329>
 - workflow "CI native modules build and test" test for ubuntu arm and windows <https://github.com/fugerit-org/fj-doc/issues/313>
 
 ### Changed

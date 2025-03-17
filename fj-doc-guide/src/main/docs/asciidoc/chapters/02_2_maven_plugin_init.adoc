@@ -32,9 +32,10 @@ NOTE: it is possible to set any property from 'add' goal, except 'projectFolder'
 [cols="25,20,55", options="header"]
 |====================================================================================================================================
 | flavour      | model | description
-| quarkus-3        | maven | Based on link:https://quarkus.io/[Quarkus 3], with maven packaging
-| quarkus-3-gradle | gradle | Based on link:https://quarkus.io/[Quarkus 3], with gradle packaging
-| quarkus-3-gradle-kts | gradle-kts | Based on link:https://quarkus.io/[Quarkus 3], with gradle kotlin packaging
+| quarkus-3        | maven | Based on link:https://quarkus.io/[Quarkus 3], with maven packaging (yaml)
+| quarkus-3-gradle | gradle | Based on link:https://quarkus.io/[Quarkus 3], with gradle packaging (yaml)
+| quarkus-3-gradle-kts | gradle-kts | Based on link:https://quarkus.io/[Quarkus 3], with gradle kotlin packaging (yaml)
+| quarkus-3-properties | maven | Based on link:https://quarkus.io/[Quarkus 3], with maven packaging (properties)
 | quarkus-2        | maven | Based on link:https://quarkus.io/[Quarkus 2], with maven packaging
 | micronaut-4        | maven | Based on link:https://micronaut.io/[Micronatut], with maven packaging
 | springboot-3        | maven | Based on link:https://spring.io/projects/spring-boot[Sping Boot 3], with maven packaging
