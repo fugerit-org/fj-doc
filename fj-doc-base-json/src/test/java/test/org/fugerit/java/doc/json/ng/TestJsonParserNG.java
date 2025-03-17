@@ -16,15 +16,15 @@ import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandl
 import org.fugerit.java.doc.json.ng.DocJsonParserNG;
 import org.fugerit.java.doc.json.ng.DocXmlToJsonNG;
 import org.fugerit.java.doc.json.parse.DocJsonParser;
-import org.junit.Assert;
-import org.junit.Test;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestJsonParserNG {
+class TestJsonParserNG {
 
 	private boolean parseWorker( String path, String checkInfoKey, String checkinfoValue ) {
 		return SafeFunction.get( () -> {
@@ -45,8 +45,8 @@ public class TestJsonParserNG {
 	}
 	
 	@Test
-	public void testParse01() {
-		Assert.assertTrue( this.parseWorker( "doc_test_01_ng", DocInfo.INFO_NAME_MARGINS, "10;10;10;30" ) );
+	void testParse01() {
+		Assertions.assertTrue( this.parseWorker( "doc_test_01_ng", DocInfo.INFO_NAME_MARGINS, "10;10;10;30" ) );
 	}
 
 	private boolean worker( String path ) {
@@ -64,8 +64,8 @@ public class TestJsonParserNG {
 	}
 	
 	@Test
-	public void test01() {
-		Assert.assertTrue( this.worker( "doc_test_01" ) );
+	void test01() {
+		Assertions.assertTrue( this.worker( "doc_test_01" ) );
 	}
 	
 	

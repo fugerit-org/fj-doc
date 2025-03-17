@@ -10,13 +10,13 @@ import org.fugerit.java.core.function.SimpleValue;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.json.parse.DocJsonToXml;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 
-public class TestDocJsonToXml {
+class TestDocJsonToXml {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestDocJsonToXml.class );
 	
@@ -35,13 +35,13 @@ public class TestDocJsonToXml {
 	}
 	
 	@Test
-	public void test01() {
-		Assert.assertTrue( this.worker( "doc_test_01" ) );
+	void test01() {
+		Assertions.assertTrue( this.worker( "doc_test_01" ) );
 	}
 	
 	@Test
-	public void testConvert() {
-		Assert.assertNotEquals( "" ,
+	void testConvert() {
+		Assertions.assertNotEquals( "" ,
 		SafeFunction.get( () -> {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.json" ) );
 					StringWriter writer = new StringWriter() ) {
@@ -53,8 +53,8 @@ public class TestDocJsonToXml {
 	}
 	
 	@Test
-	public void testFail01() {
-		Assert.assertThrows( Exception.class , () -> {
+	void testFail01() {
+		Assertions.assertThrows( Exception.class , () -> {
 			DocJsonToXml converter = new DocJsonToXml();
 			try ( InputStreamReader reader = new InputStreamReader(
 					ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_fail_01.json" ) ) ) {
@@ -64,8 +64,8 @@ public class TestDocJsonToXml {
 	}
 	
 	@Test
-	public void testFail02() {
-		Assert.assertThrows( Exception.class , () -> {
+	void testFail02() {
+		Assertions.assertThrows( Exception.class , () -> {
 			DocJsonToXml converter = new DocJsonToXml();
 			try ( InputStreamReader reader = new InputStreamReader(
 					ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_fail_02.json" ) ) ) {
