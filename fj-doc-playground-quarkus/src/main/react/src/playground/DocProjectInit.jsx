@@ -17,7 +17,7 @@ const DocProjectInit = ({setHelpContent}) => {
 		setHelpContent('doc-project-init');
 	}, [])
 
-    const availableVersions = [ '8.12.2', '8.12.0', '8.11.9', '8.10.9', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
+    const availableVersions = [ '8.12.3', '8.12.0', '8.11.9', '8.10.9', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
 
 	const [extensionList, setExtensionList] = useState([]); // State to store the list of extensions
 	const [selectedExtensions, setSelectedExtensions] = useState([]); // State to store selected extensions
@@ -220,9 +220,10 @@ const DocProjectInit = ({setHelpContent}) => {
 						>
 							{/* Allowed values for flavour */}
 							<MenuItem value={'vanilla'}>Vanilla (Simple library project)</MenuItem>
-							<MenuItem value={'quarkus-3'}>Quarkus 3 (Maven, Recommended quarkus version)</MenuItem>
+							<MenuItem value={'quarkus-3'}>Quarkus 3 (Maven, YAML configuration, Recommended)</MenuItem>
 							<MenuItem value={'quarkus-3-gradle'}>Quarkus 3 (Gradle Groovy Version)</MenuItem>
 							<MenuItem value={'quarkus-3-gradle-kts'}>Quarkus 3 (Gradle Kotlin Version)</MenuItem>
+							<MenuItem value={'quarkus-3-properties'}>Quarkus 3 (Maven, Properties configuration)</MenuItem>
 							<MenuItem value={'quarkus-2'}>Quarkus 2 (Legacy quarkus version)</MenuItem>
 							<MenuItem value={'micronaut-4'}>Micronaut 4</MenuItem>
 							<MenuItem value={'springboot-3'}>SpringBoot 3</MenuItem>

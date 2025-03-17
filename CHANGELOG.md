@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.3] - 2025-03-17
+
 ### Added
 
 - Add quarkus-3-properties (maven) flavour <https://github.com/fugerit-org/fj-doc/issues/329>
@@ -14,7 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-bom version 1.7.2
+- fj-bom version 1.7.3
 - fj-xml-to-json-version 1.2.1
 - quarkus-version set to 3.19.3 across all the modules
 
