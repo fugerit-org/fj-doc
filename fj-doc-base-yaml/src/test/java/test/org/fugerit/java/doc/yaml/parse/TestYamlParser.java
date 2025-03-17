@@ -16,18 +16,18 @@ import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
 import org.fugerit.java.doc.yaml.parse.DocJsonFacade;
 import org.fugerit.java.doc.yaml.parse.DocYamlParser;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestYamlParser {
+class TestYamlParser {
 
-	public static final boolean VALID = true;
-	public static final boolean NOT_VALID = false;
+	static final boolean VALID = true;
+	static final boolean NOT_VALID = false;
 	
-	public static final boolean NO_EXCEPTION = false;
-	public static final boolean EXCEPTION = true;
+	static final boolean NO_EXCEPTION = false;
+	static final boolean EXCEPTION = true;
 	
 	private static final Logger logger = LoggerFactory.getLogger( TestYamlParser.class );
 	
@@ -49,7 +49,7 @@ public class TestYamlParser {
 				for ( String error : result.getInfoList() ) {
 					logger.info( "Validation info {}", error );
 				}
-				Assert.assertEquals( "Validation result" , valid, result.isResultOk() );
+				Assertions.assertEquals( valid, result.isResultOk() );
 				return result.isResultOk();
 			}
 		} );
@@ -72,33 +72,33 @@ public class TestYamlParser {
 	}
 	
 	@Test
-	public void testParse01() {
-		Assert.assertTrue( this.parseWorker( "doc_test_01" ) );
+	void testParse01() {
+		Assertions.assertTrue( this.parseWorker( "doc_test_01" ) );
 	}
 	
 	@Test
-	public void testValidateOk01() {
-		Assert.assertTrue( this.validateWorker( "doc_test_01", VALID, NO_EXCEPTION ) );
+	void testValidateOk01() {
+		Assertions.assertTrue( this.validateWorker( "doc_test_01", VALID, NO_EXCEPTION ) );
 	}
 	
 	@Test
-	public void testValidateOk01ParseVersion() {
-		Assert.assertTrue( this.validateWorker( "doc_test_01", VALID, NO_EXCEPTION, true ) );
+	void testValidateOk01ParseVersion() {
+		Assertions.assertTrue( this.validateWorker( "doc_test_01", VALID, NO_EXCEPTION, true ) );
 	}
 	
 	@Test
-	public void testValidateOk02ParseVersion() {
-		Assert.assertTrue( this.validateWorker( "doc_test_02", VALID, NO_EXCEPTION, true ) );
+	void testValidateOk02ParseVersion() {
+		Assertions.assertTrue( this.validateWorker( "doc_test_02", VALID, NO_EXCEPTION, true ) );
 	}
 	
 	@Test
-	public void testValidateKo02() {
-		Assert.assertFalse( this.validateWorker( "doc_test_02_ko", NOT_VALID, NO_EXCEPTION ) );
+	void testValidateKo02() {
+		Assertions.assertFalse( this.validateWorker( "doc_test_02_ko", NOT_VALID, NO_EXCEPTION ) );
 	}
 
 	@Test
-	public void testFacade() {
-		Assert.assertNotNull( SafeFunction.get( () -> {
+	void testFacade() {
+		Assertions.assertNotNull( SafeFunction.get( () -> {
 				try ( InputStreamReader reader = new InputStreamReader(
 						ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.yaml" ) ) ) {
 					 return DocJsonFacade.parse( reader );
