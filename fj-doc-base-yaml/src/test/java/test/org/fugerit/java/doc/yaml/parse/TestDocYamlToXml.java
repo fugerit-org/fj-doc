@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.json.parse.DocXmlToJson;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-public class TestDocYamlToXml {
+class TestDocYamlToXml {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestDocYamlToXml.class );
 	
@@ -36,8 +36,8 @@ public class TestDocYamlToXml {
 	}
 	
 	@Test
-	public void test01() {
-		Assert.assertTrue( this.worker( "doc_test_01" ) );
+	void test01() {
+		Assertions.assertTrue( this.worker( "doc_test_01" ) );
 	}
 	
 }

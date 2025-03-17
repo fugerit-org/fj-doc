@@ -8,8 +8,8 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.yaml.parse.DocYamlToXml;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
@@ -17,7 +17,7 @@ import org.w3c.dom.Element;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
-public class TestDocXmlToYaml {
+class TestDocXmlToYaml {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestDocXmlToYaml.class );
 	
@@ -34,13 +34,13 @@ public class TestDocXmlToYaml {
 	}
 	
 	@Test
-	public void test01() {
-		Assert.assertTrue( this.worker( "doc_test_01", new DocYamlToXml() ) );
+	void test01() {
+		Assertions.assertTrue( this.worker( "doc_test_01", new DocYamlToXml() ) );
 	}
 	
 	@Test
-	public void test01Alt() {
-		Assert.assertTrue( this.worker( "doc_test_01", new DocYamlToXml( new ObjectMapper( new YAMLFactory() ) ) ) );
+	void test01Alt() {
+		Assertions.assertTrue( this.worker( "doc_test_01", new DocYamlToXml( new ObjectMapper( new YAMLFactory() ) ) ) );
 	}
 	
 }
