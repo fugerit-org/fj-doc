@@ -15,16 +15,16 @@ import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandler;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlFragmentTypeHandlerUTF8;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8;
-import org.junit.Assert;
-import org.junit.Test;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestFreemarkerCoverage {
+class TestFreemarkerCoverage {
 	
 	private final static TestEntry[] TEST_LIST = {
 			new TestEntry( "default_doc" , true ),
@@ -58,16 +58,16 @@ public class TestFreemarkerCoverage {
 	}
 	
 	@Test
-	public void test01() {
+	void test01() {
 		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
 			log.info( "test -> {}", c );
-			Assert.assertTrue( this.worker( "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
+			Assertions.assertTrue( this.worker( "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
 		} );
-		Assert.assertTrue( Boolean.TRUE );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 
 	@Test
-	public void testAsciidoc() {
+	void testAsciidoc() {
 		String docId = "asciidoc";
 		DocTypeHandler handler = FreeMarkerAsciidocTypeHandler.HANDLER_UTF8;
 		String type = DocConfig.TYPE_ADOC;
@@ -78,7 +78,7 @@ public class TestFreemarkerCoverage {
 				handler.handle( DocInput.newInput( handler.getType() , reader ) ,  DocOutput.newOutput( fos ) );
 			}
 		} );
-		Assert.assertTrue( outputFile.exists() );
+		Assertions.assertTrue( outputFile.exists() );
 	}
 
 }
