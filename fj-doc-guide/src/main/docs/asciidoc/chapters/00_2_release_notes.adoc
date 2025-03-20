@@ -3,6 +3,65 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modification to project, the release notes just refers to most important changes.
 
+[#doc-release-notes-8-12-3]
+==== Version 8.12.3 [2025-03-17]
+
+* Add quarkus-3-properties (maven) flavour link:https://github.com/fugerit-org/fj-doc/issues/329[#329]
+* [BUG]: Error in JDK 23, does it support JDK 23? link:https://github.com/fugerit-org/fj-doc/issues/302[#302]
+
+[#doc-release-notes-8-12-2]
+==== Version 8.12.2 [2025-02-28]
+
+* Use UBI9 based Quarkus micro image for quarkus 3 link:https://github.com/fugerit-org/fj-doc/issues/298[#298]
+
+[#doc-release-notes-8-12-1]
+==== Version 8.12.1 [2025-02-15]
+
+* Add quarkus-3-gradle (groovy) flavour link:https://github.com/fugerit-org/fj-doc/issues/293[#293]
+
+[#doc-release-notes-8-12-0]
+==== Version 8.12.0 [2025-01-31]
+
+* Added quarkus-3-gradle-kts flavour subfolder for native embedded configuration file link:https://github.com/fugerit-org/fj-doc/issues/284[#284]
+
+[#doc-release-notes-8-11-9]
+==== Version 8.11.9 [2025-01-11]
+
+* Fix native support for Apache FreeMarker link:https://github.com/fugerit-org/fj-doc/issues/278[#278]
+
+[#doc-release-notes-8-11-8]
+==== Version 8.11.8 [2025-01-10]
+
+* freemarker-version 2.3.34
+* subfolder for native embedded configuration file link:https://github.com/fugerit-org/fj-doc/issues/276[#276]
+
+[#doc-release-notes-8-11-7]
+==== Version 8.11.7 [2024-12-19]
+
+* fixed endline for markdown format
+
+[#doc-release-notes-8-11-6]
+==== Version 8.11.6 [2024-12-15]
+
+* [fj-doc-maven-plugin] goal init, flavour quarkus-3 added eager init example link:https://github.com/fugerit-org/fj-doc/issues/270[#270]
+* [fj-doc-maven-plugin] goal init, flavour springboot-3 added eager init example link:https://github.com/fugerit-org/fj-doc/issues/269[#269]
+
+[#doc-release-notes-8-11-5]
+==== Version 8.11.5 [2024-12-06]
+
+* [fj-mod-doc-openpdf-ext] basic list implementation
+
+[#doc-release-notes-8-11-4]
+==== Version 8.11.4 [2024-11-27]
+
+* [fj-doc-mod-fop] better logging for FreemarkerDocProcessConfigFacade.loadConfigSafe()
+
+[#doc-release-notes-8-11-3]
+==== Version 8.11.2 [2024-11-27]
+
+* [fj-doc-mod-fop] better init check for PdfFopTypeHandler
+* [fj-doc-playground-quarkus] added documentation link:https://github.com/fugerit-org/fj-doc/issues/265[#265]
+
 [#doc-release-notes-8-11-2]
 ==== Version 8.11.2 [2024-11-21]
 
