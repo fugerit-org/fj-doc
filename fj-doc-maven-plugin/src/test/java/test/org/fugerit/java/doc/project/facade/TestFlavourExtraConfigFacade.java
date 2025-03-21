@@ -1,24 +1,28 @@
 package test.org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.project.facade.FlavourContext;
+import org.fugerit.java.doc.project.facade.FlavourFacade;
 import org.fugerit.java.doc.project.facade.flavour.extra.FlavourExtraConfig;
 import org.fugerit.java.doc.project.facade.flavour.extra.FlavourExtraConfigFacade;
 import org.fugerit.java.doc.project.facade.flavour.extra.ParamConfig;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.lang.reflect.Field;
 
 @Slf4j
 public class TestFlavourExtraConfigFacade {
 
     @Test
-    public void testReadConfig() throws IOException {
+    public void readConfig() throws IOException {
         // test quarkus-3 config
-        try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/flavour-extra-config/quarks-3-config.yml" ) ) {
+        try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/flavour-extra-config/quarkus-3-config.yml" ) ) {
             FlavourExtraConfig configQuarkus3 = FlavourExtraConfigFacade.readConfigBlankDefault( is );
             Assert.assertTrue( ((ParamConfig)configQuarkus3.getParamConfig().get( "addLombok" )).getAcceptOnly().contains( "true" ) );
         }
@@ -29,4 +33,25 @@ public class TestFlavourExtraConfigFacade {
         }
     }
 
+    @Test
+    public void testCheckFlavourExtraConfig() throws IOException, NoSuchFieldException {
+        File projectFolder = new File( "target/test-flavour-extra-config" );
+        String groupId = "test-group";
+        String artifactId = "test-artifact";
+        String projectVersion = "1.0.0";
+        String javaRelease = "21";
+        String flavour = FlavourFacade.FLAVOUR_QUARKUS_3;
+        FlavourContext context = new FlavourContext( projectFolder, groupId, artifactId, projectVersion, javaRelease, flavour );
+        context.setAddLombok( Boolean.TRUE );
+        FlavourFacade.checkFlavourExtraConfig( context, flavour );
+        context.setAddLombok( Boolean.FALSE );
+        Assert.assertThrows( ConfigRuntimeException.class, () ->  FlavourFacade.checkFlavourExtraConfig( context, flavour ) );
+        String testFlavourVersion = "3.19.4";
+        String propertyFlavourVersion = "flavourVersion";
+        context.setFlavourVersion( testFlavourVersion );
+        Field fieldFlavourVersion = FlavourContext.class.getDeclaredField( propertyFlavourVersion );
+        Assert.assertEquals( testFlavourVersion, FlavourFacade.readField( context, fieldFlavourVersion, propertyFlavourVersion ) );
+    }
+
 }
+

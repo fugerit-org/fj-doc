@@ -9,11 +9,17 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.lang.helpers.reflect.MethodHelper;
 import org.fugerit.java.core.util.PropsIO;
 import org.fugerit.java.doc.project.facade.flavour.FlavourConfig;
 import org.fugerit.java.doc.project.facade.flavour.ProcessEntry;
+import org.fugerit.java.doc.project.facade.flavour.extra.FlavourExtraConfig;
+import org.fugerit.java.doc.project.facade.flavour.extra.FlavourExtraConfigFacade;
+import org.fugerit.java.doc.project.facade.flavour.extra.ParamConfig;
 
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 
 @Slf4j
@@ -78,6 +84,7 @@ public class FlavourFacade {
         }
         log.info( "checkFlavour {} done", actualFlavour );
         checkFlavourVersion( context, actualFlavour );
+        checkFlavourExtraConfig( context, actualFlavour );
     }
 
     public static void checkFlavourVersion( FlavourContext context, String actualFlavour ) {
@@ -89,6 +96,45 @@ public class FlavourFacade {
         } else {
             log.info( "overriding default flavourVersion : {} for flavour : {}", context.getFlavourVersion(), actualFlavour );
         }
+    }
+
+    public static void checkFlavourExtraConfig( FlavourContext context, String actualFlavour ) {
+        FlavourExtraConfig flavourExtraConfig = SafeFunction.get( () -> {
+            String flavourConfigPath = String.format( "config/flavour-extra-config/%s-config.yml", actualFlavour );
+            log.debug( "flavourConfigPath : {}", flavourConfigPath );
+            try (InputStream is = ClassHelper.loadFromDefaultClassLoader( flavourConfigPath ) ) {
+                return FlavourExtraConfigFacade.readConfigBlankDefault( is );
+            }
+        });
+        SafeFunction.applyIfNotNull( flavourExtraConfig.getParamConfig(), () -> {
+            Field[] fields = FlavourContext.class.getDeclaredFields();
+            for (Field field : fields) {
+                String fieldName = field.getName();
+                ParamConfig paramConfig = flavourExtraConfig.getParamConfig().get( fieldName );
+                if ( paramConfig != null ) {
+                    Object value = readField( context, field, fieldName );
+                    log.debug( "fieldName : {}, value : {}", fieldName, value );
+                    if ( value != null && !paramConfig.getAcceptOnly().contains( value.toString() ) ) {
+                        log.info( "accept only list : {} -> {}", fieldName, paramConfig.getAcceptOnly() );
+                        String message = String.format( "Value '%s' not valid for flavour '%s' and param '%s', refer to flavour documentation.", value, actualFlavour, fieldName );
+                        log.warn( message );
+                        throw new ConfigRuntimeException( message );
+                    }
+                }
+            }
+        } );
+    }
+
+    public static Object readField( FlavourContext context, Field field, String fieldName ) {
+        return SafeFunction.getSilent( () -> {
+                    if (field.getType().getSimpleName().equalsIgnoreCase("boolean")) {
+                        String methodName = String.format("is%s", MethodHelper.getUpFirstForProperty(fieldName));
+                        return MethodHelper.invoke(context, methodName, MethodHelper.NO_PARAM_TYPES, MethodHelper.NO_PARAM_VALUES);
+                    } else {
+                        return MethodHelper.invokeGetter(context, fieldName);
+                    }
+                }
+        );
     }
 
     private static void initFlavour( FlavourContext context, String actualFlavour ) throws IOException, TemplateException {
