@@ -101,7 +101,7 @@ public class FlavourFacade {
     public static void checkFlavourExtraConfig( FlavourContext context, String actualFlavour ) {
         FlavourExtraConfig flavourExtraConfig = SafeFunction.get( () -> {
             String flavourConfigPath = String.format( "config/flavour-extra-config/%s-config.yml", actualFlavour );
-            log.debug( "flavourConfigPath : {}", flavourConfigPath );
+            log.info( "flavourConfigPath : {}", flavourConfigPath );
             try (InputStream is = ClassHelper.loadFromDefaultClassLoader( flavourConfigPath ) ) {
                 return FlavourExtraConfigFacade.readConfigBlankDefault( is );
             }
