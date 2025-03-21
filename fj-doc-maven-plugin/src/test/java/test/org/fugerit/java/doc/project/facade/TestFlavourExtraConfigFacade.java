@@ -2,6 +2,7 @@ package test.org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.project.facade.FlavourContext;
 import org.fugerit.java.doc.project.facade.FlavourFacade;
@@ -15,11 +16,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.util.Arrays;
 
 @Slf4j
 public class TestFlavourExtraConfigFacade {
 
     private static final String FLAVOURTEST_1 = "flavourtest-1";
+
+    private static final String PARAM_ADD_LOMBOK = "addLombok";
 
     @Test
     public void readConfig() throws IOException {
@@ -27,7 +31,7 @@ public class TestFlavourExtraConfigFacade {
         String flavourConfigPath = String.format( "config/flavour-extra-config/%s-config.yml", FLAVOURTEST_1 );
         try (InputStream is = ClassHelper.loadFromDefaultClassLoader( flavourConfigPath ) ) {
             FlavourExtraConfig configQuarkus3 = FlavourExtraConfigFacade.readConfigBlankDefault( is );
-            Assert.assertTrue( ((ParamConfig)configQuarkus3.getParamConfig().get( "addLombok" )).getAcceptOnly().contains( "true" ) );
+            Assert.assertTrue( ((ParamConfig)configQuarkus3.getParamConfig().get( PARAM_ADD_LOMBOK )).getAcceptOnly().contains( "true" ) );
         }
         // test config does not exist
         try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/flavour-extra-config/do-not-exist.yml" ) ) {
@@ -54,6 +58,17 @@ public class TestFlavourExtraConfigFacade {
         context.setFlavourVersion( testFlavourVersion );
         Field fieldFlavourVersion = FlavourContext.class.getDeclaredField( propertyFlavourVersion );
         Assert.assertEquals( testFlavourVersion, FlavourFacade.readField( context, fieldFlavourVersion, propertyFlavourVersion ) );
+        // check params
+        Object value = null;
+        FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, null, FLAVOURTEST_1, null );
+        FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, new ParamConfig(), FLAVOURTEST_1, null );
+        FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, new ParamConfig(), FLAVOURTEST_1, Boolean.TRUE.toString() );
+        final ParamConfig paramConfig = SafeFunction.get( () -> {
+            ParamConfig pc = new ParamConfig();
+            pc.setAcceptOnly( Arrays.asList( Boolean.TRUE.toString() ) );
+            return pc;
+        } );
+        Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, paramConfig, FLAVOURTEST_1, Boolean.FALSE.toString() ) );
     }
 
 }

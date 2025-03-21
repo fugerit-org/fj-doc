@@ -109,6 +109,16 @@ public class FlavourFacade {
         checkFlavourExtraConfig( context, actualFlavour , flavourExtraConfig );
     }
 
+    public static void checkFlavourExtraConfigParam( String fieldName, ParamConfig paramConfig, String actualFlavour, Object value  ) {
+        log.debug( "fieldName : {}, value : {}", fieldName, value );
+        if ( value != null && paramConfig.getAcceptOnly() != null && !paramConfig.getAcceptOnly().contains( value.toString() ) ) {
+            log.debug( "accept only list : {} -> {}", fieldName, paramConfig.getAcceptOnly() );
+            String message = String.format( "Value '%s' not valid for flavour '%s' and param '%s', refer to flavour documentation.", value, actualFlavour, fieldName );
+            log.warn( message );
+            throw new ConfigRuntimeException( message );
+        }
+    }
+
     public static void checkFlavourExtraConfig( FlavourContext context, String actualFlavour, FlavourExtraConfig flavourExtraConfig ) {
         SafeFunction.applyIfNotNull( flavourExtraConfig.getParamConfig(), () -> {
             Field[] fields = FlavourContext.class.getDeclaredFields();
@@ -117,13 +127,7 @@ public class FlavourFacade {
                 ParamConfig paramConfig = flavourExtraConfig.getParamConfig().get( fieldName );
                 if ( paramConfig != null ) {
                     Object value = readField( context, field, fieldName );
-                    log.debug( "fieldName : {}, value : {}", fieldName, value );
-                    if ( value != null && !paramConfig.getAcceptOnly().contains( value.toString() ) ) {
-                        log.info( "accept only list : {} -> {}", fieldName, paramConfig.getAcceptOnly() );
-                        String message = String.format( "Value '%s' not valid for flavour '%s' and param '%s', refer to flavour documentation.", value, actualFlavour, fieldName );
-                        log.warn( message );
-                        throw new ConfigRuntimeException( message );
-                    }
+                    checkFlavourExtraConfigParam( fieldName, paramConfig, actualFlavour, value );
                 }
             }
         } );
