@@ -19,10 +19,13 @@ import java.lang.reflect.Field;
 @Slf4j
 public class TestFlavourExtraConfigFacade {
 
+    private static final String FLAVOURTEST_1 = "flavourtest-1";
+
     @Test
     public void readConfig() throws IOException {
         // test quarkus-3 config
-        try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/flavour-extra-config/quarkus-3-config.yml" ) ) {
+        String flavourConfigPath = String.format( "config/flavour-extra-config/%s-config.yml", FLAVOURTEST_1 );
+        try (InputStream is = ClassHelper.loadFromDefaultClassLoader( flavourConfigPath ) ) {
             FlavourExtraConfig configQuarkus3 = FlavourExtraConfigFacade.readConfigBlankDefault( is );
             Assert.assertTrue( ((ParamConfig)configQuarkus3.getParamConfig().get( "addLombok" )).getAcceptOnly().contains( "true" ) );
         }
@@ -34,13 +37,13 @@ public class TestFlavourExtraConfigFacade {
     }
 
     @Test
-    public void testCheckFlavourExtraConfig() throws IOException, NoSuchFieldException {
+    public void testCheckFlavourExtraConfig() throws NoSuchFieldException {
         File projectFolder = new File( "target/test-flavour-extra-config" );
         String groupId = "test-group";
         String artifactId = "test-artifact";
         String projectVersion = "1.0.0";
         String javaRelease = "21";
-        String flavour = FlavourFacade.FLAVOUR_QUARKUS_3;
+        String flavour = FLAVOURTEST_1;
         FlavourContext context = new FlavourContext( projectFolder, groupId, artifactId, projectVersion, javaRelease, flavour );
         context.setAddLombok( Boolean.TRUE );
         FlavourFacade.checkFlavourExtraConfig( context, flavour );

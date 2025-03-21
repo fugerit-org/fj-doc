@@ -106,6 +106,10 @@ public class FlavourFacade {
                 return FlavourExtraConfigFacade.readConfigBlankDefault( is );
             }
         });
+        checkFlavourExtraConfig( context, actualFlavour , flavourExtraConfig );
+    }
+
+    public static void checkFlavourExtraConfig( FlavourContext context, String actualFlavour, FlavourExtraConfig flavourExtraConfig ) {
         SafeFunction.applyIfNotNull( flavourExtraConfig.getParamConfig(), () -> {
             Field[] fields = FlavourContext.class.getDeclaredFields();
             for (Field field : fields) {
