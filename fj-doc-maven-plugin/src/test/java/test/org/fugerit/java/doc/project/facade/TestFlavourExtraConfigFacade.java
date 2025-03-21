@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.project.facade;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.project.facade.FlavourContext;
 import org.fugerit.java.doc.project.facade.FlavourFacade;
@@ -59,7 +60,6 @@ public class TestFlavourExtraConfigFacade {
         Field fieldFlavourVersion = FlavourContext.class.getDeclaredField( propertyFlavourVersion );
         Assert.assertEquals( testFlavourVersion, FlavourFacade.readField( context, fieldFlavourVersion, propertyFlavourVersion ) );
         // check params
-        Object value = null;
         FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, null, FLAVOURTEST_1, null );
         FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, new ParamConfig(), FLAVOURTEST_1, null );
         FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, new ParamConfig(), FLAVOURTEST_1, Boolean.TRUE.toString() );
@@ -68,7 +68,7 @@ public class TestFlavourExtraConfigFacade {
             pc.setAcceptOnly( Arrays.asList( Boolean.TRUE.toString() ) );
             return pc;
         } );
-        Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, paramConfig, FLAVOURTEST_1, Boolean.FALSE.toString() ) );
+        Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, paramConfig, FLAVOURTEST_1, BooleanUtils.BOOLEAN_FALSE ) );
     }
 
 }
