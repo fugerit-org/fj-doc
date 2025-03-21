@@ -29,9 +29,12 @@ Project folder will be `./${artifactId}/`.
 NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
 
 [#flavour-list]
+===== Flavours list
+
 [cols="25,20,55", options="header"]
 |====================================================================================================================================
 | flavour      | model | description
+| vanilla       | maven | Vanilla java, with maven packaging
 | quarkus-3        | maven | Based on link:https://quarkus.io/[Quarkus 3], with maven packaging (yaml)
 | quarkus-3-gradle | gradle | Based on link:https://quarkus.io/[Quarkus 3], with gradle packaging (yaml)
 | quarkus-3-gradle-kts | gradle-kts | Based on link:https://quarkus.io/[Quarkus 3], with gradle kotlin packaging (yaml)
@@ -41,3 +44,156 @@ NOTE: it is possible to set any property from 'add' goal, except 'projectFolder'
 | springboot-3        | maven | Based on link:https://spring.io/projects/spring-boot[Sping Boot 3], with maven packaging
 | openliberty        | maven | Based on link:https://openliberty.io/[Open Liberty], with maven packaging
 |====================================================================================================================================
+
+[#flavour-extra-config]
+===== Specific flavour configuration
+
+[#flavour-vanilla]
+====== Vanilla
+
+Vanilla flavour accepts all configuration options.
+
+[#flavour-quarkus-3]
+====== Quarkus 3
+
+Quarkus 3 flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-quarkus-2]
+====== Quarkus 2
+
+Quarkus 2 flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _11+_      | this flavour does not support java lower than 11
+|====================================================================================================================================
+
+[#flavour-quarkus-3-gradle]
+====== Quarkus 3 Gradle
+
+Quarkus 3 Gradle flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Gradle*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-quarkus-3-gradle-kts]
+====== Quarkus 3 Gradle KTS
+
+Quarkus 3 Gradle KTS flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Gradle with Kotlin DSL*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-quarkus-3-properties]
+====== Quarkus 3 Properties
+
+Quarkus 3 properties flavour has the following specific configurations
+
+_Configuration_ : *properties*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-micronaut-4]
+====== Micronaut 4
+
+Micronaut 4 flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-micronaut-4]
+====== Micronaut 4
+
+Micronaut 4 flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-openliberty-properties]
+====== Open Liberty
+
+Open Liberty flavour has the following specific configurations
+
+_Configuration_ : *properties*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+
+[#flavour-springboot-3]
+====== Spring Boot 3
+
+Spring Boot 3 flavour has the following specific configurations
+
+_Configuration_ : *YAML*
+
+_Java Packaging_ : *Maven*
+
+[cols="3*", options="header"]
+|====================================================================================================================================
+| parameter      | accepted value | note
+| addLombok      | _true_     | currently only generation with lombok is supported
+| javaRelease    | _17+_      | this flavour does not support java lower than 17
+|====================================================================================================================================
+

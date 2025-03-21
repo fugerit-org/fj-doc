@@ -94,11 +94,14 @@ public class TestInit {
         Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id3", "artifact-id3", "1.0.0-SNAPSHOT", null, null ) );
         Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id4", "artifact-id4", "2.0.0-SNAPSHOT", "21", null ) );
         FlavourContext context = new FlavourContext( testFile, "group-id5", "artifact-id5", "3.0.0-SNAPSHOT", "8", "unsupported" );
+        context.setAddLombok( Boolean.TRUE );
         Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.initProject( context ) );
         Assert.assertThrows( ConfigRuntimeException.class, () -> ModuleFacade.toModuleList( "base,freemarker,unsupported" ) );
         Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavour( context, FlavourFacade.FLAVOUR_QUARKUS_3 ) );
         FlavourFacade.checkFlavour( context, FlavourFacade.FLAVOUR_QUARKUS_2 );
-        FlavourFacade.checkFlavour( new FlavourContext( testFile, "group-id5", "artifact-id5", "3.0.0-SNAPSHOT", "11", "unsupported" ), FlavourFacade.FLAVOUR_QUARKUS_2 );
+        FlavourContext contextQuarkus2 = new FlavourContext( testFile, "group-id5", "artifact-id5", "3.0.0-SNAPSHOT", "11", "unsupported" );
+        contextQuarkus2.setAddLombok( Boolean.TRUE );
+        FlavourFacade.checkFlavour( contextQuarkus2, FlavourFacade.FLAVOUR_QUARKUS_2 );
         context.setFlavourVersion(  "test" );
         FlavourFacade.checkFlavourVersion( context, FlavourFacade.FLAVOUR_QUARKUS_2  );
         Assert.assertEquals( "test", context.getFlavourVersion() );
