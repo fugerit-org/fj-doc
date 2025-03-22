@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.4 <https://github.com/fugerit-org/fj-doc/issues/335>
 - [fj-doc-maven-plugin] flavour extra configurations <https://github.com/fugerit-org/fj-doc/issues/333>
 - release notes integration <https://github.com/fugerit-org/fj-doc/issues/331>
 - quarkus-version set to 3.19.4 across all the modules
