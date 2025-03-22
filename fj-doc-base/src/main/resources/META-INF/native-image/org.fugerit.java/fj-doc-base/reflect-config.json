@@ -1156,6 +1156,9 @@
     "name" : "hashCode",
     "parameterTypes" : [ ]
   }, {
+    "name" : "isSvg",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "notify",
     "parameterTypes" : [ ]
   }, {
