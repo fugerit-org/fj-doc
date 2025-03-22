@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.4] - 2025-03-22
+
 ### Added
 
 - [fj-doc-mod-fop] Support for SVG rendering <https://github.com/fugerit-org/fj-doc/issues/337>
