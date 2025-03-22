@@ -10,6 +10,9 @@
   </metadata>
   <body>
     <h head-level="1">Alternative sample doc</h>
+    <para><image type="svg" scaling="50" alt="Test SGV"
+                 base64="PHN2ZyBoZWlnaHQ9IjEwMHB4IiB3aWR0aD0iMTAwcHgiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIAoJIHZpZXdCb3g9IjAgMCA1MTIuMDAxIDUxMi4wMDEiIHhtbDpzcGFjZT0icHJlc2VydmUiPgo8Zz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkM4NTU7IiBkPSJNMjU2Ljk1NSwwLjA1bC03MS41Niw0NTguOTQ1TDEyLjA2OSw0ODIuNjNjLTguNjMxLDEuMTc3LTE0LjkyNi03Ljk3MS0xMC43NDMtMTUuNjExTDI1Ni45NTUsMC4wNXoKCQkiLz4KCTxwYXRoIHN0eWxlPSJmaWxsOiNGRkM4NTU7IiBkPSJNMjU2Ljk1NSwwLjA1bDc4LjQ4LDQ1OC45NDVsMTY0LjQzLDIzLjQ5YzguNjM5LDEuMjM1LDE0Ljk5Mi03LjkwNiwxMC44MjUtMTUuNTczTDI1Ni45NTUsMC4wNXoiLz4KPC9nPgo8cG9seWdvbiBzdHlsZT0iZmlsbDojRkFBRjUwOyIgcG9pbnRzPSIyNTYuOTU1LDAuMDUgMjU2Ljk1NSw1MTEuOTUxIDMzNS40MzQsNDU4Ljk5NiAiLz4KPHBvbHlnb24gc3R5bGU9ImZpbGw6I0ZGRTE4MjsiIHBvaW50cz0iMjU2Ljk1NSwwLjA1IDE4NS4zOTQsNDU4Ljk5NiAyNTYuOTU1LDUxMS45NTEgIi8+Cjwvc3ZnPg=="/>
+    </para>
     <table space-before="30" columns="3" colwidths="30;30;40" id="excel-table" padding="2" width="100">
       <row>
         <cell align="center" back-color="#99aaee">

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [fj-doc-mod-fop] Support for SVG rendering <https://github.com/fugerit-org/fj-doc/issues/337>
 - [fj-doc-freemarker] FreeMarker function 'base64ToString' <https://github.com/fugerit-org/fj-doc/issues/337>
 - [fj-doc-base] 'svg' to accepted image types <https://github.com/fugerit-org/fj-doc/issues/337>
 

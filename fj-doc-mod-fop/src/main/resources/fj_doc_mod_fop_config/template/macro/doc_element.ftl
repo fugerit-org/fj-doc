@@ -54,14 +54,17 @@
 </#macro>
 
 <#macro handleImage docImage>
-	<#if (docImage.scaling)??>
-		<#assign imageScaling="height='${docImage.scaling}%' content-height='${docImage.scaling}%' content-width='scale-to-fit' scaling='uniform' width='${docImage.scaling}%'"/>
-	<#else>
-		<#assign imageScaling=""/>
-	</#if>
 	<fo:block <@handleAlign alignValue=docImage.align/>>
-		<fo:external-graphic <#if (docImage.alt)??> fox:alt-text="${docImage.alt}" </#if> ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format"
-			src="data:image;base64,${docImage.resolvedBase64}"/>
+		<#if docImage.svg>
+			<fo:instream-foreign-object xmlns:svg="http://www.w3.org/2000/svg">${base64ToString(docImage.resolvedBase64)}</fo:instream-foreign-object>
+		<#else>
+			<#if (docImage.scaling)??>
+				<#assign imageScaling="height='${docImage.scaling}%' content-height='${docImage.scaling}%' content-width='scale-to-fit' scaling='uniform' width='${docImage.scaling}%'"/>
+			<#else>
+				<#assign imageScaling=""/>
+			</#if>
+			<fo:external-graphic <#if (docImage.alt)??> fox:alt-text="${docImage.alt}" </#if> ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format" src="data:image;base64,${docImage.resolvedBase64}"/>
+		</#if>
 	</fo:block>
 </#macro>
 

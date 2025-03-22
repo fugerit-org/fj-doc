@@ -24,6 +24,9 @@
 				wrap-unchecked-exceptions="true"
 			/>
 		</chainStep>
+		<chainStep stepType="function">
+			<function name="base64ToString" value="org.fugerit.java.doc.freemarker.fun.Base64ToStringFun"/>
+		</chainStep>
 		<chainStep stepType="map">
 			<map name="docBase" value="docBase"/>
 			<map name="docType" value="docType"/>
