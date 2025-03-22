@@ -1,3 +1,11 @@
+2.1.0.rc.3 (2025-03-22)
+------------------
+* Added 'svg' among accepted image types.
+
+2.1.0.rc.2 (2024-10-14)
+------------------
+* 'h' elemented accepted as child of 'para'.
+
 2.1.0.rc.1 (2023-08-18)
 ------------------
 * Added 'caption' attribute for 'table' element.

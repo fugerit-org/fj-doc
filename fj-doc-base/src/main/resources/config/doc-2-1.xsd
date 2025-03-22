@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-base
 	 * @creation   : 2023-08-18
-	 * @version    : 2.1.0-rc.2 (2024-10-14)
+	 * @version    : 2.1.0-rc.3 (2025-03-22)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -543,6 +543,7 @@
 			<xsd:enumeration value="png"></xsd:enumeration>
 			<xsd:enumeration value="jpg"></xsd:enumeration>
 			<xsd:enumeration value="gif"></xsd:enumeration>
+			<xsd:enumeration value="svg"></xsd:enumeration>
 		</xsd:restriction>
 	</xsd:simpleType>
 

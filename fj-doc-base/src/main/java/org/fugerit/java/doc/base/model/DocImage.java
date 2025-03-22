@@ -48,9 +48,11 @@ public class DocImage extends DocElement {
 	public static final String TYPE_JPG = "jpg";
 	
 	public static final String TYPE_GIF = "gif";
-	
+
+	public static final String TYPE_SVG = "svg";
+
 	public static Collection<String> getAcceptedImageTypes() {
-		return Arrays.asList( TYPE_PNG, TYPE_JPG, TYPE_GIF );
+		return Arrays.asList( TYPE_PNG, TYPE_JPG, TYPE_GIF, TYPE_SVG );
 	}
 	
 	public static final String TAG_NAME = "image";
@@ -85,5 +87,9 @@ public class DocImage extends DocElement {
 	public String getResolvedType() {
 		return StringUtils.valueWithDefault( this.getType() , this.getUrl() );
 	}
-	
+
+	public boolean isSvg() {
+		return TYPE_SVG.equals( this.getResolvedType() );
+	}
+
 }

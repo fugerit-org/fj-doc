@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+
+- [fj-doc-base] 'svg' to accepted image types <https://github.com/fugerit-org/fj-doc/issues/337>
+
 ### Changed
 
 - [fj-doc-maven-plugin] spring-boot flavour version set to 3.4.4 <https://github.com/fugerit-org/fj-doc/issues/335>
