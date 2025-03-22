@@ -61,6 +61,8 @@
   
   		<para style="bold">italic ${sumLong(10, 20)}</para>
 
+		<para style="bold">base64ToString ${base64ToString('VEVTVA==')}</para>
+
 		<image url="png" base64="${imageBase64CLFun()}" scaling="25"/>
 
   		<para style="bold">italic ${messageFormat()}</para>

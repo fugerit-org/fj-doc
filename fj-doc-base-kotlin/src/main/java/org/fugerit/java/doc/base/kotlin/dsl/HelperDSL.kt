@@ -132,7 +132,7 @@ class HelperDSL {
 		private var checkFun12 : (v: String) -> Boolean =  { v -> setOf( "middle", "top", "bottom" ).contains( v ) }
 		private var checkFun13 : (v: String) -> Boolean =  { v -> setOf( "ul", "uld", "ulm", "ol", "oln", "oll" ).contains( v ) }
 		private var checkFun14 : (v: String) -> Boolean =  { v -> v.length in 0..2048 }
-		private var checkFun15 : (v: String) -> Boolean =  { v -> setOf( "png", "jpg", "gif" ).contains( v ) }
+		private var checkFun15 : (v: String) -> Boolean =  { v -> setOf( "png", "jpg", "gif", "svg" ).contains( v ) }
 		private var checkFun16 : (v: Int) -> Boolean =  { v -> v in 1..7 }
 		protected fun <T : Element> alignType( tag : T, name : String, v: String) : T = setAtt( tag, name, v, checkFun0 ) 
 		protected fun <T : Element> borderWidthType( tag : T, name : String, v: Int) : T = setAtt( tag, name, v, checkFun1 ) 

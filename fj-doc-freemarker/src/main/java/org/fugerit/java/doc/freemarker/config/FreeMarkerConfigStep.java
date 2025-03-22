@@ -152,6 +152,7 @@ public class FreeMarkerConfigStep extends DocProcessorBasic {
 			map.put(CleanXmlFun.DEFAULT_NAME, new CleanXmlFun());
 			map.put(CleanTextFun.DEFAULT_NAME, new CleanTextFun());
 			map.put(FormatLocalDateTimeFun.DEFAULT_NAME, new FormatLocalDateTimeFun());
+			map.put(Base64ToStringFun.DEFAULT_NAME, new Base64ToStringFun());
 		}
 		return res;
 	}
