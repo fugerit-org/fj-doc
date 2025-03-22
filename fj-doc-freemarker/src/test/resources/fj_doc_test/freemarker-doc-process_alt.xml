@@ -25,6 +25,7 @@
 			<function name="imageBase64CLFun" value="org.fugerit.java.doc.freemarker.fun.ImageBase64CLFun"/>
 			<function name="messageFormat" value="org.fugerit.java.doc.freemarker.fun.SimpleMessageFun"/>
 			<function name="sumLong" value="org.fugerit.java.doc.freemarker.fun.SimpleSumLongFun"/>
+			<function name="base64ToString" value="org.fugerit.java.doc.freemarker.fun.Base64ToStringFun"/>
 		</chainStep>
 	</docChain>
 
