@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] micronaut flavour version set to 4.7.6 <https://github.com/fugerit-org/fj-doc/issues/341>
+
 ## [8.12.4] - 2025-03-22
 
 ### Added
