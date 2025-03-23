@@ -56,7 +56,7 @@
 <#macro handleImage docImage>
 	<fo:block <@handleAlign alignValue=docImage.align/>>
 		<#if docImage.svg>
-			<fo:instream-foreign-object xmlns:svg="http://www.w3.org/2000/svg">${base64ToString(docImage.resolvedBase64)}</fo:instream-foreign-object>
+			<fo:instream-foreign-object <#if (docImage.alt)??> fox:alt-text="${docImage.alt}" </#if> xmlns:svg="http://www.w3.org/2000/svg">${base64ToString(docImage.resolvedBase64)}</fo:instream-foreign-object>
 		<#else>
 			<#if (docImage.scaling)??>
 				<#assign imageScaling="height='${docImage.scaling}%' content-height='${docImage.scaling}%' content-width='scale-to-fit' scaling='uniform' width='${docImage.scaling}%'"/>
