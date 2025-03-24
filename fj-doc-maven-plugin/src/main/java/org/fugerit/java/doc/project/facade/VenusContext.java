@@ -120,6 +120,10 @@ public class VenusContext {
         return toArtificatIdForFolder( this.getMavenModel().getArtifactId() );
     }
 
+    public String getGroupIdForName() {
+        return toArtificatIdForName( this.getGroupId() );
+    }
+
     public String getArtificatIdForName() {
         return toArtificatIdForName( this.getMavenModel().getArtifactId() );
     }
@@ -129,7 +133,7 @@ public class VenusContext {
     }
 
     public String getDocConfigPackage() {
-        return this.getGroupId()+"."+this.getArtificatIdForName();
+        return this.getGroupIdForName()+"."+this.getArtificatIdForName();
     }
 
     public String getTemplateSubPath() {
