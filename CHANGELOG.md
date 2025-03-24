@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.5] - 2025-03-24
+
 ### Changed
 
 - [fj-doc-maven-plugin] openliberty flavour version set to 25.0.0.2 <https://github.com/fugerit-org/fj-doc/issues/341>
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.6 <https://github.com/fugerit-org/fj-doc/issues/341>
+
+### Fixed
+
+- [fj-doc-maven-plugin] Error for goal 'add' groupId with '-' <https://github.com/fugerit-org/fj-doc/issues/346>
 
 ## [8.12.4] - 2025-03-22
 
