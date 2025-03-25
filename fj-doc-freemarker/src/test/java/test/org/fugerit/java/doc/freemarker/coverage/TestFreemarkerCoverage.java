@@ -81,6 +81,21 @@ class TestFreemarkerCoverage {
 		Assertions.assertTrue( outputFile.exists() );
 	}
 
+	@Test
+	void testSample() {
+		String docId = "default_doc_sample";
+		DocTypeHandler handler = FreeMarkerHtmlTypeHandler.HANDLER_UTF8;
+		String type = DocConfig.TYPE_HTML;
+		File outputFile = new File( "target/sample."+type );
+		SafeFunction.apply( () -> {
+			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "coverage/xml/"+docId+".xml" ) );
+				  FileOutputStream fos = new FileOutputStream( outputFile ) ) {
+				handler.handle( DocInput.newInput( handler.getType() , reader ) ,  DocOutput.newOutput( fos ) );
+			}
+		} );
+		Assertions.assertTrue( outputFile.exists() );
+	}
+
 }
 
 @AllArgsConstructor

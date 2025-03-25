@@ -19,6 +19,8 @@ class TestDocImage extends HelperDocT {
 		Assertions.assertFalse( image.isSvg() );
 		image.setType( DocImage.TYPE_SVG );
 		Assertions.assertTrue( image.isSvg() );
+		image.setUrl( "cl://txt/test.txt" );
+		Assertions.assertEquals( "test text", image.getResolvedText() );
 		log.info( "accepted types : {}", DocImage.getAcceptedImageTypes() );
 	}
 	

@@ -52,17 +52,21 @@
 </#macro>
 
 <#macro handleImage docImage>
-	<#if (docImage.scaling)??>
-		<#assign imageScaling="height='${docImage.scaling}%' width='${docImage.scaling}%'"/>
+	<#if docImage.svg>
+		${docImage.resolvedText}
 	<#else>
-		<#assign imageScaling=""/>
-	</#if>
-	<#if (docImage.align)??>
-		<#if docImage.align = 2>
-			<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
+		<#if (docImage.scaling)??>
+			<#assign imageScaling="height='${docImage.scaling}%' width='${docImage.scaling}%'"/>
+		<#else>
+			<#assign imageScaling=""/>
 		</#if>
-	</#if>	
-	<img <@handleId element=docImage/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
+		<#if (docImage.align)??>
+			<#if docImage.align = 2>
+				<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
+			</#if>
+		</#if>
+		<img <@handleId element=docImage/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
+	</#if>
 </#macro>
 
 <#macro handleList docList>
