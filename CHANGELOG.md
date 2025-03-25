@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.6] - 2025-03-25
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal 'add' new param 'simpleModel' <https://github.com/fugerit-org/fj-doc/issues/350>
