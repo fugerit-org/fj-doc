@@ -87,6 +87,9 @@ public class VenusContext {
     @Getter @Setter
     private String artifactIdOverride;
 
+    @Getter @Setter
+    private boolean simpleModel;
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );

@@ -96,6 +96,31 @@ public class TestAddVenusFacade {
     }
 
     @Test
+    public void testMojoAddSimpleModel() throws IOException, MojoExecutionException, MojoFailureException {
+        for ( String current : Arrays.asList( "ok3-pom", "ok5-pom" ) ) {
+            for ( String currentConfig : Arrays.asList( current ) ) {
+                File projectDir = this.initConfigWorker( currentConfig );
+                MojoAdd mojoAdd = new MojoAdd() {
+                    @Override
+                    public void execute() throws MojoExecutionException, MojoFailureException {
+                        this.version = "8.12.5";
+                        this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                        this.projectFolder = projectDir.getAbsolutePath();
+                        this.addDocFacade = true;
+                        this.force = true;
+                        this.excludeXmlApis = true;
+                        this.simpleModel = true;
+                        super.execute();
+                    }
+                };
+                mojoAdd.execute();
+                Assert.assertTrue( projectDir.exists() );
+            }
+        }
+    }
+
+
+    @Test
     public void testFail() {
         VenusContext context = new VenusContext( new File( "target" ), this.getVersion(),"base" );
         boolean result = AddVenusFacade.addToProject( context );

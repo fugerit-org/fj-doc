@@ -140,15 +140,45 @@ public class BasicVenusFacade {
                 }
             } );
         }
-        // addJunit5 parameter
-        addJunit5( model, context );
-        // addLombok parameter
-        addLombok( model, context );
-        log.info( "end dependencies size : {}", model.getDependencies().size() );
-        addPlugin( context, model );
-        try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
-            modelIO.writeModelToStream( model, pomStream );
+        if ( context.isSimpleModel() ) {
+            log.warn( "simpleModel true : skipping extra dependencies and plugin" );
+            handleSimpleModel( pomFile, context, moduleList );
+        } else {
+            // addJunit5 parameter
+            addJunit5( model, context );
+            // addLombok parameter
+            addLombok( model, context );
+            addPlugin( context, model );
+            log.info( "end dependencies size : {}", model.getDependencies().size() );
+            try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
+                modelIO.writeModelToStream( model, pomStream );
+            }
         }
+    }
+
+    private static void handleSimpleModel( File pomFile, VenusContext context, List<String> moduleList ) throws IOException {
+        String pomText = FileIO.readString( pomFile );
+        // add property fj-doc-version
+        String properties = "</properties>";
+        int endPropertiesIndex = pomText.indexOf( properties );
+        if ( endPropertiesIndex != -1 ) {
+            pomText = String.format( "%s    <fj-doc-version>%s</fj-doc-version>%n    %s", pomText.substring( 0, endPropertiesIndex ), context.getVersion(), pomText.substring( endPropertiesIndex ) );
+        } else {
+            String modelVersion = "</modelVersion>";
+            int endArtifactIdIndex = pomText.indexOf( modelVersion )+modelVersion.length();
+            pomText = String.format( "%s%n%n    <properties>%n      <fj-doc-version>%s</fj-doc-version>%n    </properties>%n%s", pomText.substring( 0, endArtifactIdIndex ), context.getVersion(), pomText.substring( endArtifactIdIndex ) );
+        }
+        // add dependencies
+        String dependencies = "</dependencies>";
+        int endDependenciesIndex = pomText.indexOf( dependencies );
+        StringBuilder builder = new StringBuilder();
+        for ( String moduleName : moduleList ) {
+            builder.append( String.format( "%n      <dependency>%n        <groupId>org.fugerit.java</groupId>%n        <artifactId>%s</artifactId>%n        <version>${fj-doc-version}</version>%n      </dependency>", moduleName ) );
+        }
+        pomText = String.format( "%s    %s%n%n    %s", pomText.substring( 0, endDependenciesIndex ), builder, pomText.substring( endDependenciesIndex ) );
+        // write pom file
+        FileIO.writeString( pomText, pomFile );
+        log.warn( "simpleModel enabled, consider adding fj-doc-maven-plugin:verify and other configurations. (https://venusdocs.fugerit.org/guide/#maven-plugin-entry)" );
     }
 
     private static final String CONST_IMPLEMENTATION = "implementation";
