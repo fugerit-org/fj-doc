@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- [fj-doc-maven-plugin] goal 'add' new param 'simpleModel' <https://github.com/fugerit-org/fj-doc/issues/350>
+
 ### Fixed
 
 - [fj-doc-freemarker] handling of svg in html handler <https://github.com/fugerit-org/fj-doc/issues/348>

@@ -50,6 +50,9 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "freemarkerVersion", defaultValue = "2.3.32", required = true)
     protected String freemarkerVersion;
 
+    @Parameter(property = "simpleModel", defaultValue = "false", required = true)
+    protected boolean simpleModel;
+
     protected String groupIdOverride;
 
     protected String artifactIdOverride;
@@ -70,6 +73,7 @@ public class MojoAdd extends AbstractMojo {
         context.setFreemarkerVersion( this.freemarkerVersion );
         context.setGroupIdOverride( this.groupIdOverride );
         context.setArtifactIdOverride( this.artifactIdOverride );
+        context.setSimpleModel( this.simpleModel );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addToProject( context );
     }
