@@ -1141,6 +1141,9 @@
     "name" : "getResolvedBase64",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getResolvedText",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getResolvedType",
     "parameterTypes" : [ ]
   }, {

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-freemarker] handling of svg in html handler <https://github.com/fugerit-org/fj-doc/issues/348>
+
 ## [8.12.5] - 2025-03-24
 
 ### Changed

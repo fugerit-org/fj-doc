@@ -26,10 +26,12 @@
 package org.fugerit.java.doc.base.model;
 
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collection;
 
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.helper.Base64Helper;
 import org.fugerit.java.doc.base.helper.SourceResolverHelper;
 
 import lombok.Getter;
@@ -82,6 +84,10 @@ public class DocImage extends DocElement {
 			}
 			return res;	
 		} );
+	}
+
+	public String getResolvedText() {
+		return SafeFunction.get( () -> new String( SourceResolverHelper.resolveImage( this ) ) );
 	}
 	
 	public String getResolvedType() {
