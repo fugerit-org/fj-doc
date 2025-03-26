@@ -10,15 +10,15 @@ import org.fugerit.java.doc.project.facade.FlavourContext;
 import org.fugerit.java.doc.project.facade.FlavourFacade;
 import org.fugerit.java.doc.project.facade.ModuleFacade;
 import org.fugerit.java.doc.project.facade.VenusContext;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.UUID;
 
 @Slf4j
-public class TestInit {
+class TestInit {
 
     private static final String FREEMARKER_NATIVE_AVAILABLE = "8.11.9";
 
@@ -56,16 +56,16 @@ public class TestInit {
     }
 
     @Test
-    public void testMojoQuarkus3GradleGroovyAndKts() throws MojoExecutionException, MojoFailureException {
+    void testMojoQuarkus3GradleGroovyAndKts() throws MojoExecutionException, MojoFailureException {
         for ( String currentFlavour : Arrays.asList( FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE, FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE_KTS ) ) {
             File projectDir = this.initConfigWorker(currentFlavour);
             createMojoInit( projectDir, currentFlavour ).execute();
-            Assert.assertTrue( projectDir.exists() );
+            Assertions.assertTrue( projectDir.exists() );
         }
     }
 
     @Test
-    public void testMojoInit() throws MojoExecutionException, MojoFailureException {
+    void testMojoInit() throws MojoExecutionException, MojoFailureException {
         for ( String currentFlavour : FlavourFacade.SUPPORTED_FLAVOURS ) {
             if ( FlavourFacade.isGradleKtsFlavour( currentFlavour ) ) {
                 log.info( "skip gradle flavour {}", currentFlavour );
@@ -73,9 +73,9 @@ public class TestInit {
                 File projectDir = this.initConfigWorker(currentFlavour);
                 MojoInit mojoInit = createMojoInit( projectDir, currentFlavour );
                 mojoInit.execute();
-                Assert.assertTrue( projectDir.exists() );
-                Assert.assertThrows( MojoFailureException.class, () -> mojoInit.execute() );
-                Assert.assertThrows( MojoFailureException.class, () -> mojoInit.apply( () -> {
+                Assertions.assertTrue( projectDir.exists() );
+                Assertions.assertThrows( MojoFailureException.class, () -> mojoInit.execute() );
+                Assertions.assertThrows( MojoFailureException.class, () -> mojoInit.apply( () -> {
                     if ( Boolean.TRUE ) {
                         throw new ConfigException( "Scenario excetion" );
                     }
@@ -85,30 +85,30 @@ public class TestInit {
     }
 
     @Test
-    public void testFlavourContext() {
+    void testFlavourContext() {
         File testFile = new File( "target" );
-        Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( null, null, null, null, null, null ) );
-        Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, null, null, null, null, null ) );
-        Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id1", null, null, null, null ) );
-        Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id2", "artifact-id2", null, null, null ) );
-        Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id3", "artifact-id3", "1.0.0-SNAPSHOT", null, null ) );
-        Assert.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id4", "artifact-id4", "2.0.0-SNAPSHOT", "21", null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new FlavourContext( null, null, null, null, null, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, null, null, null, null, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id1", null, null, null, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id2", "artifact-id2", null, null, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id3", "artifact-id3", "1.0.0-SNAPSHOT", null, null ) );
+        Assertions.assertThrows( NullPointerException.class, () -> new FlavourContext( testFile, "group-id4", "artifact-id4", "2.0.0-SNAPSHOT", "21", null ) );
         FlavourContext context = new FlavourContext( testFile, "group-id5", "artifact-id5", "3.0.0-SNAPSHOT", "8", "unsupported" );
         context.setAddLombok( Boolean.TRUE );
-        Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.initProject( context ) );
-        Assert.assertThrows( ConfigRuntimeException.class, () -> ModuleFacade.toModuleList( "base,freemarker,unsupported" ) );
-        Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavour( context, FlavourFacade.FLAVOUR_QUARKUS_3 ) );
+        Assertions.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.initProject( context ) );
+        Assertions.assertThrows( ConfigRuntimeException.class, () -> ModuleFacade.toModuleList( "base,freemarker,unsupported" ) );
+        Assertions.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavour( context, FlavourFacade.FLAVOUR_QUARKUS_3 ) );
         FlavourFacade.checkFlavour( context, FlavourFacade.FLAVOUR_QUARKUS_2 );
         FlavourContext contextQuarkus2 = new FlavourContext( testFile, "group-id5", "artifact-id5", "3.0.0-SNAPSHOT", "11", "unsupported" );
         contextQuarkus2.setAddLombok( Boolean.TRUE );
         FlavourFacade.checkFlavour( contextQuarkus2, FlavourFacade.FLAVOUR_QUARKUS_2 );
         context.setFlavourVersion(  "test" );
         FlavourFacade.checkFlavourVersion( context, FlavourFacade.FLAVOUR_QUARKUS_2  );
-        Assert.assertEquals( "test", context.getFlavourVersion() );
+        Assertions.assertEquals( "test", context.getFlavourVersion() );
         context.setVersion( VenusContext.VERSION_NA_FREEMARKER_NATIVE );
-        Assert.assertFalse( context.isFreeMarkerNativeAvailable() );
+        Assertions.assertFalse( context.isFreeMarkerNativeAvailable() );
         context.setVersion( FREEMARKER_NATIVE_AVAILABLE );
-        Assert.assertTrue( context.isFreeMarkerNativeAvailable() );
+        Assertions.assertTrue( context.isFreeMarkerNativeAvailable() );
     }
 
 }
