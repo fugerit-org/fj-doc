@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.lib.autodoc.meta;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -18,7 +18,7 @@ import org.fugerit.java.doc.lib.autodoc.meta.model.AutodocMeta;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class GenerateDocHelper {
+class GenerateDocHelper {
 
 	protected boolean docWorker( String sourcePath, String destPath, DocTypeHandler handler ) {
 		boolean ok = false;

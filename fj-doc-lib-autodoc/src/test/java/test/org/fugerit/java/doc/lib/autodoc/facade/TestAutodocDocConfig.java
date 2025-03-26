@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.lib.autodoc.facade;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -8,11 +8,11 @@ import java.io.FileOutputStream;
 import org.fugerit.java.doc.lib.autodoc.AutodocDocConfig;
 import org.fugerit.java.doc.lib.autodoc.VenusAutodocFacade;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestAutodocDocConfig {
+class TestAutodocDocConfig {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestAutodocDocConfig.class );
 	
@@ -21,7 +21,7 @@ public class TestAutodocDocConfig {
 	//private static final String TARGET = "target/doc_xsd_config_ref.html";
 	
 	@Test
-	public void testParseXsdModel() {
+	void testParseXsdModel() {
 		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET ) ) )  {
 			AutodocModel autodocModel = VenusAutodocFacade.parseLast();
 			AutodocDocConfig docConfig = AutodocDocConfig.newConfig();

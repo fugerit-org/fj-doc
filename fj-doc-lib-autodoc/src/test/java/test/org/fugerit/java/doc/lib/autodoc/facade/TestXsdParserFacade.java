@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.lib.autodoc.facade;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -15,15 +15,15 @@ import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocElement;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
 import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestXsdParserFacade {
+class TestXsdParserFacade {
 
 	@Test
-	public void testParseXsdModel() {
+	void testParseXsdModel() {
 		DocTypeHandler handler = FreeMarkerHtmlTypeHandler.HANDLER;
 		try ( FileOutputStream fos = new FileOutputStream( new File( "target/autodoc."+handler.getType() ) ) )  {
 			AutodocModel autodocModel = VenusAutodocFacade.parseLast();
@@ -66,7 +66,7 @@ public class TestXsdParserFacade {
 	}
 	
 	@Test
-	public void testParseXsdModelCustom() {
+	void testParseXsdModelCustom() {
 		DocTypeHandler handler = FreeMarkerHtmlTypeHandler.HANDLER;
 		try ( FileOutputStream fos = new FileOutputStream( new File( "target/autodoc."+handler.getType() ) ) )  {
 			AutodocModel autodocModel = parseCustom();

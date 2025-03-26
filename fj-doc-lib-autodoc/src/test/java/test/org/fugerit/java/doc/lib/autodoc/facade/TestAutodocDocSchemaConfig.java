@@ -5,17 +5,17 @@ import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.doc.lib.autodoc.AutodocDocConfig;
 import org.fugerit.java.doc.lib.autodoc.facade.XsdParserFacade;
 import org.fugerit.java.doc.lib.autodoc.parser.model.AutodocModel;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Properties;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j
-public class TestAutodocDocSchemaConfig {
+class TestAutodocDocSchemaConfig {
 
 	private static final String TARGET = "target";
 
@@ -31,7 +31,7 @@ public class TestAutodocDocSchemaConfig {
 	}
 
 	@Test
-	public void testParseXsdModel() {
+	void testParseXsdModel() {
 		File outputFile = new File( TARGET, "xsd_ref_sample_1.html" );
 		try ( FileOutputStream fos = new FileOutputStream( outputFile ) )  {
 			AutodocModel autodocModel = parseSample1();
@@ -40,7 +40,7 @@ public class TestAutodocDocSchemaConfig {
 			docConfig.processAutodocSchemaHtmlDefault(autodocModel, fos, params);
 			autodocModel.getTypes().forEach( t -> log.info( "key : {}", t.getKey() ) );
 			autodocModel.getSimpleTypes().forEach( st -> log.info( "note : {}", st.getNote() ) );
-			Assert.assertTrue( outputFile.exists() );
+			Assertions.assertTrue( outputFile.exists() );
 		} catch (Exception e) {
 			String message = "Error : "+e;
 			log.error( message, e );

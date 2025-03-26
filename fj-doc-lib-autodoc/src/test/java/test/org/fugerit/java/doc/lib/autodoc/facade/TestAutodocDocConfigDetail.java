@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.lib.autodoc.facade;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,11 +10,11 @@ import org.fugerit.java.doc.lib.autodoc.AutodocDocConfig;
 import org.fugerit.java.doc.lib.autodoc.detail.AutodocDetailModel;
 import org.fugerit.java.doc.lib.autodoc.detail.model.AutodocDetail;
 import org.fugerit.java.doc.lib.autodoc.facade.AutodocDetailFacade;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestAutodocDocConfigDetail {
+class TestAutodocDocConfigDetail {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestAutodocDocConfigDetail.class );
 	
@@ -23,7 +23,7 @@ public class TestAutodocDocConfigDetail {
 	private static final String TARGET = "target/autodoc_detail.html";
 	
 	@Test
-	public void testGenerateAutodocDetail() {
+	void testGenerateAutodocDetail() {
 		try ( FileInputStream fis = new FileInputStream( new File( SOURCE ) );
 				FileOutputStream fos = new FileOutputStream( new File( TARGET ) ) )  {
 			AutodocDetail autodocDetail = AutodocDetailFacade.unmarshal( fis );
