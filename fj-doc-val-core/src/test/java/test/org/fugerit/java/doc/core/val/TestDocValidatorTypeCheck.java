@@ -5,8 +5,8 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.val.core.DocValidatorTypeCheck;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 import java.io.InputStream;
@@ -31,17 +31,17 @@ public class TestDocValidatorTypeCheck {
 
     @Test
     public void testJpg() {
-        Assert.assertEquals(ImageValidator.JPG_VALIDATOR.getMimeType(), this.worker( "jpg_as_jpg.jpg" ) );
+        Assertions.assertEquals(ImageValidator.JPG_VALIDATOR.getMimeType(), this.worker( "jpg_as_jpg.jpg" ) );
     }
 
     @Test
     public void testPng() {
-        Assert.assertEquals(ImageValidator.PNG_VALIDATOR.getMimeType(), this.worker( "png_as_png.png" ) );
+        Assertions.assertEquals(ImageValidator.PNG_VALIDATOR.getMimeType(), this.worker( "png_as_png.png" ) );
     }
 
     @Test
     public void testNull() {
-        Assert.assertNull( this.worker( "pdf_as_jpg.jpg" ) );
+        Assertions.assertNull( this.worker( "pdf_as_jpg.jpg" ) );
     }
 
 }

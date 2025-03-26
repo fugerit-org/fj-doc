@@ -2,8 +2,8 @@ package test.org.fugerit.java.doc.core.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class TestImageValidator extends TestDocValidatorFacade {
 
@@ -14,39 +14,39 @@ public class TestImageValidator extends TestDocValidatorFacade {
 	);
 	
 	@Test
-	public void testJpgAsJpg() {
+	void testJpgAsJpg() {
 		boolean ok = this.worker(FACADE, "jpg_as_jpg.jpg", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testJpgAsJpgExtJpeg() {
+	void testJpgAsJpgExtJpeg() {
 		boolean ok = this.worker(FACADE, "jpg_as_jpg.jpeg", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testPdfAsJpg() {
+	void testPdfAsJpg() {
 		boolean ok = this.worker(FACADE, "pdf_as_jpg.jpg", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	@Test
-	public void testPngAsPng() {
+	void testPngAsPng() {
 		boolean ok = this.worker(FACADE, "png_as_png.png", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	// note : only supported for java 9+
 	@Test
-	public void testTiffAsTiff() {
+	void testTiffAsTiff() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	@Test
-	public void testTiffAsTiffExtTif() {
+	void testTiffAsTiffExtTif() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 }
