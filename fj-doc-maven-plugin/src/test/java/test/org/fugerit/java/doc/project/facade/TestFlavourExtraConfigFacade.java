@@ -10,8 +10,8 @@ import org.fugerit.java.doc.project.facade.FlavourFacade;
 import org.fugerit.java.doc.project.facade.flavour.extra.FlavourExtraConfig;
 import org.fugerit.java.doc.project.facade.flavour.extra.FlavourExtraConfigFacade;
 import org.fugerit.java.doc.project.facade.flavour.extra.ParamConfig;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,29 +20,29 @@ import java.lang.reflect.Field;
 import java.util.Arrays;
 
 @Slf4j
-public class TestFlavourExtraConfigFacade {
+class TestFlavourExtraConfigFacade {
 
     private static final String FLAVOURTEST_1 = "flavourtest-1";
 
     private static final String PARAM_ADD_LOMBOK = "addLombok";
 
     @Test
-    public void readConfig() throws IOException {
+    void readConfig() throws IOException {
         // test quarkus-3 config
         String flavourConfigPath = String.format( "config/flavour-extra-config/%s-config.yml", FLAVOURTEST_1 );
         try (InputStream is = ClassHelper.loadFromDefaultClassLoader( flavourConfigPath ) ) {
             FlavourExtraConfig configQuarkus3 = FlavourExtraConfigFacade.readConfigBlankDefault( is );
-            Assert.assertTrue( ((ParamConfig)configQuarkus3.getParamConfig().get( PARAM_ADD_LOMBOK )).getAcceptOnly().contains( "true" ) );
+            Assertions.assertTrue( ((ParamConfig)configQuarkus3.getParamConfig().get( PARAM_ADD_LOMBOK )).getAcceptOnly().contains( "true" ) );
         }
         // test config does not exist
         try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "config/flavour-extra-config/do-not-exist.yml" ) ) {
             FlavourExtraConfig configNotExists = FlavourExtraConfigFacade.readConfig( is );
-            Assert.assertNull( configNotExists );
+            Assertions.assertNull( configNotExists );
         }
     }
 
     @Test
-    public void testCheckFlavourExtraConfig() throws NoSuchFieldException {
+    void testCheckFlavourExtraConfig() throws NoSuchFieldException {
         File projectFolder = new File( "target/test-flavour-extra-config" );
         String groupId = "test-group";
         String artifactId = "test-artifact";
@@ -53,12 +53,12 @@ public class TestFlavourExtraConfigFacade {
         context.setAddLombok( Boolean.TRUE );
         FlavourFacade.checkFlavourExtraConfig( context, flavour );
         context.setAddLombok( Boolean.FALSE );
-        Assert.assertThrows( ConfigRuntimeException.class, () ->  FlavourFacade.checkFlavourExtraConfig( context, flavour ) );
+        Assertions.assertThrows( ConfigRuntimeException.class, () ->  FlavourFacade.checkFlavourExtraConfig( context, flavour ) );
         String testFlavourVersion = "3.19.4";
         String propertyFlavourVersion = "flavourVersion";
         context.setFlavourVersion( testFlavourVersion );
         Field fieldFlavourVersion = FlavourContext.class.getDeclaredField( propertyFlavourVersion );
-        Assert.assertEquals( testFlavourVersion, FlavourFacade.readField( context, fieldFlavourVersion, propertyFlavourVersion ) );
+        Assertions.assertEquals( testFlavourVersion, FlavourFacade.readField( context, fieldFlavourVersion, propertyFlavourVersion ) );
         // check params
         FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, null, FLAVOURTEST_1, null );
         FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, new ParamConfig(), FLAVOURTEST_1, null );
@@ -68,7 +68,7 @@ public class TestFlavourExtraConfigFacade {
             pc.setAcceptOnly( Arrays.asList( Boolean.TRUE.toString() ) );
             return pc;
         } );
-        Assert.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, paramConfig, FLAVOURTEST_1, BooleanUtils.BOOLEAN_FALSE ) );
+        Assertions.assertThrows( ConfigRuntimeException.class, () -> FlavourFacade.checkFlavourExtraConfigParam( PARAM_ADD_LOMBOK, paramConfig, FLAVOURTEST_1, BooleanUtils.BOOLEAN_FALSE ) );
     }
 
 }

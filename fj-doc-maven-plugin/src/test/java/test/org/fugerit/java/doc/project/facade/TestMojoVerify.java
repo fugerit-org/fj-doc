@@ -5,10 +5,10 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.fugerit.java.core.function.SimpleValue;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.maven.MojoVerify;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestMojoVerify {
+class TestMojoVerify {
 
     private static final String PATH_OK = "src/test/resources/fj_doc_test/template";
 
@@ -20,7 +20,7 @@ public class TestMojoVerify {
 
 
     @Test
-    public void testMojoVerifyOk() throws MojoExecutionException, MojoFailureException {
+    void testMojoVerifyOk() throws MojoExecutionException, MojoFailureException {
         SimpleValue<Boolean> res = new SimpleValue<>( Boolean.FALSE );
         MojoVerify mojoVerify = new MojoVerify() {
             @Override
@@ -35,11 +35,11 @@ public class TestMojoVerify {
             }
         };
         mojoVerify.execute();
-        Assert.assertTrue( res.getValue() );
+        Assertions.assertTrue( res.getValue() );
     }
 
     @Test
-    public void testMojoVerifyKo() throws MojoExecutionException, MojoFailureException {
+    void testMojoVerifyKo() throws MojoExecutionException, MojoFailureException {
         SimpleValue<Boolean> res = new SimpleValue<>( Boolean.FALSE );
         MojoVerify mojoVerify = new MojoVerify() {
             @Override
@@ -51,11 +51,11 @@ public class TestMojoVerify {
             }
         };
         mojoVerify.execute();
-        Assert.assertTrue( res.getValue() );
+        Assertions.assertTrue( res.getValue() );
     }
 
     @Test
-    public void testMojoVerifyKoFail() {
+    void testMojoVerifyKoFail() {
         SimpleValue<Boolean> res = new SimpleValue<>( Boolean.FALSE );
         MojoVerify mojoVerify = new MojoVerify() {
             @Override
@@ -69,11 +69,11 @@ public class TestMojoVerify {
                 res.setValue( Boolean.TRUE );
             }
         };
-        Assert.assertThrows( MojoFailureException.class, () -> mojoVerify.execute() );
+        Assertions.assertThrows( MojoFailureException.class, () -> mojoVerify.execute() );
     }
 
     @Test
-    public void testMojoVerifyKoPathNoFolder() {
+    void testMojoVerifyKoPathNoFolder() {
         SimpleValue<Boolean> res = new SimpleValue<>( Boolean.FALSE );
         MojoVerify mojoVerify = new MojoVerify() {
             @Override
@@ -84,7 +84,7 @@ public class TestMojoVerify {
                 res.setValue( Boolean.TRUE );
             }
         };
-        Assert.assertThrows( MojoFailureException.class, () -> mojoVerify.execute() );
+        Assertions.assertThrows( MojoFailureException.class, () -> mojoVerify.execute() );
     }
 
 }

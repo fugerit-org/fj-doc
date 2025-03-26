@@ -10,8 +10,8 @@ import org.fugerit.java.doc.maven.MojoAdd;
 import org.fugerit.java.doc.project.facade.BasicVenusFacade;
 import org.fugerit.java.doc.project.facade.VenusContext;
 import org.fugerit.java.doc.project.facade.AddVenusFacade;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.UUID;
 
 @Slf4j
-public class TestAddVenusFacade {
+class TestAddVenusFacade {
 
     private String getVersion() {
         return "8.6.1";
@@ -34,12 +34,12 @@ public class TestAddVenusFacade {
     }
 
     @Test
-    public void testAddVenus() throws IOException {
+    void testAddVenus() throws IOException {
         int count = 0;
         for ( String currentConfig : Arrays.asList( "ok1-pom", "ok2-pom", "ok3-pom", "ok4-pom" ) ) {
             File projectDir = this.initConfigWorker( currentConfig );
             log.info( "projectDir: {}, exists:{}", projectDir, projectDir.exists() );
-            Assert.assertTrue( projectDir.exists() );
+            Assertions.assertTrue( projectDir.exists() );
             String moduleList = "fj-doc-base,base-json,mod-fop,mod-opencsv,mod-poi";
             boolean addFacade = false;
             boolean excludeXmlApis = false;
@@ -65,14 +65,14 @@ public class TestAddVenusFacade {
             context.setAddLombok( addLombok );
             context.setAddDependencyOnTop( addDependencyOnTop );
             boolean result = AddVenusFacade.addToProject( context );
-            Assert.assertTrue( result );
-            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addToProject( context ) );
+            Assertions.assertTrue( result );
+            Assertions.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addToProject( context ) );
             count++;
         }
     }
 
     @Test
-    public void testMojoAdd() throws IOException, MojoExecutionException, MojoFailureException {
+    void testMojoAdd() throws IOException, MojoExecutionException, MojoFailureException {
         for ( String currentConfig : Arrays.asList( "ok3-pom" ) ) {
             File projectDir = this.initConfigWorker( currentConfig );
             MojoAdd mojoAdd = new MojoAdd() {
@@ -91,12 +91,12 @@ public class TestAddVenusFacade {
                 }
             };
             mojoAdd.execute();
-            Assert.assertTrue( projectDir.exists() );
+            Assertions.assertTrue( projectDir.exists() );
         }
     }
 
     @Test
-    public void testMojoAddSimpleModel() throws IOException, MojoExecutionException, MojoFailureException {
+    void testMojoAddSimpleModel() throws IOException, MojoExecutionException, MojoFailureException {
         for ( String current : Arrays.asList( "ok3-pom", "ok5-pom" ) ) {
             for ( String currentConfig : Arrays.asList( current ) ) {
                 File projectDir = this.initConfigWorker( currentConfig );
@@ -114,38 +114,38 @@ public class TestAddVenusFacade {
                     }
                 };
                 mojoAdd.execute();
-                Assert.assertTrue( projectDir.exists() );
+                Assertions.assertTrue( projectDir.exists() );
             }
         }
     }
 
 
     @Test
-    public void testFail() {
+    void testFail() {
         VenusContext context = new VenusContext( new File( "target" ), this.getVersion(),"base" );
         boolean result = AddVenusFacade.addToProject( context );
-        Assert.assertFalse( result );
+        Assertions.assertFalse( result );
     }
 
     @Test
-    public void testFailNoModule() throws IOException {
+    void testFailNoModule() throws IOException {
         for ( String currentConfig : Arrays.asList( "ko1-pom" ) ) {
             File projectDir = this.initConfigWorker(currentConfig);
             VenusContext context = new VenusContext( projectDir, this.getVersion(), "base,not-exists" );
-            Assert.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addToProject( context ) );
+            Assertions.assertThrows( ConfigRuntimeException.class, () -> AddVenusFacade.addToProject( context ) );
         }
     }
 
     @Test
-    public void testAdditional() {
-        Assert.assertNotNull( new BasicVenusFacade() {});
+    void testAdditional() {
+        Assertions.assertNotNull( new BasicVenusFacade() {});
         Dependency d = new Dependency();
         d.setGroupId( "org.fugerit.java" );
         d.setArtifactId( "fj-core" );
         BasicVenusFacade.checkDependencies( true, d );
         d.setArtifactId( "fj-doc-base" );
         BasicVenusFacade.checkDependencies( true, d );
-        Assert.assertThrows( ConfigRuntimeException.class, () -> BasicVenusFacade.checkDependencies( false, d ) );
+        Assertions.assertThrows( ConfigRuntimeException.class, () -> BasicVenusFacade.checkDependencies( false, d ) );
         d.setGroupId( "junit" );
         d.setArtifactId( "junit" );
         BasicVenusFacade.checkDependencies( true, d );
