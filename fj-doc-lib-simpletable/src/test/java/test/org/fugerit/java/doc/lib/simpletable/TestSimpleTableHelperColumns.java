@@ -1,17 +1,17 @@
 package test.org.fugerit.java.doc.lib.simpletable;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
 import org.fugerit.java.doc.lib.simpletable.SimpleTableFacade;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableHelper;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestSimpleTableHelperColumns {
+class TestSimpleTableHelperColumns {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestSimpleTableHelperColumns.class );
 	
@@ -25,23 +25,23 @@ public class TestSimpleTableHelperColumns {
 			size+= current;
 		}
 		logger.info( "Total size is {}", size );
-		assertEquals( "Wrong columns total size", 100 , size );
+		assertEquals( 100 , size );
 		return 100 == size;
 	}
 
 	@Test
-	public void columns_12() {
-		Assert.assertTrue( this.test( 12 ) );
+	void columns_12() {
+		Assertions.assertTrue( this.test( 12 ) );
 	}
 	
 	@Test
-	public void columns_10() {
-		Assert.assertTrue( this.test( 10 ) );
+	void columns_10() {
+		Assertions.assertTrue( this.test( 10 ) );
 	}
 	
 	@Test
-	public void columns_8() {
-		Assert.assertTrue( this.test( 8 ) );
+	void columns_8() {
+		Assertions.assertTrue( this.test( 8 ) );
 	}
 	
 }
