@@ -11,18 +11,18 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8;
 import org.fugerit.java.doc.mod.fop.InitFopHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.BasicTest;
 
 @Slf4j
-public class TestAlt extends BasicTest {
+class TestAlt extends BasicTest {
 
-	@BeforeClass
-	public static void init() {
+	@BeforeAll
+	static void init() {
 		SafeFunction.apply(  () -> InitFopHandler.initDoc() );
 	}
 	
@@ -42,10 +42,10 @@ public class TestAlt extends BasicTest {
 	private static final DocTypeHandler[] HANDLERS = { PdfFopTypeHandler.HANDLER, new FreeMarkerFopTypeHandlerUTF8() };
 	
 	@Test
-	public void testAlt001Ok() {
+	void testAlt001Ok() {
 		for ( int k=0; k<HANDLERS.length; k++ ) {
 			boolean ok = this.testHelper(HANDLERS[k]);
-			Assert.assertTrue(ok);
+			Assertions.assertTrue(ok);
 		}
 	}
 	
