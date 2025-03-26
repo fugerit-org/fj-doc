@@ -1,14 +1,14 @@
 package test.org.fugerit.java.doc.lib.autodoc;
 
 import org.fugerit.java.doc.lib.autodoc.AutodocModule;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestAutodocModule {
+class TestAutodocModule {
 
 	@Test
-	public void testModule() {
-		Assert.assertEquals( AutodocModule.CURRENT_VERSION , new AutodocModule().getVersion() );
+	void testModule() {
+		Assertions.assertEquals( AutodocModule.CURRENT_VERSION , new AutodocModule().getVersion() );
 	}
 	
 }
