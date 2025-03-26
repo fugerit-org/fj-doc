@@ -12,18 +12,18 @@ import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.mod.poi.PoiUtils;
 import org.fugerit.java.doc.mod.poi.WorkbookHelper;
-import org.junit.Assert;
-import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestPOIUtils {
+class TestPOIUtils {
 
 	
 	@Test
-	public void xlsxFormatStyle() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void xlsxFormatStyle() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			boolean ok = Boolean.TRUE;
 			PoiUtils.xlsxFormatStyle(null, null, null);
 			PoiUtils.xlsxFormatStyle(null, new XSSFCellStyle( null), null );
@@ -32,8 +32,8 @@ public class TestPOIUtils {
 	}
 	
 	@Test
-	public void xlsxFontStyle() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void xlsxFontStyle() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			boolean ok = Boolean.TRUE;
 			PoiUtils.xlsxFontStyle(null, null, null);
 			 return ok;
@@ -41,8 +41,8 @@ public class TestPOIUtils {
 	}
 	
 	@Test
-	public void lsxFormat() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void lsxFormat() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			boolean ok = Boolean.TRUE;
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
 					HSSFWorkbook workbook = new HSSFWorkbook( is ) ) {
@@ -56,9 +56,9 @@ public class TestPOIUtils {
 	}
 	
 	@Test
-	public void testFindColor() {
+	void testFindColor() {
 		Short test = 31;
-		Assert.assertEquals( test, SafeFunction.get( () -> {
+		Assertions.assertEquals( test, SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
 					HSSFWorkbook workbook = new HSSFWorkbook( is ) ) {
 				short index = PoiUtils.findClosestColorIndex( workbook , "#dddddd" );
@@ -69,15 +69,15 @@ public class TestPOIUtils {
 	}
 	
 	@Test
-	public void testNewHelper() {
+	void testNewHelper() {
 		SafeFunction.apply( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
 					WorkbookHelper helper = PoiUtils.newHelper( false , is ) ) {
 				log.info( "test 1 -> {}", helper.getIndexedColorMap() );
-				Assert.assertNotNull( helper );
+				Assertions.assertNotNull( helper );
 			}
 		} );
-		Assert.assertNotNull( SafeFunction.get( () -> {
+		Assertions.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xlsx_as_xlsx.xlsx" ); 
 					WorkbookHelper helper = PoiUtils.newHelper( true , is ) ) {
 				log.info( "test 2 -> {}", helper.getIndexedColorMap() );
@@ -89,10 +89,10 @@ public class TestPOIUtils {
 	private static final IOException FAIL_EX = new IOException( "scenario exception" );
 	
 	@Test
-	public void testAutoresizeFailhandler() {
+	void testAutoresizeFailhandler() {
 		PoiUtils.autoresizeFailHandler( false ).accept( FAIL_EX );
 		Consumer<Exception> exHandlerFail = PoiUtils.autoresizeFailHandler( true );
-		Assert.assertThrows( ConfigRuntimeException.class , () -> exHandlerFail.accept( FAIL_EX ) );
+		Assertions.assertThrows( ConfigRuntimeException.class , () -> exHandlerFail.accept( FAIL_EX ) );
 	}
 	
 }

@@ -12,10 +12,10 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestPoiCoverage {
+class TestPoiCoverage {
 	
 	private final static String[] TEST_LIST = { "default_doc", "default_doc_alt", "default_doc_fail1" };
 	
@@ -37,11 +37,11 @@ public class TestPoiCoverage {
 	}
 	
 	@Test
-	public void test01() {
+	void test01() {
 		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
-			Assert.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) );
+			Assertions.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) );
 		} );
-		Assert.assertTrue( Boolean.TRUE );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 }
