@@ -11,31 +11,31 @@ import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPdfHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.PhraseParent;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
 
 import java.io.IOException;
 
-public class TestOpenPdfHelper {
+class TestOpenPdfHelper {
 
 	@Test
-	public void test001() throws Exception {
+	void test001() throws Exception {
 		PhraseParent parent = new PhraseParent( new Phrase() );
 		parent.add( new Paragraph() );
-		Assert.assertNotNull( parent );
+		Assertions.assertNotNull( parent );
 	}
 
 	@Test
-	public void testList() {
+	void testList() {
 		OpenPdfHelper helper = new OpenPdfHelper();
 		try ( Document document = new Document() ) {
 			DocList list1 = new DocList();
 			list1.addElement( new DocTable() );
 			list1.setListType(DocList.LIST_TYPE_OL);
-			Assert.assertThrows( IOException.class, () ->  OpenPpfDocHandler.getElement( document, list1, false, helper ) );
+			Assertions.assertThrows( IOException.class, () ->  OpenPpfDocHandler.getElement( document, list1, false, helper ) );
 			DocList list2 = new DocList();
 			list2.setListType(DocList.LIST_TYPE_UL);
 			DocLi li2 = new DocLi();

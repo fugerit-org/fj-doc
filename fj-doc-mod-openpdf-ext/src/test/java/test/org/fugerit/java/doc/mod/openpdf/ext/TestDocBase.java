@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.mod.openpdf.ext;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +17,7 @@ import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestDocBase {
+class TestDocBase {
 
 	private FreemarkerDocProcessConfig config = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fm-test-mod-openpdf-config.xml" );
 
