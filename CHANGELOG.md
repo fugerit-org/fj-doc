@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.7] - 2025-03-26
+
+### Changed
+
+- quarkus-version set to 3.21.0 across all the modules <https://github.com/fugerit-org/fj-doc/pull/344>
+
 ## [8.12.6] - 2025-03-25
 
 ### Changed
@@ -23,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - [fj-doc-maven-plugin] openliberty flavour version set to 25.0.0.2 <https://github.com/fugerit-org/fj-doc/issues/341>
 - [fj-doc-maven-plugin] micronaut flavour version set to 4.7.6 <https://github.com/fugerit-org/fj-doc/issues/341>
-- quarkus-version set to 3.21.0 across all the modules <https://github.com/fugerit-org/fj-doc/pull/344>
+- quarkus-version set to 3.19.4 across all the modules
 
 ### Fixed
 
