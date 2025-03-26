@@ -7,13 +7,13 @@ import java.util.Properties;
 
 import org.fugerit.java.doc.lib.simpletableimport.ConvertCsvToSimpleTableFacade;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
-import org.junit.Assert;
-import org.junit.Test;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestImportSimpleTableCsv {
+class TestImportSimpleTableCsv {
 	
 	private boolean testXlsxWorker( String inputPath, String outputPath ) {
 		File inputFile = new File( inputPath );
@@ -32,8 +32,8 @@ public class TestImportSimpleTableCsv {
 	}
 
 	@Test
-	public void testXlsx() {
-		Assert.assertTrue( this.testXlsxWorker( "src/test/resources/xlsx/simple_table_01.csv", "target/simple_table_01_csv.xlsx" ) );
+	void testXlsx() {
+		Assertions.assertTrue( this.testXlsxWorker( "src/test/resources/xlsx/simple_table_01.csv", "target/simple_table_01_csv.xlsx" ) );
 	}
 	
 }
