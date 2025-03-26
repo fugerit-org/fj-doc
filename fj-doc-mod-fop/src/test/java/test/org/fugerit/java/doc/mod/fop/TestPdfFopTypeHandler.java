@@ -14,19 +14,19 @@ import org.fugerit.java.doc.mod.fop.FopConfig;
 import org.fugerit.java.doc.mod.fop.FopConfigDefault;
 import org.fugerit.java.doc.mod.fop.InitFopHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 
 import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.BasicTest;
 
 @Slf4j
-public class TestPdfFopTypeHandler extends BasicTest {
+class TestPdfFopTypeHandler extends BasicTest {
 
-	@BeforeClass
-	public static void init() {
+	@BeforeAll
+	static void init() {
 		SafeFunction.apply(  () -> InitFopHandler.initDocAsync() );
 	}
 	
@@ -43,14 +43,14 @@ public class TestPdfFopTypeHandler extends BasicTest {
 	}
 	
 	@Test
-	public void test001Ok() {
+	void test001Ok() {
 		FopConfig config = new FopConfigDefault();
 		PdfFopTypeHandler handler = new PdfFopTypeHandler();
 		handler.setSuppressEvents( true );
 		log.info( "suppress events : {}", handler.isSuppressEvents() );
 		handler.setFopConfig( config );
 		boolean ok = this.testHelper(handler);
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 	
 	private boolean configureHelper( String path ) {
@@ -67,22 +67,22 @@ public class TestPdfFopTypeHandler extends BasicTest {
 	}
 	
 	@Test
-	public void test002Ko() {
-		Assert.assertThrows( ConfigRuntimeException.class , () -> {
+	void test002Ko() {
+		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
 			this.configureHelper(  "config/test_config_err1.xml" );
 		});
 	}
 	
 
 	@Test
-	public void test003Ok() {
+	void test003Ok() {
 		boolean ok = this.configureHelper(  "config/test_config_ok.xml" );
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 	
 	@Test
-	public void test004Ko() {
-		Assert.assertThrows( ConfigRuntimeException.class , () -> {
+	void test004Ko() {
+		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
 			this.configureHelper(  "config/test_config_err2.xml" );
 		});
 	}
