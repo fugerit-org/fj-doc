@@ -13,16 +13,16 @@ import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8;
-import org.junit.Assert;
-import org.junit.Test;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestOpencsvCoverage {
+class TestOpencsvCoverage {
 	
 	private final static TestEntry[] TEST_LIST = {
 			new TestEntry( "default_doc" , true ),
@@ -54,12 +54,12 @@ public class TestOpencsvCoverage {
 	}
 	
 	@Test
-	public void test01() {
+	void test01() {
 		Arrays.asList( TEST_LIST ).stream().forEach( c -> {
 			log.info( "test -> {}", c );
-			Assert.assertTrue( this.worker( c.getId(), "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
+			Assertions.assertTrue( this.worker( c.getId(), "coverage/xml/"+c.getId()+".xml", c.isResult() ) );
 		} );
-		Assert.assertTrue( Boolean.TRUE );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 	
 }
