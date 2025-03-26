@@ -3,20 +3,20 @@ package test.org.fugerit.java.doc.mod.openpdf.ext;
 import java.util.Properties;
 
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPdfHelper;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestPhraseParent {
+class TestPhraseParent {
 
 	@Test
-	public void test001() throws Exception {
+	void test001() throws Exception {
 		OpenPdfHelper helper = new OpenPdfHelper();
 		helper.setParams( new Properties() );
 		log.info( "helper.getDefFontStyle() -> {}", helper.getDefFontStyle() );
-		Assert.assertNotNull( helper.getParams() );
+		Assertions.assertNotNull( helper.getParams() );
 	}
 	
 }

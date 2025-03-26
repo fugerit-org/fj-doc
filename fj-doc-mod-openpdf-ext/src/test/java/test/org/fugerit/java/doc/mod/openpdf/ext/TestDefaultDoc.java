@@ -2,12 +2,12 @@ package test.org.fugerit.java.doc.mod.openpdf.ext;
 
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import com.lowagie.text.pdf.BaseFont;
 
-public class TestDefaultDoc extends TestDocBase {
+class TestDefaultDoc extends TestDocBase {
 
 	private static final String CUSTOM_FONT = "TitilliumWeb";
 
@@ -20,50 +20,50 @@ public class TestDefaultDoc extends TestDocBase {
 	private static final String DEFAULT_DOC_PDFA = "default_doc_pdfa";
 	
 	@Test
-	public void testOpenFailPDF() {
-		Assert.assertThrows( AssertionError.class , () -> this.testDocWorker( "default_doc_fail1" ,  DocConfig.TYPE_PDF ) );
+	void testOpenFailPDF() {
+		Assertions.assertThrows( AssertionError.class , () -> this.testDocWorker( "default_doc_fail1" ,  DocConfig.TYPE_PDF ) );
 	}
 	
 	@Test
-	public void testCustomFont() {
+	void testCustomFont() {
 		BaseFont font = OpenPpfDocHandler.findFont( CUSTOM_FONT );
-		Assert.assertNotNull(font);
+		Assertions.assertNotNull(font);
 	}
 	
 	@Test
-	public void testOpenPDF() {
+	void testOpenPDF() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_PDF );
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 
 	@Test
-	public void testOpenHTML() {
+	void testOpenHTML() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_HTML );
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 	
 	@Test
-	public void testOpenAltPDF() {
+	void testOpenAltPDF() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_PDF );
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 
 	@Test
-	public void testOpenAltHTML() {
+	void testOpenAltHTML() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_HTML );
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 	
 	@Test
-	public void testOpenSimple() {
+	void testOpenSimple() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_SIMPLE ,  DocConfig.TYPE_PDF );
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 	
 	@Test
-	public void testOpenPDFA() {
+	void testOpenPDFA() {
 		// still working on font embedding
-		Assert.assertThrows( AssertionError.class , () -> this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF ));
+		Assertions.assertThrows( AssertionError.class , () -> this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF ));
 	}
 	
 }
