@@ -12,8 +12,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
@@ -29,7 +29,7 @@ public class TestPOI extends TestFormatBase {
 	}
 	
 	@Test
-	public void testCellForegroundColor() throws Exception  {
+	void testCellForegroundColor() throws Exception  {
 		boolean ok = false;
 		String test = "cell_foreground_color";
 		Workbook workbook = new XSSFWorkbook();
@@ -50,7 +50,7 @@ public class TestPOI extends TestFormatBase {
 		cell.setCellStyle( style );
 		close( workbook, test );
 		ok = true;
-		Assert.assertTrue(ok);
+		Assertions.assertTrue(ok);
 	}
 	
 

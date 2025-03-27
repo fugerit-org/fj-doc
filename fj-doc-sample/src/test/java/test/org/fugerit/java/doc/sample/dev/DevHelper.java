@@ -30,7 +30,7 @@ import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.fugerit.java.doc.mod.fop.FopConfigDefault;
 import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.BeforeAll;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,8 +40,8 @@ public class DevHelper {
 
 	private final static Logger logger = LoggerFactory.getLogger( DevHelper.class );
 	
-	@BeforeClass
-	public static void initPath() {
+	@BeforeAll
+	static void initPath() {
 		File baseOut = new File( BasicFacadeTest.BASIC_OUTPUT_PATH );
 		if ( !baseOut.exists() ) {
 			logger.info( "create base dir -> {} -> {}", baseOut.getAbsolutePath(), baseOut.mkdirs() );

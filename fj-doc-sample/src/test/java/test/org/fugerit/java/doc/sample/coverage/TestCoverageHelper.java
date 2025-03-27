@@ -15,7 +15,7 @@ import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandl
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -32,7 +32,7 @@ public class TestCoverageHelper {
 			"coverage/default_doc.xml" };
 
 	@Test
-	public void testHandlers() {
+	void testHandlers() {
 		Arrays.asList(HANDLERS).stream().forEach(handler -> {
 			Arrays.asList(TEMPLATES).stream().forEach(template -> {
 				SafeFunction.apply(() -> {

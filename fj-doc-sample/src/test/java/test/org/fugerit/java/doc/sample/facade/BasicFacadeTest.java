@@ -22,7 +22,7 @@ import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,11 +51,11 @@ public class BasicFacadeTest {
 	private boolean validate;
 	
 	public BasicFacadeTest() {
-		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML );
+		this.setup( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML );
 		this.validate = VALIDATE_DEFAULT;
 	}
 	
-	protected BasicFacadeTest( String nameBase, String ...typeList ) {
+	protected void setup( String nameBase, String ...typeList ) {
 		this.checkpoints = Checkpoints.newInstance( CheckpointFormatHelper.DEFAULT_DECORATION );
 		this.nameBase = nameBase;
 		this.types = new ArrayList<>();
@@ -164,7 +164,7 @@ public class BasicFacadeTest {
 	}
 	
 	@Test
-	public void produce() throws Exception {
+	void produce() throws Exception {
 		File baseFile = new File(BASIC_OUTPUT_PATH);
 		if (!baseFile.exists()) {
 			logger.info("Create base path : {} ({})", baseFile.mkdirs(), baseFile.getCanonicalPath());

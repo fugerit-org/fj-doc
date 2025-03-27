@@ -6,7 +6,7 @@ import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 public class TestFreeMarker01FullFacade extends BasicFreeMarkerTest {
 
 	public TestFreeMarker01FullFacade() {
-		super( "full-facade-01", 
+		super.setupFreemMarker( "full-facade-01",
 			FreeMarkerFopTypeHandler.HANDLER.getKey(), 
 			PdfFopTypeHandler.HANDLER.getKey()  );
 	}

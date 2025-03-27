@@ -2,8 +2,8 @@ package test.org.fugerit.java.doc.sample.facade;
 
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,6 +25,6 @@ public class TestKotlinScript extends BasicFacadeTest {
                 PROCESSCONFIG.fullProcess( chaindId, context, handleID, os );
             }
         }
-        Assert.assertTrue(baseFile.exists());
+        Assertions.assertTrue(baseFile.exists());
     }
 }
