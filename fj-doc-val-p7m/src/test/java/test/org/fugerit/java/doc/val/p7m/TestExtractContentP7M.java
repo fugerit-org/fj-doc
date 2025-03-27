@@ -12,22 +12,22 @@ import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.val.p7m.P7MUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestExtractContentP7M {
+class  TestExtractContentP7M {
 
 	@Test
-	public void testDataProcess() {
-		Assert.assertThrows( CMSException.class , () -> P7MUtils.extractContentCMSSignedDataProcess( null, null ) ) ;
+	void testDataProcess() {
+		Assertions.assertThrows( CMSException.class , () -> P7MUtils.extractContentCMSSignedDataProcess( null, null ) ) ;
 	}
 
 	@Test
-	public void testContentInfo() throws IOException {
-		Assert.assertThrows( CMSException.class , () -> P7MUtils.checkContentInfo( null ) ) ;
+	void testContentInfo() throws IOException {
+		Assertions.assertThrows( CMSException.class , () -> P7MUtils.checkContentInfo( null ) ) ;
 		try (InputStream is = ClassHelper.loadFromDefaultClassLoader( "sample/pkcs7_test_ok1.p7m" ) ) {
 			String in = new String(StreamIO.readBytes( is ));
 			try ( PEMParser pp = new PEMParser(new StringReader(in) ) ) {
@@ -38,14 +38,14 @@ public class TestExtractContentP7M {
 						return CMSObjectIdentifiers.authenticatedData;
 					}
 				};
-				Assert.assertThrows( CMSException.class , () -> P7MUtils.checkContentInfo( ci ) ) ;
+				Assertions.assertThrows( CMSException.class , () -> P7MUtils.checkContentInfo( ci ) ) ;
 			}
 		}
 	}
 
 	@Test
-	public void testP7MKo() {
-		Assert.assertThrows( CMSException.class , () -> {
+	void testP7MKo() {
+		Assertions.assertThrows( CMSException.class , () -> {
 			String path = "src/test/resources/sample/png_as_p7m.p7m";
 			File testP7M = new File( path );
 			log.info( "test extract ko : {}", testP7M.getCanonicalPath() );
@@ -57,8 +57,8 @@ public class TestExtractContentP7M {
 	}
 	
 	@Test
-	public void testP7MOk() {
-		Assert.assertTrue( SafeFunction.get( () -> {
+	void testP7MOk() {
+		Assertions.assertTrue( SafeFunction.get( () -> {
 			String path = "src/test/resources/sample/pdf_as_pdf.p7m";
 			File testP7M = new File( path );
 			log.info( "test extract : {}", testP7M.getCanonicalPath() );
