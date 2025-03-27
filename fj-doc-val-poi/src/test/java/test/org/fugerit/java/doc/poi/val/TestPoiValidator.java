@@ -5,10 +5,10 @@ import org.fugerit.java.doc.val.poi.DocValidator;
 import org.fugerit.java.doc.val.poi.DocxValidator;
 import org.fugerit.java.doc.val.poi.XlsValidator;
 import org.fugerit.java.doc.val.poi.XlsxValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestPoiValidator extends TestDocValidatorFacade {
+class TestPoiValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			DocValidator.DEFAULT,
@@ -18,51 +18,51 @@ public class TestPoiValidator extends TestDocValidatorFacade {
 	);
 	
 	@Test
-	public void testDocAsDoc() {
+	void testDocAsDoc() {
 		boolean ok = this.worker(FACADE, "doc_as_doc.doc", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testDocxAsDocx() {
+	void testDocxAsDocx() {
 		boolean ok = this.worker(FACADE, "docx_as_docx.docx", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testDocxAsDoc() {
+	void testDocxAsDoc() {
 		boolean ok = this.worker(FACADE, "docx_as_doc.doc", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testDocAsDocx() {
+	void testDocAsDocx() {
 		boolean ok = this.worker(FACADE, "doc_as_docx.docx", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testXlsAsXls() {
+	void testXlsAsXls() {
 		boolean ok = this.worker(FACADE, "xls_as_xls.xls", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testXlsxAsXlsx() {
+	void testXlsxAsXlsx() {
 		boolean ok = this.worker(FACADE, "xlsx_as_xlsx.xlsx", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	@Test
-	public void testJpgAsXlsx() {
+	void testJpgAsXlsx() {
 		boolean ok = this.worker(FACADE, "jpg_as_xlsx.xlsx", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	@Test
-	public void testXlsxAsXls() {
+	void testXlsxAsXls() {
 		boolean ok = this.worker(FACADE, "xlsx_as_xls.xls", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}	
 	
 }
