@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestDocCatalogSample {
+class TestDocCatalogSample {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestDocCatalogSample.class );
 	

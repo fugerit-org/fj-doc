@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
-public class TestItext2 extends DevHelper {
+class TestItext2 extends DevHelper {
 	
 	@Test
 	void test01FoPdf() throws Exception {

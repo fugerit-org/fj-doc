@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
-public class TestHtml01 extends DevHelper {
+class TestHtml01 extends DevHelper {
 	
 	@Test
 	void test01() throws Exception {

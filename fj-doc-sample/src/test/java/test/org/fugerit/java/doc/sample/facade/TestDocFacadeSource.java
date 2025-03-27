@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestDocFacadeSource {
+class TestDocFacadeSource {
 
     @Test
     public void testKotlinYaml() {
