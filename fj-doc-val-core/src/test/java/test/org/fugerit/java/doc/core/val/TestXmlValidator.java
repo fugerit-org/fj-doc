@@ -5,7 +5,7 @@ import org.fugerit.java.doc.val.core.basic.XmlValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestXmlValidator extends TestDocValidatorFacade {
+class TestXmlValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			XmlValidator.DEFAULT

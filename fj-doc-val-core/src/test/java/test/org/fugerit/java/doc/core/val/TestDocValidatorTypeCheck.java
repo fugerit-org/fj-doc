@@ -12,7 +12,7 @@ import java.awt.*;
 import java.io.InputStream;
 
 @Slf4j
-public class TestDocValidatorTypeCheck {
+class TestDocValidatorTypeCheck {
 
     private static final DocValidatorTypeCheck TYPE_CHECK = DocValidatorTypeCheck.newInstance(
             ImageValidator.JPG_VALIDATOR, ImageValidator.PNG_VALIDATOR );
@@ -30,17 +30,17 @@ public class TestDocValidatorTypeCheck {
     }
 
     @Test
-    public void testJpg() {
+    void testJpg() {
         Assertions.assertEquals(ImageValidator.JPG_VALIDATOR.getMimeType(), this.worker( "jpg_as_jpg.jpg" ) );
     }
 
     @Test
-    public void testPng() {
+    void testPng() {
         Assertions.assertEquals(ImageValidator.PNG_VALIDATOR.getMimeType(), this.worker( "png_as_png.png" ) );
     }
 
     @Test
-    public void testNull() {
+    void testNull() {
         Assertions.assertNull( this.worker( "pdf_as_jpg.jpg" ) );
     }
 

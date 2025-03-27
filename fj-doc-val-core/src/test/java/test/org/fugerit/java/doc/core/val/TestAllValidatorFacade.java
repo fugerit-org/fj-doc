@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestAllValidatorFacade extends TestDocValidatorFacade {
+class TestAllValidatorFacade extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			ImageValidator.JPG_VALIDATOR,

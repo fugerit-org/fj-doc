@@ -5,7 +5,7 @@ import org.fugerit.java.doc.val.core.basic.ImageValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestTiffValidator extends TestDocValidatorFacade {
+class TestTiffValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			ImageValidator.TIFF_VALIDATOR
