@@ -1,14 +1,14 @@
 package test.org.fugerit.java.doc.val;
 
 import org.fugerit.java.doc.val.DocValidatorFacadeFactory;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestCreateFullFactory {
+class TestCreateFullFactory {
 
 	@Test
-	public void test() {
-		Assert.assertNotNull( new DocValidatorFacadeFactory().createFullDocValidatorFacade() );
+	void test() {
+		Assertions.assertNotNull( new DocValidatorFacadeFactory().createFullDocValidatorFacade() );
 	}
 	
 }

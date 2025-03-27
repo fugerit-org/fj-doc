@@ -5,16 +5,16 @@ import java.io.InputStreamReader;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestFreemarkerConfigValidation  {
+class TestFreemarkerConfigValidation  {
 
 	@Test
-	public void testValidation() {
+	void testValidation() {
 		try ( InputStreamReader xmlReader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "config/freemarker-doc-process.xml" ) ) ) {
 			boolean valid = FreemarkerDocProcessConfigValidator.logValidation( xmlReader );
-			Assert.assertTrue( "Xml non valido", valid );
+			Assertions.assertTrue( valid );
 		} catch (Exception e) {
 			throw new ConfigRuntimeException( "Exception on testValidation : "+e, e );
 		}

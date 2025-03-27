@@ -1,7 +1,7 @@
 package test.org.fugerit.java.doc.sample.freemarker;
 
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -13,13 +13,13 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 @Slf4j
-public class TestPdfADirect {
+class TestPdfADirect {
 
 	private void testWorker( String handlerRef ) {
 		FreemarkerDocProcessConfig config = BasicFacadeTest.getPROCESSCONFIG();
@@ -38,17 +38,17 @@ public class TestPdfADirect {
 	}
 	
 	@Test
-	public void testPDFADirectFormat() {
+	void testPDFADirectFormat() {
 		this.testWorker( DocConfig.FORMAT_PDF_A_1B );	
 	}
 	
 	@Test
-	public void testPDFADirectId() {
+	void testPDFADirectId() {
 		this.testWorker( BasicFacadeTest.PDF_A_FOP );	
 	}
 	
 	@Test
-	public void testPDFDirectType() {
+	void testPDFDirectType() {
 		this.testWorker( DocConfig.TYPE_PDF );	
 	}
 

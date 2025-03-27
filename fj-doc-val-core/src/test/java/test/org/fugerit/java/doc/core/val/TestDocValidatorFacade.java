@@ -5,7 +5,7 @@ import java.io.InputStream;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +21,7 @@ public class TestDocValidatorFacade {
 			logger.info( "test path {}, expected result {}", path, result );
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( path ) ) {
 				boolean check = facade.check(fileName, is);
-				Assert.assertEquals( "File check failed", result, check );
+				Assertions.assertEquals( result, check );
 				return ( result == check );
 			}
 		} );

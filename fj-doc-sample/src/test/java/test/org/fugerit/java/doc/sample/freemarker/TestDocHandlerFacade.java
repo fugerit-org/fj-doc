@@ -6,8 +6,8 @@ import org.fugerit.java.doc.base.facade.DocHandlerFacade;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig;
 import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,7 +17,7 @@ import java.util.LinkedHashSet;
  * Test case or issue : https://github.com/fugerit-org/fj-doc/issues/52
  */
 @Slf4j
-public class TestDocHandlerFacade {
+class TestDocHandlerFacade {
 
 	private static final String PDF_A_UA_FOP = "pdf-a-ua-fop";
 
@@ -25,7 +25,7 @@ public class TestDocHandlerFacade {
 			FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://config/freemarker-doc-process-test-doc-handler.xml" );
 
 	@Test
-	public void testDocHandlers() throws Exception {
+	void testDocHandlers() throws Exception {
 		DocHandlerFacade facade = config.getFacade();
 		for ( DocTypeHandler handler : new LinkedHashSet<>( facade.handlers() ) ) {
 			log.info( "current handler : {}", handler );
@@ -35,7 +35,7 @@ public class TestDocHandlerFacade {
 		try (FileOutputStream fos = new FileOutputStream( file )) {
 			config.fullProcess( "pdf_a_test", DocProcessContext.newContext(), PDF_A_UA_FOP, fos );
 		}
-		Assert.assertTrue( file.exists() );
+		Assertions.assertTrue( file.exists() );
 	}
 
 }

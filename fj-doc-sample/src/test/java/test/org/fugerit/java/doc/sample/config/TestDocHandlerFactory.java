@@ -1,18 +1,18 @@
 package test.org.fugerit.java.doc.sample.config;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.fugerit.java.doc.base.facade.DocHandlerFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestDocHandlerFactory {
+class TestDocHandlerFactory {
 
 	private final static Logger logger = LoggerFactory.getLogger( TestDocHandlerFactory.class );
 	
 	@Test
-	public void initDocFactoryTest() {
+	void initDocFactoryTest() {
 		try {
 			String path = "cl://config/doc-handler-sample.xml";
 			DocHandlerFactory factory = DocHandlerFactory.newInstance( path );

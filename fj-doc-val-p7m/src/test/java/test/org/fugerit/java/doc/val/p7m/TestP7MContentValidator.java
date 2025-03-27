@@ -7,13 +7,13 @@ import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
 import org.fugerit.java.doc.val.p7m.P7MContentValidator;
 import org.fugerit.java.doc.val.pdf.box.PdfboxStrictValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 
 @Slf4j
-public class TestP7MContentValidator extends TestDocValidatorFacade {
+class  TestP7MContentValidator extends TestDocValidatorFacade {
 
 	private static final String FILENAME_PDF_AS_P7M = "pdf_as_pdf.p7m";
 
@@ -46,36 +46,36 @@ public class TestP7MContentValidator extends TestDocValidatorFacade {
 	}
 	
 	@Test
-	public void testP7MAsP7M() {
+	void testP7MAsP7M() {
 		boolean ok = this.worker(FACADE_PDF, FILENAME_PDF_AS_P7M, true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testP7MAsP7MNull() {
+	void testP7MAsP7MNull() {
 		boolean ok = this.worker(FACADE_NULL, FILENAME_PDF_AS_P7M, true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testP7MAsP7MKo() {
+	void testP7MAsP7MKo() {
 		boolean ok = this.worker(FACADE_JPG, FILENAME_PDF_AS_P7M, false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	@Test
-	public void testKO() {
-		Assert.assertNull( this.worker( CONTENT_JPG_PROCEED, "docx_as_docx.docx" ) );
+	void testKO() {
+		Assertions.assertNull( this.worker( CONTENT_JPG_PROCEED, "docx_as_docx.docx" ) );
 	}
 
 	@Test
-	public void testProccedKo() {
-		Assert.assertNull( this.worker( CONTENT_JPG_PROCEED,  FILENAME_PDF_AS_P7M ) );
+	void testProccedKo() {
+		Assertions.assertNull( this.worker( CONTENT_JPG_PROCEED,  FILENAME_PDF_AS_P7M ) );
 	}
 
 	@Test
-	public void testProccedOk() {
-		Assert.assertEquals( PdfboxStrictValidator.DEFAULT.getMimeType(), this.worker( CONTENT_PDF_PROCEED,  FILENAME_PDF_AS_P7M ) );
+	void testProccedOk() {
+		Assertions.assertEquals( PdfboxStrictValidator.DEFAULT.getMimeType(), this.worker( CONTENT_PDF_PROCEED,  FILENAME_PDF_AS_P7M ) );
 	}
 	
 }

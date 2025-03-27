@@ -5,7 +5,7 @@ import org.fugerit.java.doc.base.config.DocConfig;
 public class TestFreeMarker01Fop extends BasicFreeMarkerTest {
 
 	public TestFreeMarker01Fop() {
-		super( "free-marker-01-fop", DocConfig.TYPE_FO, DocConfig.TYPE_PDF );
+		super.setupFreemMarker( "free-marker-01-fop", DocConfig.TYPE_FO, DocConfig.TYPE_PDF );
 	}
 
 }

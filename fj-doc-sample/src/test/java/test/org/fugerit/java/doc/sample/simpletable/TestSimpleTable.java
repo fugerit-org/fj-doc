@@ -1,6 +1,6 @@
 package test.org.fugerit.java.doc.sample.simpletable;
 
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -17,14 +17,14 @@ import org.fugerit.java.doc.lib.simpletable.model.SimpleTable;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandler;
 import org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 @Slf4j
-public class TestSimpleTable  {
+class TestSimpleTable  {
 
 	private static final DocTypeHandler[] HANDLERS = { DocTypeHandlerXML.HANDLER_UTF8, XlsxPoiTypeHandler.HANDLER, OpenCSVTypeHandler.HANDLER, new PdfFopTypeHandler() };
 	
@@ -32,8 +32,8 @@ public class TestSimpleTable  {
 	
 	private File baseDir = new File( BasicFacadeTest.BASIC_OUTPUT_PATH );
 	
-	@Before
-	public void init() throws ConfigException {
+	@BeforeEach
+	void init() throws ConfigException {
 		this.docConfig = SimpleTableDocConfig.newConfig();
 		log.info( "config init ok {}", this.docConfig );
 		if ( !baseDir.exists() ) {
@@ -42,7 +42,7 @@ public class TestSimpleTable  {
 	}
 	
 	@Test
-	public void testSimpleTable01() {
+	void testSimpleTable01() {
 		SimpleTable simpleTableModel = SimpleTableFacade.newTable( 30, 30, 40 );
 		simpleTableModel.setDefaultBorderWidth( 1 );
 		SimpleRow headerRow = new SimpleRow( BooleanUtils.BOOLEAN_TRUE );

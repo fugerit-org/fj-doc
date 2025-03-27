@@ -11,11 +11,11 @@ import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 public class BasicFreeMarkerTest extends BasicFacadeTest {
 
 	public BasicFreeMarkerTest() {
-		this( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML, DocConfig.TYPE_CSV );
+		this.setupFreemMarker( "basic", DocConfig.TYPE_PDF, DocConfig.TYPE_XLS, DocConfig.TYPE_HTML, DocConfig.TYPE_CSV );
 	}
 
-	protected BasicFreeMarkerTest(String nameBase, String... typeList) {
-		super(nameBase, typeList);
+	protected void setupFreemMarker(String nameBase, String... typeList) {
+		super.setup(nameBase, typeList);
 	}
 
 	@Override

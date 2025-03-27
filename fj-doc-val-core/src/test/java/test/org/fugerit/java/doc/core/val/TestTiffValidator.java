@@ -2,10 +2,10 @@ package test.org.fugerit.java.doc.core.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestTiffValidator extends TestDocValidatorFacade {
+class TestTiffValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			ImageValidator.TIFF_VALIDATOR
@@ -13,14 +13,14 @@ public class TestTiffValidator extends TestDocValidatorFacade {
 	
 	// note : only supported for java 9+
 	@Test
-	public void testTiffAsTiff() {
+	void testTiffAsTiff() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	@Test
-	public void testTiffAsTiffExtTif() {
+	void testTiffAsTiffExtTif() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 }

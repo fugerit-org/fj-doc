@@ -4,24 +4,24 @@ import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.kotlin.parse.DocKotlinParser;
 import org.fugerit.java.doc.base.parser.DocParser;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class TestDocFacadeSource {
+class TestDocFacadeSource {
 
     @Test
-    public void testKotlinYaml() {
+    void testKotlinYaml() {
         DocParser docParser = DocFacadeSource.getInstance().getParserForSource( DocFacadeSource.SOURCE_TYPE_YAML );
         log.info( "docParser yaml : {}", docParser );
-        Assert.assertNotNull( docParser );
+        Assertions.assertNotNull( docParser );
     }
 
     @Test
-    public void testKotlinSource() {
+    void testKotlinSource() {
         DocParser docParser = DocFacadeSource.getInstance().getParserForSource( DocFacadeSource.SOURCE_TYPE_KOTLIN );
         log.info( "docParser kotlin : {}", docParser );
-        Assert.assertNotNull( docParser );
+        Assertions.assertNotNull( docParser );
     }
 
 }

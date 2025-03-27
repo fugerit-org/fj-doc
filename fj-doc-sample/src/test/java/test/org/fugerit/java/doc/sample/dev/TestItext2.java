@@ -14,15 +14,15 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.mod.openpdf.ext.PdfTypeHandler;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
-public class TestItext2 extends DevHelper {
+class TestItext2 extends DevHelper {
 	
 	@Test
-	public void test01FoPdf() throws Exception {
+	void test01FoPdf() throws Exception {
 		Locale.setDefault( Locale.UK );
 		String testCase = "test-xml-01";
 		String type = DocConfig.TYPE_PDF;
@@ -32,7 +32,7 @@ public class TestItext2 extends DevHelper {
 			DocBase doc = DocFacade.parse( input );
 			handler.handle( DocInput.newInput( type, doc) , DocOutput.newOutput( output ) );
 		}
-		Assert.assertTrue( true );
+		Assertions.assertTrue( true );
 	}
 	
 	

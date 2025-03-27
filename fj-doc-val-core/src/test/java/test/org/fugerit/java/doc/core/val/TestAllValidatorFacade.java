@@ -12,13 +12,13 @@ import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocTypeValidator;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class TestAllValidatorFacade extends TestDocValidatorFacade {
+class TestAllValidatorFacade extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			ImageValidator.JPG_VALIDATOR,
@@ -27,49 +27,49 @@ public class TestAllValidatorFacade extends TestDocValidatorFacade {
 	);
 	
 	@Test
-	public void testPngAsPdf() {
+	void testPngAsPdf() {
 		boolean ok = this.worker(FACADE, "png_as_pdf.pdf", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testJpgAsJpg() {
+	void testJpgAsJpg() {
 		boolean ok = this.worker(FACADE, "jpg_as_jpg.jpg", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testJpgAsJpgExtJpeg() {
+	void testJpgAsJpgExtJpeg() {
 		boolean ok = this.worker(FACADE, "jpg_as_jpg.jpeg", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testPdfAsJpg() {
+	void testPdfAsJpg() {
 		boolean ok = this.worker(FACADE, "pdf_as_jpg.jpg", false );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	@Test
-	public void testPngAsPng() {
+	void testPngAsPng() {
 		boolean ok = this.worker(FACADE, "png_as_png.png", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 
 	// note : only supported for java 9+
 	@Test
-	public void testTiffAsTiff() {
+	void testTiffAsTiff() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	@Test
-	public void testTiffAsTiffExtTif() {
+	void testTiffAsTiffExtTif() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", true );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 	@Test
-	public void testDocValidatorFacadeDouble() {
+	void testDocValidatorFacadeDouble() {
 		DocTypeValidator notCompValidator = new HelperDocValidator() {
 			@Override
 			public boolean checkCompatibility() {
@@ -80,24 +80,24 @@ public class TestAllValidatorFacade extends TestDocValidatorFacade {
 				ImageValidator.JPG_VALIDATOR,
 				notCompValidator );
 		log.info( "facade {}", facade );
-		Assert.assertTrue( facade.findAllByMimeType( HelperDocValidator.MIME_TEST ).isEmpty() );
-		Assert.assertTrue( facade.findAllExtension( HelperDocValidator.FORMAT_TEST ).isEmpty() );
-		Assert.assertNull( facade.findByMimeType( HelperDocValidator.MIME_TEST ) );
-		Assert.assertNull( facade.findByExtension( HelperDocValidator.FORMAT_TEST ) );
-		Assert.assertFalse( facade.getSupportedMimeTypes().isEmpty() );
-		Assert.assertFalse( facade.getSupportedExtensions().isEmpty() );
-		Assert.assertFalse( facade.isMimeTypeSupprted( HelperDocValidator.MIME_TEST ) );
-		Assert.assertFalse( facade.isExtensionSupported( HelperDocValidator.FORMAT_TEST ) );
-		Assert.assertFalse( facade.isMimeTypeSupprted( HelperDocValidator.MIME_TEST ) );
-		Assert.assertFalse( facade.isExtensionSupported( HelperDocValidator.FORMAT_TEST ) );
-		Assert.assertFalse( facade.isMimeTypeSupprted( "aaaa" ) );
-		Assert.assertFalse( facade.isExtensionSupported( "bbbb/test" ) );
-		Assert.assertTrue( facade.isMimeTypeSupprted( ImageValidator.JPG_VALIDATOR.getMimeType() ) );
-		Assert.assertTrue( facade.isExtensionSupported( ImageValidator.FORMAT_JPG ) );
+		Assertions.assertTrue( facade.findAllByMimeType( HelperDocValidator.MIME_TEST ).isEmpty() );
+		Assertions.assertTrue( facade.findAllExtension( HelperDocValidator.FORMAT_TEST ).isEmpty() );
+		Assertions.assertNull( facade.findByMimeType( HelperDocValidator.MIME_TEST ) );
+		Assertions.assertNull( facade.findByExtension( HelperDocValidator.FORMAT_TEST ) );
+		Assertions.assertFalse( facade.getSupportedMimeTypes().isEmpty() );
+		Assertions.assertFalse( facade.getSupportedExtensions().isEmpty() );
+		Assertions.assertFalse( facade.isMimeTypeSupprted( HelperDocValidator.MIME_TEST ) );
+		Assertions.assertFalse( facade.isExtensionSupported( HelperDocValidator.FORMAT_TEST ) );
+		Assertions.assertFalse( facade.isMimeTypeSupprted( HelperDocValidator.MIME_TEST ) );
+		Assertions.assertFalse( facade.isExtensionSupported( HelperDocValidator.FORMAT_TEST ) );
+		Assertions.assertFalse( facade.isMimeTypeSupprted( "aaaa" ) );
+		Assertions.assertFalse( facade.isExtensionSupported( "bbbb/test" ) );
+		Assertions.assertTrue( facade.isMimeTypeSupprted( ImageValidator.JPG_VALIDATOR.getMimeType() ) );
+		Assertions.assertTrue( facade.isExtensionSupported( ImageValidator.FORMAT_JPG ) );
 		// test path
 		String testPath = "src/test/resources/sample/jpg_as_jpg.jpeg";
 		SafeFunction.apply( () -> { 
-			Assert.assertTrue( facade.check( new File( testPath ) ) );	
+			Assertions.assertTrue( facade.check( new File( testPath ) ) );	
 			try ( InputStream is = new FileInputStream( testPath ) ) {
 				facade.checkByMimeType( HelperDocValidator.FORMAT_TEST , is);
 			}
@@ -108,7 +108,7 @@ public class TestAllValidatorFacade extends TestDocValidatorFacade {
 	}
 	
 	@Test
-	public void finalTests() {
+	void finalTests() {
 		DocTypeValidator notCompValidator = new HelperDocValidator() {
 			@Override
 			public boolean checkCompatibility() {
@@ -117,16 +117,16 @@ public class TestAllValidatorFacade extends TestDocValidatorFacade {
 		};
 		String testPath = "src/test/resources/sample/jpg_as_jpg.jpeg";
 		// facade strict
-		Assert.assertThrows( ConfigRuntimeException.class, () -> DocValidatorFacade.newFacadeStrict( notCompValidator ) );
+		Assertions.assertThrows( ConfigRuntimeException.class, () -> DocValidatorFacade.newFacadeStrict( notCompValidator ) );
 		// result
-		Assert.assertEquals( Result.RESULT_CODE_OK , DocTypeValidationResult.newOk().getResultCode() );
-		Assert.assertFalse( ImageValidator.javaVersionSupportHelper( JavaVersionHelper.MAJOR_VERSION_JAVA_8 , JavaVersionHelper.MAJOR_VERSION_JAVA_11 ) );
+		Assertions.assertEquals( Result.RESULT_CODE_OK , DocTypeValidationResult.newOk().getResultCode() );
+		Assertions.assertFalse( ImageValidator.javaVersionSupportHelper( JavaVersionHelper.MAJOR_VERSION_JAVA_8 , JavaVersionHelper.MAJOR_VERSION_JAVA_11 ) );
 		// test
-		Assert.assertNotNull( new HelperDocValidator( HelperDocValidator.MIME_TEST, HelperDocValidator.FORMAT_TEST ) );
+		Assertions.assertNotNull( new HelperDocValidator( HelperDocValidator.MIME_TEST, HelperDocValidator.FORMAT_TEST ) );
 		SafeFunction.apply( () -> { 
 			try ( InputStream is = new FileInputStream( testPath ) ) {
-				Assert.assertTrue( notCompValidator.check( is ) );
-				Assert.assertTrue( new HelperDocValidator().checkCompatibility() );
+				Assertions.assertTrue( notCompValidator.check( is ) );
+				Assertions.assertTrue( new HelperDocValidator().checkCompatibility() );
 			}
 		} );
 	}
