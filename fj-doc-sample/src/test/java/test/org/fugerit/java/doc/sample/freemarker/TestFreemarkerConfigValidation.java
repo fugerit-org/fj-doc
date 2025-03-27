@@ -8,7 +8,7 @@ import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigValidat
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestFreemarkerConfigValidation  {
+class TestFreemarkerConfigValidation  {
 
 	@Test
 	void testValidation() {

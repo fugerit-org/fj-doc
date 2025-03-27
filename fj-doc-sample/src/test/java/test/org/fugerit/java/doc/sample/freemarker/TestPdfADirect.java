@@ -19,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 @Slf4j
-public class TestPdfADirect {
+class TestPdfADirect {
 
 	private void testWorker( String handlerRef ) {
 		FreemarkerDocProcessConfig config = BasicFacadeTest.getPROCESSCONFIG();

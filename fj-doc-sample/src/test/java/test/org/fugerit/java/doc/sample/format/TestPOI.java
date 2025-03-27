@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
-public class TestPOI extends TestFormatBase {
+class TestPOI extends TestFormatBase {
 
 	private void close( Workbook workbook, String test ) throws Exception {
 		File file = this.getFile( BasicFacadeTest.BASIC_OUTPUT_PATH, test+".xlsx" );

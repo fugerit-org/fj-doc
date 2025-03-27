@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Test;
 class TestDocFacadeSource {
 
     @Test
-    public void testKotlinYaml() {
+    void testKotlinYaml() {
         DocParser docParser = DocFacadeSource.getInstance().getParserForSource( DocFacadeSource.SOURCE_TYPE_YAML );
         log.info( "docParser yaml : {}", docParser );
         Assertions.assertNotNull( docParser );
     }
 
     @Test
-    public void testKotlinSource() {
+    void testKotlinSource() {
         DocParser docParser = DocFacadeSource.getInstance().getParserForSource( DocFacadeSource.SOURCE_TYPE_KOTLIN );
         log.info( "docParser kotlin : {}", docParser );
         Assertions.assertNotNull( docParser );

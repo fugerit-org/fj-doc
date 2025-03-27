@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 @Slf4j
-public class TestSimpleTable  {
+class TestSimpleTable  {
 
 	private static final DocTypeHandler[] HANDLERS = { DocTypeHandlerXML.HANDLER_UTF8, XlsxPoiTypeHandler.HANDLER, OpenCSVTypeHandler.HANDLER, new PdfFopTypeHandler() };
 	

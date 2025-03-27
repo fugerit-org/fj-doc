@@ -17,7 +17,7 @@ import java.util.LinkedHashSet;
  * Test case or issue : https://github.com/fugerit-org/fj-doc/issues/52
  */
 @Slf4j
-public class TestDocHandlerFacade {
+class TestDocHandlerFacade {
 
 	private static final String PDF_A_UA_FOP = "pdf-a-ua-fop";
 

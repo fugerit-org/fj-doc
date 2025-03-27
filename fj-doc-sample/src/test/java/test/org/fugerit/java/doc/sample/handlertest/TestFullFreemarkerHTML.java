@@ -3,7 +3,7 @@ package test.org.fugerit.java.doc.sample.handlertest;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
 import org.junit.jupiter.api.Test;
 
-public class TestFullFreemarkerHTML extends TestHandleBase {
+class TestFullFreemarkerHTML extends TestHandleBase {
 
 	@Test
 	void testHTML() {

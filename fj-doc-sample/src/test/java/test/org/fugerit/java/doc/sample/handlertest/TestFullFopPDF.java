@@ -4,7 +4,7 @@ import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.junit.jupiter.api.Test;
 
-public class TestFullFopPDF extends TestHandleBase {
+class TestFullFopPDF extends TestHandleBase {
 
 	@Test
 	void testPDF() {
