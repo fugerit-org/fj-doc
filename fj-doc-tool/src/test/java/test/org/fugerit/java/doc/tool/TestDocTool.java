@@ -6,7 +6,7 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.util.PropsIO;
 import org.fugerit.java.doc.tool.DocTool;
 
-public class TestDocTool {
+class TestDocTool {
 
 	protected boolean docToolWorker( String paramsPath ) {
 		return SafeFunction.get( () -> {

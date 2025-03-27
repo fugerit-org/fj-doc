@@ -1,14 +1,14 @@
 package test.org.fugerit.java.doc.tool;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-public class TestGenerateHelperTool extends TestDocTool {
+class TestGenerateHelperTool extends TestDocTool {
 	
 	@Test
-	public void testGenerateHelper() {
+	void testGenerateHelper() {
 		boolean ok = this.docToolWorker( "src/test/resources/params-test/test-generate-helper.properties" );
-		Assert.assertTrue( ok );
+		Assertions.assertTrue( ok );
 	}
 	
 }
