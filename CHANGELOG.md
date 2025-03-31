@@ -19,12 +19,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [8.12.2] - 2025-02-28
 
-**Changed**
+### [Changed](#8-12-2-changed)
 
 - [fj-doc-playground-quarkus] base image 1.21-1.1739376167
 - quarkus-version set to 3.19.1 across all the modules
 
-**Fixed**
+### [Fixed](#8-12-2-fixed)
 
 - Use UBI9 based Quarkus micro image for quarkus 3 <https://github.com/fugerit-org/fj-doc/issues/298>
 
