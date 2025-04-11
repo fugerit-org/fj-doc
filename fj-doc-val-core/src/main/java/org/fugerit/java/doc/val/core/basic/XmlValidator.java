@@ -22,7 +22,7 @@ public class XmlValidator extends AbstractDocTypeValidator {
 
 	@Override
 	public DocTypeValidationResult validate(InputStream is) throws IOException {
-		return this.validationHelper( () -> XMLFactorySAX.makeSAXParser( true, true ).parse( is , new DefaultHandler() ) );
+		return this.validationHelper( () -> XMLFactorySAX.makeSAXParserSecure( true, true ).parse( is , new DefaultHandler() ) );
 	}
 
 }
