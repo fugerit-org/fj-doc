@@ -58,7 +58,7 @@ public class DocXmlParser extends AbstractDocParser {
 	protected DocBase parseWorker(Reader reader) throws DocException {
 		return SafeFunction.get( () -> {
 			DocContentHandler dch =  new DocContentHandler( this.docHelper, this.isFailWhenElementNotFound() );	
-			SAXParser parser = XMLFactorySAX.makeSAXParser( false ,  true );
+			SAXParser parser = XMLFactorySAX.makeSAXParserSecure( false ,  true );
 			DefaultHandlerComp dh = new DefaultHandlerComp( dch );
 			parser.parse( new InputSource(reader), dh);
 			return dch.getDocBase();
