@@ -21,7 +21,6 @@
     <compiler-plugin.version>3.14.0</compiler-plugin.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-    <junit-jupiter-version>5.11.3</junit-jupiter-version>
   </properties>
   <dependencyManagement>
     <dependencies>
