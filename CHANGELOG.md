@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.12.8] - 2025-04-16
+
 ### Changed
 
 - fj-bom version 1.7.4 <https://github.com/fugerit-org/fj-doc/issues/386>
