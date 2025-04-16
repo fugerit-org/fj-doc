@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- graalvm '24' instead of '23' for build_fj-doc-native-quarkus_test.yml workflow
+- quarkus-version set to 3.21.3 across all the modules <https://github.com/fugerit-org/fj-doc/pull/388>
+
 ## [8.12.8] - 2025-04-16
 
 ### Changed
