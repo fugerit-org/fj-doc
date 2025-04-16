@@ -58,7 +58,7 @@ jobs:
     strategy:
       matrix:
         distribution: [ 'graalvm' ]
-        java: [ '21', '23' ]
+        java: [ '21', '24' ]
         os: [ 'ubuntu-latest' ]
     name: Java ${{ matrix.os }} ${{ matrix.java }} (${{ matrix.distribution }}) compatibility check
     steps:
