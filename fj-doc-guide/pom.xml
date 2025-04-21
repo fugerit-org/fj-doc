@@ -29,7 +29,7 @@
 		<asciidoctorj.diagram.version>2.3.2</asciidoctorj.diagram.version>
 		<asciidoctorj.diagram-plantuml.version>1.2025.2</asciidoctorj.diagram-plantuml.version>
 		<asciidoctorj.diagram-ditaamini.version>1.0.3</asciidoctorj.diagram-ditaamini.version>
-		<jruby.version>9.4.12.0</jruby.version>
+		<jruby.version>10.0.0.0</jruby.version>
 		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
 		<pdf-output-folder>${project.build.directory}/generated-pdf</pdf-output-folder>
 		<html-output-folder>${project.build.directory}/generated-html5</html-output-folder>
