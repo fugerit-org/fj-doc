@@ -4,6 +4,8 @@ import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnJre;
+import org.junit.jupiter.api.condition.JRE;
 
 class TestTiffValidator extends TestDocValidatorFacade {
 
@@ -13,6 +15,7 @@ class TestTiffValidator extends TestDocValidatorFacade {
 	
 	// note : only supported for java 9+
 	@Test
+	@EnabledOnJre( JRE.JAVA_11 )
 	void testTiffAsTiff() {
 		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
 		Assertions.assertTrue( ok );

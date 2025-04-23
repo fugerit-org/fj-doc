@@ -457,6 +457,12 @@
     "name" : "newSimpleConfig",
     "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
   }, {
+    "name" : "newSimpleConfig",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "newSimpleConfigMode",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.String" ]
+  }, {
     "name" : "notify",
     "parameterTypes" : [ ]
   }, {

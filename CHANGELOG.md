@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-lib-direct] new module to generate documents from a configuration file <https://github.com/fugerit-org/fj-doc/issues/391>
+
 ### Changed
 
 - graalvm '24' instead of '23' for build_fj-doc-native-quarkus_test.yml workflow
