@@ -13,7 +13,7 @@ import java.io.Reader;
 class TestVenusDirectFacade {
 
     @Test
-    public void testDoc() throws IOException {
+    void testDoc() throws IOException {
         try (Reader reader = new InputStreamReader(ClassHelper.loadFromDefaultClassLoader( "config/venus-direct-config-1.yaml" ) )) {
             VenusDirectConfig config = VenusDirectFacade.readConfig( reader );
             VenusDirectFacade.handleAllOutput( config );

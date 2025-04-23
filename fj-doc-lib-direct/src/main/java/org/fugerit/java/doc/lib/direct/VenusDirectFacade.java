@@ -50,9 +50,7 @@ public class VenusDirectFacade {
                 throw new ConfigRuntimeException( String.format( "Chain not found : %s", output.getChainId() ) );
             }
             DocProcessContext context = DocProcessContext.newContext();
-            if ( chain.getDataModel() != null ) {
-                context.setAttribute( ATT_DATA_MODEL, chain.getDataModel() );
-            }
+            SafeFunction.applyIfNotNull( chain.getDataModel(), () -> context.setAttribute( ATT_DATA_MODEL, chain.getDataModel() ) );
             File outputFile = new File( output.getFile() );
             try ( FileOutputStream fos = new FileOutputStream( outputFile ) ) {
                 config.getDocProcessConfig().fullProcess(chain.getChainId(), context, output.getHandlerId(), fos );
