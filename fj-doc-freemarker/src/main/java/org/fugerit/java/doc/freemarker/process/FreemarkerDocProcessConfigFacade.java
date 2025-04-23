@@ -131,8 +131,8 @@ public class FreemarkerDocProcessConfigFacade {
 						FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
 						Properties configParams = new Properties();
 						configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH , templatePath );
-						SafeFunction.applyIfNotNull( version, () -> configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE , mode ) );
-						SafeFunction.applyIfNotNull( mode, () -> configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , version ) );
+						SafeFunction.applyIfNotNull( mode, () -> configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE , mode ) );
+						SafeFunction.applyIfNotNull( version, () -> configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , version ) );
 						configStep.setParam01( id );
 						configStep.setCustomConfig( convertConfiguration( configParams ) );
 						defaultChain.getFilterChain().add( configStep );
