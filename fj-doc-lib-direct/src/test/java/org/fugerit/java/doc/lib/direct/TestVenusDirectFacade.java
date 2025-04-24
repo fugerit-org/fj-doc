@@ -21,7 +21,6 @@ class TestVenusDirectFacade {
             VenusDirectFacade.handleAllOutput( config );
             Assertions.assertThrows( ConfigRuntimeException.class, () -> VenusDirectFacade.handleOutput( config, "not-existing-output-id" ) );
             config.getChainMap().remove( "test-doc" );
-            config.setCreateParentDirectory( Boolean.FALSE );   // for coverage
             Assertions.assertThrows( ConfigRuntimeException.class, () -> VenusDirectFacade.handleOutput( config, "test-doc-html" ) );
         }
     }
@@ -30,9 +29,10 @@ class TestVenusDirectFacade {
     void testSubstitute() throws IOException {
         try (Reader reader = new InputStreamReader(ClassHelper.loadFromDefaultClassLoader( "config/venus-direct-config-2.yaml" ) )) {
             Map<String, String> envMap = new HashMap<>();
-            envMap.put( "baseDir", "/config" );
+            envMap.put( "baseDir", "." );
             VenusDirectConfig config = VenusDirectFacade.readConfig( reader, envMap );
-            Assertions.assertEquals( "/config/src/test/resources/template/", config.getTemplatePath() );
+            Assertions.assertEquals( "./src/test/resources/template/", config.getTemplatePath() );
+            VenusDirectFacade.handleOutput( config, "test-doc-md" );
         }
     }
 
