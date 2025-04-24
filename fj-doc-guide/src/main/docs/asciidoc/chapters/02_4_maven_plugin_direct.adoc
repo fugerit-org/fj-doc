@@ -1,0 +1,89 @@
+[#maven-plugin-goal-direct]
+=== Goal 'direct'
+
+Allow direct generation
+
+==== Verify at command line
+
+[source,shell]
+----
+mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/resources/fj_doc_test/template-fail
+----
+
+==== Verify at maven build time
+
+[source,xml]
+----
+  <plugin>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-maven-plugin</artifactId>
+    <version>${fj-doc-version}</version>
+    <executions>
+      <execution>
+        <id>venus-direct</id>
+        <phase>compile</phase>
+        <goals>
+          <goal>direct</goal>
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+      <configPath>${project.basedir}/config/venus-direct-config-1.yaml</configPath>
+      <outputAll>true</outputAll>
+    </configuration>
+  </plugin>
+----
+
+==== Goal 'direct' available parameters
+
+[cols="4*", options="header"]
+|====================================================================================================================================================================
+| parameter           | required | default       | description
+| configPath    | true     |               | Path to the direct generation configuration file
+| outputAll   | false    | | set to 'true' to generate all the output in configuration
+| outputId | false    |               | List of outputId to generate
+|====================================================================================================================================================================
+
+==== Goal 'direct' generation configuration file
+
+Here is an edample configuration file :
+
+[source,yaml]
+----
+---
+configId: 'venus-direct-config-1'
+templatePath: 'src/test/resources/template/'
+templateMode: 'folder'
+handlerList:
+  - type: org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
+  - type: org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8
+chainList:  # a template named ${chainId}.ftl must exist in 'templatePath' folder
+  - chainId: 'test-doc'
+    dataModel:  # inline data model definition
+      docTitle: 'Venus Direct Extension - Test Doc'
+  - chainId: 'test-doc-json-data-model'
+    dataModelJson: 'src/test/resources/data-model/data-model-1.json'  # JSON file data model
+  - chainId: 'test-doc-yaml-data-model'
+    dataModelYaml: 'src/test/resources/data-model/data-model-1.yaml'  # YAML file data model
+outputList:
+  - outputId: 'test-doc-html'
+    chainId: 'test-doc'
+    handlerId: 'html' # a valid handler for this output type should be defined (i.e. org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8)
+    file: 'target/test-doc.html'
+  - outputId: 'test-doc-md'
+    chainId: 'test-doc'
+    handlerId: 'md'
+    file: 'target/test-doc.md'
+  - outputId: 'test-doc-json-data-model-html'
+    chainId: 'test-doc-json-data-model'
+    handlerId: 'html'
+    file: 'target/test-doc-json-data-model.html'
+  - outputId: 'test-doc-yaml-data-model-md'
+    chainId: 'test-doc-yaml-data-model'
+    handlerId: 'md'
+    file: 'target/test-doc-json-data-model.md'
+----
+
+TIP: _dataModel_ property in chain contains a map that can be used in the template (accessibile as 'dataModel' attribute).
+
+NOTE: Instead of maven plugin gola, it is possible to use [fj-doc-lib-direct] module as a standalone library.

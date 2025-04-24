@@ -51,6 +51,8 @@ public class VenusDirectConfig {
         SafeFunction.applyIfNotNull( this.getOutputList(),
                 () -> this.outputMap = this.getOutputList().stream().collect( Collectors.toMap( output -> output.getOutputId(), output -> output ) ) );
         log.info( "outputMap ids: {}", this.outputMap.keySet() );
+        // config data model
+        this.chainList.forEach( VenusDirectConfigChain::setupDataModel );
     }
 
     @Getter @Setter
