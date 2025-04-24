@@ -98,6 +98,7 @@
 		<module>fj-doc-freemarker</module>
 		<module>fj-doc-lib-simpletable</module>
 		<module>fj-doc-lib-simpletable-import</module>
+		<module>fj-doc-lib-direct</module>
 		<module>fj-doc-lib-autodoc</module>
 		<module>fj-doc-lib-kotlin</module>
 		<module>fj-doc-mod-poi</module>
@@ -203,6 +204,12 @@
 			<dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-lib-autodoc</artifactId>
+				<version>${fj-doc-version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.fugerit.java</groupId>
+				<artifactId>fj-doc-lib-direct</artifactId>
 				<version>${fj-doc-version}</version>
 			</dependency>
 

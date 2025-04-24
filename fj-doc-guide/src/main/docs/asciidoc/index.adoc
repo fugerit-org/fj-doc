@@ -19,6 +19,7 @@ include::chapters/02_maven_plugin.adoc[]
 include::chapters/02_1_maven_plugin_add.adoc[]
 include::chapters/02_2_maven_plugin_init.adoc[]
 include::chapters/02_3_maven_plugin_verify.adoc[]
+include::chapters/02_4_maven_plugin_direct.adoc[]
 
 include::chapters/03_doc_format.adoc[]
 include::chapters/03_1_doc_format_xml.adoc[]

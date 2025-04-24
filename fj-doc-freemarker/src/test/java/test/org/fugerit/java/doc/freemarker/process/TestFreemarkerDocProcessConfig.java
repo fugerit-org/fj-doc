@@ -40,6 +40,13 @@ class TestFreemarkerDocProcessConfig extends BasicTest {
 	private static final String MAIN_CONFIG = "fj_doc_test/freemarker-doc-process.xml";
 
 	@Test
+	void testSimpleConfig() throws ConfigException {
+		FreemarkerDocProcessConfig configFolder = FreemarkerDocProcessConfigFacade.newSimpleConfigMode(
+				"test-mode", "path/", "folder" );
+		Assertions.assertNotNull( configFolder );
+	}
+
+	@Test
 	void testConfigRead001() throws Exception {
 		String[] configList = { MAIN_CONFIG, "fj_doc_test/freemarker-doc-process-1.xml", "fj_doc_test/freemarker-doc-process-2.xml", "fj_doc_test/freemarker-doc-process-3.xml" };
 		for (  int k=0 ;k<configList.length ;k++ ) {

@@ -15,6 +15,7 @@ import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.cfg.ConfigurableObject;
 import org.fugerit.java.core.cfg.helpers.UnsafeHelper;
 import org.fugerit.java.core.cfg.xml.XmlBeanHelper;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
@@ -111,7 +112,15 @@ public class FreemarkerDocProcessConfigFacade {
 		return new ConfigRuntimeException(e);
 	};
 
+	public static FreemarkerDocProcessConfig newSimpleConfigMode( String id, String templatePath, String mode ) throws ConfigException {
+		return newSimpleConfig( id, templatePath, null, mode );
+	}
+
 	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version ) throws ConfigException {
+		return newSimpleConfig( id, templatePath, version, null );
+	}
+
+	public static FreemarkerDocProcessConfig newSimpleConfig( String id, String templatePath, String version, String mode ) throws ConfigException {
 		return ConfigException.get( () -> {
 			FreemarkerDocProcessConfig config = new FreemarkerDocProcessConfig();
 			config.setDefaultChain(
@@ -122,9 +131,8 @@ public class FreemarkerDocProcessConfigFacade {
 						FreeMarkerConfigStep configStep = new FreeMarkerConfigStep();
 						Properties configParams = new Properties();
 						configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_PATH , templatePath );
-						if ( version != null ) {
-							configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , version );
-						}
+						SafeFunction.applyIfNotNull( mode, () -> configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_MODE , mode ) );
+						SafeFunction.applyIfNotNull( version, () -> configParams.setProperty( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION , version ) );
 						configStep.setParam01( id );
 						configStep.setCustomConfig( convertConfiguration( configParams ) );
 						defaultChain.getFilterChain().add( configStep );
