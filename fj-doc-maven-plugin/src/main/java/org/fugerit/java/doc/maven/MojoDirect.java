@@ -6,13 +6,11 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.fugerit.java.core.function.SafeFunction;
-import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.lang.helpers.CollectionUtils;
 import org.fugerit.java.doc.lib.direct.VenusDirectFacade;
 import org.fugerit.java.doc.lib.direct.config.VenusDirectConfig;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.file.Files;
@@ -52,7 +50,6 @@ public class MojoDirect extends AbstractMojo {
         this.getLog().info( String.format( "Direct config file : %s", configFile.getAbsolutePath() ) );
         checkConfiguration( configFile, this.outputAll, this.outputId );
         SafeFunction.apply( () -> {
-            String configContent = FileIO.readString( configFile );
             try (Reader reader = new InputStreamReader(Files.newInputStream(configFile.toPath()))) {
                 this.getLog().info( String.format( "Direct config env : %s", this.directEnv ) );
                 VenusDirectConfig config = VenusDirectFacade.readConfig( reader, this.directEnv );
