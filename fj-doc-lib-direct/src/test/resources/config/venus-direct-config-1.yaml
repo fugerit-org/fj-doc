@@ -2,6 +2,7 @@
 configId: 'venus-direct-config-1'
 templatePath: 'src/test/resources/template/'
 templateMode: 'folder'
+createParentDirectory: true
 handlerList:
   - type: org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
   - type: org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8
@@ -17,7 +18,7 @@ outputList:
   - outputId: 'test-doc-html'
     chainId: 'test-doc'
     handlerId: 'html' # a valid handler for this output type should be defined (i.e. org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8)
-    file: 'target/test-doc.html'
+    file: 'target/direct/test-doc.html'
   - outputId: 'test-doc-md'
     chainId: 'test-doc'
     handlerId: 'md'

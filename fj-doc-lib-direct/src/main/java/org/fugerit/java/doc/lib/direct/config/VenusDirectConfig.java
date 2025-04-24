@@ -65,6 +65,9 @@ public class VenusDirectConfig {
     private String templateMode;
 
     @Getter @Setter
+    private boolean createParentDirectory;
+
+    @Getter @Setter
     private List<VenusDirectConfigHandler> handlerList;
 
     @Getter @Setter
