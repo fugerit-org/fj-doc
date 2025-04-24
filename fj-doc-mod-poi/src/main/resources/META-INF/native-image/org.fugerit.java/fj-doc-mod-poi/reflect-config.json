@@ -2,6 +2,39 @@
   "condition" : {
     "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
   },
+  "name" : "org.fugerit.java.doc.mod.poi.BasicPoiTypeHandler$1",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.mod.poi.BasicPoiTypeHandler",
   "methods" : [ {
     "name" : "configure",
@@ -65,6 +98,69 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.poi.BasicPoiTypeHandler$CellHolder",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCurrentePara",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getLink",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getText",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCurrentePara",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocPara" ]
+  }, {
+    "name" : "setFormat",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setLink",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setText",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setType",
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "toString",

@@ -1,7 +1,6 @@
 package test.org.fugerit.java.doc.mod.poi.coverage;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 
 import org.fugerit.java.core.function.SafeFunction;
@@ -42,6 +41,20 @@ class TestPoiCoverage {
 			Assertions.assertTrue( this.worker( "coverage/xml/"+c+".xml" ) );
 		} );
 		Assertions.assertTrue( Boolean.TRUE );
+	}
+
+	@Test
+	void testDoc() throws Exception {
+		String fileName = "test_doc";
+		DocTypeHandler handler = XlsxPoiTypeHandler.HANDLER;
+		String inputXml = String.format( "coverage/xml/%s.xml", fileName );
+		String outputFile = String.format( "target/%s.%s", fileName, handler.getType() );
+		File output = new File( outputFile );
+		try ( FileOutputStream fos = new FileOutputStream( output );
+				InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader(inputXml) );) {
+			handler.handle( DocInput.newInput( handler.getType(), reader ), DocOutput.newOutput( fos ) );
+		}
+		Assertions.assertTrue( output.exists() );
 	}
 	
 }

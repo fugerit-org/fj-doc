@@ -10,16 +10,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.CreationHelper;
-import org.apache.poi.ss.usermodel.Font;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.VerticalAlignment;
-import org.apache.poi.ss.usermodel.Workbook;
+import lombok.Setter;
+import org.apache.poi.common.usermodel.HyperlinkType;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
@@ -28,13 +21,7 @@ import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
-import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.model.DocBorders;
-import org.fugerit.java.doc.base.model.DocCell;
-import org.fugerit.java.doc.base.model.DocElement;
-import org.fugerit.java.doc.base.model.DocPara;
-import org.fugerit.java.doc.base.model.DocRow;
-import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.model.*;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperConsts;
 import org.fugerit.java.doc.base.typehelper.excel.ExcelHelperUtils;
 import org.fugerit.java.doc.base.typehelper.excel.TableMatrix;
@@ -188,35 +175,61 @@ public abstract class BasicPoiTypeHandler extends DocTypeHandlerDefault {
 	private void iterateCellMatrix( WorkbookDataWrapper wrapper , boolean ignoreFormat, HashSet<PoiCellStyleModel> styleSet , int rn, int cn, Row currentRow ) throws Exception {
 		TableMatrix matrix = wrapper.getTableMatrix();
 		Workbook workbook = wrapper.getWorkbook();
-		String type = null;
-		String format = null;
 		DocCell cell = matrix.getCell( rn, cn );
 		DocCell parent = matrix.getParent( rn, cn );
-		String text = "";
-		DocPara currentePara = null;
+		CellHolder holder = new CellHolder();
 		if ( cell != null ) {
-			Iterator<DocElement> it1 = cell.docElements();
-			DocElement current = it1.next();
-			if ( current instanceof DocPara ) {
-				currentePara = ((DocPara)current);
-				text = currentePara.getText();
-				type = currentePara.getType();
-				format = currentePara.getFormat();
-			} else {
-				text = String.valueOf( current );
-				currentePara = null;
-			}
-		} else {
-			currentePara = null;
+			this.handleElement( holder, cell );
 		}
 		Cell currentCell = currentRow.getCell( cn );
 		if ( currentCell == null ) {
 			currentCell = currentRow.createCell( cn );
 		}
+		this.handleHyperLink( holder.getLink(), workbook, currentCell );
 		if ( cell != null && parent != null && !ignoreFormat ) {
-			this.checkFormat( wrapper, styleSet, currentePara, cell, rn, cn, currentCell );
+			this.checkFormat( wrapper, styleSet, holder.getCurrentePara(), cell, rn, cn, currentCell );
 		} 
-		this.setCellValue( workbook, currentCell, type, format, text);
+		this.setCellValue( workbook, currentCell, holder.getType(), holder.getFormat(), holder.getText());
+	}
+
+	private void handleElement( CellHolder holder, DocCell cell ) throws Exception {
+		Iterator<DocElement> it1 = cell.docElements();
+		DocElement current = it1.next();
+		if ( current instanceof DocPara ) {
+			holder.setCurrentePara((DocPara) current);
+			holder.setText(holder.getCurrentePara().getText());
+			holder.setType(holder.getCurrentePara().getType());
+			holder.setFormat(holder.getCurrentePara().getFormat());
+		} else if ( current instanceof DocPhrase) {
+			DocPhrase phrase = (DocPhrase) current;
+			holder.setText(phrase.getText());
+			holder.setLink(phrase.getLink());
+			holder.setCurrentePara(null);
+		} else {
+			holder.setText( String.valueOf( current ) );
+			holder.setCurrentePara(null);
+		}
+	}
+
+	private class CellHolder {
+		@Getter @Setter
+		private String text = "";
+		@Getter @Setter
+		private String link;
+		@Getter @Setter
+		private String type;
+		@Getter @Setter
+		private String format;
+		@Getter @Setter
+		private DocPara currentePara;
+	}
+
+	private void handleHyperLink( String link, Workbook workbook, Cell currentCell ) {
+		if ( StringUtils.isNotEmpty(link) ) {
+			Hyperlink hyperlink = workbook.getCreationHelper().createHyperlink(HyperlinkType.URL);
+			hyperlink.setAddress( link );
+			currentCell.setHyperlink( hyperlink );
+		}
 	}
 	
 	private void handleSubmatrix( TableMatrix matrix, boolean ignoreFormat, Sheet sheet, WorkbookHelper helper, HashSet<PoiCellStyleModel> styleSet ) throws Exception {
