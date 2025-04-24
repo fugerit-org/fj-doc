@@ -9,9 +9,6 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.CollectionUtils;
 import org.fugerit.java.doc.lib.direct.VenusDirectFacade;
 import org.fugerit.java.doc.lib.direct.config.VenusDirectConfig;
-import org.fugerit.java.doc.project.facade.AddVenusFacade;
-import org.fugerit.java.doc.project.facade.VenusContext;
-import org.fugerit.java.doc.project.facade.VersionCheck;
 
 import java.io.File;
 import java.io.FileInputStream;

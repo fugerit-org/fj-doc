@@ -39,6 +39,7 @@ class TestDirect {
             }
         };
         mojoDirect.execute();
+        Assertions.assertTrue( new File( "./target/test-doc.html").exists() );
     }
 
     @Test
@@ -53,6 +54,7 @@ class TestDirect {
             }
         };
         mojoDirect.execute();
+        Assertions.assertTrue( new File( "./target/test-doc.md").exists() );
     }
 
 }
