@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeDefault;
 import org.fugerit.java.doc.base.helper.DocTypeFacadeHelper;
@@ -110,6 +111,9 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 		}
 		// test
 		this.handleText(docPara.getText(), docPara.getStyle() );
+		for ( DocElement element : docPara.getElementList() ) {
+			handleElement( element, docPara, helper );
+		}
 		if ( body ) {
 			this.writer.println( "  \n" );	// endline with two white spaces
 		} else {
@@ -119,7 +123,15 @@ public class MarkdownBasicDocFacade extends DocTypeFacadeDefault {
 
 	@Override
 	public void handlePhrase(DocPhrase docPhrase, DocContainer parent, DocTypeFacadeHelper helper) throws DocException {
-		this.handleText(docPhrase.getText(), docPhrase.getStyle() );
+		if (StringUtils.isNotEmpty( docPhrase.getLink() ) ) {
+			if ( docPhrase.getLink().equals( docPhrase.getText() ) ) {
+				this.handleText( String.format( "<%s>", docPhrase.getText() ), docPhrase.getStyle() );
+			} else {
+				this.handleText( String.format( "[%s](%s)", docPhrase.getText(), docPhrase.getLink() ), docPhrase.getStyle() );
+			}
+		} else {
+			this.handleText(docPhrase.getText(), docPhrase.getStyle() );
+		}
 		this.writer.print( " " );
 	}
 

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-base] handling link in simple mark down handler <https://github.com/fugerit-org/fj-doc/pull/397>
+
 ## [8.13.1] - 2025-04-24
 
 ### Added
