@@ -28,7 +28,7 @@
 <#macro handlePara current><@handleHeadings headLevel=current.headLevel/><@handleTextStyle styleValue=current.style text=current.text/> +
 </#macro>
 
-<#macro handlePhrase current><@handleTextStyle styleValue=current.style text=current.text/></#macro>
+<#macro handlePhrase current><#if (current.link)?? >link:${current.link}[<@handleTextStyle styleValue=current.style text=current.text/>]<#else><@handleTextStyle styleValue=current.style text=current.text/></#if></#macro>
 
 <#macro handleRowList docTable rowList>
 <#list rowList as row>

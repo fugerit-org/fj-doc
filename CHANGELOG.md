@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- [fj-doc-freemarker] handling link in asciidoc handler <https://github.com/fugerit-org/fj-doc/pull/399>
+
 ## [8.13.3] - 2025-04-24
 
 ### Fixed
