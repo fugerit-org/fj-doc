@@ -44,6 +44,7 @@ body:
         - fj-doc-mod-lib-autodoc - Bundled library for XSD auto documentation
         - fj-doc-mod-lib-simpletable - Bundled library handling simple table data model
         - fj-doc-mod-lib-simpletable-import - Bundled library handling simple table import from Excel / CSV
+        - fj-doc-mod-lib-direct - API for Direct Document Generation
         - fj-doc-mod-lib-kotlin - Bundled library generating Kotlin DSL based on XSD
         - fj-doc-maven-plugin - Maven plugin to setup new/existing projects and validate freemarker templates
         - fj-doc-sample - Sample library
