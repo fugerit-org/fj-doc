@@ -2,6 +2,7 @@ package org.fugerit.java.doc.lib.direct;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
@@ -22,6 +23,7 @@ import java.io.Reader;
 import java.util.Map;
 import java.util.Properties;
 
+@Slf4j
 public class VenusDirectFacade {
 
     public static final String ATT_DATA_MODEL = "dataModel";
@@ -31,11 +33,7 @@ public class VenusDirectFacade {
     private static final ObjectMapper YAML_MAPPER = new YAMLMapper();
 
     public static VenusDirectConfig readConfig( Reader reader ) {
-        return SafeFunction.get( () ->  {
-            VenusDirectConfig config = YAML_MAPPER.readValue( reader, VenusDirectConfig.class );
-            config.setupFreemarkerDocProcessConfig();
-            return config;
-        } );
+        return readConfig( reader, null );
     }
 
     public static VenusDirectConfig readConfig(Reader reader, Map<String, String> envMap) {
@@ -74,6 +72,9 @@ public class VenusDirectFacade {
             DocProcessContext context = DocProcessContext.newContext();
             SafeFunction.applyIfNotNull( chain.getDataModel(), () -> context.setAttribute( ATT_DATA_MODEL, chain.getDataModel() ) );
             File outputFile = new File( output.getFile() );
+            if ( config.isCreateParentDirectory() && !outputFile.getParentFile().exists() ) {
+                log.info( "mkdir: result:{}, directory:{}", outputFile.getParentFile().mkdirs(), outputFile.getParentFile() );
+            }
             try ( FileOutputStream fos = new FileOutputStream( outputFile ) ) {
                 config.getDocProcessConfig().fullProcess(chain.getChainId(), context, output.getHandlerId(), fos );
             }

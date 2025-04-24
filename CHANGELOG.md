@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-lib-direct] add configuration option to create parent directory <https://github.com/fugerit-org/fj-doc/pull/401>
+
 ### Fixed
 
 - [fj-doc-freemarker] handling link in asciidoc handler <https://github.com/fugerit-org/fj-doc/pull/399>

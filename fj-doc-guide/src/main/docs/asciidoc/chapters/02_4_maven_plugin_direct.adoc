@@ -58,6 +58,7 @@ Here is an edample configuration file :
 configId: 'venus-direct-config-1'
 templatePath: '${projectBasedir}/src/test/resources/template/'
 templateMode: 'folder'
+createParentDirectory: true
 handlerList:
   - type: org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
   - type: org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8
