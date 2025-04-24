@@ -11,10 +11,11 @@ import org.fugerit.java.doc.lib.direct.VenusDirectFacade;
 import org.fugerit.java.doc.lib.direct.config.VenusDirectConfig;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.Map;
 
 @Mojo( name = "direct" )
 public class MojoDirect extends AbstractMojo {
@@ -27,6 +28,9 @@ public class MojoDirect extends AbstractMojo {
 
     @Parameter(property = "outputId")
     protected List<String> outputId;
+
+    @Parameter(property = "directEnv")
+    protected Map<String, String> directEnv;
 
     public static void checkConfiguration( File configFile, boolean outputAll, List<String> outputId ) throws MojoExecutionException {
         if ( !configFile.exists() ) {
@@ -46,8 +50,9 @@ public class MojoDirect extends AbstractMojo {
         this.getLog().info( String.format( "Direct config file : %s", configFile.getAbsolutePath() ) );
         checkConfiguration( configFile, this.outputAll, this.outputId );
         SafeFunction.apply( () -> {
-            try (Reader reader = new InputStreamReader( new FileInputStream( configFile ))) {
-                VenusDirectConfig config = VenusDirectFacade.readConfig( reader );
+            try (Reader reader = new InputStreamReader(Files.newInputStream(configFile.toPath()))) {
+                this.getLog().info( String.format( "Direct config env : %s", this.directEnv ) );
+                VenusDirectConfig config = VenusDirectFacade.readConfig( reader, this.directEnv );
                 if ( this.outputAll ) {
                     VenusDirectFacade.handleAllOutput( config );
                 } else {

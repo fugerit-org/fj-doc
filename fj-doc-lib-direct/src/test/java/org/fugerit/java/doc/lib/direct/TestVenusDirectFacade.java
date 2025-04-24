@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.util.HashMap;
+import java.util.Map;
 
 class TestVenusDirectFacade {
 
@@ -20,6 +22,16 @@ class TestVenusDirectFacade {
             Assertions.assertThrows( ConfigRuntimeException.class, () -> VenusDirectFacade.handleOutput( config, "not-existing-output-id" ) );
             config.getChainMap().remove( "test-doc" );
             Assertions.assertThrows( ConfigRuntimeException.class, () -> VenusDirectFacade.handleOutput( config, "test-doc-html" ) );
+        }
+    }
+
+    @Test
+    void testSubstitute() throws IOException {
+        try (Reader reader = new InputStreamReader(ClassHelper.loadFromDefaultClassLoader( "config/venus-direct-config-2.yaml" ) )) {
+            Map<String, String> envMap = new HashMap<>();
+            envMap.put( "baseDir", "/config" );
+            VenusDirectConfig config = VenusDirectFacade.readConfig( reader, envMap );
+            Assertions.assertEquals( "/config/src/test/resources/template/", config.getTemplatePath() );
         }
     }
 
