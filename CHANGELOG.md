@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- [fj-doc-maven-plugin] goal : direct <https://github.com/fugerit-org/fj-doc/issues/391>
 - [fj-doc-lib-direct] new module to generate documents from a configuration file <https://github.com/fugerit-org/fj-doc/issues/391>
 
 ### Changed

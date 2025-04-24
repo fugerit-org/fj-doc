@@ -1,0 +1,20 @@
+---
+configId: 'venus-direct-config-1'
+templatePath: 'src/test/resources/direct/template/'
+templateMode: 'folder'
+handlerList:
+  - type: org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
+  - type: org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8
+chainList:
+  - chainId: 'test-doc'
+    dataModel:
+      docTitle: 'Venus Direct Extension - Test Doc'
+outputList:
+  - outputId: 'test-doc-html'
+    chainId: 'test-doc'
+    handlerId: 'html'
+    file: 'target/test-doc.html'
+  - outputId: 'test-doc-md'
+    chainId: 'test-doc'
+    handlerId: 'md'
+    file: 'target/test-doc.md'
