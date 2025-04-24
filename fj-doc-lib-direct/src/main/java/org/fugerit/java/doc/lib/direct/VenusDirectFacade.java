@@ -33,11 +33,7 @@ public class VenusDirectFacade {
     private static final ObjectMapper YAML_MAPPER = new YAMLMapper();
 
     public static VenusDirectConfig readConfig( Reader reader ) {
-        return SafeFunction.get( () ->  {
-            VenusDirectConfig config = YAML_MAPPER.readValue( reader, VenusDirectConfig.class );
-            config.setupFreemarkerDocProcessConfig();
-            return config;
-        } );
+        return readConfig( reader, null );
     }
 
     public static VenusDirectConfig readConfig(Reader reader, Map<String, String> envMap) {

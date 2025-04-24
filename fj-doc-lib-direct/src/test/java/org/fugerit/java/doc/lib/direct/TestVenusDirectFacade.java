@@ -21,6 +21,7 @@ class TestVenusDirectFacade {
             VenusDirectFacade.handleAllOutput( config );
             Assertions.assertThrows( ConfigRuntimeException.class, () -> VenusDirectFacade.handleOutput( config, "not-existing-output-id" ) );
             config.getChainMap().remove( "test-doc" );
+            config.setCreateParentDirectory( Boolean.FALSE );   // for coverage
             Assertions.assertThrows( ConfigRuntimeException.class, () -> VenusDirectFacade.handleOutput( config, "test-doc-html" ) );
         }
     }
