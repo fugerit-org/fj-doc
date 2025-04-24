@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.13.4] - 2025-04-25
+
 ### Added
 
 - [fj-doc-lib-direct] add configuration option to create parent directory <https://github.com/fugerit-org/fj-doc/pull/401>
