@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-maven-plugin] add variables to 'direct' goal <https://github.com/fugerit-org/fj-doc/pull/395>
+
 ### Changed
 
 - quarkus-version set to 3.21.4 across all the modules <https://github.com/fugerit-org/fj-doc/pull/393>

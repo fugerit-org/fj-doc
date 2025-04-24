@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.io.StreamIO;
+import org.fugerit.java.core.util.regex.ParamFinder;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.freemarker.config.FreeMarkerConfigStep;
@@ -17,6 +19,8 @@ import org.fugerit.java.doc.lib.direct.config.VenusDirectConfigOutput;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.Reader;
+import java.util.Map;
+import java.util.Properties;
 
 public class VenusDirectFacade {
 
@@ -29,6 +33,24 @@ public class VenusDirectFacade {
     public static VenusDirectConfig readConfig( Reader reader ) {
         return SafeFunction.get( () ->  {
             VenusDirectConfig config = YAML_MAPPER.readValue( reader, VenusDirectConfig.class );
+            config.setupFreemarkerDocProcessConfig();
+            return config;
+        } );
+    }
+
+    public static VenusDirectConfig readConfig(Reader reader, Map<String, String> envMap) {
+        return SafeFunction.get( () ->  {
+            VenusDirectConfig config = null;
+            if ( envMap != null ) {
+                String yamlContent = StreamIO.readString( reader );
+                ParamFinder paramFinder = ParamFinder.newFinder();
+                Properties params = new Properties();
+                envMap.forEach(params::setProperty);
+                yamlContent = paramFinder.substitute( yamlContent, params );
+                config = YAML_MAPPER.readValue( yamlContent, VenusDirectConfig.class );
+            } else {
+                config = YAML_MAPPER.readValue( reader, VenusDirectConfig.class );
+            }
             config.setupFreemarkerDocProcessConfig();
             return config;
         } );
