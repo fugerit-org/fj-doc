@@ -148,7 +148,8 @@ public class BasicVenusFacade {
             addJunit5( model, context );
             // addLombok parameter
             addLombok( model, context );
-            addPlugin( context, model );
+            addDirectPlugin( context, model );
+            addVerifyPlugin( context, model );
             log.info( "end dependencies size : {}", model.getDependencies().size() );
             try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
                 modelIO.writeModelToStream( model, pomStream );
@@ -221,7 +222,18 @@ public class BasicVenusFacade {
         FileIO.writeString( gradleFileContent, gradleFile );
     }
 
-    private static void addPlugin( VenusContext context, Model model ) throws IOException {
+    private static void addDirectPlugin(VenusContext context, Model model ) throws IOException {
+        // addDirectPlugin?
+        if ( context.isAddVerifyPlugin() ) {
+            if (context.isVerifyPluginNotAvailable()) {
+                log.warn("addDirectPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
+            } else {
+                log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
+            }
+        }
+    }
+
+    private static void addVerifyPlugin(VenusContext context, Model model ) throws IOException {
         // addVerifyPlugin?
         if ( context.isAddVerifyPlugin() ) {
             if ( context.isVerifyPluginNotAvailable() ) {
@@ -249,12 +261,7 @@ public class BasicVenusFacade {
                         "      <failOnErrors>true</failOnErrors>\n" +
                         "      <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>\n" +
                         "    </configuration>";
-                HelperIOException.apply( () -> {
-                    try ( StringReader sr = new StringReader( xml ) ) {
-                        Xpp3Dom dom = Xpp3DomBuilder.build( sr );
-                        plugin.setConfiguration( dom );
-                    }
-                });
+                plugin.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
                 plugins.add( plugin );
             }
         } else {
