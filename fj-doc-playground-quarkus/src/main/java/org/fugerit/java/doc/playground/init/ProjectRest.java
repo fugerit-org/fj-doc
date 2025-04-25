@@ -77,6 +77,8 @@ public class ProjectRest {
                         this.addLombok = true;
                         this.flavour = data.getFlavour();
                         this.flavourVersion = data.getFlavourVersion();
+                        this.addVerifyPlugin = data.isAddVerifyPlugin();
+                        this.addDirectPlugin = data.isAddDirectPlugin();
                         super.execute();
                     }
                 };

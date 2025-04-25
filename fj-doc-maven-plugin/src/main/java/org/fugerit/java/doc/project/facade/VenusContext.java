@@ -35,6 +35,8 @@ public class VenusContext {
 
     public static final String VERSION_NA_VERIFY_PLUGIN = "8.7.2";
 
+    public static final String VERSION_NA_DIRECT_PLUGIN = "8.13.4";
+
     public static final String VERSION_NA_FULL_PROCESS = "8.6.2";
 
     public static final String VERSION_NA_FREEMARKER_NATIVE = "8.11.8";
@@ -68,6 +70,9 @@ public class VenusContext {
 
     @Getter @Setter
     private boolean addVerifyPlugin;
+
+    @Getter @Setter
+    private boolean addDirectPlugin;
 
     @Getter @Setter
     private boolean addJunit5;
@@ -149,6 +154,10 @@ public class VenusContext {
 
     public boolean isVerifyPluginNotAvailable() {
         return VersionCheck.isMajorThan( VERSION_NA_VERIFY_PLUGIN, this.getVersion() );
+    }
+
+    public boolean isDirectPluginNotAvailable() {
+        return VersionCheck.isMajorThan( VERSION_NA_DIRECT_PLUGIN, this.getVersion() );
     }
 
     public boolean isAsciidocFreemarkerHandlerAvailable() {

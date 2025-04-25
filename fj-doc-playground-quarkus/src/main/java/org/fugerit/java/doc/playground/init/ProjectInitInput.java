@@ -50,4 +50,12 @@ public class ProjectInitInput {
     @Setter
     private List<String> extensionList;
 
+    @Getter
+    @Setter
+    private boolean addVerifyPlugin;
+
+    @Getter
+    @Setter
+    private boolean addDirectPlugin;
+
 }

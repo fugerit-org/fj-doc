@@ -38,6 +38,9 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "addVerifyPlugin", defaultValue = "true", required = true)
     protected boolean addVerifyPlugin;
 
+    @Parameter(property = "addDirectPlugin", defaultValue = "false", required = true)
+    protected boolean addDirectPlugin;
+
     @Parameter(property = "addJunit5", defaultValue = "true", required = true)
     protected boolean addJunit5;
 
@@ -67,6 +70,7 @@ public class MojoAdd extends AbstractMojo {
         context.setAddExclusions( addExclusions );
         context.setExcludeXmlApis( this.excludeXmlApis );
         context.setAddVerifyPlugin( this.addVerifyPlugin );
+        context.setAddDirectPlugin( this.addDirectPlugin );
         context.setAddJunit5( this.addJunit5 );
         context.setAddLombok( this.addLombok );
         context.setAddDependencyOnTop( this.addDependencyOnTop );

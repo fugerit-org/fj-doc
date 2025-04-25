@@ -2,11 +2,9 @@ package org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.*;
-import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.FileIO;
-import org.fugerit.java.core.io.helper.HelperIOException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.maxxq.maven.dependency.ModelIO;
 
@@ -21,9 +19,9 @@ public class BasicVenusFacade {
 
     protected BasicVenusFacade() {}
 
-    protected static final String GROUP_ID = "org.fugerit.java";
+    protected static final String GROUP_ID = VenusConsts.GROUP_ID;
 
-    protected static final String KEY_VERSION = "fj-doc-version";
+    protected static final String KEY_VERSION = VenusConsts.KEY_VERSION;
 
     private static void addOrOverwrite( List<Dependency> deps, Dependency d ) {
         Iterator<Dependency> it = deps.iterator();
@@ -148,7 +146,8 @@ public class BasicVenusFacade {
             addJunit5( model, context );
             // addLombok parameter
             addLombok( model, context );
-            addPlugin( context, model );
+            addDirectPlugin( context, model );
+            addVerifyPlugin( context, model );
             log.info( "end dependencies size : {}", model.getDependencies().size() );
             try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
                 modelIO.writeModelToStream( model, pomStream );
@@ -221,27 +220,42 @@ public class BasicVenusFacade {
         FileIO.writeString( gradleFileContent, gradleFile );
     }
 
-    private static void addPlugin( VenusContext context, Model model ) throws IOException {
+    private static void addDirectPlugin(VenusContext context, Model model ) throws IOException {
+        // addDirectPlugin?
+        if ( context.isAddDirectPlugin() ) {
+            if (context.isDirectPluginNotAvailable()) {
+                log.warn("addDirectPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
+            } else {
+                FeatureFacade.copyFeatureList( context.getProjectDir(), "direct" );
+                log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
+                Plugin plugin = PluginUtils.findOrCreatePLugin( model );
+                PluginExecution execution = PluginUtils.createPluginExecution(
+                        "venus-direct", LifecyclePhase.COMPILE.id(), PluginUtils.GOAL_DIRECT );
+                plugin.getExecutions().add( execution );
+                String xml = "<configuration>\n" +
+                        "    <configPath>${project.basedir}/src/main/resources/venus-direct-config/venus-direct-config.yaml</configPath>\n" +
+                        "    <outputAll>true</outputAll>\n" +
+                        "    <directEnv>\n" +
+                        "        <projectBasedir>${project.basedir}</projectBasedir>\n" +
+                        "    </directEnv>\n" +
+                        "</configuration>";
+                execution.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
+            }
+        } else {
+            log.info( "addDirectPlugin : false" );
+        }
+    }
+
+    private static void addVerifyPlugin(VenusContext context, Model model ) throws IOException {
         // addVerifyPlugin?
         if ( context.isAddVerifyPlugin() ) {
             if ( context.isVerifyPluginNotAvailable() ) {
                 log.warn( "addVerifyPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
             } else {
                 log.info( "addVerifyPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
-                Build build = model.getBuild();
-                if ( build == null ) {
-                    build = new Build();
-                    model.setBuild( build );
-                }
-                List<Plugin> plugins = model.getBuild().getPlugins();
-                Plugin plugin = new Plugin();
-                plugin.setGroupId( GROUP_ID );
-                plugin.setArtifactId( "fj-doc-maven-plugin" );
-                plugin.setVersion( "${"+KEY_VERSION+"}" );
-                PluginExecution execution = new PluginExecution();
-                execution.setId( "freemarker-verify" );
-                execution.setPhase( "compile" );
-                execution.addGoal( "verify" );
+                Plugin plugin = PluginUtils.findOrCreatePLugin( model );
+                PluginExecution execution = PluginUtils.createPluginExecution(
+                        "freemarker-verify", LifecyclePhase.COMPILE.id(), LifecyclePhase.VERIFY.id() );
                 plugin.getExecutions().add( execution );
                 String xml = "<configuration>\n" +
                         "      <templateBasePath>${project.basedir}/src/main/resources/"+context.getArtificatIdForFolder()+"/template</templateBasePath>\n" +
@@ -249,13 +263,7 @@ public class BasicVenusFacade {
                         "      <failOnErrors>true</failOnErrors>\n" +
                         "      <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>\n" +
                         "    </configuration>";
-                HelperIOException.apply( () -> {
-                    try ( StringReader sr = new StringReader( xml ) ) {
-                        Xpp3Dom dom = Xpp3DomBuilder.build( sr );
-                        plugin.setConfiguration( dom );
-                    }
-                });
-                plugins.add( plugin );
+                execution.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
             }
         } else {
             log.info( "addVerifyPlugin : false" );
