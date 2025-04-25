@@ -77,7 +77,7 @@ public class DevHelper {
 				OutputStream output = new FileOutputStream( outputPath );
 				Reader xmlValidationReader = new FileReader( inputPath ) ) {
 			boolean valid = DocValidator.logValidation( xmlValidationReader , logger );
-			logger.info( "validation result -> {}", valid );
+			logger.info( "validation result workerXmlToFo -> {}", valid );
 			DocBase doc = DocFacade.parse( input );
 			FreeMarkerFopTypeHandler.HANDLER.handle( DocInput.newInput( DocConfig.TYPE_FO , doc) , DocOutput.newOutput( output ) );
 		    ok = valid;
@@ -91,7 +91,7 @@ public class DevHelper {
 				OutputStream output = new FileOutputStream( outputPath );
 				Reader xmlValidationReader = new FileReader( inputPath ) ) {
 			boolean valid = DocValidator.logValidation( xmlValidationReader , logger );
-			logger.info( "validation result -> {}", valid );
+			logger.info( "validation result workerXmlToHtml -> {}", valid );
 			DocBase doc = DocFacade.parse( input );
 			FreeMarkerHtmlTypeHandler.HANDLER.handle( DocInput.newInput( DocConfig.TYPE_HTML , doc) , DocOutput.newOutput( output ) );
 		    ok = valid;
@@ -105,7 +105,7 @@ public class DevHelper {
 				OutputStream output = new FileOutputStream( outputPath );
 				Reader xmlValidationReader = new FileReader( inputPath ) ) {
 			boolean valid = DocValidator.logValidation( xmlValidationReader , logger );
-			logger.info( "validation result -> {}", valid );
+			logger.info( "validation result workerXmlToHandler -> {}", valid );
 			DocBase doc = DocFacade.parse( input );
 			handler.handle( DocInput.newInput( handler.getType() , doc) , DocOutput.newOutput( output ) );
 		    ok = valid;
@@ -114,7 +114,8 @@ public class DevHelper {
 	}
 	
 	protected boolean workerXmlToFoToPdf( File inputPath,  File outputFo, File outputPdf ) throws Exception {
-		return this.workerFoToPdf( outputFo, outputPdf );;
+		this.workerXmlToFo( inputPath , outputFo );
+		return this.workerFoToPdf( outputFo, outputPdf );
 	}
 	
 }
