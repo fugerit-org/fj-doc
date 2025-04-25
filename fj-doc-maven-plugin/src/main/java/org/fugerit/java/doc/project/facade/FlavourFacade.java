@@ -29,6 +29,8 @@ public class FlavourFacade {
 
     public static final String FLAVOUR_VANILLA = "vanilla";
 
+    public static final String FLAVOUR_DIRECT = "direct";
+
     public static final String FLAVOUR_QUARKUS_3 = "quarkus-3";
 
     public static final String FLAVOUR_QUARKUS_3_GRADLE = "quarkus-3-gradle";
@@ -50,7 +52,7 @@ public class FlavourFacade {
     private static final Properties FLAVOURS_DEFAULT_VERSION = PropsIO.loadFromClassLoaderSafe( "config/flavour/flavour_versions_default.properties" );
 
     public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(
-            new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_3_GRADLE, FLAVOUR_QUARKUS_3_GRADLE_KTS,
+            new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_DIRECT, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_3_GRADLE, FLAVOUR_QUARKUS_3_GRADLE_KTS,
                     FLAVOUR_QUARKUS_3_PROPERTIES, FLAVOUR_QUARKUS_2, FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3, FLAVOUR_OPENLIBERTY ) ) );
 
     public static boolean isGradleKtsFlavour(String flavour ) {
@@ -63,7 +65,7 @@ public class FlavourFacade {
         return prop;
     });
 
-    public static void initProject( FlavourContext context ) throws IOException, TemplateException {
+    public static String initProject( FlavourContext context ) throws IOException, TemplateException {
         log.info( "generate flavour : {}", context.getFlavour() );
         String actualFlavour = MAP_FLAVOURS.getProperty( context.getFlavour(), context.getFlavour() );
         if ( SUPPORTED_FLAVOURS.contains( actualFlavour ) ) {
@@ -72,6 +74,7 @@ public class FlavourFacade {
         } else {
             throw new ConfigRuntimeException( String.format( "flavour not supported : %s", context.getFlavour() ) );
         }
+        return actualFlavour;
     }
 
     public static void checkFlavour( FlavourContext context, String actualFlavour ) {

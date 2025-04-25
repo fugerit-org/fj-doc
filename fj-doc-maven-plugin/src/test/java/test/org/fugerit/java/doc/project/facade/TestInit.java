@@ -22,6 +22,8 @@ class TestInit {
 
     private static final String FREEMARKER_NATIVE_AVAILABLE = "8.11.9";
 
+    private static final String DIRECT_PLUGIN_AVAILABLE = "8.13.5";
+
     private String getVersion() {
         return "8.10.9";
     }
@@ -41,7 +43,11 @@ class TestInit {
                 this.groupId = "org.fugerit.java.test.gradle";
                 this.artifactId = "fugerit-test-"+currentFlavour;
                 this.javaRelease = "21";
-                this.version = getVersion();
+                if ( FlavourFacade.FLAVOUR_DIRECT.equals( currentFlavour ) ) {
+                    this.version = DIRECT_PLUGIN_AVAILABLE;
+                } else {
+                    this.version = getVersion();
+                }
                 this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-base-kotlin,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
                 this.addDocFacade = true;
                 this.force = true;

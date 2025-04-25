@@ -1,0 +1,9 @@
+---
+docTitle: 'Venus Direct Extension - Sample Doc - YAML'
+listPeople:
+  - name: "Luthien"
+    surname: "Tinuviel"
+    title: "Queen"
+  - name: "Thorin"
+    surname: "Oakshield"
+    title: "King"

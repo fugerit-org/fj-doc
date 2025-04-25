@@ -1,0 +1,7 @@
+{
+  "docTitle": "Venus Direct Extension - Sample Doc - JSON",
+  "listPeople": [
+    { "name":"Luthien", "surname":"Tinuviel", "title":"Queen" },
+    { "name":"Thorin", "surname":"Oakshield", "title":"King" }
+  ]
+}

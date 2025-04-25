@@ -1,0 +1,8 @@
+---
+paramConfig:
+  addLombok:
+    acceptOnly:
+      - true
+  addDirectPlugin:
+    acceptOnly:
+      - true

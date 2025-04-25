@@ -64,7 +64,10 @@ public class MojoInit extends MojoAdd {
                 context.setVersion( VersionCheck.findVersion( this.version ) );
                 context.setExtensions( this.extensions );
                 this.getLog().info( String.format( "flavour context : %s", context ) );
-                FlavourFacade.initProject( context );
+                String actualVersion = FlavourFacade.initProject( context );
+                if ( FlavourFacade.FLAVOUR_DIRECT.equals( actualVersion ) ) {
+                    super.addDirectPlugin = true;
+                }
             } );
             super.groupIdOverride = this.groupId;
             super.artifactIdOverride = this.artifactId;

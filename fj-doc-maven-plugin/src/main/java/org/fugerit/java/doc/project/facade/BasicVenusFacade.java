@@ -2,6 +2,8 @@ package org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.*;
+import org.apache.maven.plugin.lifecycle.Lifecycle;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.codehaus.plexus.util.xml.Xpp3Dom;
 import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
@@ -9,6 +11,7 @@ import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.io.helper.HelperIOException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.maxxq.maven.dependency.ModelIO;
+import org.maxxq.maven.model.MavenModel;
 
 import java.io.*;
 import java.util.Collections;
@@ -229,7 +232,21 @@ public class BasicVenusFacade {
                 log.warn("addDirectPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
             } else {
                 log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
+                Plugin plugin = PluginUtils.findOrCreatePLugin( model );
+                PluginExecution execution = PluginUtils.createPluginExecution(
+                        "venus-direct", LifecyclePhase.COMPILE.id(), PluginUtils.GOAL_DIRECT );
+                plugin.getExecutions().add( execution );
+                String xml = "<configuration>\n" +
+                        "    <configPath>${project.basedir}/src/main/resources/venus-direct-config/venus-direct-config.yaml</configPath>\n" +
+                        "    <outputAll>true</outputAll>\n" +
+                        "    <directEnv>\n" +
+                        "        <projectBasedir>${project.basedir}</projectBasedir>\n" +
+                        "    </directEnv>\n" +
+                        "</configuration>";
+                execution.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
             }
+        } else {
+            log.info( "addDirectPlugin : false" );
         }
     }
 
@@ -240,20 +257,9 @@ public class BasicVenusFacade {
                 log.warn( "addVerifyPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
             } else {
                 log.info( "addVerifyPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
-                Build build = model.getBuild();
-                if ( build == null ) {
-                    build = new Build();
-                    model.setBuild( build );
-                }
-                List<Plugin> plugins = model.getBuild().getPlugins();
-                Plugin plugin = new Plugin();
-                plugin.setGroupId( GROUP_ID );
-                plugin.setArtifactId( "fj-doc-maven-plugin" );
-                plugin.setVersion( "${"+KEY_VERSION+"}" );
-                PluginExecution execution = new PluginExecution();
-                execution.setId( "freemarker-verify" );
-                execution.setPhase( "compile" );
-                execution.addGoal( "verify" );
+                Plugin plugin = PluginUtils.findOrCreatePLugin( model );
+                PluginExecution execution = PluginUtils.createPluginExecution(
+                        "freemarker-verify", LifecyclePhase.COMPILE.id(), LifecyclePhase.VERIFY.id() );
                 plugin.getExecutions().add( execution );
                 String xml = "<configuration>\n" +
                         "      <templateBasePath>${project.basedir}/src/main/resources/"+context.getArtificatIdForFolder()+"/template</templateBasePath>\n" +
@@ -261,8 +267,7 @@ public class BasicVenusFacade {
                         "      <failOnErrors>true</failOnErrors>\n" +
                         "      <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>\n" +
                         "    </configuration>";
-                plugin.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
-                plugins.add( plugin );
+                execution.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
             }
         } else {
             log.info( "addVerifyPlugin : false" );

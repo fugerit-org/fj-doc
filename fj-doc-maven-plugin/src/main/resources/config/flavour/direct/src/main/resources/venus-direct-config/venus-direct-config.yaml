@@ -1,0 +1,39 @@
+---
+configId: 'venus-direct-config-sample'
+templatePath: '${projectBasedir}/src/main/resources/venus-direct-config/template/'
+templateMode: 'folder'
+createParentDirectory: true
+handlerList:
+  - type: org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
+  - type: org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8
+  - type: org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8
+chainList:  # a template named ${chainId}.ftl or ${useChainId}.ftl must exist in 'templatePath' folder
+  - chainId: 'sample-doc'
+    dataModel:  # inline data model definition
+      docTitle: 'Venus Direct Extension - Test Doc'
+      listPeople:
+        - name: "Luthien"
+          surname: "Tinuviel"
+          title: "Queen"
+        - name: "Thorin"
+          surname: "Oakshield"
+          title: "King"
+  - chainId: 'sample-doc-json-data-model'
+    useChainId: 'sample-doc'
+    dataModelJson: '${projectBasedir}/src/main/resources/venus-direct-config/data-model/sample-model.json'  # JSON file data model
+  - chainId: 'sample-doc-yaml-data-model'
+    useChainId: 'sample-doc'
+    dataModelYaml: '${projectBasedir}/src/main/resources/venus-direct-config/data-model/sample-model.yaml'  # YAML file data model
+outputList:
+  - outputId: 'sample-doc-html'
+    chainId: 'sample-doc'
+    handlerId: 'html' # a valid handler for this output type should be defined (i.e. org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8)
+    file: '${projectBasedir}/target/sample-doc.html'
+  - outputId: 'sample-doc-md'
+    chainId: 'sample-doc-json-data-model'
+    handlerId: 'md'
+    file: '${projectBasedir}/target/sample-doc.md'
+  - outputId: 'sample-doc-adoc'
+    chainId: 'sample-doc-yaml-data-model'
+    handlerId: 'adoc'
+    file: '${projectBasedir}/target/sample-doc.adoc'
