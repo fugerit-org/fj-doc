@@ -23,13 +23,12 @@ public class PluginUtils {
     public static Object getPluginConfiguration( String xml ) throws IOException {
         return HelperIOException.get( () -> {
             try ( StringReader sr = new StringReader( xml ) ) {
-                Xpp3Dom dom = Xpp3DomBuilder.build( sr );
-                return dom;
+                return Xpp3DomBuilder.build( sr );
             }
         });
     }
 
-    public static Plugin findOrCreatePLugin( Model model ) throws IOException {
+    public static Plugin findOrCreatePLugin( Model model ) {
         Plugin plugin = null;
         Build build = getBuild( model );
         for ( Plugin current : build.getPlugins() ) {
@@ -39,9 +38,9 @@ public class PluginUtils {
         }
         if ( plugin == null ) {
             plugin = new Plugin();
-            plugin.setGroupId( BasicVenusFacade.GROUP_ID );
+            plugin.setGroupId( VenusConsts.GROUP_ID );
             plugin.setArtifactId( FJ_DOC_MAVEN_PLUGIN );
-            plugin.setVersion( "${"+BasicVenusFacade.KEY_VERSION+"}" );
+            plugin.setVersion( "${"+VenusConsts.KEY_VERSION+"}" );
             build.getPlugins().add( plugin );
         }
         return plugin;

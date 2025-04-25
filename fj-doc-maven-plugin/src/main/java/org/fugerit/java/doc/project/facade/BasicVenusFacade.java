@@ -24,9 +24,9 @@ public class BasicVenusFacade {
 
     protected BasicVenusFacade() {}
 
-    protected static final String GROUP_ID = "org.fugerit.java";
+    protected static final String GROUP_ID = VenusConsts.GROUP_ID;
 
-    protected static final String KEY_VERSION = "fj-doc-version";
+    protected static final String KEY_VERSION = VenusConsts.KEY_VERSION;
 
     private static void addOrOverwrite( List<Dependency> deps, Dependency d ) {
         Iterator<Dependency> it = deps.iterator();
