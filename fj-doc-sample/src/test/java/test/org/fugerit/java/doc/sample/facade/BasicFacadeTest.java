@@ -137,7 +137,7 @@ public class BasicFacadeTest {
 	}
 	
 	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String handleID ) throws Exception {
-		logger.debug( "facadeId {}", facadeId );
+		logger.debug( "facadeId {}, doc {}", facadeId, doc );
 		DocHandlerFacade facade = PROCESSCONFIG.getFacade();
 		DocTypeHandler handler = facade.findHandler( handleID );
 		logger.info( "handler -> {} : {}", handleID, handler );

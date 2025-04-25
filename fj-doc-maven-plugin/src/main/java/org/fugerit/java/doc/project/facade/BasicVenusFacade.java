@@ -206,7 +206,8 @@ public class BasicVenusFacade {
         log.info( "moduleListGradle : {}", moduleListGradle );
         for ( String currentModule :  moduleListGradle ) {
             String moduleNameGradle = ModuleFacade.toModuleName( currentModule );
-            String currentImplementation = String.format( "implementation %s%n    implementation", formatGroovy( "org.fugerit.java:"+moduleNameGradle, fjDocVersion, kts ),  moduleNameGradle );
+            String formatGroovy = formatGroovy( "org.fugerit.java:"+moduleNameGradle, fjDocVersion, kts );
+            String currentImplementation = String.format( "implementation %s%n    implementation", formatGroovy );
             log.info( "Adding module to gradle file : {}, substitution : {}", moduleNameGradle, currentImplementation );
             gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, currentImplementation );
             context.getModules().add( moduleNameGradle );
