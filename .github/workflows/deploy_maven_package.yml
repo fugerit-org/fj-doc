@@ -4,12 +4,15 @@
 #
 # see : https://universe.fugerit.org/src/docs/conventions/workflows/deploy_maven_package.html
 
-name: CI deploy maven package 
+name: CI deploy maven package
 
 on:
-  push:
+  workflow_run:
+    workflows: ["CI maven compatibility check"]
+    types:
+      - completed
     branches:
-    - branch-deploy
+      - branch-deploy
 
 # only allow one workflow at time on the give activation
 concurrency:
