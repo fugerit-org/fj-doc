@@ -17,11 +17,7 @@ on:
   push:
     branches:
       - develop
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
+      - branch-deploy
 
 # only allow one workflow at time on the give activation
 concurrency:
