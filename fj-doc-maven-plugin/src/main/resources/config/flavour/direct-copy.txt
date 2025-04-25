@@ -1,5 +1,0 @@
-src/main/resources/venus-direct-config/venus-direct-config.yaml
-src/main/resources/venus-direct-config/template/sample-doc.ftl
-src/main/resources/venus-direct-config/data-model/sample-model.json
-src/main/resources/venus-direct-config/data-model/sample-model.yaml
-README_DIRECT.md

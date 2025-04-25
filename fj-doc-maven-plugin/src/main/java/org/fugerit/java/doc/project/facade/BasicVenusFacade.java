@@ -2,16 +2,11 @@ package org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.*;
-import org.apache.maven.plugin.lifecycle.Lifecycle;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
-import org.codehaus.plexus.util.xml.Xpp3Dom;
-import org.codehaus.plexus.util.xml.Xpp3DomBuilder;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.FileIO;
-import org.fugerit.java.core.io.helper.HelperIOException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.maxxq.maven.dependency.ModelIO;
-import org.maxxq.maven.model.MavenModel;
 
 import java.io.*;
 import java.util.Collections;
@@ -231,6 +226,7 @@ public class BasicVenusFacade {
             if (context.isDirectPluginNotAvailable()) {
                 log.warn("addDirectPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
             } else {
+                FeatureFacade.copyFeatureList( context.getProjectDir(), "direct" );
                 log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
                 Plugin plugin = PluginUtils.findOrCreatePLugin( model );
                 PluginExecution execution = PluginUtils.createPluginExecution(
