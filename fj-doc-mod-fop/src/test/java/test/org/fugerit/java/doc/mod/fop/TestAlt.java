@@ -23,7 +23,7 @@ class TestAlt extends BasicTest {
 
 	@BeforeAll
 	static void init() {
-		SafeFunction.apply(  () -> InitFopHandler.initDoc() );
+		SafeFunction.apply(  InitFopHandler::initDoc );
 	}
 	
 	private boolean testHelper( DocTypeHandler handler ) {

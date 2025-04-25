@@ -81,7 +81,7 @@ public class BasicFacadeTest {
 		return this.nameBase;
 	}
 	
-	@Getter protected static FreemarkerDocProcessConfig PROCESSCONFIG =
+	@Getter protected static final FreemarkerDocProcessConfig PROCESSCONFIG =
 			FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://config/freemarker-doc-process.xml" );
 	
 	private int getSourceType() {

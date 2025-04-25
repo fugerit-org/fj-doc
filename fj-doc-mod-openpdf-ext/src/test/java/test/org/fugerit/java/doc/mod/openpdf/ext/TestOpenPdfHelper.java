@@ -1,7 +1,6 @@
 package test.org.fugerit.java.doc.mod.openpdf.ext;
 
 import com.lowagie.text.Document;
-import lombok.experimental.Helper;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.doc.base.model.DocLi;

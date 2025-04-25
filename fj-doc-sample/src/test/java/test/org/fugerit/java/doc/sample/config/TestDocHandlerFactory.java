@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 class TestDocHandlerFactory {
 
-	private final static Logger logger = LoggerFactory.getLogger( TestDocHandlerFactory.class );
+	private static final Logger logger = LoggerFactory.getLogger( TestDocHandlerFactory.class );
 	
 	@Test
 	void initDocFactoryTest() {
