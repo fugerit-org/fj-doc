@@ -61,7 +61,7 @@ class TestAddVenusFacade {
             context.setExcludeXmlApis( excludeXmlApis );
             context.setAddDocFacace( addFacade );
             context.setAddVerifyPlugin( addVerifyPlugin );
-            context.setAddDirectPlugin( Boolean.FALSE );
+            context.setAddDirectPlugin( Boolean.TRUE );
             context.setAddJunit5( addJunit5 );
             context.setAddLombok( addLombok );
             context.setAddDependencyOnTop( addDependencyOnTop );

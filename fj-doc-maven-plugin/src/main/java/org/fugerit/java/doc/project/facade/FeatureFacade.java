@@ -30,14 +30,14 @@ public class FeatureFacade {
         }
     }
 
-    public static void insureParent( File file ) throws IOException {
+    protected static void insureParent( File file ) throws IOException {
         File parentFile = file.getParentFile();
         if ( !parentFile.exists() ) {
             log.info( "creates parent directory {}, mkdirs:?", parentFile.getCanonicalPath(), parentFile.mkdirs() );
         }
     }
 
-    public static void copyFile(String path, File baseFolder, String basePath ) {
+    protected static void copyFile(String path, File baseFolder, String basePath ) {
         SafeFunction.apply( () -> {
             File outputFile = new File( baseFolder, path );
             insureParent( outputFile );
