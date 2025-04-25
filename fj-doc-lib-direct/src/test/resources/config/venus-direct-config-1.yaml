@@ -32,4 +32,4 @@ outputList:
   - outputId: 'test-doc-yaml-data-model-md'
     chainId: 'test-doc-yaml-data-model'
     handlerId: 'md'
-    file: 'target/test-doc-json-data-model.md'
+    file: 'target/test-doc-yaml-data-model.md'
