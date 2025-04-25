@@ -72,6 +72,9 @@ public class VenusContext {
     private boolean addVerifyPlugin;
 
     @Getter @Setter
+    private boolean addDirectPlugin;
+
+    @Getter @Setter
     private boolean addJunit5;
 
     @Getter @Setter

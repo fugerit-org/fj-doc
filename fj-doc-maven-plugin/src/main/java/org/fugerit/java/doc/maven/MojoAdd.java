@@ -70,6 +70,7 @@ public class MojoAdd extends AbstractMojo {
         context.setAddExclusions( addExclusions );
         context.setExcludeXmlApis( this.excludeXmlApis );
         context.setAddVerifyPlugin( this.addVerifyPlugin );
+        context.setAddDirectPlugin( this.addDirectPlugin );
         context.setAddJunit5( this.addJunit5 );
         context.setAddLombok( this.addLombok );
         context.setAddDependencyOnTop( this.addDependencyOnTop );

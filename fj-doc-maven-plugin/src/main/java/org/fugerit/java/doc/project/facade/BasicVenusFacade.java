@@ -227,8 +227,8 @@ public class BasicVenusFacade {
 
     private static void addDirectPlugin(VenusContext context, Model model ) throws IOException {
         // addDirectPlugin?
-        if ( context.isAddVerifyPlugin() ) {
-            if (context.isVerifyPluginNotAvailable()) {
+        if ( context.isAddDirectPlugin() ) {
+            if (context.isDirectPluginNotAvailable()) {
                 log.warn("addDirectPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
             } else {
                 log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
