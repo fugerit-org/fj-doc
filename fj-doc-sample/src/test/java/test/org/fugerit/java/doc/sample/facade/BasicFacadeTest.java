@@ -34,7 +34,7 @@ public class BasicFacadeTest {
 	
 	public static final String PDF_UA_FOP = "pdf_ua-fop";
 
-	protected final static Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
+	protected static final Logger logger = LoggerFactory.getLogger( BasicFacadeTest.class );
 	
 	public static final String BASIC_OUTPUT_PATH = "target/sample_out";
 	
@@ -137,6 +137,7 @@ public class BasicFacadeTest {
 	}
 	
 	public void produce( File outputFolder, String facadeId, DocBase doc, Reader reader, String baseName, String handleID ) throws Exception {
+		logger.debug( "facadeId {}", facadeId );
 		DocHandlerFacade facade = PROCESSCONFIG.getFacade();
 		DocTypeHandler handler = facade.findHandler( handleID );
 		logger.info( "handler -> {} : {}", handleID, handler );

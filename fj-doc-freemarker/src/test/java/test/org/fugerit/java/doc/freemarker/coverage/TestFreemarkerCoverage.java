@@ -26,13 +26,13 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class TestFreemarkerCoverage {
 	
-	private final static TestEntry[] TEST_LIST = {
+	private static final TestEntry[] TEST_LIST = {
 			new TestEntry( "default_doc" , true ),
 			new TestEntry( "default_doc_alt" , true ),
 			new TestEntry( "default_doc_fail1" , true )
 	};
 	
-	private final static DocTypeHandler[] HANDLERS = { FreeMarkerHtmlTypeHandler.HANDLER,
+	private static final DocTypeHandler[] HANDLERS = { FreeMarkerHtmlTypeHandler.HANDLER,
 														FreeMarkerHtmlTypeHandlerUTF8.HANDLER,
 														FreeMarkerHtmlFragmentTypeHandler.HANDLER,
 														FreeMarkerHtmlFragmentTypeHandlerUTF8.HANDLER,

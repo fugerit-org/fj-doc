@@ -17,9 +17,7 @@ class TestAutodocDocConfig {
 	private static final Logger logger = LoggerFactory.getLogger( TestAutodocDocConfig.class );
 	
 	private static final String TARGET = "../fj-doc-base/src/main/docs/doc_xsd_config_ref.html";
-	
-	//private static final String TARGET = "target/doc_xsd_config_ref.html";
-	
+
 	@Test
 	void testParseXsdModel() {
 		try ( FileOutputStream fos = new FileOutputStream( new File( TARGET ) ) )  {

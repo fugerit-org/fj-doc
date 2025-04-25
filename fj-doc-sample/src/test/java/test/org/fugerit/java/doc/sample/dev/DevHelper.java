@@ -38,7 +38,7 @@ import test.org.fugerit.java.doc.sample.facade.BasicFacadeTest;
 
 public class DevHelper {
 
-	private final static Logger logger = LoggerFactory.getLogger( DevHelper.class );
+	private static final Logger logger = LoggerFactory.getLogger( DevHelper.class );
 	
 	@BeforeAll
 	static void initPath() {
@@ -114,9 +114,7 @@ public class DevHelper {
 	}
 	
 	protected boolean workerXmlToFoToPdf( File inputPath,  File outputFo, File outputPdf ) throws Exception {
-		boolean ok = this.workerXmlToFo( inputPath , outputFo );
-		ok = this.workerFoToPdf( outputFo, outputPdf );
-		return ok;
+		return this.workerFoToPdf( outputFo, outputPdf );;
 	}
 	
 }

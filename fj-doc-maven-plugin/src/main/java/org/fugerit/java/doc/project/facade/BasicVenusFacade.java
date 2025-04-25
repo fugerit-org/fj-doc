@@ -23,6 +23,8 @@ public class BasicVenusFacade {
 
     protected static final String KEY_VERSION = VenusConsts.KEY_VERSION;
 
+    private static final String PROJECT_LOMBOK = "org.projectlombok:lombok";
+
     private static void addOrOverwrite( List<Dependency> deps, Dependency d ) {
         Iterator<Dependency> it = deps.iterator();
         while ( it.hasNext() ) {
@@ -195,8 +197,7 @@ public class BasicVenusFacade {
         String gradleFileContent = FileIO.readString( gradleFile );
         String fjDocVersion = context.getVersion();
         if ( kts ) {
-            String valVersion = String.format( "def fjDocVersion = '%s'\n\ndependencies", context.getVersion() );
-            valVersion = String.format( "val fjDocVersion = \"%s\"\n\ndependencies", context.getVersion() );
+            String valVersion = String.format( "val fjDocVersion = \"%s\"\n\ndependencies", context.getVersion() );
             gradleFileContent = gradleFileContent.replaceFirst( "dependencies", valVersion );
             fjDocVersion = "\\$fjDocVersion";
         }
@@ -212,10 +213,10 @@ public class BasicVenusFacade {
         }
         if (context.isAddLombok() ) {
             String lombokVersion = "1.18.36";
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "compileOnly%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "annotationProcessor%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testCompileOnly%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
-            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testAnnotationProcessor%s%n    %s",  formatGroovy( "org.projectlombok:lombok", lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "compileOnly%s%n    %s",  formatGroovy( PROJECT_LOMBOK, lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "annotationProcessor%s%n    %s",  formatGroovy( PROJECT_LOMBOK, lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testCompileOnly%s%n    %s",  formatGroovy( PROJECT_LOMBOK, lombokVersion, kts ), CONST_IMPLEMENTATION ) );
+            gradleFileContent = gradleFileContent.replaceFirst( CONST_IMPLEMENTATION, String.format( "testAnnotationProcessor%s%n    %s",  formatGroovy( PROJECT_LOMBOK, lombokVersion, kts ), CONST_IMPLEMENTATION ) );
         }
         FileIO.writeString( gradleFileContent, gradleFile );
     }

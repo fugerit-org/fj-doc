@@ -34,7 +34,7 @@ class TestDocXmlParser  {
 	public static final boolean NO_EXCEPTION = false;
 	public static final boolean EXCEPTION = true;
 	
-	private final static Logger logger = LoggerFactory.getLogger( TestDocXmlParser.class );
+	private static final Logger logger = LoggerFactory.getLogger( TestDocXmlParser.class );
 	
 	@Test
 	void testFillDocValidationResultHelper() {

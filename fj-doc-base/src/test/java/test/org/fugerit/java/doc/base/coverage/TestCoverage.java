@@ -43,9 +43,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class TestCoverage {
 
-	private final static String[] TEST_LIST = { "default_doc", "doc_test_01", "default_doc_alt", "default_doc_missing_tag", "default_doc_fail1", "default_doc_fail2", "default_doc_empty" };
+	private static final String[] TEST_LIST = { "default_doc", "doc_test_01", "default_doc_alt", "default_doc_missing_tag", "default_doc_fail1", "default_doc_fail2", "default_doc_empty" };
 	
-	private final static DocTypeHandler[] HANDLERS = { 
+	private static final DocTypeHandler[] HANDLERS = {
 			DocTypeHandlerXML.HANDLER, 
 			DocTypeHandlerXMLUTF8.HANDLER, 
 			SimpleMarkdownBasicTypeHandler.HANDLER,
@@ -97,7 +97,6 @@ class TestCoverage {
 	
 	private static final Configuration CFG = SafeFunction.get( () -> {
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_32);
-		//cfg.setDirectoryForTemplateLoading(new File("src/test/resources/coverage/template"));
 		cfg.setClassForTemplateLoading( TestCoverage.class , "/coverage/template/" );
 		cfg.setDefaultEncoding("UTF-8");
 		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
