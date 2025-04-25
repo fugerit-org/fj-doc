@@ -27,7 +27,7 @@ class TestPdfFopTypeHandler extends BasicTest {
 
 	@BeforeAll
 	static void init() {
-		SafeFunction.apply(  () -> InitFopHandler.initDocAsync() );
+		SafeFunction.apply(  InitFopHandler::initDocAsync );
 	}
 	
 	private boolean testHelper( DocTypeHandler handler ) {

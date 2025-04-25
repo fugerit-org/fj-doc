@@ -1,6 +1,5 @@
 package test.org.fugerit.java.doc.base.md;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 
 import org.fugerit.java.doc.base.config.DocException;
@@ -17,17 +16,17 @@ import org.junit.jupiter.api.Test;
 class TestMDHandlers {
 
 	@Test
-	void testSimpleMarkdownBasicTypeHandlerNoCommentsUTF8() throws IOException {
+	void testSimpleMarkdownBasicTypeHandlerNoCommentsUTF8() {
 		Assertions.assertNotNull( new SimpleMarkdownBasicTypeHandlerNoCommentsUTF8() );
 	}
 	
 	@Test
-	void testSimpleMarkdownExtTypeHandlerNoCommentsUTF8() throws IOException {
+	void testSimpleMarkdownExtTypeHandlerNoCommentsUTF8() {
 		Assertions.assertNotNull( new SimpleMarkdownExtTypeHandlerNoCommentsUTF8() );
 	}
 	
 	@Test
-	void testMarkdownBasicDocFacade1() throws IOException, DocException {
+	void testMarkdownBasicDocFacade1() throws DocException {
 		try ( PrintWriter writer = new PrintWriter( System.out ) ) {
 			MarkdownBasicDocFacade facade = new MarkdownBasicDocFacade( writer );
 			Assertions.assertNotNull( facade );
@@ -37,7 +36,7 @@ class TestMDHandlers {
 	}
 	
 	@Test
-	void testMarkdownBasicDocFacade2() throws IOException, DocException {
+	void testMarkdownBasicDocFacade2() throws DocException {
 		try ( PrintWriter writer = new PrintWriter( System.out ) ) {
 			MarkdownBasicDocFacade facade = new MarkdownBasicDocFacade( writer, false );
 			Assertions.assertNotNull( facade );
@@ -50,7 +49,7 @@ class TestMDHandlers {
 	}	
 	
 	@Test
-	void testMarkdownExtDocFacade1() throws IOException, DocException {
+	void testMarkdownExtDocFacade1() throws DocException {
 		try ( PrintWriter writer = new PrintWriter( System.out ) ) {
 			MarkdownExtDocFacade facade = new MarkdownExtDocFacade( writer );
 			Assertions.assertNotNull( facade );

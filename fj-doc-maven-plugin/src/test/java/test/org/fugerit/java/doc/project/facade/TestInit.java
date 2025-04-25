@@ -80,7 +80,7 @@ class TestInit {
                 MojoInit mojoInit = createMojoInit( projectDir, currentFlavour );
                 mojoInit.execute();
                 Assertions.assertTrue( projectDir.exists() );
-                Assertions.assertThrows( MojoFailureException.class, () -> mojoInit.execute() );
+                Assertions.assertThrows( MojoFailureException.class, mojoInit::execute );
                 Assertions.assertThrows( MojoFailureException.class, () -> mojoInit.apply( () -> {
                     if ( Boolean.TRUE ) {
                         throw new ConfigException( "Scenario excetion" );

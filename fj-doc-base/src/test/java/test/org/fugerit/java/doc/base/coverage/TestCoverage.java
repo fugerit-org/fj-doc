@@ -123,7 +123,7 @@ class TestCoverage {
 				String html = writer.toString();
 				log.info( "html -> {}", html );
 				FileIO.writeString( html , new File("target/alt_html_"+c+".html" ) );
-				res.setValue( html.length() > 0 );
+				res.setValue( !html.isEmpty() );
 			}
 		} );
 		return res.getValue();

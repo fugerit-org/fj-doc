@@ -47,7 +47,7 @@ class TestResourceResolver extends BasicTest {
 	}
 	
 	@Test 
-	void testFopConfigClassLoaderWrapper() throws IOException, ConfigException {
+	void testFopConfigClassLoaderWrapper() throws ConfigException {
 		FopConfigClassLoaderWrapper config1 = new FopConfigClassLoaderWrapper( "fop-config.xml" );
 		Assertions.assertNotNull( config1.newFactory() );
 		FopConfigClassLoaderWrapper config2 = new FopConfigClassLoaderWrapper( "fop-config-pdfa.xml" );

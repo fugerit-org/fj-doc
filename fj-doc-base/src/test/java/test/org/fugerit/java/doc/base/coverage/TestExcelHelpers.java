@@ -25,7 +25,7 @@ class TestExcelHelpers {
 	}
 	
 	@Test
-	void testTesoveTemplateStreamFail() throws IOException {
+	void testTesoveTemplateStreamFail() {
 		DocBase docBase = new DocBase();
 		docBase.setStableInfo( new Properties() );
 		docBase.getStableInfo().setProperty( ExcelHelperConsts.PROP_XLS_TEMPLATE , "cl://txt/not_found.txt" );
@@ -40,7 +40,7 @@ class TestExcelHelpers {
 	}
 	
 	@Test
-	void testPrepareNumber() throws IOException {
+	void testPrepareNumber() {
 		Assertions.assertEquals( "1000.5", ExcelHelperUtils.prepareNumber( "1.000,5" ) );
 		Assertions.assertEquals( "10", ExcelHelperUtils.prepareNumber( "10" ) );
 	}

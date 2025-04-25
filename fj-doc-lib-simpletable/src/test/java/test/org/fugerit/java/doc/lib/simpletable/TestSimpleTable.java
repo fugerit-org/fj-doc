@@ -57,7 +57,7 @@ class TestSimpleTable {
 		Assertions.assertEquals( defaultBorder , helper.getDefaultBorderWidth() );
 		List<Integer> lcw = new ArrayList<Integer>();
 		Assertions.assertThrows( ConfigRuntimeException.class, () -> helper.newTable( lcw ) );
-		Assertions.assertThrows( ConfigRuntimeException.class, () -> helper.newTable() );
+		Assertions.assertThrows( ConfigRuntimeException.class, helper::newTable );
 		List<Integer> colWidths = null;
 		Assertions.assertThrows( ConfigRuntimeException.class, () -> helper.newTable( colWidths ) );
 		Integer[] colWidthsA = null;

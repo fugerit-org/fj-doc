@@ -15,7 +15,7 @@ class TestSAXUtils {
 	
 	@Test
 	void testNewSafeInstance() {
-		Assertions.assertNotNull(SafeFunction.get( () -> SAXUtils.newSafeFactory() ) );
+		Assertions.assertNotNull(SafeFunction.get( SAXUtils::newSafeFactory ) );
 	}
 	
 	@Test

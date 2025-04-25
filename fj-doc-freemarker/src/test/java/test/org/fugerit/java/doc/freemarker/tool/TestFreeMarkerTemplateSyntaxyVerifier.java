@@ -21,7 +21,7 @@ import java.util.function.Function;
 class TestFreeMarkerTemplateSyntaxyVerifier extends BasicTest {
 
 	private VerifyTemplateOutput verifyWorker(String basePath) {
-		return this.verifyWorker( basePath, f -> FreeMarkerTemplateSyntaxVerifier.doCreateConfigurationAndVerify( f ) );
+		return this.verifyWorker( basePath, FreeMarkerTemplateSyntaxVerifier::doCreateConfigurationAndVerify );
 	}
 
 	private VerifyTemplateOutput verifyWorker(String basePath, Function<File, VerifyTemplateOutput> verifyFun ) {
