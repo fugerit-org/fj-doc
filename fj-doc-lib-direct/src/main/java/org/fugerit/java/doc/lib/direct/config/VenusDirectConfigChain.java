@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.FileIO;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 
 import java.util.LinkedHashMap;
 
@@ -17,6 +18,9 @@ public class VenusDirectConfigChain {
 
     @Getter @Setter
     private String chainId;
+
+    @Getter @Setter
+    private String useChainId;
 
     @Getter @Setter
     private LinkedHashMap<String, Object> dataModel;
@@ -34,6 +38,10 @@ public class VenusDirectConfigChain {
             SafeFunction.applyIfNotNull( this.getDataModelYaml(), () ->
                     this.setDataModel( YAML_MAPPER.readValue( FileIO.readString( this.getDataModelYaml() ), LinkedHashMap.class ) ) );
         }
+    }
+
+    public String resolveChainId() {
+        return StringUtils.valueWithDefault( this.getUseChainId(), this.getChainId() );
     }
 
 }

@@ -76,7 +76,8 @@ public class VenusDirectFacade {
                 log.info( "mkdir: result:{}, directory:{}", outputFile.getParentFile().mkdirs(), outputFile.getParentFile() );
             }
             try ( FileOutputStream fos = new FileOutputStream( outputFile ) ) {
-                config.getDocProcessConfig().fullProcess(chain.getChainId(), context, output.getHandlerId(), fos );
+                log.info( "generate outputId:{}, chainId:{}", outputId, chain.getChainId() );
+                config.getDocProcessConfig().fullProcess( chain.resolveChainId(), context, output.getHandlerId(), fos );
             }
         } );
 
