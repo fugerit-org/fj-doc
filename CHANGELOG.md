@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.13.6] - 2025-04-26
+
 ### Added
 
 - [fj-doc-maven-plugin] support add 'direct' goal to maven goal 'init' and 'add' <https://github.com/fugerit-org/fj-doc/pull/405>

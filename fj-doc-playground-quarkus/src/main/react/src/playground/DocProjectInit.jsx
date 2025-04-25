@@ -21,7 +21,7 @@ const DocProjectInit = ({setHelpContent}) => {
 		setHelpContent('doc-project-init');
 	}, [])
 
-    const availableVersions = [ '8.13.5', '8.13.0', '8.12.8', '8.12.0', '8.11.9', '8.10.9', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
+    const availableVersions = [ '8.13.6', '8.13.0', '8.12.8', '8.12.0', '8.11.9', '8.10.9', '8.10.0', '8.9.7', '8.9.0', '8.8.9', '8.8.0', '8.7.6' ];
 
 	const [extensionList, setExtensionList] = useState([]); // State to store the list of extensions
 	const [selectedExtensions, setSelectedExtensions] = useState([]); // State to store selected extensions
