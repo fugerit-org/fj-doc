@@ -8,7 +8,7 @@ name: CI deploy maven package
 
 on:
   workflow_run:
-    workflows: ["CI maven compatibility check"]
+    workflows: ["CI native modules build and test"]
     types:
       - completed
     branches:
