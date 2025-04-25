@@ -102,18 +102,20 @@ public class DocParserContext {
 	}
 	
 	public void handleText( String text ) {
-		if ( text.trim().length() > 0 && this.currentElement instanceof DocPhrase ) {	
-			DocPhrase docPhrase = (DocPhrase)this.currentElement;
-			docPhrase.setText( docPhrase.getText()+text );
-		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocPara ) {
-			DocPara docPara = (DocPara)this.currentElement;
-			docPara.setText( docPara.getText()+text );
-		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocBookmark ) {
-			DocBookmark docBookmarkTitle = (DocBookmark)this.currentElement;
-			docBookmarkTitle.setTitle( docBookmarkTitle.getTitle()+text );
-		} else if ( text.trim().length() > 0 && this.currentElement instanceof DocInfo ) {
-			DocInfo docInfo = (DocInfo)this.currentElement;
-			docInfo.getContent().append( text );
+		if ( !text.trim().isEmpty() ) {
+			if ( this.currentElement instanceof DocPhrase ) {
+				DocPhrase docPhrase = (DocPhrase)this.currentElement;
+				docPhrase.setText( docPhrase.getText()+text );
+			} else if ( this.currentElement instanceof DocPara ) {
+				DocPara docPara = (DocPara)this.currentElement;
+				docPara.setText( docPara.getText()+text );
+			} else if ( this.currentElement instanceof DocBookmark ) {
+				DocBookmark docBookmarkTitle = (DocBookmark)this.currentElement;
+				docBookmarkTitle.setTitle( docBookmarkTitle.getTitle()+text );
+			} else if ( this.currentElement instanceof DocInfo ) {
+				DocInfo docInfo = (DocInfo)this.currentElement;
+				docInfo.getContent().append( text );
+			}
 		}
 	}
 	

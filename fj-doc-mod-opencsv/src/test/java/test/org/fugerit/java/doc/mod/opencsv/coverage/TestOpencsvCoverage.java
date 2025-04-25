@@ -24,13 +24,13 @@ import org.junit.jupiter.api.Test;
 @Slf4j
 class TestOpencsvCoverage {
 	
-	private final static TestEntry[] TEST_LIST = {
+	private static final TestEntry[] TEST_LIST = {
 			new TestEntry( "default_doc" , true ),
 			new TestEntry( "default_doc_alt" , true ),
 			new TestEntry( "default_doc_fail1" , false )
 	};
 	
-	private final static DocTypeHandler[] HANDLERS = { OpenCSVTypeHandlerUTF8.HANDLER };
+	private static final DocTypeHandler[] HANDLERS = { OpenCSVTypeHandlerUTF8.HANDLER };
 	
 	private boolean worker( String id, String path, boolean result ) {
 		SimpleValue<Boolean> res = new SimpleValue<>(false);

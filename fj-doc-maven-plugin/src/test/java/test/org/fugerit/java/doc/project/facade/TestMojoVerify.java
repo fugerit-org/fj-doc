@@ -69,7 +69,7 @@ class TestMojoVerify {
                 res.setValue( Boolean.TRUE );
             }
         };
-        Assertions.assertThrows( MojoFailureException.class, () -> mojoVerify.execute() );
+        Assertions.assertThrows( MojoFailureException.class, mojoVerify::execute );
     }
 
     @Test
@@ -84,7 +84,7 @@ class TestMojoVerify {
                 res.setValue( Boolean.TRUE );
             }
         };
-        Assertions.assertThrows( MojoFailureException.class, () -> mojoVerify.execute() );
+        Assertions.assertThrows( MojoFailureException.class, mojoVerify::execute );
     }
 
 }

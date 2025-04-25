@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 
 class TestPoiCoverage {
 	
-	private final static String[] TEST_LIST = { "default_doc", "default_doc_alt", "default_doc_fail1" };
+	private static final String[] TEST_LIST = { "default_doc", "default_doc_alt", "default_doc_fail1" };
 	
-	private final static DocTypeHandler[] HANDLERS = { XlsPoiTypeHandler.HANDLER, XlsxPoiTypeHandler.HANDLER };
+	private static final DocTypeHandler[] HANDLERS = { XlsPoiTypeHandler.HANDLER, XlsxPoiTypeHandler.HANDLER };
 	
 	private boolean worker( String path ) {
 		SimpleValue<Boolean> res = new SimpleValue<>(false);
