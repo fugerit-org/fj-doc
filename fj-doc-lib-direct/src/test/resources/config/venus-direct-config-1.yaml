@@ -12,8 +12,10 @@ chainList:  # a template named ${chainId}.ftl must exist in 'templatePath' folde
       docTitle: 'Venus Direct Extension - Test Doc'
   - chainId: 'test-doc-json-data-model'
     dataModelJson: 'src/test/resources/data-model/data-model-1.json'  # JSON file data model
+    useChainId: 'test-doc'
   - chainId: 'test-doc-yaml-data-model'
     dataModelYaml: 'src/test/resources/data-model/data-model-1.yaml'  # YAML file data model
+    useChainId: 'test-doc'
 outputList:
   - outputId: 'test-doc-html'
     chainId: 'test-doc'
@@ -30,4 +32,4 @@ outputList:
   - outputId: 'test-doc-yaml-data-model-md'
     chainId: 'test-doc-yaml-data-model'
     handlerId: 'md'
-    file: 'target/test-doc-json-data-model.md'
+    file: 'target/test-doc-yaml-data-model.md'

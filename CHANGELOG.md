@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- [fj-doc-lib-direct] add useChainId param for chain alias <https://github.com/fugerit-org/fj-doc/pull/406>
+
 ## [8.13.4] - 2025-04-25
 
 ### Added
