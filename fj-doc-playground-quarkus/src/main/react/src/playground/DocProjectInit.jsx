@@ -3,6 +3,10 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
@@ -32,6 +36,8 @@ const DocProjectInit = ({setHelpContent}) => {
 	const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submit button loading state
 	const [serverMessage, setServerMessage] = useState(''); // State to store the message from the server response
 	const [serverContent, setServerContent] = useState(''); // State to store the base64 encoded content from the server
+	const [addVerifyPlugin, setAddVerifyPlugin] = useState(true); // State to handle addVerifyPlugin selection
+	const [addDirectPlugin, setAddDirectPlugin] = useState(false); // State to handle addDirectPlugin selection
 
 	// useEffect to fetch data from the API when the component mounts
 	useEffect(() => {
@@ -105,6 +111,8 @@ const DocProjectInit = ({setHelpContent}) => {
 			javaVersion,
 			venusVersion,
 			flavour,
+			addVerifyPlugin,
+			addDirectPlugin,
 			extensionList: selectedExtensions,
 		};
 		try {
@@ -228,7 +236,36 @@ const DocProjectInit = ({setHelpContent}) => {
 							<MenuItem value={'micronaut-4'}>Micronaut 4</MenuItem>
 							<MenuItem value={'springboot-3'}>SpringBoot 3</MenuItem>
 							<MenuItem value={'openliberty'}>OpenLiberty</MenuItem>
+							<MenuItem value={'direct'}>Direct (Doc Maven Plugin, 'direct' goal)</MenuItem>
 						</Select>
+					</FormControl>
+				</Grid>
+				<Grid item xs={12} sm={6}>
+					{/* Text field for addVerifyPlugin */}
+					<FormControl component="fieldset" fullWidth margin="normal">
+						<FormLabel component="legend">Add verify plugin</FormLabel>
+						<RadioGroup
+							row
+							value={addVerifyPlugin ? 'true' : 'false'}
+							onChange={(e) => setAddVerifyPlugin(e.target.value === 'true')}
+						>
+							<FormControlLabel value="true" control={<Radio />} label="true" />
+							<FormControlLabel value="false" control={<Radio />} label="false" />
+						</RadioGroup>
+					</FormControl>
+				</Grid>
+				<Grid item xs={12} sm={6}>
+					{/* Text field for addDirectPlugin */}
+					<FormControl component="fieldset" fullWidth margin="normal">
+						<FormLabel component="legend">Add direct plugin</FormLabel>
+						<RadioGroup
+							row
+							value={addDirectPlugin ? 'true' : 'false'}
+							onChange={(e) => setAddDirectPlugin(e.target.value === 'true')}
+						>
+							<FormControlLabel value="true" control={<Radio />} label="true" />
+							<FormControlLabel value="false" control={<Radio />} label="false" />
+						</RadioGroup>
 					</FormControl>
 				</Grid>
 				<Grid item xs={12} sm={12}>
