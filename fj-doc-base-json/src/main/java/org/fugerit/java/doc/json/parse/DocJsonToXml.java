@@ -60,9 +60,9 @@ public class DocJsonToXml {
 	
 	public Element convert( JsonNode json ) throws ConfigException {
 		Element root = this.handler.convert(json);
-		String xsdVersion = root.getAttribute( DocObjectMapperHelper.PROPERTY_XSD_VERSION );
+		String xsdVersion = root.getAttribute( DocObjectMapperConstants.PROPERTY_XSD_VERSION );
 		if ( StringUtils.isNotEmpty( xsdVersion ) ) {
-			root.removeAttribute( DocObjectMapperHelper.PROPERTY_XSD_VERSION );
+			root.removeAttribute( DocObjectMapperConstants.PROPERTY_XSD_VERSION );
 		}
 		// finishing touches
 		xsdVersion = StringUtils.valueWithDefault( xsdVersion  , DocVersion.CURRENT_VERSION.stringVersion() );	

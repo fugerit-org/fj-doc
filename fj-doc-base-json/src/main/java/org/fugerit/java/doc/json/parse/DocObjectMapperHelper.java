@@ -43,7 +43,7 @@ public class DocObjectMapperHelper {
 
 	public static final String PROPERTY_ELEMENTS = XmlToJsonConverter.DEF_PROPERTY_ELEMENTS;
 	
-	public static final String PROPERTY_XSD_VERSION = "xsd-version";
+	public static final String PROPERTY_XSD_VERSION = DocObjectMapperConstants.PROPERTY_XSD_VERSION;
 	
 	private static final Set<String> SPECIAL_PROPERTY_NAMES = new HashSet<>( Arrays.asList( PROPERTY_TAG, PROPERTY_ELEMENTS, PROPERTY_TAG, PROPERTY_XSD_VERSION ) );
 
