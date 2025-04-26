@@ -26,6 +26,9 @@
 package org.fugerit.java.doc.base.model;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
+import org.fugerit.java.doc.base.enums.EnumDocAlignH;
+import org.fugerit.java.doc.base.enums.EnumDocAlignV;
+import org.fugerit.java.doc.base.enums.EnumDocStyle;
 import org.fugerit.java.doc.base.xml.DocStyleAlignHelper;
 
 import lombok.Getter;
@@ -49,24 +52,24 @@ public class DocPara extends DocContainer implements DocStyle {
 	
 	public static final int DEFAULT_HEAD_LEVEL = 0;
 
-	public static final int STYLE_NORMAL = 1;
-	public static final int STYLE_BOLD = 2;
-	public static final int STYLE_UNDERLINE = 3;
-	public static final int STYLE_ITALIC = 4;
-	public static final int STYLE_BOLDITALIC = 5;
-	public static final int STYLE_UNSET = -1;
+	public static final int STYLE_NORMAL = EnumDocStyle.STYLE_NORMAL.getId();
+	public static final int STYLE_BOLD = EnumDocStyle.STYLE_BOLD.getId();
+	public static final int STYLE_UNDERLINE = EnumDocStyle.STYLE_UNDERLINE.getId();
+	public static final int STYLE_ITALIC = EnumDocStyle.STYLE_ITALIC.getId();
+	public static final int STYLE_BOLDITALIC = EnumDocStyle.STYLE_BOLDITALIC.getId();
+	public static final int STYLE_UNSET = EnumDocStyle.STYLE_UNSET.getId();
 	
 	public static final int ALIGN_UNSET = 0;
 	// h align
-	public static final int ALIGN_LEFT = 1;
-	public static final int ALIGN_CENTER = 2;
-	public static final int ALIGN_RIGHT = 3;
-	public static final int ALIGN_JUSTIFY = 9;
-	public static final int ALIGN_JUSTIFY_ALL = 8;
+	public static final int ALIGN_LEFT = EnumDocAlignH.ALIGN_LEFT.getId();
+	public static final int ALIGN_CENTER = EnumDocAlignH.ALIGN_CENTER.getId();
+	public static final int ALIGN_RIGHT = EnumDocAlignH.ALIGN_RIGHT.getId();
+	public static final int ALIGN_JUSTIFY = EnumDocAlignH.ALIGN_JUSTIFY.getId();
+	public static final int ALIGN_JUSTIFY_ALL = EnumDocAlignH.ALIGN_JUSTIFY_ALL.getId();
 	// v align
-	public static final int ALIGN_TOP = 4;
-	public static final int ALIGN_MIDDLE = 5;
-	public static final int ALIGN_BOTTOM = 6;	
+	public static final int ALIGN_TOP = EnumDocAlignV.ALIGN_TOP.getId();
+	public static final int ALIGN_MIDDLE = EnumDocAlignV.ALIGN_MIDDLE.getId();
+	public static final int ALIGN_BOTTOM = EnumDocAlignV.ALIGN_BOTTOM.getId();
 	
 	@Getter @Setter private int style;		// style with default value
 	

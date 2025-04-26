@@ -1168,6 +1168,12 @@
     "name" : "notifyAll",
     "parameterTypes" : [ ]
   }, {
+    "name" : "resolveImage",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocImage" ]
+  }, {
+    "name" : "resolveImageToBase64",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocImage" ]
+  }, {
     "name" : "setAlign",
     "parameterTypes" : [ "int" ]
   }, {

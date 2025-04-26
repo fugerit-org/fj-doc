@@ -1,7 +1,5 @@
 package org.fugerit.java.doc.json.parse;
 
-import org.fugerit.java.xml2json.XmlToJsonConverter;
-
 public class DocObjectMapperConstants {
 
     private DocObjectMapperConstants() {}

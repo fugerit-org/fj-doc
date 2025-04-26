@@ -62,7 +62,7 @@ public class DocFacade {
 	
 	private DocFacade() {} // java:S1118
 	
-	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION.stringVersion();
+	public static final String CURRENT_VERSION = DocVersion.CURRENT_VERSION_S;
 	
 	/**
 	 * 
