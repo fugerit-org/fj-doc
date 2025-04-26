@@ -12,7 +12,6 @@ import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.xml.DocXMLUtils;
-import org.fugerit.java.doc.base.xml.DocXmlParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +50,7 @@ public class DocFacadeSource {
 		return DEFAULT_INSTANCE;
 	}
 	
-	private static final String TYPE_SOURCE_XML = DocXmlParser.class.getName();							// xml parser is always supported
+	private static final String TYPE_SOURCE_XML = "org.fugerit.java.doc.base.xml.DocXmlParser";			// xml parser is always supported
 	
 	private static final String TYPE_SOURCE_JSON = "org.fugerit.java.doc.json.parse.DocJsonParser";		// json parser may not be in class loader
 	
