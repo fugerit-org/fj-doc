@@ -39,7 +39,7 @@ public class FreemarkerTemplateFacade {
         // freemarker configuration
         Configuration configuration = new Configuration( new Version( FreeMarkerConfigStep.ATT_FREEMARKER_CONFIG_KEY_VERSION_LATEST ) );
         configuration.clearTemplateCache();
-        ClassTemplateLoader loader = new ClassTemplateLoader( AddVenusFacade.class, "/config/template/" );
+        ClassTemplateLoader loader = new ClassTemplateLoader( VenusContext.class, "/config/template/" );
         configuration.setTemplateExceptionHandler( TemplateExceptionHandler.RETHROW_HANDLER );
         configuration.setTemplateLoader( loader );
         configuration.setDefaultEncoding(StandardCharsets.UTF_8.name());
