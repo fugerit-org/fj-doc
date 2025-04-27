@@ -35,6 +35,7 @@ NOTE: it is possible to set any property from 'add' goal, except 'projectFolder'
 |====================================================================================================================================
 | flavour      | model | description
 | vanilla       | maven | Vanilla java, with maven packaging
+| direct       | maven | Direct, similar to 'vanilla' but parameter 'addDirectPlugin' set to 'true and 'addDocFacade' set to 'false'
 | quarkus-3        | maven | Based on link:https://quarkus.io/[Quarkus 3], with maven packaging (yaml)
 | quarkus-3-gradle | gradle | Based on link:https://quarkus.io/[Quarkus 3], with gradle packaging (yaml)
 | quarkus-3-gradle-kts | gradle-kts | Based on link:https://quarkus.io/[Quarkus 3], with gradle kotlin packaging (yaml)
