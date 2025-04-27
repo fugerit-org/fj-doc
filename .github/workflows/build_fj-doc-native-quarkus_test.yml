@@ -17,7 +17,6 @@ on:
   push:
     branches:
       - develop
-      - branch-deploy
 
 # only allow one workflow at time on the give activation
 concurrency:
