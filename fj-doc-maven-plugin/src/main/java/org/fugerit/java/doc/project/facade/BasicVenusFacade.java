@@ -148,8 +148,8 @@ public class BasicVenusFacade {
             addJunit5( model, context );
             // addLombok parameter
             addLombok( model, context );
-            addDirectPlugin( context, model );
             addVerifyPlugin( context, model );
+            addDirectPlugin( context, model );
             log.info( "end dependencies size : {}", model.getDependencies().size() );
             try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
                 modelIO.writeModelToStream( model, pomStream );
@@ -228,6 +228,11 @@ public class BasicVenusFacade {
             if (context.isDirectPluginNotAvailable()) {
                 log.warn("addDirectPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
             } else {
+                if ( context.isAddVerifyPlugin() ) {
+                    addVerifyPluginExecution( model, "freemarker-verify-direct",
+                            "src/main/resources/"+context.getVenusDirectConfig()+"/template",
+                            "freemarker-syntax-verify-direct-report");
+                }
                 FeatureFacade.copyFeatureList( context.getProjectDir(), "direct" );
                 log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
                 Plugin plugin = PluginUtils.findOrCreatePLugin( model );
@@ -235,7 +240,7 @@ public class BasicVenusFacade {
                         "venus-direct", LifecyclePhase.COMPILE.id(), PluginUtils.GOAL_DIRECT );
                 plugin.getExecutions().add( execution );
                 String xml = "<configuration>\n" +
-                        "    <configPath>${project.basedir}/src/main/resources/venus-direct-config/venus-direct-config.yaml</configPath>\n" +
+                        "    <configPath>${project.basedir}/src/main/resources/"+context.getVenusDirectConfig()+"/venus-direct-config.yaml</configPath>\n" +
                         "    <outputAll>true</outputAll>\n" +
                         "    <directEnv>\n" +
                         "        <projectBasedir>${project.basedir}</projectBasedir>\n" +
@@ -248,6 +253,21 @@ public class BasicVenusFacade {
         }
     }
 
+    private static void addVerifyPluginExecution( Model model, String id, String templateBaseDir, String reportOutputFolder ) throws IOException {
+        log.info( "addVerifyPluginExecution id:{}, templateBaseDir:{}", id, templateBaseDir );
+        Plugin plugin = PluginUtils.findOrCreatePLugin( model );
+        PluginExecution execution = PluginUtils.createPluginExecution(
+                id, LifecyclePhase.COMPILE.id(), LifecyclePhase.VERIFY.id() );
+        plugin.getExecutions().add( execution );
+        String xml = "<configuration>\n" +
+                "      <templateBasePath>${project.basedir}/"+templateBaseDir+"</templateBasePath>\n" +
+                "      <generateReport>true</generateReport>\n" +
+                "      <failOnErrors>true</failOnErrors>\n" +
+                "      <reportOutputFolder>${project.build.directory}/"+reportOutputFolder+"</reportOutputFolder>\n" +
+                "    </configuration>";
+        execution.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
+    }
+
     private static void addVerifyPlugin(VenusContext context, Model model ) throws IOException {
         // addVerifyPlugin?
         if ( context.isAddVerifyPlugin() ) {
@@ -255,17 +275,9 @@ public class BasicVenusFacade {
                 log.warn( "addVerifyPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
             } else {
                 log.info( "addVerifyPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
-                Plugin plugin = PluginUtils.findOrCreatePLugin( model );
-                PluginExecution execution = PluginUtils.createPluginExecution(
-                        "freemarker-verify", LifecyclePhase.COMPILE.id(), LifecyclePhase.VERIFY.id() );
-                plugin.getExecutions().add( execution );
-                String xml = "<configuration>\n" +
-                        "      <templateBasePath>${project.basedir}/src/main/resources/"+context.getArtificatIdForFolder()+"/template</templateBasePath>\n" +
-                        "      <generateReport>true</generateReport>\n" +
-                        "      <failOnErrors>true</failOnErrors>\n" +
-                        "      <reportOutputFolder>${project.build.directory}/freemarker-syntax-verify-report</reportOutputFolder>\n" +
-                        "    </configuration>";
-                execution.setConfiguration( PluginUtils.getPluginConfiguration( xml ) );
+                addVerifyPluginExecution( model, "freemarker-verify",
+                        "src/main/resources/"+context.getArtificatIdForFolder()+"/template",
+                        "freemarker-syntax-verify-report" );
             }
         } else {
             log.info( "addVerifyPlugin : false" );

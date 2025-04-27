@@ -41,6 +41,8 @@ public class VenusContext {
 
     public static final String VERSION_NA_FREEMARKER_NATIVE = "8.11.8";
 
+    private static final String VENUS_DIRECT_CONFIG_DEFAULT = "venus-direct-config";
+
     @Getter
     private File projectDir;
 
@@ -190,6 +192,10 @@ public class VenusContext {
 
     public File getTestResourcesFolder() {
         return this.getAndCreateFolder( new File( this.getProjectDir(), "src/test/resources" ) );
+    }
+
+    public String getVenusDirectConfig() {
+        return VENUS_DIRECT_CONFIG_DEFAULT;
     }
 
 }
