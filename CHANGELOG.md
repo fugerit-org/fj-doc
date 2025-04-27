@@ -32,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- [fj-doc-mod-poi] element phrase it is not correcly rendered <https://github.com/fugerit-org/fj-doc/pull/403>
+- [fj-doc-mod-poi] element phrase it is not correctly rendered <https://github.com/fugerit-org/fj-doc/pull/403>
 - [fj-doc-freemarker] handling link in asciidoc handler <https://github.com/fugerit-org/fj-doc/pull/399>
 
 ## [8.13.3] - 2025-04-24
@@ -45,7 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- [fj-doc-maven-plugin] add variables to 'direct' goal <https://github.com/fugerit-org/fj-doc/pull/395>
+- [fj-doc-maven-plugin] add variables to 'direct' goal <https://github.com/fugerit-org/fj-doc/issues/395>
 
 ### Changed
 

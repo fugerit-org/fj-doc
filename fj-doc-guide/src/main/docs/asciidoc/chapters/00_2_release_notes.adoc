@@ -1,7 +1,52 @@
 [#doc-release-notes]
 === Release Notes
 
-Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modification to project, the release notes just refers to most important changes.
+Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
+
+[#doc-release-notes-8-13-6]
+==== Version 8.13.6 [2025-04-25]
+
+* [fj-doc-maven-plugin] support add 'direct' goal to maven goal 'init' and 'add' link:https://github.com/fugerit-org/fj-doc/issues/405[#405]
+
+[#doc-release-notes-8-13-5]
+==== Version 8.13.5 [2025-04-25]
+
+* -[fj-doc-lib-direct] add useChainId param for chain alias link:https://github.com/fugerit-org/fj-doc/issues/406[#406]
+
+[#doc-release-notes-8-13-4]
+==== Version 8.13.4 [2025-04-25]
+
+* -[fj-doc-lib-direct] add configuration option to create parent directory link:https://github.com/fugerit-org/fj-doc/issues/401[#401]
+
+* -fixed: [fj-doc-mod-poi] element phrase it is not correctly rendered link:https://github.com/fugerit-org/fj-doc/issues/403[#403]
+* -fixed: [fj-doc-freemarker] handling link in asciidoc handler link:https://github.com/fugerit-org/fj-doc/issues/399[#399]
+
+[#doc-release-notes-8-13-3]
+==== Version 8.13.3 [2025-04-24] (skipped 8.13.2)
+
+* -[fj-doc-base] handling link in simple mark down handler link:https://github.com/fugerit-org/fj-doc/issues/397[#397]
+
+[#doc-release-notes-8-13-1]
+==== Version 8.13.1 [2025-04-24]
+
+* -[fj-doc-maven-plugin] add variables to 'direct' goal link:https://github.com/fugerit-org/fj-doc/issues/395[#395]
+* -[fj-doc-maven-plugin] quarkus-version set to 3.21.4 across all the modules  link:https://github.com/fugerit-org/fj-doc/issues/393[#393]
+
+[#doc-release-notes-8-13-0]
+==== Version 8.13.0 [2025-04-24]
+
+* [fj-doc-maven-plugin][fj-doc-lib-direct] new module to generate documents from configuration only link:https://github.com/fugerit-org/fj-doc/issues/391[#391]
+* [fj-doc-maven-plugin] quarkus-version set to 3.21.3 across all the modules  link:https://github.com/fugerit-org/fj-doc/issues/388[#388]
+
+[#doc-release-notes-8-12-8]
+==== Version 8.12.8 [2025-04-16]
+
+* [fj-doc-maven-plugin] quarkus-version set to 3.21.2 across all the modules  link:https://github.com/fugerit-org/fj-doc/issues/384[#384]
+
+[#doc-release-notes-8-12-7]
+==== Version 8.12.7 [2025-03-26]
+
+* [fj-doc-maven-plugin] quarkus-version set to 3.21.0 across all the modules  link:https://github.com/fugerit-org/fj-doc/issues/344[#344]
 
 [#doc-release-notes-8-12-6]
 ==== Version 8.12.6 [2025-03-25]
