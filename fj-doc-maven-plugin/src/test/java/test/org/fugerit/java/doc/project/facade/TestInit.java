@@ -62,6 +62,34 @@ class TestInit {
     }
 
     @Test
+    void createDirectInitNoVerify() throws MojoExecutionException, MojoFailureException {
+        File projectDir = initConfigWorker( FlavourFacade.FLAVOUR_DIRECT+"-no-verify" );
+        String currentFlavour = FlavourFacade.FLAVOUR_DIRECT;
+        MojoInit mojoInit = new MojoInit() {
+            @Override
+            public void execute() throws MojoExecutionException, MojoFailureException {
+                this.baseInitFolder = projectDir.getAbsolutePath();
+                this.projectVersion = "1.0.0-SNAPSHOT";
+                this.groupId = "org.fugerit.java.test.gradle";
+                this.artifactId = "fugerit-test-"+currentFlavour+"-no-verify";
+                this.javaRelease = "21";
+                this.version = DIRECT_PLUGIN_AVAILABLE;
+                this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-base-kotlin,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                this.addDocFacade = true;
+                this.force = true;
+                this.excludeXmlApis = true;
+                this.addVerifyPlugin = false;
+                this.addJunit5 = true;
+                this.addLombok = true;
+                this.flavour = currentFlavour;
+                super.execute();
+            }
+        };
+        mojoInit.execute();
+        Assertions.assertTrue( projectDir.exists() );
+    }
+
+    @Test
     void testMojoQuarkus3GradleGroovyAndKts() throws MojoExecutionException, MojoFailureException {
         for ( String currentFlavour : Arrays.asList( FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE, FlavourFacade.FLAVOUR_QUARKUS_3_GRADLE_KTS ) ) {
             File projectDir = this.initConfigWorker(currentFlavour);
