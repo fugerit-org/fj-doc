@@ -66,7 +66,10 @@ public class MojoInit extends MojoAdd {
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 String actualVersion = FlavourFacade.initProject( context );
                 if ( FlavourFacade.FLAVOUR_DIRECT.equals( actualVersion ) ) {
-                    super.addDirectPlugin = true;
+                    super.addDirectPlugin = Boolean.TRUE;
+                    // for 'direct' flavour, parameter 'addDocFacade' set to 'false'
+                    // https://github.com/fugerit-org/fj-doc/issues/413
+                    super.addDocFacade = Boolean.FALSE;
                 }
             } );
             super.groupIdOverride = this.groupId;
