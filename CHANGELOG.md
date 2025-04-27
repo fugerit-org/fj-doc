@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.13.7] - 2025-04-27
+
 ### Changed
 
 - [fj-doc-maven-plugin] for goal 'init' flavour 'direct', addDocFacade set to 'false' by default <https://github.com/fugerit-org/fj-doc/pull/413>

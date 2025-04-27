@@ -3,8 +3,13 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-8-13-7]
+==== Version 8.13.7 [2025-04-27]
+
+* - [fj-doc-maven-plugin] for goal 'init' flavour 'direct', addDocFacade set to 'false' by default link:https://github.com/fugerit-org/fj-doc/issues/413[#413]
+
 [#doc-release-notes-8-13-6]
-==== Version 8.13.6 [2025-04-25]
+==== Version 8.13.6 [2025-04-26]
 
 * [fj-doc-maven-plugin] support add 'direct' goal to maven goal 'init' and 'add' link:https://github.com/fugerit-org/fj-doc/issues/405[#405]
 
