@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
--  [fj-doc-maven-plugin] verify plugin should be for direct plugin template path <https://github.com/fugerit-org/fj-doc/pull/411>
+- [fj-doc-maven-plugin] verify plugin should be for direct plugin template path <https://github.com/fugerit-org/fj-doc/pull/411>
 
 ## [8.13.6] - 2025-04-26
 
