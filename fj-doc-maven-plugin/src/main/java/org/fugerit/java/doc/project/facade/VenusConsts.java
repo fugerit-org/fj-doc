@@ -8,4 +8,6 @@ public class VenusConsts {
 
     public static final String KEY_VERSION = "fj-doc-version";
 
+    public static final String KEY_VERSION_VAR = "${fj-doc-version}";
+
 }
