@@ -270,7 +270,7 @@ public class BasicVenusFacade {
 
     private static void addVerifyPlugin(VenusContext context, Model model ) throws IOException {
         // addVerifyPlugin?
-        if ( context.isAddVerifyPlugin() ) {
+        if ( context.isAddVerifyPlugin() && context.isAddDocFacace() ) {
             if ( context.isVerifyPluginNotAvailable() ) {
                 log.warn( "addVerifyPlugin skipped, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_VERIFY_PLUGIN );
             } else {

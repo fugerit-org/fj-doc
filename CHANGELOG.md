@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - quarkus-version set to 3.22.0 across all the modules <https://github.com/fugerit-org/fj-doc/pull/420>
 
+### Fixed
+
+- [fj-doc-maven-plugin] when 'addDocFacade' is set to 'false' 'freemarker-verify' execution gets an error <https://github.com/fugerit-org/fj-doc/pull/422>
+
 ## [8.13.8] - 2025-04-27
 
 ### Changed
