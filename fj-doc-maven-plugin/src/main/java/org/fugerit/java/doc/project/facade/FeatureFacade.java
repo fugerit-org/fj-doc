@@ -1,11 +1,18 @@
 package org.fugerit.java.doc.project.facade;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import freemarker.template.TemplateException;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.project.facade.flavour.FlavourConfig;
+import org.fugerit.java.doc.project.facade.flavour.ProcessEntry;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class FeatureFacade {
@@ -47,6 +54,32 @@ public class FeatureFacade {
                  FileOutputStream os = new FileOutputStream( outputFile ) ) {
                 StreamIO.pipeStream( is, os, StreamIO.MODE_CLOSE_NONE );
             }
+        } );
+    }
+
+    public static void processFeature( VenusContext context, String featureId ) {
+        SafeFunction.apply( () -> {
+            Map<String, Object> data = new HashMap<>();
+            data.put( "context", context );
+            data.put( "featureId", featureId );
+            String freemarkerProcessYamlPath = String.format( "feature/%s-fm-yml.ftl", featureId );
+            log.info( "freemarkerProcessYamlPath feature process {}", freemarkerProcessYamlPath );
+            ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            try ( StringWriter writer = new StringWriter() ) {
+                FreemarkerTemplateFacade.processFile( freemarkerProcessYamlPath, writer, data );
+                FlavourConfig featureConfig = mapper.readValue( writer.toString(), FlavourConfig.class );
+                log.info( "featureConfig {}", featureConfig.getFlavour() );
+                featureConfig.getProcess().forEach( entry -> processEntry( entry, data ) );
+            }
+        });
+    }
+
+    public static void processEntry(ProcessEntry entry, Map<String, Object> data ) {
+        log.info( "process entry : {}", entry );
+        SafeFunction.apply( () -> {
+            File toFile = new File( entry.getTo() );
+            FeatureFacade.insureParent( toFile );
+            FreemarkerTemplateFacade.processFile( entry.getFrom(), toFile, data );
         } );
     }
 

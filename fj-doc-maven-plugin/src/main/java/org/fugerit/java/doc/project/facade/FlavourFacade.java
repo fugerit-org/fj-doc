@@ -159,17 +159,10 @@ public class FlavourFacade {
             FreemarkerTemplateFacade.processFile( freemarkerProcessYamlPath, writer, data );
             FlavourConfig flavourConfig = mapper.readValue( writer.toString(), FlavourConfig.class );
             log.info( "floavourConfig {}", flavourConfig.getFlavour() );
-            flavourConfig.getProcess().forEach( entry -> processEntry( entry, data ) );
+            flavourConfig.getProcess().forEach( entry -> FeatureFacade.processEntry( entry, data ) );
         }
     }
 
-    private static void processEntry( ProcessEntry entry, Map<String, Object> data ) {
-        log.info( "process entry : {}", entry );
-        SafeFunction.apply( () -> {
-            File toFile = new File( entry.getTo() );
-            FeatureFacade.insureParent( toFile );
-            FreemarkerTemplateFacade.processFile( entry.getFrom(), toFile, data );
-        } );
-    }
+
 
 }

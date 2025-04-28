@@ -39,7 +39,7 @@ public class PluginUtils {
             plugin = new Plugin();
             plugin.setGroupId( VenusConsts.GROUP_ID );
             plugin.setArtifactId( FJ_DOC_MAVEN_PLUGIN );
-            plugin.setVersion( "${"+VenusConsts.KEY_VERSION+"}" );
+            plugin.setVersion( VenusConsts.KEY_VERSION_VAR );
             build.getPlugins().add( plugin );
         }
         return plugin;

@@ -9,10 +9,7 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.maxxq.maven.dependency.ModelIO;
 
 import java.io.*;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 @Slf4j
 public class BasicVenusFacade {
@@ -37,6 +34,10 @@ public class BasicVenusFacade {
     }
 
     private static void addCurrentModule( VenusContext context, String currentModule, List<Dependency> dependencies)  {
+        addCurrentModule( context, currentModule, dependencies, null );
+    }
+
+    private static void addCurrentModule( VenusContext context, String currentModule, List<Dependency> dependencies, String version)  {
         Dependency d = new Dependency();
         d.setArtifactId( currentModule );
         d.setGroupId( GROUP_ID );
@@ -47,6 +48,9 @@ public class BasicVenusFacade {
                 e.setGroupId( parts[0] );
                 e.setArtifactId( parts[1] );
                 d.getExclusions().add( e );
+                if ( version != null ) {
+                    d.setVersion(version);
+                }
             }
         }
         addOrOverwrite( dependencies, d );
@@ -106,7 +110,7 @@ public class BasicVenusFacade {
         Dependency fjDocBom = new Dependency();
         fjDocBom.setArtifactId( "fj-doc" );
         fjDocBom.setGroupId( GROUP_ID );
-        fjDocBom.setVersion( "${"+KEY_VERSION+"}" );
+        fjDocBom.setVersion( VenusConsts.KEY_VERSION_VAR );
         fjDocBom.setType( "pom" );
         fjDocBom.setScope( "import" );
         addOrOverwrite( dm.getDependencies(), fjDocBom );
@@ -233,9 +237,17 @@ public class BasicVenusFacade {
                             "src/main/resources/"+context.getVenusDirectConfig()+"/template",
                             "freemarker-syntax-verify-direct-report");
                 }
-                FeatureFacade.copyFeatureList( context.getProjectDir(), "direct" );
+                String featureId = "direct";
+                FeatureFacade.copyFeatureList( context.getProjectDir(), featureId);
+                FeatureFacade.processFeature( context, featureId );
                 log.info("addDirectPlugin true, version {} has been selected, minimum required version is : {}", context.getVersion(), VenusContext.VERSION_NA_DIRECT_PLUGIN);
                 Plugin plugin = PluginUtils.findOrCreatePLugin( model );
+                // configure dependencies
+                List<String> moduleList = ModuleFacade.toModuleListOptimizedOrder( context.getExtensions() );
+                for ( String currentModule :  moduleList ) {
+                    String moduleName = ModuleFacade.toModuleName( currentModule );
+                    addCurrentModule( context, moduleName, plugin.getDependencies(), VenusConsts.KEY_VERSION_VAR );
+                }
                 PluginExecution execution = PluginUtils.createPluginExecution(
                         "venus-direct", LifecyclePhase.COMPILE.id(), PluginUtils.GOAL_DIRECT );
                 plugin.getExecutions().add( execution );
