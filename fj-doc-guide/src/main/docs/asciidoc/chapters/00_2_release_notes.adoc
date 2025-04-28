@@ -3,6 +3,11 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-8-13-9]
+==== Version 8.13.9 [2025-04-28]
+
+* bugfix: when 'addDocFacade' is set to 'false' 'freemarker-verify' execution gets an error link:https://github.com/fugerit-org/fj-doc/issues/422[#422]
+
 [#doc-release-notes-8-13-8]
 ==== Version 8.13.8 [2025-04-27]
 
