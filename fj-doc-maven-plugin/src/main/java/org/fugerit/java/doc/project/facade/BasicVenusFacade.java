@@ -197,7 +197,7 @@ public class BasicVenusFacade {
         String gradleFileContent = FileIO.readString( gradleFile );
         String fjDocVersion = context.getVersion();
         if ( kts ) {
-            String valVersion = String.format( "val fjDocVersion = \"%s\"\n\ndependencies", context.getVersion() );
+            String valVersion = String.format( "val fjDocVersion = \"%s\"%n%ndependencies", context.getVersion() );
             gradleFileContent = gradleFileContent.replaceFirst( "dependencies", valVersion );
             fjDocVersion = "\\$fjDocVersion";
         }
