@@ -246,11 +246,7 @@ public class BasicVenusFacade {
                 List<String> moduleList = ModuleFacade.toModuleListOptimizedOrder( context.getExtensions() );
                 for ( String currentModule :  moduleList ) {
                     String moduleName = ModuleFacade.toModuleName( currentModule );
-                    List<Dependency> dependencies = plugin.getDependencies();
-                    if ( dependencies == null ) {
-                        dependencies = new ArrayList<>();
-                    }
-                    addCurrentModule( context, moduleName, dependencies, VenusConsts.KEY_VERSION_VAR );
+                    addCurrentModule( context, moduleName, plugin.getDependencies(), VenusConsts.KEY_VERSION_VAR );
                 }
                 PluginExecution execution = PluginUtils.createPluginExecution(
                         "venus-direct", LifecyclePhase.COMPILE.id(), PluginUtils.GOAL_DIRECT );
