@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- [BUG]: [fj-mod-doc-fop] error if a element <phrase> is inside a <cell> <https://github.com/fugerit-org/fj-doc/pull/426>
+- [BUG]: [fj-mod-doc-fop] error if a element 'phrase' is inside a 'cell' <https://github.com/fugerit-org/fj-doc/pull/426>
 
 ## [8.13.9] - 2025-04-28
 
