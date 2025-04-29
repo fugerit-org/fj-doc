@@ -1,0 +1,36 @@
+---
+configId: 'venus-direct-config-sample'
+templatePath: '${projectBasedir}/src/main/resources/venus-config-direct/venus-template/'
+templateMode: 'folder'
+createParentDirectory: true
+handlerList:
+  - type: org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8
+  - type: org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8
+  - type: org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8
+  - type: org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler
+  - type: org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8
+  - type: org.fugerit.java.doc.mod.fop.PdfFopTypeHandler
+chainList:
+  - chainId: 'issue-426'
+    dataModelYaml: '${projectBasedir}/src/main/resources/venus-config-direct/data-model/issue-426.yaml'
+outputList:
+  - outputId: 'issue-426.md'
+    chainId: 'issue-426'
+    handlerId: 'md'
+    file: '${projectBasedir}/target/direct-sample/issue-426.md'
+  - outputId: 'issue-426.adoc'
+    chainId: 'issue-426'
+    handlerId: 'adoc'
+    file: '${projectBasedir}/target/direct-sample/issue-426.adoc'
+  - outputId: 'issue-426.xlsx'
+    chainId: 'issue-426'
+    handlerId: 'xlsx'
+    file: '${projectBasedir}/target/direct-sample/issue-426.xlsx'
+  - outputId: 'issue-426.fo'
+    chainId: 'issue-426'
+    handlerId: 'fo'
+    file: '${projectBasedir}/target/direct-sample/issue-426.fo'
+  - outputId: 'issue-426.pdf'
+    chainId: 'issue-426'
+    handlerId: 'pdf'
+    file: '${projectBasedir}/target/direct-sample/issue-426.pdf'

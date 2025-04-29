@@ -103,8 +103,13 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-lib-simpletable</artifactId>
-		</dependency>		
-		
+		</dependency>
+
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-lib-direct</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-mod-openpdf-ext</artifactId>
