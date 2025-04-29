@@ -3,6 +3,11 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-8-13-10]
+==== Version 8.13.10 [2025-04-29]
+
+- bugfix: [fj-mod-doc-fop] error if a element 'phrase' is inside a 'cell' link:https://github.com/fugerit-org/fj-doc/issues/426[#426]
+
 [#doc-release-notes-8-13-9]
 ==== Version 8.13.9 [2025-04-28]
 
