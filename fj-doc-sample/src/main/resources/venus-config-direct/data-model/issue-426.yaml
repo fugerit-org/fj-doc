@@ -1,0 +1,9 @@
+---
+docTitle: 'Issue 426 POC'
+listSample:
+  - field1: 1
+    field2: 'test a'
+  - field1: 2
+    field2: 'test b'
+  - field1: 3
+    field2: 'test c'
