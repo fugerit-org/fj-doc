@@ -35,7 +35,7 @@
 	    <jajarta-jaxb-impl-version>4.0.5</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.1.20</kotlin.version>
-		<quarkus-version>3.22.0</quarkus-version>
+		<quarkus-version>3.22.1</quarkus-version>
 	</properties>
 
 	<licenses>

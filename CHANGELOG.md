@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- quarkus-version set to 3.22.1 across all the modules
+
+### Changed
+
 ## [8.13.10] - 2025-04-29
 
 - [CHORE]: 'direct' goal + 'add' / 'init' configure support for extra modules <https://github.com/fugerit-org/fj-doc/pull/424>
