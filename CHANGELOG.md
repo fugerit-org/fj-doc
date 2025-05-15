@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-mod-fop] fop-version 2.11 <https://xmlgraphics.apache.org/fop/2.11/releaseNotes_2.11.html> (NOTE: now dependent on PDFBox 3)
 - [fj-doc-maven-plugin] goal init - micronaut-4 flavour version set to 4.8.2 <https://github.com/fugerit-org/fj-doc/issues/432>
 - [fj-doc-maven-plugin] goal init - springboot-3 flavour version set to 3.8.5 <https://github.com/fugerit-org/fj-doc/issues/432>
 - [fj-doc-maven-plugin] goal init - openliberty flavour version set to 25.0.0.4<https://github.com/fugerit-org/fj-doc/issues/432>

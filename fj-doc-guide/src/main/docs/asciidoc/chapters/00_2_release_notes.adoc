@@ -3,6 +3,11 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-8-13-11]
+==== Version 8.13.11 [2025-05-12]
+
+- [fj-mod-doc-fop] upgrade to link:https://xmlgraphics.apache.org/fop/2.11/releaseNotes_2.11.html[Apache FOP 2.11] (NOTE: now dependent on PDFBox 3)
+
 [#doc-release-notes-8-13-10]
 ==== Version 8.13.10 [2025-04-29]
 
