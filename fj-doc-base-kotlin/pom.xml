@@ -23,7 +23,7 @@
 	
 	<properties>
 		<fj-script-helper-version>2.0.3</fj-script-helper-version>
-		<kotlin.version>2.1.20</kotlin.version>
+		<kotlin.version>2.1.21</kotlin.version>
 	</properties>
 	
 	<build>
