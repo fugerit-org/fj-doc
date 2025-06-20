@@ -74,9 +74,9 @@ public class DocValidatorFacade {
 		return this.extMapValidator.get( extension );
 	}
 	
-	public boolean isMimeTypeSupprted( String mimeType ) {
-		return this.findByMimeType(mimeType) != null;
-	}
+       public boolean isMimeTypeSupported( String mimeType ) {
+               return this.findByMimeType(mimeType) != null;
+       }
 
 	public Collection<String> getSupportedMimeTypes() {
 		return Collections.unmodifiableCollection( this.mimMapValidator.keySet() );
