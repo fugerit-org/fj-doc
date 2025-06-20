@@ -77,8 +77,6 @@ Which provide the reference to customized existing and new projects.
 In case of bugs or requests please open an issue on the 
 [GitHub repository issue tracker](https://github.com/fugerit-org/fj-doc/issues).
 
-Remember to use : 
-
 ## Special thanks
 
 **Special thanks** to [JetBrains](https://www.jetbrains.com/) 
