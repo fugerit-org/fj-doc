@@ -56,6 +56,9 @@ public class MojoAdd extends AbstractMojo {
     @Parameter(property = "simpleModel", defaultValue = "false", required = true)
     protected boolean simpleModel;
 
+    @Parameter(property = "basePackage", required = false)
+    protected String basePackage;
+
     protected String groupIdOverride;
 
     protected String artifactIdOverride;
@@ -78,6 +81,7 @@ public class MojoAdd extends AbstractMojo {
         context.setGroupIdOverride( this.groupIdOverride );
         context.setArtifactIdOverride( this.artifactIdOverride );
         context.setSimpleModel( this.simpleModel );
+        context.setBasePackage( this.basePackage );
         this.getLog().info( String.format( "add execute() context : %s", context ) );
         AddVenusFacade.addToProject( context );
     }

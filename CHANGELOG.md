@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- [fj-doc-maven-plugin] goal add, new parameter : basePackage (optional) <https://github.com/fugerit-org/fj-doc/issues/456>
 - fj-bom version 2.0.2
 - quarkus-version set to 3.24.0 across all the modules <https://github.com/fugerit-org/fj-doc/issues/454>
 

@@ -1,6 +1,6 @@
-<#macro toProjectPackageFolder context>${context.groupId?replace(".","/")}/${context.artifactId?replace("-","")}</#macro>
+<#macro toProjectPackageFolder context>${context.evaluateBasePackage?replace(".","/")}</#macro>
 
-<#macro toProjectPackage context>${context.groupId}.${context.artifactId?replace("-","")}</#macro>
+<#macro toProjectPackage context>${context.evaluateBasePackage}</#macro>
 
 <#macro createDocumentProcess context exceptionType>
     // creates the doc helper

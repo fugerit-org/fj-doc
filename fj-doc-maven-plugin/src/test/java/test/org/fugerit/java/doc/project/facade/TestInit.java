@@ -56,6 +56,9 @@ class TestInit {
                 this.addJunit5 = true;
                 this.addLombok = true;
                 this.flavour = currentFlavour;
+                if ( FlavourFacade.FLAVOUR_QUARKUS_3.equals( currentFlavour ) ) {
+                    this.basePackage = "org.fugerit.java.basepack";
+                }
                 super.execute();
             }
         };
