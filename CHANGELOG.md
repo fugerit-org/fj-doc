@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - quarkus-version set to 3.23.2 across all the modules
 
+### Fixed
+
+- openpdf-version set to 1.3.43 <https://github.com/fugerit-org/fj-doc/issues/452>
+
 ## [8.13.11] - 2025-05-12
 
 ### Changed
