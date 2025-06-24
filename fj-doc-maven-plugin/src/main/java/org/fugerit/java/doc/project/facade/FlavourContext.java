@@ -2,6 +2,7 @@ package org.fugerit.java.doc.project.facade;
 
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 
 import java.io.File;
 import java.util.List;
@@ -44,6 +45,9 @@ public class FlavourContext {
     @Getter @Setter
     private String extensions;
 
+    @Getter @Setter
+    private String basePackage;
+
     private String toClassName( String base, String splitString ) {
         StringBuilder buf = new StringBuilder();
         String[] split = base.split( splitString );
@@ -68,6 +72,10 @@ public class FlavourContext {
 
     public boolean isFreeMarkerNativeAvailable() {
         return VersionCheck.isMajorThan( this.getVersion(), VenusContext.VERSION_NA_FREEMARKER_NATIVE );
+    }
+
+    public String getEvaluateBasePackage() {
+        return StringUtils.valueWithDefault( this.getBasePackage(), VenusContext.toPackage( this.getGroupId(), this.getArtifactId() ) );
     }
 
 }

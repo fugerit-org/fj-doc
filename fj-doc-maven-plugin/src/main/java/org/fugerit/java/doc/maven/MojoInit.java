@@ -63,6 +63,7 @@ public class MojoInit extends MojoAdd {
                 context.setFlavourVersion( this.flavourVersion );
                 context.setVersion( VersionCheck.findVersion( this.version ) );
                 context.setExtensions( this.extensions );
+                context.setBasePackage( this.basePackage );
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 String actualVersion = FlavourFacade.initProject( context );
                 if ( FlavourFacade.FLAVOUR_DIRECT.equals( actualVersion ) ) {

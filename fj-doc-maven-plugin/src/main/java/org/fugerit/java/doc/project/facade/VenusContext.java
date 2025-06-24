@@ -97,6 +97,13 @@ public class VenusContext {
     @Getter @Setter
     private boolean simpleModel;
 
+    @Getter @Setter
+    private String basePackage;
+
+    public static String toPackage( String groupId, String artifactId) {
+        return toArtificatIdForFolder( groupId )+"."+toArtificatIdForName( artifactId );
+    }
+
     public void setExcludeXmlApis( boolean excludeXmlApis ) {
         if ( excludeXmlApis ) {
             this.setAddExclusions( "xml-apis:xml-apis" );
@@ -143,7 +150,7 @@ public class VenusContext {
     }
 
     public String getDocConfigPackage() {
-        return this.getGroupIdForName()+"."+this.getArtificatIdForName();
+        return StringUtils.valueWithDefault( this.getBasePackage(), toPackage( this.getGroupId(), this.getArtificatIdForName() ) );
     }
 
     public String getTemplateSubPath() {
