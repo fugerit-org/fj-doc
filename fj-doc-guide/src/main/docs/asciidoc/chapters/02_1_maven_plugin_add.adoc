@@ -32,7 +32,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | addDependencyOnTop | true     | false           | If set to true, added dependencies will be added before existing ones
 | freemarkerVersion  | true     | 2.3.32          | Freemarker compatibility version (max 2.3.33)
 | simpleMpdel          | true     | false            | If set to true, modification to pom.xml will be light, dependencies for addLombok and addJunit will be ignored. addVerifyPlugin param will be ignored.
-| basePackage          | false     |             | If set given base package is used, otherwise base java package will be derived from groupId and artifactiId.
+| basePackage          | false     |             | If set given base package is used, otherwise base java package will be derived from groupId and artifactiId. (since fj-doc 8.13.12)
 |====================================================================================================================================================================================
 
 [#available-extensions]

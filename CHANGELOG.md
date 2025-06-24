@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.13.12] - 2025-06-24
+
 ### Changed
 
 - [fj-doc-maven-plugin] goal add, new parameter : basePackage (optional) <https://github.com/fugerit-org/fj-doc/issues/456>
