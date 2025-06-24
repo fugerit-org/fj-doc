@@ -11,7 +11,8 @@
 	</parent>
 
 	<name>fj-doc-sample</name>
-	<description></description>
+
+	<description>Fugerit Venus Doc Samples</description>
 
 	<licenses>
 		<license>
