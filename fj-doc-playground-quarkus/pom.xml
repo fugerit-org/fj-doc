@@ -7,6 +7,7 @@
 		<version>8.13.13-SNAPSHOT</version>
 	</parent>
 	<artifactId>fj-doc-playground-quarkus</artifactId>
+	<name>fj-doc-playground-quarkus</name>
 	<properties>
 		<maven.deploy.skip>true</maven.deploy.skip>
 		<maven.compiler.release>17</maven.compiler.release>

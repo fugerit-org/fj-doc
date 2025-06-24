@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- nexus publish validation message "Project name is missing" <https://github.com/fugerit-org/fj-doc/issues/458>
+
 ## [8.13.12] - 2025-06-24
 
 ### Changed

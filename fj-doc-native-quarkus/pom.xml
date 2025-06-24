@@ -11,6 +11,8 @@
 
   <artifactId>fj-doc-native-quarkus</artifactId>
 
+  <name>fj-doc-native-quarkus</name>
+
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <surefire-plugin.version>3.5.3</surefire-plugin.version>
