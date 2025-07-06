@@ -4,9 +4,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.maven.model.*;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.cfg.VersionCompare;
 import org.fugerit.java.core.io.FileIO;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.util.mvn.FJCoreMaven;
 import org.maxxq.maven.dependency.ModelIO;
+import org.maxxq.maven.model.MavenModel;
 
 import java.io.*;
 import java.util.*;
@@ -16,11 +19,28 @@ public class BasicVenusFacade {
 
     protected BasicVenusFacade() {}
 
+    private static final String STAR = "\n****************************************************************************************************************************";
+    private static final String FJCORE_VERSION_LOG1 = STAR+"\n[fj-doc-maven-plugin] goal add, org.fugerit.java:fj-core version {}, upgrade at least to {} if possible."+STAR;
+    private static final String FJCORE_VERSION_LOG2 = STAR+"\n[fj-doc-maven-plugin] goal add, org.fugerit.java:fj-core version {}, minimum required version {}."+STAR;
+
     protected static final String GROUP_ID = VenusConsts.GROUP_ID;
 
     protected static final String KEY_VERSION = VenusConsts.KEY_VERSION;
 
     private static final String PROJECT_LOMBOK = "org.projectlombok:lombok";
+
+    private static final String MIN_FJ_VERSION = "8.6.9";
+
+    private static String versionToCheck(String groupIdToCheck, String artifactIdToCheck, Model model) {
+        List<Dependency> dependencies = model.getDependencies();
+        for (Dependency dep : dependencies) {
+            if (dep.getGroupId().equals(groupIdToCheck) &&
+                    dep.getArtifactId().equals(artifactIdToCheck)) {
+                return dep.getVersion();
+            }
+        }
+        return null;
+    }
 
     private static void addOrOverwrite( List<Dependency> deps, Dependency d ) {
         Iterator<Dependency> it = deps.iterator();
@@ -157,6 +177,20 @@ public class BasicVenusFacade {
             log.info( "end dependencies size : {}", model.getDependencies().size() );
             try (OutputStream pomStream = new FileOutputStream( pomFile ) ) {
                 modelIO.writeModelToStream( model, pomStream );
+            }
+        }
+        // check fj-core
+        String projectPomFjCoreVersion = versionToCheck( FJCoreMaven.FJ_CORE_GROUP_ID, FJCoreMaven.FJ_CORE_ARTIFACT_ID, model );
+        Optional<String> fjCoreVersion = FJCoreMaven.getFJCoreVersion();
+        if ( StringUtils.isNotEmpty( projectPomFjCoreVersion ) ) {
+            // required version
+            if ( VersionCompare.isGreaterThan( MIN_FJ_VERSION, projectPomFjCoreVersion ) ) {
+                log.error( FJCORE_VERSION_LOG2, projectPomFjCoreVersion, MIN_FJ_VERSION );
+                throw new ConfigRuntimeException( String.format( "minimum org.fugerit.java:fj-core version is : %s", MIN_FJ_VERSION ) );
+            }
+            // suggested version
+            if ( fjCoreVersion.isPresent() && VersionCompare.isGreaterThan( fjCoreVersion.get(), projectPomFjCoreVersion ) ) {
+                log.warn( FJCORE_VERSION_LOG1, projectPomFjCoreVersion, fjCoreVersion.get() );
             }
         }
     }

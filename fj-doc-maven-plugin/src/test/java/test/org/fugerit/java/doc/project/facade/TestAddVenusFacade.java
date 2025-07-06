@@ -152,4 +152,51 @@ class TestAddVenusFacade {
         BasicVenusFacade.checkDependencies( true, d );
     }
 
+    @Test
+    void testMojoAddFjCoreVersion1() throws IOException, MojoExecutionException, MojoFailureException {
+        for ( String currentConfig : Arrays.asList( "ok6-pom" ) ) {
+            File projectDir = this.initConfigWorker( currentConfig );
+            MojoAdd mojoAdd = new MojoAdd() {
+                @Override
+                public void execute() throws MojoExecutionException, MojoFailureException {
+                    this.version = VenusContext.VERSION_NA_VERIFY_PLUGIN;
+                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                    this.projectFolder = projectDir.getAbsolutePath();
+                    this.addDocFacade = true;
+                    this.force = true;
+                    this.excludeXmlApis = true;
+                    this.addVerifyPlugin = true;
+                    this.addJunit5 = true;
+                    this.addLombok = true;
+                    super.execute();
+                }
+            };
+            mojoAdd.execute();
+            Assertions.assertTrue( projectDir.exists() );
+        }
+    }
+
+    @Test
+    void testMojoAddFjCoreVersion2() throws IOException, MojoExecutionException, MojoFailureException {
+        for ( String currentConfig : Arrays.asList( "ko2-pom" ) ) {
+            File projectDir = this.initConfigWorker( currentConfig );
+            MojoAdd mojoAdd = new MojoAdd() {
+                @Override
+                public void execute() throws MojoExecutionException, MojoFailureException {
+                    this.version = VenusContext.VERSION_NA_VERIFY_PLUGIN;
+                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                    this.projectFolder = projectDir.getAbsolutePath();
+                    this.addDocFacade = true;
+                    this.force = true;
+                    this.excludeXmlApis = true;
+                    this.addVerifyPlugin = true;
+                    this.addJunit5 = true;
+                    this.addLombok = true;
+                    super.execute();
+                }
+            };
+            Assertions.assertThrows( ConfigRuntimeException.class, () -> mojoAdd.execute() );
+        }
+    }
+
 }
