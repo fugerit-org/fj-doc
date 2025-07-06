@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-core version set to 8.7.0
 - quarkus-version set to 3.24.2 across all the modules <https://github.com/fugerit-org/fj-doc/issues/464>
 
+### Fixed
+
+- [fj-doc-maven-plugin] check fj-core version at project creation <https://github.com/fugerit-org/fj-doc/issues/466>
+
 ## [8.13.13] - 2025-06-24
 
 ### Fixed
