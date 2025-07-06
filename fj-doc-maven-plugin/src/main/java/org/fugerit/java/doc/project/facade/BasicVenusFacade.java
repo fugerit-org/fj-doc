@@ -31,13 +31,13 @@ public class BasicVenusFacade {
 
     private static final String MIN_FJ_VERSION = "8.6.9";
 
-    private static String versionToCheck(String groupIdToCheck, String artifactIdToCheck, Model model) {
+    public static String versionToCheck(String groupIdToCheck, String artifactIdToCheck, Model model) {
         List<Dependency> dependencies = model.getDependencies();
         for (Dependency dep : dependencies) {
             if (dep.getGroupId().equals(groupIdToCheck) &&
                     dep.getArtifactId().equals(artifactIdToCheck)) {
                 String version = dep.getVersion();
-                if (version != null && version.startsWith("${") && version.endsWith("}")) {
+                if (version != null && version.startsWith("${")) {
                     String propertyKey = version.substring(2, version.length() - 1);
                     return model.getProperties().getProperty(propertyKey);
                 }
@@ -188,6 +188,10 @@ public class BasicVenusFacade {
         // check fj-core
         String projectPomFjCoreVersion = versionToCheck( FJCoreMaven.FJ_CORE_GROUP_ID, FJCoreMaven.FJ_CORE_ARTIFACT_ID, model );
         Optional<String> fjCoreVersion = FJCoreMaven.getFJCoreVersion();
+        fjVersionCheck( projectPomFjCoreVersion, fjCoreVersion );
+    }
+
+    public static void fjVersionCheck(String projectPomFjCoreVersion, Optional<String> fjCoreVersion ) {
         if ( StringUtils.isNotEmpty( projectPomFjCoreVersion ) ) {
             // required version
             if ( VersionCompare.isGreaterThan( MIN_FJ_VERSION, projectPomFjCoreVersion ) ) {

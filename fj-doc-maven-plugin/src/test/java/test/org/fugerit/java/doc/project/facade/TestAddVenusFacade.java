@@ -1,11 +1,14 @@
 package test.org.fugerit.java.doc.project.facade;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.core.util.Assert;
 import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Model;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.io.FileIO;
+import org.fugerit.java.core.util.mvn.FJCoreMaven;
 import org.fugerit.java.doc.maven.MojoAdd;
 import org.fugerit.java.doc.project.facade.BasicVenusFacade;
 import org.fugerit.java.doc.project.facade.VenusContext;
@@ -15,7 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 @Slf4j
@@ -177,7 +182,7 @@ class TestAddVenusFacade {
     }
 
     @Test
-    void testMojoAddFjCoreVersion2() throws IOException, MojoExecutionException, MojoFailureException {
+    void testMojoAddFjCoreVersion2() throws IOException {
         for ( String currentConfig : Arrays.asList( "ko2-pom" ) ) {
             File projectDir = this.initConfigWorker( currentConfig );
             MojoAdd mojoAdd = new MojoAdd() {
@@ -195,8 +200,27 @@ class TestAddVenusFacade {
                     super.execute();
                 }
             };
-            Assertions.assertThrows( ConfigRuntimeException.class, () -> mojoAdd.execute() );
+            Assertions.assertThrows( ConfigRuntimeException.class, mojoAdd::execute );
         }
+    }
+
+    @Test
+    void testFjVersionCheck() {
+        Model model = new Model();
+        String projectPomFjCoreVersion = BasicVenusFacade.versionToCheck( FJCoreMaven.FJ_CORE_GROUP_ID, FJCoreMaven.FJ_CORE_ARTIFACT_ID, model );
+        Assertions.assertNull( projectPomFjCoreVersion );
+        model.setDependencies( new ArrayList<>() );
+        Dependency d = new Dependency();
+        d.setGroupId( FJCoreMaven.FJ_CORE_GROUP_ID );
+        d.setArtifactId( FJCoreMaven.FJ_CORE_ARTIFACT_ID );
+        model.getDependencies().add( d );
+        projectPomFjCoreVersion = BasicVenusFacade.versionToCheck( FJCoreMaven.FJ_CORE_GROUP_ID, FJCoreMaven.FJ_CORE_ARTIFACT_ID, model );
+        Assertions.assertNull( projectPomFjCoreVersion );
+        Optional<String> fjCoreVersion = Optional.empty();
+        BasicVenusFacade.fjVersionCheck( projectPomFjCoreVersion, fjCoreVersion );
+        BasicVenusFacade.fjVersionCheck( "8.6.9", Optional.of( "8.7.0" ) );
+        BasicVenusFacade.fjVersionCheck( "8.7.1", Optional.of( "8.7.0" ) );
+        Assertions.assertNull( projectPomFjCoreVersion );
     }
 
 }
