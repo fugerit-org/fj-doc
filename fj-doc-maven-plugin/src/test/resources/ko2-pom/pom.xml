@@ -2,16 +2,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.fugerit.java</groupId>
-		<artifactId>fj-bom</artifactId>
-		<version>1.6.5</version>
-	</parent>
-
-	<artifactId>fjdocmavenpluginok3</artifactId>
+	<artifactId>fjdocmavenpluginok1</artifactId>
+	<groupId>org.fugerit.java.test</groupId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>Fugerit Doc Maven Plugin Ok POM Test 3</name>
+	<name>Fugerit Doc Maven Plugin Ok POM Test 1</name>
 
 	<licenses>
 		<license>
@@ -28,12 +23,22 @@
 	
 	<url>https://www.fugerit.org/</url>
 
+	<properties>
+		<fj-core-version>8.6.8</fj-core-version>
+	</properties>
+
+	<build>
+
+	</build>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
-			<version>8.7.0</version>
+			<version>${fj-core-version}</version>
 		</dependency>
+
 	</dependencies>
 		
 </project>
