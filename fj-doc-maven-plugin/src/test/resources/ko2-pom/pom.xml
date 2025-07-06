@@ -23,6 +23,10 @@
 	
 	<url>https://www.fugerit.org/</url>
 
+	<properties>
+		<fj-core-version>8.6.8</fj-core-version>
+	</properties>
+
 	<build>
 
 	</build>
@@ -32,7 +36,7 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
-			<version>8.6.8</version>
+			<version>${fj-core-version}</version>
 		</dependency>
 
 	</dependencies>

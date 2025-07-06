@@ -36,11 +36,17 @@ public class BasicVenusFacade {
         for (Dependency dep : dependencies) {
             if (dep.getGroupId().equals(groupIdToCheck) &&
                     dep.getArtifactId().equals(artifactIdToCheck)) {
-                return dep.getVersion();
+                String version = dep.getVersion();
+                if (version != null && version.startsWith("${") && version.endsWith("}")) {
+                    String propertyKey = version.substring(2, version.length() - 1);
+                    return model.getProperties().getProperty(propertyKey);
+                }
+                return version;
             }
         }
         return null;
     }
+
 
     private static void addOrOverwrite( List<Dependency> deps, Dependency d ) {
         Iterator<Dependency> it = deps.iterator();
