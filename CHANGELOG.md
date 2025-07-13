@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.14.0] - 2025-07-13
+
 ### Added
 
 - [fj-doc-val-*] DocTypeValidationResult has now validation message and exceptions
