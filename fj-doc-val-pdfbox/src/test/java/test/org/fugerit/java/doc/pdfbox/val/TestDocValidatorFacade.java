@@ -4,10 +4,13 @@ import java.io.InputStream;
 
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.hsqldb.types.Type.ReType.check;
 
 class TestDocValidatorFacade {
 
@@ -20,7 +23,9 @@ class TestDocValidatorFacade {
 			String path = BASE_PATH+"/"+fileName;
 			logger.info( "test path {}, expected result {}", path, result );
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( path ) ) {
-				boolean check = facade.check(fileName, is);
+				DocTypeValidationResult validationResult = facade.validate(fileName, is);
+				logger.info( "validation message : {}", validationResult.getValidationMessage() );
+				boolean check = validationResult.isResultOk();
 				Assertions.assertEquals( result, check );
 				return ( result == check );
 			}

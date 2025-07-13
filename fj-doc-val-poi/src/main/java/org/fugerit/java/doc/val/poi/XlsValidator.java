@@ -30,6 +30,7 @@ public class XlsValidator extends AbstractDocTypeValidator {
 			result = DocTypeValidationResult.newOk();
 		} catch (Exception e) {
 			logger.warn( "Failed check on pdf : {}", e.toString() );
+			result.withMainException( e );
 		}
 		return result;
 	}
