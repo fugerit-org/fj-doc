@@ -30,10 +30,14 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 	}
 	
 	protected DocTypeValidationResult validationHelper( UnsafeVoid<Exception> fun ) {
+		final DocTypeValidationResult resultFail = DocTypeValidationResult.newFail();
 		return ObjectUtils.objectWithDefault( SafeFunction.get( () -> {
 			fun.apply();
 			return DocTypeValidationResult.newOk();
-		}, e -> log.warn( "validation failed {}, {}", this.getMimeType(), e.toString() ) ), DocTypeValidationResult.newFail() );
+		}, e ->   {
+			log.warn( "validation failed {}, {}", this.getMimeType(), e.toString() );
+			resultFail.withMainException( e );
+		} ), resultFail );
 	}
 	
 	protected AbstractDocTypeValidator(String mimeType, String extension) {
@@ -67,7 +71,7 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 
 	@Override
 	public boolean checkCompatibility() {
-		return true;
+		return Boolean.TRUE;
 	}
 
 }

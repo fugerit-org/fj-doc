@@ -53,6 +53,8 @@ public class ImageValidator extends AbstractDocTypeValidator {
 	
 	@Override
 	public DocTypeValidationResult validate(InputStream is) {
+		DocTypeValidationResult resultFail = DocTypeValidationResult.newFail()
+				.withValidationMessage(  String.format( "No image reader found for format :%s", this.format ) );
 		try ( ImageInputStream iis = ImageIO.createImageInputStream( is ) ) {
 			Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName( this.format );
 			if (readers.hasNext()) {
@@ -63,8 +65,9 @@ public class ImageValidator extends AbstractDocTypeValidator {
 			}
 		}  catch (Exception exp) {
 			log.debug( "checkImage (v2) {}", exp.getMessage() );
+			resultFail.withMainException( exp );
 		}
-		return DocTypeValidationResult.newFail();
+		return resultFail;
 	}
 
 	protected ImageValidator(String mimeType, Set<String> supportedExtensions, String format, int javaMajorVersionRequired) {
