@@ -19,10 +19,6 @@ public class DocTypeValidationResult extends BasicResult {
 		return new DocTypeValidationResult( RESULT_CODE_KO );
 	}
 
-	public static DocTypeValidationResult newFail( Exception e ) {
-		return newFail().withMainException( e );
-	}
-
 	private static final String ATT_VALIDATION_MESSAGE = "validation-message";
 
 	private static final String ATT_VALIDATION_EXECPTIONS = "validation-exceptions";

@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.hsqldb.types.Type.ReType.check;
-
 class TestDocValidatorFacade {
 
 	private static final Logger logger = LoggerFactory.getLogger( TestDocValidatorFacade.class );
