@@ -4,7 +4,6 @@ import java.io.InputStream;
 
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
-import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
