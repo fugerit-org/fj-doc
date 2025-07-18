@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-doc-maven-plugin, flavour openliberty version set to 25.0.0.7
 - fj-doc-maven-plugin, flavour springboot-3 version set to 3.5.3
 - fj-doc-maven-plugin, flavour micronaut version set to 4.9.1
 - quarkus-version set to 3.24.4 across all the modules <https://github.com/fugerit-org/fj-doc/issues/473>
