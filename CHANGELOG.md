@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-core, check table columns and rows integrity <https://github.com/fugerit-org/fj-doc/issues/480>
+
 ### Changed
 
 - fj-bom version set to 2.0.3
