@@ -5,6 +5,7 @@ import java.io.Reader;
 
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 
 /**
@@ -76,5 +77,21 @@ public interface DocParser {
 	 * @throws DocException		in case of problems
 	 */
 	int validateVersion( Reader reader ) throws DocException;
-	
+
+	/**
+	 * Set the feature config for this parser
+	 *
+	 * @param featureConfig
+	 */
+	void setFeatureConfig( FeatureConfig featureConfig );
+
+	/**
+	 * Get the feature config for this parser
+	 *
+	 * (implementations of DocParser should use {@link FeatureConfig}.DEFAULT if not set)
+	 *
+	 * @return featuerConfig
+	 */
+	FeatureConfig getFeatureConfig();
+
 }

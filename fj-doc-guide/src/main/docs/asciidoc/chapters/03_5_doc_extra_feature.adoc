@@ -1,0 +1,45 @@
+[#doc-format-entry-point-extra-features]
+=== Doc Format Extra Features
+
+Some extra features are available on the Venus Doc Format. Here is a listing.
+
+==== Table Check Integrity
+
+Sometimes using table with wrong number of columns and rows anc lead to unexpected behaviour or errors.
+
+Using the doc info 'table-check-integrity' can solve this issue, for instance :
+
+[source,xml]
+----
+<info name="table-check-integrity">fail</info>
+----
+
+Accepted values are :
+
+* 'disabled' - no check (default value)
+* 'warn' - check table integrity and print warning on log
+* 'fail' - as warn but raises a DocFeatureRuntimeException
+
+Here is an example of a table where there is an extra column on the second row.
+
+[source,xml]
+----
+<table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2">
+    <row header="true">
+        <cell align="center"><para>Name</para></cell>
+        <cell align="center"><para>Surname</para></cell>
+        <cell align="center"><para>Title</para></cell>
+    </row>
+    <row>
+        <cell><para>Queen</para></cell>
+        <cell><para>Luthien</para></cell>
+        <cell><para>Tinuviel</para></cell>
+        <cell><para>Extra column (Row 1 has 4 columns instead of 3)</para></cell>
+    </row>
+    <row>
+        <cell><para>King</para></cell>
+        <cell><para>Thorin</para></cell>
+        <cell><para>Oakshield</para></cell>
+    </row>
+</table>
+----

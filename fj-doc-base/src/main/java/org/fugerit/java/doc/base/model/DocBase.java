@@ -126,16 +126,15 @@ public class DocBase extends DocElement implements Serializable {
 		return info;
 	}
 	
-	private Properties stableInfo;
-	
-	public Properties getStableInfo() {
-		return stableInfo;
+	@Getter @Setter private Properties stableInfo;
+
+	public Properties getStableInfoSafe() {
+		if ( this.getStableInfo() == null ) {
+			this.setStableInfo( this.getInfo() );
+		}
+		return this.getStableInfo();
 	}
 
-	public void setStableInfo(Properties stableInfo) {
-		this.stableInfo = stableInfo;
-	}
-	
 	public String getInfoPageWidth() {
 		return this.getStableInfo().getProperty( DocInfo.INFO_NAME_PAGE_WIDTH );
 	}

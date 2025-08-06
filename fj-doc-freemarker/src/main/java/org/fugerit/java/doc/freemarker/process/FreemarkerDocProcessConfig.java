@@ -1,7 +1,6 @@
 package org.fugerit.java.doc.freemarker.process;
 
 import java.io.OutputStream;
-import java.io.Reader;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,20 +19,19 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.base.facade.DocFacade;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.facade.DocHandlerFacade;
-import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.facade.ProcessDocFacade;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.process.DocProcessConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 import org.fugerit.java.doc.base.process.DocProcessData;
-import org.fugerit.java.doc.base.xml.DocValidator;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
+public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap, FeatureConfig {
 
 	private static final long serialVersionUID = -6761081877582850120L;
 
@@ -45,10 +43,10 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 
 	private static final Map<String, Integer> SOURCE_MAP = new HashMap<>();
 	static {
-		SOURCE_MAP.put( DocConfig.TYPE_XML, Integer.valueOf( DocFacadeSource.SOURCE_TYPE_XML ) );
-		SOURCE_MAP.put( "json", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_JSON ) );
-		SOURCE_MAP.put( "yaml", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_YAML ) );
-		SOURCE_MAP.put( "kotlin", Integer.valueOf( DocFacadeSource.SOURCE_TYPE_KOTLIN ) );
+		SOURCE_MAP.put( DocConfig.TYPE_XML, DocFacadeSource.SOURCE_TYPE_XML);
+		SOURCE_MAP.put( "json", DocFacadeSource.SOURCE_TYPE_JSON);
+		SOURCE_MAP.put( "yaml", DocFacadeSource.SOURCE_TYPE_YAML);
+		SOURCE_MAP.put( "kotlin", DocFacadeSource.SOURCE_TYPE_KOTLIN);
 	}
 
 	@Getter
@@ -67,6 +65,9 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 
 	@Getter @Setter( AccessLevel.PACKAGE )
 	private boolean cleanSource;
+
+	@Getter @Setter( AccessLevel.PACKAGE )
+	private String tableCheckIntegrity;
 
 	private transient DocInputProcess docInputProcess;
 
@@ -132,24 +133,8 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap {
 	}
 	
 	public SAXParseResult process( String chainId, String type, DocProcessContext context, OutputStream os, boolean validate ) throws Exception {
-		SAXParseResult result = null;
 		MiniFilterChain chain = this.getChainCache( chainId );
-		DocProcessData data = new DocProcessData();
-		chain.apply(context, data);
-		if ( validate ) {
-			result = DocValidator.validate( data.getCurrentXmlReader() );
-			if ( !result.isPartialSuccess() ) {
-				DocValidator.logResult(result, log );
-			}
-		}
-		DocBase docBase = null;
-		try ( Reader reader = data.getCurrentXmlReader() ) {
-			docBase = DocFacade.parse( reader );
-		}
-		DocInput input = DocInput.newInput( type, docBase, data.getCurrentXmlReader() );
-		DocOutput output = DocOutput.newOutput( os );
-		this.getFacade().handle(input, output);
-		return result;
+		return ProcessDocFacade.process( chain, this.getFacade(), type, context, os, validate );
 	}
 	
 	@Override

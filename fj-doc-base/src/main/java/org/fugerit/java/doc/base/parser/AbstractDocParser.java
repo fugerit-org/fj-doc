@@ -5,8 +5,11 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocVersion;
+import org.fugerit.java.doc.base.feature.DocFeatureRuntimeException;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +17,25 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class AbstractDocParser implements DocParser {
 
+	public static final int CHECK_VERSION_OK = Result.RESULT_CODE_OK;
+	public static final int CHECK_VERSION_WARN = 1;
+	public static final int CHECK_VERSION_ERROR = Result.RESULT_CODE_KO;
+
+	public static int checkVersion( String xsdVersion ) {
+		try {
+			if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, DocVersion.CURRENT_VERSION_S ) > 0 ) {
+				log.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, DocVersion.CURRENT_VERSION_S  );
+				return CHECK_VERSION_WARN;
+			}
+		} catch (Exception e) {
+			log.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, DocVersion.CURRENT_VERSION_S );
+			return CHECK_VERSION_ERROR;
+		}
+		return CHECK_VERSION_OK;
+	}
+
 	private int sourceType;
-	
+
 	protected AbstractDocParser(int sourceType) {
 		super();
 		this.sourceType = sourceType;
@@ -30,24 +50,28 @@ public abstract class AbstractDocParser implements DocParser {
 	public DocBase parse(InputStream is) throws DocException {
 		return this.parse( new InputStreamReader(is) );
 	}
-	
-	private void handleVersion( String xsdVersion ) {
-		try {
-			if ( StringUtils.isNotEmpty( xsdVersion ) && DocVersion.compare( xsdVersion, DocVersion.CURRENT_VERSION_S ) > 0 ) {
-				log.warn( "Document version {} is higher than maximum version supported by this release od fj-doc {}, some feature may be not supported.", xsdVersion, DocVersion.CURRENT_VERSION_S  );
-			}	
-		} catch (Exception e) {
-			log.warn( "Failed to check xsd version : {} (current version: {})", xsdVersion, DocVersion.CURRENT_VERSION_S );
-		}
+
+	private FeatureConfig featureConfig = FeatureConfig.DEFAULT;
+
+	@Override
+	public FeatureConfig getFeatureConfig() {
+		return featureConfig;
 	}
-	
+
+	@Override
+	public void setFeatureConfig(FeatureConfig featureConfig) {
+		this.featureConfig = featureConfig;
+	}
+
 	@Override
 	public DocBase parse(Reader reader) throws DocException {
 		DocBase docBase = null;
 		try {
 			docBase = this.parseWorker(reader);
 			String xsdVersion = docBase.getXsdVersion();
-			this.handleVersion(xsdVersion);
+			checkVersion(xsdVersion);
+		} catch (DocFeatureRuntimeException e) {
+			throw e;
 		} catch (Exception e) {
 			throw DocException.convertExMethod( "parse", e);
 		}

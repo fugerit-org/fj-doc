@@ -9,6 +9,8 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocException;
+import org.fugerit.java.doc.base.feature.DocFeatureRuntimeException;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.xml.DocXMLUtils;
@@ -89,23 +91,34 @@ public class DocFacadeSource {
 	public boolean isSourceSupported( int sourceType ) {
 		return ( getParserForSource(sourceType) != null );
 	}
-	
-	public DocBase parseRE( Reader reader, int sourceType ) {
+
+	public DocBase parseRE(Reader reader, int sourceType, FeatureConfig featureConfig) {
 		DocBase docBase = null;
 		try {
-			docBase = this.parse(reader, sourceType);
+			docBase = this.parse(reader, sourceType, featureConfig);
+		} catch (DocFeatureRuntimeException e) {
+			throw e;
 		} catch (DocException e) {
 			throw new ConfigRuntimeException( e );
 		}
 		return docBase;
 	}
+
+	public DocBase parseRE( Reader reader, int sourceType ) {
+		return this.parseRE( reader, sourceType, FeatureConfig.DEFAULT );
+	}
 	
 	public DocBase parse( Reader reader, int sourceType ) throws DocException {
+		return this.parse( reader, sourceType, FeatureConfig.DEFAULT );
+	}
+
+	public DocBase parse( Reader reader, int sourceType, FeatureConfig featureConfig ) throws DocException {
 		DocBase docBase = null;
 		DocParser parser = this.getParserForSource(sourceType);
 		if ( parser == null ) {
 			throw new DocException( "No parser found for source type : "+sourceType );
 		} else {
+			parser.setFeatureConfig( featureConfig );
 			docBase = parser.parse(reader);
 		}
 		return docBase;

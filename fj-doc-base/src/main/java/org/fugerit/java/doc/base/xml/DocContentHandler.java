@@ -27,6 +27,7 @@ package org.fugerit.java.doc.base.xml;
 
 import java.util.Properties;
 
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.parser.DocParserContext;
@@ -56,14 +57,18 @@ public class DocContentHandler implements ContentHandler {
 	private DocParserContext context;
 	
 	private DocHelper docHelper;
-	
+
 	public DocContentHandler( DocHelper docHelper ) {
 		this( docHelper, DocParserContext.FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT );
 	}
 	
 	public DocContentHandler( DocHelper docHelper, boolean failWhenElementNotFound ) {
+		this( docHelper, FeatureConfig.fromFailWhenElementNotFound( failWhenElementNotFound ) );
+	}
+
+	public DocContentHandler( DocHelper docHelper, FeatureConfig featureConfig ) {
 		this.docHelper = docHelper;
-		this.context = new DocParserContext( failWhenElementNotFound );
+		this.context = new DocParserContext( featureConfig );
 	}
 	
 	public DocContentHandler() {

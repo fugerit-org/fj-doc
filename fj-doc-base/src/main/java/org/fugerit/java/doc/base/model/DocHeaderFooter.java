@@ -38,6 +38,10 @@ public class DocHeaderFooter extends DocContainer {
 	 */
 	private static final long serialVersionUID = 2131910639031770942L;
 
+	public static final String ATTRIBUTE_NUMBERED = "numbered";
+
+	public static final String ATTRIBUTE_EXPECTED_SIZE = "expected-size";
+
 	public DocHeaderFooter() {
 		this.basic = true;
 	}

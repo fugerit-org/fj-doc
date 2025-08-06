@@ -96,8 +96,11 @@ public class ProcessDocFacade {
 	}
 	
 	public SAXParseResult process( String chainId, String type, DocProcessContext context, OutputStream os, boolean validate ) throws Exception {
+		return process( this.getDocProcessConfig().getChain( chainId ), this.getDocHandlerFacade(), type, context, os, validate );
+	}
+
+	public static SAXParseResult process( MiniFilterChain chain, DocHandlerFacade docHandlerFacade, String type, DocProcessContext context, OutputStream os, boolean validate ) throws Exception {
 		SAXParseResult result = null;
-		MiniFilterChain chain = this.getDocProcessConfig().getChain( chainId );
 		DocProcessData data = new DocProcessData();
 		chain.apply(context, data);
 		if ( validate ) {
@@ -112,8 +115,8 @@ public class ProcessDocFacade {
 		}
 		DocInput input = DocInput.newInput( type, docBase, data.getCurrentXmlReader() );
 		DocOutput output = DocOutput.newOutput( os );
-		this.getDocHandlerFacade().handle(input, output);
+		docHandlerFacade.handle(input, output);
 		return result;
 	}
-	
+
 }

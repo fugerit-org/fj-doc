@@ -11,11 +11,12 @@ import org.fugerit.java.core.io.helper.StreamHelper;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.core.xml.sax.SAXParseResult;
-import org.fugerit.java.doc.base.config.DocException;
-import org.fugerit.java.doc.base.config.DocInput;
-import org.fugerit.java.doc.base.config.DocOutput;
-import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.config.*;
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.model.DocHelper;
+import org.fugerit.java.doc.base.parser.AbstractDocParser;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler;
@@ -35,7 +36,24 @@ class TestDocXmlParser  {
 	public static final boolean EXCEPTION = true;
 	
 	private static final Logger logger = LoggerFactory.getLogger( TestDocXmlParser.class );
-	
+
+	@Test
+	void testDocXmlParser1() {
+		DocXmlParser parser = new DocXmlParser( new DocHelper(), FeatureConfig.DEFAULT );
+		Assertions.assertNotNull( parser );
+		Assertions.assertEquals( FeatureConfig.DEFAULT.isFailWhenElementNotFound(), parser.getFeatureConfig().isFailWhenElementNotFound() );
+		Assertions.assertEquals(DocFacadeSource.SOURCE_TYPE_XML, parser.getSourceType() );
+		Assertions.assertNotNull( parser.getFeatureConfig() );
+	}
+
+	@Test
+	void testCheckVersion() {
+		Assertions.assertEquals( AbstractDocParser.CHECK_VERSION_OK, AbstractDocParser.checkVersion( DocVersion.VERSION_1_7.stringVersion() ) );
+		Assertions.assertEquals( AbstractDocParser.CHECK_VERSION_OK, AbstractDocParser.checkVersion( DocVersion.CURRENT_VERSION_S ) );
+		Assertions.assertEquals( AbstractDocParser.CHECK_VERSION_ERROR, AbstractDocParser.checkVersion( "1.1" ) );
+		Assertions.assertEquals( AbstractDocParser.CHECK_VERSION_WARN, AbstractDocParser.checkVersion( "9-9" ) );
+	}
+
 	@Test
 	void testFillDocValidationResultHelper() {
 		SAXParseResult result = new SAXParseResult();

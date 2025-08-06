@@ -193,6 +193,9 @@
     "name" : "getStableInfo",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getStableInfoSafe",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getXsdVersion",
     "parameterTypes" : [ ]
   }, {
@@ -3073,10 +3076,16 @@
   },
   "name" : "org.fugerit.java.doc.base.parser.AbstractDocParser",
   "methods" : [ {
+    "name" : "checkVersion",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
     "name" : "equals",
     "parameterTypes" : [ "java.lang.Object" ]
   }, {
     "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFeatureConfig",
     "parameterTypes" : [ ]
   }, {
     "name" : "getSourceType",
@@ -3096,6 +3105,9 @@
   }, {
     "name" : "parse",
     "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "setFeatureConfig",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.feature.FeatureConfig" ]
   }, {
     "name" : "toString",
     "parameterTypes" : [ ]
@@ -3136,6 +3148,9 @@
   },
   "name" : "org.fugerit.java.doc.base.parser.DocParser",
   "methods" : [ {
+    "name" : "getFeatureConfig",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getSourceType",
     "parameterTypes" : [ ]
   }, {
@@ -3144,6 +3159,9 @@
   }, {
     "name" : "parse",
     "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "setFeatureConfig",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.feature.FeatureConfig" ]
   }, {
     "name" : "validate",
     "parameterTypes" : [ "java.io.Reader" ]
@@ -3168,6 +3186,9 @@
   }, {
     "name" : "<init>",
     "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.feature.FeatureConfig" ]
   }, {
     "name" : "createXsdVersionXmlns",
     "parameterTypes" : [ "java.lang.String" ]
@@ -3478,6 +3499,9 @@
     "name" : "<init>",
     "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper", "boolean" ]
   }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper", "org.fugerit.java.doc.base.feature.FeatureConfig" ]
+  }, {
     "name" : "attsToProperties",
     "parameterTypes" : [ "org.xml.sax.Attributes" ]
   }, {
@@ -3730,6 +3754,12 @@
     "name" : "<init>",
     "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper", "boolean" ]
   }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocHelper", "org.fugerit.java.doc.base.feature.FeatureConfig" ]
+  }, {
+    "name" : "checkVersion",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
     "name" : "equals",
     "parameterTypes" : [ "java.lang.Object" ]
   }, {
@@ -3737,6 +3767,9 @@
     "parameterTypes" : [ "org.fugerit.java.core.xml.sax.SAXParseResult", "org.fugerit.java.doc.base.parser.DocValidationResult" ]
   }, {
     "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFeatureConfig",
     "parameterTypes" : [ ]
   }, {
     "name" : "getSourceType",
@@ -3759,6 +3792,9 @@
   }, {
     "name" : "parse",
     "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "setFeatureConfig",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.feature.FeatureConfig" ]
   }, {
     "name" : "toString",
     "parameterTypes" : [ ]

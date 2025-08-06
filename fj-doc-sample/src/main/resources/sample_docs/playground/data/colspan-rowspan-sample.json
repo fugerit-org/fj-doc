@@ -1,0 +1,9 @@
+{
+	"docTitle":"colspan / rowspan sample",
+	"listPeople": [
+		{ "name":"Luthien", "surname":"Tinuviel", "title":"Queen" },
+		{ "name":"Thorin", "surname":"Oakshield", "title":"King" },
+		{ "name":"Bilbo", "surname":"Bagging", "title":"Ring bearer" },
+		{ "name":"Tom", "surname":"Bombadil", "title":"Eldest" }
+	]
+}

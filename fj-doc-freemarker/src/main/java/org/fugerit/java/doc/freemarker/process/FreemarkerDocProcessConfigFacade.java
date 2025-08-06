@@ -27,6 +27,7 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.freemarker.config.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -97,6 +98,11 @@ public class FreemarkerDocProcessConfigFacade {
 	 * NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.
 	 */
 	public static final String GENERAL_ATTRIBUTE_CLEAN_SOURCE = "cleanSource";
+
+	/**
+	 * If set to 'true' the FreemarkerDocProcessConfig will try to check table integrity. (default: false)
+	 */
+	public static final String GENERAL_ATTRIBUTE_TABLE_CHECK_INTEGRITY = GenericConsts.DOC_TABLE_CHECK_INTEGRITY;
 
 	public static final String ERROR_CONFIG_PATH_NOT_FOUND_BASE_MESSAGE = "FreemarkerDocProcessConfig configuration path not found";
 
@@ -320,6 +326,7 @@ public class FreemarkerDocProcessConfigFacade {
 		config.setValidating( BooleanUtils.isTrue(  setupGeneralAttribute( GENERAL_ATTRIBUTE_VALIDATING, root ) ) );
 		config.setFailOnValidate( BooleanUtils.isTrue(  setupGeneralAttribute( GENERAL_ATTRIBUTE_FAIL_ON_VALIDATE, root ) ) );
 		config.setCleanSource( BooleanUtils.isTrue(  setupGeneralAttribute( GENERAL_ATTRIBUTE_CLEAN_SOURCE, root ) ) );
+		config.setTableCheckIntegrity( setupGeneralAttribute( GENERAL_ATTRIBUTE_TABLE_CHECK_INTEGRITY, root ) );
 		config.initDocInputProcess();
 	}
 
@@ -362,14 +369,3 @@ public class FreemarkerDocProcessConfigFacade {
 	}
 	
 }
-
-class FreemarkerConfigHelper extends FreeMarkerConfigStep {
-
-	private static final long serialVersionUID = 8824282827447873553L;
-	
-	protected static Configuration getConfig( String key, Properties config ) {
-		return FreeMarkerConfigStep.getConfig(key, config);
-	}
-	
-}
-

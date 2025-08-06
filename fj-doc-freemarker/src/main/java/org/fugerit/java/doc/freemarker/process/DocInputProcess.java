@@ -16,10 +16,10 @@ import java.util.function.*;
 public class DocInputProcess {
 
     private static DocInputProcess newValidatingProcess( Consumer<DocValidationResult> docValidationResultConsumer,
-                                                         BiFunction<String, Integer, String> sourceFun, String stategy ) {
+                                                         BiFunction<String, Integer, String> sourceFun, String strategy ) {
         return new DocInputProcess( docInput ->
                 SafeFunction.get( () -> {
-                    log.info( "DocInputProcess - Using strategy : {}", stategy );
+                    log.info( "DocInputProcess - Using strategy : {}", strategy );
                     String source = StreamIO.readString( docInput.getReader() );
                     source = sourceFun.apply( source, docInput.getSource() );
                     try ( StringReader reader = new StringReader( source ) ) {

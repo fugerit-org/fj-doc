@@ -56,5 +56,6 @@ public class DocInput {
 	public static DocInput newInput( String type, DocBase doc, Reader reader, int source ) {
 		return new DocInput( type, doc, reader, source );
 	}
+
 	
 }

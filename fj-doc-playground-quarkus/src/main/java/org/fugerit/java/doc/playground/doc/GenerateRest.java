@@ -3,11 +3,13 @@ package org.fugerit.java.doc.playground.doc;
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 import java.util.Base64;
+import java.util.List;
 
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.util.checkpoint.CheckpointUtils;
 import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.feature.DocFeatureRuntimeException;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.fugerit.java.doc.lib.simpletable.SimpleTableDocConfig;
@@ -46,13 +48,30 @@ public class GenerateRest {
                 byte[] data = facade.generateHelper(input, handler);
                 output.setDocOutputBase64(Base64.getEncoder().encodeToString(data));
                 output.setGenerationTime(CheckpointUtils.formatTimeDiffMillis(time, System.currentTimeMillis()));
+            } catch (DocFeatureRuntimeException e) {
+                this.setOutputMessage( output, e, e.getMessages() );
             } catch (Exception e) {
-                log.warn("Error generating document : " + e, e);
-                Throwable te = RestHelper.findCause(e);
-                output.setMessage(te.getClass().getName() + " :\n" + te.getMessage());
+                this.setOutputMessage( output, e, null );
             }
             return Response.ok().entity(output).build();
         });
+    }
+
+    private void setOutputMessage(GenerateOutput output, Exception e, List<String> messages) {
+        log.warn("Error generating document : " + e, e);
+        Throwable te = RestHelper.findCause(e);
+        StringBuilder builder = new StringBuilder();
+        builder.append(te.getClass().getName());
+        builder.append(" :\n");
+        builder.append(te.getMessage());
+        if (messages != null) {
+            builder.append("\nDetails:\n");
+            messages.forEach(curr -> {
+                builder.append(curr);
+                builder.append("\n");
+            });
+        }
+        output.setMessage(builder.toString());
     }
 
     public static void addRow(SimpleTable simpleTableModel, int count, String level, String message) {
