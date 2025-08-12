@@ -11,7 +11,7 @@
 # docker image tag [image tag] fugeritorg/fj-doc-playground-quarkus:latest
 #
 # Change with any base openjdk image is preferred 
-FROM registry.access.redhat.com/ubi9/openjdk-21:1.21
+FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.22-1.1753981256
 
 LABEL org.opencontainers.image.authors="Fugerit" \
       org.opencontainers.image.source="Quarkus" \

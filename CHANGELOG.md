@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-doc-maven-plugin, flavour springboot-3 version set to 3.5.3
 - fj-doc-maven-plugin, flavour micronaut version set to 4.9.1
 - quarkus-version set to 3.25.2 across all the modules <https://github.com/fugerit-org/fj-doc/issues/482>
+- upgrade base image for playground quarkus ubi9/openjdk-21-runtime:1.22-1.1753981256
 
 ## [8.14.0] - 2025-07-13
 
