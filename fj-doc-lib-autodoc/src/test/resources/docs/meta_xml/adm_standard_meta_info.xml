@@ -199,6 +199,20 @@
       <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-openrtf-ext(rtf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+    <admeta:admMetaInfo>
+      <admeta:name>table-check-integrity</admeta:name>
+      <admeta:description>
+        Check integrity of table structure, see https://github.com/fugerit-org/fj-doc/issues/480.
+        Allowed values :
+        'disabled' - no check (default value),
+        'warn' - report on the log table structure issues as warning,
+        'fail' - report on the log table structure issues as error and throw a DocFeatureRuntimeException.
+      </admeta:description>
+      <admeta:defaultValue>warn</admeta:defaultValue>
+      <admeta:since>8.15.0</admeta:since>
+      <admeta:supportedType>all</admeta:supportedType>
+      <admeta:supportedHandler>all</admeta:supportedHandler>
+    </admeta:admMetaInfo>
   </admeta:admSection>
 
   <admeta:admSection>

@@ -6,6 +6,8 @@ import java.util.Properties;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
+import org.fugerit.java.doc.base.feature.tableintegritycheck.TableIntegrityCheck;
 import org.fugerit.java.doc.base.model.DocBackground;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBase;
@@ -37,20 +39,23 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DocParserContext {
 
-	public static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT = false;
-	
-	private boolean failWhenElementNotFound;
-	
+	public static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT = GenericConsts.FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT;
+
+	private FeatureConfig featureConfig;
+
 	public DocParserContext() {
 		this(FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT);
 	}
 	
 	public DocParserContext(boolean failWhenElementNotFound) {
-		super();
-		this.failWhenElementNotFound = failWhenElementNotFound;
+		this( FeatureConfig.fromFailWhenElementNotFound( failWhenElementNotFound ) );
 	}
 
-	public static String findXsdVersion( Properties props ) {
+	public DocParserContext(FeatureConfig featureConfig) {
+		this.featureConfig = featureConfig;
+	}
+
+	public static String findXsdVersion(Properties props ) {
 		String xsdVersion = null;
 		for ( Object key : props.keySet() ) {
 			String k = String.valueOf( key );
@@ -122,7 +127,9 @@ public class DocParserContext {
 	public void handleEndElement( String qName ) {
 		if ( DocInfo.TAG_NAME.equals( qName ) ) {
 			DocInfo docInfo = (DocInfo) this.currentElement;
-			this.infos.setProperty( docInfo.getName(), docInfo.getContent().toString() );
+			this.infos.setProperty(docInfo.getName(), docInfo.getContent().toString());
+		} else if ( DocTable.TAG_NAME.equalsIgnoreCase( qName ) ) {
+			TableIntegrityCheck.apply( this.docBase, (DocTable) this.currentContainer, this.featureConfig );
 		}
 		if ( this.parserHelper.isContainerElement( qName ) ) {
 			/*
@@ -433,8 +440,8 @@ public class DocParserContext {
 	}
 
 	private void handleDefault( String qName ) {
-		String message = "Element not found : "+qName;
-		if ( failWhenElementNotFound ) {
+		String message = String.format( "Element not found : %s", qName );
+		if ( this.featureConfig.isFailWhenElementNotFound() ) {
 			throw new ConfigRuntimeException( message );
 		} else {
 			log.warn( message );
@@ -444,12 +451,12 @@ public class DocParserContext {
 	private static void handleHeaderFooter( DocHeaderFooter headerFooter, Properties atts ) {
 		String align = atts.getProperty( DocStyleAlignHelper.ATTRIBUTE_NAME_ALIGN );
 		headerFooter.setAlign( DocStyleAlignHelper.getAlign( align ) );
-		String numbered = atts.getProperty( "numbered" );
+		String numbered = atts.getProperty( DocHeaderFooter.ATTRIBUTE_NUMBERED );
 		headerFooter.setNumbered( BooleanUtils.isTrue( numbered ) );
-		String borderWidth = atts.getProperty( "border-width", "0" );
+		String borderWidth = atts.getProperty( DocBorders.ATTRIBUTE_NAME_BORDER_WIDTH, "0" );
 		headerFooter.setBorderWidth( Integer.parseInt( borderWidth ) );
-		String exepectedSize = atts.getProperty( "expected-size", "15" );
-		headerFooter.setExpectedSize( Integer.parseInt( exepectedSize ) );
+		String expectedSize = atts.getProperty( DocHeaderFooter.ATTRIBUTE_EXPECTED_SIZE, "15" );
+		headerFooter.setExpectedSize( Integer.parseInt( expectedSize ) );
 	}
 	
 	private static void valuePhrase( DocPhrase docPhrase, Properties props ) {

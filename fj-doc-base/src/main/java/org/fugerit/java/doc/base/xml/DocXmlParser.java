@@ -10,6 +10,7 @@ import org.fugerit.java.core.xml.sax.XMLFactorySAX;
 import org.fugerit.java.core.xml.sax.dh.DefaultHandlerComp;
 import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
+import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocHelper;
 import org.fugerit.java.doc.base.parser.AbstractDocParser;
@@ -17,7 +18,6 @@ import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.doc.base.parser.DocValidationResult;
 import org.xml.sax.InputSource;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -33,13 +33,20 @@ public class DocXmlParser extends AbstractDocParser {
 	}
 	
 	private DocHelper docHelper;
-	
-	@Getter private boolean failWhenElementNotFound;
 
-	public DocXmlParser( DocHelper docHelper, boolean failWhenElementNotFound ) {
+
+	public boolean isFailWhenElementNotFound() {
+		return this.getFeatureConfig().isFailWhenElementNotFound();
+	}
+
+	public DocXmlParser(DocHelper docHelper, final boolean failWhenElementNotFound ) {
+		this( docHelper, FeatureConfig.fromFailWhenElementNotFound( failWhenElementNotFound ) );
+	}
+
+	public DocXmlParser(DocHelper docHelper, FeatureConfig featureConfig) {
 		super( DocFacadeSource.SOURCE_TYPE_XML );
 		this.docHelper = docHelper;
-		this.failWhenElementNotFound = failWhenElementNotFound;
+		super.setFeatureConfig( featureConfig );
 	}
 	
 	public DocXmlParser( boolean failOnElementNotFound ) {
@@ -80,8 +87,7 @@ public class DocXmlParser extends AbstractDocParser {
 			log.debug( "Validation result {}", docResult );
 			return docResult;
 		} );
-		
-		
+
 	}
 
 }

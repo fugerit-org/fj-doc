@@ -51,6 +51,12 @@
 					<xsd:documentation>NOTE: if active, source reader will be buffered, potentially resulting in higher memory usage.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:attribute>
+			<xsd:attribute name="table-check-integrity" type="fdp:tableIntegrityCheckType" use="optional" default="disabled">
+				<xsd:annotation>
+					<xsd:documentation>Global default for 'table-check-integrity', it will check the integrity of a table, correct number of columns per row. (since 8.15.0)</xsd:documentation>
+					<xsd:documentation>Allowed values : 'disabled' (default value), 'warn', 'fail'.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
 	
@@ -285,10 +291,21 @@
 			<xsd:documentation>The source type</xsd:documentation>
 		</xsd:annotation>
 		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="xml"></xsd:enumeration>
-			<xsd:enumeration value="json"></xsd:enumeration>
-			<xsd:enumeration value="yaml"></xsd:enumeration>
-			<xsd:enumeration value="kotlin"></xsd:enumeration>
+			<xsd:enumeration value="xml"/>
+			<xsd:enumeration value="json"/>
+			<xsd:enumeration value="yaml"/>
+			<xsd:enumeration value="kotlin"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+	<xsd:simpleType name="tableIntegrityCheckType">
+		<xsd:annotation>
+			<xsd:documentation>The source type</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="disabled"/>
+			<xsd:enumeration value="warn"/>
+			<xsd:enumeration value="fail"/>
 		</xsd:restriction>
 	</xsd:simpleType>
 

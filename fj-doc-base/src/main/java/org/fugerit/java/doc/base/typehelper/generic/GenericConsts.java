@@ -199,6 +199,12 @@ public class GenericConsts {
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#suppress-wrong-type-error">See 'suppress-wrong-type-error' documentation.</a>
 	 */
 	public static final String DOC_SUPPRESS_WRONG_TYPE_ERROR = "suppress-wrong-type-error";
-	
+
+	/**
+	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-check-integrityr">See 'table-check-integrity' documentation.</a>
+	 */
+	public static final String DOC_TABLE_CHECK_INTEGRITY = "table-check-integrity";
+
+	public static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT = Boolean.FALSE;
 	
 }

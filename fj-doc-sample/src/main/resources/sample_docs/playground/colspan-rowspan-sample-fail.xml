@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+		xmlns="http://javacoredoc.fugerit.org"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+	<metadata>
+		<!-- Margin for document : left;right;top;bottom -->
+		<info name="margins">10;10;10;30</info>
+		<!-- documenta meta information -->
+		<info name="doc-title">colspan / rowspan sample</info>
+		<info name="doc-subject">fj doc venus sample source FreeMarker Template XML</info>
+		<info name="doc-author">fugerit79</info>
+		<info name="doc-language">en</info>
+		<!-- font must be loaded -->
+		<info name="default-font-name">TitilliumWeb</info>
+		<!-- property specific for xls/xlsx -->
+		<info name="excel-table-id">data-table=print</info>
+		<!-- property specific for csv -->
+		<info name="csv-table-id">data-table</info>
+		<!-- accepted values could be :
+		  'disabled' - no check (default value)
+		  'warn' - just log warning
+		  'fail' - check and fail -->
+		<info name="table-check-integrity">fail</info>
+		<footer-ext>
+			<para align="right">${currentPage} / ${pageCount}</para>
+		</footer-ext>
+	</metadata>
+	<body>
+		<para>colspan / rowspan sample</para>
+		<table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2">
+			<row header="true">
+				<cell rowspan="2" align="center"><para>Title</para></cell>
+				<cell colspan="2" align="center"><para>Data</para></cell>
+			</row>
+			<row header="true">
+				<cell align="center"><para>Name</para></cell>
+				<cell align="center"><para>Surname</para></cell>
+				<cell align="center"><para>Extra column (will fail)</para></cell>
+			</row>
+			<row>
+				<cell><para>Queen</para></cell>
+				<cell><para>Luthien</para></cell>
+				<cell><para>Tinuviel</para></cell>
+			</row>
+			<row>
+				<cell><para>King</para></cell>
+				<cell><para>Thorin</para></cell>
+				<cell><para>Oakshield</para></cell>
+			</row>
+			<row>
+				<cell><para>Ring bearer</para></cell>
+				<cell><para>Bilbo</para></cell>
+				<cell><para>Bagging</para></cell>
+			</row>
+			<row>
+				<cell><para>Eldest</para></cell>
+				<cell><para>Tom</para></cell>
+				<cell><para>Bombadil</para></cell>
+			</row>
+		</table>
+	</body>
+
+</doc>

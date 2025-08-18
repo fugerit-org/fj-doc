@@ -287,75 +287,6 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
-  "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerConfigHelper",
-  "methods" : [ {
-    "name" : "apply",
-    "parameterTypes" : [ "org.fugerit.java.core.util.filterchain.MiniFilterContext", "org.fugerit.java.core.util.filterchain.MiniFilterData" ]
-  }, {
-    "name" : "config",
-    "parameterTypes" : [ "java.lang.String", "java.lang.String", "java.lang.Integer" ]
-  }, {
-    "name" : "equals",
-    "parameterTypes" : [ "java.lang.Object" ]
-  }, {
-    "name" : "genKey",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getChainId",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getClass",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getCustomConfig",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getDefaultBehaviour",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getDescription",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getKey",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "getParam01",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "hashCode",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "notify",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "notifyAll",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "process",
-    "parameterTypes" : [ "org.fugerit.java.doc.base.process.DocProcessContext", "org.fugerit.java.doc.base.process.DocProcessData" ]
-  }, {
-    "name" : "setChainId",
-    "parameterTypes" : [ "java.lang.String" ]
-  }, {
-    "name" : "setCustomConfig",
-    "parameterTypes" : [ "java.util.Properties" ]
-  }, {
-    "name" : "setParam01",
-    "parameterTypes" : [ "java.lang.String" ]
-  }, {
-    "name" : "toString",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "wait",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "wait",
-    "parameterTypes" : [ "long" ]
-  }, {
-    "name" : "wait",
-    "parameterTypes" : [ "long", "int" ]
-  } ]
-}, {
   "name" : "org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfig",
   "methods" : [ {
     "name" : "equals",
@@ -388,6 +319,9 @@
     "name" : "getKeys",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getTableCheckIntegrity",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "hashCode",
     "parameterTypes" : [ ]
   }, {
@@ -395,6 +329,9 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "isFailOnValidate",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isFailWhenElementNotFound",
     "parameterTypes" : [ ]
   }, {
     "name" : "isValidating",
