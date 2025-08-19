@@ -11,21 +11,22 @@ import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 @Slf4j
 public class TableIntegrityCheck {
 
     private TableIntegrityCheck() {}
 
-    private static final Map<String, Consumer<DocTable>> DOC_CONSUMER_MAP = new HashMap<>();
+    private static final Map<String, Function<DocTable, Integer>> DOC_FUNCTION_MAP = new HashMap<>();
     static {
-        DOC_CONSUMER_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_DISABLED, doc -> log.debug("Table Integrity Check disabled") );
-        DOC_CONSUMER_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_WARN, doc -> checkWorker( doc, result -> {} ) );
-        DOC_CONSUMER_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_FAIL, doc -> checkWorker( doc, result -> {
+        DOC_FUNCTION_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_DISABLED, doc -> Result.RESULT_CODE_OK );
+        DOC_FUNCTION_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_WARN, doc -> checkWorker( doc, result -> {}).getResultCode() );
+        DOC_FUNCTION_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_FAIL, doc -> checkWorker( doc, result -> {
             if ( result.getResultCode() != Result.RESULT_CODE_KO ) {
                 throw new DocFeatureRuntimeException( "Table check integrity failed, see logs for details.", result.getResultCode(), result.getMessages() );
             }
-        } ) );
+        } ).getResultCode() );
     }
 
     private static int processCells( DocRow docRow, final int currentColParam, Map<Integer,Integer> rowSpanTracker  ) {
@@ -89,12 +90,12 @@ public class TableIntegrityCheck {
         return result;
     }
 
-    public static void apply(DocBase docBase, DocTable docTable, FeatureConfig featureConfig) {
+    public static int apply(DocBase docBase, DocTable docTable, FeatureConfig featureConfig) {
         String tableCheckIntegrityInfo = StringUtils.valueWithDefault(
                 docBase.getStableInfoSafe().getProperty( GenericConsts.DOC_TABLE_CHECK_INTEGRITY ),
                 featureConfig.getTableCheckIntegrity() );
-        Consumer<DocTable> consumer =  DOC_CONSUMER_MAP.get( tableCheckIntegrityInfo );
-        consumer.accept( docTable );
+        Function<DocTable, Integer> fun =  DOC_FUNCTION_MAP.get( tableCheckIntegrityInfo );
+        return fun.apply( docTable );
     }
 
 }

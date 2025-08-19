@@ -3,11 +3,17 @@ package test.org.fugerit.java.doc.base.feature;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.db.daogen.BasicDaoResult;
+import org.fugerit.java.core.lang.ex.CodeRuntimeException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.util.result.Result;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.feature.DocFeatureRuntimeException;
 import org.fugerit.java.doc.base.feature.FeatureConfig;
+import org.fugerit.java.doc.base.feature.tableintegritycheck.TableIntegrityCheck;
+import org.fugerit.java.doc.base.feature.tableintegritycheck.TableIntegrityCheckConstants;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.model.DocTable;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -22,23 +28,45 @@ import java.util.Properties;
 @Slf4j
 class TableCheckIntegrityTest {
 
-    private int testWorker( String xmlPath ) {
-        String fullCLPath = String.format( "feature-info/table-check-integrity/%s.xml", xmlPath );
-        log.info( "xmlPath: {}, fullPath: {}", xmlPath, fullCLPath );
+    private DocBase readDocBase( String fullCLPath ) {
         try (Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( fullCLPath ) ) ) {
             DocFacadeSource docFacadeSource = DocFacadeSource.getInstance();
             DocBase docBase = docFacadeSource.parseRE( reader, DocFacadeSource.SOURCE_TYPE_XML, FeatureConfig.DEFAULT );
-            log.info( "docBase:{}", docBase );
-            return BasicDaoResult.RESULT_CODE_OK;
+            return docBase;
         } catch (IOException e) {
             throw ConfigRuntimeException.convertEx( e );
         }
+    }
+
+    private int testWorker( String xmlPath ) {
+        String fullCLPath = String.format( "feature-info/table-check-integrity/%s.xml", xmlPath );
+        log.info( "xmlPath: {}, fullPath: {}", xmlPath, fullCLPath );
+        DocBase docBase = readDocBase( fullCLPath );
+        log.info( "docBase:{}", docBase );
+        return BasicDaoResult.RESULT_CODE_OK;
     }
 
     @Test
     void testOk() {
         Assertions.assertEquals( BasicDaoResult.RESULT_CODE_OK, this.testWorker( "colspan-rowspan-sample-ok" ) );
         Assertions.assertTrue( Boolean.TRUE );
+    }
+
+    @Test
+    void testConfiguration() {
+        FeatureConfig featureConfig = new FeatureConfig() {
+            @Override
+            public String getTableCheckIntegrity() {
+                return TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_FAIL;
+            }
+        };
+        DocBase docBase = readDocBase( "feature-info/table-check-integrity/colspan-rowspan-sample-ko-noconfig.xml" );
+        DocTable docTable = (DocTable) docBase.getDocBody().getElementList().stream().filter( e -> e instanceof DocTable ).findFirst().get();
+        // global configuration set to fail
+        Assertions.assertThrows( DocFeatureRuntimeException.class, () -> TableIntegrityCheck.apply( docBase, docTable, featureConfig ) );
+        // override configuration for this document, will not fail but result != OK
+        docBase.getStableInfo().setProperty(GenericConsts.DOC_TABLE_CHECK_INTEGRITY, TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_WARN );
+        Assertions.assertNotEquals(Result.RESULT_CODE_OK, TableIntegrityCheck.apply( docBase, docTable, featureConfig ) );
     }
 
     @Test
