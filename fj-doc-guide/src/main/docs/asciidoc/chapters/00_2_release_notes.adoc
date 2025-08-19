@@ -3,7 +3,23 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
-[#doc-release-notes-8-14-14]
+[#doc-release-notes-8-15-0]
+==== Version 8.15.0 [2025-08-19]
+
+- [fj-doc-core] check table columns and rows integrity link:https://github.com/fugerit-org/fj-doc/issues/480[#480]
+
+
+[#doc-release-notes-8-14-1]
+==== Version 8.14.1 [2025-08-17]
+
+- minor versions update
+
+[#doc-release-notes-8-14-0]
+==== Version 8.14.0 [2025-07-13]
+
+- [fj-doc-val-*] DocTypeValidationResult has now validation messages and exceptions link:https://github.com/fugerit-org/fj-doc/issues/471[#471]
+
+[#doc-release-notes-8-13-14]
 ==== Version 8.13.14 [2025-07-06]
 
 - [fj-doc-maven-plugin] check fj-core version at project creation link:https://github.com/fugerit-org/fj-doc/issues/466[#466]
