@@ -3,6 +3,7 @@
 
 Some extra features are available on the Venus Doc Format. Here is a listing.
 
+[#doc-format-entry-point-extra-feature-table-check-integrity]
 ==== Table Check Integrity
 
 Sometimes using table with wrong number of columns and rows anc lead to unexpected behaviour or errors.
@@ -13,6 +14,8 @@ Using the doc info 'table-check-integrity' can solve this issue, for instance :
 ----
 <info name="table-check-integrity">fail</info>
 ----
+
+link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-check-integrity[Here is  'table-check-integrity' documentation].
 
 Accepted values are :
 
@@ -43,3 +46,24 @@ Here is an example of a table where there is an extra column on the second row.
     </row>
 </table>
 ----
+
+When using xref:#doc-freemarker-config[FreemarkerDocProcessConfig]
+it is also possible to set a global configuration on
+link:https://venusdocs.fugerit.org/fj-doc-freemarker/src/main/docs/fdp_xsd_config_ref.html#freemarker-doc-process-config[freemarker-doc-process-config] :
+
+[source,xml]
+----
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+	xmlns="https://freemarkerdocprocess.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd"
+	table-check-integrity="warn">
+    <!-- ... further configuration ... -->
+</freemarker-doc-process-config>
+----
+
+Priority order is :
+
+* document level configuration (info tag)
+* global configuration (taken into account only if info tag not set)
