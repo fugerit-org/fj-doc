@@ -49,6 +49,7 @@ include::chapters/07_003_doc-faq-clean-source.adoc[]
 include::chapters/07_004_doc-faq-resize-xls.adoc[]
 include::chapters/07_005_doc-faq-kotlin-step.adoc[]
 include::chapters/07_006_doc-faq-endline-fop.adoc[]
+include::chapters/07_007_java-runtime-version-dependency-handling.adoc[]
 
 include::chapters/08_doc-optmization.adoc[]
 include::chapters/08_1_eager-startup.adoc[]
