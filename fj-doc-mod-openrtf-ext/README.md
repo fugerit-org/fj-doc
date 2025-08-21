@@ -38,5 +38,3 @@ Starting with version [2.0.0](https://github.com/LibrePDF/OpenRTF/releases/tag/2
 |---------|------|------------------------------------------------------------------------|
 | 1.x     | 8+   | latest OpenRTF version is 1.2.1                                        |
 | 2.x     | 21+  | upgraded [OpenPDF](https://github.com/LibrePDF/OpenPDF) dependency too |
-
-
