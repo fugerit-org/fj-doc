@@ -1,0 +1,123 @@
+<<<
+[#doc-maven-dependency-handling]
+=== Maven dependency handling
+
+This chapter describes Venus Fugerit Doc dependency handling.
+
+[#doc-maven-dependency-handling-transient]
+==== Transient dependencies
+
+Each submodule has its own transient dependencies.
+for instance, the 'fj-doc-freemarker' module will add the dependency :
+
+[source,xml]
+----
+	<properties>
+		<freemarker-version>2.3.34</freemarker-version>
+	</properties>
+	<dependencies>
+		<dependency>
+		    <groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		    <version>${freemarker-version}</version>
+		</dependency>
+	</dependencies>
+----
+
+Or the 'fj-doc-mod-fop' module:
+
+[source,xml]
+----
+	<properties>
+		<fop-version>2.11</fop-version>
+	</properties>
+	<dependencies>
+		<dependency>
+		    <groupId>org.apache.xmlgraphics</groupId>
+		    <artifactId>fop</artifactId>
+		    <version>${fop-version}</version>
+		</dependency>
+	</dependencies>
+----
+
+[#doc-maven-dependency-handling-override]
+==== Override dependencies
+
+It is always possible, as usual with [Maven](https://maven.apache.org/), to override the standard dependency.
+
+For instance, in your code :
+
+[source,xml]
+----
+	<dependencies>
+		<dependency>
+			<groupId>org.fugerit.java</groupId>
+			<artifactId>fj-doc-mod-fop</artifactId>
+			<version>${fj-doc-version}</version>
+			<exclusions>
+				<!-- exclusion is not mandatory, as direct dependency has precedence -->
+				<exclude>
+					<groupId>org.apache.xmlgraphics</groupId>
+					<artifactId>fop</artifactId>
+				</exclude>
+			</exclusions>
+		</dependency>
+        <!-- here fop version 2.10 will be used instead of standard one -->
+		<dependency>
+		    <groupId>org.apache.xmlgraphics</groupId>
+		    <artifactId>fop</artifactId>
+		    <version>2.10</version>
+		</dependency>
+	</dependencies>
+----
+
+WARNING: be careful as something may not work as expected when overriding default dependency version.
+
+[#doc-maven-dependency-handling-java-version]
+==== Dependencies based on java version
+
+Starting with Venus Fugerit Doc version 8.16.0 a new version dependency is introduced for some modules.
+
+This project generally works with java 8+, but some submodules have moved one to a more recent jave version.
+
+This is totally transparent to the importing project, and is achieved using maven profiles
+activation on a specific runtime java version, for instance :
+
+[source,xml]
+----
+    <properties>
+        <!-- default to version jdk21on -->
+        <openrtf-version>2.0.0</openrtf-version>
+        <!-- legacy version -->
+        <openrtf-version-jdk8ok>1.2.1</openrtf-version-jdk8ok>
+    </properties>
+    <profile>
+        <id>java-jdk8on</id>
+        <activation>
+            <jdk>[,21)</jdk>
+        </activation>
+        <properties>
+            <openrtf-version>${openrtf-version-jdk8ok}</openrtf-version>
+        </properties>
+    </profile>
+----
+
+So, for instance, when importing module :
+
+[source,xml]
+----
+    <dependencies>
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-doc-mod-openrtf-next</artifactId>
+            <version>8.16.0</version>
+        </dependency>
+    </dependencies>
+----
+
+If you build your project with java version 21+, OpenRTF 2.0.0 will be imported (which requires java 21+).
+Otherwise, when using a lower version of java, OpenRTF 1.2.1 will be imported (compatible with java 8+ but no more maintained).
+
+here are the submodules supporting version based on java runtime version :
+
+* xref:#doc-handler-mod-openrtf-ext[OpenRTF doc handler]
