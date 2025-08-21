@@ -13,6 +13,9 @@ on:
     branches:
       - branch-compatibility
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
 # only allow one workflow at time on the give activation
 concurrency:
   group: ${{ github.workflow }}
