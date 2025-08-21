@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- quarkus-version set to 3.25.3 across all the modules <https://github.com/fugerit-org/fj-doc/issues/490>
+
 ## [8.15.0] - 2025-08-19
 
 ### Added
