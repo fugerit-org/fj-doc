@@ -3,11 +3,15 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-8-15-1]
+==== Version 8.15.1 [2025-08-21]
+
+- quarkus-version set to 3.25.4 across all the module link:https://github.com/fugerit-org/fj-doc/issues/490[#490]
+
 [#doc-release-notes-8-15-0]
 ==== Version 8.15.0 [2025-08-19]
 
 - [fj-doc-core] check table columns and rows integrity link:https://github.com/fugerit-org/fj-doc/issues/480[#480]
-
 
 [#doc-release-notes-8-14-1]
 ==== Version 8.14.1 [2025-08-17]
