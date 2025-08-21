@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-mod-openpdf-ext / fj-doc-mod-openrtf-ext, multiple java version dependency handling <https://github.com/fugerit-org/fj-doc/issues/489>
+
 ### Changed
 
 - maven deploy workflow switched from java 17 (corretto) to java 21 (GraalVM)
