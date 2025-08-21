@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - maven deploy workflow switched from java 17 (corretto) to java 21 (GraalVM)
+- maven build and scan workflow switched from java 17 (corretto) to java 21 (GraalVM)
 
 ## [8.15.1] - 2025-08-21
 
