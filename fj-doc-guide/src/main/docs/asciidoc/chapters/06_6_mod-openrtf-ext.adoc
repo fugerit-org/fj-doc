@@ -35,3 +35,19 @@ For a demo of this doc handler usage you can refer to the link:https://github.co
 
 More elements specific to fixed size formats, like RTF, are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_fixed[here].
 
+[#doc-handler-mod-openrtf-ext-java-version]
+==== Java version compatibility
+
+NOTE: OpenRTF used to be compatible with java 8+, but starting with version 2.0.0 they moved to java 21+.
+
+Starting with Fugerit Venus Doc version 8.16.0 the xref:#doc-maven-dependency-handling-java-version[Dependencies handling is based on java runtime version], here is the compatibility matrix :
+
+[cols="2*", options="header"]
+|====================================================================================================================================================================================
+| java version | OpenRTF version
+
+| 21+
+| 2.0.0+
+
+| 8 / 21
+| 1.2.1

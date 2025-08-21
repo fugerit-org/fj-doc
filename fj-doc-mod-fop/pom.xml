@@ -72,7 +72,6 @@
 
 	<dependencies>
 
-		<!-- https://mvnrepository.com/artifact/org.apache.xmlgraphics/fop -->
 		<dependency>
 		    <groupId>org.apache.xmlgraphics</groupId>
 		    <artifactId>fop</artifactId>

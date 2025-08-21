@@ -23,11 +23,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@main
-    - name: Set up JDK 17
+    - name: Set up JDK 21
       uses: actions/setup-java@main
       with:
-        java-version: '17'
-        distribution: 'corretto'
+        java-version: '21'
+        distribution: 'graalvm'
         cache: maven
         server-id: ${{ vars.MAVEN_SERVERID }}
         server-username: MAVEN_USERNAME

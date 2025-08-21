@@ -23,7 +23,6 @@ import java.io.Reader;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Properties;
 
 @Slf4j
 class TableCheckIntegrityTest {
@@ -31,8 +30,7 @@ class TableCheckIntegrityTest {
     private DocBase readDocBase( String fullCLPath ) {
         try (Reader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( fullCLPath ) ) ) {
             DocFacadeSource docFacadeSource = DocFacadeSource.getInstance();
-            DocBase docBase = docFacadeSource.parseRE( reader, DocFacadeSource.SOURCE_TYPE_XML, FeatureConfig.DEFAULT );
-            return docBase;
+            return docFacadeSource.parseRE( reader, DocFacadeSource.SOURCE_TYPE_XML, FeatureConfig.DEFAULT );
         } catch (IOException e) {
             throw ConfigRuntimeException.convertEx( e );
         }

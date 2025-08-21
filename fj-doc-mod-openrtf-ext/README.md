@@ -1,6 +1,6 @@
 # Fugerit Document Generation Framework (fj-doc)
 
-## Openrtf Renderer (rtf)(fj-doc-mod-openrtf-ext)
+## OpenRTF Renderer (rtf)(fj-doc-mod-openrtf-ext)
 
 [back to fj-doc index](../README.md)  
 
@@ -29,3 +29,12 @@ Depends on renderer :
 			<artifactId>fj-doc-mod-openpdf-ext</artifactId>
 		</dependency>	
 ```
+
+## OpenRTF version compatibility matrix
+
+Starting with version [2.0.0](https://github.com/LibrePDF/OpenRTF/releases/tag/2.0.0) OpenRTF moved to Java 21.
+
+| OpenRTF | Java | Notes                                                                  |
+|---------|------|------------------------------------------------------------------------|
+| 1.x     | 8+   | latest OpenRTF version is 1.2.1                                        |
+| 2.x     | 21+  | upgraded [OpenPDF](https://github.com/LibrePDF/OpenPDF) dependency too |
