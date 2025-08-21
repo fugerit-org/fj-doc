@@ -88,3 +88,20 @@ Add this element to *<docHandlerConfig/>* :
 ----
 
 For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modopenpdfext[fj-doc-quarkus-tutorial openpdf ext example].
+
+[#doc-handler-mod-openrpdf-ext-java-version]
+==== Java version compatibility
+
+NOTE: OpenPDF used to be compatible with java 8+, but starting with version 2.4.0 they moved to java 21+.
+
+Starting with Fugerit Venus Doc version 8.16.0 the xref:#doc-maven-dependency-handling-java-version[Dependencies handling is based on java runtime version], here is the compatibility matrix :
+
+[cols="2*", options="header"]
+|====================================================================================================================================================================================
+| java version | OpenRTF version
+
+| 21+
+| 2.4.0+
+
+| 8 / 21
+| 1.3.43

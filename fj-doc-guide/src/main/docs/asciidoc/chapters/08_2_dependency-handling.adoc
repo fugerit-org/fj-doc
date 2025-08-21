@@ -121,3 +121,4 @@ Otherwise, when using a lower version of java, OpenRTF 1.2.1 will be imported (c
 here are the submodules supporting version based on java runtime version :
 
 * xref:#doc-handler-mod-openrtf-ext[OpenRTF doc handler]
+* xref:#doc-handler-mod-openpdf-ext[OpenPDF doc handler]

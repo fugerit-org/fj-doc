@@ -20,3 +20,16 @@ Disabled, native support will be added in a future release. openpdf-ext native s
 *Quickstart* :  
 Basically this is only a type handler, see core library [fj-doc-base](../fj-doc-base/README.md).  
 NOTE: If you have any special need you can open a pull request or create your own handler based on this.
+
+## OpenRTF version compatibility matrix
+
+Starting with version [2.2.0](https://github.com/LibrePDF/OpenPDF/releases/tag/2.2.0) OpenRTF moved to Java 21.
+
+| OpenPDF | Java | Notes                            |
+|---------|------|----------------------------------|
+| 1.3+    | 8+   | latest OpenRTF version is 1.3.43 |
+| 1.4+    | 11+  | latest OpenRTF version is 1.4.2  |
+| 2.0+    | 17+  | latest OpenRTF version is 2.0.5  |
+| 2.2+    | 21+  | latest OpenRTF version is 2.4.0  |
+
+NOTE: with release [3.0.0](https://github.com/LibrePDF/OpenPDF/releases/tag/3.0.0) the original IText package has been dropped.
