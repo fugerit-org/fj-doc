@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.16.0] - 2025-08-22
+
 ### Added
 
 - fj-doc-mod-openpdf-ext / fj-doc-mod-openrtf-ext, multiple java version dependency handling <https://github.com/fugerit-org/fj-doc/issues/489>
