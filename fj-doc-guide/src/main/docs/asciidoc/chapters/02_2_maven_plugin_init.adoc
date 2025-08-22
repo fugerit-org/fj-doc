@@ -150,22 +150,6 @@ _Java Packaging_ : *Maven*
 | javaRelease    | _17+_      | this flavour does not support java lower than 17
 |====================================================================================================================================
 
-[#flavour-micronaut-4]
-====== Micronaut 4
-
-Micronaut 4 flavour has the following specific configurations
-
-_Configuration_ : *YAML*
-
-_Java Packaging_ : *Maven*
-
-[cols="3*", options="header"]
-|====================================================================================================================================
-| parameter      | accepted value | note
-| addLombok      | _true_     | currently only generation with lombok is supported
-| javaRelease    | _17+_      | this flavour does not support java lower than 17
-|====================================================================================================================================
-
 [#flavour-openliberty-properties]
 ====== Open Liberty
 
