@@ -4,4 +4,11 @@ greeting:
 quarkus:
   native:
     additional-build-args: -H:IncludeResources=fj-doc-native-quarkus/fm-doc-process-config.xml,\
-      -H:IncludeResources=fj-doc-native-quarkus/template/document.ftl
+      -H:IncludeResources=fj-doc-native-quarkus/template/document.ftl,\
+      --report-unsupported-elements-at-runtime,\
+      --trace-object-instantiation=java.lang.Thread,\
+      --initialize-at-run-time=sun.font.SunFontManager,\
+      --initialize-at-run-time=sun.font.PhysicalStrike,\
+      --initialize-at-run-time=sun.font.StrikeCache,\
+      --initialize-at-run-time=sun.java2d.Disposer,\
+      --initialize-at-run-time=org.apache.fop.util.bitmap.JAIMonochromeBitmapConverter

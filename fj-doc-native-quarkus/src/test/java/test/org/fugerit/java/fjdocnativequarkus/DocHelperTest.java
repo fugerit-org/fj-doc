@@ -29,30 +29,31 @@ import lombok.AllArgsConstructor;
  * https://github.com/fugerit-org/fj-doc
  *
  * NOTE: This is a 'Hello World' style example, adapt it to your scenario, especially :
- *  - change the doc handler and the output mode (here a ByteArrayOutputStream buffer is used)
+ * - change the doc handler and the output mode (here a ByteArrayOutputStream buffer is used)
  */
 @Slf4j
 class DocHelperTest {
 
     @Test
     void testDocProcess() {
-        try ( ByteArrayOutputStream baos = new ByteArrayOutputStream() ) {
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             // creates the doc helper
             DocHelper docHelper = new DocHelper();
             // create custom data for the fremarker template 'document.ftl'
-            List<People> listPeople = Arrays.asList( new People( "Luthien", "Tinuviel", "Queen" ), new People( "Thorin", "Oakshield", "King" ) );
-            
-            
+            List<People> listPeople = Arrays.asList(new People("Luthien", "Tinuviel", "Queen"),
+                    new People("Thorin", "Oakshield", "King"));
+
             String chainId = "document";
             // handler id
             String handlerId = DocConfig.TYPE_MD;
             // output generation
-            docHelper.getDocProcessConfig().fullProcess( chainId, DocProcessContext.newContext( "listPeople", listPeople ), handlerId, baos );
+            docHelper.getDocProcessConfig().fullProcess(chainId, DocProcessContext.newContext("listPeople", listPeople),
+                    handlerId, baos);
             // print the output
-            log.info( "html output : \n{}", new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );
-            Assertions.assertNotEquals( 0, baos.size() );
+            log.info("html output : \n{}", new String(baos.toByteArray(), StandardCharsets.UTF_8));
+            Assertions.assertNotEquals(0, baos.size());
         } catch (Exception e) {
-            log.error( String.format( "Error : %s", e.toString() ), e );
+            log.error(String.format("Error : %s", e.toString()), e);
         }
     }
 

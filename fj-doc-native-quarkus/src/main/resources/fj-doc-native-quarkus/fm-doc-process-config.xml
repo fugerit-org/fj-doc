@@ -26,6 +26,7 @@
         <docHandler id="asciidoc-fm" info="adoc" type="org.fugerit.java.doc.freemarker.asciidoc.FreeMarkerAsciidocTypeHandlerUTF8" />
         <!-- type handler for csv using opencsv -->
         <docHandler id="csv" info="csv" type="org.fugerit.java.doc.mod.opencsv.OpenCSVTypeHandlerUTF8" />
+        <docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler"/>
     </docHandlerConfig>
 
     <docChain id="shared">

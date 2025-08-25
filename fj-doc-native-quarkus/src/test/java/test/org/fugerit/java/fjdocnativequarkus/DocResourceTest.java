@@ -34,7 +34,7 @@ class DocResourceTest {
     @Test
     void testException() {
         DocResource resoure = new DocResource();
-        Assertions.assertThrows( WebApplicationException.class, () -> resoure.processDocument( "not-exists" ) );
+        Assertions.assertThrows(WebApplicationException.class, () -> resoure.processDocument("not-exists"));
     }
 
 }

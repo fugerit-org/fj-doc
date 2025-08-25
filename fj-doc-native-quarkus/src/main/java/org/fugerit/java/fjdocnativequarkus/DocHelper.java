@@ -8,8 +8,11 @@ import org.fugerit.java.doc.freemarker.process.FreemarkerDocProcessConfigFacade;
  */
 public class DocHelper {
 
-     private FreemarkerDocProcessConfig docProcessConfig = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://fj-doc-native-quarkus/fm-doc-process-config.xml" );
+    private FreemarkerDocProcessConfig docProcessConfig = FreemarkerDocProcessConfigFacade
+            .loadConfigSafe("cl://fj-doc-native-quarkus/fm-doc-process-config.xml");
 
-     public FreemarkerDocProcessConfig getDocProcessConfig() { return this.docProcessConfig; }
+    public FreemarkerDocProcessConfig getDocProcessConfig() {
+        return this.docProcessConfig;
+    }
 
 }

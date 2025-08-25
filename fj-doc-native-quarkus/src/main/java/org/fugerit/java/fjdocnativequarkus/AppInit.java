@@ -8,7 +8,7 @@ import io.quarkus.runtime.annotations.RegisterForReflection;
 
 @Slf4j
 @ApplicationScoped
-@RegisterForReflection( targets = { DocHelper.class, People.class } )
+@RegisterForReflection(targets = { DocHelper.class, People.class })
 public class AppInit {
 
     void onStart(@Observes StartupEvent ev) {
