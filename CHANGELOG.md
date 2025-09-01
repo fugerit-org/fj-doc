@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.16.1] - 2025-09-01
+
+### Changed
+
 - fj-doc-maven-plugin, flavour openliberty version set to 25.0.0.8
 - fj-doc-maven-plugin, flavour micronaut version set to 4.9.3
 - fj-doc-maven-plugin, flavour springboot-3 version set to 3.5.5
