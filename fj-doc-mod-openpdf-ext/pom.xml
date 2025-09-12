@@ -98,7 +98,7 @@
                                 <phase>verify</phase>
                                 <configuration>
                                     <target>
-                                        <exec executable="mvn" failonerror="true">
+                                        <exec executable="${maven.executable}" failonerror="true">
                                             <arg value="test"/>
                                             <arg value="-Pjava-jdk8on,test"/>
                                         </exec>

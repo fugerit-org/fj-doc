@@ -36,6 +36,9 @@
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.2.10</kotlin.version>
 		<quarkus-version>3.26.3</quarkus-version>
+		<!-- for backward compatibility test -->
+		<maven.executable>mvn</maven.executable>
+		<maven.executable.windows>mvn.cmd</maven.executable.windows>
 	</properties>
 
 	<licenses>
@@ -355,5 +358,23 @@
 		<url>https://www.fugerit.org</url>
 		<name>Fugerit</name>
 	</organization>
+
+	<profiles>
+		<profile>
+
+			<id>windowsSetup</id>
+
+			<activation>
+				<os>
+					<family>Windows</family>
+				</os>
+			</activation>
+
+			<properties>
+				<maven.executable>${maven.executable.windows}</maven.executable>
+			</properties>
+
+		</profile>
+	</profiles>
 	
 </project>
