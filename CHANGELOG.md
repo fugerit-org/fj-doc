@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-bom version 2.0.5
+- quarkus-version set to 3.26.3 across all the modules <https://github.com/fugerit-org/fj-doc/issues/498>
+- fj-doc-maven-plugin, flavour openliberty version set to 25.0.0.9
+
 ## [8.16.1] - 2025-09-01
 
 ### Changed
