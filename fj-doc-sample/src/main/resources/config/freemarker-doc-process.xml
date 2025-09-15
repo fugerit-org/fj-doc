@@ -109,6 +109,10 @@
 		</chainStep>
 	</docChain>
 
+	<docChain id="document-01" parent="shared">
+		<chainStep stepType="complex" map-all="true" template-path="document-01.ftl"/>
+	</docChain>
+
 	<docChain id="free-marker-01" parent="shared">
 		<chainStep stepType="complex" template-path="test_01.ftl"/>
 	</docChain>
