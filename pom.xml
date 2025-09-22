@@ -31,7 +31,7 @@
 	    <fj-xml-to-json-version>1.2.1</fj-xml-to-json-version>
 		<native-helper-maven-plugin-version>1.4.6</native-helper-maven-plugin-version>
 		<!-- other dependencies -->
-	    <jajarta-jaxb-version>4.0.2</jajarta-jaxb-version>
+	    <jajarta-jaxb-version>4.0.3</jajarta-jaxb-version>
 	    <jajarta-jaxb-impl-version>4.0.5</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.2.20</kotlin.version>
