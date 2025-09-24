@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-16-3]
+==== Version 8.16.3 [2025-09-24]
+
 - fj-doc-mod-fop, make accessibility and keep empty tags parameters configurable  link:https://github.com/fugerit-org/fj-doc/issues/508[#508]
 
 [#doc-release-notes-8-16-2]
