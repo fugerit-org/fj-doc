@@ -1,0 +1,33 @@
+
+[#doc-faq-reducing-fj-doc-mod-fop-pdf-size]
+=== Reducing fj-doc-mod-fop PDF size
+
+Module fj-doc-mod-fop is based on link:https://xmlgraphics.apache.org/fop/[Apache FOP].
+
+Sometimes this module can produce relatively big size PF.
+
+Here are some tips to reduce the size.
+
+==== Accessibility
+
+By default, fop user agent has the accessibility flag active.
+
+Since Venus version 8.16.3 it is possible to use the new handler :
+
+[source,java]
+----
+org.fugerit.java.doc.mod.fop.PdfFopTypeNoAccessibilityHandler
+----
+
+Which as the accessibility flag set to 'false' by default.
+
+Alternatively, it is possible to use a new configuration option :
+
+[source,xml]
+----
+<docHandler id="pdf-fop-config" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" accessibility='false'/>
+</docHandler>
+----
+
+Refer to xref:#doc-handler-mod-fop-pdf-config-accessibility[PDF/FO DocHandler] documentation for further info.
