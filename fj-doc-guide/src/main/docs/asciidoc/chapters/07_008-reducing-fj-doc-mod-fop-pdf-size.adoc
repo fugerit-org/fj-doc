@@ -16,7 +16,7 @@ Since Venus version 8.16.3 it is possible to use the new handler :
 
 [source,java]
 ----
-org.fugerit.java.doc.mod.fop.PdfFopTypeNoAccessibilityHandler
+org.fugerit.java.doc.mod.fop.PdfFopNoAccessibilityTypeHandler
 ----
 
 Which as the accessibility flag set to 'false' by default.

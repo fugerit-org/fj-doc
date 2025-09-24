@@ -284,28 +284,10 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
-  "name" : "org.fugerit.java.doc.mod.fop.PdfFopTypeHandler",
+  "name" : "org.fugerit.java.doc.mod.fop.PdfFopNoAccessibilityTypeHandler",
   "methods" : [ {
     "name" : "<init>",
     "parameterTypes" : [ ]
-  }, {
-    "name" : "<init>",
-    "parameterTypes" : [ "boolean", "boolean" ]
-  }, {
-    "name" : "<init>",
-    "parameterTypes" : [ "java.nio.charset.Charset" ]
-  }, {
-    "name" : "<init>",
-    "parameterTypes" : [ "java.nio.charset.Charset", "boolean", "boolean" ]
-  }, {
-    "name" : "<init>",
-    "parameterTypes" : [ "java.nio.charset.Charset", "org.fugerit.java.doc.mod.fop.FopConfig" ]
-  }, {
-    "name" : "<init>",
-    "parameterTypes" : [ "java.nio.charset.Charset", "org.fugerit.java.doc.mod.fop.FopConfig", "boolean", "boolean" ]
-  }, {
-    "name" : "<init>",
-    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfig", "boolean", "boolean" ]
   }, {
     "name" : "configure",
     "parameterTypes" : [ "java.util.Properties" ]
@@ -422,10 +404,28 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
-  "name" : "org.fugerit.java.doc.mod.fop.PdfFopTypeNoAccessibilityHandler",
+  "name" : "org.fugerit.java.doc.mod.fop.PdfFopTypeHandler",
   "methods" : [ {
     "name" : "<init>",
     "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "boolean", "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "boolean", "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "org.fugerit.java.doc.mod.fop.FopConfig" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset", "org.fugerit.java.doc.mod.fop.FopConfig", "boolean", "boolean" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfig", "boolean", "boolean" ]
   }, {
     "name" : "configure",
     "parameterTypes" : [ "java.util.Properties" ]
