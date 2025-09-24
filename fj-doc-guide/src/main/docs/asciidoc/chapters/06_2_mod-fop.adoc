@@ -66,6 +66,8 @@ For this DocHandler it is possible to customize some attributes, for instance :
 | *pdf-ua-mode* anchor:doc-handler-mod-fop-pdf-config-pdf-ua-mode[]  | _string_  |  | If present, will set pdf-ua-mode, possible values are : _PDF/UA-1_. link:https://github.com/fugerit-org/fj-doc/issues/52[Partially compatible with pdf-a-mode].
 | *fop-pool-min* anchor:doc-handler-mod-fop-pdf-config-fop-pool-min[]  | _int_  | 0 | If present, it will create a fo user agent pool, this is the minimum size of the pool.
 | *fop-pool-max* anchor:doc-handler-mod-fop-pdf-config-fop-pool-max[]  | _int_  | 0 | If present, it will create a fo user agent pool, this is the maximum size fo the pool.
+| *accessibility* anchor:doc-handler-mod-fop-pdf-config-accessibility[]  | _bool_  | true | fopUserAgent.setAccessibility($value);
+| *keep-empty-tags* anchor:doc-handler-mod-fop-pdf-config-keep-empty-tags[]  | _bool_  | false | fopUserAgent.setKeepEmptyTags($value);
 |========================================================================================================================================
 
 NOTE: If *pdf-a-mode* is set, there will be a strict validation of the PDF (i.e. it will be checked if the font are all embedded and the images should comply to link:https://www.adobe.com/uk/acrobat/resources/document-files/pdf-types/pdf-a.html[PDF/A standard]).
