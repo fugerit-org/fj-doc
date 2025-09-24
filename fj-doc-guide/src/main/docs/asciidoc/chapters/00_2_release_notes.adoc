@@ -3,6 +3,21 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-unreleased]
+==== Unreleased
+
+- fj-doc-mod-fop, make accessibility and keep empty tags parameters configurable  link:https://github.com/fugerit-org/fj-doc/issues/508[#508]
+
+[#doc-release-notes-8-16-2]
+==== Version 8.16.2 [2025-09-12]
+
+- fj-doc-maven-plugin, updated all flavours version link:https://github.com/fugerit-org/fj-doc/issues/498[#498]
+
+[#doc-release-notes-8-16-1]
+==== Version 8.16.1 [2025-09-01]
+
+- fj-doc-maven-plugin, updated all flavours version link:https://github.com/fugerit-org/fj-doc/issues/494[#494]
+
 [#doc-release-notes-8-16-0]
 ==== Version 8.16.0 [2025-08-22]
 

@@ -72,8 +72,10 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	private static final String ATT_FONT_BASE_CLASSLOADER_PATH = "font-base-classloader-path";  // removed as of v2.0.1
 
+	public static final String ATT_ACCESSIBILITY = "accessibility";
 	public static final boolean DEFAULT_ACCESSIBILITY = true;
 
+	public static final String ATT_KEEP_EMPTY_TAGS  = "keep-empty-tags";
 	public static final boolean DEFAULT_KEEP_EMPTY_TAGS = false;
 
 	public static final String ATT_FOP_SUPPRESS_EVENTS = "fop-suppress-events";
@@ -242,6 +244,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		this.setSuppressEvents( BooleanUtils.isTrue( props.getProperty( ATT_FOP_SUPPRESS_EVENTS ) ) );
 		// setup pool
 		this.setupPool( props );
+		// extra setup
+		this.extraSetup( props );
 	}
 
 	private void setupPool( Properties props ) throws ConfigException {
@@ -257,6 +261,19 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			this.setFopPoolMax( Integer.parseInt( props.getProperty( ATT_FOP_POOL_MAX ) ) );
 		} else if ( this.getFopPoolMin() > 0 ) {
 			this.setFopPoolMax( this.getFopPoolMin() );
+		}
+	}
+
+	private void extraSetup( Properties props ) throws ConfigException {
+		String valueAccessibility = props.getProperty( ATT_ACCESSIBILITY );
+		if ( StringUtils.isNotEmpty( valueAccessibility ) ) {
+			log.debug( "override accessibility {} -> {}", this.isAccessibility(), valueAccessibility );
+			this.accessibility = BooleanUtils.isTrue( valueAccessibility );
+		}
+		String valueKeepEnptyTags = props.getProperty( ATT_KEEP_EMPTY_TAGS);
+		if ( StringUtils.isNotEmpty( valueKeepEnptyTags ) ) {
+			log.debug( "override keep-empty-tags {} -> {}", this.isKeepEmptyTags(), valueKeepEnptyTags );
+			this.keepEmptyTags = BooleanUtils.isTrue( valueKeepEnptyTags );
 		}
 	}
 

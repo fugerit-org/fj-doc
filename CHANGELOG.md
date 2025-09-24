@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-doc-mod-fop, make accessibility and keep empty tags parameters configurable <https://github.com/fugerit-org/fj-doc/issues/508>
+
 ## [8.16.2] - 2025-09-12
 
 ### Changed

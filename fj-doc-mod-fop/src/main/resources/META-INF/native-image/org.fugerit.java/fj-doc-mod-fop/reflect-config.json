@@ -422,6 +422,126 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "name" : "org.fugerit.java.doc.mod.fop.PdfFopTypeNoAccessibilityHandler",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopPoolMax",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFopPoolMin",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPdfAMode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPdfUAMode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isAccessibility",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isKeepEmptyTags",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isSuppressEvents",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFopConfig",
+    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfig" ]
+  }, {
+    "name" : "setFopPoolMax",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setFopPoolMin",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "setPdfAMode",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setPdfUAMode",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setSuppressEvents",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
   "name" : "org.fugerit.java.doc.mod.fop.PoolUtils",
   "methods" : [ {
     "name" : "equals",
