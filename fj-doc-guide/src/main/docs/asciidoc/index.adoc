@@ -51,6 +51,7 @@ include::chapters/07_005_doc-faq-kotlin-step.adoc[]
 include::chapters/07_006_doc-faq-endline-fop.adoc[]
 include::chapters/07_007_java-runtime-version-dependency-handling.adoc[]
 include::chapters/07_008-reducing-fj-doc-mod-fop-pdf-size.adoc[]
+include::chapters/07_009-extending-handler-capabilities.adoc[]
 
 include::chapters/08_doc-optmization.adoc[]
 include::chapters/08_1_eager-startup.adoc[]

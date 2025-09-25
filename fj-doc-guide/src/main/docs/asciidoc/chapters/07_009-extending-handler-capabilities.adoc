@@ -1,0 +1,53 @@
+
+[#doc-faq-extending-handler-capabilities]
+=== Extending handler capabilities
+
+Sometimes you may want to extend current capabilities of a handler.
+
+For instances, we have seen how xref:#doc-faq-reducing-fj-doc-mod-fop-pdf-size[Reduce fj-doc-mod-fop PDF size]. But to switch accessibility on and off we need a new build.
+
+Let's imagine we want to change that at runtime, maybe with a system property.
+
+We can simply to that by extending our base type handler :
+
+[source,java]
+----
+package org.fugerit.java.doc.custom.fop;
+
+import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
+
+@Slf4j
+public class CustomPdfFopTypeHandler extends PdfFopTypeHandler {
+
+    public static final String ENABLE_ACCESSIBILITY = "CustomPdfFopTypeHandler.accessibility";
+
+    private static boolean checkAccessibility() {
+        String enableAccessibility = System.getProperty( ENABLE_ACCESSIBILITY );
+        log.info( "check accessibility {} : {}", ENABLE_ACCESSIBILITY, enableAccessibility );
+        return BooleanUtils.isTrue( enableAccessibility );
+    }
+
+    public CustomPdfFopTypeHandler() {
+        super( checkAccessibility(), Boolean.FALSE );
+    }
+
+}
+----
+
+And configuring it
+
+[source,xml]
+----
+<docHandler id="pdf-fop-config" info="pdf" type="org.fugerit.java.doc.custom.fop.CustomPdfFopTypeHandler"/>
+----
+
+Now, by the default accessibility is off, but we can turn on just adding the system property :
+
+[source,txt]
+----
+-DCustomPdfFopTypeHandler.accessibility=true
+----
+
+To our environment.
+
