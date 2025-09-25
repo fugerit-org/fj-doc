@@ -1,18 +1,14 @@
 package test.org.fugerit.java.doc.mod.fop;
 
 import lombok.extern.slf4j.Slf4j;
-import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8;
-import org.fugerit.java.doc.mod.fop.InitFopHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
-import org.fugerit.java.doc.mod.fop.PdfFopTypeNoAccessibilityHandler;
+import org.fugerit.java.doc.mod.fop.PdfFopNoAccessibilityTypeHandler;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Element;
 import test.org.fugerit.java.BasicTest;
@@ -36,7 +32,7 @@ class TestNoAccessibility extends BasicTest {
 		return ok;
 	}
 	
-	private static final DocTypeHandler[] HANDLERS = { PdfFopTypeHandler.HANDLER, new PdfFopTypeNoAccessibilityHandler() };
+	private static final DocTypeHandler[] HANDLERS = { PdfFopTypeHandler.HANDLER, new PdfFopNoAccessibilityTypeHandler() };
 	
 	@Test
 	void testNoAccessibilityHandler() {

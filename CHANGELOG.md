@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+### Fixed
+
+- typo in PdfFopNoAccessibilityTypeHandler <https://github.com/fugerit-org/fj-doc/issues/512>
 
 ## [8.16.3] - 2025-09-24
+
+### Changed
 
 - fj-doc-mod-fop, make accessibility and keep empty tags parameters configurable <https://github.com/fugerit-org/fj-doc/issues/508>
 - quarkus-version set to 3.28.1 across all the modules <https://github.com/fugerit-org/fj-doc/issues/510>
