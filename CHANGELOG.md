@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.16.4] - 2025-09-25
+
 ### Fixed
 
 - typo in PdfFopNoAccessibilityTypeHandler <https://github.com/fugerit-org/fj-doc/issues/512>

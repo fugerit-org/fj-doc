@@ -6,6 +6,11 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-16-4]
+==== Version 8.16.4 [2025-09-25]
+
+- PdfFopTypeNoAccessibilityHandler renamed in PdfFopNoAccessibilityTypeHandler link:https://github.com/fugerit-org/fj-doc/issues/512[#512]
+
 [#doc-release-notes-8-16-3]
 ==== Version 8.16.3 [2025-09-24]
 
