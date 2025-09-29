@@ -117,6 +117,7 @@ public class OpenPpfDocHandler {
 			if ( docImage.getScaling() != null ) {
 				image.scalePercent( docImage.getScaling().floatValue() );
 			}
+            image.setAlignment( getAlign( docImage.getAlign() ) );
 			return image;
 		} );
 	}	
