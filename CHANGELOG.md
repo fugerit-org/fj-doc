@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fj-doc-mod-openpdf-ext, producer is now 'Venus Fugerit Doc over OpenPDF'
+- fj-doc-mod-openpdf-ext, default creator is now 'Venus Fugerit Doc (<https://github.com/fugerit-org/fj-doc>)'
+
+### Fixed
+
+- fj-doc-mod-openpdf-ext - OpenPDF alignment not set by type handler <https://github.com/fugerit-org/fj-doc/issues/517>
+
 ## [8.16.4] - 2025-09-25
 
 ### Fixed

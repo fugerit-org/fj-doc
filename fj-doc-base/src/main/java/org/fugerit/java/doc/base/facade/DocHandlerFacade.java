@@ -72,7 +72,7 @@ public class DocHandlerFacade implements Serializable {
 				if ( errorOnDuplicate ) {
 					throw new ConfigException( "Duplicate handler for format : "+format+" (type:"+type+")" );
 				} else {
-					log.warn( "Warning duplicate handler for format, {} will replace {}", format, handler.getKey(), previous.getKey() );
+					log.warn( "Warning duplicate handler for format {}, {} will replace {}", format, handler.getKey(), previous.getKey() );
 				}
 			}
 			doRegister(handler, format);
