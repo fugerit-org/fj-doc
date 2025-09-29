@@ -51,3 +51,4 @@ Now, by the default accessibility is off, but we can turn on just adding the sys
 
 To our environment.
 
+Another example can be found on the sample project link:https://github.com/fugerit79/venus-sample-custom-fop-type-handler[Venus Fugerit Doc Sample project implementing a Custom Apache FOP type handler] shows how is it possible to customize doc handlers behaviors.

@@ -13,3 +13,7 @@ link:include::chapters/https://docs.fugerit.org/fj-doc-playground/home/[https://
 
 The link:https://github.com/fugerit79/venus-sample-mongodb-ds[About
 Venus Fugerit Doc sample using a MongoDB data source] is a simple project showing how is possible to load the data model from a Mongo DB Collection and setting it directly as JSON.
+
+==== Mongo DB Json Data Source Example
+
+The link:https://github.com/fugerit79/venus-sample-custom-fop-type-handler[Venus Fugerit Doc Sample project implementing a Custom Apache FOP type handler] shows how is it possible to customize doc handlers behaviors.
