@@ -82,3 +82,31 @@
 </#macro>
 
 <#macro createSpringBootPath context outputMime outputExtension outputDescription><@createSpringBootPathPrefix context=context outputMime=outputMime outputExtension=outputExtension outputDescription=outputDescription pathPrefix=''/></#macro>
+
+<#macro docProcessConfigDocHelperComment context>
+   /*
+    * FreemarkerDocProcessConfig is thread-safe and should be initialized once for each config file.
+    *
+    * Consider using a @ApplicationScoped or Singleton approach.
+    */
+</#macro>
+
+<#macro getDocProcessConfigDocHelperComment context>
+   /**
+    * Accessor for FreemarkerDocProcessConfig configuration.
+    *
+    * @return the FreemarkerDocProcessConfig instance associated with this helper.
+    */
+</#macro>
+
+<#macro docHelperBody context>
+public class DocHelper {
+
+    <@docProcessConfigDocHelperComment context=context/>
+    private FreemarkerDocProcessConfig docProcessConfig = FreemarkerDocProcessConfigFacade.loadConfigSafe( "cl://${context.resourcePathFmConfigXml}" );
+
+    <@getDocProcessConfigDocHelperComment context=context/>
+    public FreemarkerDocProcessConfig getDocProcessConfig() { return this.docProcessConfig; }
+
+}
+</#macro>
