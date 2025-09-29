@@ -9,7 +9,9 @@ public class DocConfig {
 	public DocConfig() {
 		this.versionConfig = VERSION;
 	}
-	
+
+    public static final String FUGERIT_VENUS_DOC = "Venus Fugerit Doc";
+
 	public static final String VERSION = " FUGERIT DOC Version 2.1 (2023-08-19) ";
 	
 	public static final String TYPE_XML = "xml";
