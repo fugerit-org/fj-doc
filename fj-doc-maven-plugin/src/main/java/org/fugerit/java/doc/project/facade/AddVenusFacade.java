@@ -196,9 +196,19 @@ class DocConfigGenerator extends SimpleJavaGenerator {
     }
 
     @Override
-    public void generateBody() throws IOException {
+    public void generateBody() {
+        this.println( "     /*" );
+        this.println( "      * FreemarkerDocProcessConfig is thread-safe and should be initialized once for each config file." );
+        this.println( "      * " );
+        this.println( "      * Consider using a @ApplicationScoped or Singleton approach." );
+        this.println( "      */" );
         this.println( "     private FreemarkerDocProcessConfig docProcessConfig = FreemarkerDocProcessConfigFacade.loadConfigSafe( \"cl://"+this.context.getResourcePathFmConfigXml()+"\" );" );
         this.println();
+        this.println( "     /**" );
+        this.println( "      * Accessor for FreemarkerDocProcessConfig configuration." );
+        this.println( "      *" );
+        this.println( "      * @return the FreemarkerDocProcessConfig instance associated with this helper." );
+        this.println( "      */" );
         this.println( "     public FreemarkerDocProcessConfig getDocProcessConfig() { return this.docProcessConfig; }" );
         this.println();
     }
