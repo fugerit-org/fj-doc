@@ -61,7 +61,7 @@ For this DocHandler it is possible to customize some attributes, for instance :
 | *charset* anchor:doc-handler-mod-fop-pdf-config-charset[]  | _string_  | _UTF-8_ | This will set the charset to use.
 | *fop-config-mode* anchor:doc-handler-mod-fop-pdf-config-fop-config-mode[]  | _string_  |  | Custom fop configuration mode, possible values are : _classloader_ (path set *fop-config-classloader-path*) or _inline_ (child element).
 | *fop-config-classloader-path* anchor:doc-handler-mod-fop-pdf-config-fop-config-classloader-path[]  | _string_  |  | Path to link:https://xmlgraphics.apache.org/fop/2.10/configuration.html[Apache FOP Configuration file].
-| *fop-suppress-events* anchor:doc-handler-mod-fop-pdf-config-fop-config-mode[]  | _boolean_  | _false_ | If set to _true_ (or _1_), will try to suppress event logging (for example : new page).
+| *fop-suppress-events* anchor:doc-handler-mod-fop-pdf-config-fop-suppress-events[]  | _boolean_  | _false_ | If set to _true_ (or _1_), will try to suppress event logging (for example : new page).
 | *pdf-a-mode* anchor:doc-handler-mod-fop-pdf-config-pdf-a-mode[]  | _string_  |  | If present will set pdf-a-mode, possible values are : _PDF/A-1a_, _PDF/A-1b_, _PDF/A-2a_, _PDF/A-3a_
 | *pdf-ua-mode* anchor:doc-handler-mod-fop-pdf-config-pdf-ua-mode[]  | _string_  |  | If present, will set pdf-ua-mode, possible values are : _PDF/UA-1_. link:https://github.com/fugerit-org/fj-doc/issues/52[Partially compatible with pdf-a-mode].
 | *fop-pool-min* anchor:doc-handler-mod-fop-pdf-config-fop-pool-min[]  | _int_  | 0 | If present, it will create a fo user agent pool, this is the minimum size of the pool.
