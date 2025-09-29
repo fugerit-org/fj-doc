@@ -8,7 +8,7 @@ For instances, we have seen how xref:#doc-faq-reducing-fj-doc-mod-fop-pdf-size[R
 
 Let's imagine we want to change that at runtime, maybe with a system property.
 
-We can simply to that by extending our base type handler :
+We can simply do that by extending our base type handler :
 
 [source,java]
 ----
