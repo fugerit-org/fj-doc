@@ -13,6 +13,8 @@ include::chapters/00_2_release_notes.adoc[]
 
 include::chapters/00_3_native_support.adoc[]
 
+include::chapters/00_4_useful_resources.adoc[]
+
 include::chapters/01_quickstart.adoc[]
 
 include::chapters/02_maven_plugin.adoc[]

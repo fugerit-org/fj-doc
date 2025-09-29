@@ -1,0 +1,15 @@
+[#doc-useful-resources]
+=== Useful resources
+
+This section contains some useful resources.
+
+==== Online playground
+
+The online playground where you can try Fugerit Venus Doc features :
+
+link:include::chapters/https://docs.fugerit.org/fj-doc-playground/home/[https://docs.fugerit.org/fj-doc-playground/home/]
+
+==== Mongo DB Json Data Source Example
+
+The link:https://github.com/fugerit79/venus-sample-mongodb-ds[About
+Venus Fugerit Doc sample using a MongoDB data source] is a simple project showing how is possible to load the data model from a Mongo DB Collection and setting it directly as JSON.
