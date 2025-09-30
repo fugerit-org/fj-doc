@@ -1,3 +1,4 @@
+
 <<<
 [#doc-optimize-startup]
 === Eager vs Lazy initialization

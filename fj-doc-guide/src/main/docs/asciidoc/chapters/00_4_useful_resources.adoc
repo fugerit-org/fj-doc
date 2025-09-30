@@ -9,11 +9,23 @@ The online playground where you can try Fugerit Venus Doc features :
 
 link:include::chapters/https://docs.fugerit.org/fj-doc-playground/home/[https://docs.fugerit.org/fj-doc-playground/home/]
 
-==== Mongo DB Json Data Source Example
+[#doc-res-link-mongo-ds]
+==== Mongo DB JSON Data Source Example
 
 The link:https://github.com/fugerit79/venus-sample-mongodb-ds[About
 Venus Fugerit Doc sample using a MongoDB data source] is a simple project showing how is possible to load the data model from a Mongo DB Collection and setting it directly as JSON.
 
-==== Mongo DB Json Data Source Example
+[#doc-res-link-extend-type-handler]
+==== Extending a Type Handler with custom behaviours
 
 The link:https://github.com/fugerit79/venus-sample-custom-fop-type-handler[Venus Fugerit Doc Sample project implementing a Custom Apache FOP type handler] shows how is it possible to customize doc handlers behaviors.
+
+[#doc-res-link-validate-source]
+==== Validating an XML source
+
+The link:https://github.com/fugerit79/venus-sample-validating-source[Venus Fugerit Doc sample showing how to validate source documents] to debug unexpected behaviors.
+
+[#doc-res-link-clean-source]
+==== Cleaning an XML source
+
+The link:https://github.com/fugerit79/venus-sample-clean-source[Venus Fugerit Doc sample showing ability to clean source XML] this can be useful when facing error like _An invalid XML character (Unicode: 0x2) was found in the element content of the document_.

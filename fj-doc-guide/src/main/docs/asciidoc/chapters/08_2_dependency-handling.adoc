@@ -1,3 +1,4 @@
+
 <<<
 [#doc-maven-dependency-handling]
 === Maven dependency handling

@@ -60,3 +60,5 @@ include::chapters/08_1_eager-startup.adoc[]
 include::chapters/08_2_dependency-handling.adoc[]
 
 include::chapters/09_doc-playground.adoc[]
+include::chapters/10_doc-troubleshooting.adoc[]
+include::chapters/10_1_invalid-xml-character.adoc[]

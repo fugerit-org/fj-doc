@@ -1,0 +1,8 @@
+
+<<<
+[#doc-troubleshooting]
+== Troubleshooting
+
+This chapter offers troubleshooting for some common problems you can face when using Venus Fugerit Doc Framework.
+
+

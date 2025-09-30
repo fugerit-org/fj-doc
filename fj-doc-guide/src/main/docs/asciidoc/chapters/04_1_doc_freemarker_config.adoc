@@ -194,7 +194,7 @@ NOTE: When using *skipfm* no FreeMarker template syntax should be used in the te
 | sums numbers
 | (1+) - numbers to sum
 
-| cleanXml
+| cleanXml anchor:doc-freemarker-config-built-in-functions-cleanXml[]
 | org.fugerit.java.doc.freemarker.fun.&#8203;CleanXmlFun
 | cleans invalid xml characters with the regex _[^\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD\u10000-\u10FFF]+_
 | (1) - the text to clean

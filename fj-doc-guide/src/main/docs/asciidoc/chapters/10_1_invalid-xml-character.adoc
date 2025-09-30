@@ -1,0 +1,34 @@
+
+<<<
+[#doc-troubleshooting-invalid-xml-character]
+=== An invalid XML character
+
+Sometimes it can happen to get errors like :
+
+[source,text]
+----
+An invalid XML character (Unicode: 0x2) was found in the element content of the document.
+----
+
+Venus Fugerit Doc offers a few built-in to fix it
+
+1. xref:#doc-freemarker-config-attributes-cleanSource[doc-freemarker-config cleanSource properties], you can enable it on doc-freemarker-config, and it will clean the full document (more resource intensive).
+
+[source,xml]
+----
+<freemarker-doc-process-config
+        xmlns="https://freemarkerdocprocess.fugerit.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd"
+        cleanSource="true">
+----
+
+2. xref:#doc-freemarker-config-built-in-functions-cleanXml[freemarker build-in function cleanXml], which will handle sonly the section you need (less resource intensive) :
+
+[source,text]
+----
+<#assign myText>... some text to clean ...</àassign>
+<para>${cleanXml(myText)}</para>
+----
+
+Here is a link:https://github.com/fugerit79/venus-sample-clean-source[sample repository].
