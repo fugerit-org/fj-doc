@@ -1,14 +1,9 @@
 package org.fugerit.java.doc.base.typehandler.core;
 
-import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.io.StreamIO;
 import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
-import org.fugerit.java.doc.base.parser.DocParser;
 
 import java.io.OutputStreamWriter;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 

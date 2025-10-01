@@ -4,7 +4,6 @@ import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.base.facade.DocFacadeSource;
-import org.fugerit.java.doc.base.model.DocBase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;

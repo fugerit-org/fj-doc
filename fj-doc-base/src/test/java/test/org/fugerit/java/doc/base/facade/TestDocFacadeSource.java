@@ -91,12 +91,14 @@ class TestDocFacadeSource {
 		assertEquals( input, DocFacadeSource.cleanSource( input, DocFacadeSource.SOURCE_TYPE_YAML ) );
 	}
 
+	private static final DocFacadeSource DOC_FACADE_SOURCE = DocFacadeSource.getInstance();
+
 	@Test
 	void testFromSourceNotSupported() throws IOException {
 		try ( StringReader from = new StringReader( "{}" );
 			StringWriter to = new StringWriter() ) {
 			assertThrows( ConfigRuntimeException.class,
-					() -> DocFacadeSource.getInstance().convert( from, DocFacadeSource.SOURCE_TYPE_JSON, to, DocFacadeSource.SOURCE_TYPE_XML ) );
+					() -> DOC_FACADE_SOURCE.convert( from, DocFacadeSource.SOURCE_TYPE_JSON, to, DocFacadeSource.SOURCE_TYPE_XML ) );
 		}
 	}
 
@@ -105,7 +107,7 @@ class TestDocFacadeSource {
 		try ( StringReader from = new StringReader( "<doc/>" );
 			  StringWriter to = new StringWriter() ) {
 			assertThrows( ConfigRuntimeException.class,
-					() -> DocFacadeSource.getInstance().convert( from, DocFacadeSource.SOURCE_TYPE_XML, to, DocFacadeSource.SOURCE_TYPE_YAML ) );
+					() -> DOC_FACADE_SOURCE.convert( from, DocFacadeSource.SOURCE_TYPE_XML, to, DocFacadeSource.SOURCE_TYPE_YAML ) );
 		}
 	}
 

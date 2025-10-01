@@ -85,9 +85,9 @@ public class DocFacadeSource {
 		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_YAML ) ) , "org.fugerit.java.doc.yaml.parse.DocJsonToYaml" );
 		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_XML ) ) , "org.fugerit.java.doc.yaml.parse.DocYamlToXml" );
 		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_JSON ) ) , "org.fugerit.java.doc.yaml.parse.DocYamlToJson" );
-		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_XML, DocFacadeSource.SOURCE_TYPE_XML ) ) , "org.fugerit.java.doc.base.facade.ReflectiveDocConvert" );
-		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_JSON ) ) , "org.fugerit.java.doc.base.facade.ReflectiveDocConvert" );
-		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_YAML ) ) , "org.fugerit.java.doc.base.facade.ReflectiveDocConvert" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_XML, DocFacadeSource.SOURCE_TYPE_XML ) ) , ReflectiveDocConvert.class.getName() );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_JSON ) ) , ReflectiveDocConvert.class.getName() );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_YAML ) ) , ReflectiveDocConvert.class.getName() );
 	}
 	
 	public DocParser getParserForSource( int sourceType ) {
