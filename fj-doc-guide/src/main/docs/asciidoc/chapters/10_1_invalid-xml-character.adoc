@@ -1,7 +1,7 @@
 
 <<<
 [#doc-troubleshooting-invalid-xml-character]
-=== An invalid XML character
+=== An invalid XML character (Unicode: ???) was found in the element content of the document
 
 Sometimes it can happen to get errors like :
 
