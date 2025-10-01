@@ -29,9 +29,10 @@ class DocFacadeSourceConvertTest {
     @Test
     void testConvertFormats() {
         List<Integer> sourceTypes = Arrays.asList( DocFacadeSource.SOURCE_TYPE_XML, DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_YAML );
+        int count = 0;
         for ( Integer fromSourceType : sourceTypes ) {
             for ( Integer toSourceType : sourceTypes ) {
-                if ( fromSourceType != toSourceType  ) {
+                if ( !fromSourceType.equals( toSourceType )  ) {
                     String testPath = MAP_SAMPLES.get( fromSourceType );
                     SafeFunction.apply( () -> {
                         try (Reader from = new FileReader( new File( testPath ) );
@@ -48,8 +49,10 @@ class DocFacadeSourceConvertTest {
                             }
                         }
                     } );
+                    count++;
                 }
             }
+            Assertions.assertTrue( count > 0 );
         }
     }
 

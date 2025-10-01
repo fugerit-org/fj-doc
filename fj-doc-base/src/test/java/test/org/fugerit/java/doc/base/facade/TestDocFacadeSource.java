@@ -95,7 +95,7 @@ class TestDocFacadeSource {
 	void testFromSourceNotSupported() throws IOException {
 		try ( StringReader from = new StringReader( "{}" );
 			StringWriter to = new StringWriter() ) {
-			Assertions.assertThrows( ConfigRuntimeException.class,
+			assertThrows( ConfigRuntimeException.class,
 					() -> DocFacadeSource.getInstance().convert( from, DocFacadeSource.SOURCE_TYPE_JSON, to, DocFacadeSource.SOURCE_TYPE_XML ) );
 		}
 	}
@@ -104,14 +104,14 @@ class TestDocFacadeSource {
 	void testToSourceNotSupported() throws IOException {
 		try ( StringReader from = new StringReader( "<doc/>" );
 			  StringWriter to = new StringWriter() ) {
-			Assertions.assertThrows( ConfigRuntimeException.class,
+			assertThrows( ConfigRuntimeException.class,
 					() -> DocFacadeSource.getInstance().convert( from, DocFacadeSource.SOURCE_TYPE_XML, to, DocFacadeSource.SOURCE_TYPE_YAML ) );
 		}
 	}
 
 	@Test
 	void testDocConvertNotFound() {
-		Assertions.assertThrows( ConfigRuntimeException.class,
+		assertThrows( ConfigRuntimeException.class,
 				() -> DocFacadeSource.findDocConvert( DocFacadeSource.SOURCE_TYPE_XML, Integer.MAX_VALUE ) );
 	}
 
