@@ -163,6 +163,9 @@
     "name" : "getInfoDocLanguage",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getInfoDocProducer",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getInfoDocSubject",
     "parameterTypes" : [ ]
   }, {
@@ -3051,6 +3054,51 @@
   }, {
     "name" : "initDocAsync",
     "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocTypeHandler" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.base.config.VenusVersion",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFjDocCoreVersion",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFjDocCoreVersionS",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFjDocModuleVersion",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "getFjDocModuleVersionS",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
   }, {
     "name" : "notify",
     "parameterTypes" : [ ]

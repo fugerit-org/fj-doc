@@ -50,6 +50,13 @@ public class GenericConsts {
 	 * @since 1.0
 	 */
 	public static final String INFO_KEY_DOC_CREATOR = "doc-creator";
+
+    /**
+     * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-producer">See 'doc-producer' documentation</a>
+     *
+     * @since 1.0
+     */
+    public static final String INFO_KEY_DOC_PRODUCER = "doc-producer";
 	
 	/**
 	 * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#doc-language">See 'doc-language' documentation</a>

@@ -11,6 +11,8 @@ For instance in this document we set following _info_ elements :
 * doc-title
 * doc-author
 * doc-language
+* doc-creator
+* doc-producer
 
 Some DocHandler will ignore some info elements.
 
