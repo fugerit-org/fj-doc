@@ -41,6 +41,8 @@ public class VenusContext {
 
     public static final String VERSION_NA_FREEMARKER_NATIVE = "8.11.8";
 
+    public static final String VERSION_NA_CORE_HANDLERS = "8.16.5";
+
     private static final String VENUS_DIRECT_CONFIG_DEFAULT = "venus-direct-config";
 
     @Getter
@@ -161,6 +163,11 @@ public class VenusContext {
         return "DocHelper";
     }
 
+    public boolean isCoreHandlersNotAvailable() {
+        return !VersionCheck.isMajorThan( this.getVersion(), VERSION_NA_CORE_HANDLERS );
+    }
+
+
     public boolean isVerifyPluginNotAvailable() {
         return VersionCheck.isMajorThan( VERSION_NA_VERIFY_PLUGIN, this.getVersion() );
     }
@@ -180,7 +187,7 @@ public class VenusContext {
     private File getAndCreateFolder( File file ) {
         if ( !file.exists() ) {
             boolean result = file.mkdirs();
-            log.info( "folder doesn't exists: {}, mkdirs: ", file.getAbsolutePath(), result );
+            log.info( "folder doesn't exists: {}, mkdirs: {}", file.getAbsolutePath(), result );
         }
         return file;
     }

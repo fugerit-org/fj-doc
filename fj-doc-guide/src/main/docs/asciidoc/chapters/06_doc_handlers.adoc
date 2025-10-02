@@ -119,3 +119,60 @@ Each section describing a specific doc handler will contain this quick reference
 - *compliance level* : _COMPLETE_, _HIGH_, _MEDIUM_, _LOW_, The level of support to xref:#doc-format-entry-point[Venus Doc Format].
 - *compliance detail* : The limitations to the support of the xref:#doc-format-entry-point[Venus Doc Format] (for instance : unsupported elements or attributes).
 - *native ready* : _YES_, _NO_ (If the doc handler is ready for native compilation with link:https://www.graalvm.org/[GraalVM]).
+
+=== Core Type Handlers
+
+Additionally some type handlers for source formats (i.e. XML, JSON) are available.
+
+They differ from other type handlers as they only handle the xref:#doc-format-entry-point[Doc Source Format] and converting it from one source type (i.e. XML) to another source type (i.e. JSON).
+
+[cols="4,2,1,3,3", options="header"]
+|========================================================================================================================================
+
+| doc-handler
+| module
+| type
+| description
+| notes
+
+| org.fugerit.java.doc.base.typehandler.core.&#8203;DocTypeHandlerCoreXML
+| fj-doc-base
+| XML
+| Renders a XML document in the XML Doc Source Format
+| native ready (1)
+
+| org.fugerit.java.doc.base.typehandler.core.&#8203;DocTypeHandlerCoreXMLUTF8
+| fj-doc-base
+| XML
+| Renders a XML document in the XML Doc Source Format
+| native ready (1)
+
+| org.fugerit.java.doc.json.typehandler.&#8203;DocTypeHandlerCoreJSON
+| fj-doc-base-json
+| JSON
+| Renders a JSON document in the JSON Doc Source Format
+| native ready (1)
+
+| org.fugerit.java.doc.json.typehandler.&#8203;DocTypeHandlerCoreJSONUTF8
+| fj-doc-base-json
+| JSON
+| Renders a JSON document in the JSON Doc Source Format
+| native ready (1)
+
+| org.fugerit.java.doc.json.typehandler.&#8203;DocTypeHandlerCoreYAML
+| fj-doc-base-json
+| YAML
+| Renders a YAML document in the YAML Doc Source Format
+| native ready (1)
+
+| org.fugerit.java.doc.json.typehandler.&#8203;DocTypeHandlerCoreYAMLUTF8
+| fj-doc-base-json
+| YAML
+| Renders a YAML document in the YAML Doc Source Format
+| native ready (1)
+
+| org.fugerit.java.doc.base.typehandler.core.&#8203;DocTypeHandlerCoreSource
+| fj-doc-base
+| txt
+| Just output the current source with no modification.
+| native ready (1)

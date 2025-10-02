@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- type handlers for XML (DocTypeHandlerCoreXML and DocTypeHandlerCoreXMLUTF8)
+- type handlers for JSON (DocTypeHandlerCoreJSON and DocTypeHandlerCoreJSONUTF8)
+- - type handlers for JSON (DocTypeHandlerCoreYAML and DocTypeHandlerCoreYAMLUTF8)
+
 ## [8.16.5] - 2025-09-29
 
 ### Changed

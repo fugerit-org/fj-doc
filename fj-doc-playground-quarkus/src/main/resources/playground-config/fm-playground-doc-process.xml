@@ -62,7 +62,7 @@
 		  </docHandlerCustomConfig>
 		</docHandler>
 		<docHandler id="md" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8" />
-		<docHandler id="xml" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+		<docHandler id="xml" info="xml" type="org.fugerit.java.doc.base.typehandler.core.DocTypeHandlerCoreXMLUTF8UTF8" />
 		<docHandler id="xls" info="xls" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
 		<docHandler id="xlsx" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />			
 		<docHandler id="fo" info="fo" type="org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8" />
