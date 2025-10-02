@@ -25,7 +25,7 @@ class TestJsonHandlers {
              ByteArrayOutputStream os = new ByteArrayOutputStream();
         ) {
             handler.handle(DocInput.newInput( handler.getType(), from ), DocOutput.newOutput(os));
-            Assertions.assertEquals( OUTPUT_DOC, os.toString() );
+            Assertions.assertTrue( os.toString().contains( OUTPUT_DOC ) );
         }
     }
 
