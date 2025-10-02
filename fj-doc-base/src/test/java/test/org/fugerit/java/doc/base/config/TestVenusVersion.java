@@ -9,8 +9,7 @@ class TestVenusVersion {
     @Test
     void testVersion() {
         Assertions.assertNotNull( VenusVersion.getFjDocCoreVersionS() );
-        Assertions.assertNotNull( VenusVersion.getFjDocCoreVersionS() );
-        Assertions.assertNotNull( VenusVersion.getFjDocModuleVersion( "fj-doc-base" ) );
+        Assertions.assertNotNull( VenusVersion.getFjDocModuleVersionS( "fj-doc-base" ) );
     }
 
 }
