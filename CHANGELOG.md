@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.16.6] - 2025-10-02
+
 ### Added
 
 - type handlers for XML (DocTypeHandlerCoreXML and DocTypeHandlerCoreXMLUTF8)
@@ -15,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- no native metadata for fj-doc-base-json and fj-doc-base-yaml <https://github.com/fugerit-org/fj-doc/issues/521>
 - org.fugerit.java.doc.base.config.DocTypeHandlerXML renders the source document in the source format (i.e. JSON or YAML) <https://github.com/fugerit-org/fj-doc/issues/519>
 
 ## [8.16.5] - 2025-09-29
