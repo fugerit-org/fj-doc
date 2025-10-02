@@ -22,13 +22,10 @@ import org.fugerit.java.core.function.UnsafeSupplier;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.core.util.mvn.MavenProps;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
-import org.fugerit.java.doc.base.config.DocCharsetProvider;
-import org.fugerit.java.doc.base.config.DocConfig;
-import org.fugerit.java.doc.base.config.DocInput;
-import org.fugerit.java.doc.base.config.DocOutput;
-import org.fugerit.java.doc.base.config.DocTypeHandler;
+import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -121,6 +118,16 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	private transient UnsafeConsumer<FopConfigWrap, ConfigException> fopWrapConsumer;
 
+	private static String getModuleVersion() {
+		return VenusVersion.getFjDocModuleVersionS( "fj-doc-mod-fop");
+	}
+
+	private static String getApacheFOPVersion() {
+		return MavenProps.getProperty( "org.apache.xmlgraphics", "fop", MavenProps.VERSION );
+	}
+
+	private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , "Apache FOP", getApacheFOPVersion() );
+
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
 		this.fopConfig = fopConfig;
@@ -172,6 +179,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
+		foUserAgent.setProducer( PRODUCER_DEFAULT );
+		foUserAgent.setCreator( VenusVersion.VENUS_CREATOR );
 		return new FopConfigWrap( fopFactory, foUserAgent );
 	}
 

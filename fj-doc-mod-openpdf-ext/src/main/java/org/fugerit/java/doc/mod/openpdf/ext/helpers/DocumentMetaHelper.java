@@ -13,15 +13,15 @@ public class DocumentMetaHelper {
 
     private DocumentMetaHelper() {}
 
-    public static String getModuleVersion() {
+    private static String getModuleVersion() {
         return VenusVersion.getFjDocModuleVersionS( "fj-doc-mod-openpdf-ext");
     }
 
-    public static String getOpenPDFVersion() {
+    private static String getOpenPDFVersion() {
         return MavenProps.getProperty( "com.github.librepdf", "openpdf", MavenProps.VERSION );
     }
 
-    public static final String PRODUCER_DEFAULT = String.format( "%s (%s) over %s (%s)", DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , Document.getProduct(), getOpenPDFVersion() );
+    private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , Document.getProduct(), getOpenPDFVersion() );
 
     private static void metaWorker(String property, UnsafeConsumer<String, Exception> fun ) {
         SafeFunction.applyIfNotNull( property, () -> fun.accept( property ) );

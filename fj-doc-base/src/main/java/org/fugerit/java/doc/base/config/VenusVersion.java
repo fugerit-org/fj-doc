@@ -15,6 +15,8 @@ public class VenusVersion {
 
     public static final String VENUS_CREATOR = String.format( "%s (https://github.com/fugerit-org/fj-doc)", DocConfig.FUGERIT_VENUS_DOC );
 
+    public static final String VENUS_PRODUCER_FORMAT = "%s (%s) over %s (%s)";
+
     public static Optional<String> getFjDocCoreVersion() {
         return getFjDocModuleVersion( FJ_DOC_BASE_ARTIFACT_ID );
     }
