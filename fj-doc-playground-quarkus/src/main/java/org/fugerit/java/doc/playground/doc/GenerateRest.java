@@ -49,9 +49,9 @@ public class GenerateRest {
                 output.setDocOutputBase64(Base64.getEncoder().encodeToString(data));
                 output.setGenerationTime(CheckpointUtils.formatTimeDiffMillis(time, System.currentTimeMillis()));
             } catch (DocFeatureRuntimeException e) {
-                this.setOutputMessage( output, e, e.getMessages() );
+                this.setOutputMessage(output, e, e.getMessages());
             } catch (Exception e) {
-                this.setOutputMessage( output, e, null );
+                this.setOutputMessage(output, e, null);
             }
             return Response.ok().entity(output).build();
         });
