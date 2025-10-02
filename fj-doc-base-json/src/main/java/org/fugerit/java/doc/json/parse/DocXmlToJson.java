@@ -18,7 +18,7 @@ public class DocXmlToJson implements DocConvert {
 	private XmlToJsonHandler handler;
 	
 	public DocXmlToJson() {
-		this( new ObjectMapper() );
+		this( JsonConstants.getDefaultMapper() );
 	}
 	
 	public DocXmlToJson(ObjectMapper mapper) {

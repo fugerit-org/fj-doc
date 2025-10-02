@@ -18,10 +18,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DocJsonToXml implements DocConvert {
 	
-	private XmlToJsonHandler handler;
+	private final XmlToJsonHandler handler;
 	
 	public DocJsonToXml() {
-		this( new ObjectMapper() );
+		this( JsonConstants.getDefaultMapper() );
 	}
 	
 	public DocJsonToXml(ObjectMapper mapper) {
