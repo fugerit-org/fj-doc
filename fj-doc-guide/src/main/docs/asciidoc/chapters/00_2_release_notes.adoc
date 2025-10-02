@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+- fixed org.fugerit.java.doc.base.config.DocTypeHandlerXML renders the source document in the source format (i.e. JSON or YAML) link:https://github.com/fugerit-org/fj-doc/issues/519[#519]
+- added core type handlers for XML, JSON and YAML formats link:https://github.com/fugerit-org/fj-doc/issues/519[#519]
+
 [#doc-release-notes-8-16-5]
 ==== Version 8.16.5 [2025-09-29]
 
