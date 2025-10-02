@@ -8,7 +8,7 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 public class DocYamlToXml extends DocJsonToXml {
 
 	public DocYamlToXml() {
-		super( new ObjectMapper( new YAMLFactory() ) );
+		super( YamlConstants.getDefaultMapper() );
 	}
 
 	public DocYamlToXml(ObjectMapper mapper) {

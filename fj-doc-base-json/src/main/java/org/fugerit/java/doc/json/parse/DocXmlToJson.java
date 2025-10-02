@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class DocXmlToJson implements DocConvert {
 	
-	private XmlToJsonHandler handler;
+	private final XmlToJsonHandler handler;
 	
 	public DocXmlToJson() {
 		this( JsonConstants.getDefaultMapper() );

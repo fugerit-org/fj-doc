@@ -4,8 +4,6 @@ import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.json.parse.DocJsonParser;
 import org.fugerit.java.xml2json.XmlToJsonHandler;
 
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
-
 public class DocYamlParser extends DocJsonParser {
 	
 	public DocYamlParser( XmlToJsonHandler handler ) {
@@ -13,7 +11,7 @@ public class DocYamlParser extends DocJsonParser {
 	}
 	
 	public DocYamlParser() {
-		this( new XmlToJsonHandler( new YAMLMapper() ) );
+		this( new XmlToJsonHandler( YamlConstants.getDefaultMapper() ) );
 	}
 
 }
