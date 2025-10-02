@@ -72,7 +72,18 @@
       <admeta:supportedType>pdf</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+        <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+      <admeta:admMetaInfo>
+          <admeta:name>doc-producer</admeta:name>
+          <admeta:description>Set the document producer tool (es. Venus Doc), should be usually supported in document formats like html or pdf</admeta:description>
+          <admeta:since>8.16.7</admeta:since>
+          <admeta:supportedType>html</admeta:supportedType>
+          <admeta:supportedType>pdf</admeta:supportedType>
+          <admeta:supportedHandler>fj-doc-freemarker(html)</admeta:supportedHandler>
+          <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+          <admeta:supportedHandler>fj-doc-mod-openpdf-ext(pdf)</admeta:supportedHandler>
+      </admeta:admMetaInfo>
     <admeta:admMetaInfo>
       <admeta:name>doc-language</admeta:name>
       <admeta:description>Set the document language, should be usually supported in document formats like html or pdf</admeta:description>

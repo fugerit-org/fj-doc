@@ -38,6 +38,7 @@ class TestDocBase {
 		log.info( "info 8 : {}", docBase.isUseFooter() );
 		log.info( "info 9 : {}", docBase.isUseHeader() );
 		log.info( "info 10 : {}", docBase.getInfoDocCreator() );
+        log.info( "info 11 : {}", docBase.getInfoDocProducer() );
 		docBase.setDocHeader( new DocHeader() );
 		docBase.setDocFooter( new DocFooter() );
 		log.info( "info 8 : {}", docBase.isUseFooter() );

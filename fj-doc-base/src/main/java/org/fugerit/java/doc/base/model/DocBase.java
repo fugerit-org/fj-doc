@@ -163,6 +163,10 @@ public class DocBase extends DocElement implements Serializable {
 		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_CREATOR );
 	}
 
+    public String getInfoDocProducer() {
+        return this.getStableInfo().getProperty( DocInfo.INFO_DOC_PRODUCER );
+    }
+
 	public String getInfoDocLanguage() {
 		return this.getStableInfo().getProperty( DocInfo.INFO_DOC_LANGUAGE );
 	}

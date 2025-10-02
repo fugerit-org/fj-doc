@@ -61,6 +61,11 @@ public class DocInfo extends DocElement {
 	 * See {@link GenericConsts#INFO_KEY_DOC_CREATOR}.
 	 */
 	public static final String INFO_DOC_CREATOR = GenericConsts.INFO_KEY_DOC_CREATOR;
+
+    /**
+     * See {@link GenericConsts#INFO_KEY_DOC_PRODUCER}.
+     */
+    public static final String INFO_DOC_PRODUCER = GenericConsts.INFO_KEY_DOC_PRODUCER;
 	
 	/**
 	 * See {@link GenericConsts#INFO_KEY_DOC_LANGUAGE}.
