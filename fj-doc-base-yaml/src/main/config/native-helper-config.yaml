@@ -1,0 +1,9 @@
+#Sample native helper config file
+---
+generate:
+  - packageName: org.fugerit.java.doc.yaml.typehandler
+    mode: all
+    typeReachable: org.fugerit.java.doc.base.facade.DocFacadeSource
+  - packageName: org.fugerit.java.doc.yaml.parse
+    mode: all
+    typeReachable: org.fugerit.java.doc.base.facade.DocFacadeSource
