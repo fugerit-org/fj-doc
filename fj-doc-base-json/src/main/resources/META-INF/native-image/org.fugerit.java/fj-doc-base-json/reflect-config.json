@@ -1,0 +1,508 @@
+[ {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.typehandler.DocTypeHandlerCoreJSON",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.nio.charset.Charset" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.typehandler.DocTypeHandlerCoreJSONUTF8",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "unwrap",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.DocJsonFacade",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.DocJsonParser",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.xml2json.XmlToJsonHandler" ]
+  }, {
+    "name" : "checkVersion",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFeatureConfig",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSourceType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "setFeatureConfig",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.feature.FeatureConfig" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "validate",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersion",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "validateVersionResult",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.DocJsonToXml",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "com.fasterxml.jackson.databind.ObjectMapper" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.xml2json.XmlToJsonHandler" ]
+  }, {
+    "name" : "convert",
+    "parameterTypes" : [ "com.fasterxml.jackson.databind.JsonNode" ]
+  }, {
+    "name" : "convert",
+    "parameterTypes" : [ "java.io.Reader", "java.io.Writer" ]
+  }, {
+    "name" : "convertToElement",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  }, {
+    "name" : "writerAsXml",
+    "parameterTypes" : [ "java.io.Reader", "java.io.Writer" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.DocObjectMapperConstants",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.DocObjectMapperHelper",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "com.fasterxml.jackson.databind.ObjectMapper" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.xml2json.XmlToJsonHandler" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isSpecialProperty",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "parse",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "validateWorkerResult",
+    "parameterTypes" : [ "java.io.Reader", "boolean" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.DocXmlToJson",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "com.fasterxml.jackson.databind.ObjectMapper" ]
+  }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.xml2json.XmlToJsonHandler" ]
+  }, {
+    "name" : "convert",
+    "parameterTypes" : [ "java.io.Reader", "java.io.Writer" ]
+  }, {
+    "name" : "convert",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "convertToJsonNode",
+    "parameterTypes" : [ "java.io.Reader" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.json.parse.JsonConstants",
+  "methods" : [ {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDefaultMapper",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "java.lang.Class",
+  "methods" : [ {
+    "name" : "getCanonicalName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSimpleName",
+    "parameterTypes" : [ ]
+  } ]
+} ]
