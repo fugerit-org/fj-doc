@@ -13,9 +13,15 @@ public class DocConfig {
     public static final String FUGERIT_VENUS_DOC = "Venus Fugerit Doc";
 
 	public static final String VERSION = " FUGERIT DOC Version 2.1 (2023-08-19) ";
-	
+
+	public static final String TYPE_TXT = "txt";
+
 	public static final String TYPE_XML = "xml";
-	
+
+	public static final String TYPE_JSON = "json";
+
+	public static final String TYPE_YAML = "yaml";
+
 	public static final String TYPE_PDF = "pdf";
 	public static final String FORMAT_PDF_A_1A = "PDF/A-1a";
 	public static final String FORMAT_PDF_A_1B = "PDF/A-1b";

@@ -193,6 +193,32 @@ const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
 					value={decodedStringAtoB}
 					width='100%'
 				/>
+            } else if ( docFormat === 'JSON' ) {
+                let decodedStringAtoB = myAtob(docOutput);
+                outputData = <AceEditor
+                    mode='json'
+                    theme="xcode"
+                    name="DOC_JSON_OUTPUT"
+                    editorProps={{ $blockScrolling: true }}
+                    enableBasicAutocompletion={true}
+                    enableLiveAutocompletion={true}
+                    enableSnippets={true}
+                    value={decodedStringAtoB}
+                    width='100%'
+                />
+            } else if ( docFormat === 'YAML' ) {
+                let decodedStringAtoB = myAtob(docOutput);
+                outputData = <AceEditor
+                    mode='yaml'
+                    theme="xcode"
+                    name="DOC_YAML_OUTPUT"
+                    editorProps={{ $blockScrolling: true }}
+                    enableBasicAutocompletion={true}
+                    enableLiveAutocompletion={true}
+                    enableSnippets={true}
+                    value={decodedStringAtoB}
+                    width='100%'
+                />
 			} else if ( docFormat === 'CSV' ) {
 				let decodedStringAtoB = myAtob(docOutput);
 				outputData = <AceEditor
@@ -278,6 +304,8 @@ const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
 							<MenuItem value='XLSX'>XLSX</MenuItem>
 							<MenuItem value='MD'>Markdown (MD)</MenuItem>
 							<MenuItem value='XML'>Venus XML Doc</MenuItem>
+                            <MenuItem value='JSON'>Venus JSON Doc</MenuItem>
+                            <MenuItem value='YAML'>Venus YAML Doc</MenuItem>
 							<MenuItem value='FO'>XSL-FO</MenuItem>
 							<MenuItem value='CSV'>CSV</MenuItem>
 							<MenuItem value='OPENPDF'>PDF (openpdf)</MenuItem>

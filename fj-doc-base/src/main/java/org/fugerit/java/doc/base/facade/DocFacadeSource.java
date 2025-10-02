@@ -2,6 +2,7 @@ package org.fugerit.java.doc.base.facade;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.Writer;
 import java.util.Properties;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
@@ -12,6 +13,7 @@ import org.fugerit.java.doc.base.config.DocException;
 import org.fugerit.java.doc.base.feature.DocFeatureRuntimeException;
 import org.fugerit.java.doc.base.feature.FeatureConfig;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.parser.DocConvert;
 import org.fugerit.java.doc.base.parser.DocParser;
 import org.fugerit.java.doc.base.xml.DocXMLUtils;
 import org.slf4j.Logger;
@@ -70,6 +72,23 @@ public class DocFacadeSource {
 		PARSERS.setProperty( String.valueOf( SOURCE_TYPE_JSON_NG ) , TYPE_SOURCE_JSON_NG );
 		PARSERS.setProperty( String.valueOf( SOURCE_TYPE_KOTLIN ) , TYPE_SOURCE_KOTLIN );
 	}
+
+	private static String toConvertStringKey( int fromSourceType, int toSourceType ) {
+		return String.format( "%s_to_%s", fromSourceType, toSourceType );
+	}
+
+	private static final Properties CONVERTERS = new Properties();
+	static {
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_XML, DocFacadeSource.SOURCE_TYPE_JSON ) ) , "org.fugerit.java.doc.json.parse.DocXmlToJson" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_XML, DocFacadeSource.SOURCE_TYPE_YAML ) ) , "org.fugerit.java.doc.yaml.parse.DocXmlToYaml" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_XML ) ) , "org.fugerit.java.doc.json.parse.DocJsonToXml" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_YAML ) ) , "org.fugerit.java.doc.yaml.parse.DocJsonToYaml" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_XML ) ) , "org.fugerit.java.doc.yaml.parse.DocYamlToXml" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_JSON ) ) , "org.fugerit.java.doc.yaml.parse.DocYamlToJson" );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_XML, DocFacadeSource.SOURCE_TYPE_XML ) ) , ReflectiveDocConvert.class.getName() );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_JSON, DocFacadeSource.SOURCE_TYPE_JSON ) ) , ReflectiveDocConvert.class.getName() );
+		CONVERTERS.setProperty( String.format( toConvertStringKey( DocFacadeSource.SOURCE_TYPE_YAML, DocFacadeSource.SOURCE_TYPE_YAML ) ) , ReflectiveDocConvert.class.getName() );
+	}
 	
 	public DocParser getParserForSource( int sourceType ) {
 		DocParser parser = null;
@@ -122,6 +141,26 @@ public class DocFacadeSource {
 			docBase = parser.parse(reader);
 		}
 		return docBase;
+	}
+
+	public static DocConvert findDocConvert( int fromSourceType, int toSourceType ) {
+		String docConvertType = CONVERTERS.getProperty( toConvertStringKey( fromSourceType, toSourceType ) );
+		if ( docConvertType == null ) {
+			throw new ConfigRuntimeException( String.format( "Converter from %s to %s not found.", fromSourceType, toSourceType ) );
+		} else {
+			logger.debug( "doc convert found : {}", docConvertType );
+			return SafeFunction.get( () -> (DocConvert)ClassHelper.newInstance( docConvertType ) );
+		}
+	}
+
+	public void convert(Reader from, int fromSourceType, Writer to, int toSourceType ) {
+		if ( isSourceSupported( fromSourceType ) && isSourceSupported( toSourceType ) ) {
+			SafeFunction.apply( () -> findDocConvert( fromSourceType, toSourceType ).convert( from, to ) );
+		} else if ( isSourceSupported( fromSourceType ) ) {
+			throw new ConfigRuntimeException( String.format( "Unsupported from source type: %s", toSourceType ) );
+		} else {
+			throw new ConfigRuntimeException( String.format( "Unsupported to source type: %s", fromSourceType ) );
+		}
 	}
 
 	public static Reader cleanSource( Reader source, int sourceType ) {

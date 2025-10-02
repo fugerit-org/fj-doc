@@ -1,9 +1,11 @@
 package org.fugerit.java.doc.json.parse;
 
 import java.io.Reader;
+import java.io.Writer;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.xml.dom.DOMIO;
+import org.fugerit.java.doc.base.parser.DocConvert;
 import org.fugerit.java.xml2json.XmlToJsonHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -11,12 +13,12 @@ import org.w3c.dom.Element;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class DocXmlToJson {
+public class DocXmlToJson implements DocConvert {
 	
-	private XmlToJsonHandler hanlder;
+	private final XmlToJsonHandler handler;
 	
 	public DocXmlToJson() {
-		this( new ObjectMapper() );
+		this( JsonConstants.getDefaultMapper() );
 	}
 	
 	public DocXmlToJson(ObjectMapper mapper) {
@@ -25,7 +27,7 @@ public class DocXmlToJson {
 	
 	public DocXmlToJson(XmlToJsonHandler handler) {
 		super();
-		this.hanlder = handler;
+		this.handler = handler;
 	}
 	
 	public JsonNode convertToJsonNode( Reader xml ) throws ConfigException {
@@ -37,7 +39,11 @@ public class DocXmlToJson {
 	}
 	
 	public JsonNode convert( Element root ) throws ConfigException {
-		return ConfigException.get( () -> this.hanlder.convert( root ) );
+		return ConfigException.get( () -> this.handler.convert( root ) );
 	}
-	
+
+	@Override
+	public void convert(Reader from, Writer to) throws ConfigException {
+		ConfigException.apply( () -> this.handler.getMapper().writerWithDefaultPrettyPrinter().writeValue( to, this.convertToJsonNode( from ) ) );
+	}
 }

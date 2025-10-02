@@ -46,7 +46,7 @@ class TestDocJsonToXml {
 			try ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( "sample/doc_test_01.json" ) );
 					StringWriter writer = new StringWriter() ) {
 				DocJsonToXml converter = new DocJsonToXml();
-				converter.writerAsXml(reader, writer);
+				converter.convert(reader, writer);
 				return writer.toString();
 			}
 		} ) );

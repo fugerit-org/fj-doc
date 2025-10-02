@@ -6,6 +6,11 @@ import java.nio.charset.StandardCharsets;
 
 import org.fugerit.java.core.io.StreamIO;
 
+/**
+ * This type handler will be substituted by DocTypeHandlerCoreSource.
+ *
+ * @see org.fugerit.java.doc.base.typehandler.core.DocTypeHandlerCoreSource
+ */
 public class DocTypeHandlerXML extends DocTypeHandlerDefault {
 
 	/**

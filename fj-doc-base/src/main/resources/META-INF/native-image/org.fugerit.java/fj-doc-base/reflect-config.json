@@ -3137,6 +3137,15 @@
   "condition" : {
     "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
   },
+  "name" : "org.fugerit.java.doc.base.parser.DocConvert",
+  "methods" : [ {
+    "name" : "convert",
+    "parameterTypes" : [ "java.io.Reader", "java.io.Writer" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
   "name" : "org.fugerit.java.doc.base.parser.DocEvalWithDataModel",
   "methods" : [ {
     "name" : "evalWithDataModel",

@@ -8,6 +8,7 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocVersion;
 import org.fugerit.java.doc.base.facade.DocFacade;
+import org.fugerit.java.doc.base.parser.DocConvert;
 import org.fugerit.java.doc.base.parser.DocParserContext;
 import org.fugerit.java.xml2json.XmlToJsonHandler;
 import org.w3c.dom.Element;
@@ -15,12 +16,12 @@ import org.w3c.dom.Element;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class DocJsonToXml {
+public class DocJsonToXml implements DocConvert {
 	
-	private XmlToJsonHandler handler;
+	private final XmlToJsonHandler handler;
 	
 	public DocJsonToXml() {
-		this( new ObjectMapper() );
+		this( JsonConstants.getDefaultMapper() );
 	}
 	
 	public DocJsonToXml(ObjectMapper mapper) {
@@ -71,5 +72,10 @@ public class DocJsonToXml {
 		this.setIfNotFound(root, ATT_XSD_LOC, DocParserContext.createXsdVersionXmlns( xsdVersion ));
 		return root;
 	}
-	
+
+	@Override
+	public void convert(Reader from, Writer to) throws ConfigException {
+		this.writerAsXml(from, to);
+	}
+
 }

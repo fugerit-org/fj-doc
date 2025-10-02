@@ -68,7 +68,7 @@ xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit
 		<!-- Type handler for markdown format -->
 		<docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
 		<!-- Type henalder for xml format, generates the source xml:doc -->
-		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+		<docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.typehandler.core.DocTypeHandlerCoreXMLUTF8" />
 
 		<!-- Type handlers for html using freemarker -->
 		<docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />

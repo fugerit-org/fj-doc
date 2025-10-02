@@ -15,10 +15,24 @@
     -->
 
     <docHandlerConfig registerById="true">
+
         <!-- Type handler for markdown format -->
         <docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
-        <!-- Type henalder for xml format, generates the source xml:doc -->
+        <#if context.coreHandlersNotAvailable>
+        <!-- Type handler for xml format, generates the source xml:doc -->
         <docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
+        <#else>
+        <!-- Type handler for xml format, generates the source xml:doc -->
+        <docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.typehandler.core.DocTypeHandlerCoreXMLUTF8" />
+        <#if context.modules?seq_contains("fj-doc-base-json")>
+        <!-- Type handler for JSON format, generates the source json:doc -->
+        <docHandler id="json-doc" info="json" type="org.fugerit.java.doc.json.typehandler.DocTypeHandlerCoreJSONUTF8" />
+        </#if>
+        <#if context.modules?seq_contains("fj-doc-base-yaml")>
+        <!-- Type handler for YAML format, generates the source json:doc -->
+        <docHandler id="yaml-doc" info="yaml" type="org.fugerit.java.doc.yaml.typehandler.DocTypeHandlerCoreYAMLUTF8" />
+        </#if>
+        </#if>
         <!-- Type handler for html using freemarker -->
         <docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />
         <!-- Type handler for html using freemarker (fragment version, only generates body content no html or head part -->
