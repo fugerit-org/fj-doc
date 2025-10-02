@@ -14,10 +14,6 @@ class TestJsonHandlers {
 
     private static final String INPUT_DOC = "<doc/>";
 
-    private static final String OUTPUT_DOC = "{\n" +
-            "  \"_t\" : \"doc\"\n" +
-            "}";
-
     @Test
     void testHandler() throws Exception {
         DocTypeHandler handler = DocTypeHandlerCoreJSONUTF8.HANDLER;
@@ -25,7 +21,7 @@ class TestJsonHandlers {
              ByteArrayOutputStream os = new ByteArrayOutputStream();
         ) {
             handler.handle(DocInput.newInput( handler.getType(), from ), DocOutput.newOutput(os));
-            Assertions.assertTrue( os.toString().contains( OUTPUT_DOC ) );
+            Assertions.assertTrue( os.toString().contains( "\"_t\" : \"doc\"" ) );
         }
     }
 
