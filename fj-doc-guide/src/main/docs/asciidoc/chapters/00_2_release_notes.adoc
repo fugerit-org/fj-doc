@@ -6,6 +6,11 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-16-7]
+==== Version 8.16.7 [2025-10-03]
+
+- Added info 'doc-producer' link:https://github.com/fugerit-org/fj-doc/issues/519[#519]
+
 [#doc-release-notes-8-16-6]
 ==== Version 8.16.6 [2025-10-02]
 

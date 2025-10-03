@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.16.7] - 2025-10-03
+
 ### Added
 
 - info 'doc-producer' <https://github.com/fugerit-org/fj-doc/issues/523>
