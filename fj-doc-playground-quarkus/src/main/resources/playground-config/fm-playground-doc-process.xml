@@ -61,6 +61,50 @@
 				</fop>
 		  </docHandlerCustomConfig>
 		</docHandler>
+        <docHandler id="pdfua" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline" pdf-ua-mode="PDF/UA-1">
+                <fop version="1.0">
+                    <!-- Strict user configuration -->
+                    <strict-configuration>true</strict-configuration>
+                    <!-- Strict FO validation -->
+                    <strict-validation>true</strict-validation>
+                    <!-- Base URL for resolving relative URLs -->
+                    <base>.</base>
+                    <!-- Font Base URL for resolving relative font URLs -->
+                    <font-base>.</font-base>
+                    <accessibility>
+                        <pdf-ua-mode>true</pdf-ua-mode>
+                    </accessibility>
+                    <renderers>
+                        <renderer mime="application/pdf">
+                            <!-- using recent PDF specs for better accessibility compliance -->
+                            <version>1.7</version>
+                            <fonts>
+                                <font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">
+                                    <font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
+                                </font>
+                                <font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
+                                    <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
+                                </font>
+                                <font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="full">
+                                    <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
+                                </font>
+                                <font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="full">
+                                    <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
+                                </font>
+                            </fonts>
+                        </renderer>
+                    </renderers>
+                    <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+                    <source-resolution>72</source-resolution>
+                    <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+                    <target-resolution>72</target-resolution>
+                    <!-- default page-height and page-width, in case
+                         value is specified as auto -->
+                    <default-page-settings height="11in" width="8.26in"/>
+                </fop>
+            </docHandlerCustomConfig>
+        </docHandler>
 		<docHandler id="md" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandlerNoCommentsUTF8" />
 		<docHandler id="xml" info="xml" type="org.fugerit.java.doc.base.typehandler.core.DocTypeHandlerCoreXMLUTF8" />
         <docHandler id="json" info="json" type="org.fugerit.java.doc.json.typehandler.DocTypeHandlerCoreJSONUTF8" />
