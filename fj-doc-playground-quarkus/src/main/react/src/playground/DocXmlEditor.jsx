@@ -168,7 +168,7 @@ const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
 			if ( docFormat === 'HTML' ) {
 				let decodedStringAtoB = atob(docOutput);
 				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(decodedStringAtoB) }}></div>
-			}  else if ( docFormat === 'PDF' || docFormat === 'PDFA' || docFormat === 'OPENPDF' ) {
+			}  else if ( docFormat === 'PDF' || docFormat === 'PDFA' || docFormat === 'PDFUA' || docFormat === 'OPENPDF' ) {
 				let srcData = 'data:application/pdf;base64,'+ docOutput;
 				outputData = <embed width="100%" height="600" src={srcData}/>
 			}  else if ( docFormat === 'XLSX' ) {
@@ -301,6 +301,7 @@ const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
 							<MenuItem value='HTML'>HTML</MenuItem>
 							<MenuItem value='PDF'>PDF (fop)</MenuItem>
 							<MenuItem value='PDFA'>PDF/A (fop)</MenuItem>
+                            <MenuItem value='PDFUA'>PDF/UA-1 (fop)</MenuItem>
 							<MenuItem value='XLSX'>XLSX</MenuItem>
 							<MenuItem value='MD'>Markdown (MD)</MenuItem>
 							<MenuItem value='XML'>Venus XML Doc</MenuItem>

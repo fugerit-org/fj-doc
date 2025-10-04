@@ -37,6 +37,7 @@
 			 description="Sample fugerit kotlin document 1 with params"/>
 		<doc id="kts-02" type="kts" path="playground/sample-2.kts" jsonDataPath="playground/data/kotlin.json"
 			 description="Sample fugerit kotlin document 2 with no params"/>
+        <doc id="pdf-accessibility" type="xml" path="playground/pdf-accessibility.xml" description="Accessibility example with PDF/UA-1 profile active"/>
 	</catalog>
 
 </doc-catalog>
