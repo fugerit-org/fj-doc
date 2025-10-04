@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-playground-quarkus PDF/UA-1 rendering option' <https://github.com/fugerit-org/fj-doc/issues/527>
+
 ### Changed
 
 - quarkus-version set to 3.28.2 across all the modules <https://github.com/fugerit-org/fj-doc/issues/525>
