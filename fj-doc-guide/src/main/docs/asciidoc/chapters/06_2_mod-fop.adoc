@@ -75,6 +75,7 @@ NOTE: If *pdf-a-mode* is set, there will be a strict validation of the PDF (i.e.
 TIP: Setting accessibility to 'false' will produce a smaller but less accessible PDF.
 
 [#doc-handler-mod-fop-pdf-config-pdf-a]
+
 ==== PDF/A DocHandler
 
 See also link:https://xmlgraphics.apache.org/fop/2.10/pdfa.html[Apache FOP PDF/A].
