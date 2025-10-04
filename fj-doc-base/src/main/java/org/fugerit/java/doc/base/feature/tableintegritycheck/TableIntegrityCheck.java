@@ -11,14 +11,14 @@ import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
+import java.util.function.ToIntFunction;
 
 @Slf4j
 public class TableIntegrityCheck {
 
     private TableIntegrityCheck() {}
 
-    private static final Map<String, Function<DocTable, Integer>> DOC_FUNCTION_MAP = new HashMap<>();
+    private static final Map<String, ToIntFunction<DocTable>> DOC_FUNCTION_MAP = new HashMap<>();
     static {
         DOC_FUNCTION_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_DISABLED, doc -> Result.RESULT_CODE_OK );
         DOC_FUNCTION_MAP.put(TableIntegrityCheckConstants.TABLE_INTEGRITY_CHECK_WARN, doc -> checkWorker( doc, result -> {}).getResultCode() );
@@ -94,8 +94,8 @@ public class TableIntegrityCheck {
         String tableCheckIntegrityInfo = StringUtils.valueWithDefault(
                 docBase.getStableInfoSafe().getProperty( GenericConsts.DOC_TABLE_CHECK_INTEGRITY ),
                 featureConfig.getTableCheckIntegrity() );
-        Function<DocTable, Integer> fun =  DOC_FUNCTION_MAP.get( tableCheckIntegrityInfo );
-        return fun.apply( docTable );
+        ToIntFunction<DocTable> fun =  DOC_FUNCTION_MAP.get( tableCheckIntegrityInfo );
+        return fun.applyAsInt( docTable );
     }
 
 }
