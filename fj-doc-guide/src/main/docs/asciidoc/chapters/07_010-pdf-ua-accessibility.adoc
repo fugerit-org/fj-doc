@@ -1,0 +1,88 @@
+
+[#doc-faq-pdf-ua-accessibility]
+=== How do I create a PDF/UA compliant document?
+
+Sometimes you may need to generate a PDF/UA-1 accessibility compliant file.
+
+This is supported through Apache FOP accessibility features to be configured by a FOP config file, for instance :
+
+[source,xml]
+----
+<fop version="1.0">
+
+  <!-- Strict user configuration -->
+  <strict-configuration>true</strict-configuration>
+
+  <!-- Strict FO validation -->
+  <strict-validation>true</strict-validation>
+
+  <!-- Base URL for resolving relative URLs -->
+  <base>.</base>
+
+  <!-- Font Base URL for resolving relative font URLs -->
+  <font-base>.</font-base>
+
+    <accessibility>
+        <pdf-ua-mode>true</pdf-ua-mode>
+    </accessibility>
+
+	<!--
+		NOTE: for PDF/A format all fonts, even the basic ones, myst be fully embdedded.
+		https://xmlgraphics.apache.org/fop/2.8/pdfa.htm
+	-->
+	<renderers>
+	   <renderer mime="application/pdf">
+           <version>1.7</version>
+           <fonts>
+			<font embed-url="classpath://font/TitilliumWeb-Regular.ttf" embedding-mode="full">
+	          <font-triplet name="TitilliumWeb" style="normal" weight="normal"/>
+	        </font>
+			<font embed-url="classpath://font/TitilliumWeb-Bold.ttf" embedding-mode="full">
+	          <font-triplet name="TitilliumWeb" style="normal" weight="bold"/>
+	        </font>
+			<font embed-url="classpath://font/TitilliumWeb-Italic.ttf" embedding-mode="full">
+	          <font-triplet name="TitilliumWeb" style="italic" weight="normal"/>
+	        </font>
+			<font embed-url="classpath://font/TitilliumWeb-BoldItalic.ttf" embedding-mode="full">
+	          <font-triplet name="TitilliumWeb" style="italic" weight="bold"/>
+	        </font>
+		  </fonts>
+	   </renderer>
+	</renderers>
+
+
+  <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+  <source-resolution>72</source-resolution>
+  <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+  <target-resolution>72</target-resolution>
+
+  <!-- default page-height and page-width, in case
+       value is specified as auto -->
+  <default-page-settings height="11in" width="8.26in"/>
+
+</fop>
+----
+
+And the relevant DOC Handler configuration
+
+[source,xml]
+----
+<docHandler id="pdf-fop-pdf-ua" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" fop-suppress-events="1" pdf-ua-mode="PDF/UA-1"
+                            fop-config-mode="classloader" fop-config-classloader-path="venus-sample-pdf-fop-accessibility/fop-config-pdf-ua.xml" />
+</docHandler>
+----
+
+NOTE: To be completely PDF/UA compliant you must take into consideration other requirements.
+For instance a title is mandatory for the document, through link:https://venusdocs.fugerit.org/guide/#doc-format-entry-point-info[info element in metadata] 'doc-title'.
+It is advice to add other metadata like 'doc-language', 'doc-author' and 'doc-subject'.
+
+[source,xml]
+----
+<info name="doc-title">My sample accessibile PDF</info>
+<info name="doc-subject">fj doc venus sample source FreeMarker Template XML - ftlx</info>
+<info name="doc-author">fugerit79</info>
+<info name="doc-language">en</info>
+----
+
+TIP: More info on the PDF/UA support can be find in the tutorial link:https://github.com/fugerit79/venus-sample-pdf-fop-accessibility[Venus Fugerit Doc sample showing how to use accessibility features of PDF FOP type handler], additionally contains info on PDF/A format support and output file size comparison.
