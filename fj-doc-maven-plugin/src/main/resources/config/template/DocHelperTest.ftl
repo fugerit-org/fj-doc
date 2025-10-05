@@ -30,7 +30,7 @@ import lombok.AllArgsConstructor;
 class DocHelperTest {
 
     @Test
-    void testDocProcess() {
+    void testDocProcess() throws Exception {
         <@dhm.createExampleBody context=context junit=true className='DocHelperTest'/>
     }
 

@@ -36,9 +36,7 @@
             docHelper.getDocProcessConfig().fullProcess( chainId, DocProcessContext.newContext( "listPeople", listPeople ), handlerId, baos );
             </#if>
             // print the output
-            <#if context.addLombok >log.info( "html output : \n{}", new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );<#else>System.out.println( "html output : \n"+ new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );</#if>
+            <#if context.addLombok >log.info( "{} output : \n{}", handlerId, new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );<#else>System.out.println( handlerId+" output : \n"+ new String( baos.toByteArray(), StandardCharsets.UTF_8 ) );</#if>
             <#if junit >Assertions.assertNotEquals( 0, baos.size() );</#if>
-        } catch (Exception e) {
-            <#if context.addLombok >log.error( String.format( "Error : %s", e.toString() ), e );<#else>e.printStackTrace();</#if>
         }
 </#macro>
