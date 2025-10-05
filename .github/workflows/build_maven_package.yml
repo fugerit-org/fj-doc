@@ -41,6 +41,6 @@ jobs:
           #snyk-dockertag: fj-doc-playground-quarkus
           java-version: 21
           java-distribution: 'graalvm'
-          maven-additional-profiles: ',buildreact'
+          maven-additional-profiles: ',buildreact,java-jdk8on'
           disable-maven-dependency-submission: ${{ vars.DISABLE_MAVEN_DEPENDENCY_SUBMISSION }}
           disable-upload-sarif: ${{ vars.DISABLE_UPLOAD_SARIF }}
