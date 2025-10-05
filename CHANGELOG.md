@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - quarkus-version set to 3.28.2 across all the modules <https://github.com/fugerit-org/fj-doc/issues/525>
+- fj-doc-maven-plugin, improvements in quarkus 3 flavours <https://github.com/fugerit-org/fj-doc/issues/531>
+
+### Fixed
+
+- fj-doc-maven-plugin, org.fugerit.java:freemarker-native dependency reference
 
 ## [8.16.7] - 2025-10-03
 
