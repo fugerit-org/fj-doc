@@ -28,6 +28,8 @@ package org.fugerit.java.doc.base.model;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collection;
@@ -103,8 +105,8 @@ public class DocImage extends DocElement {
 		return TYPE_SVG.equals( this.getResolvedType() );
 	}
 
-	private static byte[] byteResolverHelper( String path ) throws IOException {
-		try ( InputStream is = path.startsWith( StreamHelper.PATH_CLASSLOADER ) ? StreamHelper.resolveStream( path ) : new URL( path ).openConnection().getInputStream() ) {
+	private static byte[] byteResolverHelper( String path ) throws IOException, URISyntaxException {
+		try ( InputStream is = path.startsWith( StreamHelper.PATH_CLASSLOADER ) ? StreamHelper.resolveStream( path ) : new URI( path ).toURL().openConnection().getInputStream() ) {
 			return StreamIO.readBytes( is );
 		}
 	}
