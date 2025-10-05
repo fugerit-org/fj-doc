@@ -59,7 +59,7 @@ class TableCheckIntegrityTest {
             }
         };
         DocBase docBase = readDocBase( "feature-info/table-check-integrity/colspan-rowspan-sample-ko-noconfig.xml" );
-        DocTable docTable = (DocTable) docBase.getDocBody().getElementList().stream().filter( e -> e instanceof DocTable ).findFirst().get();
+        DocTable docTable = (DocTable) docBase.getDocBody().getElementList().stream().filter( DocTable.class::isInstance ).findFirst().get();
         // global configuration set to fail
         Assertions.assertThrows( DocFeatureRuntimeException.class, () -> TableIntegrityCheck.apply( docBase, docTable, featureConfig ) );
         // override configuration for this document, will not fail but result != OK
