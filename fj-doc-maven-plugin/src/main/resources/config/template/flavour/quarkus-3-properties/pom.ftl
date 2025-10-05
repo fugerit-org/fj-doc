@@ -50,8 +50,8 @@
         <#if context.modules?seq_contains("fj-doc-freemarker")>
         <#if !context.freeMarkerNativeAvailable >
         <dependency>
-            <groupId>io.fugerit.java</groupId>
-            <artifactId>freemarker-natice</artifactId>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>freemarker-native</artifactId>
             <version>${r"${freemarker-native-version}"}</version>
         </dependency>
         </#if>
