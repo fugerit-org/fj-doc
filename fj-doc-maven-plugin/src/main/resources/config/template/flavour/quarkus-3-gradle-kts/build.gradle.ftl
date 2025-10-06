@@ -19,6 +19,9 @@ dependencies {
     implementation("io.quarkus:quarkus-smallrye-openapi")
     implementation("io.quarkus:quarkus-config-yaml")
     implementation("io.quarkus:quarkus-arc")
+    <#if context.addJacoco >
+    implementation("io.quarkus:quarkus-jacoco")
+    </#if>
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }
