@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-doc-maven-plugin, init goal, springboot-3 flavour version 3.5.6
 - fj-doc-val-pdfbox, pdfbox-version set to 2.0.35
 
 ## [8.16.8] - 2025-10-05
