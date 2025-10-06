@@ -16,11 +16,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <openliberty-runtime-version>${context.flavourVersion}</openliberty-runtime-version>
-        <liberty-maven-plugin-version>3.10.3</liberty-maven-plugin-version>
+        <liberty-maven-plugin-version>3.11.5</liberty-maven-plugin-version>
         <microprofile-version>6.1</microprofile-version>
         <liberty.var.default.http.port>8080</liberty.var.default.http.port>
         <liberty.var.default.https.port>8443</liberty.var.default.https.port>
         <junit-bom-version>5.11.0</junit-bom-version>
+        <#if context.addJacoco >
+        <jacoco-plugin-version>${context.defaultJacocoVersion}</jacoco-plugin-version>
+        </#if>
     </properties>
 
     <dependencyManagement>
@@ -86,6 +89,27 @@
                     </runtimeArtifact>
                 </configuration>
             </plugin>
+            <#if context.addJacoco >
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${r"${jacoco-plugin-version}"}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            </#if>
         </plugins>
     </build>
 </project>
