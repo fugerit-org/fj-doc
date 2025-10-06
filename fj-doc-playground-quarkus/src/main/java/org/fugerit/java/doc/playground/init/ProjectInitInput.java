@@ -58,4 +58,8 @@ public class ProjectInitInput {
     @Setter
     private boolean addDirectPlugin;
 
+    @Getter
+    @Setter
+    private boolean addJacoco;
+
 }

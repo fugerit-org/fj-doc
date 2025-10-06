@@ -79,6 +79,7 @@ public class ProjectRest {
                         this.flavourVersion = data.getFlavourVersion();
                         this.addVerifyPlugin = data.isAddVerifyPlugin();
                         this.addDirectPlugin = data.isAddDirectPlugin();
+                        this.addJacoco = data.isAddJacoco();
                         super.execute();
                     }
                 };

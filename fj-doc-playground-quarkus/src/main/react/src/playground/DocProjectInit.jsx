@@ -38,6 +38,7 @@ const DocProjectInit = ({setHelpContent}) => {
 	const [serverContent, setServerContent] = useState(''); // State to store the base64 encoded content from the server
 	const [addVerifyPlugin, setAddVerifyPlugin] = useState(true); // State to handle addVerifyPlugin selection
 	const [addDirectPlugin, setAddDirectPlugin] = useState(false); // State to handle addDirectPlugin selection
+    const [addJacoco, setAddJacoco] = useState(false); // State to handle addJacoco selection
 
 	// useEffect to fetch data from the API when the component mounts
 	useEffect(() => {
@@ -113,6 +114,7 @@ const DocProjectInit = ({setHelpContent}) => {
 			flavour,
 			addVerifyPlugin,
 			addDirectPlugin,
+            addJacoco,
 			extensionList: selectedExtensions,
 		};
 		try {
@@ -268,7 +270,21 @@ const DocProjectInit = ({setHelpContent}) => {
 						</RadioGroup>
 					</FormControl>
 				</Grid>
-				<Grid item xs={12} sm={12}>
+                <Grid item xs={12} sm={6}>
+                    {/* Text field for addJacoco */}
+                    <FormControl component="fieldset" fullWidth margin="normal">
+                        <FormLabel component="legend">Add jacoco</FormLabel>
+                        <RadioGroup
+                            row
+                            value={addJacoco ? 'true' : 'false'}
+                            onChange={(e) => setAddJacoco(e.target.value === 'true')}
+                        >
+                            <FormControlLabel value="true" control={<Radio />} label="true" />
+                            <FormControlLabel value="false" control={<Radio />} label="false" />
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
+				<Grid item xs={12} sm={6}>
 					{/* Text field for flavourVersion */}
 					<TextField
 						label="Flavour version, recommended : leave default (blank)"
