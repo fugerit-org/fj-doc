@@ -9,7 +9,7 @@
         <maven.compiler.release>${context.javaRelease}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <#if context.addJacoco >
-        <jacoco-plugin-version>0.8.13</jacoco-plugin-version>
+        <jacoco-plugin-version>${context.defaultJacocoVersion}</jacoco-plugin-version>
 </#if>
     </properties>
 

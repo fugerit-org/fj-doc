@@ -17,11 +17,14 @@
     <packaging>jar</packaging>
     <jdk.version>${context.javaRelease}</jdk.version>
     <release.version>${context.javaRelease}</release.version>
-    <micronaut.version>4.5.0</micronaut.version>
+    <micronaut.version>${context.flavourVersion}</micronaut.version>
     <micronaut.aot.enabled>false</micronaut.aot.enabled>
     <micronaut.aot.packageName><@fhm.toProjectPackage context=context/>.aot.generated</micronaut.aot.packageName>
     <micronaut.runtime>netty</micronaut.runtime>
     <exec.mainClass><@fhm.toProjectPackage context=context/>.Application</exec.mainClass>
+<#if context.addJacoco >
+    <jacoco-plugin-version>${context.defaultJacocoVersion}</jacoco-plugin-version>
+</#if>
   </properties>
 
   <repositories>
@@ -140,6 +143,29 @@
           </compilerArgs>
         </configuration>
       </plugin>
+
+        <#if context.addJacoco >
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>${r"${jacoco-plugin-version}"}</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        </#if>
+
     </plugins>
   </build>
 
