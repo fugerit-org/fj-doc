@@ -48,6 +48,9 @@ public class FlavourContext {
     @Getter @Setter
     private String basePackage;
 
+    @Getter @Setter
+    private boolean addJacoco;
+
     private String toClassName( String base, String splitString ) {
         StringBuilder buf = new StringBuilder();
         String[] split = base.split( splitString );
