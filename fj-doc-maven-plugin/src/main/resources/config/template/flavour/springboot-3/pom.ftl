@@ -13,22 +13,10 @@
 	<version>${context.projectVersion}</version>
 	<name>fugerit-springboot3-template</name>
 	<description>Fugerit SpringBoot Template</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>${context.javaRelease}</java.version>
-		<springdoc-openapi-ui-version>2.6.0</springdoc-openapi-ui-version>
+		<springdoc-openapi-ui-version>2.8.13</springdoc-openapi-ui-version>
+        <junit-jupiter.version>5.11.3</junit-jupiter.version>
 	</properties>
 	<dependencies>
 		<dependency>
