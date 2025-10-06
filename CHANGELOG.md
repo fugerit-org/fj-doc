@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.16.9] - 2025-10-06
+
 ### Added
 
 - fj-doc-maven-plugin, init goal, 'addJacoco' parameter <https://github.com/fugerit-org/fj-doc/issues/536>

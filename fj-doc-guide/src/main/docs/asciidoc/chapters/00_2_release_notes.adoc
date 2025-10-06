@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-16-9]
+==== Version 8.16.9 [2025-10-06]
+
 - fj-doc-maven-plugin, init goal, 'addJacoco' parameter link:https://github.com/fugerit-org/fj-doc/issues/536[#536]
 
 [#doc-release-notes-8-16-8]
