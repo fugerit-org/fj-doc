@@ -6,6 +6,13 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+- fj-doc-maven-plugin, init goal, 'addJacoco' parameter link:https://github.com/fugerit-org/fj-doc/issues/536[#536]
+
+[#doc-release-notes-8-16-8]
+==== Version 8.16.8 [2025-10-05]
+
+- fj-doc-playground-quarkus PDF/UA-1 rendering option' link:https://github.com/fugerit-org/fj-doc/issues/527[#527]
+
 [#doc-release-notes-8-16-7]
 ==== Version 8.16.7 [2025-10-03]
 

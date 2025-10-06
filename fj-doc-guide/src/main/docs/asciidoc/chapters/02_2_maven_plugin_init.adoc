@@ -8,7 +8,8 @@ Create a new project and add Venus Doc Configuration to it.
 mvn org.fugerit.java:fj-doc-maven-plugin:init \
 -DgroupId=org.example.doc \
 -DartifactId=fugerit-demo \
--Dextensions=base,freemarker,mod-fop
+-Dextensions=base,freemarker,mod-fop \
+-DaddJacoco=true
 ----
 
 Project folder will be `./${artifactId}/`.
@@ -24,6 +25,7 @@ Project folder will be `./${artifactId}/`.
 | javaRelease    | true     | 21             | java release version
 | flavour        | true     | vanilla        | the flavour for the new project (see below for options)
 | flavourVersion | false    | see below      | override default framework version if supported (recommended : leave default or blank)
+| addJacoco     | false     | false          | add jacoco coverage support
 |====================================================================================================================================
 
 NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.

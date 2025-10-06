@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-maven-plugin, init goal, 'addJacoco' parameter <https://github.com/fugerit-org/fj-doc/issues/536>
+
 ### Changed
 
 - fj-doc-maven-plugin, init goal, micronaut flavour version 4.9.4

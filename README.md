@@ -55,7 +55,8 @@ goal of maven plugin, for example, running the command :
 mvn org.fugerit.java:fj-doc-maven-plugin:init \
 -DgroupId=org.example.doc \
 -DartifactId=fugerit-demo-quarkus-3 \
--Dflavour=quarkus-3
+-Dflavour=quarkus-3 \
+-DaddJacoco=true
 ```
 It will create a new folder as for the {artifactId} parameter 
 (in our example : *fugerit-demo-quarkus-3*)
