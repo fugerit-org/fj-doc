@@ -51,6 +51,12 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
+        <#if context.addJacoco >
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jacoco</artifactId>
+        </dependency>
+        </#if>
         <#if context.modules?seq_contains("fj-doc-freemarker")>
         <#if !context.freeMarkerNativeAvailable >
         <dependency>

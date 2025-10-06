@@ -49,6 +49,10 @@ public class FlavourFacade {
 
     private static final Properties FLAVOURS_DEFAULT_VERSION = PropsIO.loadFromClassLoaderSafe( "config/flavour/flavour_versions_default.properties" );
 
+    public static Properties getFlavourDefaultVersion() {
+        return new Properties( FLAVOURS_DEFAULT_VERSION );
+    }
+
     public static final Set<String> SUPPORTED_FLAVOURS = Collections.unmodifiableSet(
             new HashSet<>( Arrays.asList( FLAVOUR_VANILLA, FLAVOUR_DIRECT, FLAVOUR_QUARKUS_3, FLAVOUR_QUARKUS_3_GRADLE, FLAVOUR_QUARKUS_3_GRADLE_KTS,
                     FLAVOUR_QUARKUS_3_PROPERTIES, FLAVOUR_QUARKUS_2, FLAVOUR_MICRONAUT_4, FLAVOUR_SPRINGBOOT_3, FLAVOUR_OPENLIBERTY ) ) );

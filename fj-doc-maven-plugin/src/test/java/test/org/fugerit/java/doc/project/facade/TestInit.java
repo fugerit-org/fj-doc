@@ -55,6 +55,7 @@ class TestInit {
                 this.addVerifyPlugin = true;
                 this.addJunit5 = true;
                 this.addLombok = true;
+                this.addJacoco = true;
                 this.flavour = currentFlavour;
                 if ( FlavourFacade.FLAVOUR_QUARKUS_3.equals( currentFlavour ) ) {
                     this.basePackage = "org.fugerit.java.basepack";

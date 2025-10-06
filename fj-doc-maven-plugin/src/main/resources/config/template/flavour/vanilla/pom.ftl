@@ -8,6 +8,35 @@
     <properties>
         <maven.compiler.release>${context.javaRelease}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<#if context.addJacoco >
+        <jacoco-plugin-version>${context.defaultJacocoVersion}</jacoco-plugin-version>
+</#if>
     </properties>
+
+    <#if context.addJacoco >
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${r"${jacoco-plugin-version}"}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>report</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </build>
+    </#if>
 
 </project>

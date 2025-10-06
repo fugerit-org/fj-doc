@@ -6,6 +6,7 @@ import org.fugerit.java.core.lang.helpers.StringUtils;
 
 import java.io.File;
 import java.util.List;
+import java.util.Properties;
 
 @Slf4j
 @ToString
@@ -47,6 +48,13 @@ public class FlavourContext {
 
     @Getter @Setter
     private String basePackage;
+
+    @Getter @Setter
+    private boolean addJacoco;
+
+    public String getDefaultJacocoVersion() {
+        return FlavourFacade.getFlavourDefaultVersion().getProperty( "jacoco-plugin-version" );
+    }
 
     private String toClassName( String base, String splitString ) {
         StringBuilder buf = new StringBuilder();
