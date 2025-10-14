@@ -203,7 +203,7 @@ class DocConfigGenerator extends SimpleJavaGenerator {
         this.println( "      * Consider using a @ApplicationScoped or Singleton approach." );
         this.println( "      */" );
         this.println( "     private final FreemarkerDocProcessConfig docProcessConfig = FreemarkerDocProcessConfigFacade" );
-        this.println( "            .loadConfigSafe(\"cl://test-add-formatting/fm-doc-process-config.xml\");" );
+        this.println( "            .loadConfigSafe(\"cl://"+this.context.getResourcePathFmConfigXml()+"\");" );
         this.println();
         this.println( "     /**" );
         this.println( "      * Accessor for FreemarkerDocProcessConfig configuration." );
