@@ -62,4 +62,8 @@ public class ProjectInitInput {
     @Setter
     private boolean addJacoco;
 
+    @Getter
+    @Setter
+    private boolean addFormatting;
+
 }

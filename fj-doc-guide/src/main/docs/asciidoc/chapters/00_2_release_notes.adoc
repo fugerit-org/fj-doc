@@ -6,6 +6,8 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+- fj-doc-maven-plugin, init goal, 'addFormatting' parameter link:https://github.com/fugerit-org/fj-doc/issues/541[#541]
+
 [#doc-release-notes-8-16-9]
 ==== Version 8.16.9 [2025-10-06]
 

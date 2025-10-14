@@ -25,6 +25,9 @@
 <#if context.addJacoco >
     <jacoco-plugin-version>${context.defaultJacocoVersion}</jacoco-plugin-version>
 </#if>
+<#if context.addFormatting >
+  <@fhm.addFormattingPomProperties context=context/>
+</#if>
   </properties>
 
   <repositories>
@@ -164,6 +167,10 @@
                 </execution>
             </executions>
         </plugin>
+        </#if>
+
+        <#if context.addFormatting >
+            <@fhm.addFormattingPomPlugin context=context/>
         </#if>
 
     </plugins>

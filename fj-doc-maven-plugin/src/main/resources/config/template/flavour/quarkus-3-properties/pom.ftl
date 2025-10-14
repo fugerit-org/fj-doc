@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<#import '../flavour-macro.ftl' as fhm><?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>${context.groupId}</groupId>
@@ -16,6 +16,9 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
         <freemarker-native-version>1.0.0</freemarker-native-version>
+        <#if context.addFormatting >
+            <@fhm.addFormattingPomProperties context=context/>
+        </#if>
     </properties>
 
     <dependencyManagement>
@@ -128,6 +131,9 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            <#if context.addFormatting >
+                <@fhm.addFormattingPomPlugin context=context/>
+            </#if>
         </plugins>
     </build>
 

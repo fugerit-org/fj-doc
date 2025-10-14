@@ -52,8 +52,23 @@ public class FlavourContext {
     @Getter @Setter
     private boolean addJacoco;
 
+    @Getter @Setter
+    private boolean addFormatting;
+
     public String getDefaultJacocoVersion() {
         return FlavourFacade.getFlavourDefaultVersion().getProperty( "jacoco-plugin-version" );
+    }
+
+    public String getDefaultFormatterPluginVersion() {
+        return FlavourFacade.getFlavourDefaultVersion().getProperty( "mvn-formatter-plugin-version" );
+    }
+
+    public String getDefaultFugeritCodeRulesVersion() {
+        return FlavourFacade.getFlavourDefaultVersion().getProperty( "fugerit-code-rules-version" );
+    }
+
+    public String getDefaultFormatSkip() {
+        return FlavourFacade.getFlavourDefaultVersion().getProperty( "format.skip" );
     }
 
     private String toClassName( String base, String splitString ) {

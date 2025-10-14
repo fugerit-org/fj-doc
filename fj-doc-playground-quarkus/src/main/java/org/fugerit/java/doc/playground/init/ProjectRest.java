@@ -80,6 +80,7 @@ public class ProjectRest {
                         this.addVerifyPlugin = data.isAddVerifyPlugin();
                         this.addDirectPlugin = data.isAddDirectPlugin();
                         this.addJacoco = data.isAddJacoco();
+                        this.addFormatting = data.isAddFormatting();
                         super.execute();
                     }
                 };

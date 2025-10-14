@@ -39,6 +39,9 @@ public class MojoInit extends MojoAdd {
     @Parameter(property = "addJacoco", defaultValue = "false", required = false)
     protected boolean addJacoco;
 
+    @Parameter(property = "addFormatting", defaultValue = "false", required = false)
+    protected boolean addFormatting;
+
     public MojoInit() {
         this.baseInitFolder = ".";
     }
@@ -68,6 +71,7 @@ public class MojoInit extends MojoAdd {
                 context.setExtensions( this.extensions );
                 context.setBasePackage( this.basePackage );
                 context.setAddJacoco( this.addJacoco );
+                context.setAddFormatting( this.addFormatting );
                 this.getLog().info( String.format( "flavour context : %s", context ) );
                 String actualVersion = FlavourFacade.initProject( context );
                 if ( FlavourFacade.FLAVOUR_DIRECT.equals( actualVersion ) ) {
