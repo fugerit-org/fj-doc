@@ -154,7 +154,7 @@ public class AddVenusFacade extends BasicVenusFacade {
                 } else {
                     log.info( "Generation complete:\n{}\n* For usage open the example main() : {} *\n{}", LINE, context.getDocConfigPackage()+"."+context.getDocConfigClass()+"Example", LINE );
                 }
-                log.info( "for documentation refer to https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-maven-plugin/README.md" );
+                log.info( "for documentation refer to https://venusdocs.fugerit.org/guide/#maven-plugin-entry" );
             }
             return true;
         } );
