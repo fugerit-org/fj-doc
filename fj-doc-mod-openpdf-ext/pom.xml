@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.fugerit.java</groupId>
         <artifactId>fj-doc</artifactId>
-        <version>8.16.10-SNAPSHOT</version>
+        <version>8.17.0</version>
     </parent>
 
     <name>fj-doc-mod-openpdf-ext</name>
