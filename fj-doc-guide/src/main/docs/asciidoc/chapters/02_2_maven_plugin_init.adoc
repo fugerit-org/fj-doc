@@ -25,9 +25,11 @@ Project folder will be `./${artifactId}/`.
 | javaRelease    | true     | 21             | java release version
 | flavour        | true     | vanilla        | the flavour for the new project (see below for options)
 | flavourVersion | false    | see below      | override default framework version if supported (recommended : leave default or blank)
-| addJacoco     | false     | false          | add jacoco coverage support
-| addFormatting     | false     | false          | add maven plugin formatter with rules from link:https://github.com/fugerit-org/fugerit-code-rules[fugerit-code-rules]
+| addJacoco (*)     | false     | false          | add jacoco coverage support
+| addFormatting (*)     | false     | false          | add maven plugin formatter with rules from link:https://github.com/fugerit-org/fugerit-code-rules[fugerit-code-rules]
 |====================================================================================================================================
+
+(*) Currently not working on gradle flavours
 
 NOTE: it is possible to set any property from 'add' goal, except 'projectFolder' which is set to `./${artifactId}`.
 

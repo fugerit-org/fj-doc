@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<#import '../flavour-macro.ftl' as fhm><?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -17,6 +17,9 @@
 		<java.version>${context.javaRelease}</java.version>
 		<springdoc-openapi-ui-version>2.8.13</springdoc-openapi-ui-version>
         <junit-jupiter.version>5.11.3</junit-jupiter.version>
+        <#if context.addFormatting >
+            <@fhm.addFormattingPomProperties context=context/>
+        </#if>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -66,6 +69,9 @@
 					</excludes>
 				</configuration>
 			</plugin>
+            <#if context.addFormatting >
+                <@fhm.addFormattingPomPlugin context=context/>
+            </#if>
 		</plugins>
 	</build>
 
