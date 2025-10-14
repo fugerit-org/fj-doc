@@ -49,6 +49,8 @@ public class FlavourFacade {
 
     private static final Properties FLAVOURS_DEFAULT_VERSION = PropsIO.loadFromClassLoaderSafe( "config/flavour/flavour_versions_default.properties" );
 
+    public static final String WITH_CI_GITHUB = "github";
+
     public static Properties getFlavourDefaultVersion() {
         return new Properties( FLAVOURS_DEFAULT_VERSION );
     }
@@ -67,12 +69,22 @@ public class FlavourFacade {
         return prop;
     });
 
+    public static final Set<String> SUPPORTED_CI =  Collections.unmodifiableSet( new HashSet<>( Arrays.asList( WITH_CI_GITHUB ) ) );
+
+    private static void checkCI( FlavourContext context ) {
+        if ( StringUtils.isNotEmpty( context.getWithCI() ) && !SUPPORTED_CI.contains( context.getWithCI().toLowerCase() ) ) {
+            throw new ConfigRuntimeException( String.format( "withCI not supported : %s (allowed values are %s)", context.getWithCI(), SUPPORTED_CI ) );
+        }
+    }
+
     public static String initProject( FlavourContext context ) throws IOException, TemplateException {
         log.info( "generate flavour : {}", context.getFlavour() );
         String actualFlavour = MAP_FLAVOURS.getProperty( context.getFlavour(), context.getFlavour() );
         if ( SUPPORTED_FLAVOURS.contains( actualFlavour ) ) {
+            checkCI( context );
             checkFlavour( context, actualFlavour );
             initFlavour( context, actualFlavour );
+            initCI( context, actualFlavour );
         } else {
             throw new ConfigRuntimeException( String.format( "flavour not supported : %s", context.getFlavour() ) );
         }
@@ -85,7 +97,7 @@ public class FlavourFacade {
                 || FLAVOUR_SPRINGBOOT_3.equals( actualFlavour ) || FLAVOUR_OPENLIBERTY.equals( actualFlavour ) ) && javaVersion < 17 ) {
             throw new ConfigRuntimeException( String.format( "Minimum java version for %s is 17", actualFlavour ) );
         } else if ( FLAVOUR_QUARKUS_2.equals( actualFlavour ) && javaVersion != 11 ) {
-            log.info( "quarkus 2 is a legacy flavour, javaRelease %s will default to '11'", javaVersion );
+            log.info( "quarkus 2 is a legacy flavour, javaRelease {} will default to '11'", javaVersion );
         }
         log.info( "checkFlavour {} done", actualFlavour );
         checkFlavourVersion( context, actualFlavour );
@@ -162,8 +174,23 @@ public class FlavourFacade {
         try ( StringWriter writer = new StringWriter() ) {
             FreemarkerTemplateFacade.processFile( freemarkerProcessYamlPath, writer, data );
             FlavourConfig flavourConfig = mapper.readValue( writer.toString(), FlavourConfig.class );
-            log.info( "floavourConfig {}", flavourConfig.getFlavour() );
+            log.info( "flavourConfig {}", flavourConfig.getFlavour() );
             flavourConfig.getProcess().forEach( entry -> FeatureFacade.processEntry( entry, data ) );
+        }
+    }
+
+    private static void initCI( FlavourContext context, String actualFlavour ) throws IOException, TemplateException {
+        if ( StringUtils.isNotEmpty( context.getWithCI() ) && !FlavourFacade.isGradleKtsFlavour( actualFlavour ) ) {
+            String withCI = context.getWithCI().toLowerCase();
+            String relativeDestinationPath = context.getWithCIPath();
+            String ciTemplatePath = String.format( "ci/%s-ci.ftl", withCI );
+            File outputCIFile = new File( context.getProjectFolder(), relativeDestinationPath );
+            log.info( "generating CI : mkdir? {} -> {}", outputCIFile.getParentFile().mkdirs(), outputCIFile.getCanonicalPath() );
+            try ( FileWriter writer = new FileWriter( outputCIFile ) ) {
+                Map<String, Object> data = new HashMap<>();
+                data.put( "context", context );
+                FreemarkerTemplateFacade.processFile( ciTemplatePath, writer, data );
+            }
         }
     }
 

@@ -40,7 +40,7 @@ public class FeatureFacade {
     protected static void insureParent( File file ) throws IOException {
         File parentFile = file.getParentFile();
         if ( !parentFile.exists() ) {
-            log.info( "creates parent directory {}, mkdirs:?", parentFile.getCanonicalPath(), parentFile.mkdirs() );
+            log.info( "creates parent directory {}, mkdirs:? {}", parentFile.getCanonicalPath(), parentFile.mkdirs() );
         }
     }
 
