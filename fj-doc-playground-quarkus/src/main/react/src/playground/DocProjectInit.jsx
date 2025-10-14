@@ -39,7 +39,8 @@ const DocProjectInit = ({setHelpContent}) => {
 	const [addVerifyPlugin, setAddVerifyPlugin] = useState(true); // State to handle addVerifyPlugin selection
 	const [addDirectPlugin, setAddDirectPlugin] = useState(false); // State to handle addDirectPlugin selection
     const [addJacoco, setAddJacoco] = useState(false); // State to handle addJacoco selection
-    const [addFormatting, setAddFormatting] = useState(false); // State to handle addJacoco selection
+    const [addFormatting, setAddFormatting] = useState(false); // State to handle addFormatting selection
+    const [withCI, setWithCI] = useState(''); // State to handle withCI selection
 
 	// useEffect to fetch data from the API when the component mounts
 	useEffect(() => {
@@ -103,6 +104,11 @@ const DocProjectInit = ({setHelpContent}) => {
 		setFlavourVersion(event.target.value);
 	};
 
+    // Handle change event for CI select
+    const handleCIChange = (event) => {
+        setWithCI(event.target.value);
+    };
+
 	// Handle the submit button click
 	const handleSubmit = async () => {
 		setIsSubmitting(true); // Set loading state to true when submission starts
@@ -117,6 +123,7 @@ const DocProjectInit = ({setHelpContent}) => {
 			addDirectPlugin,
             addJacoco,
             addFormatting,
+            withCI,
 			extensionList: selectedExtensions,
 		};
 		try {
@@ -300,7 +307,23 @@ const DocProjectInit = ({setHelpContent}) => {
                         </RadioGroup>
                     </FormControl>
                 </Grid>
-				<Grid item xs={12} sm={12}>
+                <Grid item xs={12} sm={6}>
+                    {/* Text field for withCI */}
+                    <FormControl fullWidth margin="normal">
+                        <InputLabel id="venus-ci-select-label">CI</InputLabel>
+                        <Select
+                            labelId="venus-ci-select-label"
+                            id="venus-ci-select"
+                            value={withCI}
+                            onChange={handleCIChange}
+                        >
+                            {/* Allowed values for CI */}
+                            <MenuItem value={''}>None</MenuItem>
+                            <MenuItem value={'github'}>GitHub</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+				<Grid item xs={12} sm={6}>
 					{/* Text field for flavourVersion */}
 					<TextField
 						label="Flavour version, recommended : leave default (blank)"
