@@ -39,6 +39,7 @@ const DocProjectInit = ({setHelpContent}) => {
 	const [addVerifyPlugin, setAddVerifyPlugin] = useState(true); // State to handle addVerifyPlugin selection
 	const [addDirectPlugin, setAddDirectPlugin] = useState(false); // State to handle addDirectPlugin selection
     const [addJacoco, setAddJacoco] = useState(false); // State to handle addJacoco selection
+    const [addFormatting, setAddFormatting] = useState(false); // State to handle addJacoco selection
 
 	// useEffect to fetch data from the API when the component mounts
 	useEffect(() => {
@@ -115,6 +116,7 @@ const DocProjectInit = ({setHelpContent}) => {
 			addVerifyPlugin,
 			addDirectPlugin,
             addJacoco,
+            addFormatting,
 			extensionList: selectedExtensions,
 		};
 		try {
@@ -284,7 +286,21 @@ const DocProjectInit = ({setHelpContent}) => {
                         </RadioGroup>
                     </FormControl>
                 </Grid>
-				<Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={6}>
+                    {/* Text field for addFormatting */}
+                    <FormControl component="fieldset" fullWidth margin="normal">
+                        <FormLabel component="legend">Add formatting</FormLabel>
+                        <RadioGroup
+                            row
+                            value={addFormatting ? 'true' : 'false'}
+                            onChange={(e) => setAddFormatting(e.target.value === 'true')}
+                        >
+                            <FormControlLabel value="true" control={<Radio />} label="true" />
+                            <FormControlLabel value="false" control={<Radio />} label="false" />
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
+				<Grid item xs={12} sm={12}>
 					{/* Text field for flavourVersion */}
 					<TextField
 						label="Flavour version, recommended : leave default (blank)"
