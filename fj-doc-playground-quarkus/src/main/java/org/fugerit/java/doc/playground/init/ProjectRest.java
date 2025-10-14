@@ -81,6 +81,7 @@ public class ProjectRest {
                         this.addDirectPlugin = data.isAddDirectPlugin();
                         this.addJacoco = data.isAddJacoco();
                         this.addFormatting = data.isAddFormatting();
+                        this.withCI = data.getWithCI();
                         super.execute();
                     }
                 };

@@ -27,6 +27,7 @@ Project folder will be `./${artifactId}/`.
 | flavourVersion | false    | see below      | override default framework version if supported (recommended : leave default or blank)
 | addJacoco (*)     | false     | false          | add jacoco coverage support
 | addFormatting (*)     | false     | false          | add maven plugin formatter with rules from link:https://github.com/fugerit-org/fugerit-code-rules[fugerit-code-rules]
+| withCI (*)     | false     |           | It will generate a basic CI workflow for give platform. Supported values : 'github'
 |====================================================================================================================================
 
 (*) Currently not working on gradle flavours

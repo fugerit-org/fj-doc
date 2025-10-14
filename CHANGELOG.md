@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- fj-doc-maven-plugin, init goal, add CI support for GitHub <https://github.com/fugerit-org/fj-doc/issues/543>
 - fj-doc-maven-plugin, init goal, 'addFormatting' <https://github.com/fugerit-org/fj-doc/issues/541>
 
 ### Changed

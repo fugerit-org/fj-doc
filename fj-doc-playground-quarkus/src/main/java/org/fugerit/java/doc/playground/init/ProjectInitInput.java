@@ -66,4 +66,8 @@ public class ProjectInitInput {
     @Setter
     private boolean addFormatting;
 
+    @Getter
+    @Setter
+    private String withCI;
+
 }

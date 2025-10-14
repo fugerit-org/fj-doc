@@ -57,6 +57,7 @@ class TestInit {
                 this.addLombok = true;
                 this.addJacoco = true;
                 this.addFormatting = true;
+                this.withCI = FlavourFacade.WITH_CI_GITHUB;
                 this.flavour = currentFlavour;
                 if ( FlavourFacade.FLAVOUR_QUARKUS_3.equals( currentFlavour ) ) {
                     this.basePackage = "org.fugerit.java.basepack";
@@ -92,6 +93,29 @@ class TestInit {
         };
         mojoInit.execute();
         Assertions.assertTrue( projectDir.exists() );
+    }
+
+    @Test
+    void createFailCI() {
+        String currentFlavour = FlavourFacade.FLAVOUR_DIRECT;
+        File projectDir = initConfigWorker( currentFlavour+"-fail-ci" );
+        MojoInit mojoInit = new MojoInit() {
+            @Override
+            public void execute() throws MojoExecutionException, MojoFailureException {
+                this.baseInitFolder = projectDir.getAbsolutePath();
+                this.projectVersion = "1.0.0-SNAPSHOT";
+                this.groupId = "org.fugerit.java.test";
+                this.artifactId = "fugerit-test-"+currentFlavour+"-fail-ci";
+                this.javaRelease = "21";
+                this.version = "8.16.9";
+                this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-base-kotlin,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                this.addLombok = true;
+                this.withCI = "NA";
+                this.flavour = currentFlavour;
+                super.execute();
+            }
+        };
+        Assertions.assertThrows(MojoFailureException.class, mojoInit::execute);
     }
 
     @Test

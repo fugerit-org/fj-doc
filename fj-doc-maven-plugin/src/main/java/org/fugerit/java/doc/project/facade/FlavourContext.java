@@ -55,6 +55,9 @@ public class FlavourContext {
     @Getter @Setter
     private boolean addFormatting;
 
+    @Getter @Setter
+    private String withCI;
+
     public String getDefaultJacocoVersion() {
         return FlavourFacade.getFlavourDefaultVersion().getProperty( "jacoco-plugin-version" );
     }
@@ -69,6 +72,10 @@ public class FlavourContext {
 
     public String getDefaultFormatSkip() {
         return FlavourFacade.getFlavourDefaultVersion().getProperty( "format.skip" );
+    }
+
+    public String getWithCIPath() {
+        return FlavourFacade.getFlavourDefaultVersion().getProperty( "withCI.path."+this.withCI.toLowerCase() );
     }
 
     private String toClassName( String base, String splitString ) {
