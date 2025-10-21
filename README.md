@@ -1,6 +1,9 @@
 # Venus - Fugerit Document Generation Framework (fj-doc)
 
-Framework to produce documents in different output formats starting from an XML document metamodel. (options for json and yaml source models are also available)  
+> [![GitHub stars](https://img.shields.io/github/stars/fugerit-org/fj-doc?style=social)](https://github.com/fugerit-org/fj-doc)  
+> ❤️ If this project helps you, please consider dropping a star — it really motivates continued development!
+
+Framework to produce documents in different output formats starting from an XML document metamodel. (options for json and yaml source models are also available)
 
 [![Keep a Changelog v1.1.0 badge](https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735)](CHANGELOG.md) 
 [![Maven Central](https://img.shields.io/maven-central/v/org.fugerit.java/fj-doc.svg)](https://central.sonatype.com/artifact/org.fugerit.java/fj-doc)
@@ -73,12 +76,19 @@ For more information on framework usage, refer to the
 * [Doc Handlers](https://venusdocs.fugerit.org/guide/#doc-handlers)
 * [FAQ](https://venusdocs.fugerit.org/guide/#doc-faq)
 
-Which provide the reference to customized existing and new projects.
+Which provides a reference to customized existing and new projects.
 
-## Bugs and requests
+## ❤️ Support
 
-In case of bugs or requests please open an issue on the 
-[GitHub repository issue tracker](https://github.com/fugerit-org/fj-doc/issues).
+This project is maintained in [my free time](https://github.com/fugerit79).  
+If you find it useful, please consider supporting it by:
+
+- ⭐ Giving the repository a star
+- 🐛 Opening an issue if you find a problem
+- 🔧 Creating a pull request if you'd like to improve something
+- 📢 Sharing it with others who might be interested
+
+Thank you for helping the project grow!
 
 ## Special thanks
 
