@@ -11,6 +11,7 @@ import org.fugerit.java.doc.project.facade.flavour.FlavourConfig;
 import org.fugerit.java.doc.project.facade.flavour.ProcessEntry;
 
 import java.io.*;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +19,18 @@ import java.util.Map;
 public class FeatureFacade {
 
     private FeatureFacade() {}
+
+    /**
+     * Checks that the given file is inside the baseFolder after normalization.
+     * Throws IOException if not.
+     */
+    private static void checkIfInBaseFolder(File baseFolder, File file) throws IOException {
+        Path base = baseFolder.getCanonicalFile().toPath().normalize();
+        Path target = file.getCanonicalFile().toPath().normalize();
+        if (!target.startsWith(base)) {
+            throw new IOException("File path " + file.getCanonicalPath() + " is not within permitted base folder " + baseFolder.getCanonicalPath());
+        }
+    }
 
     public static void copyFlavourList( File baseFolder, String actualFlavour ) throws IOException {
         copyResourcesList( baseFolder, "flavour", actualFlavour );
@@ -39,6 +52,13 @@ public class FeatureFacade {
 
     protected static void insureParent( File file ) throws IOException {
         File parentFile = file.getParentFile();
+        // Defensive: check parent is within project's root as well
+        if (parentFile != null) {
+            File baseFolder = file.getParentFile().getParentFile();
+            if (baseFolder != null) {
+                checkIfInBaseFolder(baseFolder, parentFile);
+            }
+        }
         if ( !parentFile.exists() ) {
             log.info( "creates parent directory {}, mkdirs:? {}", parentFile.getCanonicalPath(), parentFile.mkdirs() );
         }
@@ -47,6 +67,8 @@ public class FeatureFacade {
     protected static void copyFile(String path, File baseFolder, String basePath ) {
         SafeFunction.apply( () -> {
             File outputFile = new File( baseFolder, path );
+            // Validate that the output file is inside the intended base folder
+            checkIfInBaseFolder(baseFolder, outputFile);
             insureParent( outputFile );
             String fullPath = basePath+path;
             log.info( "copy path '{}' to file '{}'", fullPath, outputFile.getCanonicalPath() );
