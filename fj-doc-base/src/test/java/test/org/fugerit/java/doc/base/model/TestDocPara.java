@@ -1,7 +1,9 @@
 package test.org.fugerit.java.doc.base.model;
 
 import java.util.Date;
+import java.util.Locale;
 
+import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.typehelper.generic.FormatTypeConsts;
 import org.junit.jupiter.api.Assertions;
@@ -14,6 +16,8 @@ class TestDocPara {
 
 	@Test
 	void testNumber() {
+		log.info( "java version : {}" , System.getProperty( "java.version" ) );
+		Locale.setDefault( Locale.UK );
 		DocPara model = new DocPara();
 		model.setText( "100000.0" );
 		model.setType( FormatTypeConsts.TYPE_NUMBER );
