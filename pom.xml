@@ -113,7 +113,7 @@
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val-p7m</module>
-		<module>fj-doc-val-imageio-tiff</module>
+		<module>fj-doc-val-imageio</module>
 		<module>fj-doc-val</module>
 		<module>fj-doc-tool</module>
 		<module>fj-doc-maven-plugin</module>

@@ -1,9 +1,12 @@
 package org.fugerit.java.doc.val.imageio.tiff;
 
 import com.twelvemonkeys.imageio.metadata.tiff.TIFF;
+import com.twelvemonkeys.imageio.metadata.tiff.TIFFEntry;
+import com.twelvemonkeys.imageio.plugins.tiff.TIFFImageMetadata;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.fugerit.java.doc.val.core.basic.AbstractDocTypeValidator;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
+import org.fugerit.java.doc.val.imageio.core.ImageIOCoreUtils;
 
 import java.io.InputStream;
 import java.util.Arrays;
@@ -34,7 +37,20 @@ public class ImageIOTiffValidator extends AbstractDocTypeValidator {
 
     @Override
     public DocTypeValidationResult validate(InputStream is) {
-        return ImageIOTiffUtils.validateTiffAndMetadata( is, this.idTags );
+        return ImageIOCoreUtils.validateMetadata( is, "TIFF", (meta, missingTags ) -> {
+            if (meta instanceof TIFFImageMetadata) {
+                for ( int idTag : idTags ) {
+                    TIFFImageMetadata tiffMeta = (TIFFImageMetadata) meta;
+                    TIFFEntry entry = (TIFFEntry) tiffMeta.getTIFFField(idTag);
+                    if (entry == null) {
+                        missingTags.add( ImageIOTiffTags.tagDescription(idTag) );
+                    }
+                }
+                return Boolean.TRUE;
+            } else {
+                return Boolean.FALSE;
+            }
+        } );
     }
 
 }

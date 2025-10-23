@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- TIFF validtor based on TwelveMonkeys ImageIO <https://github.com/fugerit-org/fj-doc/issues/551>
+- Image validator based on TwelveMonkeys ImageIO (currently supporting TIFF) <https://github.com/fugerit-org/fj-doc/issues/551>
 
 ### Changed
 

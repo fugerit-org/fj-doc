@@ -1,4 +1,4 @@
-package org.fugerit.java.doc.val.imageio.tiff;
+package org.fugerit.java.doc.val.imageio.core;
 
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.junit.jupiter.api.Assertions;
@@ -8,13 +8,13 @@ import org.w3c.dom.Document;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-class TestImageIOTiffUtils {
+class TestImageIOCoreUtils {
 
     @Test
     void testNodeWithoutAttributes() throws Exception {
         try (InputStream stream = new ByteArrayInputStream( "<test/>".getBytes() )) {
             Document doc = DOMIO.newSafeDocumentBuilderFactory().newDocumentBuilder().parse( stream );
-            ImageIOTiffUtils.dumpNode( doc, 1 );
+            ImageIOCoreUtils.dumpNode( doc, 1 );
             Assertions.assertNotNull( doc );
         }
 

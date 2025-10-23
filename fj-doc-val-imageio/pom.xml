@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>fj-doc-val-imageio-tiff</artifactId>
+	<artifactId>fj-doc-val-imageio</artifactId>
 
 	<parent>
 		<groupId>org.fugerit.java</groupId>
@@ -10,8 +10,8 @@
 		<version>8.17.1-SNAPSHOT</version>
 	</parent>
 
-	<name>fj-doc-val-imageio-tiff</name>
-	<description>Module for validating TIFF TwelveMonkeys ImageIO</description>
+	<name>fj-doc-val-imageio</name>
+	<description>Module for validating Images based TwelveMonkeys ImageIO</description>
 
 	<licenses>
 		<license>
@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<imageio-tiff-version>3.12.0</imageio-tiff-version>
+		<imageio-version>3.12.0</imageio-version>
 	</properties>
 	
 	<build>
@@ -44,8 +44,14 @@
 		<dependency>
 			<groupId>com.twelvemonkeys.imageio</groupId>
 			<artifactId>imageio-tiff</artifactId>
-			<version>${imageio-tiff-version}</version>
+			<version>${imageio-version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>${imageio-version}</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>

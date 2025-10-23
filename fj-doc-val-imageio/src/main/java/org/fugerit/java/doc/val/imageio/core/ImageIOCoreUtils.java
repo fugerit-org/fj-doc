@@ -1,7 +1,5 @@
-package org.fugerit.java.doc.val.imageio.tiff;
+package org.fugerit.java.doc.val.imageio.core;
 
-import com.twelvemonkeys.imageio.metadata.tiff.TIFFEntry;
-import com.twelvemonkeys.imageio.plugins.tiff.TIFFImageMetadata;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.doc.val.core.DocTypeValidationResult;
 import org.w3c.dom.NamedNodeMap;
@@ -15,13 +13,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.BiFunction;
 
 @Slf4j
-public class ImageIOTiffUtils {
+public class ImageIOCoreUtils {
 
-    private ImageIOTiffUtils() {}
+    private ImageIOCoreUtils() {}
 
-    public static DocTypeValidationResult validateTiffAndMetadata(InputStream is, Integer[] idTags) {
+    public static DocTypeValidationResult validateMetadata(InputStream is, String imageFormat, BiFunction<IIOMetadata, List<String>, Boolean> tagFunction) {
         ImageReader reader = null;
         try (ImageInputStream iis = ImageIO.createImageInputStream(is)) {
             Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
@@ -35,7 +34,6 @@ public class ImageIOTiffUtils {
 
             IIOMetadata meta = reader.getImageMetadata(0);
 
-            // TIFF plugin metadata format name
             String[] formatNames = meta.getMetadataFormatNames();
             for (String format : formatNames) {
                 log.debug("Metadata format: {}", format);
@@ -45,16 +43,8 @@ public class ImageIOTiffUtils {
 
             List<String> missingTags = new ArrayList<>();
 
-            if (meta instanceof TIFFImageMetadata) {
-                for ( int idTag : idTags ) {
-                    TIFFImageMetadata tiffMeta = (TIFFImageMetadata) meta;
-                    TIFFEntry entry = (TIFFEntry) tiffMeta.getTIFFField(idTag);
-                    if (entry == null) {
-                        missingTags.add( ImageIOTiffTags.tagDescription(idTag) );
-                    }
-                }
-            } else {
-                return DocTypeValidationResult.newFail().withValidationMessage( "No TIFF metadata available" );
+            if ( !tagFunction.apply( meta, missingTags ) ) {
+                return DocTypeValidationResult.newFail().withValidationMessage( String.format( "No %s metadata available", imageFormat ) );
             }
 
             if (missingTags.isEmpty()) {
@@ -64,7 +54,7 @@ public class ImageIOTiffUtils {
             }
 
         } catch (Exception e) {
-            String message = String.format( "Error reading TIFF metadata from stream %s", e );
+            String message = String.format( "Error reading %s metadata from stream %s", imageFormat, e );
             log.error( message, e );
             return DocTypeValidationResult.newFail().withMainException( e );
         } finally {
