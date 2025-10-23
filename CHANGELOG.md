@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - TIFF validtor based on TwelveMonkeys ImageIO <https://github.com/fugerit-org/fj-doc/issues/551>
 
+### Changed
+
+- quarkus-version set to 3.26.5 across all the modules
+
 ## [8.17.0] - 2025-10-14
 
 ### Added
