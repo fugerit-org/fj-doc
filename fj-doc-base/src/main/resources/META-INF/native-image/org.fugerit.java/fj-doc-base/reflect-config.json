@@ -2413,10 +2413,16 @@
     "name" : "<init>",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int" ]
   }, {
+    "name" : "<init>",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int", "org.fugerit.java.doc.base.process.DocProcessContext" ]
+  }, {
     "name" : "equals",
     "parameterTypes" : [ "java.lang.Object" ]
   }, {
     "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getContext",
     "parameterTypes" : [ ]
   }, {
     "name" : "getDoc",
@@ -2441,6 +2447,9 @@
     "parameterTypes" : [ "java.lang.String", "java.io.Reader", "int" ]
   }, {
     "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "java.io.Reader", "int", "org.fugerit.java.doc.base.process.DocProcessContext" ]
+  }, {
+    "name" : "newInput",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase" ]
   }, {
     "name" : "newInput",
@@ -2448,6 +2457,9 @@
   }, {
     "name" : "newInput",
     "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int" ]
+  }, {
+    "name" : "newInput",
+    "parameterTypes" : [ "java.lang.String", "org.fugerit.java.doc.base.model.DocBase", "java.io.Reader", "int", "org.fugerit.java.doc.base.process.DocProcessContext" ]
   }, {
     "name" : "notify",
     "parameterTypes" : [ ]
