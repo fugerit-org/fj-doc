@@ -16,4 +16,21 @@ class TestFo01 extends DevHelper {
 				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+".pdf" ) );
 		Assertions.assertTrue( res );
 	}
+
+	@Test
+	void test01KeepTogether1WithinSpace() throws Exception {
+		String testCase = "test-fo-01-keep-together-1";
+		boolean res = this.workerFoToPdf( new File( "src/test/resources/dev/"+testCase+".fo" ),
+				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+".pdf" ) );
+		Assertions.assertTrue( res );
+	}
+
+	@Test
+	void test01KeepTogether2WithinSpace() throws Exception {
+		String testCase = "test-fo-01-keep-together-2";
+		boolean res = this.workerFoToPdf( new File( "src/test/resources/dev/"+testCase+".fo" ),
+				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+".pdf" ) );
+		Assertions.assertTrue( res );
+	}
+
 }
