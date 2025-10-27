@@ -244,8 +244,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		// legacy class loader mode
 		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
-			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
-			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
+			this.legacyClassLoaderMode();
 		}
 		// setup fop config mode
 		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath, config);
@@ -309,9 +308,13 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 				this.fopConfig = fopConfigClassLoaderWrapper;
 			} );
 		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
-			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
-			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
+			this.legacyClassLoaderMode();
 		}
+	}
+
+	private void legacyClassLoaderMode() throws ConfigException {
+		log.warn( "Deprecated legacy class loader mode : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
+		throw new ConfigException( "Deprecated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 	}
 
 	@Override
