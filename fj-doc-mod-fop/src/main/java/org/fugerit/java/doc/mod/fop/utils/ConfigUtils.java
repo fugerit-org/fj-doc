@@ -12,7 +12,7 @@ public class ConfigUtils {
 
     private ConfigUtils() {}
 
-    public static Consumer<Boolean> LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER = error -> {
+    public static final Consumer<Boolean> LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER = error -> {
         log.warn( "Deprecated legacy class loader mode : classloader-legacy" );
         if ( error ) {
             throw new ConfigRuntimeException( "Deprecated config mode, see github fugerit-org/fj-doc repository, issue 65" );
