@@ -8,6 +8,7 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 
 - fj-doc-mod-fop, new mod-fop-xslt-path property link:https://github.com/fugerit-org/fj-doc/issues/558[#558]
 - fj-doc-val-imageio, TIFF validator based on TwelveMonkeys ImageIO link:https://github.com/fugerit-org/fj-doc/issues/551[#551]
+- fj-doc-base, now DocInput has access to DocProcessContext  link:https://github.com/fugerit-org/fj-doc/issues/545[#545]
 
 [#doc-release-notes-8-17-0]
 ==== Version 8.17.0 [2025-10-14]
