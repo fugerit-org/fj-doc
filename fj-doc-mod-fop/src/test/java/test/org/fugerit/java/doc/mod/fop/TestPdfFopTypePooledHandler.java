@@ -2,8 +2,6 @@ package test.org.fugerit.java.doc.mod.fop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
-import org.fugerit.java.core.cfg.ConfigRuntimeException;
-import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.function.UnsafeSupplier;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.xml.XMLException;
@@ -11,6 +9,7 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.mod.fop.*;
+import org.fugerit.java.doc.mod.fop.utils.PoolUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Element;

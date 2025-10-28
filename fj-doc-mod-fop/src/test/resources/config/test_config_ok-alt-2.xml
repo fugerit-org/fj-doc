@@ -1,0 +1,4 @@
+<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+	<docHandlerCustomConfig
+		font-base-classloader-path="font/"/>
+</docHandler>

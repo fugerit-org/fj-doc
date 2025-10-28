@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
@@ -26,7 +27,10 @@ import org.fugerit.java.core.util.mvn.MavenProps;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.*;
+import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
+import org.fugerit.java.doc.mod.fop.utils.ConfigUtils;
+import org.fugerit.java.doc.mod.fop.utils.PoolUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -48,7 +52,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	public static final String ATT_FOP_CONFIG_CLASSLOADER_PATH = "fop-config-classloader-path";
 
-	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resover-type";
+	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resolver-type";
 
 	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = FopConfigClassLoaderWrapper.DEFAULT_RESOURCE_RESOLVER.getClass().getName();
 
@@ -82,6 +86,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_POOL_MAX = "fop-pool-max";
 
 	private static final String FOP_CONFIG_ROOT = "fop";
+
+    private static final boolean LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER_FAIL_WITH_EXCEPTION = Boolean.TRUE;
 
 	/**
 	 *
@@ -196,6 +202,18 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 	}
 
+	private Transformer newTransformer( TransformerFactory factory, DocBase docBase ) throws TransformerConfigurationException, IOException {
+		String xsltPath = docBase.getStableInfo().getProperty( FopHelperConstants.INFO_KEY_MOD_FOP_XSLT_PATH );
+		log.debug( "newTransformer {} -> {}", FopHelperConstants.INFO_KEY_MOD_FOP_XSLT_PATH, xsltPath );
+		if ( StringUtils.isNotEmpty( xsltPath ) ) {
+			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( xsltPath ) ) {
+				return factory.newTransformer( new StreamSource( is ) );
+			}
+		} else {
+			return factory.newTransformer();
+		}
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
@@ -205,7 +223,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			FopConfigWrap fopWrap = this.fopWrapSupplier.get();
 			Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
 			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = factory.newTransformer();
+			Transformer transformer = this.newTransformer( factory, docInput.getDoc() );
 			Result res = new SAXResult(fop.getDefaultHandler());
 			transformer.transform(xmlSource, res);
 			this.fopWrapConsumer.accept( fopWrap );
@@ -218,7 +236,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		Properties props = DOMUtils.attributesToProperties( config );
 		String fopConfigMode = props.getProperty( ATT_FOP_CONFIG_MODE );
 		String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
-		String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
+		String fopConfigResolverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
 		String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
 		String pdfUAModConfig = props.getProperty( ATT_PDF_UA_MODE );
 		// config pdf ua
@@ -244,11 +262,10 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		// legacy class loader mode
 		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
-			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
-			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
+            ConfigUtils.LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER.accept( LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER_FAIL_WITH_EXCEPTION );
 		}
 		// setup fop config mode
-		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath, config);
+		this.setupFopConfigMode(fopConfigMode, fopConfigResolverType, fopConfigClassloaderPath, config);
 		// setup suppress events
 		this.setSuppressEvents( BooleanUtils.isTrue( props.getProperty( ATT_FOP_SUPPRESS_EVENTS ) ) );
 		// setup pool
@@ -309,8 +326,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 				this.fopConfig = fopConfigClassLoaderWrapper;
 			} );
 		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
-			log.warn( "Activated legacy ClassLoader mode. it is now deprecated : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
-			throw new ConfigException( "Depcreated config mode, see github fugerit-org/fj-doc repository, issue 65" );
+            ConfigUtils.LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER.accept( LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER_FAIL_WITH_EXCEPTION );
 		}
 	}
 

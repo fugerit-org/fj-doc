@@ -18,9 +18,10 @@ public class DocInput {
 	private DocBase doc;
 		
 	public DocBase getDoc() {
-		DocBase res = doc;
+		DocBase res = this.doc;
 		if ( res == null && reader != null ) {
 			res = DocFacadeSource.getInstance().parseRE( reader, this.getSource() );
+			this.doc = res;
 		}
  		return res;
 	}

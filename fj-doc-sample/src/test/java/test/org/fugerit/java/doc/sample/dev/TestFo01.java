@@ -16,4 +16,5 @@ class TestFo01 extends DevHelper {
 				new File( BasicFacadeTest.BASIC_OUTPUT_PATH, testCase+".pdf" ) );
 		Assertions.assertTrue( res );
 	}
+
 }

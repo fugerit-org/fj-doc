@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+        xmlns="http://javacoredoc.fugerit.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+    <!--
+        This is a Venus Fugerit Doc (https://github.com/fugerit-org/fj-doc) XML Source Document.
+        For documentation on how to write a valid Venus Doc XML Meta Model refer to :
+        https://venusdocs.fugerit.org/guide/#doc-format-entry-point
+    -->
+
+
+    <metadata>
+        <!-- Margin for document : left;right;top;bottom -->
+        <info name="margins">10;10;10;30</info>
+        <!-- documenta meta information -->
+        <info name="doc-title">My FreeMarker Template Sample Doc Title</info>
+        <info name="doc-subject">fj doc venus sample source FreeMarker Template XML - ftlx</info>
+        <info name="doc-author">fugerit79</info>
+        <info name="doc-language">en</info>
+        <!-- font must be loaded -->
+        <info name="default-font-name">TitilliumWeb</info>
+        <!-- property specific for xls/xlsx -->
+        <info name="excel-table-id">data-table=print</info>
+        <!-- property specific for csv -->
+        <info name="csv-table-id">data-table</info>
+        <info name="mod-fop-xslt-path">xslt-sample/xslt-sample.xsl</info>
+        <footer-ext>
+            <para align="right">${currentPage} / ${pageCount}</para>
+        </footer-ext>
+    </metadata>
+    <body>
+        <para>My FreeMarker Template Sample Doc Title</para>
+        <table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2" space-after="10">
+            <row header="true">
+                <cell align="center"><para>Name</para></cell>
+                <cell align="center"><para>Surname</para></cell>
+                <cell align="center"><para>Title</para></cell>
+            </row>
+            <row>
+                <cell><para>0 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>1 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>2 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>3 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>4 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>5 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>6 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>7 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>8 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>9 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>10 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>11 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>12 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>13 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>14 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>15 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>16 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>17 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>18 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>19 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>20 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>21 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>22 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>23 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>24 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>25 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>26 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>27 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>28 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>29 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>30 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>31 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>32 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>33 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>34 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>35 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>36 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+            <row>
+                <cell><para>37 Thorin 0</para></cell>
+                <cell><para>Oakshield 0</para></cell>
+                <cell><para>King 0</para></cell>
+            </row>
+            <row>
+                <cell><para>38 Luthien 0</para></cell>
+                <cell><para>Tinuviel 0</para></cell>
+                <cell><para>Queen 0</para></cell>
+            </row>
+        </table>
+        <table columns="3" colwidths="30;30;40"  width="100" id="end-element" padding="2" space-after="10">
+            <row header="true">
+                <cell align="center"><para>Name</para></cell>
+                <cell align="center"><para>Surname</para></cell>
+                <cell align="center"><para>Title</para></cell>
+            </row>
+
+            <row>
+                <cell><para>0 Luthien 1</para></cell>
+                <cell><para>Tinuviel 1</para></cell>
+                <cell><para>Queen 1</para></cell>
+            </row>
+            <row>
+                <cell><para>1 Thorin 1</para></cell>
+                <cell><para>Oakshield 1</para></cell>
+                <cell><para>King 1</para></cell>
+            </row>
+            <row>
+                <cell><para>2 Luthien 1</para></cell>
+                <cell><para>Tinuviel 1</para></cell>
+                <cell><para>Queen 1</para></cell>
+            </row>
+            <row>
+                <cell><para>3 Thorin 1</para></cell>
+                <cell><para>Oakshield 1</para></cell>
+                <cell><para>King 1</para></cell>
+            </row>
+        </table>
+    </body>
+
+</doc>

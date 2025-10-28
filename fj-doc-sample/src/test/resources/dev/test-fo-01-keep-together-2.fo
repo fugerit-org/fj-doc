@@ -46,7 +46,7 @@ font-family="TitilliumWeb" 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 
 			<fo:block>
 	<fo:block><![CDATA[My FreeMarker Template Sample Doc Title]]></fo:block>
-		<fo:table  margin-bottom="10px" border-collapse="separate" width="100%" table-layout="fixed"  border-separation="0px">
+		<fo:table margin-bottom="10px" border-collapse="separate" width="100%" table-layout="fixed"  border-separation="0px">
 			<fo:table-column column-width="30%" />
 			<fo:table-column column-width="30%" />
 			<fo:table-column column-width="40%" />
@@ -615,7 +615,86 @@ font-family="TitilliumWeb" 	xmlns:fo="http://www.w3.org/1999/XSL/Format"
 				</fo:table-row>
 			</fo:table-body>
 		</fo:table>
-			</fo:block>	
+		<fo:table  border-collapse="separate" width="100%" table-layout="fixed"  border-separation="0px">
+			<fo:table-column column-width="30%" />
+			<fo:table-column column-width="30%" />
+			<fo:table-column column-width="40%" />
+			<fo:table-header  font-weight="bold" text-align="center">
+				<fo:table-row>
+						<fo:table-cell padding="2mm" margin="2mm" text-align="center" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Name]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" text-align="center" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Surname]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" text-align="center" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Title]]></fo:block>
+
+						</fo:table-cell>
+				</fo:table-row>
+			</fo:table-header>
+			<fo:table-body >
+				<fo:table-row>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[0 Luthien 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Tinuviel 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Queen 1]]></fo:block>
+
+						</fo:table-cell>
+				</fo:table-row>
+				<fo:table-row>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[1 Thorin 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Oakshield 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[King 1]]></fo:block>
+
+						</fo:table-cell>
+				</fo:table-row>
+				<fo:table-row>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[2 Luthien 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Tinuviel 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Queen 1]]></fo:block>
+
+						</fo:table-cell>
+				</fo:table-row>
+				<fo:table-row>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[3 Thorin 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[Oakshield 1]]></fo:block>
+
+						</fo:table-cell>
+						<fo:table-cell padding="2mm" margin="2mm" border-top='1pt solid black' border-bottom='1pt solid black' border-left='1pt solid black' border-right='1pt solid black'>
+									<fo:block><![CDATA[King 1]]></fo:block>
+
+						</fo:table-cell>
+				</fo:table-row>
+			</fo:table-body>
+		</fo:table>
+			</fo:block>
 		<fo:block id="EndOfDocument"></fo:block></fo:flow>
 	</fo:page-sequence>
 </fo:root>
