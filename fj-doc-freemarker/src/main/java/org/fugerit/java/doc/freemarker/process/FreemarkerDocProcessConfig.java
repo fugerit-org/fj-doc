@@ -113,7 +113,7 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap, 
 			log.debug( "overrideSourceType {}, for chainId : {}", overrideSourceType, chainId );
 			context.withSourceType( overrideSourceType );
 		}
-		DocInput docInput = this.docInputProcess.process( DocInput.newInput( handler.getType() , data.getCurrentXmlReader(), context.getSourceType() ) );
+		DocInput docInput = this.docInputProcess.process( DocInput.newInput( handler.getType() , data.getCurrentXmlReader(), context.getSourceType(), context ) );
 		handler.handle( docInput , docOutput );
 		return data;
 	}

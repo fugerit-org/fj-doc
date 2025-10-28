@@ -6,6 +6,7 @@ import org.fugerit.java.doc.base.facade.DocFacadeSource;
 import org.fugerit.java.doc.base.model.DocBase;
 
 import lombok.Getter;
+import org.fugerit.java.doc.base.process.DocProcessContext;
 
 public class DocInput {
 
@@ -14,6 +15,8 @@ public class DocInput {
 	@Getter private Reader reader;
 
 	@Getter private int source;
+
+	@Getter private DocProcessContext context;
 
 	private DocBase doc;
 		
@@ -31,11 +34,16 @@ public class DocInput {
 	}
 	
 	public DocInput(String type, DocBase doc, Reader reader, int source) {
+		this(type, doc, reader, source, null);
+	}
+
+	public DocInput(String type, DocBase doc, Reader reader, int source, DocProcessContext context) {
 		super();
 		this.type = type;
 		this.reader = reader;
 		this.doc = doc;
 		this.source = source;
+		this.context = context;
 	}
 
 	public static DocInput newInput( String type, DocBase doc ) {
@@ -58,5 +66,12 @@ public class DocInput {
 		return new DocInput( type, doc, reader, source );
 	}
 
-	
+	public static DocInput newInput( String type, Reader reader, int source, DocProcessContext context ) {
+		return newInput( type, null, reader, source, context );
+	}
+
+	public static DocInput newInput( String type, DocBase doc, Reader reader, int source, DocProcessContext context ) {
+		return new DocInput( type, doc, reader, source, context );
+	}
+
 }
