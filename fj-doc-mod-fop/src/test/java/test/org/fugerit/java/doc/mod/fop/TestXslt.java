@@ -42,18 +42,18 @@ class TestXslt extends BasicTest {
 	
 	@Test
 	void testXslt01Ok() {
-		for ( int k=0; k<HANDLERS.length; k++ ) {
-			boolean ok = this.testHelper(HANDLERS[k], "xslt-sample-01");
-			Assertions.assertTrue(ok);
-		}
+        for (DocTypeHandler handler : HANDLERS) {
+            boolean ok = this.testHelper(handler, "xslt-sample-01");
+            Assertions.assertTrue(ok);
+        }
 	}
 
 	@Test
 	void testXslt02Ok() {
-		for ( int k=0; k<HANDLERS.length; k++ ) {
-			boolean ok = this.testHelper(HANDLERS[k], "xslt-sample-02");
-			Assertions.assertTrue(ok);
-		}
+        for (DocTypeHandler handler : HANDLERS) {
+            boolean ok = this.testHelper(handler, "xslt-sample-02");
+            Assertions.assertTrue(ok);
+        }
 	}
 	
 }

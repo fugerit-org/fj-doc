@@ -26,6 +26,7 @@
         <!-- property specific for csv -->
         <info name="csv-table-id">data-table</info>
         <info name="mod-fop-xslt-path">xslt-sample/xslt-sample.xsl</info>
+        <info name="mod-fop-xslt-debug">true</info>
         <footer-ext>
             <para align="right">${currentPage} / ${pageCount}</para>
         </footer-ext>

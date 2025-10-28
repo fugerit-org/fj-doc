@@ -401,6 +401,13 @@ the 'value' is the name of the sheet to be created. i.e. 'table-1=sheet1;table-2
       <admeta:supportedType>pdf</admeta:supportedType>
       <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
     </admeta:admMetaInfo>
+      <admeta:admMetaInfo>
+          <admeta:name>mod-fop-xslt-debug</admeta:name>
+          <admeta:description>If set to true, the result of the xslt transformation of the pdf fop handler will be printed in log for debugging purpose.</admeta:description>
+          <admeta:since>8.17.2</admeta:since>
+          <admeta:supportedType>pdf</admeta:supportedType>
+          <admeta:supportedHandler>fj-doc-mod-fop(pdf)</admeta:supportedHandler>
+      </admeta:admMetaInfo>
   </admeta:admSection>
 
 </admeta:autodocMeta>

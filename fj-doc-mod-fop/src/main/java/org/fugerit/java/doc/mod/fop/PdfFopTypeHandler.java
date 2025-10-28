@@ -5,11 +5,9 @@ import java.nio.charset.Charset;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import javax.xml.transform.Result;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.*;
 import javax.xml.transform.sax.SAXResult;
+import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.apache.fop.apps.FOUserAgent;
@@ -24,12 +22,14 @@ import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.mvn.MavenProps;
+import org.fugerit.java.core.xml.TransformerXML;
 import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.fugerit.java.doc.mod.fop.utils.ConfigUtils;
+import org.fugerit.java.doc.mod.fop.utils.FopHelperConstants;
 import org.fugerit.java.doc.mod.fop.utils.PoolUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -214,16 +214,31 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 	}
 
+    // check if debug is activated
+    private void xsltDebugCheck( DocBase docBase, byte[] xslContent, Transformer transformer ) throws IOException, TransformerException {
+        boolean xsltDebug = BooleanUtils.isTrue( docBase.getStableInfo().getProperty( FopHelperConstants.INFO_KEY_MOD_FOP_XSLT_DEBUG ) );
+        if ( xsltDebug ) {
+            try ( ByteArrayInputStream input = new ByteArrayInputStream( xslContent );
+                StringWriter buffer = new StringWriter() ) {
+                transformer.transform(new StreamSource( input ), new StreamResult( buffer ));
+                log.info( "{} activated, xslt content : \n{}", FopHelperConstants.INFO_KEY_MOD_FOP_XSLT_DEBUG, buffer.toString() );
+            }
+        }
+    }
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-		try ( ByteArrayInputStream input = new ByteArrayInputStream(this.getXlsFoContent(docInput) ) ) {
+        DocBase docBase = docInput.getDoc();
+        byte[] xslContent = this.getXlsFoContent(docInput);
+		try ( ByteArrayInputStream input = new ByteArrayInputStream( xslContent ) ) {
 			// the XML file which provides the input
 			StreamSource xmlSource = new StreamSource( new InputStreamReader( input, this.getCharset() ) );
 			FopConfigWrap fopWrap = this.fopWrapSupplier.get();
 			Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
-			TransformerFactory factory = TransformerFactory.newInstance();
-			Transformer transformer = this.newTransformer( factory, docInput.getDoc() );
+			TransformerFactory factory = TransformerXML.newSafeTransformerFactory();
+			Transformer transformer = this.newTransformer( factory, docBase );
+            this.xsltDebugCheck( docBase, xslContent, transformer );
 			Result res = new SAXResult(fop.getDefaultHandler());
 			transformer.transform(xmlSource, res);
 			this.fopWrapConsumer.accept( fopWrap );
