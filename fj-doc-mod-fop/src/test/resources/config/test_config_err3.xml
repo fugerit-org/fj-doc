@@ -1,0 +1,4 @@
+<docHandler id="pdf_a-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+	<docHandlerCustomConfig
+            fop-config-mode="classloader-legacy"/>
+</docHandler>

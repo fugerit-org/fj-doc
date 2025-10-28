@@ -2,6 +2,7 @@ package test.org.fugerit.java.doc.mod.fop;
 
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
@@ -54,38 +55,33 @@ class TestPdfFopTypeHandler extends BasicTest {
 	}
 	
 	private boolean configureHelper( String path ) {
-		boolean ok = false;
+		boolean ok = Boolean.FALSE;
 		try  ( InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( path ) ) ) {
 			Document doc = DOMIO.loadDOMDoc(reader);
 			PdfFopTypeHandler handler = new PdfFopTypeHandler();
 			handler.configure( doc.getDocumentElement() );
 			ok = true;
 		} catch (Exception e) {
-			throw new ConfigRuntimeException( e );
+			throw ConfigRuntimeException.convertEx( e );
 		}
 		return ok;
 	}
-	
-	@Test
-	void test002Ko() {
-		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-			this.configureHelper(  "config/test_config_err1.xml" );
-		});
-	}
-	
 
 	@Test
 	void test003Ok() {
 		boolean ok = this.configureHelper(  "config/test_config_ok.xml" );
 		Assertions.assertTrue(ok);
 	}
-	
-	@Test
-	void test004Ko() {
-		Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-			this.configureHelper(  "config/test_config_err2.xml" );
-		});
-	}
-	
-	
+
+    @Test
+    void testKo() {
+        Arrays.asList( "config/test_config_err1.xml", "config/test_config_err2.xml", "config/test_config_err3.xml" ).forEach(
+                current -> {
+                    Assertions.assertThrows( ConfigRuntimeException.class , () -> {
+                        this.configureHelper( current );
+                    });
+                }
+        );
+    }
+
 }
