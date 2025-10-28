@@ -7,6 +7,6 @@ import org.fugerit.java.core.cfg.ConfigException;
 
 public interface FopConfig extends Serializable {
 
-		public FopFactory newFactory() throws ConfigException;
+    FopFactory newFactory() throws ConfigException;
 	
 }
