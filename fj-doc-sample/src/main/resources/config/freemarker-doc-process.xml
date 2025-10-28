@@ -78,7 +78,7 @@
 			2) fop-config-mode='classloader'
 			Example : <config fop-config-mode="classloader" fop-config-classloader-path="fop-config.xml"/>
 			With an optinal attribute :
-			'fop-config-resover-type' (which default to 'org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper')
+			'fop-config-resolver-type' (which default to 'org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper')
 
 			3) fop-config-mode='classloader-legacy' [deprecated, equal to the previous method of classloading, see [0.5.2](https://github.com/fugerit-org/fj-doc/issues/7)
 			Example 1: <config fop-config-mode='classloader-legacy' fop-config-classloader-path="fop-config.xml" font-base-classloader-path="font/"/>

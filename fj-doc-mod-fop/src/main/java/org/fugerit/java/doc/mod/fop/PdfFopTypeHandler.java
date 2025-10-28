@@ -50,7 +50,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	public static final String ATT_FOP_CONFIG_CLASSLOADER_PATH = "fop-config-classloader-path";
 
-	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resover-type";
+	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE 		= "fop-config-resolver-type";
 
 	public static final String ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT = FopConfigClassLoaderWrapper.DEFAULT_RESOURCE_RESOLVER.getClass().getName();
 
@@ -232,7 +232,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		Properties props = DOMUtils.attributesToProperties( config );
 		String fopConfigMode = props.getProperty( ATT_FOP_CONFIG_MODE );
 		String fopConfigClassloaderPath = props.getProperty( ATT_FOP_CONFIG_CLASSLOADER_PATH );
-		String fopConfigResoverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
+		String fopConfigResolverType = props.getProperty( ATT_FOP_CONFIG_RESOLVER_TYPE, ATT_FOP_CONFIG_RESOLVER_TYPE_DEFAULT );
 		String fontBaseClassloaderPath = props.getProperty( ATT_FONT_BASE_CLASSLOADER_PATH );
 		String pdfUAModConfig = props.getProperty( ATT_PDF_UA_MODE );
 		// config pdf ua
@@ -261,7 +261,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			this.legacyClassLoaderMode();
 		}
 		// setup fop config mode
-		this.setupFopConfigMode(fopConfigMode, fopConfigResoverType, fopConfigClassloaderPath, config);
+		this.setupFopConfigMode(fopConfigMode, fopConfigResolverType, fopConfigClassloaderPath, config);
 		// setup suppress events
 		this.setSuppressEvents( BooleanUtils.isTrue( props.getProperty( ATT_FOP_SUPPRESS_EVENTS ) ) );
 		// setup pool

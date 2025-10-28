@@ -68,19 +68,24 @@ class TestPdfFopTypeHandler extends BasicTest {
 	}
 
 	@Test
-	void test003Ok() {
-		boolean ok = this.configureHelper(  "config/test_config_ok.xml" );
-		Assertions.assertTrue(ok);
+	void testOk() {
+        Arrays.asList( "config/test_config_ok.xml",
+                "config/test_config_ok-alt1.xml",
+                "config/test_config_ok-alt-2.xml").forEach(
+                current -> {
+                    boolean ok = this.configureHelper( current );
+                    Assertions.assertTrue(ok);
+                }
+        );
+
 	}
 
     @Test
     void testKo() {
-        Arrays.asList( "config/test_config_err1.xml", "config/test_config_err2.xml", "config/test_config_err3.xml" ).forEach(
-                current -> {
-                    Assertions.assertThrows( ConfigRuntimeException.class , () -> {
-                        this.configureHelper( current );
-                    });
-                }
+        Arrays.asList( "config/test_config_err1.xml",
+                    "config/test_config_err2.xml",
+                    "config/test_config_err3.xml" ).forEach(
+                current -> Assertions.assertThrows( ConfigRuntimeException.class , () -> this.configureHelper( current ))
         );
     }
 
