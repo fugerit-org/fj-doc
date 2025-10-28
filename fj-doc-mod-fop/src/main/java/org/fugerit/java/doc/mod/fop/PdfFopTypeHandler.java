@@ -29,6 +29,8 @@ import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
+import org.fugerit.java.doc.mod.fop.utils.ConfigUtils;
+import org.fugerit.java.doc.mod.fop.utils.PoolUtils;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -84,6 +86,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 	public static final String ATT_FOP_POOL_MAX = "fop-pool-max";
 
 	private static final String FOP_CONFIG_ROOT = "fop";
+
+    private static final boolean LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER_FAIL_WITH_EXCEPTION = Boolean.TRUE;
 
 	/**
 	 *
@@ -258,7 +262,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		// legacy class loader mode
 		if ( StringUtils.isEmpty( fopConfigMode ) && StringUtils.isNotEmpty( fopConfigClassloaderPath ) && StringUtils.isNotEmpty( fontBaseClassloaderPath ) ) {
-			this.legacyClassLoaderMode();
+            ConfigUtils.LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER.accept( LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER_FAIL_WITH_EXCEPTION );
 		}
 		// setup fop config mode
 		this.setupFopConfigMode(fopConfigMode, fopConfigResolverType, fopConfigClassloaderPath, config);
@@ -322,13 +326,8 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 				this.fopConfig = fopConfigClassLoaderWrapper;
 			} );
 		} else if ( ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY.equalsIgnoreCase( fopConfigMode ) ) {
-			this.legacyClassLoaderMode();
+            ConfigUtils.LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER.accept( LEGACY_CLASS_LOADER_MODE_CONFIG_HANDLER_FAIL_WITH_EXCEPTION );
 		}
-	}
-
-	private void legacyClassLoaderMode() throws ConfigException {
-		log.warn( "Deprecated legacy class loader mode : {}", ATT_FOP_CONFIG_MODE_CLASS_LOADER_LEGACY );
-		throw new ConfigException( "Deprecated config mode, see github fugerit-org/fj-doc repository, issue 65" );
 	}
 
 	@Override

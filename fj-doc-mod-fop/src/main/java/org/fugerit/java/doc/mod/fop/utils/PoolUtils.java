@@ -1,8 +1,9 @@
-package org.fugerit.java.doc.mod.fop;
+package org.fugerit.java.doc.mod.fop.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.function.UnsafeSupplier;
+import org.fugerit.java.doc.mod.fop.FopConfigWrap;
 
 import java.util.List;
 

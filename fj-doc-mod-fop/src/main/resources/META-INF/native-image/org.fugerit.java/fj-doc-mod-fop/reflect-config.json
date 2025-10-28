@@ -572,39 +572,6 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
-  "name" : "org.fugerit.java.doc.mod.fop.PoolUtils",
-  "methods" : [ {
-    "name" : "equals",
-    "parameterTypes" : [ "java.lang.Object" ]
-  }, {
-    "name" : "getClass",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "handleFopWrap",
-    "parameterTypes" : [ "org.fugerit.java.doc.mod.fop.FopConfigWrap", "java.util.List", "int", "int", "org.fugerit.java.core.function.UnsafeSupplier" ]
-  }, {
-    "name" : "hashCode",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "notify",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "notifyAll",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "toString",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "wait",
-    "parameterTypes" : [ ]
-  }, {
-    "name" : "wait",
-    "parameterTypes" : [ "long" ]
-  }, {
-    "name" : "wait",
-    "parameterTypes" : [ "long", "int" ]
-  } ]
-}, {
   "name" : "org.fugerit.java.doc.mod.fop.config.ClassLoaderResourceResolverWrapper",
   "methods" : [ {
     "name" : "<init>",
