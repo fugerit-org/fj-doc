@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - quarkus-version set to 3.26.5 across all the modules
 - now DocInput has access to DocProcessContext <https://github.com/fugerit-org/fj-doc/issues/545>
+- quarkus-version set to 3.29.0 across all the modules
 
 ### Fixed
 
