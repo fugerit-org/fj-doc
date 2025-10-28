@@ -13,14 +13,14 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.BiFunction;
+import java.util.function.BiPredicate;
 
 @Slf4j
 public class ImageIOCoreUtils {
 
     private ImageIOCoreUtils() {}
 
-    public static DocTypeValidationResult validateMetadata(InputStream is, String imageFormat, BiFunction<IIOMetadata, List<String>, Boolean> tagFunction) {
+    public static DocTypeValidationResult validateMetadata(InputStream is, String imageFormat, BiPredicate<IIOMetadata, List<String>> tagFunction) {
         ImageReader reader = null;
         try (ImageInputStream iis = ImageIO.createImageInputStream(is)) {
             Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
@@ -43,7 +43,7 @@ public class ImageIOCoreUtils {
 
             List<String> missingTags = new ArrayList<>();
 
-            if ( !tagFunction.apply( meta, missingTags ) ) {
+            if ( !tagFunction.test( meta, missingTags ) ) {
                 return DocTypeValidationResult.newFail().withValidationMessage( String.format( "No %s metadata available", imageFormat ) );
             }
 
