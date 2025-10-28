@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.1] - 2025-10-28
+
 ### Added
 
 - Image validator based on TwelveMonkeys ImageIO (currently supporting TIFF) <https://github.com/fugerit-org/fj-doc/issues/551>
