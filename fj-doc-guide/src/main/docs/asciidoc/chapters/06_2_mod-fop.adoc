@@ -138,6 +138,16 @@ Then fop user agent will use given XSLT in the transformation.
 <info name="mod-fop-xslt-path">xslt-sample/xslt-sample.xsl</info>
 ----
 
+[#doc-handler-mod-fop-xslt-debug]
+===== Property 'mod-fop-xslt-debug'
+
+If property *mod-fop-xslt-debug* is set to true, the result of the xslt transformation of the pdf fop handler will be printed in log for debugging purpose.
+
+[source,xml]
+----
+<info name="mod-fop-xslt-path">xslt-sample/xslt-sample.xsl</info>
+----
+
 [#doc-handler-mod-fop-fo]
 ==== FO DocHandler
 

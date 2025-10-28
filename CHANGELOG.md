@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-mod-fop, new mod-fop-xslt-debug property <https://github.com/fugerit-org/fj-doc/issues/560>
+
 ## [8.17.1] - 2025-10-28
 
 ### Added
 
 - Image validator based on TwelveMonkeys ImageIO (currently supporting TIFF) <https://github.com/fugerit-org/fj-doc/issues/551>
-- fj-doc-mod-fop, new <> property <https://github.com/fugerit-org/fj-doc/issues/558>
+- fj-doc-mod-fop, new mod-fop-xslt-path property <https://github.com/fugerit-org/fj-doc/issues/558>
 
 ### Changed
 
