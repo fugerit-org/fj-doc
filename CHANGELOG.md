@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - quarkus-version set to 3.26.5 across all the modules
 
+### Fixed
+
+- DocInput.getDoc() now reuse docBase
+
 ## [8.17.0] - 2025-10-14
 
 ### Added
