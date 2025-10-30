@@ -16,11 +16,15 @@ import org.fugerit.java.doc.val.core.DocTypeValidator;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Slf4j
 public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 
-	@Override
+    private static final Logger logger = LoggerFactory.getLogger( AbstractDocTypeValidator.class );
+
+    @Override
 	public String toString() {
 		return this.getClass().getSimpleName()+"[mimeType=" + mimeType + ", supportedExtensions=" + supportedExtensions + "]";
 	}
@@ -73,5 +77,9 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 	public boolean checkCompatibility() {
 		return Boolean.TRUE;
 	}
+
+    protected void logFailedCheck( String type, Exception e ) {
+        logger.warn( "Failed check on {} : {}", type, e.toString() );
+    }
 
 }
