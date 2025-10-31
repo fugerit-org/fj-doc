@@ -185,8 +185,6 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		}
 		foUserAgent.setAccessibility( this.isAccessibility() );
 		foUserAgent.setKeepEmptyTags( this.isKeepEmptyTags() );
-		foUserAgent.setProducer( PRODUCER_DEFAULT );
-		foUserAgent.setCreator( VenusVersion.VENUS_CREATOR );
 		return new FopConfigWrap( fopFactory, foUserAgent );
 	}
 
@@ -226,6 +224,11 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
         }
     }
 
+    private void setupMetadata( DocBase docBase, FOUserAgent foUserAgent ) {
+        foUserAgent.setProducer( StringUtils.valueWithDefault( docBase.getInfoDocProducer(), PRODUCER_DEFAULT ) );
+        foUserAgent.setCreator( StringUtils.valueWithDefault( docBase.getInfoDocCreator(), VenusVersion.VENUS_CREATOR  ) );
+    }
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
@@ -235,7 +238,9 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 			// the XML file which provides the input
 			StreamSource xmlSource = new StreamSource( new InputStreamReader( input, this.getCharset() ) );
 			FopConfigWrap fopWrap = this.fopWrapSupplier.get();
-			Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, fopWrap.getFoUserAgent(), docOutput.getOs());
+            FOUserAgent foUserAgent = fopWrap.getFoUserAgent();
+            this.setupMetadata( docBase, foUserAgent);
+			Fop fop = fopWrap.getFopFactory().newFop(MimeConstants.MIME_PDF, foUserAgent, docOutput.getOs());
 			TransformerFactory factory = TransformerXML.newSafeTransformerFactory();
 			Transformer transformer = this.newTransformer( factory, docBase );
             this.xsltDebugCheck( docBase, xslContent, transformer );

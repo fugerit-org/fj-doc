@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - fj-doc-mod-fop, new mod-fop-xslt-debug property <https://github.com/fugerit-org/fj-doc/issues/560>
 
+### Fixed
+
+- fj-doc-mod-fop, fix doc-creator and doc-producer handling <https://github.com/fugerit-org/fj-doc/issues/563>
+
 ## [8.17.1] - 2025-10-28
 
 ### Added
