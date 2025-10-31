@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.2] - 2025-10-31
+
 ### Added
 
 - fj-doc-mod-fop, new mod-fop-xslt-debug property <https://github.com/fugerit-org/fj-doc/issues/560>

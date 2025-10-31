@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-2]
+==== Version 8.17.2 [2025-10-31]
+
 - fj-doc-mod-fop, new mod-fop-xslt-debug property link:https://github.com/fugerit-org/fj-doc/issues/560[#560]
 - fj-doc-mod-fop, fix doc-creator and doc-producer handling link:https://github.com/fugerit-org/fj-doc/issues/563[#563]
 
