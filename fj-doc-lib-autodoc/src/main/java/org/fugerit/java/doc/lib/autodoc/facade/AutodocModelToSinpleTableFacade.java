@@ -138,12 +138,12 @@ public class AutodocModelToSinpleTableFacade {
 		try {
 			this.handleSequence(builder, complexType.getChildAsSequence());
 		} catch (NullPointerException npe) {
-			log.warn( "npe 1 "+npe+" -> "+complexType.getRawName() );
+			log.warn( "npe 1 {} -> {}", npe, complexType.getRawName() );
 		}
 		try {
 			this.handleChoice(builder, complexType.getChildAsChoice());
 		} catch (NullPointerException npe) {
-			log.warn( "npe 2 "+npe+" -> "+complexType.getRawName() );
+            log.warn( "npe 2 {} -> {}", npe, complexType.getRawName() );
 		}
 	}
 	
