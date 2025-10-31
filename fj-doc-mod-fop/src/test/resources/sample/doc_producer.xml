@@ -4,11 +4,12 @@
   <metadata>
     <info name="margins">10;10;10;30</info>
     <info name="table-border-collapse">collapse</info>
-    <info name="doc-title">Apache FOP doc-producer</info>
-    <info name="doc-subject">Integration test for doc-producer info attribure</info>
+    <info name="doc-title">Module FOP Metadata Test</info>
+    <info name="doc-subject">Simple document to test PDF metadata</info>
     <info name="doc-author">fugerit79</info>
       <info name="doc-creator">My Creator</info>
       <info name="doc-producer">My Producer</info>
+      <info name="doc-language">en</info>
     <footer-ext>
       <para align="center">Page ${currentPage}</para>
     </footer-ext>

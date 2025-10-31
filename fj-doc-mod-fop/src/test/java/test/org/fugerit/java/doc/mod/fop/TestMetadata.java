@@ -3,16 +3,12 @@ package test.org.fugerit.java.doc.mod.fop;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDDocumentInformation;
-import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
-import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandlerUTF8;
-import org.fugerit.java.doc.mod.fop.InitFopHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import test.org.fugerit.java.BasicTest;
 
@@ -21,8 +17,12 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
 @Slf4j
-class TestProducer extends BasicTest {
+class TestMetadata extends BasicTest {
 
+    private static final String TEST_TITLE = "Module FOP Metadata Test";
+    private static final String TEST_SUBJECT = "Simple document to test PDF metadata";
+    private static final String TEST_AUTHOR = "fugerit79";
+    private static final String TEST_LANGUAGE = "en";
     private static final String TEST_CREATOR = "My Creator";
     private static final String TEST_PRODUCER = "My Producer";
 
@@ -43,6 +43,16 @@ class TestProducer extends BasicTest {
             log.info( "producer : {}, creator : {}", producer, creator );
             Assertions.assertEquals( TEST_PRODUCER, producer );
             Assertions.assertEquals( TEST_CREATOR, creator );
+            String title = info.getTitle();
+            String subject = info.getSubject();
+            log.info( "title : {}, subject : {}", title, subject );
+            Assertions.assertEquals( TEST_TITLE, title );
+            Assertions.assertEquals( TEST_SUBJECT, subject );
+            String author = info.getAuthor();
+            String language = document.getDocumentCatalog().getLanguage();
+            log.info( "author : {}, language : {}", author, language );
+            Assertions.assertEquals( TEST_AUTHOR, author );
+            Assertions.assertEquals( TEST_LANGUAGE, language );
         }
 	}
 	
