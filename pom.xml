@@ -36,6 +36,7 @@
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.2.21</kotlin.version>
 		<quarkus-version>3.29.0</quarkus-version>
+        <pdfbox-test-version>2.0.35</pdfbox-test-version>
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
 		<maven.executable.windows>mvn.cmd</maven.executable.windows>
