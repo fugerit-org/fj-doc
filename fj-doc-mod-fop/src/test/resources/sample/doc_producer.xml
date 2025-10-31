@@ -7,7 +7,8 @@
     <info name="doc-title">Apache FOP doc-producer</info>
     <info name="doc-subject">Integration test for doc-producer info attribure</info>
     <info name="doc-author">fugerit79</info>
-    <info name="doc-creator">My Creator</info>
+      <info name="doc-creator">My Creator</info>
+      <info name="doc-producer">My Producer</info>
     <footer-ext>
       <para align="center">Page ${currentPage}</para>
     </footer-ext>
