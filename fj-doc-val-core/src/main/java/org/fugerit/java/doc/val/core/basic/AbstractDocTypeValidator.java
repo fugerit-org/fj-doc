@@ -79,7 +79,8 @@ public abstract class AbstractDocTypeValidator implements DocTypeValidator {
 	}
 
     protected void logFailedCheck( String type, Exception e ) {
-        logger.warn( "Failed check on {} : {}", type, e.toString() );
+        String message = e.toString();
+        logger.warn( "Failed check on {} : {}", type, message );
     }
 
 }
