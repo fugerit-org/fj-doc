@@ -8,14 +8,20 @@ public class SecurityHardeningUtil {
 
     private SecurityHardeningUtil() {}
 
+    private static String resolveSecurityHardeningInfo( String securityHardeningInfo ) {
+        if ( GenericConsts.SECURITY_HARDENING_MAX.equalsIgnoreCase( securityHardeningInfo ) ) {
+            return GenericConsts.SECURITY_HARDENING_CURRENT_MAX;
+        } else {
+            return securityHardeningInfo;
+        }
+    }
+
     public static int findCurrentValue( DocBase docBase ) {
         return findCurrentValue( docBase.getStableInfo().getProperty(GenericConsts.SECURITY_HARDENING, GenericConsts.SECURITY_HARDENING_DEFAULT) );
     }
 
-    public static int findCurrentValue( String securityHardening ) {
-        if ( GenericConsts.SECURITY_HARDENING_MAX.equalsIgnoreCase( securityHardening ) ) {
-            securityHardening = GenericConsts.SECURITY_HARDENING_CURRENT_MAX;
-        }
+    public static int findCurrentValue( String securityHardeningInfo ) {
+        String securityHardening = resolveSecurityHardeningInfo( securityHardeningInfo );
         log.debug( "securityHardening : {}", securityHardening );
         try {
             return Integer.parseInt(securityHardening);
