@@ -13,8 +13,10 @@
 		<#if (docBase.stableInfo['html-charset'])??><meta charset="${docBase.stableInfo['html-charset']}"></#if>
 		<#if (docBase.infoDocAuthor)??><meta name="author" content="${docBase.infoDocAuthor}"/></#if>
 		<#if (docBase.infoDocSubject)??><meta name="description" content="${docBase.infoDocSubject}"/></#if>
-		<#if (docBase.infoDocLanguage)??><meta http-equiv="content-language" content="${docBase.infoDocLanguage}"/></#if>		
-		<meta name="doc-version-compatibility" content="${comp}"/>
+		<#if (docBase.infoDocLanguage)??><meta http-equiv="content-language" content="${docBase.infoDocLanguage}"/></#if>
+        <#if (docBase.infoDocProducer)??><meta http-equiv="generator" content="${docBase.infoDocProducer}"/><#else><meta http-equiv="generator" content="Venus Fugerit Doc over Apache FreeMarker"/></#if>
+        <#if (docBase.infoDocCreator)??><meta http-equiv="created-by" content="${docBase.infoDocCreator}"/><#else><meta http-equiv="created-by" content="Venus Fugerit Doc (https://venusdocs.fugerit.org)"/></#if>
+        <meta name="doc-version-compatibility" content="${comp}"/>
 		${docBase.stableInfo['html-add-to-head']!''}
 		<#if (docBase.stableInfo['html-css-style'])??>
 		<style type="text/css">
