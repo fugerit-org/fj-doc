@@ -28,7 +28,7 @@ public class XlsPoiTypeHandler extends BasicPoiTypeHandler {
 
 	@Override
 	protected WorkbookHelper newWorkbook(DocInput docInput, InputStream is ) throws IOException {
-		return PoiUtils.newHelper(false, is);
+		return PoiUtils.newHelper(false, is, docInput.getDoc());
 	}
 
 	@Override

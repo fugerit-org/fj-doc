@@ -44,17 +44,20 @@ class TestPoiCoverage {
 	}
 
 	@Test
-	void testDoc() throws Exception {
-		String fileName = "test_doc";
-		DocTypeHandler handler = XlsxPoiTypeHandler.HANDLER;
-		String inputXml = String.format( "coverage/xml/%s.xml", fileName );
-		String outputFile = String.format( "target/%s.%s", fileName, handler.getType() );
-		File output = new File( outputFile );
-		try ( FileOutputStream fos = new FileOutputStream( output );
-				InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader(inputXml) );) {
-			handler.handle( DocInput.newInput( handler.getType(), reader ), DocOutput.newOutput( fos ) );
-		}
-		Assertions.assertTrue( output.exists() );
+	void testDoc() {
+        Arrays.asList( "test_doc", "test_doc_alt" ).forEach( fileName -> {
+            SafeFunction.apply( () -> {
+                DocTypeHandler handler = XlsxPoiTypeHandler.HANDLER;
+                String inputXml = String.format( "coverage/xml/%s.xml", fileName );
+                String outputFile = String.format( "target/%s.%s", fileName, handler.getType() );
+                File output = new File( outputFile );
+                try ( FileOutputStream fos = new FileOutputStream( output );
+                      InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader(inputXml) );) {
+                    handler.handle( DocInput.newInput( handler.getType(), reader ), DocOutput.newOutput( fos ) );
+                }
+                Assertions.assertTrue( output.exists() );
+            });
+        });
 	}
 	
 }
