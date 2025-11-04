@@ -13,9 +13,11 @@ public class VenusVersion {
 
     public static final String NOT_AVAILABLE = "NA";
 
-    public static final String VENUS_CREATOR = String.format( "%s (https://github.com/fugerit-org/fj-doc)", DocConfig.FUGERIT_VENUS_DOC );
+    public static final String VENUS_CREATOR = String.format( "%s (https://venusdocs.fugerit.org)", DocConfig.FUGERIT_VENUS_DOC );
 
     public static final String VENUS_PRODUCER_FORMAT = "%s (%s) over %s (%s)";
+
+    public static final String VENUS_PRODUCER_FORMAT_SH1 = "%s over %s";
 
     public static Optional<String> getFjDocCoreVersion() {
         return getFjDocModuleVersion( FJ_DOC_BASE_ARTIFACT_ID );

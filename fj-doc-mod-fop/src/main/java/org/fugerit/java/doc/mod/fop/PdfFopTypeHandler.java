@@ -27,6 +27,9 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
+import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningConsts;
+import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningUtil;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.fugerit.java.doc.mod.fop.utils.ConfigUtils;
 import org.fugerit.java.doc.mod.fop.utils.FopHelperConstants;
@@ -132,7 +135,26 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		return MavenProps.getProperty( "org.apache.xmlgraphics", "fop", MavenProps.VERSION );
 	}
 
-	private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , "Apache FOP", getApacheFOPVersion() );
+    private static final String PRODUCER_OVER = "Apache FOP";
+
+    /**
+     * Default producer
+     */
+	private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , PRODUCER_OVER, getApacheFOPVersion() );
+
+    /**
+     * Security hardened producer
+     */
+    private static final String PRODUCER_DEFAULT_SH1 = String.format( VenusVersion.VENUS_PRODUCER_FORMAT_SH1, DocConfig.FUGERIT_VENUS_DOC , PRODUCER_OVER );
+
+    private String findDefaultProducer( DocBase docBase ) {
+        int valueSecurityHardening = SecurityHardeningUtil.findCurrentValue( docBase );
+        if ( valueSecurityHardening >= SecurityHardeningConsts.SECURITY_HARDENING_1 ) {
+            return PRODUCER_DEFAULT_SH1;
+        } else {
+            return PRODUCER_DEFAULT;
+        }
+    }
 
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {
 		super( DocConfig.TYPE_PDF, charset );
@@ -225,7 +247,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
     }
 
     private void setupMetadata( DocBase docBase, FOUserAgent foUserAgent ) {
-        foUserAgent.setProducer( StringUtils.valueWithDefault( docBase.getInfoDocProducer(), PRODUCER_DEFAULT ) );
+        foUserAgent.setProducer( StringUtils.valueWithDefault( docBase.getInfoDocProducer(), findDefaultProducer( docBase ) ) );
         foUserAgent.setCreator( StringUtils.valueWithDefault( docBase.getInfoDocCreator(), VenusVersion.VENUS_CREATOR  ) );
     }
 
