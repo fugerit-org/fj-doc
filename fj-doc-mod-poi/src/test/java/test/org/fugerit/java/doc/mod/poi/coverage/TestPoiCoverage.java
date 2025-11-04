@@ -45,6 +45,7 @@ class TestPoiCoverage {
 
 	@Test
 	void testDoc() {
+        SimpleValue<Integer> count = new SimpleValue<>( 0 );
         Arrays.asList( "test_doc", "test_doc_alt" ).forEach( fileName -> {
             SafeFunction.apply( () -> {
                 DocTypeHandler handler = XlsxPoiTypeHandler.HANDLER;
@@ -56,8 +57,10 @@ class TestPoiCoverage {
                     handler.handle( DocInput.newInput( handler.getType(), reader ), DocOutput.newOutput( fos ) );
                 }
                 Assertions.assertTrue( output.exists() );
+                count.setValue( count.getValue()+1 );
             });
         });
+        Assertions.assertNotEquals( 0, count.getValue() );
 	}
 	
 }
