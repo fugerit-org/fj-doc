@@ -260,7 +260,7 @@
     "parameterTypes" : [ ]
   }, {
     "name" : "newHelper",
-    "parameterTypes" : [ "boolean", "java.io.InputStream" ]
+    "parameterTypes" : [ "boolean", "java.io.InputStream", "org.fugerit.java.doc.base.model.DocBase" ]
   }, {
     "name" : "notify",
     "parameterTypes" : [ ]

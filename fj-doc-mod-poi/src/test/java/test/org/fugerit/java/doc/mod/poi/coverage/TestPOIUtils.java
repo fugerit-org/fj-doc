@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.mod.poi.PoiUtils;
 import org.fugerit.java.doc.mod.poi.WorkbookHelper;
@@ -70,16 +71,17 @@ class TestPOIUtils {
 	
 	@Test
 	void testNewHelper() {
+        DocBase docBase = new DocBase();
 		SafeFunction.apply( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xls_as_xls.xls" ); 
-					WorkbookHelper helper = PoiUtils.newHelper( false , is ) ) {
+					WorkbookHelper helper = PoiUtils.newHelper( false , is, docBase ) ) {
 				log.info( "test 1 -> {}", helper.getIndexedColorMap() );
 				Assertions.assertNotNull( helper );
 			}
 		} );
 		Assertions.assertNotNull( SafeFunction.get( () -> {
 			try ( InputStream is = ClassHelper.loadFromDefaultClassLoader( "coverage/xlsx_as_xlsx.xlsx" ); 
-					WorkbookHelper helper = PoiUtils.newHelper( true , is ) ) {
+					WorkbookHelper helper = PoiUtils.newHelper( true , is, docBase ) ) {
 				log.info( "test 2 -> {}", helper.getIndexedColorMap() );
 				return helper;
 			}
