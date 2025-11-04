@@ -113,6 +113,27 @@ public class PoiUtils {
 
     private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT_SH1, DocConfig.FUGERIT_VENUS_DOC , PRODUCER_OVER );
 
+    private static void propertySetup(DocBase docBase, POIXMLProperties props) {
+        SafeFunction.applySilent( () -> {
+            POIXMLProperties.CoreProperties coreProps = props.getCoreProperties();
+            POIXMLProperties.CustomProperties customProps = props.getCustomProperties();
+            SafeFunction.applyIfNotNull( docBase.getInfoDocTitle(), () -> coreProps.setTitle( docBase.getInfoDocTitle() ) );
+            SafeFunction.applyIfNotNull( docBase.getInfoDocSubject(), () -> coreProps.setSubjectProperty( docBase.getInfoDocSubject() ) );
+            SafeFunction.applyIfNotNull( docBase.getInfoDocVersion(), () -> coreProps.setVersion( docBase.getInfoDocVersion() ) );
+            SafeFunction.applyIfNotNull( docBase.getInfoDocAuthor(), () -> customProps.addProperty( "Author", docBase.getInfoDocAuthor() ) );
+            if ( docBase.getInfoDocProducer() != null ) {
+                customProps.addProperty( "Creator" , docBase.getInfoDocCreator() );
+            } else {
+                customProps.addProperty( "Creator" , VenusVersion.VENUS_CREATOR );
+            }
+            if ( docBase.getInfoDocProducer() != null ) {
+                customProps.addProperty( "Producer" , docBase.getInfoDocProducer() );
+            } else {
+                customProps.addProperty( "Producer" , PRODUCER_DEFAULT );
+            }
+            SafeFunction.applyIfNotNull( docBase.getInfoDocLanguage(), () -> customProps.addProperty( "ContentLanguage" , docBase.getInfoDocLanguage() ) );
+        } );
+    }
 
     public static WorkbookHelper newHelper(boolean xlsx, InputStream is, DocBase docBase) throws IOException {
 		Workbook workbook = null;
@@ -124,26 +145,7 @@ public class PoiUtils {
                 xssfWorkbook = new XSSFWorkbook( is );
 			}
             POIXMLProperties props = xssfWorkbook.getProperties();
-            SafeFunction.applySilent( () -> {
-                POIXMLProperties.CoreProperties coreProps = props.getCoreProperties();
-                POIXMLProperties.CustomProperties customProps = props.getCustomProperties();
-                SafeFunction.applyIfNotNull( docBase.getInfoDocTitle(), () -> coreProps.setTitle( docBase.getInfoDocTitle() ) );
-                SafeFunction.applyIfNotNull( docBase.getInfoDocSubject(), () -> coreProps.setSubjectProperty( docBase.getInfoDocSubject() ) );
-                SafeFunction.applyIfNotNull( docBase.getInfoDocVersion(), () -> coreProps.setVersion( docBase.getInfoDocVersion() ) );
-                SafeFunction.applyIfNotNull( docBase.getInfoDocAuthor(), () -> customProps.addProperty( "Author", docBase.getInfoDocAuthor() ) );
-                if ( docBase.getInfoDocProducer() != null ) {
-                    customProps.addProperty( "Creator" , docBase.getInfoDocCreator() );
-                } else {
-                    customProps.addProperty( "Creator" , VenusVersion.VENUS_CREATOR );
-                }
-                if ( docBase.getInfoDocProducer() != null ) {
-                    customProps.addProperty( "Producer" , docBase.getInfoDocProducer() );
-                } else {
-                    customProps.addProperty( "Producer" , PRODUCER_DEFAULT );
-                }
-                SafeFunction.applyIfNotNull( docBase.getInfoDocLanguage(), () -> customProps.addProperty( "ContentLanguage" , docBase.getInfoDocLanguage() ) );
-            } );
-
+            propertySetup( docBase, props );
             workbook = xssfWorkbook;
 		} else {
 			if ( is == null ) {
