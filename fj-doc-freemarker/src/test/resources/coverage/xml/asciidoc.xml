@@ -13,6 +13,8 @@
 	<info name="doc-subject">fj doc venus sample source xml</info>
 	<info name="doc-author">fugerit79</info>
 	<info name="doc-language">en</info>
+      <info name="doc-producer">My AsciiDoc producer</info>
+      <info name="doc-creator">My AsciiDoc creator</info>
 	<!-- additional properties -->
 	<info name="set-total-page">true</info>
 	<info name="html-css-link">/css/test.css</info>

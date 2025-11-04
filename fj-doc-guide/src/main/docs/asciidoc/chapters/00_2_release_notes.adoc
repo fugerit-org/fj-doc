@@ -6,6 +6,8 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+- new security-hardening property link:https://github.com/fugerit-org/fj-doc/issues/567[#567]
+
 [#doc-release-notes-8-17-2]
 ==== Version 8.17.2 [2025-10-31]
 

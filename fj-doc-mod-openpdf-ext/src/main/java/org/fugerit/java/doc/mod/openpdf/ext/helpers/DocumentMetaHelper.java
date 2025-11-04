@@ -8,6 +8,8 @@ import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.VenusVersion;
 import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
+import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningConsts;
+import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningUtil;
 
 public class DocumentMetaHelper {
 
@@ -21,7 +23,21 @@ public class DocumentMetaHelper {
         return MavenProps.getProperty( "com.github.librepdf", "openpdf", MavenProps.VERSION );
     }
 
+    private static final String PRODUCER_OVER = "OpenPDF";
+
+    /**
+     * OpenPDF producer
+     */
     private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , Document.getProduct(), getOpenPDFVersion() );
+
+    /**
+     * Security hardened producer
+     */
+    private static final String PRODUCER_DEFAULT_SH1 = String.format( VenusVersion.VENUS_PRODUCER_FORMAT_SH1, DocConfig.FUGERIT_VENUS_DOC , PRODUCER_OVER );
+
+    private static String findDefaultProducer( DocBase docBase ) {
+        return SecurityHardeningUtil.applyHardening( docBase, SecurityHardeningConsts.SECURITY_HARDENING_1, () -> PRODUCER_DEFAULT_SH1, () -> PRODUCER_DEFAULT );
+    }
 
     private static void metaWorker(String property, UnsafeConsumer<String, Exception> fun ) {
         SafeFunction.applyIfNotNull( property, () -> fun.accept( property ) );
@@ -45,7 +61,7 @@ public class DocumentMetaHelper {
                 docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_CREATOR, VenusVersion.VENUS_CREATOR),
                 document::addCreator );
         metaWorker(
-                docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_PRODUCER, PRODUCER_DEFAULT),
+                docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_PRODUCER, findDefaultProducer(docBase)),
                 document::addProducer );
     }
 

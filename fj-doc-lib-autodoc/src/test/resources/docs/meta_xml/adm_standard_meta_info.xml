@@ -224,6 +224,17 @@
       <admeta:supportedType>all</admeta:supportedType>
       <admeta:supportedHandler>all</admeta:supportedHandler>
     </admeta:admMetaInfo>
+      <admeta:admMetaInfo>
+          <admeta:name>security-hardening</admeta:name>
+          <admeta:description>If set to '0' (default) nothing change.
+              Different values represents the hardening level.
+                Currently supported values :
+                    '1' - Library version will not be shown in metadata.
+                    'max' - Maximum available level (currently equals '1')
+                    </admeta:description>
+          <admeta:since>8.17.3</admeta:since>
+          <admeta:supportedType>all</admeta:supportedType>
+      </admeta:admMetaInfo>
   </admeta:admSection>
 
   <admeta:admSection>

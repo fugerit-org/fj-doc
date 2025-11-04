@@ -1,0 +1,20 @@
+<doc xmlns="http://javacoredoc.fugerit.org" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd">
+  <metadata>
+    <info name="margins">10;10;10;30</info>
+    <info name="table-border-collapse">collapse</info>
+    <info name="doc-title">Module FOP Metadata Test</info>
+    <info name="doc-subject">Simple document to test PDF security hardening</info>
+    <info name="doc-author">fugerit79</info>
+      <info name="doc-language">en</info>
+      <info name="security-hardening">1</info>
+    <footer-ext>
+      <para align="center">Page ${currentPage}</para>
+    </footer-ext>
+  </metadata>
+  <body>
+    <h head-level="1">Security hardening doc sample</h>
+    <para>Test security-hardening for FOP Module</para>
+  </body>
+</doc>

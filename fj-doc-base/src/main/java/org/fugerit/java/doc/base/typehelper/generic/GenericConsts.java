@@ -212,6 +212,36 @@ public class GenericConsts {
 	 */
 	public static final String DOC_TABLE_CHECK_INTEGRITY = "table-check-integrity";
 
+    /**
+     * <a href="https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#security-hardening">See 'security-hardening' documentation.</a>
+     */
+    public static final String SECURITY_HARDENING = "security-hardening";
+
+    /**
+     * This value disable security hardening (default)
+     */
+    public static final String SECURITY_HARDENING_DISABLED = String.valueOf( SecurityHardeningConsts.SECURITY_HARDENING_DISABLED );
+
+    /**
+     * Security hardening level 1
+     */
+    public static final String SECURITY_HARDENING_1 = String.valueOf( SecurityHardeningConsts.SECURITY_HARDENING_1 );
+
+    /**
+     * Security hardening level max (currently same as 1)
+     */
+    public static final String SECURITY_HARDENING_MAX = "max";
+
+    /**
+     * Security hardening level mapping to max (currently 1)
+     */
+    public static final String SECURITY_HARDENING_CURRENT_MAX = SECURITY_HARDENING_1;
+
+    /**
+     * Default security hardening option (0 - disabled)
+     */
+    public static final String SECURITY_HARDENING_DEFAULT = SECURITY_HARDENING_DISABLED;
+
 	public static final boolean FAIL_WHEN_ELEMENT_NOT_FOUND_DEFAULT = Boolean.FALSE;
 	
 }

@@ -38,3 +38,26 @@ Some DocHandler will ignore some info elements.
 
 </doc>
 ----
+
+[#doc-format-entry-point-info-security-hardening]
+==== Security hardening property
+
+The _security-hardening_ property allows setting security hardening level.
+
+Available values are
+
+[cols="2*", options="header"]
+|====================================================================================================================================
+
+| value      | description
+
+| 0
+| the default value, nothing changes
+
+| 1
+| minimum metadata are set, for instance in PDF producer library version is not shown
+
+| max
+| the maximum level available, currently the same as 1
+
+|====================================================================================================================================
