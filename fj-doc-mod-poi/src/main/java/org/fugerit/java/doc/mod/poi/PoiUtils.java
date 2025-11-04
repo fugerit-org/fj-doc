@@ -10,6 +10,7 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFPalette;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ooxml.POIXMLProperties;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -23,8 +24,12 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.StringUtils;
+import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocOutput;
+import org.fugerit.java.doc.base.config.VenusVersion;
+import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocCell;
 import org.fugerit.java.doc.base.xml.DocModelUtils;
 
@@ -103,15 +108,45 @@ public class PoiUtils {
 		workbook.write( docOutput.getOs() );
 		workbook.close();
 	}
-	
-	public static WorkbookHelper newHelper( boolean xlsx, InputStream is ) throws IOException {
+
+    private static final String PRODUCER_OVER = "Apache POI";
+
+    private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT_SH1, DocConfig.FUGERIT_VENUS_DOC , PRODUCER_OVER );
+
+    private static void propertySetup(DocBase docBase, POIXMLProperties props) {
+        SafeFunction.applySilent( () -> {
+            POIXMLProperties.CoreProperties coreProps = props.getCoreProperties();
+            POIXMLProperties.CustomProperties customProps = props.getCustomProperties();
+            SafeFunction.applyIfNotNull( docBase.getInfoDocTitle(), () -> coreProps.setTitle( docBase.getInfoDocTitle() ) );
+            SafeFunction.applyIfNotNull( docBase.getInfoDocSubject(), () -> coreProps.setSubjectProperty( docBase.getInfoDocSubject() ) );
+            SafeFunction.applyIfNotNull( docBase.getInfoDocVersion(), () -> coreProps.setVersion( docBase.getInfoDocVersion() ) );
+            SafeFunction.applyIfNotNull( docBase.getInfoDocAuthor(), () -> customProps.addProperty( "Author", docBase.getInfoDocAuthor() ) );
+            if ( docBase.getInfoDocProducer() != null ) {
+                customProps.addProperty( "Creator" , docBase.getInfoDocCreator() );
+            } else {
+                customProps.addProperty( "Creator" , VenusVersion.VENUS_CREATOR );
+            }
+            if ( docBase.getInfoDocProducer() != null ) {
+                customProps.addProperty( "Producer" , docBase.getInfoDocProducer() );
+            } else {
+                customProps.addProperty( "Producer" , PRODUCER_DEFAULT );
+            }
+            SafeFunction.applyIfNotNull( docBase.getInfoDocLanguage(), () -> customProps.addProperty( "ContentLanguage" , docBase.getInfoDocLanguage() ) );
+        } );
+    }
+
+    public static WorkbookHelper newHelper(boolean xlsx, InputStream is, DocBase docBase) throws IOException {
 		Workbook workbook = null;
 		if ( xlsx ) {
+            XSSFWorkbook xssfWorkbook = null;
 			if ( is == null ) {
-				workbook = new XSSFWorkbook();
+                xssfWorkbook = new XSSFWorkbook();
 			} else {
-				workbook = new XSSFWorkbook( is );
-			}	
+                xssfWorkbook = new XSSFWorkbook( is );
+			}
+            POIXMLProperties props = xssfWorkbook.getProperties();
+            propertySetup( docBase, props );
+            workbook = xssfWorkbook;
 		} else {
 			if ( is == null ) {
 				workbook = new HSSFWorkbook();

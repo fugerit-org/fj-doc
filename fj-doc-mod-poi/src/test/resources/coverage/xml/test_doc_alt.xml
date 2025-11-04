@@ -14,8 +14,6 @@
       <info name="doc-version">001</info>
 	<info name="doc-author">fugerit79</info>
 	<info name="doc-language">en</info>
-      <info name="doc-creator">My Sheet Creator</info>
-      <info name="doc-producer">My Sheet Producer</info>
 	<!-- additional properties -->
 	<info name="set-total-page">true</info>
 	<info name="html-css-link">/css/test.css</info>
