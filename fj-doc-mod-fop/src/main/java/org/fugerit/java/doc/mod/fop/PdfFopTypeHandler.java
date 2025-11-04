@@ -27,7 +27,6 @@ import org.fugerit.java.core.xml.dom.DOMIO;
 import org.fugerit.java.core.xml.dom.DOMUtils;
 import org.fugerit.java.doc.base.config.*;
 import org.fugerit.java.doc.base.model.DocBase;
-import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningConsts;
 import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningUtil;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
@@ -148,12 +147,7 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
     private static final String PRODUCER_DEFAULT_SH1 = String.format( VenusVersion.VENUS_PRODUCER_FORMAT_SH1, DocConfig.FUGERIT_VENUS_DOC , PRODUCER_OVER );
 
     private String findDefaultProducer( DocBase docBase ) {
-        int valueSecurityHardening = SecurityHardeningUtil.findCurrentValue( docBase );
-        if ( valueSecurityHardening >= SecurityHardeningConsts.SECURITY_HARDENING_1 ) {
-            return PRODUCER_DEFAULT_SH1;
-        } else {
-            return PRODUCER_DEFAULT;
-        }
+        return SecurityHardeningUtil.applyHardening( docBase, SecurityHardeningConsts.SECURITY_HARDENING_1, () -> PRODUCER_DEFAULT_SH1, () -> PRODUCER_DEFAULT );
     }
 
 	public PdfFopTypeHandler( Charset charset, FopConfig fopConfig, boolean accessibility, boolean keepEmptyTags ) {

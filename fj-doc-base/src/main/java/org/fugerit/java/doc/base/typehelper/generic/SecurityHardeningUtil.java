@@ -3,6 +3,8 @@ package org.fugerit.java.doc.base.typehelper.generic;
 import lombok.extern.slf4j.Slf4j;
 import org.fugerit.java.doc.base.model.DocBase;
 
+import java.util.function.Supplier;
+
 @Slf4j
 public class SecurityHardeningUtil {
 
@@ -29,6 +31,19 @@ public class SecurityHardeningUtil {
             log.warn( "failed to check option {} - {}", GenericConsts.SECURITY_HARDENING, nfe.getMessage() );
         }
         return SecurityHardeningConsts.SECURITY_HARDENING_DISABLED;
+    }
+
+    public static <T> T applyHardening( DocBase docBase, int minimumSecurityHardening, Supplier<T> securityHardening, Supplier<T> noSecurityHardening) {
+        return applyHardening( docBase.getStableInfo().getProperty(GenericConsts.SECURITY_HARDENING, GenericConsts.SECURITY_HARDENING_DEFAULT), minimumSecurityHardening, securityHardening, noSecurityHardening );
+    }
+
+    public static <T> T applyHardening( String securityHardeningInfo, int minimumSecurityHardening, Supplier<T> securityHardening, Supplier<T> noSecurityHardening) {
+        int valueSecurityHardening = SecurityHardeningUtil.findCurrentValue( securityHardeningInfo );
+        if ( valueSecurityHardening >= minimumSecurityHardening) {
+            return securityHardening.get();
+        } else {
+            return noSecurityHardening.get();
+        }
     }
 
 }
