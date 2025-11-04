@@ -6,6 +6,14 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-4]
+==== Version 8.17.4 [2025-11-04]
+
+- fj-doc-mod-poi, metadata handlinglink:https://github.com/fugerit-org/fj-doc/issues/569[#569]
+
+[#doc-release-notes-8-17-3]
+==== Version 8.17.3 [2025-11-04]
+
 - new security-hardening property link:https://github.com/fugerit-org/fj-doc/issues/567[#567]
 
 [#doc-release-notes-8-17-2]

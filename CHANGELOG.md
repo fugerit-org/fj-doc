@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.4] - 2025-11-04
+
+### Changed
+
+- fj-doc-mod-poi, metadata handling <https://github.com/fugerit-org/fj-doc/issues/569>
+
 ## [8.17.3] - 2025-11-04
 
 ### Added
