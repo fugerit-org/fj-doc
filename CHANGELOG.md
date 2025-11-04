@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.3] - 2025-11-04
+
 ### Added
 
 - new security-hardening property <https://github.com/fugerit-org/fj-doc/issues/567>
+
+### Changed
+
+- doc-producer and doc-creator handling for AsciiDoc handler
+- doc-producer and doc-creator handling for HTML handler
 
 ### Fixed
 

@@ -44,6 +44,8 @@ Some DocHandler will ignore some info elements.
 
 The _security-hardening_ property allows setting security hardening level.
 
+Since: _8.17.3_
+
 Available values are
 
 [cols="2*", options="header"]
