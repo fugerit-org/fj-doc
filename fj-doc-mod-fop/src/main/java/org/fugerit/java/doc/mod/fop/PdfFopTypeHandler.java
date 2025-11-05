@@ -30,6 +30,7 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningConsts;
 import org.fugerit.java.doc.base.typehelper.generic.SecurityHardeningUtil;
 import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
+import org.fugerit.java.doc.mod.fop.utils.ApacheFopUtils;
 import org.fugerit.java.doc.mod.fop.utils.ConfigUtils;
 import org.fugerit.java.doc.mod.fop.utils.FopHelperConstants;
 import org.fugerit.java.doc.mod.fop.utils.PoolUtils;
@@ -130,16 +131,12 @@ public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 		return VenusVersion.getFjDocModuleVersionS( "fj-doc-mod-fop");
 	}
 
-	private static String getApacheFOPVersion() {
-		return MavenProps.getProperty( "org.apache.xmlgraphics", "fop", MavenProps.VERSION );
-	}
-
     private static final String PRODUCER_OVER = "Apache FOP";
 
     /**
      * Default producer
      */
-	private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , PRODUCER_OVER, getApacheFOPVersion() );
+	private static final String PRODUCER_DEFAULT = String.format( VenusVersion.VENUS_PRODUCER_FORMAT, DocConfig.FUGERIT_VENUS_DOC , getModuleVersion() , PRODUCER_OVER, ApacheFopUtils.getApacheFOPVersion() );
 
     /**
      * Security hardened producer
