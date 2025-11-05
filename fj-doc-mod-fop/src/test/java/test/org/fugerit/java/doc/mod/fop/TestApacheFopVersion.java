@@ -1,7 +1,9 @@
 package test.org.fugerit.java.doc.mod.fop;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.fop.Version;
 import org.fugerit.java.doc.mod.fop.utils.ApacheFopUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
@@ -11,6 +13,7 @@ class TestApacheFopVersion {
     void testFopVersion() {
         String fopVersion = ApacheFopUtils.getApacheFOPVersion();
         log.info( "fop version : {}", fopVersion  );
+        Assertions.assertEquals(Version.getVersion(), fopVersion);
     }
 
 }
