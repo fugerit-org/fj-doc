@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - fj-doc-mod-fop, recover Apache FOP version <https://github.com/fugerit-org/fj-doc/issues/571>
+- fj-doc-mod-openpdf-ext, stronger library version retrieve
 
 ## [8.17.4] - 2025-11-04
 

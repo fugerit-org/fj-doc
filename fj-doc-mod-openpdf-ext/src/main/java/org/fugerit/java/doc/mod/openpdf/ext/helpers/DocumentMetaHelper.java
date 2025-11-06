@@ -3,6 +3,7 @@ package org.fugerit.java.doc.mod.openpdf.ext.helpers;
 import com.lowagie.text.Document;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.function.UnsafeConsumer;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.core.util.mvn.MavenProps;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.VenusVersion;
@@ -20,7 +21,8 @@ public class DocumentMetaHelper {
     }
 
     private static String getOpenPDFVersion() {
-        return MavenProps.getProperty( "com.github.librepdf", "openpdf", MavenProps.VERSION );
+        return StringUtils.valueWithDefault( Document.getVersion(),
+                StringUtils.valueWithDefault( MavenProps.getProperty( "com.github.librepdf", "openpdf", MavenProps.VERSION ), "" ) );
     }
 
     private static final String PRODUCER_OVER = "OpenPDF";
