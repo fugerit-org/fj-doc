@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.5] - 2025-11-06
+
 ### Fixed
 
 - fj-doc-mod-fop, recover Apache FOP version <https://github.com/fugerit-org/fj-doc/issues/571>

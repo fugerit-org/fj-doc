@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-5]
+==== Version 8.17.5 [2025-11-06]
+
 - fj-doc-mod-fop, recover Apache FOP version  link:https://github.com/fugerit-org/fj-doc/issues/571[#571]
 
 [#doc-release-notes-8-17-4]
