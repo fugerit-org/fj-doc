@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- openliberty version 25.0.0.11 <https://github.com/fugerit-org/fj-doc/issues/573>
 - quarkus-version set to 3.29.1 across all the modules <https://github.com/fugerit-org/fj-doc/issues/573>
 
 ## [8.17.5] - 2025-11-06
