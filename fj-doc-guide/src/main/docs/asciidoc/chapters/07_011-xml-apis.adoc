@@ -1,0 +1,33 @@
+
+[#doc-faq-xml-apis]
+=== Exception javax.xml.parsers.FactoryConfigurationError: Provider org.apache.xerces.jaxp.DocumentBuilderFactoryImpl not found
+
+If you are receiving the exception :
+
+[source,txt]
+----
+javax.xml.parsers.FactoryConfigurationError: Provider org.apache.xerces.jaxp.DocumentBuilderFactoryImpl not found
+	at javax.xml.parsers.DocumentBuilderFactory.newInstance(Unknown Source)
+	at org.fugerit.java.core.xml.dom.DOMIO.newSafeDocumentBuilderFactory(DOMIO.java:64)
+	at org.fugerit.java.core.xml.dom.DOMIO.newSafeDocumentBuilderFactory(DOMIO.java:89)
+	at org.fugerit.java.core.xml.dom.DOMIO.loadDOMDoc(DOMIO.java:162)
+	at org.fugerit.java.core.xml.dom.DOMIO.loadDOMDoc(DOMIO.java:199)
+	at org.fugerit.java.core.cfg.xml.GenericListCatalogConfig.load(GenericListCatalogConfig.java:287)
+----
+
+It is usually possible to fix it by adding to your modules the exclusion :
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-mod-fop</artifactId>
+    <exclusions>
+        <exclusion>
+            <artifactId>xml-apis</artifactId>
+            <groupId>xml-apis</groupId>
+        </exclusion>
+    </exclusions>
+</dependency>
+----
+
