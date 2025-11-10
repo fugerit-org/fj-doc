@@ -35,7 +35,7 @@
 	    <jajarta-jaxb-impl-version>4.0.6</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
 		<kotlin.version>2.2.21</kotlin.version>
-		<quarkus-version>3.29.1</quarkus-version>
+		<quarkus-version>3.29.2</quarkus-version>
         <pdfbox-test-version>2.0.35</pdfbox-test-version>
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
