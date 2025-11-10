@@ -24,7 +24,7 @@
 		<fe.dist.dir>src/main/resources/META-INF/resources/fj-doc-playground/home</fe.dist.dir>
 		<exec-plugin.version>3.6.2</exec-plugin.version>
 		<antrun-plugin.version>3.2.0</antrun-plugin.version>
-		<fj-service-helper-bom-version>1.5.0</fj-service-helper-bom-version>
+		<fj-service-helper-bom-version>1.5.1</fj-service-helper-bom-version>
 		<kotlin.version>2.2.21</kotlin.version>
 	</properties>
 	<dependencyManagement>
