@@ -25,7 +25,7 @@
 		<!-- asciidoc properties -->
 		<asciidoctor.maven.plugin.version>3.2.0</asciidoctor.maven.plugin.version>
 		<asciidoctorj.pdf.version>2.3.23</asciidoctorj.pdf.version>
-		<asciidoctorj.version>3.0.0</asciidoctorj.version>
+		<asciidoctorj.version>3.0.1</asciidoctorj.version>
 		<asciidoctorj.diagram.version>3.0.1</asciidoctorj.diagram.version>
 		<asciidoctorj.diagram-plantuml.version>1.2025.3</asciidoctorj.diagram-plantuml.version>
 		<asciidoctorj.diagram-ditaamini.version>1.0.3</asciidoctorj.diagram-ditaamini.version>
