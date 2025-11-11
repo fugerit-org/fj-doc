@@ -6,6 +6,11 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-6]
+==== Version 8.17.6 [2025-11-11]
+
+- fj-doc-maven-plugin, update goal init flavours versions  link:https://github.com/fugerit-org/fj-doc/issues/573[#573]
+
 [#doc-release-notes-8-17-5]
 ==== Version 8.17.5 [2025-11-06]
 
