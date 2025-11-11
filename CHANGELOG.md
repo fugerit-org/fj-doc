@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.6] - 2025-11-11
+
 ### Changed
 
 - fj-doc-maven-plugin, init, flavour : openliberty version 25.0.0.11 <https://github.com/fugerit-org/fj-doc/issues/573>
