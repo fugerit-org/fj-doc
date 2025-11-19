@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+        xmlns="http://javacoredoc.fugerit.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+    <metadata>
+        <info name="margins">10;10;10;30</info>
+        <info name="doc-title">Basic example</info>
+        <info name="doc-subject">fj doc venus sample source xml</info>
+        <info name="doc-author">fugerit79</info>
+        <info name="doc-language">it</info>
+        <info name="mod-fop-xslt-debug">true</info>
+    </metadata>
+    <body>
+        <para>Sample special characters reproducer ■ □ &#x25A0; &#x25A1;</para>
+        <phrase>Working POC with SVG : </phrase>
+        <image type="svg" alt="blank square" base64="PHN2ZyBmaWxsPSIjMDAwMDAwIiB3aWR0aD0iMTBweCIgaGVpZ2h0PSIxMHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIxLDJIM0ExLDEsMCwwLDAsMiwzVjIxYTEsMSwwLDAsMCwxLDFIMjFhMSwxLDAsMCwwLDEtMVYzQTEsMSwwLDAsMCwyMSwyWk0yMCwyMEg0VjRIMjBaIi8+PC9zdmc+"/>
+    </body>
+
+</doc>
