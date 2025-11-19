@@ -2,6 +2,7 @@ package org.fugerit.java.doc.mod.fop;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,8 @@ import lombok.extern.slf4j.Slf4j;
 public class PdfFopTypeHandler extends FreeMarkerFopTypeHandler {
 
 	public static final DocTypeHandler HANDLER = new PdfFopTypeHandler();
+
+	public static final DocTypeHandler HANDLER_UTF8 = new PdfFopTypeHandler( StandardCharsets.UTF_8 );
 
 	public static final String ATT_FOP_CONFIG_MODE = "fop-config-mode";
 	public static final String ATT_FOP_CONFIG_MODE_DEFAULT = "default";
