@@ -31,6 +31,7 @@ import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -82,7 +83,9 @@ public class DocImage extends DocElement {
 	@Getter @Setter private String alt;
 	
 	@Getter @Setter private int align;
-	
+
+	@Getter @Setter private String content = "";
+
 	public String getResolvedBase64() {
 		return SafeFunction.get( () -> {
 			String res = this.getBase64();
@@ -94,7 +97,13 @@ public class DocImage extends DocElement {
 	}
 
 	public String getResolvedText() {
-		return SafeFunction.get( () -> new String( resolveImage( this ) ) );
+		return SafeFunction.get( () -> {
+			if ( StringUtils.isEmpty( this.content ) ) {
+				return new String( resolveImage( this ) );
+			} else {
+				return this.content;
+			}
+		});
 	}
 	
 	public String getResolvedType() {
@@ -134,6 +143,8 @@ public class DocImage extends DocElement {
 				data = Base64Helper.decodeBase64String( base64 );
 			} else if ( path != null ) {
 				data = byteResolverHelper( path );
+			} else if ( StringUtils.isNotEmpty( img.getContent() ) ) {
+				data = img.getContent().getBytes( StandardCharsets.UTF_8 );
 			} else {
 				throw new IOException( "Null path provided!" );
 			}

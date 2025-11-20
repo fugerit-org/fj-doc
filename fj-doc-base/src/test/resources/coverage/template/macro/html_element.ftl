@@ -55,8 +55,8 @@
 		<#if docImage.align = 2>
 			<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
 		</#if>
-	</#if>	
-	<img <@handleId element=docImage/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, ${docImage.resolvedBase64}" />
+	</#if>
+	<img <@handleId element=docImage/> ${imageAlign!''} <#if (docImage.alt)??> alt="${docImage.alt}" </#if> ${imageScaling} src="data:image/png;base64, <#if docImage.content?has_content>${docImage.content}<#else>${docImage.resolvedBase64}</#if>" />
 </#macro>
 
 <#macro handleList docList>

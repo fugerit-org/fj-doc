@@ -1141,6 +1141,9 @@
     "name" : "getClass",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getContent",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getId",
     "parameterTypes" : [ ]
   }, {
@@ -1187,6 +1190,9 @@
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setBase64",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setContent",
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setId",

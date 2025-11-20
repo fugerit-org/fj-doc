@@ -17,8 +17,8 @@ class Footer : HelperDSL.TagWithText( "footer" ) {
      * Creates a new default Image instance.
      * @return the new instance.
      */
-   fun image( init: Image.() -> Unit = {} ): Image {
-       return initTag(Image(), init);
+   fun image( text: String = "", init: Image.() -> Unit = {} ): Image {
+       return initTag(Image(text), init);
    }
     /**
      * Creates a new default Phrase instance.
