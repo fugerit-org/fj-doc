@@ -14,6 +14,11 @@
 
     <renderers>
         <renderer mime="application/pdf">
+            <fonts>
+                <font embed-url="classpath://issue/gh580/DejaVuSans.ttf" embedding-mode="full">
+                    <font-triplet name="DejaVuSans" style="normal" weight="normal"/>
+                </font>
+            </fonts>
         </renderer>
     </renderers>
 

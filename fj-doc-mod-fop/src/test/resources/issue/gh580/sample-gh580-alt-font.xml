@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+        xmlns="http://javacoredoc.fugerit.org"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+    <!-- working example using DejaVu Font https://dejavu-fonts.github.io/ -->
+    <metadata>
+        <info name="margins">10;10;10;30</info>
+        <info name="doc-title">Basic example alt font</info>
+        <info name="doc-subject">fj doc venus sample source xml</info>
+        <info name="doc-author">fugerit79</info>
+        <info name="doc-language">it</info>
+        <info name="mod-fop-xslt-debug">true</info>
+        <info name="default-font-name">DejaVuSans</info>
+    </metadata>
+    <body>
+        <para font-name="DejaVuSans">Sample special characters reproducer ■ □ &#x25A0; &#x25A1; with font DejaVuSans</para>
+    </body>
+
+</doc>
