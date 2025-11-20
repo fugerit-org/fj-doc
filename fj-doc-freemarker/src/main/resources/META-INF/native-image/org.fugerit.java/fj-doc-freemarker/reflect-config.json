@@ -2030,6 +2030,42 @@
     "parameterTypes" : [ "long", "int" ]
   } ]
 }, {
+  "name" : "org.fugerit.java.doc.freemarker.fun.StringToBase64Fun",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "exec",
+    "parameterTypes" : [ "java.util.List" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
   "name" : "org.fugerit.java.doc.freemarker.fun.TextWrapFun",
   "methods" : [ {
     "name" : "<init>",

@@ -40,7 +40,7 @@
   		<image scaling="100" url="cl://test/img_test_teal.jpg"/>
   		<br/>
   		<page-break/>
-    	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
+	   <table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
     			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
     			<cell align="center"><para style="bold">Surname</para></cell>

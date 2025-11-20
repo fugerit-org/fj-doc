@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-base
 	 * @creation   : 2023-08-18
-	 * @version    : 2.1.0-rc.3 (2025-03-22)
+	 * @version    : 2.1.0-rc.4 (2025-11-19)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -408,7 +408,7 @@
 			<xsd:documentation>An image to include in the document</xsd:documentation>
 			<xsd:documentation>(roughly comparable to a HTML 'image' element)</xsd:documentation>
 		</xsd:annotation>
-		<xsd:complexType>
+		<xsd:complexType mixed="true">
 			<xsd:attribute name='url' type='doc:urlType' use='optional'/>
 			<xsd:attribute name='type' type='doc:imageType' use='optional' />
 			<xsd:attribute name='scaling' type='doc:scalingType' use='optional' />

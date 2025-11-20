@@ -5,7 +5,15 @@ package org.fugerit.java.doc.base.kotlin.dsl
  *
  * This class will provide function to handle all image attributes and kids 
  */
-class Image : HelperDSL.TagWithText( "image" ) {
+class Image( text: String = "" ) : HelperDSL.TagWithText( "image" ) {
+
+   init { setText(text) }
+    /**
+     * Function to set text content for this element.
+     */
+
+   fun setText( value: String ) { addKid( HelperDSL.TextElement( value ) ) }
+
 
     /**
      * Function handling url attribute of the Image with specific check on type.

@@ -2,7 +2,7 @@
 <doc
 	xmlns="http://javacoredoc.fugerit.org"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-0.xsd" > 
+    xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
 
   <metadata>
   	<!-- Margin for document : left;right;top;bottom -->
@@ -29,7 +29,9 @@
   <body>
   		<image scaling="100" url="cl://test/img_test_teal.jpg"/>
   		<phrase leading="3">My sample title</phrase>
-    	<table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
+	  <image type="svg" alt="blank square"><![CDATA[<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="10px" height="10px" viewBox="0 0 24 24"><path d="M21,2H3A1,1,0,0,0,2,3V21a1,1,0,0,0,1,1H21a1,1,0,0,0,1-1V3A1,1,0,0,0,21,2ZM20,20H4V4H20Z"/></svg>]]></image>
+
+	  <table columns="3" colwidths="30;30;40"  width="100" id="excel-table" padding="2">
     		<row>
     			<cell align="center" border-color="#000000" border-width="1"><para style="bold">Name</para></cell>
     			<cell align="center"><para fore-color="#ffffff" style="bold">Surname</para></cell>

@@ -63,6 +63,8 @@
 
 		<para style="bold">base64ToString ${base64ToString('VEVTVA==')}</para>
 
+        <para style="bold">stringToBase64 ${stringToBase64('TEST')}</para>
+
 		<image url="png" base64="${imageBase64CLFun()}" scaling="25"/>
 
   		<para style="bold">italic ${messageFormat()}</para>

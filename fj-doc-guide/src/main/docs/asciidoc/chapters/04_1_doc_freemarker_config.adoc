@@ -209,6 +209,16 @@ NOTE: When using *skipfm* no FreeMarker template syntax should be used in the te
 | formats a LocalDate, LocalTime or LocalDateTime
 | (1) - the date/time to format, (2) - the format pattern
 
+| base64ToString
+| org.fugerit.java.doc.freemarker.fun.&#8203;Base64ToStringFun
+| converts a base64 to string
+| (1) - base64 to convert to string
+
+| stringToBase64
+| org.fugerit.java.doc.freemarker.fun.&#8203;StringToBase64Fun
+| converts a string to base64
+| (1) - the string to convert
+
 |========================================================================================================================================
 
 NOTE: These functions can all be loaded at once with the config step attribute _load-bundled-functions="true"_.

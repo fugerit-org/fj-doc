@@ -120,6 +120,9 @@ public class DocParserContext {
 			} else if ( this.currentElement instanceof DocInfo ) {
 				DocInfo docInfo = (DocInfo)this.currentElement;
 				docInfo.getContent().append( text );
+			} else if ( this.currentElement instanceof DocImage ) {
+				DocImage docImage = (DocImage)this.currentElement;
+				docImage.setContent( docImage.getContent()+text );
 			}
 		}
 	}

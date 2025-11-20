@@ -26,6 +26,7 @@
 		</chainStep>
 		<chainStep stepType="function">
 			<function name="base64ToString" value="org.fugerit.java.doc.freemarker.fun.Base64ToStringFun"/>
+            <function name="stringToBase64" value="org.fugerit.java.doc.freemarker.fun.StringToBase64Fun"/>
 		</chainStep>
 		<chainStep stepType="map">
 			<map name="docBase" value="docBase"/>
