@@ -6,6 +6,11 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-7]
+==== Version 8.17.7 [2025-11-20]
+
+- new built-in function stringToBase64 link:https://github.com/fugerit-org/fj-doc/issues/580[#590]
+
 [#doc-release-notes-8-17-6]
 ==== Version 8.17.6 [2025-11-11]
 

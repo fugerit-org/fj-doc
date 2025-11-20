@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.17.7] - 2025-11-20
+
 ### Added
 
+- svg can now be set inline as content in image element <https://github.com/fugerit-org/fj-doc/issues/580>
 - new built-in function stringToBase64
 
 ### Changed
