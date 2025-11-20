@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- fj-doc-maven-plugin, init, flavour : quarkus-version set to 3.29.2 across all the modules
+- fj-doc-maven-plugin, init, flavour : quarkus-version set to 3.30.0 across all the modules
 
 ## [8.17.6] - 2025-11-11
 
