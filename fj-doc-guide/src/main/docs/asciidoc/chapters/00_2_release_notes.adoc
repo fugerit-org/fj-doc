@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-8]
+==== Version 8.17.8 [2025-11-26]
+
 - fj-doc-base, new attribute 'class' for element <para>, <phrase>, <h>
 
 [#doc-release-notes-8-17-7]

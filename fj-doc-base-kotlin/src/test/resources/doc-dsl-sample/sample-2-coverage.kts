@@ -38,7 +38,7 @@ dslDoc {
             table {
                 row()
                 row {
-                    cell { para( "col 1" )  }
+                    cell { para( "col 1" ).className( "a" )  }
                     cell { para( "col 2" )  }
                 }.header( true )
                 row {
@@ -58,7 +58,7 @@ dslDoc {
         background().image().align( "center" ).alt( "avatar" ).url( "https://avatars.githubusercontent.com/u/37816284?s=96&v=4" )
     }
     body {
-        h( "head level 1" ).headLevel( 1 ).align( "center" ).id( "bookmark1" )
+        h( "head level 1" ).headLevel( 1 ).align( "center" ).id( "bookmark1" ).className( "b" )
         h( "head level 2" ).headLevel( 2 ).id( "second title" ).style( "italic" ).fontName( "Arial" ).size( 10 ).format( "{}" )
             .backColor( "#000000" ).foreColor( "#ffffff" ).type( "number" ).textIndent( 1 ).whiteSpaceCollapse( true )
             .spaceLeft( 1 ).spaceAfter( 1 ).spaceBefore( 1 ).spaceRight( 1 )
@@ -93,7 +93,7 @@ dslDoc {
             }.id( "firstRow" )
             row {
                 cell { nbsp { length( 1 ) } }.valign( "middle" ).backColor( "#000000" ).foreColor( "#ffffff" )
-                cell { phrase( "test" ) }.borderColorTop( "#000000" ).borderColorLeft( "#000000" ).borderColorRight( "#000000" ).borderColorBottom( "#000000" )
+                cell { phrase( "test" ).className( "c" ) }.borderColorTop( "#000000" ).borderColorLeft( "#000000" ).borderColorRight( "#000000" ).borderColorBottom( "#000000" )
                 cell { br {} }.borderWidth( 1 ).borderColor( "#ffffff" ).borderWidthBottom( 1 ).borderWidthLeft( 1 ).borderWidthRight( 1 ).borderWidthTop( 1 )
             }
             row {
