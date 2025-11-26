@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- fj-doc-base, new attribute 'class' for element <para>, <phrase>, <h>
+- fj-doc-base, new attribute 'class' for element <para>, <phrase>, <h> (same as html class, onlt for freemarker html)
 
 ### Fixed
 
