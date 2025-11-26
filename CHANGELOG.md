@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- fj-doc-lib-kotlin, generating fun with name 'class'
 - fj-doc-freemarker, html handler now renders fore color for phrase.
 
 ## [8.17.7] - 2025-11-20

@@ -117,10 +117,10 @@ class H( text: String = "" ) : HelperDSL.TagWithText( "h" ) {
      */
    fun whiteSpaceCollapse( value: Boolean ): H = whiteSpaceCollapsType( this, "white-space-collapse", value )
     /**
-     * Function handling class attribute of the H with specific check on type.
-     * @return the value for the class attribute.
+     * Function handling className attribute of the H with specific check on type.
+     * @return the value for the className attribute.
      */
-   fun class( value: String ): H = classType( this, "class", value )
+   fun className( value: String ): H = classNameType( this, "class", value )
     /**
      * Function handling headLevel attribute of the H with specific check on type.
      * @return the value for the headLevel attribute.

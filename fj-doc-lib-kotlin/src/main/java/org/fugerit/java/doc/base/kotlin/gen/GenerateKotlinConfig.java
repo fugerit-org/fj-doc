@@ -54,7 +54,12 @@ public class GenerateKotlinConfig {
 
     public String toKotlinFun( String tagName ) {
         String s = this.toKotlinClass( tagName );
-        return s.substring( 0, 1 ).toLowerCase()+s.substring( 1 );
+        String result = s.substring( 0, 1 ).toLowerCase()+s.substring( 1 );
+        if ( "class".equals( result ) ) {
+            return "className";
+        } else {
+            return result;
+        }
     }
 
     public String toCheckTypeFun( final String typeName ) {

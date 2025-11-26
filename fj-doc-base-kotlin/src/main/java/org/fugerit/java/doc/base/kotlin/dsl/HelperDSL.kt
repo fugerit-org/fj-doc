@@ -147,7 +147,7 @@ class HelperDSL {
 		protected fun <T : Element> textIndentType( tag : T, name : String, v: Int) : T = setAtt( tag, name, v, checkFun4 ) 
 		protected fun <T : Element> spaceType( tag : T, name : String, v: Int) : T = setAtt( tag, name, v, checkFun4 ) 
 		protected fun <T : Element> whiteSpaceCollapsType( tag : T, name : String, v: Boolean) : T = setAtt( tag, name, v ) 
-		protected fun <T : Element> classType( tag : T, name : String, v: String) : T = setAtt( tag, name, v ) 
+		protected fun <T : Element> classNameType( tag : T, name : String, v: String) : T = setAtt( tag, name, v ) 
 		protected fun <T : Element> columnsType( tag : T, name : String, v: Int) : T = setAtt( tag, name, v, checkFun9 ) 
 		protected fun <T : Element> percentageType( tag : T, name : String, v: Int) : T = setAtt( tag, name, v, checkFun10 ) 
 		protected fun <T : Element> tableRenderModeType( tag : T, name : String, v: String) : T = setAtt( tag, name, v, checkFun11 ) 
