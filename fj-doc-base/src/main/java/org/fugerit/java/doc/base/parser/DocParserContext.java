@@ -472,6 +472,9 @@ public class DocParserContext {
 		// font name
 		String fontName = props.getProperty(  "font-name" );
 		docPhrase.setFontName( fontName );
+		// foreground color
+		String foreColor = props.getProperty(  "fore-color" );
+		docPhrase.setForeColor( foreColor );
 		//leading
 		String leading = props.getProperty( "leading" );
 		if ( leading != null ) {

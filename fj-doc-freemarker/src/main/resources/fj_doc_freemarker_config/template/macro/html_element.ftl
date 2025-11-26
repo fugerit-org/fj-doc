@@ -35,11 +35,11 @@
 
 <#macro handlePhrase current>
 	<#if (current.link)??>
-		<a <@handleId element=current/><@handleStyleOnly styleValue=current.style/> href="${current.link}"><@escape.printText e=current/></a>
+		<a <@handleId element=current/><@handleStyleOnly element=current/> href="${current.link}"><@escape.printText e=current/></a>
 	<#elseif (current.anchor)??>
-		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>><@escape.printText e=current/></span>
+		<span <@handleId element=current/><@handleStyleOnly element=current/>><@escape.printText e=current/></span>
 	<#else>
-		<span <@handleId element=current/><@handleStyleOnly styleValue=current.style/>><@escape.printText e=current/></span>
+		<span <@handleId element=current/><@handleStyleOnly element=current/>><@escape.printText e=current/></span>
 	</#if>
 </#macro>
 
@@ -168,7 +168,7 @@ white-space-collapse -> false : white-space-collapse: preserve; white-space: pre
 
 <#macro handleStyle styleValue><#if styleValue = 2> font-weight: bold;<#elseif styleValue = 3> text-decoration: underline;<#elseif styleValue = 4> font-style: italic;<#elseif styleValue = 5> font-weight: bold; font-style: italic;</#if></#macro>
 
-<#macro handleStyleOnly styleValue><#assign cStyle><@handleStyle styleValue=styleValue/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
+<#macro handleStyleOnly element><#assign cStyle><@handleStyle styleValue=element.style/> <@handleFont element=element/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
 <#macro handleStyleComplete element styleValue alignValue dc><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleSpacing dc=dc/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
