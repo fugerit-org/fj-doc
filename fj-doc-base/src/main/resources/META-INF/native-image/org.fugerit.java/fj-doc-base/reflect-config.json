@@ -508,6 +508,9 @@
     "name" : "getClass",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getClassName",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getFontName",
     "parameterTypes" : [ ]
   }, {
@@ -557,6 +560,9 @@
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setClassName",
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setFontName",
@@ -1432,6 +1438,9 @@
     "name" : "getClass",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getClassName",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getFontName",
     "parameterTypes" : [ ]
   }, {
@@ -1484,6 +1493,9 @@
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setClassName",
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setFontName",
@@ -1603,6 +1615,9 @@
     "name" : "getClass",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getClassName",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getElementList",
     "parameterTypes" : [ ]
   }, {
@@ -1679,6 +1694,9 @@
     "parameterTypes" : [ "int" ]
   }, {
     "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setClassName",
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setFontName",
@@ -1765,6 +1783,9 @@
     "name" : "getClass",
     "parameterTypes" : [ ]
   }, {
+    "name" : "getClassName",
+    "parameterTypes" : [ ]
+  }, {
     "name" : "getFontName",
     "parameterTypes" : [ ]
   }, {
@@ -1814,6 +1835,9 @@
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setBackColor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setClassName",
     "parameterTypes" : [ "java.lang.String" ]
   }, {
     "name" : "setFontName",

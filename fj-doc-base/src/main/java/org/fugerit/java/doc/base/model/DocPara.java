@@ -107,6 +107,8 @@ public class DocPara extends DocContainer implements DocStyle {
 	
 	@Getter @Setter private String type;
 
+	@Getter @Setter private String className;
+
 	public boolean isNotWhiteSpaceCollapse() {
 		return BooleanUtils.BOOLEAN_FALSE.equalsIgnoreCase( this.getWhiteSpaceCollapse() );
 	}

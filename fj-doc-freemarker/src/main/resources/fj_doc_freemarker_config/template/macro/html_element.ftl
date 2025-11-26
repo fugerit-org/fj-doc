@@ -168,9 +168,9 @@ white-space-collapse -> false : white-space-collapse: preserve; white-space: pre
 
 <#macro handleStyle styleValue><#if styleValue = 2> font-weight: bold;<#elseif styleValue = 3> text-decoration: underline;<#elseif styleValue = 4> font-style: italic;<#elseif styleValue = 5> font-weight: bold; font-style: italic;</#if></#macro>
 
-<#macro handleStyleOnly element><#assign cStyle><@handleStyle styleValue=element.style/> <@handleFont element=element/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
+<#macro handleStyleOnly element><#if (element.className??)> class="${element.className}" </#if><#assign cStyle><@handleStyle styleValue=element.style/> <@handleFont element=element/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
-<#macro handleStyleComplete element styleValue alignValue dc><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleSpacing dc=dc/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
+<#macro handleStyleComplete element styleValue alignValue dc><#if (element.className??)> class="${element.className}" </#if><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleSpacing dc=dc/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
 <#macro handleStylePrint cStyle><#assign tStyle=cStyle?trim><#if tStyle?has_content> style="${tStyle}"</#if></#macro>
 

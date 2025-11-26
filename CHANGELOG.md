@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-base, new attribute 'class' for element <para>, <phrase>, <h>
+
 ### Fixed
 
 - fj-doc-freemarker, html handler now renders fore color for phrase.

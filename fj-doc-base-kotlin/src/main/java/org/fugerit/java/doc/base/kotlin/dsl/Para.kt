@@ -116,5 +116,10 @@ class Para( text: String = "" ) : HelperDSL.TagWithText( "para" ) {
      * @return the value for the whiteSpaceCollapse attribute.
      */
    fun whiteSpaceCollapse( value: Boolean ): Para = whiteSpaceCollapsType( this, "white-space-collapse", value )
+    /**
+     * Function handling class attribute of the Para with specific check on type.
+     * @return the value for the class attribute.
+     */
+   fun class( value: String ): Para = classType( this, "class", value )
 
 }

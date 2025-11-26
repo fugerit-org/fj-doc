@@ -55,5 +55,10 @@ class Phrase( text: String = "" ) : HelperDSL.TagWithText( "phrase" ) {
      * @return the value for the anchor attribute.
      */
    fun anchor( value: String ): Phrase = setAtt( this, "anchor", value )
+    /**
+     * Function handling class attribute of the Phrase with specific check on type.
+     * @return the value for the class attribute.
+     */
+   fun class( value: String ): Phrase = classType( this, "class", value )
 
 }

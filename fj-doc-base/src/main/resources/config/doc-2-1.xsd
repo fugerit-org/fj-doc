@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-base
 	 * @creation   : 2023-08-18
-	 * @version    : 2.1.0-rc.4 (2025-11-19)
+	 * @version    : 2.1.0-rc.5 (2025-11-26)
 	 *
 	 * XSD for fugerit doc configuration
 	 */
@@ -497,6 +497,7 @@
 		<xsd:attribute name='space-left' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='space-right' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='white-space-collapse' type='doc:whiteSpaceCollapsType' use='optional' />
+		<xsd:attribute name='class' type='doc:classType' use='optional' />
 	</xsd:complexType>
 	
 	<xsd:complexType name="hType" mixed='true'>
@@ -521,6 +522,7 @@
 		<xsd:attribute name='space-left' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='space-right' type='doc:spaceType' use='optional' />
 		<xsd:attribute name='white-space-collapse' type='doc:whiteSpaceCollapsType' use='optional' />
+		<xsd:attribute name='class' type='doc:classType' use='optional' />
 		<xsd:attribute name='head-level' type="doc:headLevelType" use='optional' />
 	</xsd:complexType>
 
@@ -532,7 +534,8 @@
 		<xsd:attribute name='size' type='doc:fontSize' use='optional' />
 		<xsd:attribute name='link' type="xsd:string" use='optional' />
 		<xsd:attribute name='white-space-collapse' type='doc:whiteSpaceCollapsType' use='optional' />
-		<xsd:attribute name='anchor' type="xsd:string" use='optional' />				
+		<xsd:attribute name='anchor' type="xsd:string" use='optional' />
+		<xsd:attribute name='class' type='doc:classType' use='optional' />
 	</xsd:complexType>
 
 	<xsd:simpleType name="imageType">
@@ -635,7 +638,15 @@
 				</xsd:restriction>  			
   			</xsd:simpleType>  			
   		</xsd:union>
-	</xsd:simpleType>	
+	</xsd:simpleType>
+
+	<xsd:simpleType name="classType">
+		<xsd:annotation>
+			<xsd:documentation>Only for HTML, class</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+		</xsd:restriction>
+	</xsd:simpleType>
 
 	<xsd:complexType name="metaType">
 		<xsd:annotation>

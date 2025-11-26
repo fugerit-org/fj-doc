@@ -35,6 +35,8 @@ public class DocPhrase extends DocElement implements DocStyle {
 	@Getter @Setter private String anchor;
 	
 	@Getter @Setter private String whiteSpaceCollapse;
+
+	@Getter @Setter private String className;
 	
 	@Getter @Setter private int originalStyle;		// style with unset value
 

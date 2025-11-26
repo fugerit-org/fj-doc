@@ -475,6 +475,9 @@ public class DocParserContext {
 		// foreground color
 		String foreColor = props.getProperty(  "fore-color" );
 		docPhrase.setForeColor( foreColor );
+		// class name (only for html)
+		String className = props.getProperty(  "class" );
+		docPhrase.setClassName( className );
 		//leading
 		String leading = props.getProperty( "leading" );
 		if ( leading != null ) {
@@ -548,6 +551,9 @@ public class DocParserContext {
 		if ( StringUtils.isNotEmpty( whiteSpaceCollapse ) ) {
 			docPara.setWhiteSpaceCollapse(whiteSpaceCollapse);
 		}
+		// class name (only for html)
+		String className = props.getProperty(  "class" );
+		docPara.setClassName( className );
 	}
 
 	
