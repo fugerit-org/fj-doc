@@ -1,5 +1,6 @@
 package test.org.fugerit.java.doc.base.process;
 
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,10 +20,11 @@ class TestDocProcessContext {
 	@Test
 	void testContext1() {
 		DocProcessContext context = DocProcessContext.newContext( "c", "d" ).withSourceType(DocFacadeSource.SOURCE_TYPE_XML)
-				.withAtt( "a" , "b" ).withDocBase( new DocBase() ).withDocType( DocConfig.TYPE_PDF );
+				.withAtt( "a" , "b" ).withDocBase( new DocBase() ).withDocType( DocConfig.TYPE_PDF ).withDocCharset(StandardCharsets.UTF_8.toString());
 		log.info( "context : {}", context );
 		Assertions.assertEquals( "b" , context.getAttribute( "a" ) );
 		Assertions.assertEquals( DocFacadeSource.SOURCE_TYPE_XML , context.getSourceType() );
+		Assertions.assertEquals( "UTF-8" , context.getAttribute( DocProcessContext.ATT_NAME_DOC_CHARSET ) );
 	}
 	
 	@Test
