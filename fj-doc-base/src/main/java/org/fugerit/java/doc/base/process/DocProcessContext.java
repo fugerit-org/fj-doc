@@ -21,6 +21,8 @@ public class DocProcessContext extends MiniFilterContext implements Serializable
 	
 	public static final String ATT_NAME_DOC_TYPE = "docType";
 
+	public static final String ATT_NAME_DOC_CHARSET = "docCharset";
+
 	@Getter
 	private int sourceType;
 
@@ -44,7 +46,11 @@ public class DocProcessContext extends MiniFilterContext implements Serializable
 	public DocProcessContext withDocType( String type ) {
 		return this.withAtt( ATT_NAME_DOC_TYPE , type );
 	}
-	
+
+	public DocProcessContext withDocCharset( String type ) {
+		return this.withAtt( ATT_NAME_DOC_CHARSET, type );
+	}
+
 	public DocProcessContext withAtt( String key, Object value )  {
 		this.setAttribute(key, value);
 		return this;

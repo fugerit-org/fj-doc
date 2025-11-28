@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- fj-doc-freemarker, set default charset for html renderer <https://github.com/fugerit-org/fj-doc/issues/583>
+
 ## [8.17.8] - 2025-11-26
 
 ### Added
