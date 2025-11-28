@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-17-9]
+==== Version 8.17.9 [2025-11-28]
+
 - fj-doc-freemarker, set default charset for html renderer link:https://github.com/fugerit-org/fj-doc/issues/583[#583]
 
 [#doc-release-notes-8-17-8]
