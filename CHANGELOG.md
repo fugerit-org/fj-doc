@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- quarkus-version set to 3.30.2
+- quarkus-version set to 3.30.3
 
 ## [8.17.9] - 2025-11-28
 
