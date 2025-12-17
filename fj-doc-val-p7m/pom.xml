@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<bouncy-castle-version>1.82</bouncy-castle-version>
+		<bouncy-castle-version>1.83</bouncy-castle-version>
 	</properties>
 	
 	<build>
