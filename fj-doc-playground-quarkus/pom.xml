@@ -25,7 +25,7 @@
 		<exec-plugin.version>3.6.2</exec-plugin.version>
 		<antrun-plugin.version>3.2.0</antrun-plugin.version>
 		<fj-service-helper-bom-version>1.5.3</fj-service-helper-bom-version>
-		<kotlin.version>2.2.21</kotlin.version>
+		<kotlin.version>2.3.0</kotlin.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
