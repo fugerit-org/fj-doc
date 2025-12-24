@@ -34,7 +34,10 @@
 	    <jajarta-jaxb-version>4.0.4</jajarta-jaxb-version>
 	    <jajarta-jaxb-impl-version>4.0.6</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
-		<kotlin.version>2.3.0</kotlin.version>
+        <!-- default to version jdk21on -->
+        <kotlin.version>2.3.0</kotlin.version>
+        <!-- legacy version for kotlin -->
+        <kotlin-version-jdk8ok>2.2.21</kotlin-version-jdk8ok>
 		<quarkus-version>3.30.4</quarkus-version>
         <pdfbox-test-version>2.0.35</pdfbox-test-version>
 		<!-- for backward compatibility test -->
@@ -362,6 +365,17 @@
 	</organization>
 
 	<profiles>
+
+        <profile>
+            <id>java-jdk8on</id>
+            <activation>
+                <jdk>[,21)</jdk>
+            </activation>
+            <properties>
+                <kotlin-version>${kotlin-version-jdk8ok}</kotlin-version>
+            </properties>
+        </profile>
+
 		<profile>
 
 			<id>windowsSetup</id>
