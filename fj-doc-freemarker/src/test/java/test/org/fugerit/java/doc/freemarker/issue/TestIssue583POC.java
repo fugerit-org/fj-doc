@@ -8,6 +8,7 @@ import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandler;
+import org.jetbrains.kotlin.it.unimi.dsi.fastutil.chars.S;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 class TestIssue583POC {
 
@@ -32,7 +34,7 @@ class TestIssue583POC {
             }
         } );
         Assertions.assertTrue( outputFile.exists() );
-        String content = FileIO.readString( outputFile );
+        String content = new String( FileIO.readBytes( outputFile ), StandardCharsets.UTF_8 );
         Assertions.assertTrue( content.contains( "✅" ) );
     }
 
