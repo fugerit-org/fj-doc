@@ -28,6 +28,7 @@ class TestIssue583POC {
             try (InputStreamReader reader = new InputStreamReader( ClassHelper.loadFromDefaultClassLoader( xmlPath ) );
                  FileOutputStream fos = new FileOutputStream( outputFile ) ) {
                 handler.handle( DocInput.newInput( handler.getType() , reader ) ,  DocOutput.newOutput( fos ) );
+                fos.flush();
             }
         } );
         Assertions.assertTrue( outputFile.exists() );
