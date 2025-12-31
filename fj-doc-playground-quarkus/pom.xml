@@ -22,7 +22,7 @@
 		<src.react>src/main/react</src.react>
 		<npm.build.script>build</npm.build.script>
 		<fe.dist.dir>src/main/resources/META-INF/resources/fj-doc-playground/home</fe.dist.dir>
-		<exec-plugin.version>3.6.2</exec-plugin.version>
+		<exec-plugin.version>3.6.3</exec-plugin.version>
 		<antrun-plugin.version>3.2.0</antrun-plugin.version>
 		<fj-service-helper-bom-version>1.5.3</fj-service-helper-bom-version>
 	</properties>
