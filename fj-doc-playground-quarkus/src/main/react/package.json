@@ -19,7 +19,7 @@
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@uiw/react-markdown-editor": "^5.13.0",
+    "@uiw/react-markdown-editor": "^6.0.0",
     "ace-builds": "^1.14.0",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
