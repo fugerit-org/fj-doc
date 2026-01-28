@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- quarkus-version set to 3.31.0 across all the modules <https://github.com/fugerit-org/fj-doc/issues/606>
+- quarkus-version set to 3.31.1
 - kotlin.version set to 2.30 (only for jdk 21+)
 - fj-bom version set to 2.0.7
 - quarkus-version set to 3.30.4 <https://github.com/fugerit-org/fj-doc/security/dependabot/63>
