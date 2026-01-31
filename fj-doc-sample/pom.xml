@@ -89,9 +89,14 @@
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-mod-fop</artifactId>
-		</dependency>	
+		</dependency>
 
-		<dependency>
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-doc-mod-pdfbox</artifactId>
+        </dependency>
+
+        <dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-mod-poi</artifactId>
 		</dependency>	

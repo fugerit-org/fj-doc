@@ -1,0 +1,37 @@
+
+<<<
+[#doc-handler-mod-pdfbox]
+=== [fj-doc-mod-pdfbox] : A PDF Handler based on Apache PDFBox
+
+To use this doc handler, you will need to add the following dependency :
+
+*In brief* :
+
+- *compliance level* : _LOW_
+- *compliance detail* : Most elements of the xref:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
+- *native ready* : _NO_ (As PDDBox is not ready).
+
+[source,xml]
+----
+<dependency>
+    <groupId>org.fugerit.java</groupId>
+    <artifactId>fj-doc-mod-pdfbox</artifactId>
+    <version>${fj-doc-version}</version>
+</dependency>
+----
+
+This module is based on link:https://pdfbox.apache.org/[Apache PDFBox].
+
+This doc handler renders a PDF Document
+
+Add this element to *<docHandlerConfig/>* :
+
+[source,xml]
+----
+<!-- PDFBox type hanlder  -->
+<docHandler id="pdfbox" info="pdfbox" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler"/>
+----
+
+For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modopenrtfext[fj-doc-quarkus-tutorial openrtf ext example].
+
+More elements specific to fixed size formats, like RTF, are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_fixed[here].

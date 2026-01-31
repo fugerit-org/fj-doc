@@ -108,6 +108,11 @@ flowchart TB
 | Generates a RTF document using link:https://github.com/LibrePDF/OpenRTF[OpenRTF].
 |
 
+| xref:#doc-handler-mod-pdfbox[org.fugerit.java.doc.mod.pdfbox.&#8203;PdfBoxTypeHandler]
+| xref:#doc-handler-mod-pdfbox[fj-doc-mod-pdfbox] | PDF
+| Generates a PDF document using link:https://pdfbox.apache.org/[Apache PDFBox].
+|
+
 |========================================================================================================================================
 
 NOTE: (1) Native Ready means that the GraalVM metadata are included in the release.

@@ -31,7 +31,8 @@ public class ModuleFacade {
             toModuleName( "mod-fop" ),
             toModuleName( "mod-opencsv" ),
             toModuleName( "mod-openpdf-ext" ),
-            toModuleName( "mod-openrtf-ext" )
+            toModuleName( "mod-openrtf-ext" ),
+            toModuleName( "mod-pdfbox" )
     );
 
     private static final Set<String> MODULES = new HashSet<>( MODULE_LIST );
