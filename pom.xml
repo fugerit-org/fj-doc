@@ -114,6 +114,7 @@
 		<module>fj-doc-mod-opencsv</module>
 		<module>fj-doc-mod-openpdf-ext</module>
 		<module>fj-doc-mod-openrtf-ext</module>
+        <module>fj-doc-mod-pdfbox</module>
 		<module>fj-doc-val-core</module>
 		<module>fj-doc-val-pdfbox</module>
 		<module>fj-doc-val-poi</module>
