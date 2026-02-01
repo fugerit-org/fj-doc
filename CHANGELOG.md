@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-val-pdfbox3, based on on [Apache PDFBox](https://pdfbox.apache.org/) 3+
+- fj-doc-mod-pdfbox, new module based on [Apache PDFBox](https://pdfbox.apache.org/). <https://github.com/fugerit-org/fj-doc/issues/609>
+
 ### Changed
 
 - quarkus-version set to 3.31.1

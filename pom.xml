@@ -41,6 +41,7 @@
         <kotlin-version-jdk8ok>2.2.21</kotlin-version-jdk8ok>
 		<quarkus-version>3.31.1</quarkus-version>
         <pdfbox-test-version>2.0.35</pdfbox-test-version>
+        <pdfbox3-version>3.0.6</pdfbox3-version>
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
 		<maven.executable.windows>mvn.cmd</maven.executable.windows>
@@ -114,8 +115,10 @@
 		<module>fj-doc-mod-opencsv</module>
 		<module>fj-doc-mod-openpdf-ext</module>
 		<module>fj-doc-mod-openrtf-ext</module>
+        <module>fj-doc-mod-pdfbox</module>
 		<module>fj-doc-val-core</module>
 		<module>fj-doc-val-pdfbox</module>
+        <module>fj-doc-val-pdfbox3</module>
 		<module>fj-doc-val-poi</module>
 		<module>fj-doc-val-p7m</module>
 		<module>fj-doc-val-imageio</module>
@@ -178,9 +181,15 @@
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-mod-fop</artifactId>
 				<version>${fj-doc-version}</version>
-			</dependency>				
-			
-			<dependency>
+			</dependency>
+
+            <dependency>
+                <groupId>org.fugerit.java</groupId>
+                <artifactId>fj-doc-mod-pdfbox</artifactId>
+                <version>${fj-doc-version}</version>
+            </dependency>
+
+            <dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-mod-poi5</artifactId>
 				<version>${fj-doc-version}</version>
@@ -244,9 +253,15 @@
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val-pdfbox</artifactId>
 				<version>${fj-doc-version}</version>
-			</dependency>	
-			
-			<dependency>
+			</dependency>
+
+            <dependency>
+                <groupId>org.fugerit.java</groupId>
+                <artifactId>fj-doc-val-pdfbox3</artifactId>
+                <version>${fj-doc-version}</version>
+            </dependency>
+
+            <dependency>
 				<groupId>org.fugerit.java</groupId>
 				<artifactId>fj-doc-val-poi</artifactId>
 				<version>${fj-doc-version}</version>

@@ -107,6 +107,12 @@ mvn org.fugerit.java:fj-doc-maven-plugin:add \
 | Type handler based on [OpenRTF](https://github.com/LibrePDF/OpenRTF)
 |
 
+| mod-pdfbox
+| fj-doc-mod-pdfbox
+| pdf
+| Type handler based on link:https://pdfbox.apache.org/[Apache PDFBox]
+|
+
 |==================================================================================================================================================================
 
 NOTE: (1) Native Ready means that the GraalVM metadata are included in the release.

@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+- fj-doc-val-pdfbox3, validator module based on link:https://pdfbox.apache.org/[Apache PDFBox] 3+
+- fj-doc-mod-pdfbox, module based on link:https://pdfbox.apache.org/[Apache PDFBox] 3+, link:https://github.com/fugerit-org/fj-doc/issues/609[#609]
+
 [#doc-release-notes-8-17-9]
 ==== Version 8.17.9 [2025-11-28]
 

@@ -43,6 +43,7 @@ include::chapters/06_3_mod-poi.adoc[]
 include::chapters/06_4_mod-opencsv.adoc[]
 include::chapters/06_5_mod-openpdf-ext.adoc[]
 include::chapters/06_6_mod-openrtf-ext.adoc[]
+include::chapters/06_7_mod-pdfbox.adoc[]
 
 include::chapters/07_doc-faq.adoc[]
 include::chapters/07_001_doc-faq-create-project.adoc[]

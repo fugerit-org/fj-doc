@@ -168,7 +168,7 @@ const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
 			if ( docFormat === 'HTML' ) {
 				let decodedStringAtoB = atob(docOutput);
 				outputData = <div contentEditable='true' dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(decodedStringAtoB) }}></div>
-			}  else if ( docFormat === 'PDF' || docFormat === 'PDFA' || docFormat === 'PDFUA' || docFormat === 'OPENPDF' ) {
+			}  else if ( docFormat === 'PDF' || docFormat === 'PDFA' || docFormat === 'PDFUA' || docFormat === 'OPENPDF' || docFormat === 'PDFBOX' ) {
 				let srcData = 'data:application/pdf;base64,'+ docOutput;
 				outputData = <embed width="100%" height="600" src={srcData}/>
 			}  else if ( docFormat === 'XLSX' ) {
@@ -311,6 +311,7 @@ const DocXmlEditor = ({handleOpenDialog, setHelpContent}) => {
 							<MenuItem value='CSV'>CSV</MenuItem>
 							<MenuItem value='OPENPDF'>PDF (openpdf)</MenuItem>
 							<MenuItem value='OPENRTF'>RTF (openrtf)</MenuItem>
+                            <MenuItem value='PDFBOX'>PDF (pdfbox, experimental)</MenuItem>
 							<MenuItem value='ADOC'>AsciiDoc</MenuItem>
 						</Select>
 					</FormControl>

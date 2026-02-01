@@ -1,14 +1,14 @@
-package test.org.fugerit.java.doc.pdfbox.val;
+package test.org.fugerit.java.doc.pdfbox3.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
-import org.fugerit.java.doc.val.pdf.box.PdfboxStrictValidator;
+import org.fugerit.java.doc.val.pdf.box3.Pdfbox3StrictValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class TestPdfboxStrictValidator extends TestDocValidatorFacade {
+class TestPdfbox3StrictValidator extends TestDocValidatorFacade {
 
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
-			PdfboxStrictValidator.DEFAULT
+			Pdfbox3StrictValidator.DEFAULT
 	);
 	
 	@Test

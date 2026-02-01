@@ -1,4 +1,4 @@
-package test.org.fugerit.java.doc.pdfbox.val;
+package test.org.fugerit.java.doc.pdfbox3.val;
 
 import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;

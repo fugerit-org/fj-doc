@@ -1,0 +1,98 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>fj-doc-mod-pdfbox</artifactId>
+
+    <parent>
+        <groupId>org.fugerit.java</groupId>
+        <artifactId>fj-doc</artifactId>
+        <version>8.17.10-SNAPSHOT</version>
+    </parent>
+
+    <name>fj-doc-mod-pdfbox</name>
+    <description>Renderer for PDF format, based on Apache PDF BOX</description>
+
+    <properties>
+        <pdfbox-version>3.0.6</pdfbox-version>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>${pdfbox-version}</version>
+        </dependency>
+
+        <!-- PDFBox I/O module -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox-io</artifactId>
+            <version>${pdfbox-version}</version>
+        </dependency>
+
+        <!-- For PDF/A validation (Preflight) -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>preflight</artifactId>
+            <version>${pdfbox-version}</version>
+        </dependency>
+
+        <!-- XMPBox for metadata -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>xmpbox</artifactId>
+            <version>${pdfbox-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-doc-base</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-doc-freemarker</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-doc-mod-openpdf-ext</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <organization>
+        <url>https://www.fugerit.org</url>
+        <name>Fugerit</name>
+    </organization>
+
+    <url>https://www.fugerit.org/perm/venus/</url>
+
+</project>
