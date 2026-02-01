@@ -1,4 +1,4 @@
-package test.org.fugerit.java.doc.pdfbox.val;
+package test.org.fugerit.java.doc.pdfbox3.val;
 
 import java.io.InputStream;
 

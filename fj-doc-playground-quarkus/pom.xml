@@ -108,6 +108,16 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+        <dependency>
+            <groupId>org.fugerit.java</groupId>
+            <artifactId>fj-doc-val-pdfbox3</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>xml-apis</artifactId>
+                    <groupId>xml-apis</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-doc-tool</artifactId>
