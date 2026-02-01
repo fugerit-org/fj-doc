@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.0] - 2026-02-01
+
 ### Added
 
 - fj-doc-val-pdfbox3, based on on [Apache PDFBox](https://pdfbox.apache.org/) 3+
