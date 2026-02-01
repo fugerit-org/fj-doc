@@ -11,6 +11,7 @@ import org.apache.xmpbox.schema.PDFAIdentificationSchema;
 import org.apache.xmpbox.schema.XMPBasicSchema;
 import org.apache.xmpbox.type.BadFieldValueException;
 import org.apache.xmpbox.xml.XmpSerializer;
+import org.fugerit.java.core.lang.helpers.ClassHelper;
 
 import javax.xml.transform.TransformerException;
 import java.io.ByteArrayOutputStream;
@@ -20,6 +21,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class PdfAConfigurator {
+
+    private PdfAConfigurator() {}
 
     public static void configurePdfA1b(PDDocument document, PdfBoxConfig config)
             throws IOException {
@@ -65,8 +68,8 @@ public class PdfAConfigurator {
 
             // XMP Basic Schema
             XMPBasicSchema xmpBasic = xmp.createAndAddXMPBasicSchema();
-            xmpBasic.setCreateDate(GregorianCalendar.getInstance());
-            xmpBasic.setModifyDate(GregorianCalendar.getInstance());
+            xmpBasic.setCreateDate(Calendar.getInstance());
+            xmpBasic.setModifyDate(Calendar.getInstance());
             xmpBasic.setCreatorTool("Venus Doc PDFBox Handler");
 
             // Serialize and attach to document
@@ -85,19 +88,20 @@ public class PdfAConfigurator {
         }
     }
 
+    private static final String SRGB = "sRGB IEC61966-2.1";
+
     private static void addOutputIntent(PDDocument document) throws IOException {
         // Load sRGB color profile from resources
-        try (InputStream colorProfile = PdfAConfigurator.class
-                .getResourceAsStream("/org/fugerit/java/doc/mod/pdfbox/sRGB.icc")) {
+        try (InputStream colorProfile = ClassHelper.loadFromDefaultClassLoader("fugerit-doc-pdfbox/sRGB_v4_ICC_preference_displayclass.icc")) {
 
             if (colorProfile == null) {
                 throw new IOException("sRGB color profile not found in resources");
             }
 
             PDOutputIntent intent = new PDOutputIntent(document, colorProfile);
-            intent.setInfo("sRGB IEC61966-2.1");
-            intent.setOutputCondition("sRGB IEC61966-2.1");
-            intent.setOutputConditionIdentifier("sRGB IEC61966-2.1");
+            intent.setInfo(SRGB);
+            intent.setOutputCondition(SRGB);
+            intent.setOutputConditionIdentifier(SRGB);
             intent.setRegistryName("http://www.color.org");
 
             PDDocumentCatalog catalog = document.getDocumentCatalog();

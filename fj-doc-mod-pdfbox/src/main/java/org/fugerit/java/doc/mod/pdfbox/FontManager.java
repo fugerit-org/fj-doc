@@ -29,7 +29,7 @@ public class FontManager {
     public FontManager(PdfBoxConfig config, PDDocument document) {
         this.config = config;
         this.document = document;
-        this.fontCache = new HashMap<String, PDFont>();
+        this.fontCache = new HashMap<>();
     }
 
     /**
@@ -85,11 +85,8 @@ public class FontManager {
         if (fontName == null || fontName.isEmpty()) {
             return "helvetica";
         }
-
         // Normalize font name (lowercase, remove hyphens)
-        String normalized = fontName.toLowerCase().replace("-", "").replace("_", "");
-
-        return normalized;
+        return fontName.toLowerCase().replace("-", "").replace("_", "");
     }
 
     private Standard14Fonts.FontName getBaseFontName(String normalizedFontName) {
@@ -195,6 +192,7 @@ public class FontManager {
 
     public float getFontSize(int style) {
         // Default font size - can be made configurable
+        log.debug("Get font size [{}]", style);
         return 12f;
     }
 }

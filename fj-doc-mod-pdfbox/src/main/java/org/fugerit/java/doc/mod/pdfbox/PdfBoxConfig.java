@@ -15,20 +15,26 @@ public class PdfBoxConfig {
     // PDF/A conformance level (A1b, A2b, A3b)
     private String pdfALevel = "1b";
 
+    public static final String PDFA_ENABLED = "pdfaEnabled";
+    public static final String PDFUA_ENABLED = "pdfuaEnabled";
+    public static final String TITLE = "title";
+    public static final String SUBJECT = "subject";
+    public static final String AUTHOR = "author";
+    public static final String LANGUAGE = "language";
+
     public static PdfBoxConfig fromProperties(Properties props) {
         PdfBoxConfig config = new PdfBoxConfig();
 
-        config.pdfAEnabled = Boolean.parseBoolean(
-                props.getProperty("pdfa.enabled", "false"));
-        config.pdfUAEnabled = Boolean.parseBoolean(
-                props.getProperty("pdfua.enabled", "false"));
-        config.pdfALevel = props.getProperty("pdfa.level", "1b");
-
-        config.documentTitle = props.getProperty("document.title", "Untitled");
-        config.documentAuthor = props.getProperty("document.author", "Unknown");
-        config.documentSubject = props.getProperty("document.subject", "");
-        config.documentLanguage = props.getProperty("document.language", "en-US");
-        config.fontDirectory = props.getProperty("font.directory", null);
+        config.setPdfAEnabled(Boolean.parseBoolean(
+                props.getProperty(PDFA_ENABLED, "false")) );
+        config.setPdfUAEnabled( Boolean.parseBoolean(
+                props.getProperty(PDFUA_ENABLED, "false")) );
+        config.setPdfALevel( props.getProperty("pdfa.level", "1b") );
+        config.setDocumentTitle( props.getProperty(TITLE, "Untitled") );
+        config.setDocumentAuthor( props.getProperty(AUTHOR, "Unknown") );
+        config.setDocumentSubject( props.getProperty(SUBJECT, "") );
+        config.setDocumentLanguage( props.getProperty(LANGUAGE, "en-US") );
+        config.setFontDirectory(  props.getProperty("font.directory") );
 
         return config;
     }

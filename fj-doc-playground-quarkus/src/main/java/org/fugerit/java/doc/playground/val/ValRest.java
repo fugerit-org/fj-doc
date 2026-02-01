@@ -9,7 +9,6 @@ import org.fugerit.java.doc.val.core.DocValidatorFacade;
 import org.fugerit.java.doc.val.core.basic.ImageValidator;
 import org.fugerit.java.doc.val.core.basic.XmlValidator;
 import org.fugerit.java.doc.val.p7m.P7MValidator;
-import org.fugerit.java.doc.val.pdf.box.PdfboxValidator;
 import org.fugerit.java.doc.val.pdf.box3.Pdfbox3Validator;
 import org.fugerit.java.doc.val.poi.DocValidator;
 import org.fugerit.java.doc.val.poi.DocxValidator;

@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.mod.pdfbox;
 
 import lombok.extern.slf4j.Slf4j;
+import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
@@ -16,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -37,6 +39,26 @@ class PdfBoxTypeHandlerTest {
     @Test
     void testXML() {
         boolean res = this.testDocWorker( new DocTypeHandlerCoreXMLUTF8(), "default_doc", "openpdf");
+        Assertions.assertTrue( res );
+    }
+
+    @Test
+    void testPdfBoxA() throws ConfigException {
+        Properties props = new Properties();
+        props.setProperty( PdfBoxConfig.PDFA_ENABLED, "true" );
+        PdfBoxTypeHandler handler = new PdfBoxTypeHandler();
+        handler.configure( props );
+        boolean res = this.testDocWorker( handler , "default_doc", "pdfbox-a-ua");
+        Assertions.assertTrue( res );
+    }
+
+    @Test
+    void testPdfBoxUA() throws ConfigException {
+        Properties props = new Properties();
+        props.setProperty( PdfBoxConfig.PDFUA_ENABLED, "true" );
+        PdfBoxTypeHandler handler = new PdfBoxTypeHandler();
+        handler.configure( props );
+        boolean res = this.testDocWorker( handler , "default_doc", "pdfbox-a-ua");
         Assertions.assertTrue( res );
     }
 

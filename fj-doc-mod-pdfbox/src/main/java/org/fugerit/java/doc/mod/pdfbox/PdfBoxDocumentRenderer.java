@@ -20,7 +20,6 @@ import java.util.List;
 public class PdfBoxDocumentRenderer {
 
     private final PDDocument document;
-    private final PdfBoxConfig config;
     private final FontManager fontManager;
 
     // Document structure
@@ -29,7 +28,6 @@ public class PdfBoxDocumentRenderer {
     private List<PDPage> pages;
 
     // Current page and rendering state
-    private PDPage currentPage;
     private PDPageContentStream contentStream;
     private float currentY;
 
@@ -58,9 +56,8 @@ public class PdfBoxDocumentRenderer {
 
     public PdfBoxDocumentRenderer(PDDocument document, PdfBoxConfig config) {
         this.document = document;
-        this.config = config;
         this.fontManager = new FontManager(config, document);
-        this.pages = new ArrayList<PDPage>();
+        this.pages = new ArrayList<>();
     }
 
     public void renderDocument(DocBase docBase) throws IOException {
@@ -101,7 +98,7 @@ public class PdfBoxDocumentRenderer {
     private void createNewPage() throws IOException {
         closeContentStream();
 
-        currentPage = new PDPage(PDRectangle.A4);
+        PDPage currentPage = new PDPage(PDRectangle.A4);
         document.addPage(currentPage);
         pages.add(currentPage);
 
@@ -206,8 +203,7 @@ public class PdfBoxDocumentRenderer {
             numberedListCounter = 1;
         }
 
-        DocContainer listContainer = (DocContainer) list;
-        List<DocElement> items = listContainer.getElementList();
+        List<DocElement> items = list.getElementList();
 
         if (items != null) {
             for (DocElement item : items) {
@@ -264,8 +260,7 @@ public class PdfBoxDocumentRenderer {
             return;
         }
 
-        DocContainer tableContainer = (DocContainer) table;
-        List<DocElement> rows = tableContainer.getElementList();
+        List<DocElement> rows = table.getElementList();
 
         if (rows == null || rows.isEmpty()) {
             return;
@@ -310,8 +305,7 @@ public class PdfBoxDocumentRenderer {
         PDFont font = fontManager.getFont(isHeader ? 1 : 0, null);
         float fontSize = fontManager.getFontSize(0);
 
-        DocContainer rowContainer = (DocContainer) row;
-        List<DocElement> cells = rowContainer.getElementList();
+        List<DocElement> cells = row.getElementList();
 
         if (cells == null) {
             return;
@@ -416,20 +410,20 @@ public class PdfBoxDocumentRenderer {
     /**
      * Replace page number placeholders like ${currentPage} and ${pageCount}
      */
-    private String replacePlaceholders(String text, int currentPage, int totalPages) {
+    private String replacePlaceholders(final String text, int currentPage, int totalPages) {
         if (text == null) {
             return text;
         }
 
-        // Replace ${currentPage} or ${r"${currentPage}"}
-        text = text.replaceAll("\\$\\{r\"\\$\\{currentPage\\}\"\\}", String.valueOf(currentPage));
-        text = text.replaceAll("\\$\\{currentPage\\}", String.valueOf(currentPage));
+        // Handle currentPage
+        String newText  = text.replace("\\$\\{r\"\\$\\{currentPage\\}\"\\}", String.valueOf(currentPage));
+        newText = newText.replace("\\$\\{currentPage\\}", String.valueOf(currentPage));
 
-        // Replace ${pageCount} or ${r"${pageCount}"}
-        text = text.replaceAll("\\$\\{r\"\\$\\{pageCount\\}\"\\}", String.valueOf(totalPages));
-        text = text.replaceAll("\\$\\{pageCount\\}", String.valueOf(totalPages));
+        // Handle pageCount
+        newText = newText.replace("\\$\\{r\"\\$\\{pageCount\\}\"\\}", String.valueOf(totalPages));
+        newText = newText.replace("\\$\\{pageCount\\}", String.valueOf(totalPages));
 
-        return text;
+        return newText;
     }
 
     private String extractText(DocElement element) {
@@ -482,15 +476,17 @@ public class PdfBoxDocumentRenderer {
         return result.toString().trim();
     }
 
+    /**
+     * Wrap text to fit within max width
+     */
     private List<String> wrapText(String text, PDFont font, float fontSize, float maxWidth)
             throws IOException {
-        List<String> lines = new ArrayList<String>();
-
         if (text == null || text.isEmpty()) {
-            return lines;
+            return new ArrayList<String>();
         }
 
         String[] words = text.split("\\s+");
+        List<String> lines = new ArrayList<String>();
         StringBuilder currentLine = new StringBuilder();
 
         for (String word : words) {
@@ -498,24 +494,63 @@ public class PdfBoxDocumentRenderer {
                 continue;
             }
 
-            String testLine = currentLine.length() == 0 ? word : currentLine + " " + word;
-            float width = font.getStringWidth(testLine) / 1000 * fontSize;
-
-            if (width > maxWidth && currentLine.length() > 0) {
+            if (shouldStartNewLine(currentLine, word, font, fontSize, maxWidth)) {
                 lines.add(currentLine.toString());
                 currentLine = new StringBuilder(word);
             } else {
-                if (currentLine.length() > 0) {
-                    currentLine.append(" ");
-                }
-                currentLine.append(word);
+                appendWord(currentLine, word);
             }
         }
 
+        addRemainingLine(lines, currentLine, text);
+        return lines;
+    }
+
+    /**
+     * Check if word would exceed max width on current line
+     */
+    private boolean shouldStartNewLine(StringBuilder currentLine, String word,
+                                       PDFont font, float fontSize, float maxWidth)
+            throws IOException {
+        if (currentLine.length() == 0) {
+            return false; // First word always fits
+        }
+
+        String testLine = currentLine + " " + word;
+        float width = calculateTextWidth(testLine, font, fontSize);
+
+        return width > maxWidth;
+    }
+
+    /**
+     * Append word to current line with space if needed
+     */
+    private void appendWord(StringBuilder line, String word) {
+        if (line.length() > 0) {
+            line.append(" ");
+        }
+        line.append(word);
+    }
+
+    /**
+     * Add remaining line to lines list, with fallback if empty
+     */
+    private void addRemainingLine(List<String> lines, StringBuilder currentLine, String originalText) {
         if (currentLine.length() > 0) {
             lines.add(currentLine.toString());
         }
 
-        return lines.isEmpty() ? Arrays.asList(text) : lines;
+        // Fallback: if no lines were created, return original text
+        if (lines.isEmpty()) {
+            lines.add(originalText);
+        }
     }
+
+    /**
+     * Calculate width of text in points
+     */
+    private float calculateTextWidth(String text, PDFont font, float fontSize) throws IOException {
+        return font.getStringWidth(text) / 1000 * fontSize;
+    }
+
 }

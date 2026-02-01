@@ -16,7 +16,7 @@ import org.apache.xmpbox.xml.XmpSerializer;
 import javax.xml.transform.TransformerException;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.GregorianCalendar;
+import java.util.Calendar;
 
 public class PdfUAConfigurator {
 
@@ -71,8 +71,8 @@ public class PdfUAConfigurator {
 
             // XMP Basic Schema
             XMPBasicSchema xmpBasic = xmp.createAndAddXMPBasicSchema();
-            xmpBasic.setCreateDate(GregorianCalendar.getInstance());
-            xmpBasic.setModifyDate(GregorianCalendar.getInstance());
+            xmpBasic.setCreateDate(Calendar.getInstance());
+            xmpBasic.setModifyDate(Calendar.getInstance());
             xmpBasic.setCreatorTool("Venus Doc PDFBox Handler");
 
             // Serialize and attach

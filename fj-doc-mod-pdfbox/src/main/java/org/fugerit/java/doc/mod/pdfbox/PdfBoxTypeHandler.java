@@ -17,7 +17,7 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
 
     private static final String MODULE = "pdfbox";
 
-    private PdfBoxConfig config;
+    private transient PdfBoxConfig config;
 
     public PdfBoxTypeHandler() {
         super(DocConfig.TYPE_PDF, MODULE);
@@ -26,7 +26,6 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
 
     @Override
     public void configure(Properties config) throws ConfigException {
-        super.configure(config);
         if (config != null) {
             this.config = PdfBoxConfig.fromProperties(config);
         }
@@ -72,12 +71,7 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
 
             // Save document
             log.info("Saving PDF");
-            if (config.isPdfAEnabled()) {
-                // PDF/A-1b might need special save options
-                document.save(docOutput.getOs());
-            } else {
-                document.save(docOutput.getOs());
-            }
+            document.save(docOutput.getOs());
 
             log.info("PDF saved successfully");
         } catch (Exception e) {
