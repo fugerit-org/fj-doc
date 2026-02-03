@@ -45,7 +45,7 @@ class TestAddVenusFacade {
             File projectDir = this.initConfigWorker( currentConfig );
             log.info( "projectDir: {}, exists:{}", projectDir, projectDir.exists() );
             Assertions.assertTrue( projectDir.exists() );
-            String moduleList = "fj-doc-base,base-json,mod-fop,mod-opencsv,mod-poi";
+            String moduleList = "fj-doc-base,base-json,mod-fop,mod-opencsv,mod-poi,mod-pdfbox";
             boolean addFacade = false;
             boolean excludeXmlApis = false;
             boolean addVerifyPlugin = false;
@@ -85,7 +85,7 @@ class TestAddVenusFacade {
                 @Override
                 public void execute() throws MojoExecutionException, MojoFailureException {
                     this.version = VenusContext.VERSION_NA_VERIFY_PLUGIN;
-                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv";
+                    this.extensions = "fj-doc-base,fj-doc-base-json,fj-doc-base-yaml,fj-doc-freemarker,fj-doc-mod-fop,fj-doc-mod-poi,fj-doc-mod-opencsv,fj-doc-mod-pdfbox";
                     this.projectFolder = projectDir.getAbsolutePath();
                     this.addDocFacade = true;
                     this.force = true;

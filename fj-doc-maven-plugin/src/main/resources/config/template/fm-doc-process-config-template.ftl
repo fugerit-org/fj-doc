@@ -69,6 +69,10 @@
         <!-- OpenPDF type hanlder  -->
         <docHandler id="openrtf" info="openrtf" type="org.fugerit.java.doc.mod.openrtf.ext.RtfTypeHandler"/>
         </#if>
+        <#if context.modules?seq_contains("fj-doc-mod-pdfbox")>
+        <!-- Apache PDFBox type hanlder  -->
+        <docHandler id="pdfbox" info="pdfbox" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler"/>
+        </#if>
     </docHandlerConfig>
 
     <docChain id="shared">
