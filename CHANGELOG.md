@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.0] - 2026-02-04
+
 ### Fixed
 
 - module fj-doc-mode-fop Support for Java 25 (Error reading event-model.xml: org.xml.sax.SAXException: FWK005 parse may not be called while parsing.) <https://github.com/fugerit-org/fj-doc/issues/502>
