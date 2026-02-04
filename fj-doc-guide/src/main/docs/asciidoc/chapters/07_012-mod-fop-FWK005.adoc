@@ -1,0 +1,32 @@
+
+[#doc-faq-mod-fop-FWK005]
+=== Support for Java 25 (Error reading event-model.xml: org.xml.sax.SAXException: FWK005 parse may not be called while parsing.)
+
+Using transformer inside transformer fails on JDK 25, works on older JDKs (11,17,21).
+
+* link:https://bugs.openjdk.org/browse/JDK-8368356[JDK-8368356 : TransformerException: org.xml.sax.SAXException: FWK005 parse may not be called while parsing]
+* link:https://bugs.openjdk.org/browse/JDK-8368356[FOP-3275 : Support for Java 25 (Error reading event-model.xml: org.xml.sax.SAXException: FWK005 parse may not be called while parsing.)]
+* link:https://github.com/fugerit-org/fj-doc/issues/502[Support for Java 25 (Error reading event-model.xml: org.xml.sax.SAXException: FWK005 parse may not be called while parsing.)]
+
+A possibile workaround, proposed by link:https://issues.apache.org/jira/browse/FOP-3275[Thomas Mortagne], is to add link:https://www.saxonica.com/documentation12/documentation.xml[Saxon-HE] alternative transformer.
+
+[source,xml]
+----
+		<profile>
+			<id>enable-saxon-he</id>
+			<activation>
+				<jdk>[25,)</jdk>
+			</activation>
+			<properties>
+				<saxon-version>12.9</saxon-version>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>net.sf.saxon</groupId>
+					<artifactId>Saxon-HE</artifactId>
+					<version>${saxon-version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+----
+
