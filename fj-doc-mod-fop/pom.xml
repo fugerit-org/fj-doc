@@ -126,5 +126,26 @@
 	</organization>
 	
 	<url>https://www.fugerit.org/perm/venus/</url>
-	
+
+	<profiles>
+
+		<profile>
+			<id>enable-saxon-he</id>
+			<activation>
+				<jdk>[25,)</jdk>
+			</activation>
+			<properties>
+				<saxon-version>12.9</saxon-version>
+			</properties>
+			<dependencies>
+				<dependency>
+					<groupId>net.sf.saxon</groupId>
+					<artifactId>Saxon-HE</artifactId>
+					<version>${saxon-version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+	</profiles>
+
 </project>
