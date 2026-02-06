@@ -79,7 +79,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.quarkus</groupId>
-			<artifactId>quarkus-junit5</artifactId>
+			<artifactId>quarkus-junit</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -237,6 +237,7 @@
 								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
 								<maven.home>${maven.home}</maven.home>
 							</systemPropertyVariables>
+                            <argLine>@{argLine}</argLine>
 						</configuration>
 					</execution>
 				</executions>
