@@ -1,9 +1,7 @@
 package test.org.fugerit.java.doc.sample.facade;
 
 import org.fugerit.java.doc.base.config.DocConfig;
-import org.junit.jupiter.api.condition.DisabledForJreRange;
 
-@DisabledForJreRange( minVersion = 25)
 class TestIntro01Yaml extends BasicFacadeTest {
 
 	public TestIntro01Yaml() {
