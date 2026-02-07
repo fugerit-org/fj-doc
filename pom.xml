@@ -29,7 +29,7 @@
 	    <fj-doc-version>${project.version}</fj-doc-version>
 	    <fj-doc-version>${project.version}</fj-doc-version>
 		<fj-doc-maven-plugin-version>${fj-doc-version}</fj-doc-maven-plugin-version>
-	    <fj-xml-to-json-version>1.2.1</fj-xml-to-json-version>
+	    <fj-xml-to-json-version>1.2.2</fj-xml-to-json-version>
 		<native-helper-maven-plugin-version>1.4.6</native-helper-maven-plugin-version>
 		<!-- other dependencies -->
 	    <jajarta-jaxb-version>4.0.4</jajarta-jaxb-version>
@@ -45,6 +45,8 @@
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
 		<maven.executable.windows>mvn.cmd</maven.executable.windows>
+        <!-- workaround for transformers in jdk25 -->
+        <saxon.version>12.9</saxon.version>
 	</properties>
 
 	<licenses>

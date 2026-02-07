@@ -25,7 +25,7 @@ public class DocJsonToXml implements DocConvert {
 	}
 	
 	public DocJsonToXml(ObjectMapper mapper) {
-		this( new XmlToJsonHandler( mapper ) );
+		this( new XmlToJsonHandler( mapper ).withXmlns( DocFacade.SYSTEM_ID ) );
 	}
 
 	public DocJsonToXml(XmlToJsonHandler handler) {

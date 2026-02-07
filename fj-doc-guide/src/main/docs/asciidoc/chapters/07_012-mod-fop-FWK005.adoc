@@ -18,13 +18,13 @@ A possibile workaround, proposed by link:https://issues.apache.org/jira/browse/F
 				<jdk>[25,)</jdk>
 			</activation>
 			<properties>
-				<saxon-version>12.9</saxon-version>
+				<saxon.version>12.9</saxon.version>
 			</properties>
 			<dependencies>
 				<dependency>
 					<groupId>net.sf.saxon</groupId>
 					<artifactId>Saxon-HE</artifactId>
-					<version>${saxon-version}</version>
+					<version>${saxon.version}</version>
 				</dependency>
 			</dependencies>
 		</profile>
