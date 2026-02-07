@@ -56,6 +56,12 @@
 
 	<dependencies>
 
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${saxon.version}</version>
+        </dependency>
+
 		<dependency>
 			<groupId>org.fugerit.java</groupId>
 			<artifactId>fj-core</artifactId>
@@ -140,5 +146,5 @@
 	</organization>
 	
 	<url>https://www.fugerit.org/perm/venus/</url>
-	
+
 </project>

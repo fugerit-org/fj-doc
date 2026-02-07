@@ -45,6 +45,8 @@
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
 		<maven.executable.windows>mvn.cmd</maven.executable.windows>
+        <!-- workaround for transformers in jdk25 -->
+        <saxon.version>12.9</saxon.version>
 	</properties>
 
 	<licenses>
