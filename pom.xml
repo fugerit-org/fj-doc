@@ -36,7 +36,7 @@
 	    <jajarta-jaxb-impl-version>4.0.6</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
         <!-- default to version jdk21on -->
-        <kotlin.version>2.3.0</kotlin.version>
+        <kotlin.version>2.3.10</kotlin.version>
         <!-- legacy version for kotlin -->
         <kotlin-version-jdk8ok>2.2.21</kotlin-version-jdk8ok>
 		<quarkus-version>3.31.1</quarkus-version>
