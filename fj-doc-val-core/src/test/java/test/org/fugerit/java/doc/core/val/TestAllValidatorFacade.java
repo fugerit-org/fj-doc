@@ -86,13 +86,13 @@ class TestAllValidatorFacade extends TestDocValidatorFacade {
 		Assertions.assertNull( facade.findByExtension( HelperDocValidator.FORMAT_TEST ) );
 		Assertions.assertFalse( facade.getSupportedMimeTypes().isEmpty() );
 		Assertions.assertFalse( facade.getSupportedExtensions().isEmpty() );
-		Assertions.assertFalse( facade.isMimeTypeSupprted( HelperDocValidator.MIME_TEST ) );
+               Assertions.assertFalse( facade.isMimeTypeSupported( HelperDocValidator.MIME_TEST ) );
 		Assertions.assertFalse( facade.isExtensionSupported( HelperDocValidator.FORMAT_TEST ) );
-		Assertions.assertFalse( facade.isMimeTypeSupprted( HelperDocValidator.MIME_TEST ) );
+               Assertions.assertFalse( facade.isMimeTypeSupported( HelperDocValidator.MIME_TEST ) );
 		Assertions.assertFalse( facade.isExtensionSupported( HelperDocValidator.FORMAT_TEST ) );
-		Assertions.assertFalse( facade.isMimeTypeSupprted( "aaaa" ) );
+               Assertions.assertFalse( facade.isMimeTypeSupported( "aaaa" ) );
 		Assertions.assertFalse( facade.isExtensionSupported( "bbbb/test" ) );
-		Assertions.assertTrue( facade.isMimeTypeSupprted( ImageValidator.JPG_VALIDATOR.getMimeType() ) );
+               Assertions.assertTrue( facade.isMimeTypeSupported( ImageValidator.JPG_VALIDATOR.getMimeType() ) );
 		Assertions.assertTrue( facade.isExtensionSupported( ImageValidator.FORMAT_JPG ) );
 		// test path
 		String testPath = "src/test/resources/sample/jpg_as_jpg.jpeg";
