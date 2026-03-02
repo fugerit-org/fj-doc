@@ -15,7 +15,7 @@
 
 	<properties>
 		<!-- default to version jdk21on -->
-		<openrtf-version>2.0.0</openrtf-version>
+		<openrtf-version>3.0.0</openrtf-version>
 		<!-- legacy version -->
 		<openrtf-version-jdk8ok>1.2.1</openrtf-version-jdk8ok>
 	</properties>
