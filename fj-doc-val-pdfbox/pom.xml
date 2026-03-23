@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<pdfbox-version>${pdfbox-test-version}</pdfbox-version>
+		<pdfbox-version>3.0.7</pdfbox-version>
 	</properties>
 	
 	<build>
