@@ -28,7 +28,9 @@ jobs:
       - uses: fugerit-org/psychic-actions/maven-container-publish@mcp
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          maven-options: -B clean package -P test,buildreact
+          maven-options: -B clean package -P test,buildreact -Dquarkus.package.jar.aot.enabled=true -DskipITs=false
+          java-version: '25'
+          java-distribution: 'graalvm'
           docker-context: 'fj-doc-playground-quarkus'
           docker-file: './fj-doc-playground-quarkus/Dockerfile'
           docker-platforms: linux/amd64,linux/arm64

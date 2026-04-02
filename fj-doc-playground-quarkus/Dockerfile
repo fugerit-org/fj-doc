@@ -21,3 +21,5 @@ COPY --chown=185:0 target/quarkus-app/lib/ /deployments/lib/
 COPY --chown=185:0 target/quarkus-app/*.jar /deployments/
 COPY --chown=185:0 target/quarkus-app/app/ /deployments/app/
 COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
+# AOT cache https://quarkus.io/guides/aot
+COPY --chown=185:0 target/quarkus-app/app-cds.jsa /deployments/
