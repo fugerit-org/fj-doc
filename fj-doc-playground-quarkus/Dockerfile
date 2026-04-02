@@ -11,15 +11,13 @@
 # docker image tag [image tag] fugeritorg/fj-doc-playground-quarkus:latest
 #
 # Change with any base openjdk image is preferred 
-FROM registry.access.redhat.com/ubi9/openjdk-21-runtime:1.22-1.1753981256
+FROM registry.access.redhat.com/ubi9/openjdk-25-runtime:1.24-2.1774011800
 
 LABEL org.opencontainers.image.authors="Fugerit" \
       org.opencontainers.image.source="Quarkus" \
       org.opencontainers.image.revision="1.0.0"
 
-
 COPY --chown=185:0 target/quarkus-app/lib/ /deployments/lib/
 COPY --chown=185:0 target/quarkus-app/*.jar /deployments/
 COPY --chown=185:0 target/quarkus-app/app/ /deployments/app/
 COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
-
