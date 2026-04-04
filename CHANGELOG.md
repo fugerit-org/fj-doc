@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-doc-playground-quarkus added AOTCache (Project Leyden) <https://github.com/fugerit-org/fj-doc/issues/635>
 - fj-doc-playground-quarkus base image ubi9/openjdk-25-runtime:1.24-2.1774011800
 - quarkus-version set to 3.34.2
 
