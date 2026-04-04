@@ -418,16 +418,16 @@ public class PdfBoxDocumentRenderer {
      */
     private float[] resolveColumnWidths(DocTable table, int columnCount, float tableWidth) {
         float[] widths = new float[columnCount];
-        int[] colWithds = table.getColWithds();
-        if (colWithds != null && colWithds.length >= columnCount) {
+        int[] colWidths = table.getColWithds();
+        if (colWidths != null && colWidths.length >= columnCount) {
             // colwidths are percentage values (sum should be 100)
             int total = 0;
             for (int i = 0; i < columnCount; i++) {
-                total += colWithds[i];
+                total += colWidths[i];
             }
             int safeTotal = total > 0 ? total : 100;
             for (int i = 0; i < columnCount; i++) {
-                widths[i] = tableWidth * colWithds[i] / safeTotal;
+                widths[i] = tableWidth * colWidths[i] / safeTotal;
             }
         } else {
             float cellWidth = tableWidth / columnCount;
@@ -697,7 +697,7 @@ public class PdfBoxDocumentRenderer {
         try {
             return DocModelUtils.parseHtmlColor(htmlColor);
         } catch (Exception e) {
-            log.warn("Cannot parse colour '{}', using black", htmlColor);
+            log.warn("Cannot parse color '{}', using black", htmlColor);
             return Color.BLACK;
         }
     }
