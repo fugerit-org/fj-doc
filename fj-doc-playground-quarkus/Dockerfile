@@ -48,4 +48,4 @@ WORKDIR /deployments
 EXPOSE 8080
 
 # Run with AOT cache if available, otherwise normal startup
-CMD ["sh", "-c", "cd /deployments && if [ -f app.aot ] && [ -s app.aot ]; then echo 'Starting with AOT cache...'; java -XX:AOTCache=app.aot -jar quarkus-run.jar; else echo 'Starting without AOT cache...'; java -jar quarkus-run.jar; fi"]
+CMD ["sh", "-c", "cd /deployments && if [ -f app.aot ] && [ -s app.aot ]; then echo 'Starting with AOT cache...'; exec java -XX:AOTCache=app.aot -jar quarkus-run.jar; else echo 'Starting without AOT cache...'; exec java -jar quarkus-run.jar; fi"]
