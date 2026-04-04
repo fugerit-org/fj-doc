@@ -31,60 +31,67 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
         }
     }
 
+    /**
+     * Enriches the base config with metadata from the document itself.
+     * Document metadata (doc-title, doc-author, doc-subject, doc-language) takes
+     * priority over the default values in the config, but configured values set
+     * explicitly via {@link #configure(Properties)} are preserved when no document
+     * metadata is present.
+     */
+    private PdfBoxConfig enrichConfigFromDocBase(DocBase docBase, PdfBoxConfig baseConfig) {
+        PdfBoxConfig enriched = new PdfBoxConfig();
+        enriched.setPdfAEnabled(baseConfig.isPdfAEnabled());
+        enriched.setPdfUAEnabled(baseConfig.isPdfUAEnabled());
+        enriched.setPdfALevel(baseConfig.getPdfALevel());
+        enriched.setFontDirectory(baseConfig.getFontDirectory());
+
+        String title = docBase.getInfoDocTitle();
+        enriched.setDocumentTitle(title != null ? title : baseConfig.getDocumentTitle());
+
+        String author = docBase.getInfoDocAuthor();
+        enriched.setDocumentAuthor(author != null ? author : baseConfig.getDocumentAuthor());
+
+        String subject = docBase.getInfoDocSubject();
+        enriched.setDocumentSubject(subject != null ? subject : baseConfig.getDocumentSubject());
+
+        String language = docBase.getInfoDocLanguage();
+        enriched.setDocumentLanguage(language != null ? language : baseConfig.getDocumentLanguage());
+
+        return enriched;
+    }
+
     @Override
     public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
-        log.info("=== PdfBoxTypeHandler.handle() called ===");
+        log.debug("PdfBoxTypeHandler.handle() called");
 
-        // Get the parsed document model
         DocBase docBase = docInput.getDoc();
-        log.info("DocBase: {}", docBase != null ? docBase.getClass().getName() : "NULL");
 
         if (docBase == null) {
             throw new IllegalStateException("DocBase is null - document was not parsed");
         }
 
-        // Debug: Check document structure
-        log.info("DocBase body: {}", docBase.getDocBody() != null ? "present" : "null");
-        if (docBase.getDocBody() != null) {
-            log.info("Body element count: {}",
-                    docBase.getDocBody().getElementList() != null ?
-                            docBase.getDocBody().getElementList().size() : 0);
-        }
+        // Enrich the config with metadata declared inside the document
+        docBase.getStableInfoSafe();
+        PdfBoxConfig effectiveConfig = enrichConfigFromDocBase(docBase, config);
 
         try (PDDocument document = new PDDocument()) {
-            // Configure PDF/A or PDF/UA if requested
-            if (config.isPdfAEnabled()) {
-                log.info("Configuring PDF/A");
-                configurePdfA(document);
+            if (effectiveConfig.isPdfAEnabled()) {
+                log.debug("Configuring PDF/A");
+                PdfAConfigurator.configurePdfA1b(document, effectiveConfig);
             }
-            if (config.isPdfUAEnabled()) {
-                log.info("Configuring PDF/UA");
-                configurePdfUA(document);
+            if (effectiveConfig.isPdfUAEnabled()) {
+                log.debug("Configuring PDF/UA");
+                PdfUAConfigurator.configurePdfUA1(document, effectiveConfig);
             }
 
-            // Process document structure
-            log.info("Creating renderer");
-            PdfBoxDocumentRenderer renderer = new PdfBoxDocumentRenderer(document, config);
-
-            log.info("Calling renderDocument");
+            PdfBoxDocumentRenderer renderer = new PdfBoxDocumentRenderer(document, effectiveConfig);
             renderer.renderDocument(docBase);
 
-            // Save document
-            log.info("Saving PDF");
             document.save(docOutput.getOs());
-
-            log.info("PDF saved successfully");
+            log.debug("PDF saved successfully");
         } catch (Exception e) {
             log.error("Error rendering PDF", e);
             throw e;
         }
-    }
-
-    private void configurePdfA(PDDocument document) throws IOException {
-        PdfAConfigurator.configurePdfA1b(document, config);
-    }
-
-    private void configurePdfUA(PDDocument document) throws IOException {
-        PdfUAConfigurator.configurePdfUA1(document, config);
     }
 }

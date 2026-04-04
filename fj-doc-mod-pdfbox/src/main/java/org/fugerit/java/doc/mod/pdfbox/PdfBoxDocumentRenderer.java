@@ -7,108 +7,115 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.fugerit.java.doc.base.model.*;
+import org.fugerit.java.doc.base.xml.DocModelUtils;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * Complete renderer with header/footer and page number support
+ * Renderer with header/footer, page number, colour, size and spacing support.
  */
 @Slf4j
 public class PdfBoxDocumentRenderer {
 
-    private final PDDocument document;
-    private final FontManager fontManager;
-
-    // Document structure
-    private DocContainer headerContainer;
-    private DocContainer footerContainer;
-    private List<PDPage> pages;
-
-    // Current page and rendering state
-    private PDPageContentStream contentStream;
-    private float currentY;
-
-    // Page layout constants
     private static final float PAGE_WIDTH = PDRectangle.A4.getWidth();
     private static final float PAGE_HEIGHT = PDRectangle.A4.getHeight();
-    private static final float TOP_MARGIN = 50f;
-    private static final float BOTTOM_MARGIN = 80f; // Extra space for footer
-    private static final float SIDE_MARGIN = 50f;
+
+    // Fixed internal heights for header / footer bands
+    private static final float HEADER_BAND_HEIGHT = 30f;
+    private static final float FOOTER_BAND_HEIGHT = 30f;
     private static final float LINE_HEIGHT = 15f;
-    private static final float HEADER_HEIGHT = 30f;
-    private static final float FOOTER_HEIGHT = 50f;
+    private static final float DEFAULT_FONT_SIZE = 12f;
 
-    // Content area boundaries
-    private static final float CONTENT_TOP = PAGE_HEIGHT - TOP_MARGIN - HEADER_HEIGHT;
-    private static final float CONTENT_BOTTOM = BOTTOM_MARGIN + FOOTER_HEIGHT;
-
-    // Alignment constants
+    // Alignment constants (mirrors DocPara)
     public static final int ALIGN_LEFT = 0;
     public static final int ALIGN_CENTER = 1;
     public static final int ALIGN_RIGHT = 2;
     public static final int ALIGN_JUSTIFY = 3;
     public static final int ALIGN_JUSTIFYALL = 4;
 
+    private final PDDocument document;
+    private final FontManager fontManager;
+
+    // Page-layout values derived from the document's <info name="margins">
+    private float marginLeft;
+    private float marginRight;
+    private float marginTop;
+    private float marginBottom;
+
+    // Content-area vertical boundaries (recalculated per document)
+    private float contentTop;
+    private float contentBottom;
+
+    // Header / footer containers (resolved once per document)
+    private DocContainer headerContainer;
+    private DocContainer footerContainer;
+
+    // Per-page content streams + page list
+    private final List<PDPage> pages = new ArrayList<>();
+    private PDPageContentStream contentStream;
+    private float currentY;
+
+    // Numbered-list counter reset per list
     private int numberedListCounter = 0;
 
     public PdfBoxDocumentRenderer(PDDocument document, PdfBoxConfig config) {
         this.document = document;
         this.fontManager = new FontManager(config, document);
-        this.pages = new ArrayList<>();
     }
+
+    // -----------------------------------------------------------------------
+    // Public entry point
+    // -----------------------------------------------------------------------
 
     public void renderDocument(DocBase docBase) throws IOException {
-        log.info("=== Starting document rendering ===");
+        log.debug("Starting document rendering");
 
-        // Store header and footer for later rendering
-        headerContainer = docBase.getDocHeader();
-        footerContainer = docBase.getDocFooter();
+        // Resolve margins from document metadata (values are in points, matching
+        // the convention used by fj-doc-mod-openpdf-ext).
+        marginLeft   = Math.max(docBase.getMarginLeft(),   10);
+        marginRight  = Math.max(docBase.getMarginRight(),  10);
+        marginTop    = Math.max(docBase.getMarginTop(),    10);
+        marginBottom = Math.max(docBase.getMarginBottom(), 10);
 
-        // Create first page
+        // Resolve header / footer
+        headerContainer = docBase.isUseHeader() ? docBase.getDocHeader() : null;
+        footerContainer = docBase.isUseFooter() ? docBase.getDocFooter() : null;
+
+        // Content area avoids header and footer bands
+        contentTop    = PAGE_HEIGHT - marginTop    - (headerContainer != null ? HEADER_BAND_HEIGHT : 0);
+        contentBottom = marginBottom               + (footerContainer != null ? FOOTER_BAND_HEIGHT : 0);
+
+        // Render body
         createNewPage();
-
-        // Process document body
-        DocContainer bodyContainer = docBase.getDocBody();
-        if (bodyContainer != null) {
-            log.info("Rendering body");
-            renderContainer(bodyContainer);
+        DocContainer body = docBase.getDocBody();
+        if (body != null) {
+            renderContainer(body);
         }
-
-        // Close current content stream before adding headers/footers
         closeContentStream();
 
-        // Render headers and footers on all pages with page numbers
+        // Overlay header/footer on every page
         renderHeadersAndFooters();
 
-        log.info("=== Document rendering completed ===");
+        log.debug("Document rendering completed");
     }
 
-    private void renderContainer(DocContainer container) throws IOException {
-        List<DocElement> elements = container.getElementList();
-        if (elements != null) {
-            for (DocElement element : elements) {
-                processElement(element);
-            }
-        }
-    }
+    // -----------------------------------------------------------------------
+    // Page management
+    // -----------------------------------------------------------------------
 
     private void createNewPage() throws IOException {
         closeContentStream();
-
-        PDPage currentPage = new PDPage(PDRectangle.A4);
-        document.addPage(currentPage);
-        pages.add(currentPage);
-
-        // Start content below header area
-        currentY = CONTENT_TOP;
-
+        PDPage page = new PDPage(PDRectangle.A4);
+        document.addPage(page);
+        pages.add(page);
+        currentY = contentTop;
         contentStream = new PDPageContentStream(
-                document, currentPage, PDPageContentStream.AppendMode.APPEND, true, true);
-
-        log.info("Created page {}, Y position: {}", pages.size(), currentY);
+                document, page, PDPageContentStream.AppendMode.APPEND, true, true);
+        log.debug("Created page {}, Y={}", pages.size(), currentY);
     }
 
     private void closeContentStream() throws IOException {
@@ -119,9 +126,21 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void checkNewPage() throws IOException {
-        if (currentY < CONTENT_BOTTOM + LINE_HEIGHT * 2) {
-            log.info("Need new page, current Y: {}", currentY);
+        if (currentY < contentBottom + LINE_HEIGHT * 2) {
             createNewPage();
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Container / element dispatch
+    // -----------------------------------------------------------------------
+
+    private void renderContainer(DocContainer container) throws IOException {
+        List<DocElement> elements = container.getElementList();
+        if (elements != null) {
+            for (DocElement element : elements) {
+                processElement(element);
+            }
         }
     }
 
@@ -132,79 +151,200 @@ public class PdfBoxDocumentRenderer {
             renderTable((DocTable) element);
         } else if (element instanceof DocList) {
             renderList((DocList) element);
+        } else if (element instanceof DocBr) {
+            // Top-level line break
+            currentY -= LINE_HEIGHT;
+            checkNewPage();
         }
     }
+
+    // -----------------------------------------------------------------------
+    // Paragraph rendering
+    // -----------------------------------------------------------------------
 
     private void renderParagraph(DocPara para) throws IOException {
         checkNewPage();
 
-        int styleCode = para.getStyle();
-        String text = extractText(para);
-
-        if (text == null || text.trim().isEmpty()) {
-            return;
-        }
-
-        PDFont font = fontManager.getFont(styleCode, para.getFontName());
-        float fontSize = fontManager.getFontSize(styleCode);
-        int align = para.getAlign();
-
-        renderText(text, font, fontSize, align);
-        currentY -= LINE_HEIGHT * 0.5f;
-    }
-
-    private void renderText(String text, PDFont font, float fontSize, int align) throws IOException {
-        if (text == null || text.trim().isEmpty()) {
-            return;
-        }
-
-        List<String> lines = wrapText(text, font, fontSize, PAGE_WIDTH - 2 * SIDE_MARGIN);
-
-        for (String line : lines) {
+        // spaceBefore
+        Float spaceBefore = para.getSpaceBefore();
+        if (spaceBefore != null && spaceBefore > 0) {
+            currentY -= spaceBefore;
             checkNewPage();
-
-            float xPos = calculateXPosition(line, font, fontSize, align);
-
-            contentStream.beginText();
-            contentStream.setFont(font, fontSize);
-            contentStream.newLineAtOffset(xPos, currentY);
-            contentStream.showText(line);
-            contentStream.endText();
-            currentY -= LINE_HEIGHT;
-        }
-    }
-
-    private float calculateXPosition(String text, PDFont font, float fontSize, int align) throws IOException {
-        if (align == ALIGN_LEFT || align == ALIGN_JUSTIFY || align == ALIGN_JUSTIFYALL) {
-            return SIDE_MARGIN;
         }
 
-        float textWidth = font.getStringWidth(text) / 1000 * fontSize;
-        float availableWidth = PAGE_WIDTH - 2 * SIDE_MARGIN;
+        int styleCode   = para.getStyle();
+        float fontSize  = resolveSize(para.getSize());
+        PDFont font     = fontManager.getFont(styleCode, para.getFontName());
+        int align       = para.getAlign();
+        String foreColor = para.getForeColor();
 
-        if (align == ALIGN_CENTER) {
-            return SIDE_MARGIN + (availableWidth - textWidth) / 2;
-        } else if (align == ALIGN_RIGHT) {
-            return PAGE_WIDTH - SIDE_MARGIN - textWidth;
+        // Render inline children (phrases / br) or plain text
+        List<DocElement> children = para.getElementList();
+        if (children != null && !children.isEmpty()) {
+            renderInlineChildren(children, font, fontSize, align, foreColor);
         } else {
-            return SIDE_MARGIN;
+            String text = para.getText();
+            if (text != null && !text.trim().isEmpty()) {
+                renderTextBlock(text, font, fontSize, align, foreColor);
+            }
+        }
+
+        // Inter-paragraph gap
+        currentY -= LINE_HEIGHT * 0.3f;
+
+        // spaceAfter
+        Float spaceAfter = para.getSpaceAfter();
+        if (spaceAfter != null && spaceAfter > 0) {
+            currentY -= spaceAfter;
         }
     }
+
+    /**
+     * Renders the inline children of a paragraph (DocPhrase / DocBr) while
+     * keeping track of X position so phrases flow across the same line.
+     */
+    private void renderInlineChildren(List<DocElement> children,
+                                      PDFont defaultFont, float defaultFontSize,
+                                      int align, String defaultForeColor) throws IOException {
+        // Collect text runs; DocBr inserts an explicit "\n"
+        StringBuilder buffer = new StringBuilder();
+        List<TextRun> runs = new ArrayList<>();
+
+        for (DocElement child : children) {
+            if (child instanceof DocBr) {
+                if (buffer.length() > 0) {
+                    runs.add(new TextRun(buffer.toString(), defaultFont, defaultFontSize, defaultForeColor));
+                    buffer = new StringBuilder();
+                }
+                runs.add(TextRun.lineBreak());
+            } else if (child instanceof DocPhrase) {
+                DocPhrase phrase = (DocPhrase) child;
+                String text = phrase.getText();
+                if (text != null && !text.isEmpty()) {
+                    PDFont phraseFont   = fontManager.getFont(phrase.getStyle(), phrase.getFontName());
+                    float phraseSize    = resolveSize(phrase.getSize(), defaultFontSize);
+                    String phraseColor  = phrase.getForeColor() != null ? phrase.getForeColor() : defaultForeColor;
+                    runs.add(new TextRun(text, phraseFont, phraseSize, phraseColor));
+                }
+            }
+        }
+
+        if (buffer.length() > 0) {
+            runs.add(new TextRun(buffer.toString(), defaultFont, defaultFontSize, defaultForeColor));
+        }
+
+        if (runs.isEmpty()) {
+            return;
+        }
+
+        // If there is only one run without a line-break, delegate to the simple path
+        if (runs.size() == 1 && !runs.get(0).isLineBreak) {
+            TextRun r = runs.get(0);
+            renderTextBlock(r.text, r.font, r.fontSize, align, r.foreColor);
+            return;
+        }
+
+        // Multi-run layout: word-wrap across runs (simplified: each run is its own block)
+        for (TextRun run : runs) {
+            if (run.isLineBreak) {
+                currentY -= LINE_HEIGHT;
+                checkNewPage();
+            } else {
+                renderTextBlock(run.text, run.font, run.fontSize, align, run.foreColor);
+            }
+        }
+    }
+
+    // -----------------------------------------------------------------------
+    // Low-level text rendering
+    // -----------------------------------------------------------------------
+
+    /** Renders a block of text (possibly multi-line after wrapping). */
+    private void renderTextBlock(String text, PDFont font, float fontSize,
+                                 int align, String foreColor) throws IOException {
+        if (text == null || text.trim().isEmpty()) {
+            return;
+        }
+        float maxWidth = PAGE_WIDTH - marginLeft - marginRight;
+        // Split on explicit newlines first (from DocBr embedded in text)
+        String[] paragraphs = text.split("\n", -1);
+        for (String paragraph : paragraphs) {
+            List<String> lines = paragraph.isEmpty()
+                    ? Collections.singletonList("")
+                    : wrapWords(paragraph, font, fontSize, maxWidth);
+            for (String line : lines) {
+                checkNewPage();
+                if (!line.isEmpty()) {
+                    float xPos = calculateXPosition(line, font, fontSize, align, maxWidth);
+                    drawTextLine(line, font, fontSize, xPos, currentY, foreColor);
+                }
+                currentY -= LINE_HEIGHT;
+            }
+        }
+    }
+
+    /** Draws a single line of text at (x, y) with the given colour. */
+    private void drawTextLine(String text, PDFont font, float fontSize,
+                              float x, float y, String foreColor) throws IOException {
+        Color color = parseColor(foreColor);
+        contentStream.setNonStrokingColor(color);
+        contentStream.beginText();
+        contentStream.setFont(font, fontSize);
+        contentStream.newLineAtOffset(x, y);
+        contentStream.showText(text);
+        contentStream.endText();
+        // Reset to black after each line to avoid colour leaking
+        contentStream.setNonStrokingColor(Color.BLACK);
+    }
+
+    private float calculateXPosition(String text, PDFont font, float fontSize,
+                                     int align, float maxWidth) throws IOException {
+        if (align == ALIGN_LEFT || align == ALIGN_JUSTIFY || align == ALIGN_JUSTIFYALL) {
+            return marginLeft;
+        }
+        float textWidth = font.getStringWidth(text) / 1000f * fontSize;
+        if (align == ALIGN_CENTER) {
+            return marginLeft + (maxWidth - textWidth) / 2f;
+        } else if (align == ALIGN_RIGHT) {
+            return PAGE_WIDTH - marginRight - textWidth;
+        }
+        return marginLeft;
+    }
+
+    /**
+     * Computes the absolute X position of text inside a table cell.
+     *
+     * @param cellOriginX the left edge of the cell's inner content area (absolute page coordinate)
+     * @param innerWidth  the inner width of the cell (excluding padding)
+     */
+    private float calculateCellXPosition(String text, PDFont font, float fontSize,
+                                         int align, float cellOriginX, float innerWidth) throws IOException {
+        if (align == ALIGN_LEFT || align == ALIGN_JUSTIFY || align == ALIGN_JUSTIFYALL
+                || align == ALIGN_UNSET) {
+            return cellOriginX;
+        }
+        float textWidth = font.getStringWidth(text) / 1000f * fontSize;
+        if (align == ALIGN_CENTER) {
+            return cellOriginX + (innerWidth - textWidth) / 2f;
+        } else if (align == ALIGN_RIGHT) {
+            return cellOriginX + innerWidth - textWidth;
+        }
+        return cellOriginX;
+    }
+
+    private static final int ALIGN_UNSET = DocPara.ALIGN_UNSET;
+
+    // -----------------------------------------------------------------------
+    // List rendering
+    // -----------------------------------------------------------------------
 
     private void renderList(DocList list) throws IOException {
-        if (!(list instanceof DocContainer)) {
-            return;
-        }
-
         String listType = list.getListType();
-        boolean isNumbered = (listType != null && listType.equals(DocList.LIST_TYPE_OL));
-
+        boolean isNumbered = DocList.LIST_TYPE_OL.equals(listType);
         if (isNumbered) {
             numberedListCounter = 1;
         }
-
         List<DocElement> items = list.getElementList();
-
         if (items != null) {
             for (DocElement item : items) {
                 if (item instanceof DocLi) {
@@ -212,222 +352,244 @@ public class PdfBoxDocumentRenderer {
                 }
             }
         }
-
-        currentY -= LINE_HEIGHT * 0.5f;
+        currentY -= LINE_HEIGHT * 0.3f;
     }
 
     private void renderListItem(DocLi listItem, boolean isNumbered) throws IOException {
         checkNewPage();
 
-        PDFont font = fontManager.getFont(0, null);
-        float fontSize = fontManager.getFontSize(0);
+        PDFont font   = fontManager.getFont(0, null);
+        float fontSize = DEFAULT_FONT_SIZE;
+        String bullet  = isNumbered ? (numberedListCounter++ + ".") : "\u2022";
+        float indent   = marginLeft + 20f;
+        float maxWidth = PAGE_WIDTH - indent - marginRight;
 
-        String bullet = isNumbered ? (numberedListCounter++ + ".") : "•";
+        // Draw bullet / number
+        drawTextLine(bullet, font, fontSize, marginLeft, currentY, null);
 
-        contentStream.beginText();
-        contentStream.setFont(font, fontSize);
-        contentStream.newLineAtOffset(SIDE_MARGIN, currentY);
-        contentStream.showText(bullet);
-        contentStream.endText();
-
+        // Draw item text
         String text = extractText(listItem);
-
         if (text != null && !text.isEmpty()) {
-            float indent = SIDE_MARGIN + 30f;
-            List<String> lines = wrapText(text, font, fontSize, PAGE_WIDTH - indent - SIDE_MARGIN);
-
-            for (int i = 0; i < lines.size(); i++) {
-                if (i > 0) {
+            List<String> lines = wrapWords(text, font, fontSize, maxWidth);
+            boolean first = true;
+            for (String line : lines) {
+                if (!first) {
                     currentY -= LINE_HEIGHT;
                     checkNewPage();
                 }
-
-                contentStream.beginText();
-                contentStream.setFont(font, fontSize);
-                contentStream.newLineAtOffset(indent, currentY);
-                contentStream.showText(lines.get(i));
-                contentStream.endText();
+                drawTextLine(line, font, fontSize, indent, currentY, null);
+                first = false;
             }
         }
-
         currentY -= LINE_HEIGHT;
     }
 
+    // -----------------------------------------------------------------------
+    // Table rendering
+    // -----------------------------------------------------------------------
+
     private void renderTable(DocTable table) throws IOException {
         checkNewPage();
-
-        if (!(table instanceof DocContainer)) {
-            return;
-        }
-
         List<DocElement> rows = table.getElementList();
-
         if (rows == null || rows.isEmpty()) {
             return;
         }
 
-        int columnCount = getMaxColumnCount(rows);
-        float tableWidth = PAGE_WIDTH - 2 * SIDE_MARGIN;
-        float cellWidth = tableWidth / columnCount;
+        int columnCount  = getMaxColumnCount(rows);
+        float tableWidth = PAGE_WIDTH - marginLeft - marginRight;
+
+        // Resolve column widths from the document model
+        float[] colWidths = resolveColumnWidths(table, columnCount, tableWidth);
 
         boolean isFirstRow = true;
         for (DocElement rowElement : rows) {
             if (rowElement instanceof DocRow) {
-                renderRow((DocRow) rowElement, cellWidth, columnCount, isFirstRow);
+                renderRow((DocRow) rowElement, colWidths, columnCount, isFirstRow);
                 isFirstRow = false;
             }
         }
+        currentY -= LINE_HEIGHT * 0.3f;
+    }
 
-        currentY -= LINE_HEIGHT * 0.5f;
+    /**
+     * Resolves per-column widths in points.
+     * If the table specifies colwidths (percentage values), they are honoured;
+     * otherwise columns are equally distributed.
+     */
+    private float[] resolveColumnWidths(DocTable table, int columnCount, float tableWidth) {
+        float[] widths = new float[columnCount];
+        int[] colWithds = table.getColWithds();
+        if (colWithds != null && colWithds.length >= columnCount) {
+            // colwidths are percentage values (sum should be 100)
+            int total = 0;
+            for (int i = 0; i < columnCount; i++) {
+                total += colWithds[i];
+            }
+            int safeTotal = total > 0 ? total : 100;
+            for (int i = 0; i < columnCount; i++) {
+                widths[i] = tableWidth * colWithds[i] / safeTotal;
+            }
+        } else {
+            float cellWidth = tableWidth / columnCount;
+            for (int i = 0; i < columnCount; i++) {
+                widths[i] = cellWidth;
+            }
+        }
+        return widths;
     }
 
     private int getMaxColumnCount(List<DocElement> rows) {
-        int maxCols = 0;
+        int max = 0;
         for (DocElement rowElement : rows) {
             if (rowElement instanceof DocRow && rowElement instanceof DocContainer) {
-                DocContainer rowContainer = (DocContainer) rowElement;
-                List<DocElement> cells = rowContainer.getElementList();
+                List<DocElement> cells = ((DocContainer) rowElement).getElementList();
                 if (cells != null) {
-                    maxCols = Math.max(maxCols, cells.size());
+                    max = Math.max(max, cells.size());
                 }
             }
         }
-        return maxCols > 0 ? maxCols : 1;
+        return max > 0 ? max : 1;
     }
 
-    private void renderRow(DocRow row, float cellWidth, int columnCount, boolean isHeader) throws IOException {
+    private void renderRow(DocRow row, float[] colWidths, int columnCount,
+                           boolean isHeaderRow) throws IOException {
         checkNewPage();
-
-        if (!(row instanceof DocContainer)) {
-            return;
-        }
-
-        PDFont font = fontManager.getFont(isHeader ? 1 : 0, null);
-        float fontSize = fontManager.getFontSize(0);
-
         List<DocElement> cells = row.getElementList();
-
         if (cells == null) {
             return;
         }
 
-        float cellX = SIDE_MARGIN;
+        int styleCode = (isHeaderRow || row.isHeader()) ? DocPara.STYLE_BOLD : DocPara.STYLE_NORMAL;
+        PDFont font   = fontManager.getFont(styleCode, null);
+        float fontSize = DEFAULT_FONT_SIZE;
+
+        float cellX     = marginLeft;
         float rowStartY = currentY;
+        float padding   = 2f;
 
-        for (DocElement cellElement : cells) {
-            if (cellElement instanceof DocCell) {
-                DocCell cell = (DocCell) cellElement;
-                String cellText = extractText(cell);
-
-                if (cellText != null && !cellText.isEmpty()) {
-                    List<String> lines = wrapText(cellText, font, fontSize, cellWidth - 4);
-
-                    float cellY = rowStartY;
-                    for (String line : lines) {
-                        contentStream.beginText();
-                        contentStream.setFont(font, fontSize);
-                        contentStream.newLineAtOffset(cellX + 2, cellY);
-                        contentStream.showText(line);
-                        contentStream.endText();
-                        cellY -= LINE_HEIGHT;
-                    }
-                }
-
-                cellX += cellWidth;
+        for (int colIdx = 0; colIdx < cells.size() && colIdx < columnCount; colIdx++) {
+            DocElement cellElement = cells.get(colIdx);
+            if (!(cellElement instanceof DocCell)) {
+                cellX += colWidths[colIdx];
+                continue;
             }
+            DocCell cell = (DocCell) cellElement;
+            String cellText = extractText(cell);
+
+            if (cellText != null && !cellText.isEmpty()) {
+                float innerWidth = colWidths[colIdx] - 2 * padding;
+                List<String> lines = wrapWords(cellText, font, fontSize, innerWidth);
+                int cellAlign = cell.getAlign();
+                float cellY = rowStartY;
+                for (String line : lines) {
+                    float absX = calculateCellXPosition(line, font, fontSize, cellAlign,
+                            cellX + padding, colWidths[colIdx] - 2 * padding);
+                    drawTextLine(line, font, fontSize, absX, cellY, cell.getForeColor());
+                    cellY -= LINE_HEIGHT;
+                }
+            }
+            cellX += colWidths[colIdx];
         }
 
-        // Draw border
+        // Bottom border of the row
         contentStream.setLineWidth(0.5f);
-        contentStream.moveTo(SIDE_MARGIN, rowStartY - 2);
-        contentStream.lineTo(SIDE_MARGIN + (cellWidth * columnCount), rowStartY - 2);
+        contentStream.moveTo(marginLeft, rowStartY - 2);
+        contentStream.lineTo(marginLeft + sumWidths(colWidths, Math.min(cells.size(), columnCount)),
+                rowStartY - 2);
         contentStream.stroke();
 
         currentY -= LINE_HEIGHT * 1.5f;
     }
 
-    /**
-     * Render headers and footers on all pages with page number substitution
-     */
+    private float sumWidths(float[] widths, int count) {
+        float sum = 0;
+        for (int i = 0; i < count; i++) {
+            sum += widths[i];
+        }
+        return sum;
+    }
+
+    // -----------------------------------------------------------------------
+    // Header / footer rendering
+    // -----------------------------------------------------------------------
+
     private void renderHeadersAndFooters() throws IOException {
         int totalPages = pages.size();
-
-        for (int pageNum = 0; pageNum < totalPages; pageNum++) {
-            PDPage page = pages.get(pageNum);
-            int currentPageNumber = pageNum + 1;
-
+        for (int i = 0; i < totalPages; i++) {
+            PDPage page = pages.get(i);
+            int pageNum = i + 1;
             try (PDPageContentStream stream = new PDPageContentStream(
                     document, page, PDPageContentStream.AppendMode.APPEND, true, true)) {
-
-                // Render header
                 if (headerContainer != null) {
-                    renderHeaderFooterContent(stream, headerContainer, true, currentPageNumber, totalPages);
+                    renderBand(stream, headerContainer, true, pageNum, totalPages);
                 }
-
-                // Render footer
                 if (footerContainer != null) {
-                    renderHeaderFooterContent(stream, footerContainer, false, currentPageNumber, totalPages);
+                    renderBand(stream, footerContainer, false, pageNum, totalPages);
                 }
             }
         }
     }
 
-    private void renderHeaderFooterContent(PDPageContentStream stream, DocContainer container,
-                                           boolean isHeader, int currentPage, int totalPages) throws IOException {
+    private void renderBand(PDPageContentStream stream, DocContainer container,
+                            boolean isHeader, int currentPage, int totalPages) throws IOException {
         List<DocElement> elements = container.getElementList();
         if (elements == null) {
             return;
         }
-
-        float yPosition = isHeader ? (PAGE_HEIGHT - TOP_MARGIN) : BOTTOM_MARGIN;
-        PDFont font = fontManager.getFont(0, null);
+        float yPos     = isHeader ? (PAGE_HEIGHT - marginTop) : marginBottom;
+        PDFont font    = fontManager.getFont(0, null);
         float fontSize = 10f;
+        float maxWidth = PAGE_WIDTH - marginLeft - marginRight;
 
         for (DocElement element : elements) {
             if (element instanceof DocPara) {
                 DocPara para = (DocPara) element;
-                String text = extractText(para);
-
+                String text  = extractText(para);
                 if (text != null && !text.isEmpty()) {
-                    // Replace placeholders
                     text = replacePlaceholders(text, currentPage, totalPages);
-
-                    int align = para.getAlign();
-                    float xPos = calculateXPosition(text, font, fontSize, align);
-
+                    int align  = para.getAlign();
+                    float xPos = calculateXPosition(text, font, fontSize, align, maxWidth);
+                    Color color = parseColor(para.getForeColor());
+                    stream.setNonStrokingColor(color);
                     stream.beginText();
                     stream.setFont(font, fontSize);
-                    stream.newLineAtOffset(xPos, yPosition);
+                    stream.newLineAtOffset(xPos, yPos);
                     stream.showText(text);
                     stream.endText();
-
-                    yPosition -= LINE_HEIGHT;
+                    stream.setNonStrokingColor(Color.BLACK);
+                    yPos -= LINE_HEIGHT;
                 }
             }
         }
     }
 
+    // -----------------------------------------------------------------------
+    // Placeholder substitution
+    // -----------------------------------------------------------------------
+
     /**
-     * Replace page number placeholders like ${currentPage} and ${pageCount}
+     * Replaces {@code ${currentPage}} / {@code ${pageCount}} placeholders.
+     * Also handles the FreeMarker raw-string escape form
+     * {@code ${r"${currentPage}"}} that may appear when the source XML was
+     * originally a FreeMarker template.
      */
-    private String replacePlaceholders(final String text, int currentPage, int totalPages) {
+    private String replacePlaceholders(String text, int currentPage, int totalPages) {
         if (text == null) {
-            return text;
+            return null;
         }
-
-        // Handle currentPage
-        String newText  = text.replace("\\$\\{r\"\\$\\{currentPage\\}\"\\}", String.valueOf(currentPage));
-        newText = newText.replace("\\$\\{currentPage\\}", String.valueOf(currentPage));
-
-        // Handle pageCount
-        newText = newText.replace("\\$\\{r\"\\$\\{pageCount\\}\"\\}", String.valueOf(totalPages));
-        newText = newText.replace("\\$\\{pageCount\\}", String.valueOf(totalPages));
-
-        return newText;
+        // FreeMarker raw-string form first (more specific match)
+        String result = text.replace("${r\"${currentPage}\"}", String.valueOf(currentPage));
+        result = result.replace("${currentPage}", String.valueOf(currentPage));
+        result = result.replace("${r\"${pageCount}\"}", String.valueOf(totalPages));
+        result = result.replace("${pageCount}", String.valueOf(totalPages));
+        return result;
     }
 
+    // -----------------------------------------------------------------------
+    // Text extraction helpers
+    // -----------------------------------------------------------------------
+
     private String extractText(DocElement element) {
-        // DocPara stores text directly
         if (element instanceof DocPara) {
             DocPara para = (DocPara) element;
             String paraText = para.getText();
@@ -437,120 +599,138 @@ public class PdfBoxDocumentRenderer {
         }
 
         StringBuilder result = new StringBuilder();
-
-        // For containers, check children
         if (element instanceof DocContainer) {
-            DocContainer container = (DocContainer) element;
-            List<DocElement> children = container.getElementList();
-
-            if (children != null) {
-                for (DocElement child : children) {
-                    if (child instanceof DocPhrase) {
-                        DocPhrase phrase = (DocPhrase) child;
-                        String text = phrase.getText();
-                        if (text != null) {
-                            if (result.length() > 0) {
-                                result.append(" ");
-                            }
-                            result.append(text);
+            for (DocElement child : ((DocContainer) element).getElementList()) {
+                if (child instanceof DocBr) {
+                    result.append("\n");
+                } else if (child instanceof DocPhrase) {
+                    String text = ((DocPhrase) child).getText();
+                    if (text != null && !text.isEmpty()) {
+                        if (result.length() > 0 && result.charAt(result.length() - 1) != '\n') {
+                            result.append(" ");
                         }
-                    } else {
-                        String childText = extractText(child);
-                        if (childText != null && !childText.isEmpty()) {
-                            if (result.length() > 0) {
-                                result.append(" ");
-                            }
-                            result.append(childText);
+                        result.append(text);
+                    }
+                } else {
+                    String childText = extractText(child);
+                    if (childText != null && !childText.isEmpty()) {
+                        if (result.length() > 0 && result.charAt(result.length() - 1) != '\n') {
+                            result.append(" ");
                         }
+                        result.append(childText);
                     }
                 }
             }
         } else if (element instanceof DocPhrase) {
-            DocPhrase phrase = (DocPhrase) element;
-            String text = phrase.getText();
+            String text = ((DocPhrase) element).getText();
             if (text != null) {
                 result.append(text);
             }
         }
-
         return result.toString().trim();
     }
 
-    /**
-     * Wrap text to fit within max width
-     */
-    private List<String> wrapText(String text, PDFont font, float fontSize, float maxWidth)
-            throws IOException {
-        if (text == null || text.isEmpty()) {
-            return new ArrayList<String>();
-        }
+    // -----------------------------------------------------------------------
+    // Word-wrap
+    // -----------------------------------------------------------------------
 
+    private List<String> wrapWords(String text, PDFont font, float fontSize,
+                                   float maxWidth) throws IOException {
+        List<String> lines = new ArrayList<>();
+        if (text == null || text.isEmpty()) {
+            lines.add("");
+            return lines;
+        }
         String[] words = text.split("\\s+");
-        List<String> lines = new ArrayList<String>();
-        StringBuilder currentLine = new StringBuilder();
+        StringBuilder current = new StringBuilder();
 
         for (String word : words) {
-            if (word.isEmpty()) {
-                continue;
-            }
-
-            if (shouldStartNewLine(currentLine, word, font, fontSize, maxWidth)) {
-                lines.add(currentLine.toString());
-                currentLine = new StringBuilder(word);
+            if (word.isEmpty()) continue;
+            if (current.length() == 0) {
+                current.append(word);
             } else {
-                appendWord(currentLine, word);
+                String test = current + " " + word;
+                float w = font.getStringWidth(test) / 1000f * fontSize;
+                if (w > maxWidth) {
+                    lines.add(current.toString());
+                    current = new StringBuilder(word);
+                } else {
+                    current.append(" ").append(word);
+                }
             }
         }
-
-        addRemainingLine(lines, currentLine, text);
+        if (current.length() > 0) {
+            lines.add(current.toString());
+        }
+        if (lines.isEmpty()) {
+            lines.add(text);
+        }
         return lines;
     }
 
+    // -----------------------------------------------------------------------
+    // Font-size resolution
+    // -----------------------------------------------------------------------
+
     /**
-     * Check if word would exceed max width on current line
+     * Resolves the effective font size.
+     * A value {@code <= 0} (including -1 which means "unset") falls back to
+     * {@link #DEFAULT_FONT_SIZE}.
      */
-    private boolean shouldStartNewLine(StringBuilder currentLine, String word,
-                                       PDFont font, float fontSize, float maxWidth)
-            throws IOException {
-        if (currentLine.length() == 0) {
-            return false; // First word always fits
-        }
-
-        String testLine = currentLine + " " + word;
-        float width = calculateTextWidth(testLine, font, fontSize);
-
-        return width > maxWidth;
+    private float resolveSize(int size) {
+        return resolveSize(size, DEFAULT_FONT_SIZE);
     }
 
-    /**
-     * Append word to current line with space if needed
-     */
-    private void appendWord(StringBuilder line, String word) {
-        if (line.length() > 0) {
-            line.append(" ");
-        }
-        line.append(word);
+    private float resolveSize(int size, float defaultSize) {
+        return size > 0 ? (float) size : defaultSize;
     }
 
-    /**
-     * Add remaining line to lines list, with fallback if empty
-     */
-    private void addRemainingLine(List<String> lines, StringBuilder currentLine, String originalText) {
-        if (currentLine.length() > 0) {
-            lines.add(currentLine.toString());
-        }
+    // -----------------------------------------------------------------------
+    // Colour helpers
+    // -----------------------------------------------------------------------
 
-        // Fallback: if no lines were created, return original text
-        if (lines.isEmpty()) {
-            lines.add(originalText);
+    /** Parses a {@code #rrggbb} colour string; falls back to black. */
+    private Color parseColor(String htmlColor) {
+        if (htmlColor == null || htmlColor.isEmpty()) {
+            return Color.BLACK;
+        }
+        try {
+            return DocModelUtils.parseHtmlColor(htmlColor);
+        } catch (Exception e) {
+            log.warn("Cannot parse colour '{}', using black", htmlColor);
+            return Color.BLACK;
         }
     }
 
-    /**
-     * Calculate width of text in points
-     */
-    private float calculateTextWidth(String text, PDFont font, float fontSize) throws IOException {
-        return font.getStringWidth(text) / 1000 * fontSize;
-    }
+    // -----------------------------------------------------------------------
+    // Inner helper: text run for inline layout
+    // -----------------------------------------------------------------------
 
+    private static final class TextRun {
+        final String  text;
+        final PDFont  font;
+        final float   fontSize;
+        final String  foreColor;
+        final boolean isLineBreak;
+
+        TextRun(String text, PDFont font, float fontSize, String foreColor) {
+            this.text        = text;
+            this.font        = font;
+            this.fontSize    = fontSize;
+            this.foreColor   = foreColor;
+            this.isLineBreak = false;
+        }
+
+        private TextRun() {
+            this.text        = null;
+            this.font        = null;
+            this.fontSize    = 0;
+            this.foreColor   = null;
+            this.isLineBreak = true;
+        }
+
+        static TextRun lineBreak() {
+            return new TextRun();
+        }
+    }
 }
