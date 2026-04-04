@@ -22,7 +22,8 @@ RUN timeout 120 java -XX:AOTCacheOutput=app.aot \
         echo "✓ AOT cache generated successfully"; \
         ls -lh /deployments/app.aot; \
     else \
-        echo "⚠ WARNING: AOT cache file not generated"; \
+        echo "⚠ WARNING: AOT cache file not generated, creating placeholder"; \
+        touch /deployments/app.aot; \
     fi
 
 USER 185:0
