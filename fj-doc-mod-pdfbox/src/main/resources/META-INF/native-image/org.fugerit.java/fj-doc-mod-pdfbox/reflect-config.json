@@ -1,0 +1,340 @@
+[ {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.pdfbox.FontManager",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.fugerit.java.doc.mod.pdfbox.PdfBoxConfig", "org.apache.pdfbox.pdmodel.PDDocument" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFont",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "getFont",
+    "parameterTypes" : [ "int", "java.lang.String" ]
+  }, {
+    "name" : "getFontSize",
+    "parameterTypes" : [ "int" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.pdfbox.PdfAConfigurator",
+  "methods" : [ {
+    "name" : "configurePdfA1b",
+    "parameterTypes" : [ "org.apache.pdfbox.pdmodel.PDDocument", "org.fugerit.java.doc.mod.pdfbox.PdfBoxConfig" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.pdfbox.PdfBoxConfig",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "fromProperties",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocumentAuthor",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocumentLanguage",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocumentSubject",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getDocumentTitle",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFontDirectory",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getPdfALevel",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isPdfAEnabled",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "isPdfUAEnabled",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setDocumentAuthor",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setDocumentLanguage",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setDocumentSubject",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setDocumentTitle",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setFontDirectory",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setPdfAEnabled",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "setPdfALevel",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "setPdfUAEnabled",
+    "parameterTypes" : [ "boolean" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.pdfbox.PdfBoxDocumentRenderer",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ "org.apache.pdfbox.pdmodel.PDDocument", "org.fugerit.java.doc.mod.pdfbox.PdfBoxConfig" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "renderDocument",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.model.DocBase" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "java.util.Properties" ]
+  }, {
+    "name" : "configure",
+    "parameterTypes" : [ "org.w3c.dom.Element" ]
+  }, {
+    "name" : "configureProperties",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "configureXML",
+    "parameterTypes" : [ "java.io.InputStream" ]
+  }, {
+    "name" : "createKey",
+    "parameterTypes" : [ "java.lang.String", "java.lang.String" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getCharset",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getCustomId",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getFormat",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getKey",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getMime",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getModule",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getType",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "handle",
+    "parameterTypes" : [ "org.fugerit.java.doc.base.config.DocInput", "org.fugerit.java.doc.base.config.DocOutput" ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "setCustomId",
+    "parameterTypes" : [ "java.lang.String" ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "condition" : {
+    "typeReachable" : "org.fugerit.java.doc.base.facade.DocFacadeSource"
+  },
+  "name" : "org.fugerit.java.doc.mod.pdfbox.PdfUAConfigurator",
+  "methods" : [ {
+    "name" : "<init>",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "configurePdfUA1",
+    "parameterTypes" : [ "org.apache.pdfbox.pdmodel.PDDocument", "org.fugerit.java.doc.mod.pdfbox.PdfBoxConfig" ]
+  }, {
+    "name" : "equals",
+    "parameterTypes" : [ "java.lang.Object" ]
+  }, {
+    "name" : "getClass",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "hashCode",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notify",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "notifyAll",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "toString",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long" ]
+  }, {
+    "name" : "wait",
+    "parameterTypes" : [ "long", "int" ]
+  } ]
+}, {
+  "name" : "java.lang.Class",
+  "methods" : [ {
+    "name" : "getCanonicalName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getName",
+    "parameterTypes" : [ ]
+  }, {
+    "name" : "getSimpleName",
+    "parameterTypes" : [ ]
+  } ]
+} ]

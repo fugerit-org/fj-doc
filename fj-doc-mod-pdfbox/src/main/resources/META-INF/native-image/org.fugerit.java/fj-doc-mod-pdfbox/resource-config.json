@@ -1,0 +1,8 @@
+{
+  "bundles": [],
+  "resources": {
+    "includes": [
+      {"pattern": "fugerit-doc-pdfbox/.*$"}
+    ]
+  }
+}
