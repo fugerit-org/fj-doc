@@ -36,7 +36,7 @@ USER 185:0
 #
 # sample run :
 #
-# docker run --rm -p 8080:8080 --name playground -e JAVA_OPTS_APPEND="-XX:AOTCache=app.aot -Xlog:aot playground-test
+# docker run --rm -p 8080:8080 --name playground -e JAVA_OPTS_APPEND="-XX:AOTCache=app.aot -Xlog:aot" playground-test
 #
 FROM registry.access.redhat.com/ubi9/openjdk-25-runtime:1.24-2.1774011800
 
