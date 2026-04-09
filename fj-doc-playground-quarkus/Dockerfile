@@ -29,6 +29,15 @@ RUN timeout 120 java -XX:AOTCacheOutput=app.aot \
 USER 185:0
 
 # ---- Stage 2: Runtime image ----
+#
+# sample build :
+#
+# docker build -t playground-test .
+#
+# sample run :
+#
+# docker run --rm -p 8080:8080 --name playground -e JAVA_OPTS_APPEND="-XX:AOTCache=app.aot -Xlog:aot playground-test
+#
 FROM registry.access.redhat.com/ubi9/openjdk-25-runtime:1.24-2.1774011800
 
 LABEL org.opencontainers.image.authors="Fugerit" \
@@ -40,12 +49,9 @@ COPY --chown=185:0 target/quarkus-app/*.jar /deployments/
 COPY --chown=185:0 target/quarkus-app/app/ /deployments/app/
 COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
 
-# Copia l'AOT cache generata nello stage precedente
+# Copy AOT cache generated in the previous stage
 COPY --chown=185:0 --from=aot-builder /deployments/app.aot /deployments/app.aot
 
 WORKDIR /deployments
 
 EXPOSE 8080
-
-# Run with AOT cache if available, otherwise normal startup
-CMD ["sh", "-c", "cd /deployments && if [ -f app.aot ] && [ -s app.aot ]; then echo 'Starting with AOT cache...'; exec java -XX:AOTCache=app.aot -jar quarkus-run.jar; else echo 'Starting without AOT cache...'; exec java -jar quarkus-run.jar; fi"]
