@@ -10,15 +10,15 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ModeEditOutlineIcon from '@mui/icons-material/ModeEditOutline';
-import ArticleIcon from '@mui/icons-material/Article';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import DoneIcon from '@mui/icons-material/Done';
-import PermDataSettingIcon from '@mui/icons-material/PermDataSetting';
-import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import ModeEditOutlineIcon from '@mui/icons-material/esm/ModeEditOutline';
+import ArticleIcon from '@mui/icons-material/esm/Article';
+import ContentCopyIcon from '@mui/icons-material/esm/ContentCopy';
+import DoneIcon from '@mui/icons-material/esm/Done';
+import PermDataSettingIcon from '@mui/icons-material/esm/PermDataSetting';
+import AllInclusiveIcon from '@mui/icons-material/esm/AllInclusive';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import Info from './Info';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import PictureAsPdfIcon from '@mui/icons-material/esm/PictureAsPdf';
 
 
 const homepage = '/fj-doc-playground/home';
@@ -68,28 +68,28 @@ const Home = ({setHelpContent}) => {
 						secondary='Allow upload and validation in supported formats.' />
 				</Link>
 			</ListItem>
-			<ListItem key='3'>
-				<ListItemAvatar>
-					<Avatar>
-						<PermDataSettingIcon />
-					</Avatar>
-				</ListItemAvatar>
-				<Link to={homepage + "/doc_fun/doc_config_convert"}>
-					<ListItemText primary="Doc Configuration Convert (fj-doc-tool, generate-stub)"
-								  secondary='Convert from old configuration to new free marker configuration.' />
-				</Link>
-			</ListItem>
-			<ListItem key='3'>
-				<ListItemAvatar>
-					<Avatar>
-						<AllInclusiveIcon />
-					</Avatar>
-				</ListItemAvatar>
-				<Link to={homepage + "/doc_fun/doc_project_init"}>
-					<ListItemText primary="Doc Proget Init (fj-dodc-maven-plugin:init)"
-								  secondary='Fugerit Doc Venus Project init.' />
-				</Link>
-			</ListItem>
+		<ListItem key='4'>
+ 			<ListItemAvatar>
+ 				<Avatar>
+ 					<PermDataSettingIcon />
+ 				</Avatar>
+ 			</ListItemAvatar>
+ 			<Link to={homepage + "/doc_fun/doc_config_convert"}>
+ 				<ListItemText primary="Doc Configuration Convert (fj-doc-tool, generate-stub)"
+ 							  secondary='Convert from old configuration to new free marker configuration.' />
+ 			</Link>
+ 		</ListItem>
+ 		<ListItem key='5'>
+ 			<ListItemAvatar>
+ 				<Avatar>
+ 					<AllInclusiveIcon />
+ 				</Avatar>
+ 			</ListItemAvatar>
+ 			<Link to={homepage + "/doc_fun/doc_project_init"}>
+ 				<ListItemText primary="Doc Proget Init (fj-dodc-maven-plugin:init)"
+ 							  secondary='Fugerit Doc Venus Project init.' />
+ 			</Link>
+ 		</ListItem>
 		</List>
 
 		<Grid container spacing={1} style={{ padding: 10 }}>

@@ -4,9 +4,11 @@ import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 import DOMPurify from 'isomorphic-dompurify';
 
-import AceEditor from "react-ace";
+import _AceEditor from "react-ace";
+const AceEditor = _AceEditor?.default ?? _AceEditor;
 
-import MarkdownEditor from '@uiw/react-markdown-editor';
+import _MarkdownEditor from '@uiw/react-markdown-editor';
+const MarkdownEditor = _MarkdownEditor?.default ?? _MarkdownEditor;
 
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/mode-kotlin";

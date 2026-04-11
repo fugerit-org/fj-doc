@@ -3,7 +3,8 @@ import { FormControl, Select, MenuItem, Grid, FormLabel, Button } from "@mui/mat
 import DocCatalog from './DocCatalog';
 import appService from '../common/app-service';
 
-import AceEditor from "react-ace";
+import _AceEditor from "react-ace";
+const AceEditor = _AceEditor?.default ?? _AceEditor;
 
 import "ace-builds/src-noconflict/mode-xml";
 import "ace-builds/src-noconflict/mode-json";

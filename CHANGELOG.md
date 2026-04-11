@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-doc-playground-quarkus base image ubi9/openjdk-25-runtime:1.24-2.1774011800
 - quarkus-version set to 3.34.2
 
+### Fixed 
+
+- Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling  <https://github.com/fugerit-org/fj-doc/security/dependabot/71>
+
 ### Fixed
 
 - junit for JSON and YAML conversion and JDK 25 <https://github.com/fugerit-org/fj-doc/issues/620>

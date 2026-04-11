@@ -5,6 +5,12 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   base:"/fj-doc-playground/home",
+  optimizeDeps: {
+    include: [
+      'react-ace',
+      '@uiw/react-markdown-editor',
+    ],
+  },
   server: {
     open: true,
     port: 3000,
