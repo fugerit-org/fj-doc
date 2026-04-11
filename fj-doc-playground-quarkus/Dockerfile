@@ -1,30 +1,21 @@
 # ---- Stage 1: Build AOT cache ----
-FROM registry.access.redhat.com/ubi9/openjdk-25-runtime:1.24-2.1774011800 AS aot-builder
+FROM registry.access.redhat.com/ubi10/openjdk-25-runtime:1.24 AS aot-builder
 
 COPY --chown=185:0 target/quarkus-app/lib/ /deployments/lib/
 COPY --chown=185:0 target/quarkus-app/*.jar /deployments/
 COPY --chown=185:0 target/quarkus-app/app/ /deployments/app/
 COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
 
+# Warmup script: starts the app in the background, fires representative
+# HTTP requests to exercise all major hot paths, then sends SIGTERM so
+# the JVM flushes a richer AOT cache before exiting.
+COPY --chown=185:0 aot-warmup.sh /deployments/aot-warmup.sh
+
 WORKDIR /deployments
 
 USER root
 
-RUN timeout 120 java -XX:AOTCacheOutput=app.aot \
-    -Xlog:aot*=debug:file=/tmp/aot.log \
-    -Dquarkus.application.exit-on-startup=true \
-    -jar quarkus-run.jar > /tmp/app.log 2>&1 || true && \
-    echo "=== AOT Cache Generation Log ===" && \
-    tail -50 /tmp/app.log && \
-    if [ -f /tmp/aot.log ]; then echo "=== AOT Debug Log ===" && tail -50 /tmp/aot.log; fi && \
-    echo "=== Checking for AOT cache ===" && \
-    if [ -f /deployments/app.aot ]; then \
-        echo "✓ AOT cache generated successfully"; \
-        ls -lh /deployments/app.aot; \
-    else \
-        echo "⚠ WARNING: AOT cache file not generated, creating placeholder"; \
-        touch /deployments/app.aot; \
-    fi
+RUN chmod +x /deployments/aot-warmup.sh && bash /deployments/aot-warmup.sh
 
 USER 185:0
 
@@ -36,9 +27,9 @@ USER 185:0
 #
 # sample run :
 #
-# docker run --rm -p 8080:8080 --name playground -e JAVA_OPTS_APPEND="-XX:AOTCache=app.aot -Xlog:aot" playground-test
+# docker run --rm -p 8080:8080 --name playground -e JAVA_OPTS_APPEND="-XX:AOTCache=app.aot -Xlog:aot -XX:+UseCompactObjectHeaders" playground-test
 #
-FROM registry.access.redhat.com/ubi9/openjdk-25-runtime:1.24-2.1774011800
+FROM registry.access.redhat.com/ubi10/openjdk-25-runtime:1.24
 
 LABEL org.opencontainers.image.authors="Fugerit" \
       org.opencontainers.image.source="Quarkus" \
