@@ -6,6 +6,12 @@ COPY --chown=185:0 target/quarkus-app/*.jar /deployments/
 COPY --chown=185:0 target/quarkus-app/app/ /deployments/app/
 COPY --chown=185:0 target/quarkus-app/quarkus/ /deployments/quarkus/
 
+# the cache is created with the following parameters.
+#java -XX:AOTCacheOutput=app.aot \
+#     -Xlog:aot*=debug:file=/tmp/aot.log \
+#     -XX:+UseCompactObjectHeaders \
+#     -jar quarkus-run.jar
+
 # Warmup script: starts the app in the background, fires representative
 # HTTP requests to exercise all major hot paths, then sends SIGTERM so
 # the JVM flushes a richer AOT cache before exiting.
