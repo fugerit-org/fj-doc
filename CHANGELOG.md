@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-bom version set to 2.1.0
 - fj-doc-playground-quarkus added AOTCache (Project Leyden) <https://github.com/fugerit-org/fj-doc/issues/635>
 - fj-doc-playground-quarkus base image ubi10/openjdk-25-runtime:1.24
-- quarkus-version set to 3.34.2
+- quarkus-version set to 3.34.6 across all modules
 
 ### Fixed 
 
