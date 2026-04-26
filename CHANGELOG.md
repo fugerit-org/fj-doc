@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.2] - 2026-04-26
+
 ### Changed
 
 - fj-doc-playground-quarkus added flag -XX:+UseCompactObjectHeaders <https://openjdk.org/jeps/8361187>
