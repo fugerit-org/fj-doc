@@ -427,53 +427,51 @@ public class PdfBoxDocumentRenderer {
     }
 
     private String extractText(DocElement element) {
-        // DocPara stores text directly
         if (element instanceof DocPara) {
-            DocPara para = (DocPara) element;
-            String paraText = para.getText();
+            String paraText = ((DocPara) element).getText();
             if (paraText != null && !paraText.isEmpty()) {
                 return paraText;
             }
         }
-
-        StringBuilder result = new StringBuilder();
-
-        // For containers, check children
         if (element instanceof DocContainer) {
-            DocContainer container = (DocContainer) element;
-            List<DocElement> children = container.getElementList();
-
-            if (children != null) {
-                for (DocElement child : children) {
-                    if (child instanceof DocPhrase) {
-                        DocPhrase phrase = (DocPhrase) child;
-                        String text = phrase.getText();
-                        if (text != null) {
-                            if (result.length() > 0) {
-                                result.append(" ");
-                            }
-                            result.append(text);
-                        }
-                    } else {
-                        String childText = extractText(child);
-                        if (childText != null && !childText.isEmpty()) {
-                            if (result.length() > 0) {
-                                result.append(" ");
-                            }
-                            result.append(childText);
-                        }
-                    }
-                }
-            }
-        } else if (element instanceof DocPhrase) {
-            DocPhrase phrase = (DocPhrase) element;
-            String text = phrase.getText();
-            if (text != null) {
-                result.append(text);
-            }
+            return extractTextFromContainer((DocContainer) element);
         }
+        if (element instanceof DocPhrase) {
+            return nullSafeText(((DocPhrase) element).getText());
+        }
+        return "";
+    }
 
+    private String extractTextFromContainer(DocContainer container) {
+        List<DocElement> children = container.getElementList();
+        if (children == null) {
+            return "";
+        }
+        StringBuilder result = new StringBuilder();
+        for (DocElement child : children) {
+            appendChildText(result, child);
+        }
         return result.toString().trim();
+    }
+
+    private void appendChildText(StringBuilder result, DocElement child) {
+        String text = (child instanceof DocPhrase)
+                ? nullSafeText(((DocPhrase) child).getText())
+                : extractText(child);
+        appendIfNotEmpty(result, text);
+    }
+
+    private void appendIfNotEmpty(StringBuilder result, String text) {
+        if (text != null && !text.isEmpty()) {
+            if (result.length() > 0) {
+                result.append(" ");
+            }
+            result.append(text);
+        }
+    }
+
+    private String nullSafeText(String text) {
+        return text != null ? text : "";
     }
 
     /**
