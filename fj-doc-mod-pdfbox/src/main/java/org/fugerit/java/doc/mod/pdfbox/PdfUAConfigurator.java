@@ -20,6 +20,10 @@ import java.util.Calendar;
 
 public class PdfUAConfigurator {
 
+    private PdfUAConfigurator() {
+        // private constructor to hide the implicit public one.
+    }
+
     // PDF/UA namespace
     private static final String PDFUA_NAMESPACE = "http://www.aiim.org/pdfua/ns/id/";
     private static final String PDFUA_PREFIX = "pdfuaid";

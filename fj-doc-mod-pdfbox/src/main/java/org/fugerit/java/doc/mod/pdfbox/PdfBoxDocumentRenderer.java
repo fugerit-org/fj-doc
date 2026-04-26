@@ -482,11 +482,11 @@ public class PdfBoxDocumentRenderer {
     private List<String> wrapText(String text, PDFont font, float fontSize, float maxWidth)
             throws IOException {
         if (text == null || text.isEmpty()) {
-            return new ArrayList<String>();
+            return new ArrayList<>();
         }
 
         String[] words = text.split("\\s+");
-        List<String> lines = new ArrayList<String>();
+        List<String> lines = new ArrayList<>();
         StringBuilder currentLine = new StringBuilder();
 
         for (String word : words) {

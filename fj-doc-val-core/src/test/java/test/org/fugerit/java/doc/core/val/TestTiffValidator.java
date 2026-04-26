@@ -12,17 +12,10 @@ class TestTiffValidator extends TestDocValidatorFacade {
 	private static final DocValidatorFacade FACADE = DocValidatorFacade.newFacadeStrict( 
 			ImageValidator.TIFF_VALIDATOR
 	);
-	
-	// note : only supported for java 9+
-	@Test
-	@EnabledOnJre( JRE.JAVA_11 )
-	void testTiffAsTiff() {
-		boolean ok = this.worker(FACADE, "tiff_as_tiff.tiff", true );
-		Assertions.assertTrue( ok );
-	}
-	@Test
+
+	@Test	// I can always run it as now java 17+ is needed to build
 	void testTiffAsTiffExtTif() {
-		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", true );
+		boolean ok = this.worker(FACADE, "tiff_as_tiff.tif", Boolean.TRUE );
 		Assertions.assertTrue( ok );
 	}
 	
