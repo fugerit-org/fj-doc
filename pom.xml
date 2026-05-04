@@ -40,7 +40,7 @@
         <!-- legacy version for kotlin -->
         <kotlin-version-jdk8ok>2.2.21</kotlin-version-jdk8ok>
 		<quarkus-version>3.34.6</quarkus-version>
-        <pdfbox-test-version>2.0.35</pdfbox-test-version>
+        <pdfbox-test-version>2.0.36</pdfbox-test-version>
         <pdfbox3-version>3.0.6</pdfbox3-version>
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
