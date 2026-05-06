@@ -45,7 +45,7 @@ jobs:
           node-version: '20'  # Puoi scegliere la versione di Node.js desiderata
 
       - name: Install Mermaid CLI
-        run: npm install -g @mermaid-js/mermaid-cli
+        run: npm install -g @mermaid-js/mermaid-cli@11.14.0
 
       - name: Verify Mermaid CLI installation
         run: mmdc --version
