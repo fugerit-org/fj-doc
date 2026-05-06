@@ -100,9 +100,9 @@ class PdfBoxDocumentRendererTest {
             DocPara nullPara = new DocPara();
             body.addElement(nullPara);
             
-            DocPara emptyPara = new DocPara();
-            emptyPara.setText("");
-            body.addElement(emptyPara);
+            DocPara emptyTextPara = new DocPara();
+            emptyTextPara.setText("");
+            body.addElement(emptyTextPara);
             
             DocPhrase emptyPhrase = new DocPhrase();
             emptyPhrase.setText("");
