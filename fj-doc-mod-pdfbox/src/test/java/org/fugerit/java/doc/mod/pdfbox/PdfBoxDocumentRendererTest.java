@@ -418,14 +418,7 @@ class PdfBoxDocumentRendererTest {
             DocBase docBase = new DocBase();
             DocContainer body = new DocContainer();
 
-            // Use a DocPara that has text AND is also a container-like path via DocLi
-            // DocLi.getElementList() == null if nothing added is not possible with default impl
-            // We cover this via a DocCell with no children (getElementList returns empty)
-            // The truly null branch requires a custom subclass:
-            DocContainer nullChildContainer = new DocContainer() {
-                @Override
-                public java.util.List<DocElement> getElementList() { return null; }
-            };
+
             // Wrap it as a DocLi to exercise renderListItem -> extractText -> extractTextFromContainer
             DocList list = new DocList();
             DocLi li = new DocLi() {
