@@ -1,8 +1,9 @@
-
 [#doc-faq-xml-apis]
 === Exception javax.xml.parsers.FactoryConfigurationError: Provider org.apache.xerces.jaxp.DocumentBuilderFactoryImpl not found
 
-If you are receiving the exception :
+==== The Problem
+
+If you are receiving the exception:
 
 [source,txt]
 ----
@@ -15,7 +16,27 @@ javax.xml.parsers.FactoryConfigurationError: Provider org.apache.xerces.jaxp.Doc
 	at org.fugerit.java.core.cfg.xml.GenericListCatalogConfig.load(GenericListCatalogConfig.java:287)
 ----
 
-It is usually possible to fix it by adding to your modules the exclusion :
+==== Why Does This Error Occur?
+
+The `FactoryConfigurationError` with provider `org.apache.xerces.jaxp.DocumentBuilderFactoryImpl not found` occurs when:
+
+1. **Dependency Conflict**: The `xml-apis` dependency (an old Java library) creates a conflict with the modern XML APIs provided by the JDK itself
+2. **Classpath Issues**: The JDK's `DocumentBuilderFactory` class cannot locate the Xerces implementation due to classpath management
+3. **Modularity Problem**: On modern frameworks like Quarkus and Spring Boot, class loading is more rigorous and does not tolerate duplicate XML APIs
+
+The `xml-apis` dependency is now obsolete: XML APIs (`javax.xml.parsers`, `javax.xml.transform`, etc.) have been included natively in the JDK for many versions. When this old library is present on the classpath, it causes resolution conflicts.
+
+==== Why Does the Exclusion Fix This?
+
+By adding the exclusion of the `xml-apis` dependency:
+
+* **Eliminates the conflict**: Removes the obsolete package from the classpath
+* **Uses native JDK APIs**: The system uses the XML implementations provided directly by the Java Runtime Environment
+* **Restores the Service Loader**: Java can correctly locate the `DocumentBuilderFactory` provider through the Service Provider Interface (SPI) mechanism
+
+==== Solution
+
+Add the exclusion to your `pom.xml`:
 
 [source,xml]
 ----
@@ -31,3 +52,15 @@ It is usually possible to fix it by adding to your modules the exclusion :
 </dependency>
 ----
 
+[NOTE]
+====
+**Important Note for Microservices Frameworks**
+
+If you are using modern microservices frameworks like **Quarkus** or **Spring Boot**, this exclusion is **almost always necessary**. These frameworks:
+
+* Use more rigorous classloaders to reduce overhead
+* Do not easily tolerate duplicate classes on the classpath
+* Require a clean and predictable environment for AOT (Ahead-of-Time) compilation and native image generation
+
+If you do not apply this exclusion on Quarkus or Spring Boot, you will very likely encounter this error during the build phase or at runtime. Therefore, it is recommended to apply this exclusion **from the start** if you are using one of these frameworks.
+====
