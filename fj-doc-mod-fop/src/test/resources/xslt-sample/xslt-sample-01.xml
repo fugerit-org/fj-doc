@@ -35,7 +35,7 @@
         <para>My FreeMarker Template Sample Doc Title</para>
         <table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2" space-after="10">
             <row header="true">
-                <cell align="center"><para>Name</para></cell>
+                <cell id="header-cell-1" align="center"><para>Name</para></cell>
                 <cell align="center"><para>Surname</para></cell>
                 <cell align="center"><para>Title</para></cell>
             </row>
