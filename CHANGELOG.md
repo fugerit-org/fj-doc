@@ -7,10 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.3] - 2026-05-21
+
 ### Changed
 
 - quarkus-version set to 3.35.3 across all modules
 
+### Fixed
+
+- fj-doc-mod-fop - handling of id in fo:table-cell <https://github.com/fugerit-org/fj-doc/issues/652>
 
 ## [8.18.2] - 2026-04-26
 
