@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.4] - 2026-06-01
+
 ### Fixed
 
 - fj-doc-base - handling of id in missing elements <https://github.com/fugerit-org/fj-doc/issues/656>
