@@ -115,7 +115,7 @@
 			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
 		</#list>
 	<#else>	
-		<table style='<@handleTableSpacing dc=docTable/> width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
+		<table <@handleId element=docTable/> style='<@handleTableSpacing dc=docTable/> width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
 			<#if (docTableUtil.strictHeader)>
 				<thead>
 				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
