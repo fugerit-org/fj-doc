@@ -34,19 +34,19 @@
 <#macro handlePhrase current>
 	<#if (current.link)??>
 		<#if (current.internal)>
-			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> internal-destination="${current.internalLink}"><![CDATA[${current.text}]]></fo:basic-link>
+			<fo:basic-link<@handleId element=current/> <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> internal-destination="${current.internalLink}"><![CDATA[${current.text}]]></fo:basic-link>
 		<#else>
-			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline"><![CDATA[${current.text}]]></fo:basic-link>
+			<fo:basic-link<@handleId element=current/> <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline"><![CDATA[${current.text}]]></fo:basic-link>
 		</#if>
 	<#elseif (current.anchor)??>
 		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/><@handleFont element=current/><![CDATA[${current.text}]]></fo:block>
 	<#else>
-		<fo:inline <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>><![CDATA[${current.text}]]></fo:inline>
+		<fo:inline<@handleId element=current/> <@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>><![CDATA[${current.text}]]></fo:inline>
 	</#if>
 </#macro>
 
 <#macro handleParaRole current role>
-	<fo:block<#if (current.id)??> id="${current.id}"</#if><@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleSpacing dc=current/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
+	<fo:block <@handleId element=current/><@handleFormat formatValue=current.format!''/><@handleWhiteSpace element=current/><@handleRole role=role element=current/><@handleStyle styleValue=current.originalStyle/><@handleSpacing dc=current/><@handleAlign alignValue=current.align/><@handleFont element=current/>><@handleTextSubstitution text=current.text /><#list current.elementList as currentChild><@handleElement current=currentChild/></#list></fo:block>
 </#macro>
 
 <#macro handlePara current>
@@ -54,7 +54,7 @@
 </#macro>
 
 <#macro handleImage docImage>
-	<fo:block <@handleAlign alignValue=docImage.align/>>
+	<fo:block<@handleId element=docImage/> <@handleAlign alignValue=docImage.align/>>
 		<#if docImage.svg>
 			<fo:instream-foreign-object <#if (docImage.alt)??> fox:alt-text="${docImage.alt}" </#if> xmlns:svg="http://www.w3.org/2000/svg"><#if docImage.content?has_content>${docImage.content}<#else>${base64ToString(docImage.resolvedBase64)}</#if></fo:instream-foreign-object>
 		<#else>
@@ -63,17 +63,17 @@
 			<#else>
 				<#assign imageScaling=""/>
 			</#if>
-			<fo:external-graphic <#if (docImage.alt)??> fox:alt-text="${docImage.alt}" </#if> ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format" src="data:image;base64,${docImage.resolvedBase64}"/>
+			<fo:external-graphic<@handleId element=docImage/> <#if (docImage.alt)??>  fox:alt-text="${docImage.alt}" </#if> ${imageScaling} xmlns:fo="http://www.w3.org/1999/XSL/Format" src="data:image;base64,${docImage.resolvedBase64}"/>
 		</#if>
 	</fo:block>
 </#macro>
 
 <#macro handleList docList>
 	<#if docList.elementList?size gt 0>
-	<fo:list-block>
+	<fo:list-block<@handleId element=docList/>>
 		<#list docList.elementList as li>
 			<#assign current=li.content/>
-			<fo:list-item>
+			<fo:list-item<@handleId element=li/>>
 				<fo:list-item-label end-indent="label-end()">
 					<fo:block<@handleSpacing dc=current/> ><fo:inline font-style="normal" <@handleFont element=li.content/>><#if li.contentList><#elseif docList.clt == 'uld'>&#183;<#elseif docList.clt == 'ulm'>-<#elseif docList.clt == 'oll'>${li?counter?lower_abc}.<#else>${li?counter}.</#if></fo:inline></fo:block>
 				</fo:list-item-label>
@@ -89,9 +89,9 @@
 <#macro handleRowList docTable rowList cellType>
 			<fo:table-${cellType} <#if cellType == 'header'> font-weight="bold" text-align="center"</#if>>
 				<#list rowList as row>	
-				<fo:table-row>
+				<fo:table-row<@handleId element=row/>>
 					<#list row.elementList as cell>
-						<fo:table-cell<#if (cell.id??)> id="${cell.id}" </#if><#if (cell.backColor??)> background-color="${cell.backColor}" </#if><@addCssValue name='padding' value=docTable.padding def=0 unit='mm'/><@addCssValue name='margin' value=docTable.padding def=0 unit='mm'/><@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/><@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
+						<fo:table-cell<@handleId element=cell/><#if (cell.backColor??)> background-color="${cell.backColor}" </#if><@addCssValue name='padding' value=docTable.padding def=0 unit='mm'/><@addCssValue name='margin' value=docTable.padding def=0 unit='mm'/><@handleAlign alignValue=cell.align/><@handleVerticalAlign valignValue=cell.valign/><@handleBorders docBorders=cell.docBorders/><@handleCellSpan cell=cell/>>
 							<#if (cell.elementList?size > 0)>
 								<#list cell.elementList as cellElement>
 								<#if cellElement.class.simpleName = 'DocPhrase'><fo:block><@handleElement current=cellElement/></fo:block><o></o><#else><@handleElement current=cellElement/></#if>
@@ -127,7 +127,7 @@
 			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
 		</#list>
 	<#else>
-		<fo:table <#if (docTable.id)??> id="${docTable.id}"</#if><@handleSpacing dc=docTable/> border-collapse="${docBase.stableInfo['table-border-collapse']!'separate'}" width="${docTable.width}%" table-layout="fixed"  <#if (docTable.spacing)??>border-separation="${docTable.spacing}px"</#if>>
+		<fo:table<@handleId element=docTable/><@handleSpacing dc=docTable/> border-collapse="${docBase.stableInfo['table-border-collapse']!'separate'}" width="${docTable.width}%" table-layout="fixed"  <#if (docTable.spacing)??>border-separation="${docTable.spacing}px"</#if>>
 			<#list docTable.colWithds as currentColWidth>
 			<fo:table-column column-width="${currentColWidth}%" />	
 			</#list>
@@ -180,6 +180,8 @@ text-indent : text-indent
 <#macro handleStyle styleValue><#if styleValue = 2> font-weight="bold"<#elseif styleValue = 3> text-decoration="underline"<#elseif styleValue = 4> font-style="italic"<#elseif styleValue = 5> font-style="italic" font-weight="bold"<#elseif styleValue = 1> font-style="normal" font-weight="normal"</#if></#macro>
 
 <#macro handleTextSubstitution text><![CDATA[${text?replace(r"${currentPage}","]]><fo:page-number/><![CDATA[")?replace(r"${pageCount}","]]><fo:page-number-citation ref-id='EndOfDocument'/><![CDATA[")}]]></#macro>
+
+<#macro handleId element><#if (element.id)??> id="${element.id}"</#if></#macro>
 
 <#--
 	macro : addCssValue
