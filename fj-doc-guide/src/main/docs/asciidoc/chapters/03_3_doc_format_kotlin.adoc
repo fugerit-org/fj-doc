@@ -1,7 +1,7 @@
 [#doc-format-entry-point-kotlin]
 === Kotlin Source Format (Experimental)
 
-Supported is provided by the base module dependency.
+Support is provided by the base module dependency.
 
 [source,xml]
 ----

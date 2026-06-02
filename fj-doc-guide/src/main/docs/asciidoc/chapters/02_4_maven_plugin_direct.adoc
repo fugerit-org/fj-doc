@@ -3,14 +3,14 @@
 
 Allow direct generation
 
-==== Verify at command line
+==== Direct at command line
 
 [source,shell]
 ----
 mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/resources/fj_doc_test/template-fail
 ----
 
-==== Verify at maven build time
+==== Direct at maven build time
 
 [source,xml]
 ----
@@ -50,7 +50,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/re
 
 ==== Goal 'direct' generation configuration file
 
-Here is an edample configuration file :
+Here is an example configuration file :
 
 [source,yaml]
 ----
@@ -74,7 +74,7 @@ outputList:
   - outputId: 'test-doc-html'
     chainId: 'test-doc'
     handlerId: 'html' # a valid handler for this output type should be defined (i.e. org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8)
-    file: 't${projectBasedir}/arget/test-doc.html'
+    file: '${projectBasedir}/target/test-doc.html'
   - outputId: 'test-doc-md'
     chainId: 'test-doc'
     handlerId: 'md'
@@ -86,9 +86,9 @@ outputList:
   - outputId: 'test-doc-yaml-data-model-md'
     chainId: 'test-doc-yaml-data-model'
     handlerId: 'md'
-    file: '${projectBasedir}/target/test-doc-json-data-model.md'
+    file: '${projectBasedir}/target/test-doc-yaml-data-model.md'
 ----
 
-TIP: _dataModel_ property in chain contains a map that can be used in the template (accessibile as 'dataModel' attribute).
+TIP: _dataModel_ property in chain contains a map that can be used in the template (accessible as 'dataModel' attribute).
 
-NOTE: Instead of maven plugin gola, it is possible to use [fj-doc-lib-direct] module as a standalone library.
+NOTE: Instead of maven plugin goal, it is possible to use [fj-doc-lib-direct] module as a standalone library.
