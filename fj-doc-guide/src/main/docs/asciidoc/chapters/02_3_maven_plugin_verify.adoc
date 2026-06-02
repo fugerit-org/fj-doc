@@ -49,7 +49,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:verify -DtemplateBasePath=./src/test/re
 | freemarkerVersion   | false    | latest stable | FreeMarker configuration ( i.e. 2.3.33)
 | templateFilePattern | false    |               | Filter on templates to be checked, regex on filename, i.e. ".{0,}[.]ftl"
 | failOnErrors        | true     | true          | If set to true the build will fail when template syntax errors will be found, otherwise errors will be only logged
-| generateReport      | false    | false         | If set to true a report will be generated (and property 'reportOutputFolder' will be olso required).
+| generateReport      | false    | false         | If set to true a report will be generated (and property 'reportOutputFolder' will be also required).
 | reportOutputFolder  | false    |               | Output folder for the generated report.
 | reportOutputFormat  | false    | 'html'        | Output format for the generated report, supported : html (default), pdf, csv, xlsx, md.
 |====================================================================================================================================================================

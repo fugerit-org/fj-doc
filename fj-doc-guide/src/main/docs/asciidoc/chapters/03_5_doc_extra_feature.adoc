@@ -6,7 +6,7 @@ Some extra features are available on the Venus Doc Format. Here is a listing.
 [#doc-format-entry-point-extra-feature-table-check-integrity]
 ==== Table Check Integrity
 
-Sometimes using table with wrong number of columns and rows anc lead to unexpected behaviour or errors.
+Sometimes using a table with the wrong number of columns and rows can lead to unexpected behaviour or errors.
 
 Using the doc info 'table-check-integrity' can solve this issue, for instance :
 
@@ -15,7 +15,7 @@ Using the doc info 'table-check-integrity' can solve this issue, for instance :
 <info name="table-check-integrity">fail</info>
 ----
 
-link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-check-integrity[Here is  'table-check-integrity' documentation].
+link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#table-check-integrity[Here is the 'table-check-integrity' documentation].
 
 Accepted values are :
 

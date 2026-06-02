@@ -22,13 +22,13 @@ To use this doc handler, you will need to add the following dependency :
 
 This module is based on link:https://github.com/LibrePDF/OpenRTF[OpenRTF].
 
-This doc handler would a RTF document.
+This doc handler would render a RTF document.
 
 Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
-<!-- OpenRTF type hanlder  -->
+<!-- OpenRTF type handler  -->
 <docHandler id="openrtf" info="openrtf" type="org.fugerit.java.doc.mod.openrtf.ext.RtfTypeHandler"/>
 ----
 

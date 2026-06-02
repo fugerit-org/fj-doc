@@ -4,7 +4,7 @@
 ....
 mindmap
   root((Venus<br/>Doc))
-    Fugerti Doc Source Format
+    Fugerit Doc Source Format
       XML Source - default
       JSON Source
       YAML Source
@@ -55,4 +55,4 @@ flowchart TB
 
 **@2024** Matteo Franci - **CC BY 4.0** - ATTRIBUTION 4.0 INTERNATIONAL - https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
 
-All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names,trademarks and brands does not imply endorsement.
+All trademarks, logos and brand names are the property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names, trademarks and brands does not imply endorsement.

@@ -22,7 +22,7 @@ public class DocHelper {
 }
 ----
 
-And for instance a rest serive to expose the api :
+And for instance a REST service to expose the API :
 
 [source,java]
 ----
@@ -54,7 +54,7 @@ public class DocResource {
         try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
             // creates the doc helper
             DocHelper docHelper = new DocHelper();
-            // create custom data for the fremarker template 'document.ftl'
+            // create custom data for the freemarker template 'document.ftl'
             List<People> listPeople = Arrays.asList(new People("Luthien", "Tinuviel", "Queen"), new People("Thorin", "Oakshield", "King"));
             // output generation
             docHelper.getDocProcessConfig().fullProcess("document", DocProcessContext.newContext("listPeople", listPeople), handlerId, baos);

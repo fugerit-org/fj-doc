@@ -43,7 +43,7 @@ Aside from namespace declaration, it is possible to set some general attribute f
 | *failOnValidate* anchor:doc-freemarker-config-attributes-failOnValidate[]
 | _boolean_
 | _false_
-| If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning. (since 8.9.1), NOTE: 'validating' is set to true, this attribute is ignored. See also xref:#doc-faq-validate-document[FAQ]
+| If set to 'true' the FreemarkerDocProcessConfig will fail in case of validation errors, if 'false' will just print the result as warning. (since 8.9.1), NOTE: if 'validating' is NOT set to true, this attribute is ignored. See also xref:#doc-faq-validate-document[FAQ]
 
 | *cleanSource*  anchor:doc-freemarker-config-attributes-cleanSource[]
 | _boolean_
@@ -67,7 +67,7 @@ The main elements are the *<docHandlerConfig/>* containing the available output 
     <docHandlerConfig registerById="true">
         <!-- Type handler for markdown format -->
         <docHandler id="md-ext" info="md" type="org.fugerit.java.doc.base.typehandler.markdown.SimpleMarkdownExtTypeHandler" />
-        <!-- Type henalder for xml format, generates the source xml:doc -->
+        <!-- Type handler for xml format, generates the source xml:doc -->
         <docHandler id="xml-doc" info="xml" type="org.fugerit.java.doc.base.config.DocTypeHandlerXMLUTF8" />
         <!-- Type handler for html using freemarker -->
         <docHandler id="html-fm" info="html" type="org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerEscapeUTF8" />

@@ -71,7 +71,7 @@ More elements specific to excel format are available link:https://venusdocs.fuge
 [#doc-handler-mod-poi-xlsx]
 ==== Xlsx DocHandler
 
-This doc handler would a XLSX document.
+This doc handler would render a XLSX document.
 
 *In brief* :
 
@@ -83,7 +83,7 @@ Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
-<!-- XLSX type hanlder  -->
+<!-- XLSX type handler  -->
 <docHandler id="xlsx-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsxPoiTypeHandler" />
 ----
 
@@ -92,7 +92,7 @@ For a demo of this doc handler usage you can refer to the link:https://github.co
 [#doc-handler-mod-poi-xls]
 ==== Xls DocHandler
 
-This doc handler would a XLS document.
+This doc handler would render a XLS document.
 
 *In brief* :
 
@@ -104,6 +104,6 @@ Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
-<!-- XLSX type hanlder  -->
+<!-- XLS type handler  -->
 <docHandler id="xls-poi" info="xlsx" type="org.fugerit.java.doc.mod.poi.XlsPoiTypeHandler" />
 ----

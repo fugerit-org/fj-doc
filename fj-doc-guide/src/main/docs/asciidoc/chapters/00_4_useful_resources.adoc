@@ -1,5 +1,5 @@
 [#doc-useful-resources]
-=== Useful resources
+=== Useful Resources
 
 This section contains some useful resources.
 
@@ -7,7 +7,7 @@ This section contains some useful resources.
 
 The online playground where you can try Fugerit Venus Doc features :
 
-link:include::chapters/https://docs.fugerit.org/fj-doc-playground/home/[https://docs.fugerit.org/fj-doc-playground/home/]
+link:https://docs.fugerit.org/fj-doc-playground/home/[https://docs.fugerit.org/fj-doc-playground/home/]
 
 [#doc-res-link-sample-index]
 ==== Venus Fugerit Doc sample index

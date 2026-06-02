@@ -1,7 +1,7 @@
 <<<
 == Quickstart
 
-This section cover the creation of a new maven project, configured for Venus Doc.
+This section covers the creation of a new Maven project configured for Venus Doc.
 
 === New maven project
 
@@ -17,7 +17,7 @@ mvn org.fugerit.java:fj-doc-maven-plugin:init \
 ----
 
 And you will get a project folder named after the artifactId.
-See the README.md in the project folder for further infos.
+See the README.md in the project folder for further information.
 
 In case of 'quarkus-3' flavour, for instance, simply :
 

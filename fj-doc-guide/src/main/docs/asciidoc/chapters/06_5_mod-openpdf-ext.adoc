@@ -25,7 +25,7 @@ This module is based on link:https://github.com/LibrePDF/OpenPDF/[OpenPDF] (base
 [#doc-handler-mod-openpdf-ext-pdf]
 ==== [fj-doc-mod-openpdf-ext-pdf] : PDF DocHandler
 
-This doc handler would a PDF document.
+This doc handler would render a PDF document.
 
 Add this element to *<docHandlerConfig/>* :
 
@@ -48,7 +48,7 @@ More elements specific to fixed size formats, like PDF, are available link:https
 | *charset* anchor:doc-handler-mod-openpdf-ext-pdf-charset[]  | _string_  | _UTF-8_ | This will set the charset to use.
 |========================================================================================================================================
 
-Additionaly *fonts* can be configured as child elements of *docHandlerCustomConfig*
+Additionally, *fonts* can be configured as child elements of *docHandlerCustomConfig*
 
 [cols="2,1,1,6", options="header"]
 |========================================================================================================================================
@@ -72,7 +72,7 @@ Here is a custom configuration example :
 [#doc-handler-mod-openpdf-ext-html]
 ==== [fj-doc-mod-openpdf-ext-html] : HTML DocHandler
 
-This doc handler would a HTML document.
+This doc handler would render a HTML document.
 
 *In brief* :
 
@@ -84,7 +84,7 @@ Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
-<!-- OpenHTML type hanlder  -->
+<!-- OpenHTML type handler  -->
 <docHandler id="openpdf-html" info="openpdf-html" type="org.fugerit.java.doc.mod.openpdf.ext.HtmlTypeHandler"/>
 ----
 
