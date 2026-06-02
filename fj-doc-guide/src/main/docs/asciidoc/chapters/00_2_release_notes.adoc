@@ -6,6 +6,28 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-18-4]
+==== Version 8.18.4 [2026-06-01]
+
+- fj-doc-base, handling of id in missing elements link:https://github.com/fugerit-org/fj-doc/issues/656[#656]
+
+[#doc-release-notes-8-18-3]
+==== Version 8.18.3 [2026-05-21]
+
+- quarkus-version set to 3.35.3 across all modules
+- fj-doc-mod-fop, handling of id in fo:table-cell link:https://github.com/fugerit-org/fj-doc/issues/652[#652]
+
+[#doc-release-notes-8-18-2]
+==== Version 8.18.2 [2026-04-26]
+
+- fj-doc-playground-quarkus, added AOTCache (Project Leyden) link:https://github.com/fugerit-org/fj-doc/issues/635[#635]
+- fj-doc-playground-quarkus, added flag -XX:+UseCompactObjectHeaders link:https://openjdk.org/jeps/8361187[JEP 8361187]
+- fj-doc-playground-quarkus, base image ubi10/openjdk-25-runtime:1.24
+- quarkus-version set to 3.34.6 across all modules
+- fj-bom version set to 2.1.0
+- junit for JSON and YAML conversion and JDK 25 link:https://github.com/fugerit-org/fj-doc/issues/620[#620]
+- Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling link:https://github.com/fugerit-org/fj-doc/security/dependabot/71[dependabot #71]
+
 [#doc-release-notes-8-18-1]
 ==== Version 8.18.1 [2026-02-04]
 
