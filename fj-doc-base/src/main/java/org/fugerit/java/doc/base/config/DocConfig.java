@@ -22,6 +22,8 @@ public class DocConfig {
 
 	public static final String TYPE_YAML = "yaml";
 
+	public static final String TYPE_KOTLIN = "kotlin";
+
 	public static final String TYPE_PDF = "pdf";
 	public static final String FORMAT_PDF_A_1A = "PDF/A-1a";
 	public static final String FORMAT_PDF_A_1B = "PDF/A-1b";

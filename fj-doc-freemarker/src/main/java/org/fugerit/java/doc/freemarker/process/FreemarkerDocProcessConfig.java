@@ -44,9 +44,9 @@ public class FreemarkerDocProcessConfig implements Serializable, MiniFilterMap, 
 	private static final Map<String, Integer> SOURCE_MAP = new HashMap<>();
 	static {
 		SOURCE_MAP.put( DocConfig.TYPE_XML, DocFacadeSource.SOURCE_TYPE_XML);
-		SOURCE_MAP.put( "json", DocFacadeSource.SOURCE_TYPE_JSON);
-		SOURCE_MAP.put( "yaml", DocFacadeSource.SOURCE_TYPE_YAML);
-		SOURCE_MAP.put( "kotlin", DocFacadeSource.SOURCE_TYPE_KOTLIN);
+		SOURCE_MAP.put( DocConfig.TYPE_JSON, DocFacadeSource.SOURCE_TYPE_JSON);
+		SOURCE_MAP.put( DocConfig.TYPE_YAML, DocFacadeSource.SOURCE_TYPE_YAML);
+		SOURCE_MAP.put( DocConfig.TYPE_KOTLIN, DocFacadeSource.SOURCE_TYPE_KOTLIN);
 	}
 
 	@Getter
