@@ -21,13 +21,12 @@ export function useApiCall(apiFn) {
       if (response.success) {
         setData(response.result);
         return response.result;
-      } else {
-        const msg =
-          response.result?.message ||
-          `Error ${response.status}`;
-        setError(msg);
-        return null;
       }
+      const msg =
+        response.result?.message ||
+        `Error ${response.status}`;
+      setError(msg);
+      return null;
     } catch (err) {
       setError(err.message || 'Unexpected error');
       return null;
@@ -35,12 +34,7 @@ export function useApiCall(apiFn) {
       setLoading(false);
     }
   }, [apiFn]);
-
-  const reset = useCallback(() => {
-    setData(null);
-    setError(null);
-  }, []);
-
+  const reset = useCallback(() => (setData(null), setError(null)), []);
   return { data, loading, error, execute, reset };
 }
 

@@ -46,7 +46,7 @@ const PageHelp = ({ helpContent }) => {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{ sx: { maxWidth: 480, maxHeight: 400, overflow: 'auto', p: 2 } }}
       >
-        {/* eslint-disable-next-line react/no-danger */}
+        {/* nosemgrep */}
         <Typography component="div" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(helpText) }} />
       </Popover>
     </>

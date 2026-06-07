@@ -50,13 +50,9 @@ export function useCatalog(currentType, onContent, onJsonData) {
         setLoading(false);
       }
     });
-    return () => { cancelled = true; };
+    return () => (cancelled = true);
   }, [currentType]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const handleSelect = useCallback((e) => {
-    loadEntry(e.target.value);
-  }, [loadEntry]);
-
+  const handleSelect = useCallback((e) => loadEntry(e.target.value), [loadEntry]);
   return { entries, selectedId, loading, loadEntry, handleSelect };
 }
 

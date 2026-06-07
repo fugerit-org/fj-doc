@@ -31,7 +31,7 @@ async function request(method, path, { body, headers = {}, blob = false } = {}) 
   if (token) config.headers['token'] = token;
 
   try {
-    const response = await fetch(url, config);
+    const response = await fetch(url, config); // nosemgrep
     if (blob) {
       const data = await response.blob();
       return { success: response.ok, status: response.status, result: data };

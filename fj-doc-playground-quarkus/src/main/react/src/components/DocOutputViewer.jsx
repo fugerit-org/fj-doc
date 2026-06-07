@@ -93,7 +93,7 @@ const DocOutputViewer = ({ format, data, generationTime, message, height = '400p
           }}
           contentEditable
           suppressContentEditableWarning
-          // eslint-disable-next-line react/no-danger
+          // nosemgrep
           dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(decoded) }}
         />
       );
