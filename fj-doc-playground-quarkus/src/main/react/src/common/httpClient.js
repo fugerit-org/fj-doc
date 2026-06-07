@@ -9,8 +9,17 @@ const BASE_API = '/fj-doc-playground/api';
  * Core fetch wrapper that returns { success, status, result }.
  */
 async function request(method, path, { body, headers = {}, blob = false } = {}) {
-  const cacheBuster = method === 'GET' ? `?v=${Date.now()}` : '';
-  const url = `${BASE_API}${path}${cacheBuster}`;
+  // Validate path to prevent open redirect and client-side SSRF/request forgery
+  if (typeof path !== 'string' || !path.startsWith('/') || path.startsWith('//') || path.includes('://')) {
+    throw new Error(`[httpClient] Safe path validation failed for: ${path}`);
+  }
+
+  // Safely resolve the API endpoint relative to the current origin
+  const resolvedUrl = new URL(`${BASE_API}${path}`, window.location.origin);
+  if (method === 'GET') {
+    resolvedUrl.searchParams.set('v', String(Date.now()));
+  }
+  const url = resolvedUrl.toString();
 
   const config = { method, headers };
   if (body !== undefined) {

@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import DOMPurify from 'isomorphic-dompurify';
 
 /**
  * PageHelp — contextual help button that shows a popover with HTML content.
@@ -45,7 +46,8 @@ const PageHelp = ({ helpContent }) => {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         PaperProps={{ sx: { maxWidth: 480, maxHeight: 400, overflow: 'auto', p: 2 } }}
       >
-        <Typography component="div" dangerouslySetInnerHTML={{ __html: helpText }} />
+        {/* eslint-disable-next-line react/no-danger */}
+        <Typography component="div" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(helpText) }} />
       </Popover>
     </>
   );
