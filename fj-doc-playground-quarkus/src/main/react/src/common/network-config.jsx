@@ -16,12 +16,12 @@ export const onResponse = function (response) {
 }
 
 export const onResponseError = function (error) {
-  switch (error.response.status) {
+  switch (error.response?.status) {
     case 403:
-      window.location.href = process.env.CONTEXT_PATH + '/fj-doc-playground/home'
+      window.location.href = import.meta.env.BASE_URL + 'fj-doc-playground/home'
       break
     default:
-      window.location.href = process.env.CONTEXT_PATH + '/'
+      window.location.href = import.meta.env.BASE_URL
       break
   }
 }

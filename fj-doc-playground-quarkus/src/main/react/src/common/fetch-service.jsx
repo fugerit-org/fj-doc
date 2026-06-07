@@ -21,7 +21,7 @@ class FetchService {
 
   doAjaxMultipart(method, path, data) {
      let headers = {
-       	"Content-Type": "multipart/form-data"
+        "Content-Type": "multipart/form-data"
       } 
     return this.doAjaxWorker(method, path, headers, false, false, data, '');
   }
@@ -53,13 +53,13 @@ class FetchService {
     }
     
     if ( responseBlob ) {
-	config.responseType = 'blob'
+    config.responseType = 'blob'
 }
 
     if ( json )
-		config.data = data ? JSON.stringify(data) : null
-	else 
-		config.data = data
+        config.data = data ? JSON.stringify(data) : null
+    else 
+        config.data = data
 
     this.onRequestConfig.call(this, config)
     let request = axios(config);

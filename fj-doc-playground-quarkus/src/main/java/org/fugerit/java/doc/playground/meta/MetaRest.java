@@ -1,7 +1,10 @@
 package org.fugerit.java.doc.playground.meta;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
@@ -26,6 +29,14 @@ public class MetaRest {
     @ConfigProperty(name = "quarkus.platform.version", defaultValue = "unset")
     String quarkusPlatformVersion;
 
+    /**
+     * List of available Venus versions.
+     * Can be overridden in application.yaml via a string array or comma-separated
+     * values.
+     */
+    @ConfigProperty(name = "playground.venus.available-versions")
+    List<String> availableVersions;
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/version")
@@ -36,6 +47,13 @@ public class MetaRest {
 
             return Response.ok().entity(buildProps).build();
         });
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/available-versions")
+    public Response getAvailableVersions() {
+        return RestHelper.defaultHandle(() -> Response.ok().entity(availableVersions).build());
     }
 
     private static final String[] ADD_PROPS = { "java.version", "java.vendor", "os.name", "os.version", "os.arch" };

@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - quarkus-version set to 3.36.1 across all modules
+- refactor playground interface <https://github.com/fugerit-org/fj-doc/issues/663>
 
 ## [8.18.4] - 2026-06-01
 
