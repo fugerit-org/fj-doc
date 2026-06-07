@@ -30,12 +30,12 @@ public class MetaRest {
     String quarkusPlatformVersion;
 
     /**
-     * Comma-separated list of available Venus versions.
-     * Can be overridden in application.properties via:
-     * playground.available-versions=8.18.5-SNAPSHOT,8.18.4,...
+     * List of available Venus versions.
+     * Can be overridden in application.yaml via a string array or comma-separated
+     * values.
      */
-    @ConfigProperty(name = "playground.available-versions", defaultValue = "8.18.4,8.18.0,8.17.9,8.17.0,8.16.9,8.16.0,8.15.1,8.15.0,8.14.1,8.14.0,8.13.14,8.13.0,8.12.8,8.12.0,8.11.9,8.10.9,8.10.0,8.9.7,8.9.0,8.8.9,8.8.0,8.7.6")
-    Optional<String> availableVersions;
+    @ConfigProperty(name = "playground.venus.available-versions")
+    List<String> availableVersions;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -53,13 +53,7 @@ public class MetaRest {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/available-versions")
     public Response getAvailableVersions() {
-        return RestHelper.defaultHandle(() -> {
-            List<String> versions = availableVersions
-                    .filter(s -> !s.isBlank())
-                    .map(s -> Arrays.asList(s.split(",")))
-                    .orElse(List.of());
-            return Response.ok().entity(versions).build();
-        });
+        return RestHelper.defaultHandle(() -> Response.ok().entity(availableVersions).build());
     }
 
     private static final String[] ADD_PROPS = { "java.version", "java.vendor", "os.name", "os.version", "os.arch" };
