@@ -6,7 +6,7 @@
 	 *
 	 * @project    : fj-doc-freemarker
 	 * @creation   : 2023-07-12
-	 * @version    : 1.0.0-rc.6 (2024-10-22)
+	 * @version    : 1.0.0-rc.7 (2026-06-25)
 	 *
 	 * XSD for Freemarker Doc Process Configuration
 	 */
@@ -181,12 +181,12 @@
 		</xsd:attribute>
 		<xsd:attribute name="map-atts" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation>Comma separated list of attributes to map or 'map-all' to map all attributes</xsd:documentation>
+				<xsd:documentation>Comma separated list of attributes to map or use 'map-all' attribute to map all attributes</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
 		<xsd:attribute name="map-all" type="xsd:boolean" use="optional">
 			<xsd:annotation>
-				<xsd:documentation>'true' if all attributes must be mapped. default 'false'.</xsd:documentation>
+				<xsd:documentation>'true' if all attributes must be mapped. default 'false'. (if set to 'true' has precedence over map-atts)</xsd:documentation>
 			</xsd:annotation>		
 		</xsd:attribute>
 		<xsd:attribute name="template-path" type="xsd:string" use="optional">
