@@ -20,9 +20,10 @@ Framework to produce documents in different output formats starting from an XML 
 [![CI native modules build and test](https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml/badge.svg?branch=develop)](https://github.com/fugerit-org/fj-doc/actions/workflows/build_fj-doc-native-quarkus_test.yml)
 
 [![Java runtime version](https://img.shields.io/badge/run%20on-java%208+-%23113366.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java8.html)
-[![Java build version](https://img.shields.io/badge/build%20on-java%2017+-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java17.html)
+[![Java build version](https://img.shields.io/badge/build%20on-java%2021+-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)](https://universe.fugerit.org/src/docs/versions/java21.html)
 [![Apache Maven](https://img.shields.io/badge/Apache%20Maven-3.9.0+-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)](https://universe.fugerit.org/src/docs/versions/maven3_9.html)
 [![Online playground](https://img.shields.io/badge/Try%20Now-Online%20Playground-1AC736?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://docs.fugerit.org/fj-doc-playground/home/)
+[![Playground requires](https://img.shields.io/badge/Playground%20requires-node%2026+-%23339933.svg?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![Fugerit Github Project Conventions](https://img.shields.io/badge/Fugerit%20Org-Project%20Conventions-1A36C7?style=for-the-badge&logo=Onlinect%20Playground&logoColor=white)](https://universe.fugerit.org/src/docs/conventions/index.html)
 
 As of version 8.10.2 most information previously contained in [README](LEGACY_README.md) are available through the new guide : 
