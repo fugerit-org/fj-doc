@@ -68,7 +68,7 @@ jobs:
     - name: Autobuild
       uses: github/codeql-action/autobuild@main
       env:
-        MAVEN_OPTS: "-Dkotlin.version=2.2.21"
+        MAVEN_OPTS: " -Dcodeql-build=true "
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 See https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun

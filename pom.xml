@@ -390,9 +390,22 @@
                 <jdk>[,21)</jdk>
             </activation>
             <properties>
-                <kotlin-version>${kotlin-version-jdk8ok}</kotlin-version>
+                <kotlin.version>${kotlin-version-jdk8ok}</kotlin.version>
             </properties>
         </profile>
+
+		<profile>
+			<id>codeql-legacy-kotlin</id>
+			<activation>
+				<property>
+					<name>codeql-build</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<properties>
+				<kotlin.version>${kotlin-version-jdk8ok}</kotlin.version>
+			</properties>
+		</profile>
 
 		<profile>
 
