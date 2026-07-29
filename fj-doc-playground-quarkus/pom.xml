@@ -15,7 +15,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
 		<quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
-		<quarkus.platform.version>3.36.2</quarkus.platform.version>
+		<quarkus.platform.version>3.37.2</quarkus.platform.version>
 		<skipITs>true</skipITs>
 		<surefire-plugin.version>3.5.6</surefire-plugin.version>
 		<!-- front end runtime -->
@@ -41,6 +41,26 @@
 				<version>${fj-service-helper-bom-version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<!-- Override junit versions fixed by fj-bom parent (6.0.3) to align
+			     with Quarkus BOM 3.37.2 which requires 6.1.1 for all JUnit components -->
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter</artifactId>
+				<version>6.1.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>6.1.1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.platform</groupId>
+				<artifactId>junit-platform-commons</artifactId>
+				<version>6.1.1</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
