@@ -59,6 +59,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Setup Visual Studio C++ build tools environment on Windows
+      - name: Setup MSVC Developer Command Prompt
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
+
       # build and test native module (quarkus project, see https://quarkus.io/guides/building-native-image)
       - name: Native build and test
         run: |
@@ -67,4 +72,5 @@ jobs:
           mvn verify package -Dnative -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -P test
           echo "*** 2. test native executable ***"
           mvn verify test-compile failsafe:integration-test -Dnative
+
 
