@@ -15,7 +15,6 @@
         <quarkus.platform.version>${context.flavourVersion}</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
-        <freemarker-native-version>1.0.0</freemarker-native-version>
         <#if context.addFormatting >
             <@fhm.addFormattingPomProperties context=context/>
         </#if>
@@ -55,15 +54,6 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-jacoco</artifactId>
         </dependency>
-        </#if>
-        <#if context.modules?seq_contains("fj-doc-freemarker")>
-        <#if !context.freeMarkerNativeAvailable >
-        <dependency>
-            <groupId>org.fugerit.java</groupId>
-            <artifactId>freemarker-native</artifactId>
-            <version>${r"${freemarker-native-version}"}</version>
-        </dependency>
-        </#if>
         </#if>
         <dependency>
             <groupId>io.quarkus</groupId>
