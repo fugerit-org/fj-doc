@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- fj-bom version 2.1.2
 - freemarker-version 2.3.35
 - quarkus-version set to 3.40.1 across all modules
 - refactor playground interface <https://github.com/fugerit-org/fj-doc/issues/663>
