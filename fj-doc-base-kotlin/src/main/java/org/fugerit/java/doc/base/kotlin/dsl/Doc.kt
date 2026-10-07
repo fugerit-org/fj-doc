@@ -9,7 +9,7 @@ class Doc : HelperDSL.TagWithText( "doc" ) {
 	init {
 		att( "xmlns", "http://javacoredoc.fugerit.org" )
 		att( "xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance" )
-		att( "xsi:schemaLocation", "http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" )
+		att( "xsi:schemaLocation", "http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" )
 	}
     /**
      * Creates a new default Body instance.
