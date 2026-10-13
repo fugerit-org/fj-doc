@@ -1,0 +1,98 @@
+
+[#doc-troubleshooting-poi-autoresize-fontconfig]
+=== Headless Linux InternalError / InvocationTargetException when resizing Excel sheet
+
+On headless Linux environments (such as Docker containers or servers without a graphical interface), an error may occur when invoking:
+
+[source,text]
+----
+at org.fugerit.java.doc.mod.poi.PoiUtils.resizeSheet()
+----
+
+For instance during `BasicPoiTypeHandler.handle()`.
+
+==== Root Cause
+
+Apache POI's column auto-sizing feature (`autoSizeColumn()`) calculates font metrics and character widths through Java AWT (`TextLayout` and `Font`). On minimal Linux installations lacking `fontconfig` and font packages, Java fails to initialize the font subsystem, throwing an `InternalError` caused by a `NullPointerException` in `FontConfiguration.getVersion()`.
+
+Sample stack trace:
+
+[source,text]
+----
+java.lang.InternalError: java.lang.reflect.InvocationTargetException
+	at java.desktop/sun.font.FontManagerFactory$1.run(FontManagerFactory.java:86)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.desktop/sun.font.FontManagerFactory.getInstance(FontManagerFactory.java:74)
+	at java.desktop/java.awt.Font.getFont2D(Font.java:497)
+	at java.desktop/java.awt.Font.canDisplayUpTo(Font.java:2250)
+	at java.desktop/java.awt.font.TextLayout.singleFont(TextLayout.java:469)
+	at java.desktop/java.awt.font.TextLayout.<init>(TextLayout.java:530)
+	at org.apache.poi.ss.util.SheetUtil.getDefaultCharWidth(SheetUtil.java:273)
+	at org.apache.poi.ss.util.SheetUtil.getColumnWidth(SheetUtil.java:248)
+	at org.apache.poi.ss.util.SheetUtil.getColumnWidth(SheetUtil.java:233)
+	at org.apache.poi.xssf.usermodel.XSSFSheet.autoSizeColumn(XSSFSheet.java:555)
+	at org.apache.poi.xssf.usermodel.XSSFSheet.autoSizeColumn(XSSFSheet.java:537)
+	at org.fugerit.java.doc.mod.poi.PoiUtils.resizeSheet(PoiUtils.java:17)
+	at org.fugerit.java.doc.mod.poi.PoiUtils.autoSizeColumns(PoiUtils.java:25)
+	at org.fugerit.java.doc.mod.poi.BasicPoiTypeHandler.handle(BasicPoiTypeHandler.java:292)
+...
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at java.desktop/sun.font.FontManagerFactory$1.run(FontManagerFactory.java:84)
+	... 28 more
+Caused by: java.lang.NullPointerException
+	at java.desktop/sun.awt.FontConfiguration.getVersion(FontConfiguration.java:1262)
+	at java.desktop/sun.awt.FontConfiguration.readFontConfigFile(FontConfiguration.java:225)
+	at java.desktop/sun.awt.FontConfiguration.init(FontConfiguration.java:107)
+	at java.desktop/sun.awt.X11FontManager.createFontConfiguration(X11FontManager.java:719)
+	at java.desktop/sun.font.SunFontManager$2.run(SunFontManager.java:379)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.desktop/sun.font.SunFontManager.<init>(SunFontManager.java:324)
+	at java.desktop/sun.awt.FcFontManager.<init>(FcFontManager.java:35)
+	at java.desktop/sun.awt.X11FontManager.<init>(X11FontManager.java:56)
+----
+
+==== Solutions
+
+* **Install `fontconfig` and fonts on your operating system (Recommended)**:
++
+[source,sh]
+----
+# Alpine Linux (apk)
+apk add fontconfig ttf-dejavu
+
+# Debian / Ubuntu (apt)
+apt-get install -y fontconfig fonts-dejavu-core
+
+# RHEL / CentOS / Fedora (dnf/yum)
+dnf install -y fontconfig dejavu-sans-fonts
+----
+
+* **Configure Venus Fugerit Doc to ignore auto-resize errors**:
++
+You can set `excel-fail-on-autoresize-error` to `false` in the document metadata (see xref:#doc-faq-clean-resize-xls[FAQ]):
++
+[source,xml]
+----
+<info name="excel-try-autoresize">true</info>
+<info name="excel-fail-on-autoresize-error">false</info>
+----
+
+* **Configure Apache POI to ignore missing font systems**:
++
+Starting with Apache POI 5.2.0+, you can instruct POI to bypass the font subsystem:
++
+[source,sh]
+----
+-Dorg.apache.poi.ss.ignoreMissingFontSystem=true
+----
++
+or in Java:
++
+[source,java]
+----
+System.setProperty("org.apache.poi.ss.ignoreMissingFontSystem", "true");
+----
