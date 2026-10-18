@@ -18,9 +18,9 @@ This critical memory spike typically occurs under a specific combination of fact
 
 ==== Root Cause: Knuth-Plass Line-Breaking Algorithm
 
-Apache FOP uses the **Knuth-Plass line-breaking algorithm** (originally designed for TeX) to find the aesthetically optimal line breaks for an entire paragraph by evaluating candidate break points using boxes, glue, and penalties.
+Apache FOP uses the **Knuth-Plass line-breaking algorithm** (originally designed for TeX) to find the aesthetically optimal line breaks for an entire paragraph by evaluating candidate break points using boxes, glue, and penalties (see also link:https://issues.apache.org/jira/browse/FOP-2860[FOP-2860]).
 
-Because newlines are treated as spaces by default (`linefeed-treatment="treat-as-space"`), the algorithm attempts to calculate optimal line breaks globally across the entire 30,000+ character block. The active node graph and candidate break states grow exponentially (combinatorial explosion), resulting in severe heap memory allocation spikes and high CPU usage.
+Because newlines are treated as spaces by default (`linefeed-treatment="treat-as-space"`), the algorithm attempts to calculate optimal line breaks globally across the entire 30,000+ character block (`org.apache.fop.layoutmgr.BreakingAlgorithm.KnuthNode`). The active node graph and candidate break states grow exponentially (combinatorial explosion), resulting in severe heap memory allocation spikes and high CPU usage.
 
 ==== Solutions
 
@@ -57,6 +57,30 @@ If your input text is a single massive string **without any `\n` characters**, `
 | Massive continuous text without `\n` characters, especially inside `<cell>`
 | Split the text into multiple `<para>` elements or smaller logical chunks
 |===
+
+* **Configure `<simple-line-breaking>true</simple-line-breaking>` in Apache FOP configuration (FOP 2.8+, see link:https://issues.apache.org/jira/browse/FOP-2860[FOP-2860])**:
++
+As an alternative introduced in Apache FOP 2.8 via link:https://issues.apache.org/jira/browse/FOP-2860[FOP-2860], you can enable a lower-memory line-breaking algorithm by adding `<simple-line-breaking>true</simple-line-breaking>` to your `fop.xconf` (or inline in your xref:#doc-handler-mod-fop-pdf-config[`PdfFopTypeHandler` configuration]):
++
+[source,xml]
+----
+<fop version="1.0">
+    <simple-line-breaking>true</simple-line-breaking>
+</fop>
+----
++
+For example, using inline FOP configuration in `freemarker-doc-process-config.xml`:
++
+[source,xml]
+----
+<docHandler id="pdf-fop" info="pdf" type="org.fugerit.java.doc.mod.fop.PdfFopTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" fop-config-mode="inline">
+        <fop version="1.0">
+            <simple-line-breaking>true</simple-line-breaking>
+        </fop>
+    </docHandlerCustomConfig>
+</docHandler>
+----
 
 ==== Benchmark & Sample Project
 
