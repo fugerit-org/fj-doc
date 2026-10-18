@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- fj-doc-guide, new troubleshooting section on Apache FOP high memory consumption (`format="preserve-line"`) <https://github.com/fugerit79/venus-sample-pdf-fop-memory-poc>
+
 ### Changed
 
 - change http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd to http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd

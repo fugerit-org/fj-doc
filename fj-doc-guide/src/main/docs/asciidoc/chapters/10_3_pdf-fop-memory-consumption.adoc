@@ -1,0 +1,95 @@
+
+[#doc-troubleshooting-pdf-fop-memory-consumption]
+=== High Memory Consumption / OutOfMemoryError during Apache FOP PDF Generation
+
+When generating a PDF document using the xref:#doc-handler-mod-fop[Apache FOP DocHandler (`fj-doc-mod-fop`)] from a document containing very large blocks of text (such as ~30,000 characters or more), heap memory usage can suddenly spike, consuming hundreds of megabytes or even gigabytes of memory for a single document and potentially causing an `OutOfMemoryError`.
+
+==== Specific Trigger Combinations
+
+This critical memory spike typically occurs under a specific combination of factors:
+
+1. **Inside Table Cells (`<cell>` / `<fo:table-cell>`)**:
+   * In Apache FOP, table formatting requires negotiating cell widths, row heights, and page breaks across cells.
+   * Unlike standard root-level flow paragraphs that FOP can paginate and flush sequentially, blocks inside table cells must be completely evaluated and held in memory during the table layout pass.
+2. **A Very Large Unsegmented Block**:
+   * A single `<para>` element containing a massive amount of text (~30,000 characters or more).
+3. **Default Linefeed Handling**:
+   * By default in XSL-FO, `<fo:block>` uses `linefeed-treatment="treat-as-space"`. Apache FOP treats newlines (`\n`) as ordinary spaces, causing the entire block to be handled as **one continuous, gigantic paragraph**.
+
+==== Root Cause: Knuth-Plass Line-Breaking Algorithm
+
+Apache FOP uses the **Knuth-Plass line-breaking algorithm** (originally designed for TeX) to find the aesthetically optimal line breaks for an entire paragraph by evaluating candidate break points using boxes, glue, and penalties.
+
+Because newlines are treated as spaces by default (`linefeed-treatment="treat-as-space"`), the algorithm attempts to calculate optimal line breaks globally across the entire 30,000+ character block. The active node graph and candidate break states grow exponentially (combinatorial explosion), resulting in severe heap memory allocation spikes and high CPU usage.
+
+==== Solutions
+
+* **Use `format="preserve-line"` on `<para>` elements (Recommended when text contains line breaks)**:
++
+To prevent Apache FOP from running unconstrained Knuth-Plass optimization over the entire block, set the attribute `format="preserve-line"` on the `<para>` tag:
++
+[source,xml]
+----
+<para format="preserve-line" align="left" style="normal" size="12">
+    Your very large text content with line breaks...
+</para>
+----
++
+The `fj-doc-mod-fop` handler maps `format="preserve-line"` directly to the XSL-FO attribute `linefeed-treatment="preserve"` on the generated `<fo:block>`:
++
+[source,xml]
+----
+<fo:block linefeed-treatment="preserve">...</fo:block>
+----
++
+With `linefeed-treatment="preserve"`, Apache FOP respects line breaks (`\n`) as hard boundaries, resetting and processing line breaks per line rather than attempting global optimization across all 30,000+ characters.
+
+* **Split into multiple `<para>` elements (Recommended for continuous text without line breaks)**:
++
+If your input text is a single massive string **without any `\n` characters**, `format="preserve-line"` alone will not break it up. Whenever possible, avoid putting massive text blocks into a single `<para>` tag—especially inside table cells (`<cell>`). Splitting text into separate `<para>` paragraphs or smaller logical chunks ensures optimal layout performance in all scenarios:
++
+|===
+| Scenario | Recommended Approach
+
+| Large text block with natural line breaks (`\n`) (e.g., logs, transcripts, pre-formatted text, multi-line user input)
+| Use `<para format="preserve-line">`
+
+| Massive continuous text without `\n` characters, especially inside `<cell>`
+| Split the text into multiple `<para>` elements or smaller logical chunks
+|===
+
+==== Benchmark & Sample Project
+
+The difference in memory consumption and generation time on a ~30,000 character block inside a table cell is significant:
+
+[cols="2,2,2,2", options="header"]
+|===
+| Metric | Fixed (`format="preserve-line"`) | Original (Default Knuth-Plass) | Difference
+
+| **Venus Doc XML**
+| `<para format="preserve-line">...</para>`
+| `<para>...</para>`
+| Preserves `\n` boundaries
+
+| **Generated XSL-FO**
+| `<fo:block linefeed-treatment="preserve">`
+| `<fo:block>` (`treat-as-space`)
+| Knuth-Plass resets at every `\n`
+
+| **Generation Time**
+| **~1.3 s**
+| ~2.8 s
+| **~2x faster**
+
+| **Used Heap Delta**
+| **+14.15 MB**
+| +523.17 MB
+| **>35x less heap allocated**
+
+| **Peak Heap Usage**
+| **181.02 MB**
+| 951.25 MB
+| **>5x peak memory reduction**
+|===
+
+Here is a link:https://github.com/fugerit79/venus-sample-pdf-fop-memory-poc[sample repository reproducing the issue and benchmark].
