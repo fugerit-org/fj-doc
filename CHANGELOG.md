@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.6] - 2026-10-31
+
+### Fixed
+
+- central sonatype publishing (central publishing plugin 0.12.0)
+
 ## [8.18.5] - 2026-10-30
 
 ### Added
