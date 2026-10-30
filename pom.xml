@@ -45,6 +45,7 @@
 		<!-- for backward compatibility test -->
 		<maven.executable>mvn</maven.executable>
 		<maven.executable.windows>mvn.cmd</maven.executable.windows>
+		<antrun-plugin.version>3.2.0</antrun-plugin.version>
         <!-- workaround for transformers in jdk25 -->
         <saxon.version>13.0</saxon.version>
 	</properties>
@@ -331,6 +332,12 @@
 					<groupId>org.fugerit.java</groupId>
 					<artifactId>fj-doc-maven-plugin</artifactId>
 					<version>${fj-doc-maven-plugin-version}</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>${antrun-plugin.version}</version>
 				</plugin>
 			
 			</plugins>
