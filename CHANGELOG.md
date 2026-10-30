@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - springboot-3 flavour to version 3.5.16
 - micronat-4 flavour to version 4.10.21
 - kotlin version set to 2.4.21
+- fj-bom 2.1.3
 
 ## [8.18.4] - 2026-06-01
 
