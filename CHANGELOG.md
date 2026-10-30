@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.5] - 2026-10-30
+
 ### Added
 
 - fj-doc-guide, new troubleshooting section on Apache FOP high memory consumption (`format="preserve-line"`) <https://github.com/fugerit79/venus-sample-pdf-fop-memory-poc>
@@ -15,9 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - change http://javacoredoc.fugerit.org http://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd to http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd
 - fj-bom version 2.1.2
-- freemarker-version 2.3.35
+- freemarker-version 2.3.35 (GraalVM support, see <https://issues.apache.org/jira/browse/FREEMARKER-229>)
 - quarkus-version set to 3.40.1 across all modules
 - refactor playground interface <https://github.com/fugerit-org/fj-doc/issues/663>
+- springboot-3 flavour to version 3.5.16
+- micronat-4 flavour to version 4.10.21
+- kotlin version set to 2.4.21
 
 ## [8.18.4] - 2026-06-01
 
