@@ -23,6 +23,7 @@
     <compiler-plugin.version>3.15.0</compiler-plugin.version>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <skipPublishing>true</skipPublishing>
   </properties>
   <dependencyManagement>
     <dependencies>
