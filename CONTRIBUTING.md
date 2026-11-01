@@ -19,6 +19,22 @@ Any contribution is accepted (development, testing, dotumentation etc.)
 
 You can use the [GitHub issue form](https://github.com/fugerit-org/fj-doc/issues/new/choose) to report bugs.
 
+## Generative AI Policy
+
+Contributions assisted by Generative AI tools are welcome, provided that the committer reviews, tests, and takes full responsibility for the submitted changes (including code quality, correctness, and license compliance).
+
+When submitting AI-assisted changes, we recommend adding a brief note to the commit message (or pull request description) using the following template (parts in brackets are optional):
+
+```text
+Note: Generative AI [VENDOR] assistance was used [to DETAIL ON THE CONTRIBUTION].
+```
+
+For example:
+
+```text
+Note: Generative AI (Google Gemini) assistance was used to improve test coverage and minor tweaks to the library itself.
+```
+
 ## License
 
 By contributing to [Fugerit Venus Doc](https://github.com/fugerit-org/fj-doc), 
