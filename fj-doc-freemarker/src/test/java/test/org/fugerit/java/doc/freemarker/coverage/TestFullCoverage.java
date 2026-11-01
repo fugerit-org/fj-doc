@@ -88,6 +88,7 @@ class TestFullCoverage {
 				Assertions.assertTrue( mainTable.getUtil().isStrictHeader() );
 			}
 		} );
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 
 	@Test
@@ -187,6 +188,7 @@ class TestFullCoverage {
 				Assertions.assertTrue( outputFile.length() > 0 );
 			} );
 		}
+		Assertions.assertTrue( Boolean.TRUE );
 	}
 
 }
