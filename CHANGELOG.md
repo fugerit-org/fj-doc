@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- fj-doc-freemarker - support inline SVG images in AsciiDoc template (`ascidoc-element.ftl`) <https://github.com/fugerit-org/fj-doc/issues/684>
+
 ## [8.18.6] - 2026-10-31
 
 ### Fixed

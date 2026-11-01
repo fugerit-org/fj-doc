@@ -52,9 +52,13 @@
 </#macro>
 
 <#macro handleImage docImage>
+<#if docImage.svg>
+${docImage.resolvedText}
+<#else>
 <#if (docImage.scaling)??><#assign imageScaling=",${docImage.scaling}%,${docImage.scaling}%'"/><#else><#assign imageScaling=""/></#if>
 <#if (docImage.align)??></#if>
-image::data:image/${docImage.resolvedType};base64, ${docImage.resolvedBase64}[${docImage.alt!'NA'}${imageScaling}]
+image::data:image/${docImage.resolvedType};base64, <#if docImage.content?has_content>${docImage.content}<#else>${docImage.resolvedBase64}</#if>[${docImage.alt!'NA'}${imageScaling}]
+</#if>
 </#macro>
 
 <#macro handleList docList level>
