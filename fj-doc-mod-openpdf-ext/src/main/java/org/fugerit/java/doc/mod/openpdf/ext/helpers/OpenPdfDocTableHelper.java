@@ -10,8 +10,10 @@ import java.util.Optional;
 import org.fugerit.java.doc.base.model.DocBarcode;
 import org.fugerit.java.doc.base.model.DocBorders;
 import org.fugerit.java.doc.base.model.DocCell;
+import org.fugerit.java.doc.base.model.DocContainer;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocImage;
+import org.fugerit.java.doc.base.model.DocList;
 import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.base.model.DocPhrase;
 import org.fugerit.java.doc.base.model.DocRow;
@@ -23,6 +25,7 @@ import com.lowagie.text.Chunk;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Element;
 import com.lowagie.text.Font;
+import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Table;
 import com.lowagie.text.alignment.HorizontalAlignment;
@@ -100,24 +103,32 @@ public class OpenPdfDocTableHelper {
 				cellParent.add( paragraph );
 			} else if ( docElement instanceof DocPhrase ) {
 				DocPhrase docPhrase = (DocPhrase)docElement;
+				OpenPpfDocHandler.setStyle( docCell, docPhrase );
 				log.trace( "docCell -> {}, docPara : {}", docCell, cell );
 				cellParent.add( OpenPpfDocHandler.createPhrase( docPhrase, docHelper, fontList ) );						
 			} else if ( docElement instanceof DocTable ) {
 				table.insertTable( createTable( (DocTable)docElement, docHelper ) );
 			} else if ( docElement instanceof DocImage ) {
-				cellParent.add( OpenPpfDocHandler.createImage( (DocImage)docElement ) );
+				Image img = OpenPpfDocHandler.createImage( (DocImage)docElement );
+				if ( img != null ) {
+					cellParent.add( img );
+				}
 			} else if ( docElement instanceof DocBarcode ) {
 				cellParent.add( OpenPpfDocHandler.createBarcode( (DocBarcode)docElement, docHelper ) );
+			} else if ( docElement instanceof DocList ) {
+				cellParent.add( OpenPpfDocHandler.createList( (DocList)docElement, docHelper ) );
+			} else if ( docElement instanceof DocContainer ) {
+				cellParent.add( OpenPpfDocHandler.createPl( (DocContainer)docElement, docHelper ) );
 			}
 		}
 		return fontList;
 	}
 	
-	private static boolean handleCell( Table table, DocCell docCell, boolean setupStartHeader, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+	private static boolean handleCell( Table table, DocRow docRow, DocCell docCell, boolean setupStartHeader, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
 		OpenPpfDocHandler.setStyle( docTable, docCell );
 		boolean startHeader = setupStartHeader;
 		Cell cell = new Cell();
-		if ( docCell.isHeader() ) {
+		if ( docCell.isHeader() || docRow.isHeader() ) {
 			cell.setHeader( true );
 			startHeader = true;
 		} else {
@@ -140,6 +151,7 @@ public class OpenPdfDocTableHelper {
 		CellParent cellParent = new CellParent( cell );
 		
 		List<Font> fontList = handleContent(table, cellParent, docCell, cell, docHelper);
+		OpenPpfDocHandler.registerLocalDestination( cell, docCell.getId() );
 		
 		table.addCell( cell );
 		List<Element> listChunk = cell.getChunks();
@@ -166,6 +178,9 @@ public class OpenPdfDocTableHelper {
 		table.setPadding( docTable.getPadding() );
 		table.setSpacing( docTable.getSpacing() );
 		table.setCellsFitPage( true );
+		if ( docTable.getBackColor() != null ) {
+			table.setBackgroundColor( DocModelUtils.parseHtmlColor( docTable.getBackColor() ) );
+		}
 		
 		if ( docTable.getSpaceBefore() != null ) {
 			table.setSpacing( docTable.getSpaceBefore().floatValue() );
@@ -182,15 +197,20 @@ public class OpenPdfDocTableHelper {
 			}
 			table.setWidths( w );
 		}
+		boolean registeredTableId = false;
 		Iterator<DocElement> itRow = docTable.docElements();
 		while ( itRow.hasNext() ) {
 			DocRow docRow = (DocRow)itRow.next();
 			Iterator<DocElement> itCell = docRow.docElements();
 			while ( itCell.hasNext() ) {
 				DocCell docCell = (DocCell)itCell.next();
-				startHeader = handleCell(table, docCell, startHeader, docTable, docHelper);
+				startHeader = handleCell(table, docRow, docCell, startHeader, docTable, docHelper);
+				if ( !registeredTableId && docTable.getId() != null ) {
+					registeredTableId = true;
+				}
 			}
 		}
+		OpenPpfDocHandler.registerLocalDestination( table, docTable.getId() );
 
 		return table;
 	}
