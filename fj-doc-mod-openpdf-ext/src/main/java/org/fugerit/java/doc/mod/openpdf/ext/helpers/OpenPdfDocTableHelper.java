@@ -107,7 +107,27 @@ public class OpenPdfDocTableHelper {
 				log.trace( "docCell -> {}, docPara : {}", docCell, cell );
 				cellParent.add( OpenPpfDocHandler.createPhrase( docPhrase, docHelper, fontList ) );						
 			} else if ( docElement instanceof DocTable ) {
-				table.insertTable( createTable( (DocTable)docElement, docHelper ) );
+				DocTable innerTable = (DocTable) docElement;
+				for ( DocElement rElem : innerTable.getElementList() ) {
+					if ( rElem instanceof DocRow ) {
+						DocRow r = (DocRow) rElem;
+						Paragraph rowPara = new Paragraph();
+						for ( DocElement cElem : r.getElementList() ) {
+							if ( cElem instanceof DocCell ) {
+								DocCell c = (DocCell) cElem;
+								for ( DocElement pElem : c.getElementList() ) {
+									if ( pElem instanceof DocPara ) {
+										rowPara.add( OpenPpfDocHandler.createPara( (DocPara) pElem, docHelper, fontList ) );
+									} else if ( pElem instanceof DocPhrase ) {
+										rowPara.add( OpenPpfDocHandler.createPhrase( (DocPhrase) pElem, docHelper, fontList ) );
+									}
+								}
+								rowPara.add( new Chunk("  ") );
+							}
+						}
+						cellParent.add( rowPara );
+					}
+				}
 			} else if ( docElement instanceof DocImage ) {
 				Image img = OpenPpfDocHandler.createImage( (DocImage)docElement );
 				if ( img != null ) {
@@ -124,21 +144,14 @@ public class OpenPdfDocTableHelper {
 		return fontList;
 	}
 	
-	private static boolean handleCell( Table table, DocRow docRow, DocCell docCell, boolean setupStartHeader, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+	private static boolean handleCell( Table table, DocRow docRow, DocCell docCell, boolean isHeaderCell, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
 		OpenPpfDocHandler.setStyle( docTable, docCell );
-		boolean startHeader = setupStartHeader;
 		Cell cell = new Cell();
-		if ( docCell.isHeader() || docRow.isHeader() ) {
+		if ( isHeaderCell ) {
 			cell.setHeader( true );
-			startHeader = true;
-		} else {
-			if ( startHeader ) {
-				startHeader = false;
-				table.endHeaders();
-			}
 		}
-		cell.setColspan( docCell.getCSpan() );
-		cell.setRowspan( docCell.getRSpan() );
+		cell.setColspan( docCell.getColumnSpan() );
+		cell.setRowspan( docCell.getRowSpan() );
 		
 		handleBolders(docCell, cell);
 		
@@ -165,12 +178,11 @@ public class OpenPdfDocTableHelper {
 		if ( docHelper.getPdfWriter() != null ) {
 			docHelper.getPdfWriter().flush();
 		}
-		return startHeader;
+		return isHeaderCell;
 	}
 	
-	protected static Table createTable( DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+	public static Table createTable( DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
 		
-		boolean startHeader = false;
 		Table table = new Table( docTable.getColumns() );
 		table.setBorderWidth(0);	
 		table.setWidth( docTable.getWidth() );
@@ -183,10 +195,7 @@ public class OpenPdfDocTableHelper {
 		}
 		
 		if ( docTable.getSpaceBefore() != null ) {
-			table.setSpacing( docTable.getSpaceBefore().floatValue() );
-		}
-		if ( docTable.getSpaceAfter() != null ) {
-			table.setSpacing( docTable.getSpaceAfter().floatValue() );
+			table.setOffset( docTable.getSpaceBefore().floatValue() );
 		}
 		
 		int[] cw = docTable.getColWithds();
@@ -197,16 +206,28 @@ public class OpenPdfDocTableHelper {
 			}
 			table.setWidths( w );
 		}
-		boolean registeredTableId = false;
-		Iterator<DocElement> itRow = docTable.docElements();
-		while ( itRow.hasNext() ) {
-			DocRow docRow = (DocRow)itRow.next();
-			Iterator<DocElement> itCell = docRow.docElements();
-			while ( itCell.hasNext() ) {
-				DocCell docCell = (DocCell)itCell.next();
-				startHeader = handleCell(table, docRow, docCell, startHeader, docTable, docHelper);
-				if ( !registeredTableId && docTable.getId() != null ) {
-					registeredTableId = true;
+		org.fugerit.java.doc.base.model.util.DocTableUtil tableUtil = docTable.getUtil();
+		if ( tableUtil.isStrictHeader() ) {
+			for ( DocElement hRow : tableUtil.getHeaderRows() ) {
+				DocRow docRow = (DocRow) hRow;
+				for ( DocElement c : docRow.getElementList() ) {
+					handleCell( table, docRow, (DocCell) c, true, docTable, docHelper );
+				}
+			}
+			table.endHeaders();
+			for ( DocElement dRow : tableUtil.getDataRows() ) {
+				DocRow docRow = (DocRow) dRow;
+				for ( DocElement c : docRow.getElementList() ) {
+					handleCell( table, docRow, (DocCell) c, false, docTable, docHelper );
+				}
+			}
+		} else {
+			for ( DocElement rowElem : docTable.getElementList() ) {
+				if ( rowElem instanceof DocRow ) {
+					DocRow docRow = (DocRow) rowElem;
+					for ( DocElement c : docRow.getElementList() ) {
+						handleCell( table, docRow, (DocCell) c, false, docTable, docHelper );
+					}
 				}
 			}
 		}

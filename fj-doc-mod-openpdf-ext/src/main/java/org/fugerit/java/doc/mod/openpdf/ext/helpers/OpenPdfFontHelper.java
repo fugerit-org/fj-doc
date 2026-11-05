@@ -46,12 +46,12 @@ public class OpenPdfFontHelper {
 		int style = Font.NORMAL;
 		BaseFont bf = null;
 		int bfV = -1;
-		if ( size == -1 ) {
-			size = Integer.parseInt( docHelper.getDefFontSize() );
+		if ( size <= 0 ) {
+			size = docHelper.getDefFontSize() != null ? Integer.parseInt( docHelper.getDefFontSize() ) : 10;
 		}
 		style = handleFontStyle(style, fontStyle);
 		if ( fontName == null ) {
-			fontName = docHelper.getDefFontName();
+			fontName = docHelper.getDefFontName() != null ? docHelper.getDefFontName() : "helvetica";
 		}
 		if ( "helvetica".equalsIgnoreCase( fontName ) ) {
 			bfV = Font.HELVETICA;

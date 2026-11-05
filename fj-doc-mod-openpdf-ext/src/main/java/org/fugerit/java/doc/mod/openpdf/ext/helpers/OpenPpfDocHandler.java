@@ -217,7 +217,11 @@ public class OpenPpfDocHandler {
 			p.setAlignment( getAlign( docPara.getAlign() ) );
 		}
 		if ( docPara.getLeading() != null ) {
-			p.setLeading(  docPara.getLeading().floatValue() );
+			if ( docPara.getLeading().floatValue() <= 4f ) {
+				p.setLeading( 0f, docPara.getLeading().floatValue() );
+			} else {
+				p.setLeading( docPara.getLeading().floatValue() );
+			}
 		}
 		if ( docPara.getSpaceBefore() != null ) {
 			p.setSpacingBefore( docPara.getSpaceBefore().floatValue() );
