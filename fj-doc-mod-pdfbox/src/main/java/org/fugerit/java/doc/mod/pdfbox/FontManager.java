@@ -26,6 +26,8 @@ public class FontManager {
     public static final int STYLE_BOLDITALIC = 3;
     public static final int STYLE_UNDERLINE = 4;
 
+    public static final float DEFAULT_FONT_SIZE = 10f;
+
     public FontManager(PdfBoxConfig config, PDDocument document) {
         this.config = config;
         this.document = document;
@@ -191,8 +193,11 @@ public class FontManager {
     }
 
     public float getFontSize(int style) {
-        // Default font size - can be made configurable
         log.debug("Get font size [{}]", style);
-        return 12f;
+        return DEFAULT_FONT_SIZE;
+    }
+
+    public float getFontSize(int style, int size) {
+        return size > 0 ? (float) size : DEFAULT_FONT_SIZE;
     }
 }
