@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - fj-doc-mod-pdfbox - improve handler support for metadata, bookmarks, margins/orientation, background images, headings, font encodability fallback, nested phrase/paragraph elements, table column widths/colspan/colors, lists, header/footer elements and placeholders, and full-coverage tests <https://github.com/fugerit-org/fj-doc/issues/684>
 - fj-doc-mod-pdfbox - fix header and footer dynamic extents and borders, background image scaling, alignment constants, paragraph leading/spacing, and uniform row height <https://github.com/fugerit-org/fj-doc/issues/684>
 - fj-doc-mod-fop - support container elements in cells, fix basic-link duplicate attributes, and add full-coverage test <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-fop - escape XML special characters in XMP metadata declarations in template (`fop_doc.ftl`) <https://github.com/fugerit-org/fj-doc/issues/684>
 
 ## [8.18.6] - 2026-10-31
 
