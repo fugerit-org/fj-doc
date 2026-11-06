@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- test - add realistic invoice test case across fj-doc-mod-fop, fj-doc-mod-openpdf-ext, and fj-doc-mod-pdfbox for rendering benchmark <https://github.com/fugerit-org/fj-doc/issues/684>
+
 ### Fixed
 
 - fj-doc-freemarker - support inline SVG images in AsciiDoc template (`ascidoc-element.ftl`) <https://github.com/fugerit-org/fj-doc/issues/684>
