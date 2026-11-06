@@ -39,6 +39,7 @@ class TestRealisticInvoicePdfBox {
             Assertions.assertTrue(pdfText.contains("Acme Cloud Integration Ltd."));
             Assertions.assertTrue(pdfText.contains("Enterprise Corp S.p.A."));
             Assertions.assertTrue(pdfText.contains("11,150.00"));
+            Assertions.assertTrue(pdfText.contains("Page 1 / 1"));
         }
     }
 }

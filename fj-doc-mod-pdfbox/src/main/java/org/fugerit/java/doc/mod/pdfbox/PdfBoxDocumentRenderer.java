@@ -431,9 +431,9 @@ public class PdfBoxDocumentRenderer {
             return para.getSpaceBefore().floatValue();
         }
         switch (para.getHeadLevel()) {
-            case 1: return 14f;
-            case 2: return 10f;
-            case 3: return 8f;
+            case 1: return 18f;
+            case 2: return 14f;
+            case 3: return 12f;
             default: return para.getHeadLevel() > 3 ? 6f : 0f;
         }
     }
@@ -443,8 +443,8 @@ public class PdfBoxDocumentRenderer {
             return para.getSpaceAfter().floatValue();
         }
         switch (para.getHeadLevel()) {
-            case 1: return 8f;
-            case 2: return 6f;
+            case 1: return 10f;
+            case 2: return 8f;
             default: return para.getHeadLevel() > 2 ? 4f : defaultSpacing;
         }
     }
@@ -496,12 +496,16 @@ public class PdfBoxDocumentRenderer {
         float fontSize = calculateParaFontSize(para, styleCode);
         float lineHeight = calculateLineHeight(para.getLeading(), fontSize);
 
-        renderText(text, font, fontSize, para.getAlign(), para.getForeColor(), para.getBackColor(), lineHeight);
+        renderText(text, font, fontSize, para.getAlign(), para.getForeColor(), para.getBackColor(), lineHeight, isPreserveLine(para));
 
         currentY -= calculateSpaceAfter(para, lineHeight * 0.25f);
     }
 
     private void renderText(String text, PDFont font, float fontSize, int align, String foreColor, String backColor, float lineHeight) throws IOException {
+        renderText(text, font, fontSize, align, foreColor, backColor, lineHeight, false);
+    }
+
+    private void renderText(String text, PDFont font, float fontSize, int align, String foreColor, String backColor, float lineHeight, boolean preserveLine) throws IOException {
         if (text == null || text.trim().isEmpty()) {
             return;
         }
@@ -513,7 +517,7 @@ public class PdfBoxDocumentRenderer {
         }
 
         float availableWidth = this.pageWidth - this.marginLeft - this.marginRight;
-        List<String> lines = wrapText(text, realFont, fontSize, availableWidth);
+        List<String> lines = wrapParaLines(text, preserveLine, realFont, fontSize, availableWidth);
 
         for (String line : lines) {
             checkNewPage();
@@ -550,6 +554,21 @@ public class PdfBoxDocumentRenderer {
             contentStream.endText();
             currentY -= lineHeight;
         }
+    }
+
+    private List<String> wrapParaLines(String text, boolean preserveLine, PDFont font, float fontSize, float availableWidth) throws IOException {
+        if (preserveLine) {
+            List<String> lines = new ArrayList<>();
+            String[] parts = text.split("\\r?\\n");
+            for (String part : parts) {
+                String trimmed = part.trim();
+                if (!trimmed.isEmpty()) {
+                    lines.addAll(wrapText(trimmed, font, fontSize, availableWidth));
+                }
+            }
+            return lines;
+        }
+        return wrapText(text, font, fontSize, availableWidth);
     }
 
     private float calculateXPosition(String text, PDFont font, float fontSize, int align) throws IOException {
@@ -653,6 +672,8 @@ public class PdfBoxDocumentRenderer {
     private void renderTable(DocTable table) throws IOException {
         if (table.getSpaceBefore() != null) {
             currentY -= table.getSpaceBefore().floatValue();
+        } else {
+            currentY -= LINE_HEIGHT * 0.5f;
         }
 
         checkNewPage();
@@ -720,14 +741,28 @@ public class PdfBoxDocumentRenderer {
         return maxCols > 0 ? maxCols : 1;
     }
 
+    private static class CellLine {
+        private final String text;
+        private final PDFont font;
+        private final float fontSize;
+        private final int align;
+        private final String foreColor;
+
+        public CellLine(String text, PDFont font, float fontSize, int align, String foreColor) {
+            this.text = text;
+            this.font = font;
+            this.fontSize = fontSize;
+            this.align = align;
+            this.foreColor = foreColor;
+        }
+    }
+
     private static class CellRenderData {
         private DocCell cell;
         private float width;
         private PDImageXObject image;
         private float imageHeight;
-        private List<String> lines = Collections.emptyList();
-        private PDFont font;
-        private float fontSize;
+        private List<CellLine> lines = Collections.emptyList();
     }
 
     private float calculateCellWidth(DocElement cellElement, int colIdx, float[] cellWidths) {
@@ -776,19 +811,128 @@ public class PdfBoxDocumentRenderer {
             data.image = prepareCellImage(cell, cWidth, imgH);
             data.imageHeight = imgH[0];
 
-            String cellText = extractText(cell);
-            boolean bold = isHeader || cell.isHeader() || row.isHeader();
-            data.font = getEncodableFont(bold ? FontManager.STYLE_BOLD : FontManager.STYLE_NORMAL, null, cellText);
-            data.fontSize = fontManager.getFontSize(0);
-
-            if (cellText != null && !cellText.isEmpty()) {
-                data.lines = wrapText(cellText, data.font, data.fontSize, cWidth - 6);
-            }
-        } else {
-            data.font = fontManager.getFont(0, null);
-            data.fontSize = 10f;
+            data.lines = prepareCellLines(cell, cWidth, isHeader, row);
         }
         return data;
+    }
+
+    private List<CellLine> prepareCellLines(DocCell cell, float cWidth, boolean isHeader, DocRow row) throws IOException {
+        List<DocElement> elements = cell.getElementList();
+        if (elements == null || elements.isEmpty()) {
+            return fallbackOrEmpty(cell, cWidth, isHeader, row);
+        }
+
+        List<CellLine> lines = new ArrayList<>();
+        float maxWidth = cWidth - 6;
+        for (DocElement el : elements) {
+            populateElementLines(lines, el, cell, maxWidth, isHeader, row);
+        }
+
+        if (lines.isEmpty() && dataHasNoImage(cell)) {
+            return fallbackOrEmpty(cell, cWidth, isHeader, row);
+        }
+        return lines;
+    }
+
+    private void populateElementLines(List<CellLine> lines, DocElement el, DocCell cell, float maxWidth, boolean isHeader, DocRow row) throws IOException {
+        if (el instanceof DocPara) {
+            addParaLines(lines, (DocPara) el, cell, maxWidth, isHeader, row);
+        } else if (el instanceof DocPhrase) {
+            addPhraseLines(lines, (DocPhrase) el, cell, maxWidth, isHeader, row);
+        }
+    }
+
+    private boolean dataHasNoImage(DocCell cell) {
+        return findFirstImage(cell) == null;
+    }
+
+    private List<CellLine> fallbackOrEmpty(DocCell cell, float cWidth, boolean isHeader, DocRow row) throws IOException {
+        String fallback = extractText(cell);
+        if (fallback != null && !fallback.trim().isEmpty()) {
+            return createFallbackCellLines(cell, fallback, cWidth, isHeader, row);
+        }
+        return Collections.emptyList();
+    }
+
+    private List<CellLine> createFallbackCellLines(DocCell cell, String fallback, float cWidth, boolean isHeader, DocRow row) throws IOException {
+        boolean bold = isHeader || (cell != null && cell.isHeader()) || (row != null && row.isHeader());
+        int style = bold ? FontManager.STYLE_BOLD : FontManager.STYLE_NORMAL;
+        PDFont font = getEncodableFont(style, null, fallback);
+        float fontSize = fontManager.getFontSize(0);
+        int align = cell != null ? cell.getAlign() : DocPara.ALIGN_LEFT;
+        String foreColor = cell != null ? cell.getForeColor() : null;
+        List<CellLine> lines = new ArrayList<>();
+        appendWrappedLines(lines, fallback, font, fontSize, cWidth - 6, align, foreColor);
+        return lines;
+    }
+
+    private void addParaLines(List<CellLine> lines, DocPara para, DocCell cell, float maxWidth, boolean isHeader, DocRow row) throws IOException {
+        String text = extractText(para);
+        if (text == null || text.trim().isEmpty()) {
+            return;
+        }
+        int style = resolveParaStyle(para, cell, isHeader, row);
+        String fontName = para.getFontName();
+        PDFont font = getEncodableFont(style, fontName, text);
+        float fontSize = para.getSize() > 0 ? fontManager.getFontSize(style, para.getSize()) : fontManager.getFontSize(0);
+        int align = (para.getAlign() != DocPara.ALIGN_UNSET) ? para.getAlign() : cell.getAlign();
+        String foreColor = StringUtils.isNotEmpty(para.getForeColor()) ? para.getForeColor() : cell.getForeColor();
+
+        if (isPreserveLine(para)) {
+            String[] splitLines = text.split("\\r?\\n");
+            for (String split : splitLines) {
+                String trimmed = split.trim();
+                if (!trimmed.isEmpty()) {
+                    appendWrappedLines(lines, trimmed, font, fontSize, maxWidth, align, foreColor);
+                }
+            }
+        } else {
+            appendWrappedLines(lines, text, font, fontSize, maxWidth, align, foreColor);
+        }
+    }
+
+    private void addPhraseLines(List<CellLine> lines, DocPhrase phrase, DocCell cell, float maxWidth, boolean isHeader, DocRow row) throws IOException {
+        String text = phrase.getText();
+        if (text == null || text.trim().isEmpty()) {
+            return;
+        }
+        int style = phrase.getStyle();
+        if (style == FontManager.STYLE_NORMAL && (isHeader || (cell != null && cell.isHeader()) || (row != null && row.isHeader()))) {
+            style = FontManager.STYLE_BOLD;
+        }
+        String fontName = phrase.getFontName();
+        PDFont font = getEncodableFont(style, fontName, text);
+        float fontSize = phrase.getSize() > 0 ? fontManager.getFontSize(style, phrase.getSize()) : fontManager.getFontSize(0);
+        int align = cell != null ? cell.getAlign() : DocPara.ALIGN_LEFT;
+        String foreColor = StringUtils.isNotEmpty(phrase.getForeColor()) ? phrase.getForeColor() : cell.getForeColor();
+        appendWrappedLines(lines, text, font, fontSize, maxWidth, align, foreColor);
+    }
+
+    private void appendWrappedLines(List<CellLine> lines, String text, PDFont font, float fontSize, float maxWidth, int align, String foreColor) throws IOException {
+        List<String> wrapped = wrapText(text, font, fontSize, maxWidth);
+        for (String w : wrapped) {
+            lines.add(new CellLine(w, font, fontSize, align, foreColor));
+        }
+    }
+
+    private int resolveParaStyle(DocPara para, DocCell cell, boolean isHeader, DocRow row) {
+        if (para.getStyle() != DocPara.STYLE_NORMAL && para.getStyle() != DocPara.STYLE_UNSET) {
+            return para.getStyle();
+        }
+        if (isHeader || (cell != null && cell.isHeader()) || (row != null && row.isHeader())) {
+            return FontManager.STYLE_BOLD;
+        }
+        return para.getStyle();
+    }
+
+    private boolean isPreserveLine(DocPara para) {
+        if (para == null) {
+            return false;
+        }
+        return "preserve-line".equalsIgnoreCase(para.getFormat())
+                || "preserve".equalsIgnoreCase(para.getWhiteSpaceCollapse())
+                || "false".equalsIgnoreCase(para.getWhiteSpaceCollapse())
+                || para.isNotWhiteSpaceCollapse();
     }
 
     private float calculateCellHeight(CellRenderData data) {
@@ -797,7 +941,11 @@ public class PdfBoxDocumentRenderer {
             cellH += data.imageHeight + 4f;
         }
         if (!data.lines.isEmpty()) {
-            cellH += data.lines.size() * LINE_HEIGHT + 4f;
+            float linesH = 0f;
+            for (CellLine line : data.lines) {
+                linesH += calculateLineHeight(null, line.fontSize);
+            }
+            cellH += linesH + 4f;
         } else if (data.image == null) {
             cellH = LINE_HEIGHT + 4f;
         }
@@ -843,25 +991,38 @@ public class PdfBoxDocumentRenderer {
         if (data.lines.isEmpty()) {
             return;
         }
-        contentStream.setNonStrokingColor(Color.BLACK);
         float cellY = startY;
-        for (String line : data.lines) {
-            if (!canEncode(data.font, line)) {
-                line = sanitizeTextForFont(data.font, line);
+        for (CellLine line : data.lines) {
+            String text = line.text;
+            if (!canEncode(line.font, text)) {
+                text = sanitizeTextForFont(line.font, text);
             }
-            float textWidth = calculateTextWidth(line, data.font, data.fontSize);
+            float textWidth = calculateTextWidth(text, line.font, line.fontSize);
             float lineX = cellX + 3;
-            if (data.cell.getAlign() == DocPara.ALIGN_CENTER) {
+            int align = (line.align != DocPara.ALIGN_UNSET) ? line.align : data.cell.getAlign();
+            if (align == DocPara.ALIGN_CENTER) {
                 lineX = cellX + (data.width - textWidth) / 2;
-            } else if (data.cell.getAlign() == DocPara.ALIGN_RIGHT) {
+            } else if (align == DocPara.ALIGN_RIGHT) {
                 lineX = cellX + data.width - textWidth - 3;
             }
+
+            if (StringUtils.isNotEmpty(line.foreColor)) {
+                SafeFunction.applySilent(() -> {
+                    Color fg = DocModelUtils.parseHtmlColor(line.foreColor);
+                    contentStream.setNonStrokingColor(fg);
+                });
+            } else {
+                contentStream.setNonStrokingColor(Color.BLACK);
+            }
+
             contentStream.beginText();
-            contentStream.setFont(data.font, data.fontSize);
-            contentStream.newLineAtOffset(lineX, cellY - data.fontSize);
-            contentStream.showText(line);
+            contentStream.setFont(line.font, line.fontSize);
+            contentStream.newLineAtOffset(lineX, cellY - line.fontSize);
+            contentStream.showText(text);
             contentStream.endText();
-            cellY -= LINE_HEIGHT;
+
+            float lineH = calculateLineHeight(null, line.fontSize);
+            cellY -= lineH;
         }
     }
 
@@ -883,6 +1044,49 @@ public class PdfBoxDocumentRenderer {
             renderCellContent(data, cellX, rowStartY);
             cellX += data.width;
         }
+    }
+
+    private void renderRowBorders(List<CellRenderData> cellDataList, float rowStartY, float rowHeight) throws IOException {
+        float cellX = this.marginLeft;
+        float topY = rowStartY + 2;
+        float bottomY = rowStartY - rowHeight + 2;
+        for (CellRenderData data : cellDataList) {
+            if (data.cell != null && data.cell.getDocBorders() != null) {
+                renderCellBorders(data.cell.getDocBorders(), cellX, cellX + data.width, topY, bottomY);
+            }
+            cellX += data.width;
+        }
+    }
+
+    private void renderCellBorders(DocBorders borders, float leftX, float rightX, float topY, float bottomY) throws IOException {
+        if (borders.getBorderWidthTop() > 0) {
+            drawLine(leftX, topY, rightX, topY, borders.getBorderWidthTop(), borders.getBorderColorTop());
+        }
+        if (borders.getBorderWidthBottom() > 0) {
+            drawLine(leftX, bottomY, rightX, bottomY, borders.getBorderWidthBottom(), borders.getBorderColorBottom());
+        }
+        if (borders.getBorderWidthLeft() > 0) {
+            drawLine(leftX, bottomY, leftX, topY, borders.getBorderWidthLeft(), borders.getBorderColorLeft());
+        }
+        if (borders.getBorderWidthRight() > 0) {
+            drawLine(rightX, bottomY, rightX, topY, borders.getBorderWidthRight(), borders.getBorderColorRight());
+        }
+    }
+
+    private void drawLine(float x1, float y1, float x2, float y2, float width, String colorStr) throws IOException {
+        Color color = Color.BLACK;
+        if (StringUtils.isNotEmpty(colorStr)) {
+            try {
+                color = DocModelUtils.parseHtmlColor(colorStr);
+            } catch (Exception e) {
+                log.debug("Failed to parse border color: {}", colorStr);
+            }
+        }
+        contentStream.setStrokingColor(color);
+        contentStream.setLineWidth(width);
+        contentStream.moveTo(x1, y1);
+        contentStream.lineTo(x2, y2);
+        contentStream.stroke();
     }
 
     private void renderRow(DocRow row, float[] cellWidths, boolean isHeader, DocTable parentTable) throws IOException {
@@ -921,13 +1125,7 @@ public class PdfBoxDocumentRenderer {
         float rowStartY = currentY;
         renderRowBackgrounds(cellDataList, rowStartY, rowHeight, parentTable);
         renderRowCells(cellDataList, rowStartY);
-
-        // Draw bottom row line
-        contentStream.setStrokingColor(Color.LIGHT_GRAY);
-        contentStream.setLineWidth(0.5f);
-        contentStream.moveTo(this.marginLeft, rowStartY - rowHeight + 2);
-        contentStream.lineTo(this.pageWidth - this.marginRight, rowStartY - rowHeight + 2);
-        contentStream.stroke();
+        renderRowBorders(cellDataList, rowStartY, rowHeight);
 
         currentY -= (rowHeight + 2f);
     }
