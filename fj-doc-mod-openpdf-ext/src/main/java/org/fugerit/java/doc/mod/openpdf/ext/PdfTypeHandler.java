@@ -10,6 +10,9 @@ import org.fugerit.java.doc.base.config.DocOutput;
 import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.base.config.DocTypeHandlerDefault;
 import org.fugerit.java.doc.base.model.DocBase;
+import org.fugerit.java.doc.base.model.DocElement;
+import org.fugerit.java.doc.base.model.DocHeaderFooter;
+import org.fugerit.java.doc.base.model.DocPara;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.DocumentMetaHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPDFConfigHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
@@ -32,6 +35,25 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 		super( DocConfig.TYPE_PDF, OpenPpfDocHandler.MODULE );
 	}
 
+	private static boolean checkTotalPageNeeded( DocBase docBase ) {
+		return checkContainerHasTotalPage( docBase.getDocFooter() )
+				|| checkContainerHasTotalPage( docBase.getDocHeader() );
+	}
+
+	private static boolean checkContainerHasTotalPage( DocHeaderFooter container ) {
+		if ( container != null && container.getElementList() != null ) {
+			for ( DocElement el : container.getElementList() ) {
+				if ( el instanceof DocPara ) {
+					String text = ((DocPara) el).getText();
+					if ( text != null && (text.contains( "${pageCount}" ) || text.contains( "${totalPage}" )) ) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
 		DocBase docBase = docInput.getDoc();
@@ -47,7 +69,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 		PdfWriter pdfWriter = PdfWriter.getInstance( document, baos );
 		// create doc handler
 		OpenPpfDocHandler handler = new OpenPpfDocHandler( document, pdfWriter );
-		if ( "true".equalsIgnoreCase( docBase.getInfo().getProperty( "set-total-page" ) ) ) {
+		if ( "true".equalsIgnoreCase( docBase.getInfo().getProperty( "set-total-page" ) ) || checkTotalPageNeeded( docBase ) ) {
 			handler.handleDoc( docBase );
 			int totalPageCount = pdfWriter.getCurrentPageNumber()-1;
 			document = new Document( PageSize.A4, Integer.parseInt( margins[0] ),

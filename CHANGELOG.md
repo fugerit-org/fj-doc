@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- test - add realistic invoice test case across fj-doc-mod-fop, fj-doc-mod-openpdf-ext, and fj-doc-mod-pdfbox for rendering benchmark <https://github.com/fugerit-org/fj-doc/issues/684>
+
+### Fixed
+
+- fj-doc-freemarker - support inline SVG images in AsciiDoc template (`ascidoc-element.ftl`) <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-freemarker - improve HTML template (`html_element.ftl`) rendering for `nbsp` length, image alignment state reset, table/cell colors, cell `valign`, cell-level `header="true"`, and phrase `white-space-collapse="false"` <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-openpdf-ext - improve handler support for bookmarks, background images, list types and nested list elements, paragraph/phrase nested elements and styling, local destinations, and full-coverage tests <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-openpdf-ext - fix paragraph leading multiplier, table header handling, nested tables in cells, and font size fallback <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-pdfbox - improve handler support for metadata, bookmarks, margins/orientation, background images, headings, font encodability fallback, nested phrase/paragraph elements, table column widths/colspan/colors, lists, header/footer elements and placeholders, and full-coverage tests <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-pdfbox - fix header and footer dynamic extents and borders, background image scaling, alignment constants, paragraph leading/spacing, and uniform row height <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-fop - support container elements in cells, fix basic-link duplicate attributes, and add full-coverage test <https://github.com/fugerit-org/fj-doc/issues/684>
+- fj-doc-mod-fop - escape XML special characters in XMP metadata declarations in template (`fop_doc.ftl`) <https://github.com/fugerit-org/fj-doc/issues/684>
+
 ## [8.18.6] - 2026-10-31
 
 ### Fixed

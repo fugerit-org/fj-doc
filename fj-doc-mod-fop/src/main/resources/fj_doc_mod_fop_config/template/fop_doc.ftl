@@ -41,13 +41,13 @@
 		    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
 		      <rdf:Description rdf:about=""
 		          xmlns:dc="http://purl.org/dc/elements/1.1/">
-		        <#if (docBase.infoDocTitle)??><dc:title><rdf:Alt><rdf:li xml:lang="x-default">${docBase.infoDocTitle}</rdf:li></rdf:Alt></dc:title></#if>
-		        <#if (docBase.infoDocAuthor)??><dc:creator><rdf:Seq><rdf:li>${docBase.infoDocAuthor}</rdf:li></rdf:Seq></dc:creator></#if>
-		        <#if (docBase.infoDocSubject)??><dc:description>${docBase.infoDocSubject}</dc:description></#if>
-		        <#if (docBase.infoDocLanguage)??><dc:language><rdf:Bag><rdf:li>${docBase.infoDocLanguage}</rdf:li></rdf:Bag></dc:language></#if>
+		        <#if (docBase.infoDocTitle)??><dc:title><rdf:Alt><rdf:li xml:lang="x-default">${docBase.infoDocTitle?xml}</rdf:li></rdf:Alt></dc:title></#if>
+		        <#if (docBase.infoDocAuthor)??><dc:creator><rdf:Seq><rdf:li>${docBase.infoDocAuthor?xml}</rdf:li></rdf:Seq></dc:creator></#if>
+		        <#if (docBase.infoDocSubject)??><dc:description>${docBase.infoDocSubject?xml}</dc:description></#if>
+		        <#if (docBase.infoDocLanguage)??><dc:language><rdf:Bag><rdf:li>${docBase.infoDocLanguage?xml}</rdf:li></rdf:Bag></dc:language></#if>
 		      </rdf:Description>
 		      <rdf:Description rdf:about="" xmlns:xmp="http://ns.adobe.com/xap/1.0/">
-		      	<xmp:CreatorTool><#if (docBase.infoDocCreator)??>${docBase.infoDocCreator}<#else>Apache FOP over Fugerit Venus DOC</#if></xmp:CreatorTool>
+		      	<xmp:CreatorTool><#if (docBase.infoDocCreator)??>${docBase.infoDocCreator?xml}<#else>Apache FOP over Fugerit Venus DOC</#if></xmp:CreatorTool>
 		      </rdf:Description>
 		    </rdf:RDF>
 		  </x:xmpmeta>

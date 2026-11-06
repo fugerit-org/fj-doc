@@ -3,13 +3,17 @@ package org.fugerit.java.doc.mod.openpdf.ext.helpers;
 import java.util.Iterator;
 
 import org.fugerit.java.core.cfg.ConfigRuntimeException;
+import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.doc.base.model.DocBackground;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocFooter;
 import org.fugerit.java.doc.base.model.DocHeader;
+import org.fugerit.java.doc.base.model.DocImage;
 import org.fugerit.java.doc.base.model.DocPara;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
+import com.lowagie.text.Image;
 import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
@@ -23,12 +27,13 @@ import com.lowagie.text.pdf.PdfWriter;
  * @author fugerit79
  *
  */
-public class PdfHelper  extends PdfPageEventHelper {
+public class PdfHelper extends PdfPageEventHelper {
 	
 	public PdfHelper( OpenPdfHelper docHelper ) {
 		this.docHelper = docHelper;
 		this.docHeader = null;
 		this.docFooter = null;
+		this.docBackground = null;
 	}
 	
 	protected BaseFont baseFont;
@@ -43,11 +48,26 @@ public class PdfHelper  extends PdfPageEventHelper {
 	private DocHeader docHeader;
 	
 	private DocFooter docFooter;
+
+	private DocBackground docBackground;
     
 	@Override
     public void onStartPage(PdfWriter writer, Document document) {
     	this.currentPageNumber = writer.getPageNumber();
     	this.docHelper.getParams().setProperty( OpenPpfDocHandler.PARAM_PAGE_CURRENT , String.valueOf( writer.getPageNumber() ) );
+		if ( this.getDocBackground() != null ) {
+			Iterator<DocElement> itBg = this.getDocBackground().docElements();
+			while ( itBg.hasNext() ) {
+				DocElement bgElement = itBg.next();
+				if ( bgElement instanceof DocImage ) {
+					Image img = OpenPpfDocHandler.createImage( (DocImage) bgElement );
+					if ( img != null ) {
+						img.setAbsolutePosition( 0, 0 );
+						SafeFunction.apply( () -> writer.getDirectContentUnder().addImage( img ) );
+					}
+				}
+			}
+		}
 		if ( this.getDocHeader() != null ) {
 			OpenPpfDocHandler.handleElementsSafe( document, this.getDocHeader().docElements(), docHelper );
 		}
@@ -130,6 +150,14 @@ public class PdfHelper  extends PdfPageEventHelper {
 
 	public void setDocFooter(DocFooter docFooter) {
 		this.docFooter = docFooter;
+	}
+
+	public DocBackground getDocBackground() {
+		return docBackground;
+	}
+
+	public void setDocBackground(DocBackground docBackground) {
+		this.docBackground = docBackground;
 	}
 
 	public int getPageNumberAlignment() {

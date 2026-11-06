@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns="http://javacoredoc.fugerit.org"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd">
+    <metadata>
+        <info name="margins">15;15;15;20</info>
+        <info name="doc-title">Invoice INV-2026-0685</info>
+        <info name="doc-subject">Cloud Architecture &amp; Quarkus Migration Services</info>
+        <info name="doc-author">Fugerit Org</info>
+        <info name="doc-language">en</info>
+        <info name="table-check-integrity">fail</info>
+        <info name="default-cell-border-width">0</info>
+        <footer-ext>
+            <para align="right" size="8">Page ${currentPage} / ${pageCount}</para>
+        </footer-ext>
+    </metadata>
+    <body>
+        <h head-level="1" align="left" size="16" style="bold">INVOICE #INV-2026-0685</h>
+        <para size="10" style="italic">Issue Date: 2026-11-06 | Due Date: 2026-12-06</para>
+
+        <table columns="2" colwidths="50;50" width="100" padding="2" id="parties-table">
+            <row>
+                <cell>
+                    <para style="bold" size="11">From:</para>
+                    <para format="preserve-line" size="10">Acme Cloud Integration Ltd.
+Via Roma 100, 00100 Rome, Italy
+VAT: IT01234567890</para>
+                </cell>
+                <cell>
+                    <para style="bold" size="11">Bill To:</para>
+                    <para format="preserve-line" size="10">Enterprise Corp S.p.A.
+Piazza Duomo 1, 20121 Milan, Italy
+Project Ref: PRJ-QUARKUS-25</para>
+                </cell>
+            </row>
+        </table>
+
+        <h head-level="2" size="13" style="bold">Service Breakdown</h>
+
+        <table columns="4" colwidths="45;15;20;20" width="100" padding="3" id="items-table">
+            <row header="true">
+                <cell align="left" border-color="#000000" border-width="1"><para style="bold">Description</para></cell>
+                <cell align="center" border-color="#000000" border-width="1"><para style="bold">Days</para></cell>
+                <cell align="right" border-color="#000000" border-width="1"><para style="bold">Rate (EUR)</para></cell>
+                <cell align="right" border-color="#000000" border-width="1"><para style="bold">Total (EUR)</para></cell>
+            </row>
+            <row>
+                <cell align="left"><para>Quarkus 3 Microservices Migration &amp; GraalVM AOT tuning</para></cell>
+                <cell align="center"><para>10</para></cell>
+                <cell align="right"><para>650.00</para></cell>
+                <cell align="right"><para>6,500.00</para></cell>
+            </row>
+            <row>
+                <cell align="left"><para>Oracle DB &amp; Redis caching layer integration</para></cell>
+                <cell align="center"><para>5</para></cell>
+                <cell align="right"><para>600.00</para></cell>
+                <cell align="right"><para>3,000.00</para></cell>
+            </row>
+            <row>
+                <cell align="left"><para>Venus Doc PDF engine benchmark (FOP / OpenPDF / PDFBox)</para></cell>
+                <cell align="center"><para>3</para></cell>
+                <cell align="right"><para>550.00</para></cell>
+                <cell align="right"><para>1,650.00</para></cell>
+            </row>
+            <row>
+                <cell align="right" border-color="#000000" border-width="1"><para style="bold">Subtotal</para></cell>
+                <cell align="center" border-color="#000000" border-width="1"><para>18</para></cell>
+                <cell align="right" border-color="#000000" border-width="1"><para>-</para></cell>
+                <cell align="right" border-color="#000000" border-width="1"><para style="bold">11,150.00</para></cell>
+            </row>
+        </table>
+
+        <para size="9" align="left">
+            <phrase style="bold">Payment Terms: </phrase>
+            <phrase>Bank transfer within 30 days. IBAN: IT60X0542811101000000123456.</phrase>
+        </para>
+    </body>
+</doc>

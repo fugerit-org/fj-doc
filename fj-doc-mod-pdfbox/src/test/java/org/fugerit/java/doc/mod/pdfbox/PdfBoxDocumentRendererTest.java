@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class PdfBoxDocumentRendererTest {
@@ -782,6 +783,23 @@ class PdfBoxDocumentRendererTest {
             body.addElement(table);
             docBase.setDocBody(body);
             assertDoesNotThrow(() -> renderer.renderDocument(docBase));
+        }
+    }
+
+    @Test
+    void testFontManagerStyles() throws Exception {
+        try (PDDocument document = new PDDocument()) {
+            FontManager fm = new FontManager(new PdfBoxConfig(), document);
+            org.apache.pdfbox.pdmodel.font.PDFont boldFont = fm.getFont(DocPara.STYLE_BOLD, null);
+            Assertions.assertTrue(boldFont.getName().contains("Bold"), "Expected Bold font, got: " + boldFont.getName());
+
+            org.apache.pdfbox.pdmodel.font.PDFont italicFont = fm.getFont(DocPara.STYLE_ITALIC, null);
+            Assertions.assertTrue(italicFont.getName().contains("Oblique") || italicFont.getName().contains("Italic"),
+                    "Expected Italic font, got: " + italicFont.getName());
+
+            org.apache.pdfbox.pdmodel.font.PDFont normalFont = fm.getFont(DocPara.STYLE_NORMAL, null);
+            Assertions.assertFalse(normalFont.getName().contains("Bold"));
+            Assertions.assertFalse(normalFont.getName().contains("Oblique"));
         }
     }
 }

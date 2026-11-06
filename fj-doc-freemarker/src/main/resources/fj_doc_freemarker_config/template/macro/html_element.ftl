@@ -12,7 +12,7 @@
 	<#if elementType = 'DocPhrase'>
 		<@handlePhrase current=current/>
 	<#elseif elementType = 'DocNbsp'>
-		&nbsp;
+		<#list 1..(current.length!1) as i>&nbsp;</#list>
 	<#elseif elementType = 'DocBr'>
 		<br/>		
 	<#elseif elementType = 'DocPara'>
@@ -60,6 +60,7 @@
 		<#else>
 			<#assign imageScaling=""/>
 		</#if>
+		<#assign imageAlign=""/>
 		<#if (docImage.align)??>
 			<#if docImage.align = 2>
 				<#assign imageAlign="style='display: block; margin-left: auto; margin-right: auto;'"/>
@@ -85,12 +86,12 @@
 <#macro handleRowList docTable rowList cellType>
 	<#list rowList as row>	
 		<tr<@handleId element=row/>>
-			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign>
-				<${cellType}<@handleIdDef element=cell defId=defCellId/> style="<#if (cell.backColor??)> background: ${cell.backColor};</#if> width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleBorders docBorders=cell.docBorders/><@addCssValue name='padding' value=docTable.padding def=0 unit='px'/><@addCssValue name='margin' value=docTable.spacing def=0 unit='px'/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>>
+			<#list row.elementList as cell><#assign defCellId>cell_${row?index}_${cell?index}</#assign><#if cell.header><#assign actualCellType='th'/><#else><#assign actualCellType=cellType/></#if>
+				<${actualCellType}<@handleIdDef element=cell defId=defCellId/> style="<#if (cell.backColor??)> background: ${cell.backColor};</#if><#if (cell.foreColor??)> color: ${cell.foreColor};</#if> width: ${docTable.colWithds[cell?index]}%;<@handleAlign alignValue=cell.align/><@handleValign valignValue=cell.valign/><@handleBorders docBorders=cell.docBorders/><@addCssValue name='padding' value=docTable.padding def=0 unit='px'/><@addCssValue name='margin' value=docTable.spacing def=0 unit='px'/>"<@handleColspan colspanValue=cell.columnSpan/><@handleRowspan rowspanValue=cell.rowSpan/>>
 					<#list cell.elementList as cellElement>
 					<@handleElement current=cellElement/>
 					</#list>
-				</${cellType}>
+				</${actualCellType}>
 			</#list>
 		</tr>				
 	</#list>
@@ -115,7 +116,7 @@
 			<@handleRowInline docTable=docTable row=row docTableUtil=docTableUtil/>	
 		</#list>
 	<#else>	
-		<table <@handleId element=docTable/> style='<@handleTableSpacing dc=docTable/> width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
+		<table <@handleId element=docTable/> style='<@handleTableSpacing dc=docTable/><#if (docTable.backColor??)> background-color: ${docTable.backColor};</#if><#if (docTable.foreColor??)> color: ${docTable.foreColor};</#if> width: ${docTable.width}%'<#if (docTable.alt)??> aria-describedby="${docTable.alt}"</#if>>
 			<#if (docTableUtil.strictHeader)>
 				<thead>
 				<@handleRowList docTable=docTable rowList=docTableUtil.headerRows cellType='th'/>
@@ -164,11 +165,13 @@ white-space-collapse -> false : white-space-collapse: preserve; white-space: pre
 
 <#macro handleAlign alignValue><#if alignValue = 1> text-align: left;<#elseif alignValue = 2> text-align: center;<#elseif alignValue = 3> text-align: right;<#elseif alignValue = 8 || alignValue = 9> text-align: justify;</#if></#macro>
 
+<#macro handleValign valignValue><#if valignValue = 4> vertical-align: top;<#elseif valignValue = 5> vertical-align: middle;<#elseif valignValue = 6> vertical-align: bottom;</#if></#macro>
+
 <#macro handleFont element> <#if (element.fontName??)> font-family: '${element.fontName}'; </#if><#if (element.size)?? && (element.size != -1)> font-size: '${element.size}'; </#if><#if (element.backColor??)> background-color: ${element.backColor}; </#if><#if (element.foreColor??)> color: ${element.foreColor}; </#if></#macro>
 
 <#macro handleStyle styleValue><#if styleValue = 2> font-weight: bold;<#elseif styleValue = 3> text-decoration: underline;<#elseif styleValue = 4> font-style: italic;<#elseif styleValue = 5> font-weight: bold; font-style: italic;</#if></#macro>
 
-<#macro handleStyleOnly element><#if (element.className??)> class="${element.className}" </#if><#assign cStyle><@handleStyle styleValue=element.style/> <@handleFont element=element/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
+<#macro handleStyleOnly element><#if (element.className??)> class="${element.className}" </#if><#assign cStyle><@handleStyle styleValue=element.style/> <@handleFont element=element/><#if (element.whiteSpaceCollapse??) && (element.whiteSpaceCollapse == 'false')> white-space-collapse: preserve; white-space: pre-wrap;</#if></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 
 <#macro handleStyleComplete element styleValue alignValue dc><#if (element.className??)> class="${element.className}" </#if><#assign cStyle><@handleFont element=element/> <@handleStyle styleValue=styleValue/></#assign><#assign cStyle>${cStyle} <@handleAlign alignValue=alignValue/></#assign><#assign cStyle>${cStyle} <@handleSpacing dc=dc/></#assign><@handleStylePrint cStyle=cStyle/></#macro>
 

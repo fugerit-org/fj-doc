@@ -6,6 +6,7 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
+import org.fugerit.java.doc.base.model.DocPara;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,12 +20,15 @@ public class FontManager {
     private final PDDocument document;
     private final Map<String, PDFont> fontCache;
 
-    // Font style constants from DocPara
-    public static final int STYLE_NORMAL = 0;
-    public static final int STYLE_BOLD = 1;
-    public static final int STYLE_ITALIC = 2;
-    public static final int STYLE_BOLDITALIC = 3;
-    public static final int STYLE_UNDERLINE = 4;
+    // Font style constants matching DocPara / EnumDocStyle (1=normal, 2=bold, 3=underline, 4=italic, 5=bolditalic)
+    public static final int STYLE_NORMAL = 1;
+    public static final int STYLE_BOLD = 2;
+    public static final int STYLE_UNDERLINE = 3;
+    public static final int STYLE_ITALIC = 4;
+    public static final int STYLE_BOLDITALIC = 5;
+    public static final int STYLE_UNSET = -1;
+
+    public static final float DEFAULT_FONT_SIZE = 10f;
 
     public FontManager(PdfBoxConfig config, PDDocument document) {
         this.config = config;
@@ -191,8 +195,12 @@ public class FontManager {
     }
 
     public float getFontSize(int style) {
-        // Default font size - can be made configurable
-        log.debug("Get font size [{}]", style);
-        return 12f;
+        log.trace("Get font size [{}]", style);
+        return DEFAULT_FONT_SIZE;
+    }
+
+    public float getFontSize(int style, int size) {
+        log.trace( "size : {}, style is currently ignored : {}", size, style );
+        return size > 0 ? (float) size : DEFAULT_FONT_SIZE;
     }
 }
