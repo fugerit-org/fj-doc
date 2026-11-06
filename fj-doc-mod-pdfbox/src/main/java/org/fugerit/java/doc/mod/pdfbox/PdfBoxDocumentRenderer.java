@@ -414,6 +414,57 @@ public class PdfBoxDocumentRenderer {
         return sb.toString();
     }
 
+    private float calculateLineHeight(Number leading, float fontSize) {
+        float lineHeight = Math.max(LINE_HEIGHT, fontSize * 1.25f);
+        if (leading != null) {
+            if (leading.floatValue() <= 4f) {
+                lineHeight = fontSize * leading.floatValue();
+            } else {
+                lineHeight = leading.floatValue();
+            }
+        }
+        return lineHeight;
+    }
+
+    private float calculateSpaceBefore(DocPara para) {
+        if (para.getSpaceBefore() != null) {
+            return para.getSpaceBefore().floatValue();
+        }
+        switch (para.getHeadLevel()) {
+            case 1: return 14f;
+            case 2: return 10f;
+            case 3: return 8f;
+            default: return para.getHeadLevel() > 3 ? 6f : 0f;
+        }
+    }
+
+    private float calculateSpaceAfter(DocPara para, float defaultSpacing) {
+        if (para.getSpaceAfter() != null) {
+            return para.getSpaceAfter().floatValue();
+        }
+        switch (para.getHeadLevel()) {
+            case 1: return 8f;
+            case 2: return 6f;
+            default: return para.getHeadLevel() > 2 ? 4f : defaultSpacing;
+        }
+    }
+
+    private float calculateParaFontSize(DocPara para, int styleCode) {
+        if (para.getSize() > 0) {
+            return fontManager.getFontSize(styleCode, para.getSize());
+        }
+        switch (para.getHeadLevel()) {
+            case 1: return 18f;
+            case 2: return 14f;
+            case 3: return 12f;
+            case 4: return 11f;
+            case 5:
+            case 6:
+            case 7: return 10f;
+            default: return fontManager.getFontSize(styleCode, para.getSize());
+        }
+    }
+
     private void renderStandalonePhrase(DocPhrase phrase) throws IOException {
         String text = extractText(phrase);
         if (StringUtils.isEmpty(text)) {
@@ -424,14 +475,7 @@ public class PdfBoxDocumentRenderer {
 
         PDFont font = getEncodableFont(phrase.getStyle(), phrase.getFontName(), text);
         float fontSize = fontManager.getFontSize(phrase.getStyle(), phrase.getSize());
-        float lineHeight = Math.max(LINE_HEIGHT, fontSize * 1.25f);
-        if (phrase.getLeading() != null) {
-            if (phrase.getLeading().floatValue() <= 4f) {
-                lineHeight = fontSize * phrase.getLeading().floatValue();
-            } else {
-                lineHeight = phrase.getLeading().floatValue();
-            }
-        }
+        float lineHeight = calculateLineHeight(phrase.getLeading(), fontSize);
         renderText(text, font, fontSize, ALIGN_LEFT, phrase.getForeColor(), phrase.getBackColor(), lineHeight);
         currentY -= lineHeight * 0.25f;
     }
@@ -442,61 +486,19 @@ public class PdfBoxDocumentRenderer {
             return;
         }
 
-        if (para.getSpaceBefore() != null) {
-            currentY -= para.getSpaceBefore().floatValue();
-        } else if (para.getHeadLevel() == 1) {
-            currentY -= 14f;
-        } else if (para.getHeadLevel() == 2) {
-            currentY -= 10f;
-        } else if (para.getHeadLevel() == 3) {
-            currentY -= 8f;
-        } else if (para.getHeadLevel() > 3) {
-            currentY -= 6f;
-        }
+        currentY -= calculateSpaceBefore(para);
 
         checkNewPage();
         registerDestination(para.getId());
 
         int styleCode = para.getStyle();
         PDFont font = getEncodableFont(styleCode, para.getFontName(), text);
-        float fontSize;
-        if (para.getSize() > 0) {
-            fontSize = fontManager.getFontSize(styleCode, para.getSize());
-        } else if (para.getHeadLevel() > 0) {
-            switch (para.getHeadLevel()) {
-                case 1: fontSize = 18f; break;
-                case 2: fontSize = 14f; break;
-                case 3: fontSize = 12f; break;
-                case 4: fontSize = 11f; break;
-                default: fontSize = 10f; break;
-            }
-        } else {
-            fontSize = fontManager.getFontSize(styleCode, para.getSize());
-        }
+        float fontSize = calculateParaFontSize(para, styleCode);
+        float lineHeight = calculateLineHeight(para.getLeading(), fontSize);
 
-        float lineHeight = Math.max(LINE_HEIGHT, fontSize * 1.25f);
-        if (para.getLeading() != null) {
-            if (para.getLeading().floatValue() <= 4f) {
-                lineHeight = fontSize * para.getLeading().floatValue();
-            } else {
-                lineHeight = para.getLeading().floatValue();
-            }
-        }
+        renderText(text, font, fontSize, para.getAlign(), para.getForeColor(), para.getBackColor(), lineHeight);
 
-        int align = para.getAlign();
-        renderText(text, font, fontSize, align, para.getForeColor(), para.getBackColor(), lineHeight);
-
-        if (para.getSpaceAfter() != null) {
-            currentY -= para.getSpaceAfter().floatValue();
-        } else if (para.getHeadLevel() == 1) {
-            currentY -= 8f;
-        } else if (para.getHeadLevel() == 2) {
-            currentY -= 6f;
-        } else if (para.getHeadLevel() > 2) {
-            currentY -= 4f;
-        } else {
-            currentY -= lineHeight * 0.25f;
-        }
+        currentY -= calculateSpaceAfter(para, lineHeight * 0.25f);
     }
 
     private void renderText(String text, PDFont font, float fontSize, int align, String foreColor, String backColor, float lineHeight) throws IOException {
@@ -504,18 +506,20 @@ public class PdfBoxDocumentRenderer {
             return;
         }
 
-        if (!canEncode(font, text)) {
-            font = getEncodableFont(FontManager.STYLE_NORMAL, null, text);
+        PDFont realFont = font;
+
+        if (!canEncode(realFont, text)) {
+            realFont = getEncodableFont(FontManager.STYLE_NORMAL, null, text);
         }
 
         float availableWidth = this.pageWidth - this.marginLeft - this.marginRight;
-        List<String> lines = wrapText(text, font, fontSize, availableWidth);
+        List<String> lines = wrapText(text, realFont, fontSize, availableWidth);
 
         for (String line : lines) {
             checkNewPage();
 
-            float textWidth = calculateTextWidth(line, font, fontSize);
-            float xPos = calculateXPosition(line, font, fontSize, align);
+            float textWidth = calculateTextWidth(line, realFont, fontSize);
+            float xPos = calculateXPosition(line, realFont, fontSize, align);
 
             if (StringUtils.isNotEmpty(backColor)) {
                 SafeFunction.applySilent(() -> {
@@ -535,21 +539,17 @@ public class PdfBoxDocumentRenderer {
                 contentStream.setNonStrokingColor(Color.BLACK);
             }
 
-            if (!canEncode(font, line)) {
-                line = sanitizeTextForFont(font, line);
+            if (!canEncode(realFont, line)) {
+                line = sanitizeTextForFont(realFont, line);
             }
 
             contentStream.beginText();
-            contentStream.setFont(font, fontSize);
+            contentStream.setFont(realFont, fontSize);
             contentStream.newLineAtOffset(xPos, currentY);
             contentStream.showText(line);
             contentStream.endText();
             currentY -= lineHeight;
         }
-    }
-
-    private void renderText(String text, PDFont font, float fontSize, int align) throws IOException {
-        renderText(text, font, fontSize, align, null, null, Math.max(LINE_HEIGHT, fontSize * 1.25f));
     }
 
     private float calculateXPosition(String text, PDFont font, float fontSize, int align) throws IOException {
@@ -720,6 +720,171 @@ public class PdfBoxDocumentRenderer {
         return maxCols > 0 ? maxCols : 1;
     }
 
+    private static class CellRenderData {
+        private DocCell cell;
+        private float width;
+        private PDImageXObject image;
+        private float imageHeight;
+        private List<String> lines = Collections.emptyList();
+        private PDFont font;
+        private float fontSize;
+    }
+
+    private float calculateCellWidth(DocElement cellElement, int colIdx, float[] cellWidths) {
+        int colspan = (cellElement instanceof DocCell)
+                ? Math.max(1, ((DocCell) cellElement).getColumnSpan())
+                : 1;
+        float cWidth = 0;
+        for (int s = 0; s < colspan && (colIdx + s) < cellWidths.length; s++) {
+            cWidth += cellWidths[colIdx + s];
+        }
+        if (cWidth <= 0) {
+            cWidth = cellWidths[0] * colspan;
+        }
+        return cWidth;
+    }
+
+    private PDImageXObject prepareCellImage(DocCell cell, float cWidth, float[] outImgHeight) {
+        DocImage docImg = findFirstImage(cell);
+        if (docImg == null) {
+            return null;
+        }
+        PDImageXObject pdImg = createPDImage(docImg);
+        if (pdImg != null) {
+            float scale = docImg.getScaling() != null ? docImg.getScaling().floatValue() / 100f : 1.0f;
+            float w = pdImg.getWidth() * scale;
+            float imgH = pdImg.getHeight() * scale;
+            if (w > cWidth - 6) {
+                float r = (cWidth - 6) / w;
+                imgH = imgH * r;
+            }
+            outImgHeight[0] = imgH;
+            return pdImg;
+        }
+        return null;
+    }
+
+    private CellRenderData prepareCell(DocElement cellElement, float cWidth, boolean isHeader, DocRow row) throws IOException {
+        CellRenderData data = new CellRenderData();
+        data.width = cWidth;
+        if (cellElement instanceof DocCell) {
+            DocCell cell = (DocCell) cellElement;
+            data.cell = cell;
+            registerDestination(cell.getId());
+
+            float[] imgH = new float[1];
+            data.image = prepareCellImage(cell, cWidth, imgH);
+            data.imageHeight = imgH[0];
+
+            String cellText = extractText(cell);
+            boolean bold = isHeader || cell.isHeader() || row.isHeader();
+            data.font = getEncodableFont(bold ? FontManager.STYLE_BOLD : FontManager.STYLE_NORMAL, null, cellText);
+            data.fontSize = fontManager.getFontSize(0);
+
+            if (cellText != null && !cellText.isEmpty()) {
+                data.lines = wrapText(cellText, data.font, data.fontSize, cWidth - 6);
+            }
+        } else {
+            data.font = fontManager.getFont(0, null);
+            data.fontSize = 10f;
+        }
+        return data;
+    }
+
+    private float calculateCellHeight(CellRenderData data) {
+        float cellH = 0f;
+        if (data.image != null) {
+            cellH += data.imageHeight + 4f;
+        }
+        if (!data.lines.isEmpty()) {
+            cellH += data.lines.size() * LINE_HEIGHT + 4f;
+        } else if (data.image == null) {
+            cellH = LINE_HEIGHT + 4f;
+        }
+        return cellH;
+    }
+
+    private void renderRowBackgrounds(List<CellRenderData> cellDataList, float rowStartY, float rowHeight, DocTable parentTable) {
+        float cellX = this.marginLeft;
+        for (CellRenderData data : cellDataList) {
+            if (data.cell != null) {
+                DocCell cell = data.cell;
+                String backColor = StringUtils.isNotEmpty(cell.getBackColor())
+                        ? cell.getBackColor()
+                        : (parentTable != null ? parentTable.getBackColor() : null);
+
+                if (StringUtils.isNotEmpty(backColor)) {
+                    final float finalCellX = cellX;
+                    final float finalCWidth = data.width;
+                    final float finalRowStartY = rowStartY;
+                    final float finalRowHeight = rowHeight;
+                    SafeFunction.applySilent(() -> {
+                        Color bg = DocModelUtils.parseHtmlColor(backColor);
+                        contentStream.setNonStrokingColor(bg);
+                        contentStream.addRect(finalCellX, finalRowStartY - finalRowHeight + 2, finalCWidth, finalRowHeight);
+                        contentStream.fill();
+                    });
+                }
+            }
+            cellX += data.width;
+        }
+    }
+
+    private void renderCellImage(PDImageXObject pdImg, float imgH, float cellX, float currCellY, float cWidth) throws IOException {
+        float drawW = pdImg.getWidth();
+        float drawH = imgH;
+        if (drawW > cWidth - 6) {
+            drawW = cWidth - 6;
+        }
+        contentStream.drawImage(pdImg, cellX + 3, currCellY - drawH, drawW, drawH);
+    }
+
+    private void renderCellLines(CellRenderData data, float cellX, float startY) throws IOException {
+        if (data.lines.isEmpty()) {
+            return;
+        }
+        contentStream.setNonStrokingColor(Color.BLACK);
+        float cellY = startY;
+        for (String line : data.lines) {
+            if (!canEncode(data.font, line)) {
+                line = sanitizeTextForFont(data.font, line);
+            }
+            float textWidth = calculateTextWidth(line, data.font, data.fontSize);
+            float lineX = cellX + 3;
+            if (data.cell.getAlign() == DocPara.ALIGN_CENTER) {
+                lineX = cellX + (data.width - textWidth) / 2;
+            } else if (data.cell.getAlign() == DocPara.ALIGN_RIGHT) {
+                lineX = cellX + data.width - textWidth - 3;
+            }
+            contentStream.beginText();
+            contentStream.setFont(data.font, data.fontSize);
+            contentStream.newLineAtOffset(lineX, cellY - data.fontSize);
+            contentStream.showText(line);
+            contentStream.endText();
+            cellY -= LINE_HEIGHT;
+        }
+    }
+
+    private void renderCellContent(CellRenderData data, float cellX, float rowStartY) throws IOException {
+        if (data.cell == null) {
+            return;
+        }
+        float currCellY = rowStartY - 2;
+        if (data.image != null) {
+            renderCellImage(data.image, data.imageHeight, cellX, currCellY, data.width);
+            currCellY -= data.imageHeight + 2f;
+        }
+        renderCellLines(data, cellX, currCellY);
+    }
+
+    private void renderRowCells(List<CellRenderData> cellDataList, float rowStartY) throws IOException {
+        float cellX = this.marginLeft;
+        for (CellRenderData data : cellDataList) {
+            renderCellContent(data, cellX, rowStartY);
+            cellX += data.width;
+        }
+    }
+
     private void renderRow(DocRow row, float[] cellWidths, boolean isHeader, DocTable parentTable) throws IOException {
         registerDestination(row.getId());
 
@@ -733,169 +898,29 @@ public class PdfBoxDocumentRenderer {
         }
 
         int colIdx = 0;
-        float[] cWidths = new float[cells.size()];
-        List<List<String>> allCellLines = new ArrayList<>();
-        List<PDImageXObject> cellImages = new ArrayList<>();
-        List<Float> cellImageHeights = new ArrayList<>();
-        List<PDFont> cellFonts = new ArrayList<>();
-        List<Float> cellFontSizes = new ArrayList<>();
-
         float maxCellHeight = LINE_HEIGHT;
+        List<CellRenderData> cellDataList = new ArrayList<>(cells.size());
 
-        for (int i = 0; i < cells.size(); i++) {
-            DocElement cellElement = cells.get(i);
-            int colspan = 1;
-            if (cellElement instanceof DocCell) {
-                colspan = Math.max(1, ((DocCell) cellElement).getColumnSpan());
-            }
-            float cWidth = 0;
-            for (int s = 0; s < colspan && (colIdx + s) < cellWidths.length; s++) {
-                cWidth += cellWidths[colIdx + s];
-            }
-            if (cWidth <= 0) {
-                cWidth = cellWidths[0] * colspan;
-            }
-            cWidths[i] = cWidth;
+        for (DocElement cellElement : cells) {
+            float cWidth = calculateCellWidth(cellElement, colIdx, cellWidths);
+            int colspan = (cellElement instanceof DocCell)
+                    ? Math.max(1, ((DocCell) cellElement).getColumnSpan())
+                    : 1;
             colIdx += colspan;
 
-            if (cellElement instanceof DocCell) {
-                DocCell cell = (DocCell) cellElement;
-                registerDestination(cell.getId());
-
-                DocImage docImg = findFirstImage(cell);
-                PDImageXObject pdImg = null;
-                float imgH = 0f;
-                if (docImg != null) {
-                    pdImg = createPDImage(docImg);
-                    if (pdImg != null) {
-                        float scale = docImg.getScaling() != null ? docImg.getScaling().floatValue() / 100f : 1.0f;
-                        float w = pdImg.getWidth() * scale;
-                        imgH = pdImg.getHeight() * scale;
-                        if (w > cWidth - 6) {
-                            float r = (cWidth - 6) / w;
-                            imgH = imgH * r;
-                        }
-                    }
-                }
-                cellImages.add(pdImg);
-                cellImageHeights.add(imgH);
-
-                String cellText = extractText(cell);
-                boolean bold = isHeader || cell.isHeader() || row.isHeader();
-                PDFont font = getEncodableFont(bold ? FontManager.STYLE_BOLD : FontManager.STYLE_NORMAL, null, cellText);
-                float fontSize = fontManager.getFontSize(0);
-                cellFonts.add(font);
-                cellFontSizes.add(fontSize);
-
-                List<String> lines = new ArrayList<>();
-                if (cellText != null && !cellText.isEmpty()) {
-                    lines = wrapText(cellText, font, fontSize, cWidth - 6);
-                }
-                allCellLines.add(lines);
-
-                float cellH = 0f;
-                if (pdImg != null) {
-                    cellH += imgH + 4f;
-                }
-                if (!lines.isEmpty()) {
-                    cellH += lines.size() * LINE_HEIGHT + 4f;
-                } else if (pdImg == null) {
-                    cellH = LINE_HEIGHT + 4f;
-                }
-                maxCellHeight = Math.max(maxCellHeight, cellH);
-            } else {
-                allCellLines.add(Collections.emptyList());
-                cellImages.add(null);
-                cellImageHeights.add(0f);
-                cellFonts.add(fontManager.getFont(0, null));
-                cellFontSizes.add(10f);
-            }
+            CellRenderData data = prepareCell(cellElement, cWidth, isHeader, row);
+            cellDataList.add(data);
+            maxCellHeight = Math.max(maxCellHeight, calculateCellHeight(data));
         }
 
         float rowHeight = maxCellHeight;
-
         if (currentY - rowHeight < getContentBottom()) {
             createNewPage();
         }
 
-        float cellX = this.marginLeft;
         float rowStartY = currentY;
-
-        // Pass 2: draw cell backgrounds
-        for (int i = 0; i < cells.size(); i++) {
-            DocElement cellElement = cells.get(i);
-            float cWidth = cWidths[i];
-            if (cellElement instanceof DocCell) {
-                DocCell cell = (DocCell) cellElement;
-                String backColor = StringUtils.isNotEmpty(cell.getBackColor())
-                        ? cell.getBackColor()
-                        : (parentTable != null ? parentTable.getBackColor() : null);
-
-                if (StringUtils.isNotEmpty(backColor)) {
-                    final float finalCellX = cellX;
-                    final float finalCWidth = cWidth;
-                    final float finalRowStartY = rowStartY;
-                    final float finalRowHeight = rowHeight;
-                    SafeFunction.applySilent(() -> {
-                        Color bg = DocModelUtils.parseHtmlColor(backColor);
-                        contentStream.setNonStrokingColor(bg);
-                        contentStream.addRect(finalCellX, finalRowStartY - finalRowHeight + 2, finalCWidth, finalRowHeight);
-                        contentStream.fill();
-                    });
-                }
-            }
-            cellX += cWidth;
-        }
-
-        // Pass 3: draw cell contents
-        cellX = this.marginLeft;
-        for (int i = 0; i < cells.size(); i++) {
-            DocElement cellElement = cells.get(i);
-            float cWidth = cWidths[i];
-            if (cellElement instanceof DocCell) {
-                DocCell cell = (DocCell) cellElement;
-                PDImageXObject pdImg = cellImages.get(i);
-                float imgH = cellImageHeights.get(i);
-                List<String> lines = allCellLines.get(i);
-                PDFont font = cellFonts.get(i);
-                float fontSize = cellFontSizes.get(i);
-
-                float currCellY = rowStartY - 2;
-
-                if (pdImg != null) {
-                    float drawW = pdImg.getWidth();
-                    float drawH = imgH;
-                    if (drawW > cWidth - 6) {
-                        drawW = cWidth - 6;
-                    }
-                    contentStream.drawImage(pdImg, cellX + 3, currCellY - drawH, drawW, drawH);
-                    currCellY -= drawH + 2f;
-                }
-
-                if (lines != null && !lines.isEmpty()) {
-                    contentStream.setNonStrokingColor(Color.BLACK);
-                    for (String line : lines) {
-                        if (!canEncode(font, line)) {
-                            line = sanitizeTextForFont(font, line);
-                        }
-                        float textWidth = calculateTextWidth(line, font, fontSize);
-                        float lineX = cellX + 3;
-                        if (cell.getAlign() == DocPara.ALIGN_CENTER) {
-                            lineX = cellX + (cWidth - textWidth) / 2;
-                        } else if (cell.getAlign() == DocPara.ALIGN_RIGHT) {
-                            lineX = cellX + cWidth - textWidth - 3;
-                        }
-                        contentStream.beginText();
-                        contentStream.setFont(font, fontSize);
-                        contentStream.newLineAtOffset(lineX, currCellY - fontSize);
-                        contentStream.showText(line);
-                        contentStream.endText();
-                        currCellY -= LINE_HEIGHT;
-                    }
-                }
-            }
-            cellX += cWidth;
-        }
+        renderRowBackgrounds(cellDataList, rowStartY, rowHeight, parentTable);
+        renderRowCells(cellDataList, rowStartY);
 
         // Draw bottom row line
         contentStream.setStrokingColor(Color.LIGHT_GRAY);

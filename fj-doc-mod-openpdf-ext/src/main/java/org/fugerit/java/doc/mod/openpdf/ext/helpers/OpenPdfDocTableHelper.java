@@ -144,7 +144,7 @@ public class OpenPdfDocTableHelper {
 		return fontList;
 	}
 	
-	private static boolean handleCell( Table table, DocRow docRow, DocCell docCell, boolean isHeaderCell, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+	private static boolean handleCell( Table table, DocCell docCell, boolean isHeaderCell, DocTable docTable, OpenPdfHelper docHelper ) throws DocumentException, IOException {
 		OpenPpfDocHandler.setStyle( docTable, docCell );
 		Cell cell = new Cell();
 		if ( isHeaderCell ) {
@@ -211,14 +211,14 @@ public class OpenPdfDocTableHelper {
 			for ( DocElement hRow : tableUtil.getHeaderRows() ) {
 				DocRow docRow = (DocRow) hRow;
 				for ( DocElement c : docRow.getElementList() ) {
-					handleCell( table, docRow, (DocCell) c, true, docTable, docHelper );
+					handleCell( table, (DocCell) c, true, docTable, docHelper );
 				}
 			}
 			table.endHeaders();
 			for ( DocElement dRow : tableUtil.getDataRows() ) {
 				DocRow docRow = (DocRow) dRow;
 				for ( DocElement c : docRow.getElementList() ) {
-					handleCell( table, docRow, (DocCell) c, false, docTable, docHelper );
+					handleCell( table, (DocCell) c, false, docTable, docHelper );
 				}
 			}
 		} else {
@@ -226,7 +226,7 @@ public class OpenPdfDocTableHelper {
 				if ( rowElem instanceof DocRow ) {
 					DocRow docRow = (DocRow) rowElem;
 					for ( DocElement c : docRow.getElementList() ) {
-						handleCell( table, docRow, (DocCell) c, false, docTable, docHelper );
+						handleCell( table, (DocCell) c, false, docTable, docHelper );
 					}
 				}
 			}
