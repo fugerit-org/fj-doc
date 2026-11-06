@@ -9,6 +9,7 @@
         <info name="doc-author">Fugerit Org</info>
         <info name="doc-language">en</info>
         <info name="table-check-integrity">fail</info>
+        <info name="default-cell-border-width">0</info>
         <footer-ext>
             <para align="right" size="8">Page ${currentPage} / ${pageCount}</para>
         </footer-ext>
