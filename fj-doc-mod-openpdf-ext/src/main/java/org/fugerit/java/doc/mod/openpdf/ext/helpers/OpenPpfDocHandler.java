@@ -186,21 +186,7 @@ public class OpenPpfDocHandler {
 		return createPara(docPara, docHelper, null);
 	}
 	
-	protected static Paragraph createPara( DocPara docPara, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {
-		int style = docPara.getStyle();
-		String text = createText( docHelper.getParams(), docPara.getText() );
-		String fontName = docPara.getFontName();
-		Font f = createFont(fontName, docPara.getSize(), style, docHelper, docPara.getForeColor() );
-		if ( docPara.getForeColor() != null ) {
-			Color c = DocModelUtils.parseHtmlColor( docPara.getForeColor() );
-			f = new Font( f.getFamily(), f.getSize(), f.getStyle(), c );
-		}
-		Chunk mainChunk = new Chunk( text, f );
-		if ( docPara.getBackColor() != null ) {
-			mainChunk.setBackground( DocModelUtils.parseHtmlColor( docPara.getBackColor() ) );
-		}
-		Phrase phrase = new Phrase( mainChunk );
-		Paragraph p = new Paragraph( phrase );
+	private static void appendParaChildren( Paragraph p, DocPara docPara, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {
 		for ( DocElement child : docPara.getElementList() ) {
 			if ( child instanceof DocPhrase ) {
 				DocPhrase childPhrase = (DocPhrase) child;
@@ -212,15 +198,18 @@ public class OpenPpfDocHandler {
 				p.add( createPara( childPara, docHelper, fontMap ) );
 			}
 		}
-		registerLocalDestination( p, docPara.getId() );
+	}
+
+	private static void applyParaSpacing( Paragraph p, DocPara docPara ) {
 		if ( docPara.getAlign() != DocPara.ALIGN_UNSET ) {
 			p.setAlignment( getAlign( docPara.getAlign() ) );
 		}
 		if ( docPara.getLeading() != null ) {
-			if ( docPara.getLeading().floatValue() <= 4f ) {
-				p.setLeading( 0f, docPara.getLeading().floatValue() );
+			float leadingVal = docPara.getLeading().floatValue();
+			if ( leadingVal <= 4f ) {
+				p.setLeading( 0f, leadingVal );
 			} else {
-				p.setLeading( docPara.getLeading().floatValue() );
+				p.setLeading( leadingVal );
 			}
 		}
 		if ( docPara.getSpaceBefore() != null ) {
@@ -238,6 +227,26 @@ public class OpenPpfDocHandler {
 		if ( docPara.getTextIndent() != null ) {
 			p.setFirstLineIndent( docPara.getTextIndent().floatValue() );
 		}
+	}
+
+	protected static Paragraph createPara( DocPara docPara, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {
+		int style = docPara.getStyle();
+		String text = createText( docHelper.getParams(), docPara.getText() );
+		String fontName = docPara.getFontName();
+		Font f = createFont(fontName, docPara.getSize(), style, docHelper, docPara.getForeColor() );
+		if ( docPara.getForeColor() != null ) {
+			Color c = DocModelUtils.parseHtmlColor( docPara.getForeColor() );
+			f = new Font( f.getFamily(), f.getSize(), f.getStyle(), c );
+		}
+		Chunk mainChunk = new Chunk( text, f );
+		if ( docPara.getBackColor() != null ) {
+			mainChunk.setBackground( DocModelUtils.parseHtmlColor( docPara.getBackColor() ) );
+		}
+		Phrase phrase = new Phrase( mainChunk );
+		Paragraph p = new Paragraph( phrase );
+		appendParaChildren( p, docPara, docHelper, fontMap );
+		registerLocalDestination( p, docPara.getId() );
+		applyParaSpacing( p, docPara );
 		p.setFont( f );
 		phrase.setFont( f );
 		if ( fontMap != null ) {
@@ -245,14 +254,16 @@ public class OpenPpfDocHandler {
 		}
 		return p;
 	}
-	
+
 	protected static void registerLocalDestination( Element element, String id ) {
 		if ( StringUtils.isNotEmpty( id ) && element != null ) {
-			for ( Object obj : element.getChunks() ) {
-				Chunk ck = (Chunk) obj;
-				if ( !ck.isEmpty() && ( ck.getChunkAttributes() == null || !ck.getChunkAttributes().containsKey( Chunk.LOCALDESTINATION ) ) ) {
-					ck.setLocalDestination( id );
-					break;
+			for ( Element el : element.getChunks() ) {
+				if ( el instanceof Chunk ) {
+					Chunk ck = (Chunk) el;
+					if ( !ck.isEmpty() && ( ck.getChunkAttributes() == null || !ck.getChunkAttributes().containsKey( Chunk.LOCALDESTINATION ) ) ) {
+						ck.setLocalDestination( id );
+						break;
+					}
 				}
 			}
 		}

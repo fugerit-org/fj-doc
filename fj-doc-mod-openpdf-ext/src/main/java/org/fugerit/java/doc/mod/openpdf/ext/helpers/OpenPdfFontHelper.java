@@ -38,45 +38,38 @@ public class OpenPdfFontHelper {
 		}
 		return style;
 	}
+
+	private static int resolveStandardFont( String fontName ) {
+		if ( "helvetica".equalsIgnoreCase( fontName ) ) {
+			return Font.HELVETICA;
+		} else if ( "courier".equalsIgnoreCase( fontName ) ) {
+			return Font.COURIER;
+		} else if ( "times-roman".equalsIgnoreCase( fontName ) ) {
+			return Font.TIMES_ROMAN;
+		} else if ( "symbol".equalsIgnoreCase( fontName ) ) {
+			return Font.SYMBOL;
+		}
+		return -1;
+	}
+
+	private static BaseFont resolveCustomFont( String fontName, String fontPath ) throws DocumentException, IOException {
+		BaseFont bf = OpenPpfDocHandler.findFont( fontName );
+		if ( bf == null ) {
+			bf = OpenPpfDocHandler.registerFont( fontName, fontPath );
+		}
+		return bf;
+	}
 	
 	public static Font createFont( String inputFontName, String fontPath, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
-		String fontName = inputFontName;
-		Font font = null;
-		int size = fontSize;
-		int style = Font.NORMAL;
-		BaseFont bf = null;
-		int bfV = -1;
-		if ( size <= 0 ) {
-			size = docHelper.getDefFontSize() != null ? Integer.parseInt( docHelper.getDefFontSize() ) : 10;
-		}
-		style = handleFontStyle(style, fontStyle);
-		if ( fontName == null ) {
-			fontName = docHelper.getDefFontName() != null ? docHelper.getDefFontName() : "helvetica";
-		}
-		if ( "helvetica".equalsIgnoreCase( fontName ) ) {
-			bfV = Font.HELVETICA;
-		} else if ( "courier".equalsIgnoreCase( fontName ) ) {
-			bfV = Font.COURIER;
-		} else if ( "times-roman".equalsIgnoreCase( fontName ) ) {
-			bfV = Font.TIMES_ROMAN;
-		} else if ( "symbol".equalsIgnoreCase( fontName ) ) {
-			bfV = Font.SYMBOL;
-		} else {
-			bf = OpenPpfDocHandler.findFont( fontName );
-			if ( bf == null) {
-				bf = OpenPpfDocHandler.registerFont( fontName , fontPath );
-			}
-		}
-		Color c = Color.BLACK;
-		if ( color != null ) {
-			c = DocModelUtils.parseHtmlColor( color );
-		}
-		if ( bfV == -1 ) {
-			font = new Font( bf, size, style, c );	
-		} else {
-			font = new Font( bfV, size, style, c );
-		}
-		return font;
+		int size = fontSize <= 0 
+				? (docHelper.getDefFontSize() != null ? Integer.parseInt( docHelper.getDefFontSize() ) : 10) 
+				: fontSize;
+		int style = handleFontStyle( Font.NORMAL, fontStyle );
+		String fontName = inputFontName != null ? inputFontName : (docHelper.getDefFontName() != null ? docHelper.getDefFontName() : "helvetica");
+		int bfV = resolveStandardFont( fontName );
+		BaseFont bf = (bfV == -1) ? resolveCustomFont( fontName, fontPath ) : null;
+		Color c = color != null ? DocModelUtils.parseHtmlColor( color ) : Color.BLACK;
+		return (bfV == -1) ? new Font( bf, size, style, c ) : new Font( bfV, size, style, c );
 	}
 	
 }
