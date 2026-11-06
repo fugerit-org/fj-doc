@@ -14,6 +14,7 @@ import org.apache.pdfbox.pdmodel.interactive.documentnavigation.destination.PDPa
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDDocumentOutline;
 import org.apache.pdfbox.pdmodel.interactive.documentnavigation.outline.PDOutlineItem;
 import org.fugerit.java.core.function.SafeFunction;
+import org.fugerit.java.core.lang.helpers.BooleanUtils;
 import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.helper.SourceResolverHelper;
 import org.fugerit.java.doc.base.model.*;
@@ -56,6 +57,10 @@ public class PdfBoxDocumentRenderer {
     private float headerExtent = 0f;
     private float footerExtent = 0f;
 
+    public static final String INFO_KEY_PDFBOX_DEFAULT_TABLE_BEHAVIOUR = "pdfbox-default-table-behaviour";
+
+    private boolean pdfboxDefaultTableBehaviour = false;
+
     // Alignment constants matching DocPara / EnumDocAlignH
     public static final int ALIGN_LEFT = DocPara.ALIGN_LEFT;
     public static final int ALIGN_CENTER = DocPara.ALIGN_CENTER;
@@ -74,6 +79,10 @@ public class PdfBoxDocumentRenderer {
 
     private void setupPageGeometry(DocBase docBase) {
         Properties info = docBase.getInfo();
+        this.pdfboxDefaultTableBehaviour = false;
+        if (info != null) {
+            this.pdfboxDefaultTableBehaviour = BooleanUtils.isTrue(info.getProperty(INFO_KEY_PDFBOX_DEFAULT_TABLE_BEHAVIOUR, "false"));
+        }
         String marginsProp = info.getProperty("margins");
         if (StringUtils.isNotEmpty(marginsProp)) {
             String[] split = marginsProp.split(";");
@@ -1059,18 +1068,32 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void renderCellBorders(DocBorders borders, float leftX, float rightX, float topY, float bottomY) throws IOException {
-        if (borders.getBorderWidthTop() > 0) {
-            drawLine(leftX, topY, rightX, topY, borders.getBorderWidthTop(), borders.getBorderColorTop());
+        float wTop = resolveBorderWidth(borders.getBorderWidthTop());
+        if (wTop > 0) {
+            drawLine(leftX, topY, rightX, topY, wTop, borders.getBorderColorTop());
         }
-        if (borders.getBorderWidthBottom() > 0) {
-            drawLine(leftX, bottomY, rightX, bottomY, borders.getBorderWidthBottom(), borders.getBorderColorBottom());
+        float wBottom = resolveBorderWidth(borders.getBorderWidthBottom());
+        if (wBottom > 0) {
+            drawLine(leftX, bottomY, rightX, bottomY, wBottom, borders.getBorderColorBottom());
         }
-        if (borders.getBorderWidthLeft() > 0) {
-            drawLine(leftX, bottomY, leftX, topY, borders.getBorderWidthLeft(), borders.getBorderColorLeft());
+        float wLeft = resolveBorderWidth(borders.getBorderWidthLeft());
+        if (wLeft > 0) {
+            drawLine(leftX, bottomY, leftX, topY, wLeft, borders.getBorderColorLeft());
         }
-        if (borders.getBorderWidthRight() > 0) {
-            drawLine(rightX, bottomY, rightX, topY, borders.getBorderWidthRight(), borders.getBorderColorRight());
+        float wRight = resolveBorderWidth(borders.getBorderWidthRight());
+        if (wRight > 0) {
+            drawLine(rightX, bottomY, rightX, topY, wRight, borders.getBorderColorRight());
         }
+    }
+
+    private float resolveBorderWidth(int width) {
+        if (this.pdfboxDefaultTableBehaviour) {
+            return width > 0 ? (float) width : 0f;
+        }
+        if (width == 0) {
+            return 0f;
+        }
+        return width > 0 ? (float) width : 1.0f;
     }
 
     private void drawLine(float x1, float y1, float x2, float y2, float width, String colorStr) throws IOException {

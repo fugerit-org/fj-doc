@@ -42,4 +42,19 @@ class TestRealisticInvoicePdfBox {
             Assertions.assertTrue(pdfText.contains("Page 1 / 1"));
         }
     }
+    @Test
+    void testPdfBoxRealisticInvoiceCustomBehaviour() throws Exception {
+        PdfBoxTypeHandler handler = new PdfBoxTypeHandler();
+        String inputXml = "xml/" + REALISTIC_INVOICE + ".xml";
+        String xmlContent = org.fugerit.java.core.io.StreamIO.readString(ClassHelper.loadFromDefaultClassLoader(inputXml));
+        xmlContent = xmlContent.replace("<info name=\"table-check-integrity\">fail</info>",
+                "<info name=\"table-check-integrity\">fail</info>\n        <info name=\"pdfbox-default-table-behaviour\">true</info>");
+        File customFile = new File("target", REALISTIC_INVOICE + "-pdfbox-custom.pdf");
+        try (java.io.StringReader reader = new java.io.StringReader(xmlContent);
+             OutputStream os = Files.newOutputStream(customFile.toPath())) {
+            handler.handle(DocInput.newInput(handler.getType(), reader), DocOutput.newOutput(os));
+        }
+        Assertions.assertTrue(customFile.exists());
+        Assertions.assertTrue(customFile.length() > 0);
+    }
 }
