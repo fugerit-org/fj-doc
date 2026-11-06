@@ -195,11 +195,12 @@ public class FontManager {
     }
 
     public float getFontSize(int style) {
-        log.debug("Get font size [{}]", style);
+        log.trace("Get font size [{}]", style);
         return DEFAULT_FONT_SIZE;
     }
 
     public float getFontSize(int style, int size) {
+        log.trace( "size : {}, style is currently ignored : {}", size, style );
         return size > 0 ? (float) size : DEFAULT_FONT_SIZE;
     }
 }

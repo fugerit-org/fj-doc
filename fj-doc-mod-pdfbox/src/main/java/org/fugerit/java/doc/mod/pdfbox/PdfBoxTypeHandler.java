@@ -43,7 +43,7 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
     }
 
     private static String getPdfBoxVersion() {
-        return StringUtils.valueWithDefault(MavenProps.getProperty("org.apache.pdfbox", "pdfbox", MavenProps.VERSION), "3.x");
+        return StringUtils.valueWithDefault(MavenProps.getProperty("org.apache.pdfbox", MODULE, MavenProps.VERSION), "3.x");
     }
 
     private static final String PRODUCER_OVER = "PDFBox";

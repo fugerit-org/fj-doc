@@ -59,17 +59,35 @@ public class OpenPdfFontHelper {
 		}
 		return bf;
 	}
+
+	private static int resolveFontSize( int fontSize, OpenPdfHelper docHelper ) {
+		if ( fontSize > 0 ) {
+			return fontSize;
+		}
+		if ( docHelper.getDefFontSize() != null ) {
+			return Integer.parseInt( docHelper.getDefFontSize() );
+		}
+		return 10;
+	}
+
+	private static String resolveFontName( String inputFontName, OpenPdfHelper docHelper ) {
+		if ( inputFontName != null ) {
+			return inputFontName;
+		}
+		if ( docHelper.getDefFontName() != null ) {
+			return docHelper.getDefFontName();
+		}
+		return "helvetica";
+	}
 	
 	public static Font createFont( String inputFontName, String fontPath, int fontSize, int fontStyle, OpenPdfHelper docHelper, String color ) throws DocumentException, IOException {
-		int size = fontSize <= 0 
-				? (docHelper.getDefFontSize() != null ? Integer.parseInt( docHelper.getDefFontSize() ) : 10) 
-				: fontSize;
+		int size = resolveFontSize( fontSize, docHelper );
 		int style = handleFontStyle( Font.NORMAL, fontStyle );
-		String fontName = inputFontName != null ? inputFontName : (docHelper.getDefFontName() != null ? docHelper.getDefFontName() : "helvetica");
+		String fontName = resolveFontName( inputFontName, docHelper );
 		int bfV = resolveStandardFont( fontName );
 		BaseFont bf = (bfV == -1) ? resolveCustomFont( fontName, fontPath ) : null;
 		Color c = color != null ? DocModelUtils.parseHtmlColor( color ) : Color.BLACK;
-		return (bfV == -1) ? new Font( bf, size, style, c ) : new Font( bfV, size, style, c );
+		return (bfV == -1) ? new Font( bf, (float) size, style, c ) : new Font( bfV, (float) size, style, c );
 	}
 	
 }
