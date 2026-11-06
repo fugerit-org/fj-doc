@@ -103,33 +103,23 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void computeHeaderFooterExtents() {
-        if (headerContainer != null && headerContainer.getElementList() != null && !headerContainer.getElementList().isEmpty()) {
-            float baseExtent = 0f;
-            if (headerContainer instanceof DocHeaderFooter) {
-                int exp = ((DocHeaderFooter) headerContainer).getExpectedSize();
-                if (exp > 0) {
-                    baseExtent = exp * 72f / 25.4f;
-                }
-            }
-            float estimated = estimateContainerHeight(headerContainer);
-            this.headerExtent = Math.max(Math.max(baseExtent, estimated), 25f);
-        } else {
-            this.headerExtent = 0f;
-        }
+        this.headerExtent = computeContainerExtent(headerContainer);
+        this.footerExtent = computeContainerExtent(footerContainer);
+    }
 
-        if (footerContainer != null && footerContainer.getElementList() != null && !footerContainer.getElementList().isEmpty()) {
+    private float computeContainerExtent(DocContainer container) {
+        if (container != null && container.getElementList() != null && !container.getElementList().isEmpty()) {
             float baseExtent = 0f;
-            if (footerContainer instanceof DocHeaderFooter) {
-                int exp = ((DocHeaderFooter) footerContainer).getExpectedSize();
+            if (container instanceof DocHeaderFooter) {
+                int exp = ((DocHeaderFooter) container).getExpectedSize();
                 if (exp > 0) {
-                    baseExtent = exp * 72f / 25.4f;
+                    baseExtent = (float) exp * 72f / 25.4f;
                 }
             }
-            float estimated = estimateContainerHeight(footerContainer);
-            this.footerExtent = Math.max(Math.max(baseExtent, estimated), 25f);
-        } else {
-            this.footerExtent = 0f;
+            float estimated = estimateContainerHeight(container);
+            return Math.max(Math.max(baseExtent, estimated), 25f);
         }
+        return 0f;
     }
 
     private float estimateContainerHeight(DocContainer container) {
@@ -205,20 +195,22 @@ public class PdfBoxDocumentRenderer {
             DocElement first = bg.getElementList().get(0);
             if (first instanceof DocImage) {
                 DocImage bgImage = (DocImage) first;
-                SafeFunction.applySilent(() -> {
-                    PDImageXObject pdImg = createPDImage(bgImage);
-                    if (pdImg != null) {
-                        float scale = bgImage.getScaling() != null ? bgImage.getScaling().floatValue() / 100f : 1.0f;
-                        float imgWidth = pdImg.getWidth() * scale;
-                        float imgHeight = pdImg.getHeight() * scale;
-                        for (PDPage page : pages) {
-                            try (PDPageContentStream cs = new PDPageContentStream(
-                                    document, page, PDPageContentStream.AppendMode.PREPEND, true, true)) {
-                                cs.drawImage(pdImg, 0, 0, imgWidth, imgHeight);
-                            }
-                        }
-                    }
-                });
+                SafeFunction.applySilent(() -> renderBackgroundImage(bgImage));
+            }
+        }
+    }
+
+    private void renderBackgroundImage(DocImage bgImage) throws IOException {
+        PDImageXObject pdImg = createPDImage(bgImage);
+        if (pdImg != null) {
+            float scale = bgImage.getScaling() != null ? bgImage.getScaling().floatValue() / 100f : 1.0f;
+            float imgWidth = pdImg.getWidth() * scale;
+            float imgHeight = pdImg.getHeight() * scale;
+            for (PDPage page : pages) {
+                try (PDPageContentStream cs = new PDPageContentStream(
+                        document, page, PDPageContentStream.AppendMode.PREPEND, true, true)) {
+                    cs.drawImage(pdImg, 0, 0, imgWidth, imgHeight);
+                }
             }
         }
     }
@@ -1188,19 +1180,12 @@ public class PdfBoxDocumentRenderer {
         }
     }
 
-    private void renderHeaderFooterContent(PDPageContentStream stream, DocContainer container,
-                                           boolean isHeader, int currentPage, int totalPages) throws IOException {
-        List<DocElement> elements = container.getElementList();
-        if (elements == null) {
-            return;
-        }
-
-        // Draw border if requested
+    private void drawHeaderFooterBorder(PDPageContentStream stream, DocContainer container, boolean isHeader) throws IOException {
         if (container instanceof DocHeaderFooter) {
             int borderWidth = ((DocHeaderFooter) container).getBorderWidth();
             if (borderWidth > 0) {
                 stream.setStrokingColor(Color.LIGHT_GRAY);
-                stream.setLineWidth(borderWidth);
+                stream.setLineWidth((float) borderWidth);
                 float lineY = isHeader
                         ? (this.pageHeight - this.marginTop - this.headerExtent)
                         : (this.marginBottom + this.footerExtent);
@@ -1209,6 +1194,153 @@ public class PdfBoxDocumentRenderer {
                 stream.stroke();
             }
         }
+    }
+
+    private float renderHeaderFooterPara(PDPageContentStream stream, DocPara para, float yPosition,
+                                         PDFont font, float fontSize, int currentPage, int totalPages) throws IOException {
+        String text = extractText(para);
+        if (text != null && !text.isEmpty()) {
+            text = replacePlaceholders(text, currentPage, totalPages);
+            int align = para.getAlign();
+            float xPos = calculateXPosition(text, font, fontSize, align);
+            if (!canEncode(font, text)) {
+                text = sanitizeTextForFont(font, text);
+            }
+            stream.setNonStrokingColor(Color.BLACK);
+            stream.beginText();
+            stream.setFont(font, fontSize);
+            stream.newLineAtOffset(xPos, yPosition);
+            stream.showText(text);
+            stream.endText();
+            return yPosition - 12f;
+        }
+        return yPosition;
+    }
+
+    private float renderHeaderFooterPhrase(PDPageContentStream stream, DocPhrase phrase, float yPosition,
+                                           PDFont font, float fontSize, int currentPage, int totalPages) throws IOException {
+        String text = extractText(phrase);
+        if (text != null && !text.isEmpty()) {
+            text = replacePlaceholders(text, currentPage, totalPages);
+            float xPos = this.marginLeft;
+            if (!canEncode(font, text)) {
+                text = sanitizeTextForFont(font, text);
+            }
+            stream.setNonStrokingColor(Color.BLACK);
+            stream.beginText();
+            stream.setFont(font, fontSize);
+            stream.newLineAtOffset(xPos, yPosition);
+            stream.showText(text);
+            stream.endText();
+            return yPosition - 12f;
+        }
+        return yPosition;
+    }
+
+    private float renderHeaderFooterImage(PDPageContentStream stream, DocImage docImg, float yPosition) throws IOException {
+        PDImageXObject pdImg = createPDImage(docImg);
+        if (pdImg != null) {
+            float scale = docImg.getScaling() != null ? docImg.getScaling().floatValue() / 100f : 1.0f;
+            float imgWidth = pdImg.getWidth() * scale;
+            float imgHeight = pdImg.getHeight() * scale;
+            float availableWidth = this.pageWidth - this.marginLeft - this.marginRight;
+            if (imgWidth > availableWidth) {
+                float ratio = availableWidth / imgWidth;
+                imgWidth = availableWidth;
+                imgHeight = imgHeight * ratio;
+            }
+            float xPos = this.marginLeft;
+            if (docImg.getAlign() == DocPara.ALIGN_CENTER) {
+                xPos = this.marginLeft + (availableWidth - imgWidth) / 2f;
+            } else if (docImg.getAlign() == DocPara.ALIGN_RIGHT) {
+                xPos = this.pageWidth - this.marginRight - imgWidth;
+            }
+            stream.drawImage(pdImg, xPos, yPosition - imgHeight, imgWidth, imgHeight);
+            return yPosition - imgHeight - 4f;
+        }
+        return yPosition;
+    }
+
+    private void renderHeaderFooterCell(PDPageContentStream stream, DocCell cell, float cellX, float cWidth,
+                                        float yPosition, PDFont font, float fontSize, int currentPage, int totalPages) throws IOException {
+        String text = extractText(cell);
+        if (text != null && !text.isEmpty()) {
+            text = replacePlaceholders(text, currentPage, totalPages);
+            int align = cell.getAlign();
+            float textWidth = calculateTextWidth(text, font, fontSize);
+            float xPos = cellX;
+            if (align == DocPara.ALIGN_CENTER) {
+                xPos = cellX + (cWidth - textWidth) / 2;
+            } else if (align == DocPara.ALIGN_RIGHT) {
+                xPos = cellX + cWidth - textWidth;
+            }
+            if (!canEncode(font, text)) {
+                text = sanitizeTextForFont(font, text);
+            }
+            stream.setNonStrokingColor(Color.BLACK);
+            stream.beginText();
+            stream.setFont(font, fontSize);
+            stream.newLineAtOffset(xPos, yPosition);
+            stream.showText(text);
+            stream.endText();
+        }
+    }
+
+    private float renderHeaderFooterRow(PDPageContentStream stream, DocRow row, float yPosition,
+                                        float[] colWidths, float tableWidth, PDFont font, float fontSize,
+                                        int currentPage, int totalPages) throws IOException {
+        float cellX = this.marginLeft;
+        if (row.getElementList() != null) {
+            for (int c = 0; c < row.getElementList().size(); c++) {
+                DocElement cElem = row.getElementList().get(c);
+                float cWidth = (c < colWidths.length) ? colWidths[c] : (tableWidth / row.getElementList().size());
+                if (cElem instanceof DocCell) {
+                    renderHeaderFooterCell(stream, (DocCell) cElem, cellX, cWidth, yPosition, font, fontSize, currentPage, totalPages);
+                }
+                cellX += cWidth;
+            }
+        }
+        return yPosition - 12f;
+    }
+
+    private float renderHeaderFooterTable(PDPageContentStream stream, DocTable table, float yPosition,
+                                          PDFont font, float fontSize, int currentPage, int totalPages) throws IOException {
+        float tableWidth = this.pageWidth - this.marginLeft - this.marginRight;
+        int colCount = table.getColumns() > 0 ? table.getColumns() : 2;
+        float[] colWidths = calculateColWidths(table, colCount, tableWidth);
+        float currentYPos = yPosition;
+        if (table.getElementList() != null) {
+            for (DocElement rowElem : table.getElementList()) {
+                if (rowElem instanceof DocRow) {
+                    currentYPos = renderHeaderFooterRow(stream, (DocRow) rowElem, currentYPos, colWidths, tableWidth, font, fontSize, currentPage, totalPages);
+                }
+            }
+        }
+        return currentYPos;
+    }
+
+    private float renderHeaderFooterElement(PDPageContentStream stream, DocElement element, float yPosition,
+                                            PDFont font, float fontSize, int currentPage, int totalPages) throws IOException {
+        if (element instanceof DocPara) {
+            return renderHeaderFooterPara(stream, (DocPara) element, yPosition, font, fontSize, currentPage, totalPages);
+        } else if (element instanceof DocPhrase) {
+            return renderHeaderFooterPhrase(stream, (DocPhrase) element, yPosition, font, fontSize, currentPage, totalPages);
+        } else if (element instanceof DocImage) {
+            return renderHeaderFooterImage(stream, (DocImage) element, yPosition);
+        } else if (element instanceof DocTable) {
+            return renderHeaderFooterTable(stream, (DocTable) element, yPosition, font, fontSize, currentPage, totalPages);
+        }
+        return yPosition;
+    }
+
+    private void renderHeaderFooterContent(PDPageContentStream stream, DocContainer container,
+                                           boolean isHeader, int currentPage, int totalPages) throws IOException {
+        List<DocElement> elements = container.getElementList();
+        if (elements == null) {
+            return;
+        }
+
+        drawHeaderFooterBorder(stream, container, isHeader);
 
         float yPosition = isHeader
                 ? (this.pageHeight - this.marginTop - 10f)
@@ -1217,114 +1349,7 @@ public class PdfBoxDocumentRenderer {
         float fontSize = 9f;
 
         for (DocElement element : elements) {
-            if (element instanceof DocPara) {
-                DocPara para = (DocPara) element;
-                String text = extractText(para);
-
-                if (text != null && !text.isEmpty()) {
-                    text = replacePlaceholders(text, currentPage, totalPages);
-
-                    int align = para.getAlign();
-                    float xPos = calculateXPosition(text, font, fontSize, align);
-
-                    if (!canEncode(font, text)) {
-                        text = sanitizeTextForFont(font, text);
-                    }
-
-                    stream.setNonStrokingColor(Color.BLACK);
-                    stream.beginText();
-                    stream.setFont(font, fontSize);
-                    stream.newLineAtOffset(xPos, yPosition);
-                    stream.showText(text);
-                    stream.endText();
-
-                    yPosition -= 12f;
-                }
-            } else if (element instanceof DocPhrase) {
-                DocPhrase phrase = (DocPhrase) element;
-                String text = extractText(phrase);
-                if (text != null && !text.isEmpty()) {
-                    text = replacePlaceholders(text, currentPage, totalPages);
-                    float xPos = this.marginLeft;
-                    if (!canEncode(font, text)) {
-                        text = sanitizeTextForFont(font, text);
-                    }
-                    stream.setNonStrokingColor(Color.BLACK);
-                    stream.beginText();
-                    stream.setFont(font, fontSize);
-                    stream.newLineAtOffset(xPos, yPosition);
-                    stream.showText(text);
-                    stream.endText();
-                    yPosition -= 12f;
-                }
-            } else if (element instanceof DocImage) {
-                DocImage docImg = (DocImage) element;
-                PDImageXObject pdImg = createPDImage(docImg);
-                if (pdImg != null) {
-                    float scale = docImg.getScaling() != null ? docImg.getScaling().floatValue() / 100f : 1.0f;
-                    float imgWidth = pdImg.getWidth() * scale;
-                    float imgHeight = pdImg.getHeight() * scale;
-                    float availableWidth = this.pageWidth - this.marginLeft - this.marginRight;
-                    if (imgWidth > availableWidth) {
-                        float ratio = availableWidth / imgWidth;
-                        imgWidth = availableWidth;
-                        imgHeight = imgHeight * ratio;
-                    }
-                    float xPos = this.marginLeft;
-                    if (docImg.getAlign() == DocPara.ALIGN_CENTER) {
-                        xPos = this.marginLeft + (availableWidth - imgWidth) / 2f;
-                    } else if (docImg.getAlign() == DocPara.ALIGN_RIGHT) {
-                        xPos = this.pageWidth - this.marginRight - imgWidth;
-                    }
-                    stream.drawImage(pdImg, xPos, yPosition - imgHeight, imgWidth, imgHeight);
-                    yPosition -= imgHeight + 4f;
-                }
-            } else if (element instanceof DocTable) {
-                DocTable table = (DocTable) element;
-                float tableWidth = this.pageWidth - this.marginLeft - this.marginRight;
-                int colCount = table.getColumns() > 0 ? table.getColumns() : 2;
-                float[] colWidths = calculateColWidths(table, colCount, tableWidth);
-                if (table.getElementList() != null) {
-                    for (DocElement rowElem : table.getElementList()) {
-                        if (rowElem instanceof DocRow) {
-                            DocRow row = (DocRow) rowElem;
-                            float cellX = this.marginLeft;
-                            if (row.getElementList() != null) {
-                                for (int c = 0; c < row.getElementList().size(); c++) {
-                                    DocElement cElem = row.getElementList().get(c);
-                                    float cWidth = (c < colWidths.length) ? colWidths[c] : (tableWidth / row.getElementList().size());
-                                    if (cElem instanceof DocCell) {
-                                        DocCell cell = (DocCell) cElem;
-                                        String text = extractText(cell);
-                                        if (text != null && !text.isEmpty()) {
-                                            text = replacePlaceholders(text, currentPage, totalPages);
-                                            int align = cell.getAlign();
-                                            float textWidth = calculateTextWidth(text, font, fontSize);
-                                            float xPos = cellX;
-                                            if (align == DocPara.ALIGN_CENTER) {
-                                                xPos = cellX + (cWidth - textWidth) / 2;
-                                            } else if (align == DocPara.ALIGN_RIGHT) {
-                                                xPos = cellX + cWidth - textWidth;
-                                            }
-                                            if (!canEncode(font, text)) {
-                                                text = sanitizeTextForFont(font, text);
-                                            }
-                                            stream.setNonStrokingColor(Color.BLACK);
-                                            stream.beginText();
-                                            stream.setFont(font, fontSize);
-                                            stream.newLineAtOffset(xPos, yPosition);
-                                            stream.showText(text);
-                                            stream.endText();
-                                        }
-                                    }
-                                    cellX += cWidth;
-                                }
-                            }
-                            yPosition -= 12f;
-                        }
-                    }
-                }
-            }
+            yPosition = renderHeaderFooterElement(stream, element, yPosition, font, fontSize, currentPage, totalPages);
         }
     }
 
@@ -1344,23 +1369,24 @@ public class PdfBoxDocumentRenderer {
                 .replace("${totalPage}", totStr);
     }
 
+    private String extractParaText(DocPara para) {
+        String paraText = para.getText();
+        if (para.getElementList() != null && !para.getElementList().isEmpty()) {
+            StringBuilder sb = new StringBuilder();
+            if (paraText != null && !paraText.isEmpty()) {
+                sb.append(paraText);
+            }
+            for (DocElement child : para.getElementList()) {
+                appendChildText(sb, child);
+            }
+            return sb.toString().trim();
+        }
+        return paraText != null ? paraText : "";
+    }
+
     private String extractText(DocElement element) {
         if (element instanceof DocPara) {
-            DocPara para = (DocPara) element;
-            String paraText = para.getText();
-            if (para.getElementList() != null && !para.getElementList().isEmpty()) {
-                StringBuilder sb = new StringBuilder();
-                if (paraText != null && !paraText.isEmpty()) {
-                    sb.append(paraText);
-                }
-                for (DocElement child : para.getElementList()) {
-                    appendChildText(sb, child);
-                }
-                return sb.toString().trim();
-            }
-            if (paraText != null && !paraText.isEmpty()) {
-                return paraText;
-            }
+            return extractParaText((DocPara) element);
         }
         if (element instanceof DocContainer) {
             return extractTextFromContainer((DocContainer) element);
