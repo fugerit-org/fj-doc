@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc
+	xmlns="http://javacoredoc.fugerit.org"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://javacoredoc.fugerit.org https://www.fugerit.org/data/java/doc/xsd/doc-2-1.xsd" >
+
+  <metadata>
+	<!-- Generic document metadata -->
+	<info name="doc-title">Full Coverage Venus Doc</info>
+	<info name="doc-subject">Comprehensive test case for Venus Doc Source Document features</info>
+	<info name="doc-author">fugerit79</info>
+	<info name="doc-creator">Venus Doc Test Suite</info>
+	<info name="doc-producer">Venus Doc Full Coverage Producer</info>
+	<info name="doc-language">en</info>
+	<info name="doc-version">2.1.0</info>
+	<info name="doc-version-compatibility">2-x</info>
+
+	<!-- Default table and font properties -->
+	<info name="default-table-padding">2</info>
+	<info name="default-table-spacing">1</info>
+	<info name="default-cell-border-width">1</info>
+	<info name="table-border-collapse">separate</info>
+	<info name="default-font-name">helvetica</info>
+	<info name="default-font-size">10</info>
+	<info name="default-font-style">normal</info>
+	<info name="suppress-wrong-type-error">true</info>
+	<info name="table-check-integrity">fail</info>
+	<info name="security-hardening">0</info>
+
+	<!-- Fixed size / PDF properties -->
+	<info name="margins">15;15;20;25</info>
+	<info name="page-width">21cm</info>
+	<info name="page-height">29.7cm</info>
+	<info name="page-orient">vertical</info>
+	<info name="set-total-page">true</info>
+
+	<!-- HTML properties -->
+	<info name="html-charset">UTF-8</info>
+	<info name="html-css-link">/css/full-coverage.css</info>
+	<info name="html-css-style">.custom-para { border-left: 2px solid #336699; } .custom-phrase { text-transform: uppercase; }</info>
+	<info name="html-add-to-head">&lt;meta name="keywords" content="venus,fj-doc,coverage"/&gt;</info>
+
+	<!-- Spreadsheet & CSV properties -->
+	<info name="excel-table-id">main-data-table=DataSheet</info>
+	<info name="excel-try-autoresize">true</info>
+	<info name="excel-fail-on-autoresize-error">false</info>
+	<info name="excel-ignore-format">false</info>
+	<info name="excel-width-multiplier">256</info>
+	<info name="csv-table-id">main-data-table</info>
+	<info name="csv-separator">;</info>
+
+	<header-ext align="center" numbered="true" border-width="1" expected-size="25">
+		<h id="header-h" head-level="6" align="center" size="8">Header Heading</h>
+		<para id="header-para" align="center" fore-color="#444444" size="9">Document Header - <phrase style="italic">Subtitle</phrase></para>
+		<phrase id="header-phrase" style="bold" size="8">Header Phrase</phrase>
+		<image scaling="25" align="center" alt="Header Logo" type="png" url="cl://test/img_test_teal.png"/>
+		<table id="header-table" columns="2" colwidths="50;50" width="100" padding="1">
+			<row id="header-row-1">
+				<cell align="left"><para size="8">Header Left</para></cell>
+				<cell align="right"><para size="8">Header Right</para></cell>
+			</row>
+		</table>
+	</header-ext>
+
+	<footer-ext align="center" numbered="true" border-width="1" expected-size="25">
+		<h id="footer-h" head-level="6" align="center" size="8">Footer Heading</h>
+		<para id="footer-para-left" align="left" size="8">Footer Left</para>
+		<para id="footer-para-center" align="center" size="8">Page ${currentPage} / ${pageCount}</para>
+		<para id="footer-para-right" align="right" size="8">Footer Right</para>
+		<phrase id="footer-phrase" style="italic" size="8">Footer Phrase</phrase>
+		<image scaling="25" align="center" alt="Footer Logo" type="png" url="cl://test/img_test_blue.png"/>
+		<table id="footer-table" columns="2" colwidths="50;50" width="100" padding="1">
+			<row id="footer-row-1">
+				<cell align="left"><para size="8">Footer Table Left</para></cell>
+				<cell align="right"><para size="8">Footer Table Right</para></cell>
+			</row>
+		</table>
+	</footer-ext>
+
+	<background>
+		<image scaling="100" alt="Background Image" type="png" url="cl://test/img_test_green.png"/>
+	</background>
+
+	<bookmark-tree>
+		<bookmark ref="h1-title">Main Title H1</bookmark>
+		<bookmark ref="section-typography">Typography Section</bookmark>
+		<bookmark ref="main-data-table">Main Data Table</bookmark>
+		<bookmark ref="section-lists">Lists Section</bookmark>
+	</bookmark-tree>
+  </metadata>
+
+  <body>
+	<!-- 1. Headings (h1 to h7) with attributes and nested elements -->
+	<h id="h1-title" head-level="1" style="bold" align="center" font-name="helvetica" size="18" fore-color="#112233" back-color="#f0f4f8" leading="1.5" space-before="10" space-after="10" space-left="5" space-right="5" text-indent="0" white-space-collapse="true" class="custom-para">Main Title H1</h>
+	<h id="section-typography" head-level="2" style="bolditalic" align="left" size="16" fore-color="#223344">Section 1: Typography (H2)</h>
+	<h id="h3-title" head-level="3" style="italic" align="right" size="14">Heading Level 3</h>
+	<h id="h4-title" head-level="4" style="underline" align="justify" size="12">Heading Level 4</h>
+	<h id="h5-title" head-level="5" style="normal" align="justifyall" size="11">Heading Level 5</h>
+	<h id="h6-title" head-level="6" size="10">Heading Level 6 with <phrase style="bold">nested phrase</phrase></h>
+	<h id="h7-title" head-level="7" size="9">Heading Level 7</h>
+
+	<!-- 2. Paragraphs: fonts, styles, alignments, colors, spacing, types/formats, nested elements -->
+	<para id="para-times-bold" font-name="times-roman" style="bold" align="left" size="12" fore-color="#000000" back-color="#eeeeee">Paragraph with Times-Roman Bold Left</para>
+	<para id="para-courier-bi" font-name="courier" style="bolditalic" align="center" size="11" fore-color="#003366">Paragraph with Courier BoldItalic Center</para>
+	<para id="para-symbol-italic" font-name="symbol" style="italic" align="right" size="10">Paragraph with Symbol Italic Right</para>
+	<para id="para-helvetica-ul" font-name="helvetica" style="underline" align="justify" size="10">Paragraph with Helvetica Underline Justify</para>
+	<para id="para-normal-ja" style="normal" align="justifyall" size="9" fore-color="#333333" leading="2" text-indent="2" space-before="5" space-after="8" space-left="10" space-right="10" class="custom-para">Paragraph with spacing, leading, text-indent, and justifyall alignment.</para>
+	<para id="para-preformatted" white-space-collapse="false">Preformatted text:   multiple   spaces   preserved.</para>
+
+	<!-- Typed and formatted paragraphs -->
+	<para id="para-type-string" type="string">Typed String Paragraph</para>
+	<para id="para-type-num-dec" type="number" format="#,###.00">123456.78</para>
+	<para id="para-type-num-int" type="number" format="#,###">98765</para>
+	<para id="para-type-date-iso" type="date" format="yyyy-MM-dd">2025-11-26</para>
+	<para id="para-type-date-custom" type="date" format="dd/MM/yyyy">2025-11-26</para>
+
+	<!-- Paragraph with nested phrase, para, and h -->
+	<para id="para-nested" size="10">Outer paragraph with <phrase id="nested-phrase-1" style="bold" size="11">bold nested phrase</phrase>, <phrase id="nested-phrase-link" link="https://venusdocs.fugerit.org" style="underline">external link phrase</phrase>, <phrase id="nested-phrase-internal" link="#h1-title">internal link phrase</phrase>, and <phrase anchor="my-anchor" class="custom-phrase">anchored phrase</phrase>.<para id="inner-para" style="italic">Nested inner paragraph</para><h id="inner-h" head-level="4">Nested inner heading</h></para>
+
+	<!-- 3. Standalone Phrases, NBSP, BR, Page Break -->
+	<phrase id="standalone-phrase-1" font-name="helvetica" style="bold" size="10" leading="1.2" white-space-collapse="true" class="custom-phrase">Standalone Phrase 1</phrase>
+	<nbsp length="3"/>
+	<phrase id="standalone-phrase-2" style="italic" link="#my-anchor">Link to Anchor</phrase>
+	<br/>
+	<phrase id="standalone-phrase-3" style="normal" white-space-collapse="false">Phrase   with   preserved   spaces</phrase>
+	<br/>
+
+	<!-- 4. Images (URL jpg/png, Base64, SVG inline & URL, alignments & scaling) -->
+	<image url="cl://test/img_test_teal.jpg" type="jpg" scaling="50" align="center" alt="Teal JPG from ClassLoader"/>
+	<image url="cl://test/img_test_red.png" type="png" scaling="75" align="left" alt="Red PNG from ClassLoader"/>
+	<image type="png" scaling="50" align="right" alt="Inline Base64 PNG" base64="iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="/>
+	<image type="svg" alt="Inline SVG Square"><![CDATA[<svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="12" height="12" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20"/></svg>]]></image>
+	<image type="svg" alt="ClassLoader SVG Logo" url="cl://image/logo.svg"/>
+
+	<!-- 5. Barcode -->
+	<barcode size="12" type="EAN" text="0123456789123"/>
+
+	<page-break/>
+
+	<!-- 6. Tables: Normal table with strict header, borders, spans, alignments, nested elements -->
+	<table id="main-data-table" columns="4" colwidths="25;25;25;25" width="100" back-color="#fafafa" fore-color="#111111" spacing="2" padding="4" space-before="10" space-after="10" render-mode="normal" caption="Main Data Table Caption">
+		<row id="row-header-1" header="true">
+			<cell id="cell-h1" align="center" valign="middle" header="true" border-color="#000000" border-width="2" back-color="#ddeeff" fore-color="#000000"><para style="bold">Name</para></cell>
+			<cell id="cell-h2" align="center" valign="middle" header="true" border-color-top="#ff0000" border-color-bottom="#00ff00" border-color-left="#0000ff" border-color-right="#ffff00" border-width-top="1" border-width-bottom="2" border-width-left="3" border-width-right="4"><para style="bold">Role</para></cell>
+			<cell id="cell-h3" align="center" valign="top" header="true"><h head-level="5">Realm</h></cell>
+			<cell id="cell-h4" align="center" valign="bottom" header="true"><phrase style="bold">Score</phrase></cell>
+		</row>
+		<row id="row-data-1">
+			<cell id="cell-d1-1" align="left" valign="top" type="string"><para>Luthien Tinuviel</para></cell>
+			<cell id="cell-d1-2" align="center" valign="middle" type="string"><para>Queen</para><br/><phrase style="italic">Doriath</phrase><nbsp length="1"/></cell>
+			<cell id="cell-d1-3" align="right" valign="bottom" type="string"><para>Beleriand</para></cell>
+			<cell id="cell-d1-4" align="right" valign="middle" type="number"><para type="number" format="#,###.00">1000.50</para></cell>
+		</row>
+		<row id="row-data-2">
+			<cell id="cell-d2-2" rowspan="2" align="center" valign="middle"><para>Erebor (Rowspan 2)</para></cell>
+			<cell id="cell-d2-1" colspan="2" align="justify" back-color="#f5f5f5" border-width="1" border-color="#888888"><para>Thorin Oakenshield (Colspan 2)</para></cell>
+			<cell id="cell-d2-3" align="right" type="date"><para type="date" format="yyyy-MM-dd">2025-01-15</para></cell>
+		</row>
+		<row id="row-data-3">
+			<cell id="cell-d3-1" align="justifyall"><image scaling="40" url="cl://test/img_test_blue.png" alt="Cell Image"/></cell>
+			<cell id="cell-d3-2" align="center">
+				<table id="nested-table" columns="2" colwidths="50;50" width="100" padding="1">
+					<row>
+						<cell><para>Nested 1</para></cell>
+						<cell><para>Nested 2</para></cell>
+					</row>
+				</table>
+			</cell>
+			<cell id="cell-d3-3" align="center"><barcode text="987654321098"/></cell>
+		</row>
+	</table>
+
+	<!-- Non-strict header table (mixed rows) -->
+	<table id="mixed-table" columns="2" colwidths="50;50" width="80" padding="2">
+		<row>
+			<cell header="true"><para style="bold">Key</para></cell>
+			<cell><para>Value 1</para></cell>
+		</row>
+		<row header="true">
+			<cell><para>Mid Header 1</para></cell>
+			<cell><para>Mid Header 2</para></cell>
+		</row>
+	</table>
+
+	<!-- Inline render-mode table -->
+	<table id="inline-table" columns="2" colwidths="50;50" width="100" render-mode="inline">
+		<row>
+			<cell><para>Inline Cell Left</para></cell>
+			<cell><para>Inline Cell Right</para></cell>
+		</row>
+	</table>
+
+	<!-- 7. Lists: All list-types (default, ul, uld, ulm, ol, oln, oll), li with para, h, pl, and nested list -->
+	<h id="section-lists" head-level="2">Section 2: Lists</h>
+	<list id="list-default">
+		<li id="li-def-1"><para>Default list item 1 (para)</para></li>
+		<li id="li-def-2"><h head-level="5">Default list item 2 (heading)</h></li>
+		<li id="li-def-3">
+			<pl>
+				<phrase style="bold">Phrase list item: </phrase>
+				<phrase style="italic">second phrase in pl</phrase>
+			</pl>
+		</li>
+	</list>
+	<list id="list-ul" list-type="ul">
+		<li id="li-ul-1">
+			<para>Unordered list item with nested list</para>
+			<list id="list-uld-nested" list-type="uld">
+				<li id="li-uld-1"><para>Nested uld item 1</para></li>
+				<li id="li-uld-2"><para>Nested uld item 2</para></li>
+			</list>
+		</li>
+	</list>
+	<list id="list-ulm" list-type="ulm">
+		<li id="li-ulm-1"><para>Unordered minus list item</para></li>
+	</list>
+	<list id="list-ol" list-type="ol">
+		<li id="li-ol-1"><para>Ordered list item</para></li>
+	</list>
+	<list id="list-oln" list-type="oln">
+		<li id="li-oln-1"><para>Ordered number list item</para></li>
+	</list>
+	<list id="list-oll" list-type="oll">
+		<li id="li-oll-1"><para>Ordered letter list item 1</para></li>
+		<li id="li-oll-2"><para>Ordered letter list item 2</para></li>
+	</list>
+  </body>
+
+</doc>

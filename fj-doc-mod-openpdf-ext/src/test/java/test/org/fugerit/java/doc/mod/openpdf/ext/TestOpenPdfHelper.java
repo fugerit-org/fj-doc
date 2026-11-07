@@ -3,6 +3,7 @@ package test.org.fugerit.java.doc.mod.openpdf.ext;
 import com.lowagie.text.Document;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.core.lang.helpers.BooleanUtils;
+import org.fugerit.java.doc.base.model.DocContainer;
 import org.fugerit.java.doc.base.model.DocLi;
 import org.fugerit.java.doc.base.model.DocList;
 import org.fugerit.java.doc.base.model.DocTable;
@@ -39,9 +40,13 @@ class TestOpenPdfHelper {
 			list2.setListType(DocList.LIST_TYPE_UL);
 			DocLi li2 = new DocLi();
 			li2.addElement( new DocTable() );
+			DocContainer pl = new DocContainer();
+			pl.addElement( new DocTable() );
+			li2.addElement( pl );
 			list2.addElement( li2 );
 			helper.getParams().setProperty(GenericConsts.DOC_SUPPRESS_WRONG_TYPE_ERROR, BooleanUtils.BOOLEAN_1 );
 			SafeFunction.apply( () -> OpenPpfDocHandler.getElement( document, list2, false, helper ) );
+			Assertions.assertNotNull( list2 );
 		}
 	}
 

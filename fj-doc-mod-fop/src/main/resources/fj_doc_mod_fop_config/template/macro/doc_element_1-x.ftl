@@ -36,7 +36,7 @@
 		<#if (current.internal)>
 			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> internal-destination="${current.internalLink}">${current.text}</fo:basic-link>
 		<#else>
-			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" color="blue" text-decoration="underline">${current.text}</fo:basic-link>
+			<fo:basic-link <@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/> external-destination="url('${current.link}')" <#if !(current.foreColor??)> color="blue"</#if><#if current.originalStyle != 3> text-decoration="underline"</#if>>${current.text}</fo:basic-link>
 		</#if>
 	<#elseif (current.anchor)??>
 		<fo:block id="${current.anchor}"><@handleWhiteSpace element=current/><@handleStyle styleValue=current.originalStyle/> <@handleFont element=current/>${current.text}</fo:block>
@@ -91,7 +91,7 @@
 						<fo:table-cell padding="${docTable.padding}mm" <@handleAlign alignValue=cell.align/> <@handleBorders docBorders=cell.docBorders/> number-columns-spanned="${cell.columnSpan}">
 							<#if (cell.elementList?size > 0)>
 								<#list cell.elementList as cellElement>
-								<@handleElement current=cellElement/>
+								<#if cellElement.class.simpleName = 'DocPhrase' || cellElement.class.simpleName = 'DocContainer'><fo:block><@handleElement current=cellElement/></fo:block><#else><@handleElement current=cellElement/></#if>
 								</#list>
 							<#else>
 								<fo:block></fo:block>

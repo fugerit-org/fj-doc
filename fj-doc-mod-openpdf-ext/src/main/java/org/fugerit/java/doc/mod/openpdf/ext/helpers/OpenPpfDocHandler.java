@@ -1,6 +1,5 @@
 package org.fugerit.java.doc.mod.openpdf.ext.helpers;
 
-
 import java.awt.Color;
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,9 +22,11 @@ import com.lowagie.text.pdf.Barcode;
 import com.lowagie.text.pdf.Barcode128;
 import com.lowagie.text.pdf.BarcodeEAN;
 import com.lowagie.text.pdf.BaseFont;
+import com.lowagie.text.pdf.PdfAction;
 import com.lowagie.text.pdf.PdfArray;
 import com.lowagie.text.pdf.PdfDictionary;
 import com.lowagie.text.pdf.PdfName;
+import com.lowagie.text.pdf.PdfOutline;
 import com.lowagie.text.pdf.PdfString;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -39,6 +40,8 @@ public class OpenPpfDocHandler {
 	public static final String PARAM_PAGE_CURRENT = "currentPage";
 	
 	public static final String PARAM_PAGE_TOTAL = "totalPage";
+	
+	public static final String PARAM_PAGE_COUNT = "pageCount";
 	
 	public static final String PARAM_PAGE_TOTAL_FINDER = ParamFinder.DEFAULT_PRE+PARAM_PAGE_TOTAL+ParamFinder.DEFAULT_POST;
 	
@@ -111,13 +114,20 @@ public class OpenPpfDocHandler {
 	protected static Image createImage( DocImage docImage ) {
 		String url = docImage.getUrl();
 		log.trace( "currently unsupported image param url {}", url );
+		if ( docImage.isSvg() ) {
+			log.warn( "SVG image not natively supported in openpdf-ext, skipping image (url={}, alt={})", url, docImage.getAlt() );
+			return null;
+		}
 		return SafeFunction.get( () -> {
 			byte[] data = SourceResolverHelper.resolveImage( docImage );
 			Image image = Image.getInstance( data );
 			if ( docImage.getScaling() != null ) {
 				image.scalePercent( docImage.getScaling().floatValue() );
 			}
-            image.setAlignment( getAlign( docImage.getAlign() ) );
+			image.setAlignment( getAlign( docImage.getAlign() ) );
+			if ( StringUtils.isNotEmpty( docImage.getAlt() ) ) {
+				image.setAlt( docImage.getAlt() );
+			}
 			return image;
 		} );
 	}	
@@ -140,17 +150,27 @@ public class OpenPpfDocHandler {
 		int style = docPhrase.getStyle();
 		String fontName = docPhrase.getFontName();
 		Font f = createFont(fontName, docPhrase.getSize(), style, docHelper, docPhrase.getForeColor() );
+		Chunk ck = new Chunk( text, f );
+		if ( docPhrase.getBackColor() != null ) {
+			ck.setBackground( DocModelUtils.parseHtmlColor( docPhrase.getBackColor() ) );
+		}
+		if ( StringUtils.isNotEmpty( docPhrase.getId() ) && StringUtils.isEmpty( docPhrase.getAnchor() ) && !ck.isEmpty() ) {
+			ck.setLocalDestination( docPhrase.getId() );
+		}
 		Phrase p = null;
 		if ( StringUtils.isNotEmpty( docPhrase.getLink() ) ) {
-			Anchor a = new Anchor( text , f );
+			Anchor a = new Anchor( ck );
 			a.setReference( docPhrase.getLink() );
 			p = a;
 		} else if ( StringUtils.isNotEmpty( docPhrase.getAnchor() ) ) {
-			Anchor a = new Anchor( text , f );
+			Anchor a = new Anchor( ck );
 			a.setName( docPhrase.getAnchor() );
 			p = a;		
 		} else {
-			p = new Phrase( text, f );
+			p = new Phrase( ck );
+		}
+		if ( docPhrase.getLeading() != null ) {
+			p.setLeading( docPhrase.getLeading().floatValue() );
 		}
 		if (fontMap != null) {
 			fontMap.add( f );
@@ -166,23 +186,31 @@ public class OpenPpfDocHandler {
 		return createPara(docPara, docHelper, null);
 	}
 	
-	protected static Paragraph createPara( DocPara docPara, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {
-		int style = docPara.getStyle();
-		String text = createText( docHelper.getParams(), docPara.getText() );
-		String fontName = docPara.getFontName();
-		Font f = createFont(fontName, docPara.getSize(), style, docHelper, docPara.getForeColor() );
-		Phrase phrase = new Phrase( text, f );
-		Paragraph p = new Paragraph( new Phrase( text, f ) );
-		if ( docPara.getForeColor() != null ) {
-			Color c = DocModelUtils.parseHtmlColor( docPara.getForeColor() );
-			Font f1 = new Font( f.getFamily(), f.getSize(), f.getStyle(), c );
-			p = new Paragraph( new Phrase( text, f1 ) );
+	private static void appendParaChildren( Paragraph p, DocPara docPara, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {
+		for ( DocElement child : docPara.getElementList() ) {
+			if ( child instanceof DocPhrase ) {
+				DocPhrase childPhrase = (DocPhrase) child;
+				setStyle( docPara, childPhrase );
+				p.add( createPhrase( childPhrase, docHelper, fontMap ) );
+			} else if ( child instanceof DocPara ) {
+				DocPara childPara = (DocPara) child;
+				setStyle( docPara, childPara );
+				p.add( createPara( childPara, docHelper, fontMap ) );
+			}
 		}
+	}
+
+	private static void applyParaSpacing( Paragraph p, DocPara docPara ) {
 		if ( docPara.getAlign() != DocPara.ALIGN_UNSET ) {
 			p.setAlignment( getAlign( docPara.getAlign() ) );
 		}
 		if ( docPara.getLeading() != null ) {
-			p.setLeading(  docPara.getLeading().floatValue() );
+			float leadingVal = docPara.getLeading().floatValue();
+			if ( leadingVal <= 4f ) {
+				p.setLeading( 0f, leadingVal );
+			} else {
+				p.setLeading( leadingVal );
+			}
 		}
 		if ( docPara.getSpaceBefore() != null ) {
 			p.setSpacingBefore( docPara.getSpaceBefore().floatValue() );
@@ -190,6 +218,35 @@ public class OpenPpfDocHandler {
 		if ( docPara.getSpaceAfter() != null ) {
 			p.setSpacingAfter( docPara.getSpaceAfter().floatValue() );
 		}
+		if ( docPara.getSpaceLeft() != null ) {
+			p.setIndentationLeft( docPara.getSpaceLeft().floatValue() );
+		}
+		if ( docPara.getSpaceRight() != null ) {
+			p.setIndentationRight( docPara.getSpaceRight().floatValue() );
+		}
+		if ( docPara.getTextIndent() != null ) {
+			p.setFirstLineIndent( docPara.getTextIndent().floatValue() );
+		}
+	}
+
+	protected static Paragraph createPara( DocPara docPara, OpenPdfHelper docHelper, List<Font> fontMap ) throws DocumentException, IOException {
+		int style = docPara.getStyle();
+		String text = createText( docHelper.getParams(), docPara.getText() );
+		String fontName = docPara.getFontName();
+		Font f = createFont(fontName, docPara.getSize(), style, docHelper, docPara.getForeColor() );
+		if ( docPara.getForeColor() != null ) {
+			Color c = DocModelUtils.parseHtmlColor( docPara.getForeColor() );
+			f = new Font( f.getFamily(), f.getSize(), f.getStyle(), c );
+		}
+		Chunk mainChunk = new Chunk( text, f );
+		if ( docPara.getBackColor() != null ) {
+			mainChunk.setBackground( DocModelUtils.parseHtmlColor( docPara.getBackColor() ) );
+		}
+		Phrase phrase = new Phrase( mainChunk );
+		Paragraph p = new Paragraph( phrase );
+		appendParaChildren( p, docPara, docHelper, fontMap );
+		registerLocalDestination( p, docPara.getId() );
+		applyParaSpacing( p, docPara );
 		p.setFont( f );
 		phrase.setFont( f );
 		if ( fontMap != null ) {
@@ -197,7 +254,21 @@ public class OpenPpfDocHandler {
 		}
 		return p;
 	}
-	
+
+	protected static void registerLocalDestination( Element element, String id ) {
+		if ( StringUtils.isNotEmpty( id ) && element != null ) {
+			for ( Element el : element.getChunks() ) {
+				if ( el instanceof Chunk ) {
+					Chunk ck = (Chunk) el;
+					if ( !ck.isEmpty() && ( ck.getChunkAttributes() == null || !ck.getChunkAttributes().containsKey( Chunk.LOCALDESTINATION ) ) ) {
+						ck.setLocalDestination( id );
+						break;
+					}
+				}
+			}
+		}
+	}
+
 	protected static Image createBarcode( DocBarcode docBarcode, OpenPdfHelper helper ) throws BadElementException, IOException  {
 		log.trace( "currently unused parameter helper : {}", helper );
 		Barcode barcode = null;
@@ -212,7 +283,9 @@ public class OpenPpfDocHandler {
 		barcode.setCode( docBarcode.getText() );
 		barcode.setAltText( docBarcode.getText() );
 		java.awt.Image awtImage = barcode.createAwtImage( Color.white, Color.black );
-		return Image.getInstance( awtImage, null );
+		Image img = Image.getInstance( awtImage, null );
+		img.setAlt( docBarcode.getText() );
+		return img;
 	}
 	
 
@@ -286,6 +359,20 @@ public class OpenPpfDocHandler {
 		}	
 	}
 	
+	private void handleBookmarks( DocBase docBase ) {
+		if ( this.pdfWriter != null && docBase.getDocBookmarkTree() != null ) {
+			PdfOutline root = this.pdfWriter.getRootOutline();
+			for ( DocElement element : docBase.getDocBookmarkTree().getElementList() ) {
+				if ( element instanceof DocBookmark ) {
+					DocBookmark bookmark = (DocBookmark) element;
+					if ( StringUtils.isNotEmpty( bookmark.getRef() ) && StringUtils.isNotEmpty( bookmark.getTitle() ) ) {
+						new PdfOutline( root, PdfAction.gotoLocalPage( bookmark.getRef(), false ), bookmark.getTitle() );
+					}
+				}
+			}
+		}
+	}
+
 	/* (non-Javadoc)
 	 * @see org.fugerit.java.doc.base.DocHandler#handleDoc(org.fugerit.java.doc.base.DocBase)
 	 */
@@ -296,6 +383,7 @@ public class OpenPpfDocHandler {
 		String defaultFontSize = info.getProperty( GenericConsts.DOC_DEFAULT_FONT_SIZE, "10" );
 		String defaultFontStyle = info.getProperty( GenericConsts.DOC_DEFAULT_FONT_STYLE, "normal" );
 		OpenPdfHelper docHelper = new OpenPdfHelper();
+		docHelper.getParams().putAll( info );
 		
 		if ( this.pdfWriter != null ) {
 			docHelper.setPdfWriter( this.pdfWriter );
@@ -306,7 +394,9 @@ public class OpenPpfDocHandler {
 		docHelper.setDefFontSize( defaultFontSize );
 
 		if ( this.totalPageCount != -1 ) {
-			docHelper.getParams().setProperty( PARAM_PAGE_TOTAL , String.valueOf( this.totalPageCount ) );
+			String totalPageStr = String.valueOf( this.totalPageCount );
+			docHelper.getParams().setProperty( PARAM_PAGE_TOTAL , totalPageStr );
+			docHelper.getParams().setProperty( PARAM_PAGE_COUNT , totalPageStr );
 		}
 		
 		this.handleTypeSpecific(info);
@@ -315,6 +405,9 @@ public class OpenPpfDocHandler {
 		PdfHelper pdfHelper = new PdfHelper( docHelper );
 		this.handleHeader(docBase, pdfHelper, docHelper);
 		this.handleFooter(docBase, pdfHelper, docHelper);
+		if ( docBase.getDocBackground() != null ) {
+			pdfHelper.setDocBackground( docBase.getDocBackground() );
+		}
 		if ( DocConfig.TYPE_PDF.equals( this.docType ) ) {
 			this.pdfWriter.setPageEvent( pdfHelper );
 		}
@@ -323,6 +416,8 @@ public class OpenPpfDocHandler {
 		
 		Iterator<DocElement> itDoc = docBase.getDocBody().docElements();
 		handleElements(document, itDoc, docHelper);
+		
+		this.handleBookmarks( docBase );
 		
 		this.document.close();
 	}
@@ -339,7 +434,7 @@ public class OpenPpfDocHandler {
 	}
 
 	public static void checkAddElement( DocumentParent documentParent, boolean addElement, Element result ) {
-		if ( addElement ) {
+		if ( addElement && result != null ) {
 			documentParent.add( result );
 		}
 	}
@@ -359,6 +454,9 @@ public class OpenPpfDocHandler {
 		} else if ( docElement instanceof DocImage ) {
 			result = createImage( (DocImage)docElement );
 			checkAddElement( documentParent, addElement, result );
+		} else if ( docElement instanceof DocBarcode ) {
+			result = createBarcode( (DocBarcode)docElement, docHelper );
+			checkAddElement( documentParent, addElement, result );
 		} else if ( docElement instanceof DocList) {
 			result = createList( (DocList)docElement, docHelper );
 			checkAddElement( documentParent, addElement, result );
@@ -368,20 +466,60 @@ public class OpenPpfDocHandler {
 		return result;
 	}
 
-	private static com.lowagie.text.List createList( DocList docList, OpenPdfHelper docHelper ) throws IOException {
-		com.lowagie.text.List list = new com.lowagie.text.List( docList.isOrdered() );
-		for (  DocElement element : docList.getElementList() ) {
-			if ( element instanceof DocLi ) {
-				DocLi li = (DocLi) element;
-				if ( li.getContent() instanceof DocPara ) {
-					list.add( new ListItem( createPara( (DocPara)li.getContent(), docHelper ) ) );
-				} else {
-					docHelper.handelError( String.format( "unsupported type %s", li.getContent().getClass().getSimpleName() ) );
-				}
+	protected static Phrase createPl( DocContainer container, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+		Phrase phrase = new Phrase();
+		for ( DocElement child : container.getElementList() ) {
+			if ( child instanceof DocPhrase ) {
+				phrase.add( createPhrase( (DocPhrase) child, docHelper ) );
+			} else if ( child instanceof DocPara ) {
+				phrase.add( createPara( (DocPara) child, docHelper ) );
 			} else {
-				docHelper.handelError( String.format( "wrong children%s", element.getClass().getSimpleName() )  );
+				docHelper.handelError( String.format( "unsupported pl child type %s", child.getClass().getSimpleName() ) );
 			}
 		}
+		return phrase;
+	}
+
+	private static void configureListStyle( DocList docList, com.lowagie.text.List list ) {
+		String clt = docList.getClt();
+		if ( DocList.LIST_TYPE_OLL.equalsIgnoreCase( clt ) ) {
+			list.setLettered( true );
+			list.setLowercase( true );
+		} else if ( DocList.LIST_TYPE_ULD.equalsIgnoreCase( clt ) ) {
+			list.setListSymbol( "• " );
+		} else if ( DocList.LIST_TYPE_ULM.equalsIgnoreCase( clt ) ) {
+			list.setListSymbol( "- " );
+		}
+	}
+
+	private static void handleLiElement( DocElement liChild, com.lowagie.text.List list, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+		if ( liChild instanceof DocPara ) {
+			list.add( new ListItem( createPara( (DocPara) liChild, docHelper ) ) );
+		} else if ( liChild instanceof DocList ) {
+			com.lowagie.text.List nestedList = createList( (DocList) liChild, docHelper );
+			nestedList.setIndentationLeft( 15f );
+			list.add( nestedList );
+		} else if ( liChild instanceof DocContainer ) {
+			list.add( new ListItem( createPl( (DocContainer) liChild, docHelper ) ) );
+		} else {
+			docHelper.handelError( String.format( "unsupported type %s", liChild.getClass().getSimpleName() ) );
+		}
+	}
+
+	protected static com.lowagie.text.List createList( DocList docList, OpenPdfHelper docHelper ) throws DocumentException, IOException {
+		com.lowagie.text.List list = new com.lowagie.text.List( docList.isOrdered() );
+		configureListStyle( docList, list );
+		for ( DocElement element : docList.getElementList() ) {
+			if ( element instanceof DocLi ) {
+				DocLi li = (DocLi) element;
+				for ( DocElement liChild : li.getElementList() ) {
+					handleLiElement( liChild, list, docHelper );
+				}
+			} else {
+				docHelper.handelError( String.format( "wrong children%s", element.getClass().getSimpleName() ) );
+			}
+		}
+		registerLocalDestination( list, docList.getId() );
 		return list;
 	}
 	
@@ -404,13 +542,16 @@ public class OpenPpfDocHandler {
 			if ( docPara.getForeColor() != null ) {
 				SafeFunction.applySilent( () -> f.setColor( DocModelUtils.parseHtmlColor( docPara.getForeColor() ) ) );
 			}
-			Chunk ck = new Chunk( docPara.getText(), f );
+			String text = createText( docHelper.getParams(), docPara.getText() );
+			Chunk ck = new Chunk( text, f );
 			phrase.add( ck );
 		} else if ( docElement instanceof DocImage ) {
 			DocImage docImage = (DocImage)docElement;
 			Image img = createImage( docImage );
-			Chunk ck = new Chunk( img, 0, 0, true );
-			phrase.add( ck );
+			if ( img != null ) {
+				Chunk ck = new Chunk( img, 0, 0, true );
+				phrase.add( ck );
+			}
 		}
 	}
 	
@@ -433,4 +574,3 @@ public class OpenPpfDocHandler {
 	}
 	
 }
-
