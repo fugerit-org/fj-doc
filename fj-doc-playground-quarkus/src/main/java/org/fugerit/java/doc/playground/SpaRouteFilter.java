@@ -11,24 +11,27 @@ import lombok.extern.slf4j.Slf4j;
 @ApplicationScoped
 public class SpaRouteFilter {
 
-    private static final String INDEX_PAGE = "/fj-doc-playground/home/index.html";
+    public static final String INDEX_PAGE = "/fj-doc-playground/home/index.html";
+    public static final String HOME_PREFIX = "/fj-doc-playground/home";
 
     void onStart(@Observes StartupEvent ev, Router router) {
         log.info("SpaRouteFilter onStart router: {}", router);
-        router.route().order(10).handler(rc -> {
-            String path = rc.normalizedPath();
-            log.debug("Incoming request path: {}", path);
-            if (path.startsWith("/fj-doc-playground/home")) {
-                if (path.equals(INDEX_PAGE) || path.contains(".")) {
-                    rc.next();
-                } else {
-                    log.debug("Rerouting SPA path: {} -> {}", path, INDEX_PAGE);
-                    rc.reroute(INDEX_PAGE);
-                }
-            } else {
+        router.route().order(10).handler(this::handleRoute);
+    }
+
+    public void handleRoute(RoutingContext rc) {
+        String path = rc.normalizedPath();
+        log.debug("Incoming request path: {}", path);
+        if (path.startsWith(HOME_PREFIX)) {
+            if (path.equals(INDEX_PAGE) || path.contains(".")) {
                 rc.next();
+            } else {
+                log.debug("Rerouting SPA path: {} -> {}", path, INDEX_PAGE);
+                rc.reroute(INDEX_PAGE);
             }
-        });
+        } else {
+            rc.next();
+        }
     }
 
 }
