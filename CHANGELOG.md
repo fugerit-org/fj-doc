@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Switch ubuntu arm to ubuntu 26 on native test workflow, following [Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview
+  ](https://github.com/actions/runner-images/issues/14226)
+  and [ubuntu-latest label will use Ubuntu 26.04 in November 2026
+  ](https://github.com/actions/runner-images/issues/14748)
+- java 24 to java 25 on native test workflow
 - bouncy-castle-version set to 1.86
 
 ### Added
