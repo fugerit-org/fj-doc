@@ -70,6 +70,10 @@ else
     echo "  → GET /val/supported_extensions"
     curl -sf "$BASE_URL/val/supported_extensions" > /dev/null
 
+    # --- UI static resource warmup & verification ---
+    echo "  → GET /fj-doc-playground/home/"
+    curl -sf "http://localhost:8080/fj-doc-playground/home/" > /dev/null
+
     # --- Core hot path: document generation in multiple formats ---
     # A minimal Venus XML document used as input for all generation calls.
     # Written to a file once; each curl call swaps only the outputFormat.

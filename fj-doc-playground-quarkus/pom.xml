@@ -537,33 +537,15 @@
 									<workingDirectory>${src.react}</workingDirectory>
 								</configuration>
 							</execution>
-							<!-- Required: The following will ensure `npm install` is called
-                         before anything else during the 'Clean Lifecycle' -->
-							<execution>
-								<id>npm install (clean)</id>
-								<goals>
-									<goal>exec</goal>
-								</goals>
-								<phase>pre-clean</phase>
-								<configuration>
-									<executable>npm</executable>
-									<arguments>
-										<argument>install</argument>
-										<argument>--legacy-peer-deps</argument>
-									</arguments>
-									<workingDirectory>${src.react}</workingDirectory>
-								</configuration>
-							</execution>
-
 							<!-- Required: This following calls `npm run build` where 'build' is
                          the script name I used in my project, change this if yours is
                              different -->
 							<execution>
-								<id>npm run build (compile)</id>
+								<id>npm run build (generate-resources)</id>
 								<goals>
 									<goal>exec</goal>
 								</goals>
-								<phase>compile</phase>
+								<phase>generate-resources</phase>
 								<configuration>
 									<executable>npm</executable>
 									<arguments>
@@ -584,7 +566,7 @@
 						<executions>
 							<execution>
 								<id>copy front end</id>
-								<phase>compile</phase>
+								<phase>generate-resources</phase>
 								<goals>
 									<goal>run</goal>
 								</goals>
@@ -593,6 +575,13 @@
 										<delete dir="${fe.dist.dir}" />
 										<mkdir dir="${fe.dist.dir}" />
 										<copy todir="${fe.dist.dir}">
+											<fileset dir="${src.react}/dist">
+												<include name="**/*.*" />
+											</fileset>
+										</copy>
+										<delete dir="${project.build.outputDirectory}/META-INF/resources/fj-doc-playground/home" />
+										<mkdir dir="${project.build.outputDirectory}/META-INF/resources/fj-doc-playground/home" />
+										<copy todir="${project.build.outputDirectory}/META-INF/resources/fj-doc-playground/home">
 											<fileset dir="${src.react}/dist">
 												<include name="**/*.*" />
 											</fileset>

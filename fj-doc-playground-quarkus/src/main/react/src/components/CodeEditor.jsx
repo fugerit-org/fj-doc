@@ -1,5 +1,12 @@
 // Import ace core FIRST so the global is set before mode files run
-import AceEditor from 'react-ace';
+import AceEditorModule from 'react-ace';
+
+// In ESM/Vite, react-ace CJS module export might be wrapped as { default: ReactAce, ... }
+const AceEditor = typeof AceEditorModule === 'function'
+  ? AceEditorModule
+  : (AceEditorModule?.default && typeof AceEditorModule.default === 'function'
+      ? AceEditorModule.default
+      : AceEditorModule?.default?.default || AceEditorModule);
 
 // Side-effect imports: must come after react-ace (which sets up global `ace`)
 import 'ace-builds/src-noconflict/mode-xml';
