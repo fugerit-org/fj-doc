@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- bouncy-castle-version set to 1.86
+
 ### Added
 
 - test - add realistic invoice test case across fj-doc-mod-fop, fj-doc-mod-openpdf-ext, and fj-doc-mod-pdfbox for rendering benchmark <https://github.com/fugerit-org/fj-doc/issues/684>
