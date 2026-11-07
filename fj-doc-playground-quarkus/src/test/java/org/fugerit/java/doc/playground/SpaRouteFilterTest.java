@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.Test;
 
 import io.quarkus.runtime.StartupEvent;
@@ -18,6 +19,10 @@ import io.vertx.ext.web.RoutingContext;
 
 @QuarkusTest
 class SpaRouteFilterTest {
+
+    private boolean isIndexHtmlPresent() {
+        return getClass().getResource("/META-INF/resources/fj-doc-playground/home/index.html") != null;
+    }
 
     private RoutingContext createMockRoutingContext(String path, AtomicBoolean nextCalled, AtomicReference<String> reroutedPath) {
         return (RoutingContext) Proxy.newProxyInstance(
@@ -148,6 +153,7 @@ class SpaRouteFilterTest {
 
     @Test
     void testHttpSpaDirectRoute() {
+        Assumptions.assumeTrue(isIndexHtmlPresent(), "Skipped because index.html is not present (buildreact profile was not run)");
         given()
                 .when()
                 .get("/fj-doc-playground/home/doc_fun/doc_xml_editor")
@@ -157,6 +163,7 @@ class SpaRouteFilterTest {
 
     @Test
     void testHttpHome() {
+        Assumptions.assumeTrue(isIndexHtmlPresent(), "Skipped because index.html is not present (buildreact profile was not run)");
         given()
                 .when()
                 .get("/fj-doc-playground/home")
@@ -166,6 +173,7 @@ class SpaRouteFilterTest {
 
     @Test
     void testHttpHomeSlash() {
+        Assumptions.assumeTrue(isIndexHtmlPresent(), "Skipped because index.html is not present (buildreact profile was not run)");
         given()
                 .when()
                 .get("/fj-doc-playground/home/")
@@ -175,6 +183,7 @@ class SpaRouteFilterTest {
 
     @Test
     void testHttpIndexHtml() {
+        Assumptions.assumeTrue(isIndexHtmlPresent(), "Skipped because index.html is not present (buildreact profile was not run)");
         given()
                 .when()
                 .get(SpaRouteFilter.INDEX_PAGE)

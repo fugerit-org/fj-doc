@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.7] - 2026-11-07
+
 ### Changed
 
 - Switch ubuntu arm to ubuntu 26 on native test workflow, following [Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview
