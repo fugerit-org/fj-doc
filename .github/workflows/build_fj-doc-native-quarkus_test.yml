@@ -29,8 +29,8 @@ jobs:
     strategy:
       matrix:
         distribution: [ 'graalvm' ]
-        java: [ '21', '25' ]
-        os: [ 'ubuntu-latest', 'ubuntu-26.04-arm', 'windows-latest' ]
+        java: [ '25' ]
+        os: [ 'ubuntu-latest', 'ubuntu-26.04-arm' ]
     name: Build native image ${{ matrix.os }} ${{ matrix.java }} (${{ matrix.distribution }})
 
     steps:
