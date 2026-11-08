@@ -6,19 +6,23 @@ import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
-import org.fugerit.java.doc.base.model.DocPara;
+import org.fugerit.java.core.lang.helpers.ClassHelper;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 @Slf4j
 public class FontManager {
 
+    private static final String DEFAULT_EMBEDDED_FONT_RESOURCE = "org/apache/pdfbox/resources/ttf/LiberationSans-Regular.ttf";
+
     private final PdfBoxConfig config;
     private final PDDocument document;
     private final Map<String, PDFont> fontCache;
+    private PDFont defaultEmbeddedFont;
 
     // Font style constants matching DocPara / EnumDocStyle (1=normal, 2=bold, 3=underline, 4=italic, 5=bolditalic)
     public static final int STYLE_NORMAL = 1;
@@ -52,7 +56,7 @@ public class FontManager {
 
         PDFont font;
 
-        // For PDF/A compliance, fonts must be embedded
+        // For PDF/A and PDF/UA compliance, fonts must be embedded
         if (config.isPdfAEnabled() || config.isPdfUAEnabled()) {
             font = getEmbeddedFont(style, fontName);
         } else {
@@ -161,7 +165,7 @@ public class FontManager {
     }
 
     private PDFont getEmbeddedFont(int style, String fontName) throws IOException {
-        // For PDF/A, ALL fonts must be embedded
+        // For PDF/A and PDF/UA, ALL fonts must be embedded
         // Try to load custom font from configured directory
         if (config.getFontDirectory() != null) {
             String fontFileName = getFontFileName(style, fontName);
@@ -172,8 +176,18 @@ public class FontManager {
             }
         }
 
-        // Fallback: For now use standard font
-        // TODO: Include embedded fonts in resources for full PDF/A compliance
+        if (defaultEmbeddedFont == null) {
+            try (InputStream is = ClassHelper.loadFromDefaultClassLoader(DEFAULT_EMBEDDED_FONT_RESOURCE)) {
+                if (is != null) {
+                    log.info("Loading default embedded font from resources: {}", DEFAULT_EMBEDDED_FONT_RESOURCE);
+                    defaultEmbeddedFont = PDType0Font.load(document, is);
+                }
+            }
+        }
+        if (defaultEmbeddedFont != null) {
+            return defaultEmbeddedFont;
+        }
+
         log.warn("Embedded font not found, using standard font (not PDF/A compliant)");
         return getStandardFont(style, fontName);
     }

@@ -135,6 +135,11 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
             log.info("Calling renderDocument");
             renderer.renderDocument(docBase);
 
+            if (config.isPdfUAEnabled()) {
+                log.info("Tagging document content for PDF/UA");
+                PdfUAConfigurator.tagDocumentContent(document);
+            }
+
             // Save document
             log.info("Saving PDF");
             document.save(docOutput.getOs());

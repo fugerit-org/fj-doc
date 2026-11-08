@@ -382,7 +382,7 @@ public class PdfBoxDocumentRenderer {
             return false;
         }
         try {
-            font.encode(text);
+            font.encode(text.replace("\r", "").replace("\n", ""));
             return true;
         } catch (Exception e) {
             return false;
