@@ -11,69 +11,54 @@ import java.util.Properties;
 @Slf4j
 @ToString
 @RequiredArgsConstructor
+@Getter
 public class FlavourContext {
 
-    @Getter
     @NonNull
     private File projectFolder;
 
-    @Getter
     @NonNull
     private String groupId;
 
-    @Getter
     @NonNull
     private String artifactId;
 
-    @Getter
     @NonNull
     private String projectVersion;
 
-    @Getter
     @NonNull
     private String javaRelease;
 
-    @Getter
     @NonNull
     private String flavour;
 
-    @Getter
     @Setter
     private List<String> modules;
 
-    @Getter
     @Setter
     private boolean addLombok;
 
-    @Getter
     @Setter
     private String flavourVersion;
 
-    @Getter
     @Setter
     private String version;
 
-    @Getter
     @Setter
     private String extensions;
 
-    @Getter
     @Setter
     private String basePackage;
 
-    @Getter
     @Setter
     private boolean addJacoco;
 
-    @Getter
     @Setter
     private boolean addFormatting;
 
-    @Getter
     @Setter
     private boolean addChangelog;
 
-    @Getter
     @Setter
     private String withCI;
 
