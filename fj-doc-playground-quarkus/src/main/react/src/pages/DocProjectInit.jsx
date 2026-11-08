@@ -67,6 +67,7 @@ const DocProjectInit = ({ setHelpContent }) => {
   const [addDirectPlugin, setAddDirectPlugin] = useState(false);
   const [addJacoco, setAddJacoco] = useState(false);
   const [addFormatting, setAddFormatting] = useState(false);
+  const [addChangelog, setAddChangelog] = useState(false);
   const [extensionList, setExtensionList] = useState([]);
   const [selectedExtensions, setSelectedExtensions] = useState(['fj-doc-base', 'fj-doc-freemarker']);
   const [loadingExts, setLoadingExts] = useState(true);
@@ -93,7 +94,7 @@ const DocProjectInit = ({ setHelpContent }) => {
     const payload = {
       groupId, artifactId, projectVersion,
       javaVersion, venusVersion, flavour, flavourVersion,
-      addVerifyPlugin, addDirectPlugin, addJacoco, addFormatting, withCI,
+      addVerifyPlugin, addDirectPlugin, addJacoco, addFormatting, addChangelog, withCI,
       extensionList: selectedExtensions,
     };
     const response = await initProject(payload);
@@ -181,6 +182,8 @@ const DocProjectInit = ({ setHelpContent }) => {
             label="Add JaCoCo" />
           <FormControlLabel control={<Switch checked={addFormatting} onChange={(e) => setAddFormatting(e.target.checked)} />}
             label="Add formatting" />
+          <FormControlLabel control={<Switch checked={addChangelog} onChange={(e) => setAddChangelog(e.target.checked)} />}
+            label="Add changelog" />
         </Box>
       </Grid>
     </Grid>,
@@ -234,7 +237,7 @@ const DocProjectInit = ({ setHelpContent }) => {
         ['Java', javaVersion], ['Venus', venusVersion], ['Flavour', flavour],
         ['CI', withCI || 'None'], ['Verify plugin', String(addVerifyPlugin)],
         ['Direct plugin', String(addDirectPlugin)], ['JaCoCo', String(addJacoco)],
-        ['Formatting', String(addFormatting)],
+        ['Formatting', String(addFormatting)], ['Changelog', String(addChangelog)],
       ].map(([k, v]) => (
         <Grid size={{ xs: 6, sm: 4 }} key={k}>
           <Typography variant="caption" color="text.secondary">{k}</Typography>

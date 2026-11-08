@@ -68,6 +68,10 @@ public class ProjectInitInput {
 
     @Getter
     @Setter
+    private boolean addChangelog;
+
+    @Getter
+    @Setter
     private String withCI;
 
 }

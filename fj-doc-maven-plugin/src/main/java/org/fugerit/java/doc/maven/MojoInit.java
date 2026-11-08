@@ -13,7 +13,7 @@ import org.fugerit.java.doc.project.facade.VersionCheck;
 
 import java.io.File;
 
-@Mojo( name = "init", requiresProject = false, defaultPhase = LifecyclePhase.NONE )
+@Mojo(name = "init", requiresProject = false, defaultPhase = LifecyclePhase.NONE)
 public class MojoInit extends MojoAdd {
 
     @Parameter(property = "groupId", required = true)
@@ -42,6 +42,9 @@ public class MojoInit extends MojoAdd {
     @Parameter(property = "addFormatting", defaultValue = "false", required = false)
     protected boolean addFormatting;
 
+    @Parameter(property = "addChangelog", defaultValue = "false", required = false)
+    protected boolean addChangelog;
+
     @Parameter(property = "withCI", required = false)
     protected String withCI;
 
@@ -53,38 +56,40 @@ public class MojoInit extends MojoAdd {
         try {
             fun.apply();
         } catch (Exception e) {
-            throw new MojoFailureException( String.format( "Project init failed: %s", e.getMessage() ), e );
+            throw new MojoFailureException(String.format("Project init failed: %s", e.getMessage()), e);
         }
     }
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        File initFolder = new File( this.baseInitFolder, this.artifactId );
-        if ( initFolder.exists() ) {
-            throw new MojoFailureException( String.format( "Folder %s already exists.", initFolder.getAbsolutePath() ) );
+        File initFolder = new File(this.baseInitFolder, this.artifactId);
+        if (initFolder.exists()) {
+            throw new MojoFailureException(String.format("Folder %s already exists.", initFolder.getAbsolutePath()));
         } else {
-            this.getLog().info( String.format( "project folder %s -> %s", initFolder.getAbsolutePath(), initFolder.mkdir() ) );
-            this.apply( () -> {
+            this.getLog().info(String.format("project folder %s -> %s", initFolder.getAbsolutePath(), initFolder.mkdir()));
+            this.apply(() -> {
                 this.projectFolder = initFolder.getCanonicalPath();
-                FlavourContext context = new FlavourContext( new File( this.projectFolder ), this.groupId, this.artifactId, this.projectVersion, this.javaRelease, this.flavour );
-                context.setModules( ModuleFacade.toModuleList( this.extensions ) );
-                context.setAddLombok( this.addLombok );
-                context.setFlavourVersion( this.flavourVersion );
-                context.setVersion( VersionCheck.findVersion( this.version ) );
-                context.setExtensions( this.extensions );
-                context.setBasePackage( this.basePackage );
-                context.setAddJacoco( this.addJacoco );
-                context.setAddFormatting( this.addFormatting );
-                context.setWithCI( this.withCI );
-                this.getLog().info( String.format( "flavour context : %s", context ) );
-                String actualVersion = FlavourFacade.initProject( context );
-                if ( FlavourFacade.FLAVOUR_DIRECT.equals( actualVersion ) ) {
+                FlavourContext context = new FlavourContext(new File(this.projectFolder), this.groupId, this.artifactId,
+                        this.projectVersion, this.javaRelease, this.flavour);
+                context.setModules(ModuleFacade.toModuleList(this.extensions));
+                context.setAddLombok(this.addLombok);
+                context.setFlavourVersion(this.flavourVersion);
+                context.setVersion(VersionCheck.findVersion(this.version));
+                context.setExtensions(this.extensions);
+                context.setBasePackage(this.basePackage);
+                context.setAddJacoco(this.addJacoco);
+                context.setAddFormatting(this.addFormatting);
+                context.setAddChangelog(this.addChangelog);
+                context.setWithCI(this.withCI);
+                this.getLog().info(String.format("flavour context : %s", context));
+                String actualVersion = FlavourFacade.initProject(context);
+                if (FlavourFacade.FLAVOUR_DIRECT.equals(actualVersion)) {
                     super.addDirectPlugin = Boolean.TRUE;
                     // for 'direct' flavour, parameter 'addDocFacade' set to 'false'
                     // https://github.com/fugerit-org/fj-doc/issues/413
                     super.addDocFacade = Boolean.FALSE;
                 }
-            } );
+            });
             super.groupIdOverride = this.groupId;
             super.artifactIdOverride = this.artifactId;
             super.execute();
