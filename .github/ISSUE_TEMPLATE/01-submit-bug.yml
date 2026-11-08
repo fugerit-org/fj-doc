@@ -41,6 +41,7 @@ body:
         - fj-doc-mod-opencsv - CSV doc handler based on OpenCSV
         - fj-doc-mod-openpdf-ext - PDF doc handler based on OpenPDF
         - fj-doc-mod-openrtf-ext - RTF doc handler based on OpenRTF
+        - fj-doc-mod-pdfbox - PDF doc handler based on Apache PDFBox
         - fj-doc-mod-lib-autodoc - Bundled library for XSD auto documentation
         - fj-doc-mod-lib-simpletable - Bundled library handling simple table data model
         - fj-doc-mod-lib-simpletable-import - Bundled library handling simple table import from Excel / CSV
