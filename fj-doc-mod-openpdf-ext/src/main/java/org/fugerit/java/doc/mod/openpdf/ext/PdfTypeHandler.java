@@ -97,7 +97,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 
 	@Override
 	public void setActivatePDFUA1(boolean value) {
-		this.setActivatePDFUA1( value );
+		this.activatePDFUA1 = value;
 	}
 
 	@Override

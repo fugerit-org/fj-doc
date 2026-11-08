@@ -11,6 +11,7 @@ import org.fugerit.java.doc.base.config.DocTypeHandler;
 import org.fugerit.java.doc.mod.fop.FreeMarkerFopTypeHandler;
 import org.fugerit.java.doc.mod.fop.InitFopHandler;
 import org.fugerit.java.doc.mod.fop.PdfFopTypeHandler;
+import org.fugerit.java.doc.mod.fop.config.FopConfigClassLoaderWrapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import test.org.fugerit.java.BasicTest;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 @Slf4j
 class TestRealisticInvoiceFop extends BasicTest {
@@ -32,6 +34,13 @@ class TestRealisticInvoiceFop extends BasicTest {
         SafeFunction.apply(InitFopHandler::initDocAsync);
     }
 
+    private DocTypeHandler createAccessibleHandler() {
+        FopConfigClassLoaderWrapper fopConfig = new FopConfigClassLoaderWrapper("fop-config-realistic-invoice.xml");
+        PdfFopTypeHandler handler = new PdfFopTypeHandler(StandardCharsets.UTF_8, fopConfig, true, false);
+        handler.setPdfUAMode(PdfFopTypeHandler.ATT_PDF_UA_MODE_PDF_UA_1);
+        return handler;
+    }
+
     @Test
     void testRealisticInvoiceFop() throws Exception {
         String inputXml = "xml/" + REALISTIC_INVOICE + ".xml";
@@ -42,7 +51,7 @@ class TestRealisticInvoiceFop extends BasicTest {
             foHandler.handle(DocInput.newInput(foHandler.getType(), reader), DocOutput.newOutput(fos));
         }
 
-        DocTypeHandler handler = PdfFopTypeHandler.HANDLER;
+        DocTypeHandler handler = this.createAccessibleHandler();
         try (InputStreamReader reader = new InputStreamReader(ClassHelper.loadFromDefaultClassLoader(inputXml));
              FileOutputStream fos = new FileOutputStream(OUTPUT_FILE)) {
             handler.handle(DocInput.newInput(handler.getType(), reader), DocOutput.newOutput(fos));
@@ -57,6 +66,9 @@ class TestRealisticInvoiceFop extends BasicTest {
             Assertions.assertTrue(pdfText.contains("Acme Cloud Integration Ltd."));
             Assertions.assertTrue(pdfText.contains("Enterprise Corp S.p.A."));
             Assertions.assertTrue(pdfText.contains("11,150.00"));
+            Assertions.assertNotNull(pdfDoc.getDocumentCatalog().getMarkInfo());
+            Assertions.assertTrue(pdfDoc.getDocumentCatalog().getMarkInfo().isMarked());
+            Assertions.assertNotNull(pdfDoc.getDocumentCatalog().getStructureTreeRoot());
         }
     }
 }
