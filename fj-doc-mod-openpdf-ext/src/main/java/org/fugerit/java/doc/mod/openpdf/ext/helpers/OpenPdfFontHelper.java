@@ -84,8 +84,12 @@ public class OpenPdfFontHelper {
 		int size = resolveFontSize( fontSize, docHelper );
 		int style = handleFontStyle( Font.NORMAL, fontStyle );
 		String fontName = resolveFontName( inputFontName, docHelper );
-		int bfV = resolveStandardFont( fontName );
-		BaseFont bf = (bfV == -1) ? resolveCustomFont( fontName, fontPath ) : null;
+		BaseFont bf = OpenPpfDocHandler.findFont( fontName );
+		int bfV = -1;
+		if ( bf == null ) {
+			bfV = resolveStandardFont( fontName );
+			bf = (bfV == -1) ? resolveCustomFont( fontName, fontPath ) : null;
+		}
 		Color c = color != null ? DocModelUtils.parseHtmlColor( color ) : Color.BLACK;
 		return (bfV == -1) ? new Font( bf, (float) size, style, c ) : new Font( bfV, (float) size, style, c );
 	}

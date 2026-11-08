@@ -77,7 +77,15 @@ public class PdfHelper extends PdfPageEventHelper {
 	public void onOpenDocument(PdfWriter writer, Document document) {
         totalPages = writer.getDirectContent().createTemplate(100, 100);
         totalPages.setBoundingBox( new Rectangle(-20, -20, 100, 100) );
-		this.baseFont = OpenPdfFontHelper.createBaseFontSafe(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED);
+        BaseFont bf = OpenPpfDocHandler.findFont( BaseFont.HELVETICA );
+        if ( bf == null ) {
+            bf = OpenPpfDocHandler.findFont( "helvetica" );
+        }
+        if ( bf != null ) {
+            this.baseFont = bf;
+        } else {
+            this.baseFont = OpenPdfFontHelper.createBaseFontSafe(BaseFont.HELVETICA, BaseFont.WINANSI, BaseFont.EMBEDDED);
+        }
     }
  
 	@Override

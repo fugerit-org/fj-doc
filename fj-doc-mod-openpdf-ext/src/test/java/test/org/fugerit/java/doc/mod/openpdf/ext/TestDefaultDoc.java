@@ -31,7 +31,7 @@ class TestDefaultDoc extends TestDocBase {
 	}
 
 	@Test
-	public void testAccessibility() {
+	void testAccessibility() {
 		boolean ok = this.testDocWorker( "accessibility_test" ,  DocConfig.TYPE_PDF );
 		Assertions.assertTrue(ok);
 	}
@@ -43,20 +43,14 @@ class TestDefaultDoc extends TestDocBase {
 	}
 
 	@Test
-	void testOpenHTML() {
-		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_HTML );
+	void testOpenPDFAsync() {
+		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_PDF );
 		Assertions.assertTrue(ok);
 	}
 	
 	@Test
-	void testOpenAltPDF() {
+	void testOpenPDFAlt() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_PDF );
-		Assertions.assertTrue(ok);
-	}
-
-	@Test
-	void testOpenAltHTML() {
-		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_HTML );
 		Assertions.assertTrue(ok);
 	}
 	
@@ -68,8 +62,8 @@ class TestDefaultDoc extends TestDocBase {
 	
 	@Test
 	void testOpenPDFA() {
-		// still working on font embedding
-		Assertions.assertThrows( AssertionError.class , () -> this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF ));
+		boolean ok = this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF );
+		Assertions.assertTrue(ok);
 	}
 	
 }

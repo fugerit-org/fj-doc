@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -13,6 +14,7 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocHeaderFooter;
 import org.fugerit.java.doc.base.model.DocPara;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.DocumentMetaHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPDFConfigHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
@@ -20,7 +22,14 @@ import org.w3c.dom.Element;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfName;
+import com.lowagie.text.pdf.PdfString;
 import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.xml.xmp.DublinCoreSchema;
+import com.lowagie.text.xml.xmp.PdfSchema;
+import com.lowagie.text.xml.xmp.XmpBasicSchema;
+import com.lowagie.text.xml.xmp.XmpSchema;
+import com.lowagie.text.xml.xmp.XmpWriter;
 
 public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf {
 
@@ -57,6 +66,55 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 		return false;
 	}
 
+	private void setupPdfUA1(PdfWriter pdfWriter, DocBase docBase) throws Exception {
+		if (this.isActivatePDFUA1()) {
+			pdfWriter.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
+			pdfWriter.setViewerPreferences(PdfWriter.DisplayDocTitle);
+			pdfWriter.setTagged();
+			pdfWriter.setUserProperties(true);
+
+			String lang = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_LANGUAGE);
+			if (StringUtils.isNotEmpty(lang)) {
+				pdfWriter.getExtraCatalog().put(PdfName.LANG, new PdfString(lang));
+			}
+
+			ByteArrayOutputStream xmpBaos = new ByteArrayOutputStream();
+			XmpWriter xmpWriter = new XmpWriter(xmpBaos);
+			XmpSchema pdfUaSchema = new XmpSchema("xmlns:pdfuaid=\"http://www.aiim.org/pdfua/ns/id/\"") {};
+			pdfUaSchema.setProperty("pdfuaid:part", "1");
+			xmpWriter.addRdfDescription(pdfUaSchema);
+
+			DublinCoreSchema dc = new DublinCoreSchema();
+			String title = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_TITLE);
+			if (title != null) {
+				dc.addTitle(title);
+			}
+			String author = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_AUTHOR);
+			if (author != null) {
+				dc.addAuthor(author);
+			}
+			String subject = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_SUBJECT);
+			if (subject != null) {
+				dc.addDescription(subject);
+			}
+			if (StringUtils.isNotEmpty(lang)) {
+				dc.setProperty(DublinCoreSchema.LANGUAGE, lang);
+			}
+			xmpWriter.addRdfDescription(dc);
+
+			PdfSchema pdfSchema = new PdfSchema();
+			pdfSchema.addProducer("OpenPDF");
+			xmpWriter.addRdfDescription(pdfSchema);
+
+			XmpBasicSchema basic = new XmpBasicSchema();
+			basic.addCreatorTool("Fugerit Venus Doc");
+			xmpWriter.addRdfDescription(basic);
+
+			xmpWriter.close();
+			pdfWriter.setXmpMetadata(xmpBaos.toByteArray());
+		}
+	}
+
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
 		DocBase docBase = docInput.getDoc();
@@ -83,6 +141,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 			pdfWriter = PdfWriter.getInstance( document, baos );
 			handler = new OpenPpfDocHandler(document, pdfWriter, totalPageCount );
 		}
+		this.setupPdfUA1( pdfWriter, docBase );
 		DocumentMetaHelper.handleDocMeta( document, docBase );
 		handler.handleDoc( docBase );
 		baos.writeTo( outputStream );
@@ -105,7 +164,5 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 		super.handleConfigTag(config);
 		OpenPDFConfigHelper.handleConfig( config, this.getType(), this );
 	}
-
-
 
 }
