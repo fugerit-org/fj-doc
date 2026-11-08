@@ -3,6 +3,9 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
+[#doc-release-notes-8-18-8]
+==== Version 8.18.8 [2026-11-08]
+
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
