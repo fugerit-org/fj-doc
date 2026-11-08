@@ -11,102 +11,107 @@ import java.util.Properties;
 @Slf4j
 @ToString
 @RequiredArgsConstructor
+@Getter
 public class FlavourContext {
 
-    @Getter @NonNull
+    @NonNull
     private File projectFolder;
 
-    @Getter @NonNull
+    @NonNull
     private String groupId;
 
-    @Getter @NonNull
+    @NonNull
     private String artifactId;
 
-    @Getter @NonNull
+    @NonNull
     private String projectVersion;
 
-    @Getter @NonNull
+    @NonNull
     private String javaRelease;
 
-    @Getter @NonNull
+    @NonNull
     private String flavour;
 
-    @Getter @Setter
+    @Setter
     private List<String> modules;
 
-    @Getter @Setter
+    @Setter
     private boolean addLombok;
 
-    @Getter @Setter
+    @Setter
     private String flavourVersion;
 
-    @Getter @Setter
+    @Setter
     private String version;
 
-    @Getter @Setter
+    @Setter
     private String extensions;
 
-    @Getter @Setter
+    @Setter
     private String basePackage;
 
-    @Getter @Setter
+    @Setter
     private boolean addJacoco;
 
-    @Getter @Setter
+    @Setter
     private boolean addFormatting;
 
-    @Getter @Setter
+    @Setter
+    private boolean addChangelog;
+
+    @Setter
     private String withCI;
 
     public String getDefaultJacocoVersion() {
-        return FlavourFacade.getFlavourDefaultVersion().getProperty( "jacoco-plugin-version" );
+        return FlavourFacade.getFlavourDefaultVersion().getProperty("jacoco-plugin-version");
     }
 
     public String getDefaultFormatterPluginVersion() {
-        return FlavourFacade.getFlavourDefaultVersion().getProperty( "mvn-formatter-plugin-version" );
+        return FlavourFacade.getFlavourDefaultVersion().getProperty("mvn-formatter-plugin-version");
     }
 
     public String getDefaultFugeritCodeRulesVersion() {
-        return FlavourFacade.getFlavourDefaultVersion().getProperty( "fugerit-code-rules-version" );
+        return FlavourFacade.getFlavourDefaultVersion().getProperty("fugerit-code-rules-version");
     }
 
     public String getDefaultFormatSkip() {
-        return FlavourFacade.getFlavourDefaultVersion().getProperty( "format.skip" );
+        return FlavourFacade.getFlavourDefaultVersion().getProperty("format.skip");
     }
 
     public String getWithCIPath() {
-        return FlavourFacade.getFlavourDefaultVersion().getProperty( "withCI.path."+this.withCI.toLowerCase() );
+        return FlavourFacade.getFlavourDefaultVersion().getProperty("withCI.path." + this.withCI.toLowerCase());
     }
 
-    private String toClassName( String base, String splitString ) {
+    private String toClassName(String base, String splitString) {
         StringBuilder buf = new StringBuilder();
-        String[] split = base.split( splitString );
-        for ( String part : split ) {
-            buf.append( part.substring( 0, 1 ).toUpperCase() );
-            buf.append( part.substring( 1 ) );
+        String[] split = base.split(splitString);
+        for (String part : split) {
+            buf.append(part.substring(0, 1).toUpperCase());
+            buf.append(part.substring(1));
         }
         return buf.toString();
     }
 
     public String getArtifactIdAsClassName() {
-        String res = toClassName( this.artifactId, "-" );
-        return toClassName( res, "\\." );
+        String res = toClassName(this.artifactId, "-");
+        return toClassName(res, "\\.");
     }
 
     public boolean isAsciidocFreemarkerHandlerAvailable() {
-        return VersionCheck.isMajorThan( this.getVersion(), VenusContext.VERSION_ASCIIDOC_FREEMARKER_HANDLER );
+        return VersionCheck.isMajorThan(this.getVersion(), VenusContext.VERSION_ASCIIDOC_FREEMARKER_HANDLER);
     }
 
     public String getResourcePathFmConfigXml() {
-        return VenusContext.toResourcePathFmConfigXml( this.getArtifactId() );
+        return VenusContext.toResourcePathFmConfigXml(this.getArtifactId());
     }
 
     public boolean isFreeMarkerNativeAvailable() {
-        return VersionCheck.isMajorThan( this.getVersion(), VenusContext.VERSION_NA_FREEMARKER_NATIVE );
+        return VersionCheck.isMajorThan(this.getVersion(), VenusContext.VERSION_NA_FREEMARKER_NATIVE);
     }
 
     public String getEvaluateBasePackage() {
-        return StringUtils.valueWithDefault( this.getBasePackage(), VenusContext.toPackage( this.getGroupId(), this.getArtifactId() ) );
+        return StringUtils.valueWithDefault(this.getBasePackage(),
+                VenusContext.toPackage(this.getGroupId(), this.getArtifactId()));
     }
 
 }

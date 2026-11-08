@@ -43,6 +43,7 @@ class InitRestTest {
     @Test
     void testInit() {
         this.testWorker("/project/init", "request/payload/init/init_ok_1.json", 200);
+        this.testWorker("/project/init", "request/payload/init/init_ok_2.json", 200);
         this.testWorker("/project/init", "request/payload/init/init_ko_1.json", 200);
         this.testWorker("/project/init", "request/payload/init/init_ko_2.json", 400);
         this.testWorker("/project/init", "request/payload/init/init_ko_3.json", 400);

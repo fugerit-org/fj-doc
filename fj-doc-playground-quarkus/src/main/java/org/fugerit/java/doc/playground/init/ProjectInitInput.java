@@ -8,66 +8,44 @@ import lombok.Setter;
 
 import java.util.List;
 
+@Getter
+@Setter
 public class ProjectInitInput {
 
     @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
-    @Getter
-    @Setter
     private String groupId;
 
     @Pattern(regexp = "[A-Za-z0-9-]+", flags = Pattern.Flag.DOTALL)
-    @Getter
-    @Setter
     private String artifactId;
 
     @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
-    @Getter
-    @Setter
     private String projectVersion;
 
     @Min(8)
     @Max(21)
-    @Getter
-    @Setter
     private Long javaVersion;
 
     @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
-    @Getter
-    @Setter
     private String venusVersion;
 
     @Pattern(regexp = "[A-Za-z0-9- ]+", flags = Pattern.Flag.DOTALL)
-    @Getter
-    @Setter
     private String flavour;
 
     @Pattern(regexp = "[A-Za-z0-9-\\.]+", flags = Pattern.Flag.DOTALL)
-    @Getter
-    @Setter
     private String flavourVersion;
 
-    @Getter
-    @Setter
     private List<String> extensionList;
 
-    @Getter
-    @Setter
     private boolean addVerifyPlugin;
 
-    @Getter
-    @Setter
     private boolean addDirectPlugin;
 
-    @Getter
-    @Setter
     private boolean addJacoco;
 
-    @Getter
-    @Setter
     private boolean addFormatting;
 
-    @Getter
-    @Setter
+    private boolean addChangelog;
+
     private String withCI;
 
 }

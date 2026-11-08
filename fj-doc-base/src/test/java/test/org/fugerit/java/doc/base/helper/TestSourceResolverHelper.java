@@ -25,7 +25,7 @@ class TestSourceResolverHelper {
 		docImage.setBase64(base64);
 		Assertions.assertNotNull( SourceResolverHelper.resolveImage(docImage) );
 		docImage.setBase64( null );
-		docImage.setUrl( "https://github.com/fugerit-org/fj-doc/blob/main/fj-doc-base/src/test/resources/test/img_test_red.png" );
+		docImage.setUrl( "https://raw.githubusercontent.com/fugerit-org/fj-doc/refs/heads/main/fj-doc-base/src/test/resources/test/img_test_red.png" );
 		Assertions.assertNotNull( SourceResolverHelper.resolveImage(docImage) );
 		log.info( "docImage : {}", docImage );
 	}
