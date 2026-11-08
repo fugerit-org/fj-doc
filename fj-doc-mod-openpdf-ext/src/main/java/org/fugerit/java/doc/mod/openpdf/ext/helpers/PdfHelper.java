@@ -14,7 +14,6 @@ import org.fugerit.java.doc.base.model.DocPara;
 import com.lowagie.text.Document;
 import com.lowagie.text.Element;
 import com.lowagie.text.Image;
-import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPageEventHelper;
@@ -129,6 +128,7 @@ public class PdfHelper extends PdfPageEventHelper {
  
 	@Override
     public void onCloseDocument(PdfWriter writer, Document document) {
+		// nothing to do on close document
     }
  
     public void setPageNumberAlignment(int pageNumberAlignment) {
@@ -166,5 +166,5 @@ public class PdfHelper extends PdfPageEventHelper {
 	public int getCurrentPageNumber() {
 		return currentPageNumber;
 	}
-	
+    
 }

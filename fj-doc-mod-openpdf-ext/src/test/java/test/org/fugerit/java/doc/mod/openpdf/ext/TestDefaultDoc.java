@@ -43,14 +43,20 @@ class TestDefaultDoc extends TestDocBase {
 	}
 
 	@Test
-	void testOpenPDFAsync() {
-		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_PDF );
+	void testOpenHTML() {
+		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_HTML );
 		Assertions.assertTrue(ok);
 	}
 	
 	@Test
-	void testOpenPDFAlt() {
+	void testOpenAltPDF() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_PDF );
+		Assertions.assertTrue(ok);
+	}
+
+	@Test
+	void testOpenAltHTML() {
+		boolean ok = this.testDocWorker( DEFAULT_DOC_ALT ,  DocConfig.TYPE_HTML );
 		Assertions.assertTrue(ok);
 	}
 	

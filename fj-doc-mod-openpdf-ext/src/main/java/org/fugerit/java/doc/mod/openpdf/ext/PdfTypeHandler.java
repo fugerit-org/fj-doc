@@ -1,6 +1,7 @@
 package org.fugerit.java.doc.mod.openpdf.ext;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
@@ -75,7 +76,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 		return false;
 	}
 
-	private void setupPdfUA1(PdfWriter pdfWriter, DocBase docBase) throws Exception {
+	private void setupPdfUA1(PdfWriter pdfWriter, DocBase docBase) throws IOException {
 		if (this.isActivatePDFUA1()) {
 			pdfWriter.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
 			pdfWriter.setViewerPreferences(PdfWriter.DisplayDocTitle);
@@ -124,11 +125,10 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 		}
 	}
 
-	private void postProcessPdfUA1(byte[] pdfBytes, OutputStream outputStream) throws Exception {
-		PdfReader reader = new PdfReader(pdfBytes);
-		try {
+	private void postProcessPdfUA1(byte[] pdfBytes, OutputStream outputStream) throws IOException {
+		try (PdfReader reader = new PdfReader(pdfBytes);
+		     PdfStamper stamper = new PdfStamper(reader, outputStream)) {
 			int pages = reader.getNumberOfPages();
-			PdfStamper stamper = new PdfStamper(reader, outputStream);
 			PdfWriter writer = stamper.getWriter();
 
 			PdfDictionary catalog = reader.getCatalog();
@@ -148,33 +148,7 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 				PdfArray docKids = new PdfArray();
 
 				for (int p = 1; p <= pages; p++) {
-					byte[] origContent = reader.getPageContent(p);
-					ByteArrayOutputStream newStream = new ByteArrayOutputStream();
-					newStream.write("/P << /MCID 0 >> BDC\n".getBytes(StandardCharsets.US_ASCII));
-					newStream.write(origContent);
-					newStream.write("\nEMC\n".getBytes(StandardCharsets.US_ASCII));
-					reader.setPageContent(p, newStream.toByteArray());
-
-					PdfDictionary pElem = new PdfDictionary(new PdfName("StructElem"));
-					pElem.put(PdfName.S, PdfName.P);
-					pElem.put(PdfName.P, docElemRef);
-					pElem.put(PdfName.PG, reader.getPageOrigRef(p));
-					pElem.put(PdfName.K, new PdfNumber(0));
-
-					PdfIndirectObject pElemObj = writer.addToBody(pElem);
-					PdfIndirectReference pElemRef = pElemObj.getIndirectReference();
-
-					docKids.add(pElemRef);
-
-					if (nums != null) {
-						int numsIdx = (p - 1) * 2 + 1;
-						if (numsIdx < nums.size()) {
-							PdfArray pageParents = (PdfArray) PdfReader.getPdfObject(nums.getPdfObject(numsIdx));
-							if (pageParents != null) {
-								pageParents.add(pElemRef);
-							}
-						}
-					}
+					tagPageContent(reader, writer, docElemRef, docKids, nums, p);
 				}
 
 				docElem.put(PdfName.K, docKids);
@@ -183,9 +157,37 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 				rootK.add(docElemRef);
 				structTreeRoot.put(PdfName.K, rootK);
 			}
-			stamper.close();
-		} finally {
-			reader.close();
+		}
+	}
+
+	private void tagPageContent(PdfReader reader, PdfWriter writer, PdfIndirectReference docElemRef,
+			PdfArray docKids, PdfArray nums, int pageNum) throws IOException {
+		byte[] origContent = reader.getPageContent(pageNum);
+		ByteArrayOutputStream newStream = new ByteArrayOutputStream();
+		newStream.write("/P << /MCID 0 >> BDC\n".getBytes(StandardCharsets.US_ASCII));
+		newStream.write(origContent);
+		newStream.write("\nEMC\n".getBytes(StandardCharsets.US_ASCII));
+		reader.setPageContent(pageNum, newStream.toByteArray());
+
+		PdfDictionary pElem = new PdfDictionary(new PdfName("StructElem"));
+		pElem.put(PdfName.S, PdfName.P);
+		pElem.put(PdfName.P, docElemRef);
+		pElem.put(PdfName.PG, reader.getPageOrigRef(pageNum));
+		pElem.put(PdfName.K, new PdfNumber(0));
+
+		PdfIndirectObject pElemObj = writer.addToBody(pElem);
+		PdfIndirectReference pElemRef = pElemObj.getIndirectReference();
+
+		docKids.add(pElemRef);
+
+		if (nums != null) {
+			int numsIdx = (pageNum - 1) * 2 + 1;
+			if (numsIdx < nums.size()) {
+				PdfArray pageParents = (PdfArray) PdfReader.getPdfObject(nums.getPdfObject(numsIdx));
+				if (pageParents != null) {
+					pageParents.add(pElemRef);
+				}
+			}
 		}
 	}
 
