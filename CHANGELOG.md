@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- fj-doc-mod-pdfbox - support horizontal text alignment (`align` attribute on `<cell>` and `<para>`) in `PdfBoxDocumentRenderer` <https://github.com/fugerit-org/fj-doc/issues/690>
 - fj-doc-mod-openpdf-ext - resolve registered custom fonts before standard fonts in `OpenPdfFontHelper` and `PdfHelper` to guarantee font embedding for PDF/A and PDF/UA <https://github.com/fugerit-org/fj-doc/issues/199>
 - fj-doc-mod-openpdf-ext - remove unused template creation in `PdfHelper` to eliminate untagged Form XObjects and achieve 100% PDF/UA-1 and WCAG 2.1 compliance on axes4 checker <https://github.com/fugerit-org/fj-doc/issues/199>
 

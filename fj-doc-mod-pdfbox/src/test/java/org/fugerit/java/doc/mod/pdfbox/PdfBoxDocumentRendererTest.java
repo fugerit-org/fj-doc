@@ -802,4 +802,24 @@ class PdfBoxDocumentRendererTest {
             Assertions.assertFalse(normalFont.getName().contains("Oblique"));
         }
     }
+
+    @Test
+    void testAlignmentHelpers() {
+        DocPara para = new DocPara();
+        DocCell cell = new DocCell();
+        cell.setAlign(DocPara.ALIGN_CENTER);
+
+        Assertions.assertEquals(DocPara.ALIGN_CENTER, PdfBoxDocumentRenderer.resolveAlign(null, cell));
+        Assertions.assertEquals(DocPara.ALIGN_CENTER, PdfBoxDocumentRenderer.resolveAlign(para, cell));
+        para.setAlign(-1);
+        Assertions.assertEquals(DocPara.ALIGN_CENTER, PdfBoxDocumentRenderer.resolveAlign(para, cell));
+        para.setAlign(DocPara.ALIGN_RIGHT);
+        Assertions.assertEquals(DocPara.ALIGN_RIGHT, PdfBoxDocumentRenderer.resolveAlign(para, cell));
+        Assertions.assertEquals(DocPara.ALIGN_UNSET, PdfBoxDocumentRenderer.resolveAlign(null, null));
+
+        Assertions.assertEquals(13f, PdfBoxDocumentRenderer.computeAlignedX(10f, 100f, 40f, 3f, DocPara.ALIGN_LEFT));
+        Assertions.assertEquals(15f, PdfBoxDocumentRenderer.computeAlignedX(10f, 100f, 40f, 5f, DocPara.ALIGN_UNSET));
+        Assertions.assertEquals(40f, PdfBoxDocumentRenderer.computeAlignedX(10f, 100f, 40f, 3f, DocPara.ALIGN_CENTER));
+        Assertions.assertEquals(67f, PdfBoxDocumentRenderer.computeAlignedX(10f, 100f, 40f, 3f, DocPara.ALIGN_RIGHT));
+    }
 }

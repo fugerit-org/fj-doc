@@ -903,7 +903,7 @@ public class PdfBoxDocumentRenderer {
         String fontName = para.getFontName();
         PDFont font = getEncodableFont(style, fontName, text);
         float fontSize = para.getSize() > 0 ? fontManager.getFontSize(style, para.getSize()) : fontManager.getFontSize(0);
-        int align = (para.getAlign() == DocPara.ALIGN_UNSET) ? cell.getAlign() : para.getAlign();
+        int align = resolveAlign(para, cell);
         String foreColor = StringUtils.isNotEmpty(para.getForeColor()) ? para.getForeColor() : cell.getForeColor();
 
         if (isPreserveLine(para)) {
@@ -951,6 +951,23 @@ public class PdfBoxDocumentRenderer {
             return FontManager.STYLE_BOLD;
         }
         return para.getStyle();
+    }
+
+    static int resolveAlign(DocPara para, DocCell cell) {
+        int paraAlign = para != null ? para.getAlign() : DocPara.ALIGN_UNSET;
+        if (paraAlign > DocPara.ALIGN_UNSET) {
+            return paraAlign;
+        }
+        return cell != null ? cell.getAlign() : DocPara.ALIGN_UNSET;
+    }
+
+    static float computeAlignedX(float baseX, float width, float textWidth, float padding, int align) {
+        if (align == DocPara.ALIGN_CENTER) {
+            return baseX + (width - textWidth) / 2f;
+        } else if (align == DocPara.ALIGN_RIGHT) {
+            return baseX + width - textWidth - padding;
+        }
+        return baseX + padding;
     }
 
     private boolean isPreserveLine(DocPara para) {
@@ -1028,13 +1045,7 @@ public class PdfBoxDocumentRenderer {
                 text = sanitizeTextForFont(line.font, text);
             }
             float textWidth = calculateTextWidth(text, line.font, line.fontSize);
-            float lineX = cellX + 3;
-            int align = (line.align == DocPara.ALIGN_UNSET) ? data.cell.getAlign() : line.align;
-            if (align == DocPara.ALIGN_CENTER) {
-                lineX = cellX + (data.width - textWidth) / 2;
-            } else if (align == DocPara.ALIGN_RIGHT) {
-                lineX = cellX + data.width - textWidth - 3;
-            }
+            float lineX = computeAlignedX(cellX, data.width, textWidth, 3f, line.align);
 
             if (StringUtils.isNotEmpty(line.foreColor)) {
                 SafeFunction.applySilent(() -> {
