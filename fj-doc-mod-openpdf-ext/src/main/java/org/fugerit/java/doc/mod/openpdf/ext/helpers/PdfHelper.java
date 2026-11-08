@@ -18,7 +18,6 @@ import com.lowagie.text.Rectangle;
 import com.lowagie.text.pdf.BaseFont;
 import com.lowagie.text.pdf.PdfContentByte;
 import com.lowagie.text.pdf.PdfPageEventHelper;
-import com.lowagie.text.pdf.PdfTemplate;
 import com.lowagie.text.pdf.PdfWriter;
 
 /**
@@ -37,7 +36,6 @@ public class PdfHelper extends PdfPageEventHelper {
 	}
 	
 	protected BaseFont baseFont;
-    private PdfTemplate totalPages;
     private float footerTextSize = 8f;
     private int pageNumberAlignment = Element.ALIGN_CENTER;
  
@@ -75,8 +73,6 @@ public class PdfHelper extends PdfPageEventHelper {
 
 	@Override
 	public void onOpenDocument(PdfWriter writer, Document document) {
-        totalPages = writer.getDirectContent().createTemplate(100, 100);
-        totalPages.setBoundingBox( new Rectangle(-20, -20, 100, 100) );
         BaseFont bf = OpenPpfDocHandler.findFont( BaseFont.HELVETICA );
         if ( bf == null ) {
             bf = OpenPpfDocHandler.findFont( "helvetica" );
@@ -133,11 +129,6 @@ public class PdfHelper extends PdfPageEventHelper {
  
 	@Override
     public void onCloseDocument(PdfWriter writer, Document document) {
-        totalPages.beginText();
-        totalPages.setFontAndSize(baseFont, footerTextSize);
-        totalPages.setTextMatrix(0, 0);
-        totalPages.showText(String.valueOf( writer.getPageNumber() - 1) );
-        totalPages.endText();
     }
  
     public void setPageNumberAlignment(int pageNumberAlignment) {

@@ -39,6 +39,7 @@ class TestRealisticInvoiceOpenPDF extends TestDocBase {
 				Assertions.assertNotNull( pdfDoc.getDocumentCatalog().getMarkInfo() );
 				Assertions.assertTrue( pdfDoc.getDocumentCatalog().getMarkInfo().isMarked() );
 				Assertions.assertNotNull( pdfDoc.getDocumentCatalog().getStructureTreeRoot() );
+				Assertions.assertNotNull( pdfDoc.getDocumentCatalog().getStructureTreeRoot().getK() );
 			}
 		} );
 	}

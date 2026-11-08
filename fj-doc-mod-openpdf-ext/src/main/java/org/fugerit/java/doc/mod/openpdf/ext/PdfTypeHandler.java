@@ -2,6 +2,7 @@ package org.fugerit.java.doc.mod.openpdf.ext;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.fugerit.java.core.cfg.ConfigException;
 import org.fugerit.java.core.lang.helpers.StringUtils;
@@ -22,7 +23,15 @@ import org.w3c.dom.Element;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfArray;
+import com.lowagie.text.pdf.PdfDictionary;
+import com.lowagie.text.pdf.PdfIndirectObject;
+import com.lowagie.text.pdf.PdfIndirectReference;
 import com.lowagie.text.pdf.PdfName;
+import com.lowagie.text.pdf.PdfNumber;
+import com.lowagie.text.pdf.PdfObject;
+import com.lowagie.text.pdf.PdfReader;
+import com.lowagie.text.pdf.PdfStamper;
 import com.lowagie.text.pdf.PdfString;
 import com.lowagie.text.pdf.PdfWriter;
 import com.lowagie.text.xml.xmp.DublinCoreSchema;
@@ -115,6 +124,71 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 		}
 	}
 
+	private void postProcessPdfUA1(byte[] pdfBytes, OutputStream outputStream) throws Exception {
+		PdfReader reader = new PdfReader(pdfBytes);
+		try {
+			int pages = reader.getNumberOfPages();
+			PdfStamper stamper = new PdfStamper(reader, outputStream);
+			PdfWriter writer = stamper.getWriter();
+
+			PdfDictionary catalog = reader.getCatalog();
+			PdfObject structTreeRootRef = catalog.get(PdfName.STRUCTTREEROOT);
+			if (structTreeRootRef != null) {
+				PdfDictionary structTreeRoot = (PdfDictionary) PdfReader.getPdfObject(structTreeRootRef);
+				PdfObject parentTreeRef = structTreeRoot.get(PdfName.PARENTTREE);
+				PdfDictionary parentTree = parentTreeRef != null ? (PdfDictionary) PdfReader.getPdfObject(parentTreeRef) : null;
+				PdfArray nums = parentTree != null ? parentTree.getAsArray(PdfName.NUMS) : null;
+
+				PdfDictionary docElem = new PdfDictionary(new PdfName("StructElem"));
+				docElem.put(PdfName.S, PdfName.DOCUMENT);
+				docElem.put(PdfName.P, structTreeRootRef);
+				PdfIndirectObject docElemObj = writer.addToBody(docElem);
+				PdfIndirectReference docElemRef = docElemObj.getIndirectReference();
+
+				PdfArray docKids = new PdfArray();
+
+				for (int p = 1; p <= pages; p++) {
+					byte[] origContent = reader.getPageContent(p);
+					ByteArrayOutputStream newStream = new ByteArrayOutputStream();
+					newStream.write("/P << /MCID 0 >> BDC\n".getBytes(StandardCharsets.US_ASCII));
+					newStream.write(origContent);
+					newStream.write("\nEMC\n".getBytes(StandardCharsets.US_ASCII));
+					reader.setPageContent(p, newStream.toByteArray());
+
+					PdfDictionary pElem = new PdfDictionary(new PdfName("StructElem"));
+					pElem.put(PdfName.S, PdfName.P);
+					pElem.put(PdfName.P, docElemRef);
+					pElem.put(PdfName.PG, reader.getPageOrigRef(p));
+					pElem.put(PdfName.K, new PdfNumber(0));
+
+					PdfIndirectObject pElemObj = writer.addToBody(pElem);
+					PdfIndirectReference pElemRef = pElemObj.getIndirectReference();
+
+					docKids.add(pElemRef);
+
+					if (nums != null) {
+						int numsIdx = (p - 1) * 2 + 1;
+						if (numsIdx < nums.size()) {
+							PdfArray pageParents = (PdfArray) PdfReader.getPdfObject(nums.getPdfObject(numsIdx));
+							if (pageParents != null) {
+								pageParents.add(pElemRef);
+							}
+						}
+					}
+				}
+
+				docElem.put(PdfName.K, docKids);
+
+				PdfArray rootK = new PdfArray();
+				rootK.add(docElemRef);
+				structTreeRoot.put(PdfName.K, rootK);
+			}
+			stamper.close();
+		} finally {
+			reader.close();
+		}
+	}
+
 	@Override
 	public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
 		DocBase docBase = docInput.getDoc();
@@ -144,7 +218,11 @@ public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf 
 		this.setupPdfUA1( pdfWriter, docBase );
 		DocumentMetaHelper.handleDocMeta( document, docBase );
 		handler.handleDoc( docBase );
-		baos.writeTo( outputStream );
+		if ( this.isActivatePDFUA1() ) {
+			this.postProcessPdfUA1( baos.toByteArray(), outputStream );
+		} else {
+			baos.writeTo( outputStream );
+		}
 		baos.close();
 		outputStream.close();	
 	}
