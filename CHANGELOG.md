@@ -14,6 +14,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - fj-doc-maven-plugin, init goal, 'addChangelog' parameter <https://github.com/fugerit-org/fj-doc/issues/672>
+- fj-doc-mod-openpdf-ext - PDF/UA-1 accessibility support in `PdfTypeHandler` (`activatePdfUA1="true"`) with tagged PDF, document catalog `/Lang`, PDF/UA-1 XMP metadata, logical structure tree post-processing, and embedded font resolution <https://github.com/fugerit-org/fj-doc/issues/199>
+- fj-doc-mod-fop - accessible PDF/UA-1 configuration in realistic invoice test <https://github.com/fugerit-org/fj-doc/issues/199>
+
+### Fixed
+
+- fj-doc-mod-openpdf-ext - resolve registered custom fonts before standard fonts in `OpenPdfFontHelper` and `PdfHelper` to guarantee font embedding for PDF/A and PDF/UA <https://github.com/fugerit-org/fj-doc/issues/199>
+- fj-doc-mod-openpdf-ext - remove unused template creation in `PdfHelper` to eliminate untagged Form XObjects and achieve 100% PDF/UA-1 and WCAG 2.1 compliance on axes4 checker <https://github.com/fugerit-org/fj-doc/issues/199>
 
 ## [8.18.7] - 2026-11-07
 
