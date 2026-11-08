@@ -4,14 +4,13 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.fugerit.java.core.function.SafeFunction;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 class TestRealisticInvoiceOpenPDF extends TestDocBase {
@@ -37,6 +36,10 @@ class TestRealisticInvoiceOpenPDF extends TestDocBase {
 				Assertions.assertTrue( pdfText.contains( "Enterprise Corp S.p.A." ) );
 				Assertions.assertTrue( pdfText.contains( "11,150.00" ) );
 				Assertions.assertTrue( pdfText.contains( "Page 1 / 1" ) );
+				Assertions.assertNotNull( pdfDoc.getDocumentCatalog().getMarkInfo() );
+				Assertions.assertTrue( pdfDoc.getDocumentCatalog().getMarkInfo().isMarked() );
+				Assertions.assertNotNull( pdfDoc.getDocumentCatalog().getStructureTreeRoot() );
+				Assertions.assertNotNull( pdfDoc.getDocumentCatalog().getStructureTreeRoot().getK() );
 			}
 		} );
 	}

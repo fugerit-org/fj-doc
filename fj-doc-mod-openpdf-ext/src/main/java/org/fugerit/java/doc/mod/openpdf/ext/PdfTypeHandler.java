@@ -1,9 +1,12 @@
 package org.fugerit.java.doc.mod.openpdf.ext;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 import org.fugerit.java.core.cfg.ConfigException;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.config.DocInput;
 import org.fugerit.java.doc.base.config.DocOutput;
@@ -13,6 +16,7 @@ import org.fugerit.java.doc.base.model.DocBase;
 import org.fugerit.java.doc.base.model.DocElement;
 import org.fugerit.java.doc.base.model.DocHeaderFooter;
 import org.fugerit.java.doc.base.model.DocPara;
+import org.fugerit.java.doc.base.typehelper.generic.GenericConsts;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.DocumentMetaHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPDFConfigHelper;
 import org.fugerit.java.doc.mod.openpdf.ext.helpers.OpenPpfDocHandler;
@@ -20,9 +24,24 @@ import org.w3c.dom.Element;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
+import com.lowagie.text.pdf.PdfArray;
+import com.lowagie.text.pdf.PdfDictionary;
+import com.lowagie.text.pdf.PdfIndirectObject;
+import com.lowagie.text.pdf.PdfIndirectReference;
+import com.lowagie.text.pdf.PdfName;
+import com.lowagie.text.pdf.PdfNumber;
+import com.lowagie.text.pdf.PdfObject;
+import com.lowagie.text.pdf.PdfReader;
+import com.lowagie.text.pdf.PdfStamper;
+import com.lowagie.text.pdf.PdfString;
 import com.lowagie.text.pdf.PdfWriter;
+import com.lowagie.text.xml.xmp.DublinCoreSchema;
+import com.lowagie.text.xml.xmp.PdfSchema;
+import com.lowagie.text.xml.xmp.XmpBasicSchema;
+import com.lowagie.text.xml.xmp.XmpSchema;
+import com.lowagie.text.xml.xmp.XmpWriter;
 
-public class PdfTypeHandler extends DocTypeHandlerDefault {
+public class PdfTypeHandler extends DocTypeHandlerDefault implements PDFUA1Conf {
 
 	/**
 	 * 
@@ -30,9 +49,12 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 	private static final long serialVersionUID = 5459938865782356227L;
 	
 	public static final DocTypeHandler HANDLER = new PdfTypeHandler();
-	
+
+	private boolean activatePDFUA1;
+
 	public PdfTypeHandler() {
 		super( DocConfig.TYPE_PDF, OpenPpfDocHandler.MODULE );
+		this.setActivatePDFUA1( false );
 	}
 
 	private static boolean checkTotalPageNeeded( DocBase docBase ) {
@@ -52,6 +74,121 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 			}
 		}
 		return false;
+	}
+
+	private void setupPdfUA1(PdfWriter pdfWriter, DocBase docBase) throws IOException {
+		if (this.isActivatePDFUA1()) {
+			pdfWriter.setPdfVersion(PdfWriter.PDF_VERSION_1_7);
+			pdfWriter.setViewerPreferences(PdfWriter.DisplayDocTitle);
+			pdfWriter.setTagged();
+			pdfWriter.setUserProperties(true);
+
+			String lang = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_LANGUAGE);
+			if (StringUtils.isNotEmpty(lang)) {
+				pdfWriter.getExtraCatalog().put(PdfName.LANG, new PdfString(lang));
+			}
+
+			ByteArrayOutputStream xmpBaos = new ByteArrayOutputStream();
+			XmpWriter xmpWriter = new XmpWriter(xmpBaos);
+			XmpSchema pdfUaSchema = new XmpSchema("xmlns:pdfuaid=\"http://www.aiim.org/pdfua/ns/id/\"") {};
+			pdfUaSchema.setProperty("pdfuaid:part", "1");
+			xmpWriter.addRdfDescription(pdfUaSchema);
+
+			DublinCoreSchema dc = new DublinCoreSchema();
+			String title = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_TITLE);
+			if (title != null) {
+				dc.addTitle(title);
+			}
+			String author = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_AUTHOR);
+			if (author != null) {
+				dc.addAuthor(author);
+			}
+			String subject = docBase.getStableInfo().getProperty(GenericConsts.INFO_KEY_DOC_SUBJECT);
+			if (subject != null) {
+				dc.addDescription(subject);
+			}
+			if (StringUtils.isNotEmpty(lang)) {
+				dc.setProperty(DublinCoreSchema.LANGUAGE, lang);
+			}
+			xmpWriter.addRdfDescription(dc);
+
+			PdfSchema pdfSchema = new PdfSchema();
+			pdfSchema.addProducer("OpenPDF");
+			xmpWriter.addRdfDescription(pdfSchema);
+
+			XmpBasicSchema basic = new XmpBasicSchema();
+			basic.addCreatorTool("Fugerit Venus Doc");
+			xmpWriter.addRdfDescription(basic);
+
+			xmpWriter.close();
+			pdfWriter.setXmpMetadata(xmpBaos.toByteArray());
+		}
+	}
+
+	private void postProcessPdfUA1(byte[] pdfBytes, OutputStream outputStream) throws IOException {
+		try (PdfReader reader = new PdfReader(pdfBytes);
+		     PdfStamper stamper = new PdfStamper(reader, outputStream)) {
+			int pages = reader.getNumberOfPages();
+			PdfWriter writer = stamper.getWriter();
+
+			PdfDictionary catalog = reader.getCatalog();
+			PdfObject structTreeRootRef = catalog.get(PdfName.STRUCTTREEROOT);
+			if (structTreeRootRef != null) {
+				PdfDictionary structTreeRoot = (PdfDictionary) PdfReader.getPdfObject(structTreeRootRef);
+				PdfObject parentTreeRef = structTreeRoot.get(PdfName.PARENTTREE);
+				PdfDictionary parentTree = parentTreeRef != null ? (PdfDictionary) PdfReader.getPdfObject(parentTreeRef) : null;
+				PdfArray nums = parentTree != null ? parentTree.getAsArray(PdfName.NUMS) : null;
+
+				PdfDictionary docElem = new PdfDictionary(new PdfName("StructElem"));
+				docElem.put(PdfName.S, PdfName.DOCUMENT);
+				docElem.put(PdfName.P, structTreeRootRef);
+				PdfIndirectObject docElemObj = writer.addToBody(docElem);
+				PdfIndirectReference docElemRef = docElemObj.getIndirectReference();
+
+				PdfArray docKids = new PdfArray();
+
+				for (int p = 1; p <= pages; p++) {
+					tagPageContent(reader, writer, docElemRef, docKids, nums, p);
+				}
+
+				docElem.put(PdfName.K, docKids);
+
+				PdfArray rootK = new PdfArray();
+				rootK.add(docElemRef);
+				structTreeRoot.put(PdfName.K, rootK);
+			}
+		}
+	}
+
+	private void tagPageContent(PdfReader reader, PdfWriter writer, PdfIndirectReference docElemRef,
+			PdfArray docKids, PdfArray nums, int pageNum) throws IOException {
+		byte[] origContent = reader.getPageContent(pageNum);
+		ByteArrayOutputStream newStream = new ByteArrayOutputStream();
+		newStream.write("/P << /MCID 0 >> BDC\n".getBytes(StandardCharsets.US_ASCII));
+		newStream.write(origContent);
+		newStream.write("\nEMC\n".getBytes(StandardCharsets.US_ASCII));
+		reader.setPageContent(pageNum, newStream.toByteArray());
+
+		PdfDictionary pElem = new PdfDictionary(new PdfName("StructElem"));
+		pElem.put(PdfName.S, PdfName.P);
+		pElem.put(PdfName.P, docElemRef);
+		pElem.put(PdfName.PG, reader.getPageOrigRef(pageNum));
+		pElem.put(PdfName.K, new PdfNumber(0));
+
+		PdfIndirectObject pElemObj = writer.addToBody(pElem);
+		PdfIndirectReference pElemRef = pElemObj.getIndirectReference();
+
+		docKids.add(pElemRef);
+
+		if (nums != null) {
+			int numsIdx = (pageNum - 1) * 2 + 1;
+			if (numsIdx < nums.size()) {
+				PdfArray pageParents = (PdfArray) PdfReader.getPdfObject(nums.getPdfObject(numsIdx));
+				if (pageParents != null) {
+					pageParents.add(pElemRef);
+				}
+			}
+		}
 	}
 
 	@Override
@@ -80,16 +217,32 @@ public class PdfTypeHandler extends DocTypeHandlerDefault {
 			pdfWriter = PdfWriter.getInstance( document, baos );
 			handler = new OpenPpfDocHandler(document, pdfWriter, totalPageCount );
 		}
+		this.setupPdfUA1( pdfWriter, docBase );
 		DocumentMetaHelper.handleDocMeta( document, docBase );
 		handler.handleDoc( docBase );
-		baos.writeTo( outputStream );
+		if ( this.isActivatePDFUA1() ) {
+			this.postProcessPdfUA1( baos.toByteArray(), outputStream );
+		} else {
+			baos.writeTo( outputStream );
+		}
 		baos.close();
 		outputStream.close();	
 	}
 
 	@Override
+	public boolean isActivatePDFUA1() {
+		return this.activatePDFUA1;
+	}
+
+	@Override
+	public void setActivatePDFUA1(boolean value) {
+		this.activatePDFUA1 = value;
+	}
+
+	@Override
 	protected void handleConfigTag(Element config) throws ConfigException {
 		super.handleConfigTag(config);
-		OpenPDFConfigHelper.handleConfig( config, this.getType() );
+		OpenPDFConfigHelper.handleConfig( config, this.getType(), this );
 	}
+
 }

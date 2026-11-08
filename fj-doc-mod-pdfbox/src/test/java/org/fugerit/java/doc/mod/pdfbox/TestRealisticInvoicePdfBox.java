@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.util.Properties;
 
 @Slf4j
 class TestRealisticInvoicePdfBox {
@@ -23,7 +24,10 @@ class TestRealisticInvoicePdfBox {
 
     @Test
     void testPdfBoxRealisticInvoice() throws Exception {
+        Properties props = new Properties();
+        props.setProperty(PdfBoxConfig.PDFUA_ENABLED, "true");
         PdfBoxTypeHandler handler = new PdfBoxTypeHandler();
+        handler.configure(props);
         String inputXml = "xml/" + REALISTIC_INVOICE + ".xml";
         try (InputStreamReader reader = new InputStreamReader(ClassHelper.loadFromDefaultClassLoader(inputXml));
              OutputStream os = Files.newOutputStream(OUTPUT_FILE.toPath())) {
@@ -40,8 +44,13 @@ class TestRealisticInvoicePdfBox {
             Assertions.assertTrue(pdfText.contains("Enterprise Corp S.p.A."));
             Assertions.assertTrue(pdfText.contains("11,150.00"));
             Assertions.assertTrue(pdfText.contains("Page 1 / 1"));
+            Assertions.assertNotNull(pdfDoc.getDocumentCatalog().getMarkInfo());
+            Assertions.assertTrue(pdfDoc.getDocumentCatalog().getMarkInfo().isMarked());
+            Assertions.assertNotNull(pdfDoc.getDocumentCatalog().getStructureTreeRoot());
+            Assertions.assertNotNull(pdfDoc.getDocumentCatalog().getStructureTreeRoot().getK());
         }
     }
+
     @Test
     void testPdfBoxRealisticInvoiceCustomBehaviour() throws Exception {
         PdfBoxTypeHandler handler = new PdfBoxTypeHandler();

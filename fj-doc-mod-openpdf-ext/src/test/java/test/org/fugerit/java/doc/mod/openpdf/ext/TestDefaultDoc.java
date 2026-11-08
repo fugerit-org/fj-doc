@@ -29,7 +29,13 @@ class TestDefaultDoc extends TestDocBase {
 		BaseFont font = OpenPpfDocHandler.findFont( CUSTOM_FONT );
 		Assertions.assertNotNull(font);
 	}
-	
+
+	@Test
+	void testAccessibility() {
+		boolean ok = this.testDocWorker( "accessibility_test" ,  DocConfig.TYPE_PDF );
+		Assertions.assertTrue(ok);
+	}
+
 	@Test
 	void testOpenPDF() {
 		boolean ok = this.testDocWorker( DEFAULT_DOC ,  DocConfig.TYPE_PDF );
@@ -62,8 +68,8 @@ class TestDefaultDoc extends TestDocBase {
 	
 	@Test
 	void testOpenPDFA() {
-		// still working on font embedding
-		Assertions.assertThrows( AssertionError.class , () -> this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF ));
+		boolean ok = this.testDocWorker( DEFAULT_DOC_PDFA ,  DocConfig.TYPE_PDF );
+		Assertions.assertTrue(ok);
 	}
 	
 }
