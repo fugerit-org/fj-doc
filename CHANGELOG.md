@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- fop-version set to 2.12
+
 ### Added
 
 - fj-doc-maven-plugin, init goal, 'addChangelog' parameter <https://github.com/fugerit-org/fj-doc/issues/672>
