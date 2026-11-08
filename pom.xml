@@ -35,6 +35,7 @@
 	    <jajarta-jaxb-version>4.0.5</jajarta-jaxb-version>
 	    <jajarta-jaxb-impl-version>4.0.9</jajarta-jaxb-impl-version>
 	    <poi5-version>${poi-version}</poi5-version>
+		<freemarker-version>2.3.35</freemarker-version>
         <!-- default to version jdk21on -->
         <kotlin.version>2.4.21</kotlin.version>
         <!-- legacy version for kotlin -->

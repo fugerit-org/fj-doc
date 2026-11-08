@@ -14,7 +14,7 @@ for instance, the 'fj-doc-freemarker' module will add the dependency :
 [source,xml]
 ----
 	<properties>
-		<freemarker-version>2.3.34</freemarker-version>
+		<freemarker-version>2.3.35</freemarker-version>
 	</properties>
 	<dependencies>
 		<dependency>
