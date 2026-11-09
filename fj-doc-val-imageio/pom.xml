@@ -22,7 +22,7 @@
 	</licenses>
 	
 	<properties>
-		<imageio-version>3.13.1</imageio-version>
+		<imageio-version>3.15.3</imageio-version>
 	</properties>
 	
 	<build>
