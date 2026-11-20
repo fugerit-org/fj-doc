@@ -42,9 +42,16 @@ public class PdfUAConfigurator {
     // PDF/UA namespace
     private static final String PDFUA_NAMESPACE = "http://www.aiim.org/pdfua/ns/id/";
     private static final String PDFUA_PREFIX = "pdfuaid";
+    private static final float MIN_PDFUA_VERSION = 1.7f;
+    private static final COSName COS_NAME_TABS = COSName.getPDFName("Tabs");
 
     public static void configurePdfUA1(PDDocument document, PdfBoxConfig config)
             throws IOException {
+
+        // PDF/UA-1 (ISO 14289-1) requires PDF version >= 1.7
+        if (document.getVersion() < MIN_PDFUA_VERSION) {
+            document.setVersion(MIN_PDFUA_VERSION);
+        }
 
         // Configure document catalog for accessibility
         PDDocumentCatalog catalog = document.getDocumentCatalog();
@@ -107,6 +114,7 @@ public class PdfUAConfigurator {
             PDStream newStream = new PDStream(document, new ByteArrayInputStream(combined.toByteArray()), COSName.FLATE_DECODE);
             page.setContents(newStream);
             page.setStructParents(pageIdx);
+            page.getCOSObject().setName(COS_NAME_TABS, "S");
 
             PDStructureElement pElem = new PDStructureElement(StandardStructureTypes.P, docElem);
             pElem.setPage(page);

@@ -7,11 +7,16 @@ import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.apache.pdfbox.pdmodel.font.Standard14Fonts;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Slf4j
@@ -19,9 +24,17 @@ public class FontManager {
 
     private static final String DEFAULT_EMBEDDED_FONT_RESOURCE = "org/apache/pdfbox/resources/ttf/LiberationSans-Regular.ttf";
 
+    private static final String[] CLASSPATH_PREFIXES = { "classloader://", "classpath://", "cl://" };
+
+    private static final List<String> SUFFIXES_REGULAR = Arrays.asList("-Regular.ttf", "-regular.ttf", ".ttf");
+    private static final List<String> SUFFIXES_BOLD = Arrays.asList("-Bold.ttf", "-bold.ttf");
+    private static final List<String> SUFFIXES_ITALIC = Arrays.asList("-Italic.ttf", "-italic.ttf", "-Oblique.ttf", "-oblique.ttf");
+    private static final List<String> SUFFIXES_BOLDITALIC = Arrays.asList("-BoldItalic.ttf", "-bolditalic.ttf", "-BoldOblique.ttf", "-boldoblique.ttf");
+
     private final PdfBoxConfig config;
     private final PDDocument document;
     private final Map<String, PDFont> fontCache;
+    private final Map<String, PDFont> resourceFontCache;
     private PDFont defaultEmbeddedFont;
 
     // Font style constants matching DocPara / EnumDocStyle (1=normal, 2=bold, 3=underline, 4=italic, 5=bolditalic)
@@ -38,12 +51,13 @@ public class FontManager {
         this.config = config;
         this.document = document;
         this.fontCache = new HashMap<>();
+        this.resourceFontCache = new HashMap<>();
     }
 
     /**
      * Get font based on style code and optional font name
-     * @param style Style code (0=normal, 1=bold, 2=italic, 3=bolditalic, 4=underline)
-     * @param fontName Font name (times-roman, courier, symbol, helvetica, or null for default)
+     * @param style Style code (1=normal, 2=bold, 3=underline, 4=italic, 5=bolditalic)
+     * @param fontName Font name (times-roman, courier, symbol, helvetica, custom family, or null for default)
      * @return PDFont instance
      */
     public PDFont getFont(int style, String fontName) throws IOException {
@@ -59,6 +73,9 @@ public class FontManager {
         // For PDF/A and PDF/UA compliance, fonts must be embedded
         if (config.isPdfAEnabled() || config.isPdfUAEnabled()) {
             font = getEmbeddedFont(style, fontName);
+        } else if (hasCustomFontConfig()) {
+            PDFont customFont = loadCustomEmbeddedFont(style, fontName);
+            font = customFont != null ? customFont : getStandardFont(style, fontName);
         } else {
             font = getStandardFont(style, fontName);
         }
@@ -68,13 +85,20 @@ public class FontManager {
     }
 
     /**
-     * Get font with just style code (uses default helvetica)
+     * Get font with just style code (uses default font)
      */
     public PDFont getFont(int style) throws IOException {
         return getFont(style, null);
     }
 
-    private PDFont getStandardFont(int style, String fontName) throws IOException {
+    private boolean hasCustomFontConfig() {
+        return StringUtils.isNotEmpty(config.getFontClasspath())
+                || StringUtils.isNotEmpty(config.getFontDirectory())
+                || StringUtils.isNotEmpty(config.getDefaultFontName())
+                || !config.getCustomFonts().isEmpty();
+    }
+
+    private PDFont getStandardFont(int style, String fontName) {
         // Normalize font name
         String normalizedFontName = normalizeFontName(fontName);
 
@@ -94,7 +118,7 @@ public class FontManager {
             return "helvetica";
         }
         // Normalize font name (lowercase, remove hyphens)
-        return fontName.toLowerCase().replace("-", "").replace("_", "");
+        return fontName.toLowerCase(Locale.ROOT).replace("-", "").replace("_", "");
     }
 
     private Standard14Fonts.FontName getBaseFontName(String normalizedFontName) {
@@ -166,23 +190,13 @@ public class FontManager {
 
     private PDFont getEmbeddedFont(int style, String fontName) throws IOException {
         // For PDF/A and PDF/UA, ALL fonts must be embedded
-        // Try to load custom font from configured directory
-        if (config.getFontDirectory() != null) {
-            String fontFileName = getFontFileName(style, fontName);
-            File fontFile = new File(config.getFontDirectory(), fontFileName);
-            if (fontFile.exists()) {
-                log.info("Loading embedded font from file: {}", fontFile.getAbsolutePath());
-                return PDType0Font.load(document, fontFile);
-            }
+        PDFont customFont = loadCustomEmbeddedFont(style, fontName);
+        if (customFont != null) {
+            return customFont;
         }
 
         if (defaultEmbeddedFont == null) {
-            try (InputStream is = ClassHelper.loadFromDefaultClassLoader(DEFAULT_EMBEDDED_FONT_RESOURCE)) {
-                if (is != null) {
-                    log.info("Loading default embedded font from resources: {}", DEFAULT_EMBEDDED_FONT_RESOURCE);
-                    defaultEmbeddedFont = PDType0Font.load(document, is);
-                }
-            }
+            defaultEmbeddedFont = loadClasspathFont(DEFAULT_EMBEDDED_FONT_RESOURCE);
         }
         if (defaultEmbeddedFont != null) {
             return defaultEmbeddedFont;
@@ -192,19 +206,233 @@ public class FontManager {
         return getStandardFont(style, fontName);
     }
 
-    private String getFontFileName(int style, String fontName) {
-        String baseName = (fontName != null && !fontName.isEmpty()) ? fontName : "default";
+    private PDFont loadCustomEmbeddedFont(int style, String fontName) throws IOException {
+        int effectiveStyle = normalizeStyle(style);
+        List<String> familyCandidates = buildFamilyCandidates(fontName);
 
-        // Map style to font file suffix
+        PDFont font = findCustomFontForStyle(familyCandidates, effectiveStyle);
+        if (font == null && effectiveStyle != STYLE_NORMAL) {
+            font = findCustomFontForStyle(familyCandidates, STYLE_NORMAL);
+        }
+        return font;
+    }
+
+    private List<String> buildFamilyCandidates(String fontName) {
+        List<String> candidates = new ArrayList<>();
+        if (StringUtils.isNotEmpty(fontName)) {
+            candidates.add(fontName.trim());
+        }
+        String defaultFamily = config.getDefaultFontName();
+        if (StringUtils.isNotEmpty(defaultFamily)) {
+            String trimmedDefault = defaultFamily.trim();
+            boolean alreadyPresent = false;
+            for (String existing : candidates) {
+                if (existing.equalsIgnoreCase(trimmedDefault)) {
+                    alreadyPresent = true;
+                    break;
+                }
+            }
+            if (!alreadyPresent) {
+                candidates.add(trimmedDefault);
+            }
+        }
+        if (candidates.isEmpty()) {
+            candidates.add("default");
+        }
+        return candidates;
+    }
+
+    private PDFont findCustomFontForStyle(List<String> familyCandidates, int effectiveStyle) throws IOException {
+        String styleKey = toStyleKey(effectiveStyle);
+        List<String> suffixes = getFontFileSuffixes(effectiveStyle);
+        String classpathPrefix = resolveClasspathPrefix();
+        String fsDir = resolveFilesystemFontDirectory();
+
+        for (String family : familyCandidates) {
+            PDFont explicitFont = findExplicitCustomFont(family, styleKey);
+            if (explicitFont != null) {
+                return explicitFont;
+            }
+            PDFont cpFont = findClasspathFontForFamily(classpathPrefix, family, suffixes);
+            if (cpFont != null) {
+                return cpFont;
+            }
+            PDFont fsFont = findFilesystemFontForFamily(fsDir, family, suffixes);
+            if (fsFont != null) {
+                return fsFont;
+            }
+        }
+        return null;
+    }
+
+    private PDFont findExplicitCustomFont(String family, String styleKey) throws IOException {
+        String registeredPath = config.getCustomFontPath(family, styleKey);
+        if (StringUtils.isNotEmpty(registeredPath)) {
+            return loadFontFromPath(registeredPath);
+        }
+        return null;
+    }
+
+    private PDFont findClasspathFontForFamily(String classpathPrefix, String family, List<String> suffixes) throws IOException {
+        if (classpathPrefix == null) {
+            return null;
+        }
+        for (String suffix : suffixes) {
+            PDFont font = loadClasspathFont(classpathPrefix + family + suffix);
+            if (font != null) {
+                return font;
+            }
+        }
+        return null;
+    }
+
+    private PDFont findFilesystemFontForFamily(String fsDir, String family, List<String> suffixes) throws IOException {
+        if (fsDir == null) {
+            return null;
+        }
+        for (String suffix : suffixes) {
+            PDFont font = loadFileFont(new File(fsDir, family + suffix));
+            if (font != null) {
+                return font;
+            }
+        }
+        return null;
+    }
+
+    private PDFont loadFontFromPath(String path) throws IOException {
+        if (isClasspathUri(path)) {
+            return loadClasspathFont(stripLeadingSlash(stripClasspathPrefix(path)));
+        }
+        PDFont cpFont = loadClasspathFont(stripLeadingSlash(path));
+        if (cpFont != null) {
+            return cpFont;
+        }
+        return loadFileFont(new File(path));
+    }
+
+    private PDFont loadClasspathFont(String resourcePath) throws IOException {
+        String key = "cp:" + resourcePath;
+        if (resourceFontCache.containsKey(key)) {
+            return resourceFontCache.get(key);
+        }
+        try (InputStream is = ClassHelper.loadFromDefaultClassLoader(resourcePath)) {
+            if (is != null) {
+                log.info("Loading embedded font from classpath: {}", resourcePath);
+                PDFont font = PDType0Font.load(document, is);
+                resourceFontCache.put(key, font);
+                return font;
+            }
+        }
+        return null;
+    }
+
+    private PDFont loadFileFont(File fontFile) throws IOException {
+        String absPath = fontFile.getAbsolutePath();
+        String key = "file:" + absPath;
+        if (resourceFontCache.containsKey(key)) {
+            return resourceFontCache.get(key);
+        }
+        if (fontFile.exists() && fontFile.isFile()) {
+            log.info("Loading embedded font from file: {}", absPath);
+            PDFont font = PDType0Font.load(document, fontFile);
+            resourceFontCache.put(key, font);
+            return font;
+        }
+        return null;
+    }
+
+    private String resolveClasspathPrefix() {
+        if (StringUtils.isNotEmpty(config.getFontClasspath())) {
+            return normalizeClasspathPrefix(config.getFontClasspath());
+        }
+        if (isClasspathUri(config.getFontDirectory())) {
+            return normalizeClasspathPrefix(config.getFontDirectory());
+        }
+        return null;
+    }
+
+    private String resolveFilesystemFontDirectory() {
+        String dir = config.getFontDirectory();
+        if (StringUtils.isNotEmpty(dir) && !isClasspathUri(dir)) {
+            return dir;
+        }
+        return null;
+    }
+
+    private static boolean isClasspathUri(String path) {
+        if (path == null) {
+            return false;
+        }
+        String lower = path.trim().toLowerCase(Locale.ROOT);
+        for (String prefix : CLASSPATH_PREFIXES) {
+            if (lower.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static String stripClasspathPrefix(String path) {
+        String trimmed = path.trim();
+        String lower = trimmed.toLowerCase(Locale.ROOT);
+        for (String prefix : CLASSPATH_PREFIXES) {
+            if (lower.startsWith(prefix)) {
+                return trimmed.substring(prefix.length());
+            }
+        }
+        return trimmed;
+    }
+
+    private static String stripLeadingSlash(String path) {
+        String result = path.trim();
+        while (result.startsWith("/")) {
+            result = result.substring(1);
+        }
+        return result;
+    }
+
+    private static String normalizeClasspathPrefix(String rawPrefix) {
+        String cleaned = stripLeadingSlash(stripClasspathPrefix(rawPrefix));
+        if (!cleaned.isEmpty() && !cleaned.endsWith("/")) {
+            cleaned = cleaned + "/";
+        }
+        return cleaned;
+    }
+
+    private static int normalizeStyle(int style) {
         switch (style) {
             case STYLE_BOLD:
-                return baseName + "-bold.ttf";
             case STYLE_ITALIC:
-                return baseName + "-italic.ttf";
             case STYLE_BOLDITALIC:
-                return baseName + "-bolditalic.ttf";
+                return style;
             default:
-                return baseName + "-regular.ttf";
+                return STYLE_NORMAL;
+        }
+    }
+
+    private static String toStyleKey(int effectiveStyle) {
+        switch (effectiveStyle) {
+            case STYLE_BOLD:
+                return PdfBoxConfig.FONT_STYLE_BOLD;
+            case STYLE_ITALIC:
+                return PdfBoxConfig.FONT_STYLE_ITALIC;
+            case STYLE_BOLDITALIC:
+                return PdfBoxConfig.FONT_STYLE_BOLDITALIC;
+            default:
+                return PdfBoxConfig.FONT_STYLE_REGULAR;
+        }
+    }
+
+    private static List<String> getFontFileSuffixes(int effectiveStyle) {
+        switch (effectiveStyle) {
+            case STYLE_BOLD:
+                return SUFFIXES_BOLD;
+            case STYLE_ITALIC:
+                return SUFFIXES_ITALIC;
+            case STYLE_BOLDITALIC:
+                return SUFFIXES_BOLDITALIC;
+            default:
+                return SUFFIXES_REGULAR;
         }
     }
 
@@ -214,7 +442,7 @@ public class FontManager {
     }
 
     public float getFontSize(int style, int size) {
-        log.trace( "size : {}, style is currently ignored : {}", size, style );
+        log.trace("size : {}, style is currently ignored : {}", size, style);
         return size > 0 ? (float) size : DEFAULT_FONT_SIZE;
     }
 }

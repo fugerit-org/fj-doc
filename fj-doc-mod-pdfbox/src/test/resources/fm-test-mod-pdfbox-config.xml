@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<freemarker-doc-process-config
+    xmlns="https://freemarkerdocprocess.fugerit.org"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://freemarkerdocprocess.fugerit.org https://www.fugerit.org/data/java/doc/xsd/freemarker-doc-process-1-0.xsd">
+
+    <docHandlerConfig registerById="true">
+        <docHandler id="pdf-pdfbox-plain" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" />
+        </docHandler>
+
+        <docHandler id="pdf-pdfbox-pdf-a" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" pdfaEnabled="true" pdfa.level="1b" language="en-US" format="PDF/A-1b"
+                                    font.classpath="font" font.default="TitilliumWeb" />
+        </docHandler>
+
+        <docHandler id="pdf-pdfbox-pdf-ua" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" pdfuaEnabled="true" language="it" format="PDF/UA-1"
+                                    fontClasspath="font" defaultFontName="TitilliumWeb" />
+        </docHandler>
+
+        <docHandler id="pdf-pdfbox-cl-dir" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" pdfuaEnabled="true" language="it" format="PDF/UA-1"
+                                    font.directory="classloader://font" font.default="TitilliumWeb" />
+        </docHandler>
+
+        <docHandler id="pdf-pdfbox-nested-fonts" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+            <docHandlerCustomConfig charset="UTF-8" pdfuaEnabled="true" language="it" format="PDF/UA-1"
+                                    defaultFontName="TitilliumWeb">
+                <font name="TitilliumWeb" path="font/TitilliumWeb-Regular.ttf" />
+                <font name="TitilliumWeb" style="bold" path="font/TitilliumWeb-Bold.ttf" />
+                <font name="TitilliumWeb" style="italic" path="font/TitilliumWeb-Italic.ttf" />
+                <font name="TitilliumWeb" style="bolditalic" path="font/TitilliumWeb-BoldItalic.ttf" />
+            </docHandlerCustomConfig>
+        </docHandler>
+    </docHandlerConfig>
+
+</freemarker-doc-process-config>
