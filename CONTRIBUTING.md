@@ -35,6 +35,8 @@ For example:
 Note: Generative AI (Google Gemini) assistance was used to improve test coverage and minor tweaks to the library itself.
 ```
 
+This `Note:` line is sufficient; there is no need to add `Co-Authored-By` or similar tags for AI tools.
+
 ## License
 
 By contributing to [Fugerit Venus Doc](https://github.com/fugerit-org/fj-doc), 
