@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Improved [CONTRIBUTING.md](CONTRIBUTING.md) with clarified Generative AI policy (`Note:` line without `Co-Authored-By` tags), development setup and testing instructions, pull request guidelines, security reporting note, and links to code of conduct and project conventions
+- Skip Maven Central publishing (`maven.deploy.skip=true` and `skipPublishing=true`) for non-library modules (`fj-doc-sample`, `fj-doc-playground-quarkus`, `fj-doc-native-quarkus`, and `fj-doc-guide`)
 
 ### Added
 
