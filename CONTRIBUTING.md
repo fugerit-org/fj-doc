@@ -21,6 +21,34 @@ Any contribution is welcome (development, testing, documentation, etc.).
 
 You can use the [GitHub issue form](https://github.com/fugerit-org/fj-doc/issues/new/choose) to report bugs.
 
+## Development Setup & Running Tests
+
+### Prerequisites
+
+- **Java 21+** to build the full project (core modules maintain **Java 8** runtime compatibility via `maven.compiler.release=8`, so avoid newer JDK APIs in Java 8 modules).
+- **Apache Maven 3.9+** (or use the included Maven Wrapper `./mvnw` / `mvnw.cmd`).
+- **Node.js 26+** is only required if building the React frontend of `fj-doc-playground-quarkus` (with `-Pbuildreact`).
+
+### Building and Testing
+
+Run the full build and test suite:
+
+```shell
+./mvnw test
+```
+
+To iterate faster on a specific module (along with its required local dependencies):
+
+```shell
+./mvnw test -pl <module-name> -am
+```
+
+For example:
+
+```shell
+./mvnw test -pl fj-doc-mod-pdfbox -am
+```
+
 ## Generative AI Policy
 
 Contributions assisted by Generative AI tools are welcome, provided that the committer reviews, tests, and takes full responsibility for the submitted changes (including code quality, correctness, and license compliance).
