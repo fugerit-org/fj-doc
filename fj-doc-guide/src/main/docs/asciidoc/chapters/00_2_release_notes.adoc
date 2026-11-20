@@ -6,6 +6,9 @@ Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CH
 [#doc-release-notes-unreleased]
 ==== Unreleased
 
+[#doc-release-notes-8-18-9]
+==== Version 8.18.9 [2026-11-20]
+
 - fj-doc-mod-pdfbox: support `<docHandlerCustomConfig>` XML configuration (including `format` and nested `<font>` elements), thread-safe per-invocation `PdfBoxConfig`, classpath-bundled multi-style TTF fonts in `FontManager`, and PDF/UA-1 / WCAG 2.0 fixes (PDF version >= 1.7, `/Tabs /S`, valid bookmark destinations) link:https://github.com/fugerit-org/fj-doc/issues/695[#695]
 - fj-doc-guide: expand `fj-doc-mod-pdfbox` documentation with XML configuration reference, custom fonts, PDF/A, and PDF/UA-1 sections link:https://github.com/fugerit-org/fj-doc/issues/695[#695]
 
