@@ -228,6 +228,12 @@ public class PdfBoxDocumentRenderer {
                     PDPageDestination dest = destinations.get(b.getRef());
                     if (dest != null) {
                         item.setDestination(dest);
+                    } else if (!pages.isEmpty()) {
+                        log.warn("Bookmark '{}' references unresolved target '{}', assigning fallback destination to first page",
+                                b.getTitle(), b.getRef());
+                        PDPageFitWidthDestination fallbackDest = new PDPageFitWidthDestination();
+                        fallbackDest.setPage(pages.get(0));
+                        item.setDestination(fallbackDest);
                     }
                     outline.addLast(item);
                 }
@@ -484,6 +490,7 @@ public class PdfBoxDocumentRenderer {
     private void renderParagraph(DocPara para) throws IOException {
         String text = extractText(para);
         if (text == null || text.trim().isEmpty()) {
+            registerDestination(para.getId());
             return;
         }
 
@@ -895,6 +902,7 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void addParaLines(List<CellLine> lines, DocPara para, DocCell cell, float maxWidth, boolean isHeader, DocRow row) throws IOException {
+        registerDestination(para.getId());
         String text = extractText(para);
         if (text == null || text.trim().isEmpty()) {
             return;
@@ -920,6 +928,7 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void addPhraseLines(List<CellLine> lines, DocPhrase phrase, DocCell cell, float maxWidth, boolean isHeader, DocRow row) throws IOException {
+        registerDestination(phrase.getId());
         String text = phrase.getText();
         if (text == null || text.trim().isEmpty()) {
             return;

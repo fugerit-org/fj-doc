@@ -34,6 +34,7 @@
 		<pdf-output-folder>${project.build.directory}/generated-pdf</pdf-output-folder>
 		<html-output-folder>${project.build.directory}/generated-html5</html-output-folder>
 		<skipPublishing>true</skipPublishing>
+		<maven.deploy.skip>true</maven.deploy.skip>
 	</properties>
 
 	<build>

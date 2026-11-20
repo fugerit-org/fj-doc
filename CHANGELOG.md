@@ -10,6 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Improved [CONTRIBUTING.md](CONTRIBUTING.md) with clarified Generative AI policy (`Note:` line without `Co-Authored-By` tags), development setup and testing instructions, pull request guidelines, security reporting note, and links to code of conduct and project conventions
+- Skip Maven Central publishing (`maven.deploy.skip=true` and `skipPublishing=true`) for non-library modules (`fj-doc-sample`, `fj-doc-playground-quarkus`, `fj-doc-native-quarkus`, and `fj-doc-guide`)
+
+### Added
+
+- fj-doc-mod-pdfbox - support `<docHandlerCustomConfig>` XML configuration (including `format` attribute and nested `<font>` elements) in `PdfBoxTypeHandler`, public config key constants and `copy()` in `PdfBoxConfig`, and classpath-bundled multi-style TTF font loading in `FontManager` <https://github.com/fugerit-org/fj-doc/issues/695>
+- fj-doc-guide - document `fj-doc-mod-pdfbox` XML configuration reference, custom/classpath fonts, PDF/A-1b, and PDF/UA-1 setup in `06_7_mod-pdfbox.adoc` <https://github.com/fugerit-org/fj-doc/issues/695>
+
+### Fixed
+
+- fj-doc-mod-pdfbox - make `PdfBoxTypeHandler.handle(...)` thread-safe by using a per-invocation `PdfBoxConfig` copy to prevent metadata leakage across sequential or concurrent renders <https://github.com/fugerit-org/fj-doc/issues/695>
+- fj-doc-mod-pdfbox - PDF/UA-1 and WCAG 2.0 fixes: ensure PDF version `>= 1.7` in `PdfUAConfigurator.configurePdfUA1`, set `/Tabs /S` on every page in `PdfUAConfigurator.tagDocumentContent`, and ensure valid bookmark destinations (with cell anchor registration and first-page fallback) in `PdfBoxDocumentRenderer` <https://github.com/fugerit-org/fj-doc/issues/695>
 
 ## [8.18.8] - 2026-11-08
 
