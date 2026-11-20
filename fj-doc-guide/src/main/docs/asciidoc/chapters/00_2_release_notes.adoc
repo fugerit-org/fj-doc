@@ -3,11 +3,14 @@
 
 Whereas the link:https://github.com/fugerit-org/fj-doc/blob/main/CHANGELOG.md[CHANGELOG] is a detailed list of modifications to project, the release notes just refer to the most important changes.
 
-[#doc-release-notes-8-18-8]
-==== Version 8.18.8 [2026-11-08]
-
 [#doc-release-notes-unreleased]
 ==== Unreleased
+
+- fj-doc-mod-pdfbox: support `<docHandlerCustomConfig>` XML configuration (including `format` and nested `<font>` elements), thread-safe per-invocation `PdfBoxConfig`, classpath-bundled multi-style TTF fonts in `FontManager`, and PDF/UA-1 / WCAG 2.0 fixes (PDF version >= 1.7, `/Tabs /S`, valid bookmark destinations) link:https://github.com/fugerit-org/fj-doc/issues/695[#695]
+- fj-doc-guide: expand `fj-doc-mod-pdfbox` documentation with XML configuration reference, custom fonts, PDF/A, and PDF/UA-1 sections link:https://github.com/fugerit-org/fj-doc/issues/695[#695]
+
+[#doc-release-notes-8-18-8]
+==== Version 8.18.8 [2026-11-08]
 
 - fj-doc-mod-pdfbox: support horizontal text alignment (`align` attribute on `<cell>` and `<para>`) in `PdfBoxDocumentRenderer` link:https://github.com/fugerit-org/fj-doc/issues/690[#690]
 - fj-doc-maven-plugin, init goal, 'addChangelog' parameter link:https://github.com/fugerit-org/fj-doc/issues/672[#672]
