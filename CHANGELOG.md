@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Improved [CONTRIBUTING.md](CONTRIBUTING.md) with clarified Generative AI policy (`Note:` line without `Co-Authored-By` tags), development setup and testing instructions, pull request guidelines, security reporting note, and links to code of conduct and project conventions
+
 ## [8.18.8] - 2026-11-08
 
 ### Changed
