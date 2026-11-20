@@ -21,6 +21,7 @@ import org.w3c.dom.NodeList;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
@@ -32,18 +33,17 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
     public static final String ATT_FONT_PATH = "path";
     public static final String ATT_FONT_STYLE = "style";
 
-    private transient volatile PdfBoxConfig config;
+    private final transient AtomicReference<PdfBoxConfig> configRef = new AtomicReference<>(new PdfBoxConfig());
 
     public PdfBoxTypeHandler() {
         super(DocConfig.TYPE_PDF, MODULE);
-        this.config = new PdfBoxConfig();
     }
 
     @Override
     public void configure(Properties config) throws ConfigException {
         if (config != null) {
             this.applyFormatProperty(config);
-            this.config = PdfBoxConfig.fromProperties(config);
+            this.configRef.set(PdfBoxConfig.fromProperties(config));
         }
     }
 
@@ -65,7 +65,7 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
                 }
             }
             this.applyFormatProperty(props);
-            this.config = parsedConfig;
+            this.configRef.set(parsedConfig);
         }
     }
 
@@ -77,7 +77,7 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
     }
 
     protected PdfBoxConfig getConfigCopy() {
-        PdfBoxConfig current = this.config;
+        PdfBoxConfig current = this.configRef.get();
         return current != null ? current.copy() : new PdfBoxConfig();
     }
 

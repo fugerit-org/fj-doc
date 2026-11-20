@@ -99,11 +99,11 @@ public class PdfBoxConfig {
             return FONT_STYLE_REGULAR;
         }
         String normalized = style.trim().toLowerCase(Locale.ROOT).replace("-", "").replace("_", "");
-        if ("bold".equals(normalized)) {
+        if (FONT_STYLE_BOLD.equals(normalized)) {
             return FONT_STYLE_BOLD;
-        } else if ("italic".equals(normalized) || "oblique".equals(normalized)) {
+        } else if (FONT_STYLE_ITALIC.equals(normalized) || "oblique".equals(normalized)) {
             return FONT_STYLE_ITALIC;
-        } else if ("bolditalic".equals(normalized) || "boldoblique".equals(normalized)) {
+        } else if (FONT_STYLE_BOLDITALIC.equals(normalized) || "boldoblique".equals(normalized)) {
             return FONT_STYLE_BOLDITALIC;
         }
         return FONT_STYLE_REGULAR;

@@ -219,11 +219,11 @@ public class FontManager {
 
     private List<String> buildFamilyCandidates(String fontName) {
         List<String> candidates = new ArrayList<>();
-        if (StringUtils.isNotEmpty(fontName)) {
+        if (fontName != null && !fontName.trim().isEmpty()) {
             candidates.add(fontName.trim());
         }
         String defaultFamily = config.getDefaultFontName();
-        if (StringUtils.isNotEmpty(defaultFamily)) {
+        if (defaultFamily != null && !defaultFamily.trim().isEmpty()) {
             String trimmedDefault = defaultFamily.trim();
             boolean alreadyPresent = false;
             for (String existing : candidates) {
@@ -267,7 +267,7 @@ public class FontManager {
 
     private PDFont findExplicitCustomFont(String family, String styleKey) throws IOException {
         String registeredPath = config.getCustomFontPath(family, styleKey);
-        if (StringUtils.isNotEmpty(registeredPath)) {
+        if (registeredPath != null && !registeredPath.trim().isEmpty()) {
             return loadFontFromPath(registeredPath);
         }
         return null;
@@ -300,6 +300,9 @@ public class FontManager {
     }
 
     private PDFont loadFontFromPath(String path) throws IOException {
+        if (path == null || path.trim().isEmpty()) {
+            return null;
+        }
         if (isClasspathUri(path)) {
             return loadClasspathFont(stripLeadingSlash(stripClasspathPrefix(path)));
         }
@@ -342,18 +345,20 @@ public class FontManager {
     }
 
     private String resolveClasspathPrefix() {
-        if (StringUtils.isNotEmpty(config.getFontClasspath())) {
-            return normalizeClasspathPrefix(config.getFontClasspath());
+        String fontClasspath = config.getFontClasspath();
+        if (fontClasspath != null && !fontClasspath.trim().isEmpty()) {
+            return normalizeClasspathPrefix(fontClasspath);
         }
-        if (isClasspathUri(config.getFontDirectory())) {
-            return normalizeClasspathPrefix(config.getFontDirectory());
+        String fontDirectory = config.getFontDirectory();
+        if (isClasspathUri(fontDirectory)) {
+            return normalizeClasspathPrefix(fontDirectory);
         }
         return null;
     }
 
     private String resolveFilesystemFontDirectory() {
         String dir = config.getFontDirectory();
-        if (StringUtils.isNotEmpty(dir) && !isClasspathUri(dir)) {
+        if (dir != null && !dir.trim().isEmpty() && !isClasspathUri(dir)) {
             return dir;
         }
         return null;
@@ -373,6 +378,9 @@ public class FontManager {
     }
 
     private static String stripClasspathPrefix(String path) {
+        if (path == null) {
+            return "";
+        }
         String trimmed = path.trim();
         String lower = trimmed.toLowerCase(Locale.ROOT);
         for (String prefix : CLASSPATH_PREFIXES) {
@@ -384,6 +392,9 @@ public class FontManager {
     }
 
     private static String stripLeadingSlash(String path) {
+        if (path == null) {
+            return "";
+        }
         String result = path.trim();
         while (result.startsWith("/")) {
             result = result.substring(1);

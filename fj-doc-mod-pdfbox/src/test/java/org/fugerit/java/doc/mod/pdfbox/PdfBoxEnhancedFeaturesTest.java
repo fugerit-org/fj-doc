@@ -136,11 +136,10 @@ class PdfBoxEnhancedFeaturesTest {
     }
 
     @Test
-    void testXmlConfigurationPlainPdfAAndPdfUA() throws Exception {
+    void testXmlConfigurationPlainPdf() throws Exception {
         FreemarkerDocProcessConfig fmConfig = FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH);
         Assertions.assertNotNull(fmConfig);
 
-        // 1. Plain PDF handler
         DocTypeHandler plainHandler = fmConfig.getFacade().findHandler("pdf-pdfbox-plain");
         Assertions.assertInstanceOf(PdfBoxTypeHandler.class, plainHandler);
         PdfBoxTypeHandler plain = (PdfBoxTypeHandler) plainHandler;
@@ -152,8 +151,11 @@ class PdfBoxEnhancedFeaturesTest {
             Assertions.assertEquals(1, doc.getNumberOfPages());
             Assertions.assertEquals("Plain Doc", doc.getDocumentInformation().getTitle());
         }
+    }
 
-        // 2. PDF/A-1b handler
+    @Test
+    void testXmlConfigurationPdfA1b() throws Exception {
+        FreemarkerDocProcessConfig fmConfig = FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH);
         DocTypeHandler pdfAHandler = fmConfig.getFacade().findHandler("pdf-pdfbox-pdf-a");
         Assertions.assertInstanceOf(PdfBoxTypeHandler.class, pdfAHandler);
         PdfBoxTypeHandler pdfA = (PdfBoxTypeHandler) pdfAHandler;
@@ -177,8 +179,11 @@ class PdfBoxEnhancedFeaturesTest {
             Set<String> fonts = collectEmbeddedFontNames(doc);
             assertAllFourTitilliumStylesPresent(fonts);
         }
+    }
 
-        // 3. PDF/UA-1 handler
+    @Test
+    void testXmlConfigurationPdfUA1() {
+        FreemarkerDocProcessConfig fmConfig = FreemarkerDocProcessConfigFacade.loadConfigSafe(CONFIG_PATH);
         DocTypeHandler pdfUAHandler = fmConfig.getFacade().findHandler("pdf-pdfbox-pdf-ua");
         Assertions.assertInstanceOf(PdfBoxTypeHandler.class, pdfUAHandler);
         PdfBoxTypeHandler pdfUA = (PdfBoxTypeHandler) pdfUAHandler;
