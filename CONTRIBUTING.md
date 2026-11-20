@@ -8,6 +8,11 @@ Please make sure to follow our [Code of Conduct](CODE_OF_CONDUCT.md) and check t
 
 We actively welcome your pull requests and forks.
 
+- **Target branch**: Open pull requests against the `main` branch.
+- **Commit messages**: We follow [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `fix(fj-doc-mod-pdfbox): ...`, `feat(...): ...`, `docs: ...`) and reference related issues when applicable (e.g. `#123`).
+- **Tests & Quality**: Please include unit tests covering bug fixes or new features and ensure existing tests pass. Pull requests are checked by automated CI workflows (Maven build/tests, SonarCloud, Codacy, and CodeQL).
+- **Changelog**: Updating [CHANGELOG.md](CHANGELOG.md) under `## [Unreleased]` (following [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)) is optional — feel free to add an entry, or maintainers will handle it before release.
+
 ## Enhancements
 
 Propose your contribution by either:
@@ -20,6 +25,10 @@ Any contribution is welcome (development, testing, documentation, etc.).
 ## Bug Fixes
 
 You can use the [GitHub issue form](https://github.com/fugerit-org/fj-doc/issues/new/choose) to report bugs.
+
+## Security
+
+If you discover a security vulnerability, please **do not** open a public issue. Instead, report it privately via [GitHub Security Advisories](https://github.com/fugerit-org/fj-doc/security/advisories/new).
 
 ## Development Setup & Running Tests
 
