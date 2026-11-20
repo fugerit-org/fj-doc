@@ -5,12 +5,6 @@
 
 To use this doc handler, you will need to add the following dependency :
 
-*In brief* :
-
-- *compliance level* : _LOW_
-- *compliance detail* : Most elements of the xref:#doc-format-entry-point[Venus Doc Format] are supported. lists have not been implemented yet.
-- *native ready* : _NO_ (As PDDBox is not ready).
-
 [source,xml]
 ----
 <dependency>
@@ -20,18 +14,152 @@ To use this doc handler, you will need to add the following dependency :
 </dependency>
 ----
 
-This module is based on link:https://pdfbox.apache.org/[Apache PDFBox].
+This module is based on link:https://pdfbox.apache.org/[Apache PDFBox] (3.x) and renders PDF documents directly without an intermediate XSL-FO step, supporting plain PDF, PDF/A-1b, and PDF/UA-1.
 
-This doc handler renders a PDF Document
+[#doc-handler-mod-pdfbox-pdf-basic]
+==== Basic PDF DocHandler
+
+This doc handler renders a PDF document using default Apache PDFBox settings.
+
+*In brief* :
+
+- *compliance level* : _MEDIUM_
+- *compliance detail* : Most elements of the xref:#doc-format-entry-point[Venus Doc Format] are supported (headings, paragraphs, phrases, lists, tables, headers/footers, background images, bookmarks, metadata).
+- *native ready* : _NO_ (As Apache PDFBox is not ready).
 
 Add this element to *<docHandlerConfig/>* :
 
 [source,xml]
 ----
-<!-- PDFBox type hanlder  -->
-<docHandler id="pdfbox" info="pdfbox" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler"/>
+<!-- PDFBox type handler -->
+<docHandler id="pdf-pdfbox" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler"/>
 ----
 
-For a demo of this doc handler usage you can refer to the link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial[fj-doc-quarkus-tutorial full example] or link:https://github.com/fugerit-org/fj-doc-quarkus-tutorial/tree/base-freemarker-modopenrtfext[fj-doc-quarkus-tutorial openrtf ext example].
+More elements specific to fixed size formats, like PDF, are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_fixed[here].
 
-More elements specific to fixed size formats, like RTF, are available link:https://venusdocs.fugerit.org/docs/html/doc_meta_info.html#meta_fixed[here].
+[#doc-handler-mod-pdfbox-pdf-config]
+==== Custom configured PDF DocHandler
+
+For this DocHandler it is possible to configure attributes directly on *<docHandlerCustomConfig/>* (or *<config/>*), for instance :
+
+[source,xml]
+----
+<!-- PDFBox type handler with custom configuration -->
+<docHandler id="pdf-pdfbox-config" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" language="en-US" fontClasspath="font" defaultFontName="TitilliumWeb"/>
+</docHandler>
+----
+
+[#doc-handler-mod-pdfbox-pdf-config-ref]
+*docHandlerCustomConfig reference for org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler*
+
+[cols="2,1,1,6", options="header"]
+|========================================================================================================================================
+| name     | type  | default | description
+| *charset* anchor:doc-handler-mod-pdfbox-pdf-config-charset[]  | _string_  | _UTF-8_ | This will set the charset to use.
+| *format* anchor:doc-handler-mod-pdfbox-pdf-config-format[]  | _string_  |  | Optional declared output format on the handler (for example : _PDF/A-1b_, _PDF/UA-1_).
+| *pdfaEnabled* anchor:doc-handler-mod-pdfbox-pdf-config-pdfa-enabled[]  | _boolean_  | _false_ | If set to _true_, enables PDF/A configuration (XMP identification, sRGB output intent, embedded fonts).
+| *pdfa.level* (or *pdfaLevel*) anchor:doc-handler-mod-pdfbox-pdf-config-pdfa-level[]  | _string_  | _1b_ | PDF/A conformance level (for example : _1b_).
+| *pdfuaEnabled* anchor:doc-handler-mod-pdfbox-pdf-config-pdfua-enabled[]  | _boolean_  | _false_ | If set to _true_, enables PDF/UA-1 accessibility configuration (PDF version >= 1.7, marked content tagging, logical structure tree, `/Tabs /S`, `DisplayDocTitle`, XMP `pdfuaid:part`, embedded fonts).
+| *title* anchor:doc-handler-mod-pdfbox-pdf-config-title[]  | _string_  | _Untitled_ | Default document title (overridden per document by `<info name="doc-title">`).
+| *author* anchor:doc-handler-mod-pdfbox-pdf-config-author[]  | _string_  | _Unknown_ | Default document author (overridden per document by `<info name="doc-author">`).
+| *subject* anchor:doc-handler-mod-pdfbox-pdf-config-subject[]  | _string_  |  | Default document subject (overridden per document by `<info name="doc-subject">`).
+| *language* anchor:doc-handler-mod-pdfbox-pdf-config-language[]  | _string_  | _en-US_ | Default document language tag, e.g. _it_ or _en-US_ (overridden per document by `<info name="doc-language">`).
+| *font.classpath* (or *fontClasspath*) anchor:doc-handler-mod-pdfbox-pdf-config-font-classpath[]  | _string_  |  | Classpath prefix containing bundled TrueType (`.ttf`) font files (for example : _font_ or _classloader://font_).
+| *font.directory* (or *fontDirectory*) anchor:doc-handler-mod-pdfbox-pdf-config-font-directory[]  | _string_  |  | Filesystem directory containing TrueType (`.ttf`) font files, or a classpath URI using the `classloader://`, `classpath://`, or `cl://` prefix.
+| *font.default* (or *defaultFontName*) anchor:doc-handler-mod-pdfbox-pdf-config-font-default[]  | _string_  |  | Default font family name resolved from configured fonts when a document element does not specify a custom font (for example : _TitilliumWeb_).
+|========================================================================================================================================
+
+NOTE: `PdfBoxTypeHandler` is thread-safe after configuration: each `handle(...)` invocation works on a local copy of `PdfBoxConfig`, so per-document metadata (`doc-title`, `doc-author`, `doc-subject`, `doc-language`) never leaks across sequential or concurrent renders.
+
+[#doc-handler-mod-pdfbox-fonts]
+==== Custom & Classpath Fonts
+
+For PDF/A and PDF/UA-1 compliance all fonts must be embedded. You can provide TrueType (`.ttf`) fonts in three ways:
+
+1. *Classpath prefix* via `font.classpath` / `fontClasspath` (or `font.directory="classloader://..."`).
+2. *Filesystem directory* via `font.directory` / `fontDirectory`.
+3. *Explicit `<font/>` child elements* inside `<docHandlerCustomConfig/>`.
+
+When resolving a font family (either named on an element or configured via `font.default` / `defaultFontName`), the handler automatically looks for style variants using common naming conventions:
+
+- *regular* : `<family>-Regular.ttf`, `<family>-regular.ttf`, `<family>.ttf`
+- *bold* : `<family>-Bold.ttf`, `<family>-bold.ttf`
+- *italic* : `<family>-Italic.ttf`, `<family>-italic.ttf`, `<family>-Oblique.ttf`, `<family>-oblique.ttf`
+- *bolditalic* : `<family>-BoldItalic.ttf`, `<family>-bolditalic.ttf`, `<family>-BoldOblique.ttf`, `<family>-boldoblique.ttf`
+
+If no custom font is found in PDF/A or PDF/UA mode, the handler falls back to the bundled `LiberationSans-Regular.ttf` embedded font.
+
+Additionally, *fonts* can be registered explicitly as child elements of *docHandlerCustomConfig* :
+
+[cols="2,1,1,6", options="header"]
+|========================================================================================================================================
+| name     | type  | default | description
+| *name* anchor:doc-handler-mod-pdfbox-pdf-font-name[]  | _string_  |  | Font family name (case-insensitive).
+| *style* anchor:doc-handler-mod-pdfbox-pdf-font-style[]  | _string_  | _regular_ | Optional style variant: _regular_, _bold_, _italic_, or _bolditalic_.
+| *path* anchor:doc-handler-mod-pdfbox-pdf-font-path[]  | _string_  |  | Path to the `.ttf` font file (classpath resource, `cl://`/`classloader://`/`classpath://` URI, or filesystem path).
+|========================================================================================================================================
+
+Here is an example registering font variants with nested `<font/>` elements :
+
+[source,xml]
+----
+<docHandler id="pdf-pdfbox-fonts" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" pdfuaEnabled="true" language="it" format="PDF/UA-1"
+                            defaultFontName="TitilliumWeb">
+        <font name="TitilliumWeb" path="font/TitilliumWeb-Regular.ttf"/>
+        <font name="TitilliumWeb" style="bold" path="font/TitilliumWeb-Bold.ttf"/>
+        <font name="TitilliumWeb" style="italic" path="font/TitilliumWeb-Italic.ttf"/>
+        <font name="TitilliumWeb" style="bolditalic" path="font/TitilliumWeb-BoldItalic.ttf"/>
+    </docHandlerCustomConfig>
+</docHandler>
+----
+
+[#doc-handler-mod-pdfbox-pdf-a]
+==== PDF/A DocHandler
+
+Here is an example of a PDF/A-1b DocHandler configured directly in `freemarker-doc-process-config` XML with classpath-bundled fonts :
+
+[source,xml]
+----
+<docHandler id="pdf-pdfbox-pdf-a" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" pdfaEnabled="true" pdfa.level="1b" language="en-US" format="PDF/A-1b"
+                            font.classpath="font" font.default="TitilliumWeb"/>
+</docHandler>
+----
+
+NOTE: When *pdfaEnabled* is set to _true_, the handler attaches PDF/A-1b XMP metadata, an sRGB ICC output intent, and embeds all fonts used in the document.
+
+[#doc-handler-mod-pdfbox-pdf-ua]
+==== PDF/UA-1 DocHandler
+
+Here is an example of a PDF/UA-1 DocHandler configured directly in `freemarker-doc-process-config` XML :
+
+[source,xml]
+----
+<docHandler id="pdf-pdfbox-pdf-ua" info="pdf" type="org.fugerit.java.doc.mod.pdfbox.PdfBoxTypeHandler">
+    <docHandlerCustomConfig charset="UTF-8" pdfuaEnabled="true" language="it" format="PDF/UA-1"
+                            fontClasspath="font" defaultFontName="TitilliumWeb"/>
+</docHandler>
+----
+
+When *pdfuaEnabled* is set to _true_, the handler automatically configures the generated PDF for PDF/UA-1 (ISO 14289-1) and WCAG 2.0 compliance :
+
+- Sets the PDF version to at least `1.7`.
+- Sets the document catalog language (`/Lang`) from `doc-language` or the handler `language` default.
+- Enables `ViewerPreferences.DisplayDocTitle` and `MarkInfo.Marked`.
+- Wraps page content streams with Marked Content sequences and builds the `StructureTreeRoot` and `ParentTree`.
+- Sets `/StructParents` and page tab order `/Tabs /S` on every page.
+- Attaches XMP metadata including `pdfuaid:part = 1`.
+- Embeds all fonts (supporting regular, bold, italic, and bold-italic styles from classpath or filesystem).
+- Ensures every document outline / bookmark entry has a valid destination (falling back to the first page if a target ID is unresolved).
+
+[#doc-handler-mod-pdfbox-table-behaviour]
+===== Property 'pdfbox-default-table-behaviour'
+
+If property *pdfbox-default-table-behaviour* is set to `true` in document metadata, the PDFBox renderer uses its default table rendering behaviour :
+
+[source,xml]
+----
+<info name="pdfbox-default-table-behaviour">true</info>
+----
