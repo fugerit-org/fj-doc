@@ -20,11 +20,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Slf4j
 public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
+
+    private static final long serialVersionUID = 1L;
 
     private static final String MODULE = "pdfbox";
 
@@ -33,7 +36,12 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
     public static final String ATT_FONT_PATH = "path";
     public static final String ATT_FONT_STYLE = "style";
 
-    private final transient AtomicReference<PdfBoxConfig> configRef = new AtomicReference<>(new PdfBoxConfig());
+    private transient AtomicReference<PdfBoxConfig> configRef = new AtomicReference<>(new PdfBoxConfig());
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        this.configRef = new AtomicReference<>(new PdfBoxConfig());
+    }
 
     public PdfBoxTypeHandler() {
         super(DocConfig.TYPE_PDF, MODULE);
@@ -103,9 +111,19 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
             DocConfig.FUGERIT_VENUS_DOC,
             PRODUCER_OVER);
 
-    private static String findDefaultProducer(DocBase docBase) {
+    private static Properties resolveDocInfo(DocBase docBase) {
+        Properties props = docBase.getStableInfo();
+        if (props != null) {
+            return props;
+        }
+        return docBase.getDocMeta() != null ? docBase.getInfo() : new Properties();
+    }
+
+    private static String findDefaultProducer(Properties props) {
+        String hardening = props.getProperty(
+                GenericConsts.SECURITY_HARDENING, GenericConsts.SECURITY_HARDENING_DEFAULT);
         return SecurityHardeningUtil.applyHardening(
-                docBase,
+                hardening,
                 SecurityHardeningConsts.SECURITY_HARDENING_1,
                 () -> PRODUCER_DEFAULT_SH1,
                 () -> PRODUCER_DEFAULT);
@@ -113,7 +131,7 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
 
     private void applyDocMetadata(PDDocument document, DocBase docBase, PdfBoxConfig localConfig) {
         PDDocumentInformation info = document.getDocumentInformation();
-        Properties props = docBase.getStableInfo();
+        Properties props = resolveDocInfo(docBase);
 
         String title = props.getProperty(GenericConsts.INFO_KEY_DOC_TITLE, localConfig.getDocumentTitle());
         if (StringUtils.isNotEmpty(title)) {
@@ -142,13 +160,19 @@ public class PdfBoxTypeHandler extends DocTypeHandlerDefault {
         String creator = props.getProperty(GenericConsts.INFO_KEY_DOC_CREATOR, VenusVersion.VENUS_CREATOR);
         info.setCreator(creator);
 
-        String producer = props.getProperty(GenericConsts.INFO_KEY_DOC_PRODUCER, findDefaultProducer(docBase));
+        String producer = props.getProperty(GenericConsts.INFO_KEY_DOC_PRODUCER, findDefaultProducer(props));
         info.setProducer(producer);
     }
 
     @Override
     public void handle(DocInput docInput, DocOutput docOutput) throws Exception {
         log.info("=== PdfBoxTypeHandler.handle() called ===");
+        if (docInput == null) {
+            throw new IllegalArgumentException("DocInput must not be null");
+        }
+        if (docOutput == null || docOutput.getOs() == null) {
+            throw new IllegalArgumentException("DocOutput and its OutputStream must not be null");
+        }
 
         // Get the parsed document model
         DocBase docBase = docInput.getDoc();

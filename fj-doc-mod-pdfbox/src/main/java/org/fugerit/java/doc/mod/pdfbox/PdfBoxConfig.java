@@ -77,6 +77,9 @@ public class PdfBoxConfig {
 
     public static PdfBoxConfig fromProperties(Properties props) {
         PdfBoxConfig config = new PdfBoxConfig();
+        if (props == null) {
+            return config;
+        }
 
         config.setPdfAEnabled(Boolean.parseBoolean(
                 props.getProperty(PDFA_ENABLED, "false")));
@@ -110,7 +113,8 @@ public class PdfBoxConfig {
     }
 
     public static String buildCustomFontKey(String fontName, String style) {
-        return fontName.trim().toLowerCase(Locale.ROOT) + ":" + normalizeFontStyleKey(style);
+        String normalizedName = fontName != null ? fontName.trim().toLowerCase(Locale.ROOT) : "";
+        return normalizedName + ":" + normalizeFontStyleKey(style);
     }
 
     public void registerCustomFont(String fontName, String style, String path) {
