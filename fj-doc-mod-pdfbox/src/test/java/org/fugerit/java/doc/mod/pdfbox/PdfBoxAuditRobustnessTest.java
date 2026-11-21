@@ -17,11 +17,9 @@ import org.fugerit.java.doc.base.model.DocPageBreak;
 import org.fugerit.java.doc.base.model.DocPara;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import test.org.fugerit.java.BasicTest;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -33,7 +31,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-class PdfBoxAuditRobustnessTest {
+class PdfBoxAuditRobustnessTest extends BasicTest {
 
     private static DocBase buildProgrammaticMultiPageDoc() {
         DocBase doc = new DocBase();
@@ -80,14 +78,8 @@ class PdfBoxAuditRobustnessTest {
         PdfBoxTypeHandler original = new PdfBoxTypeHandler();
         original.configure(props);
 
-        ByteArrayOutputStream serOut = new ByteArrayOutputStream();
-        try (ObjectOutputStream oos = new ObjectOutputStream(serOut)) {
-            oos.writeObject(original);
-        }
-        PdfBoxTypeHandler deserialized;
-        try (ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(serOut.toByteArray()))) {
-            deserialized = (PdfBoxTypeHandler) ois.readObject();
-        }
+        PdfBoxTypeHandler deserialized = (PdfBoxTypeHandler) this.fullSerializationTest(original);
+        Assertions.assertNotNull(deserialized);
 
         final DocBase sharedDoc = buildProgrammaticMultiPageDoc();
         int threads = 8;
