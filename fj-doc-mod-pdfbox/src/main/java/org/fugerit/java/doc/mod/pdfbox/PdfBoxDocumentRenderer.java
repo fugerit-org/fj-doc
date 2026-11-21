@@ -70,6 +70,7 @@ public class PdfBoxDocumentRenderer {
 
     private int numberedListCounter = 0;
     private final Map<String, PDPageDestination> destinations = new HashMap<>();
+    private final Map<String, PDImageXObject> imageCache = new HashMap<>();
 
     public PdfBoxDocumentRenderer(PDDocument document, PdfBoxConfig config) {
         this.document = document;
@@ -78,11 +79,12 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void setupPageGeometry(DocBase docBase) {
-        Properties info = docBase.getInfo();
         this.pdfboxDefaultTableBehaviour = false;
-        if (info != null) {
-            this.pdfboxDefaultTableBehaviour = BooleanUtils.isTrue(info.getProperty(INFO_KEY_PDFBOX_DEFAULT_TABLE_BEHAVIOUR, "false"));
+        Properties info = docBase.getDocMeta() != null ? docBase.getInfo() : docBase.getStableInfo();
+        if (info == null) {
+            return;
         }
+        this.pdfboxDefaultTableBehaviour = BooleanUtils.isTrue(info.getProperty(INFO_KEY_PDFBOX_DEFAULT_TABLE_BEHAVIOUR, "false"));
         String marginsProp = info.getProperty("margins");
         if (StringUtils.isNotEmpty(marginsProp)) {
             String[] split = marginsProp.split(";");
@@ -164,18 +166,20 @@ public class PdfBoxDocumentRenderer {
 
         computeHeaderFooterExtents();
 
-        // Create first page
-        createNewPage();
+        try {
+            // Create first page
+            createNewPage();
 
-        // Process document body
-        DocContainer bodyContainer = docBase.getDocBody();
-        if (bodyContainer != null) {
-            log.info("Rendering body");
-            renderContainer(bodyContainer);
+            // Process document body
+            DocContainer bodyContainer = docBase.getDocBody();
+            if (bodyContainer != null) {
+                log.info("Rendering body");
+                renderContainer(bodyContainer);
+            }
+        } finally {
+            // Close current content stream before adding background, headers/footers (even on errors)
+            closeContentStream();
         }
-
-        // Close current content stream before adding background, headers/footers
-        closeContentStream();
 
         // Render background under pages if present (now that pages are created)
         renderBackground(docBase);
@@ -266,9 +270,10 @@ public class PdfBoxDocumentRenderer {
     }
 
     private void closeContentStream() throws IOException {
-        if (contentStream != null) {
-            contentStream.close();
-            contentStream = null;
+        PDPageContentStream streamToClose = this.contentStream;
+        this.contentStream = null;
+        if (streamToClose != null) {
+            streamToClose.close();
         }
     }
 
@@ -329,6 +334,22 @@ public class PdfBoxDocumentRenderer {
             log.warn("Image has no url or base64 data, skipping image (alt={})", docImage.getAlt());
             return null;
         }
+        String cacheKey = buildImageCacheKey(docImage);
+        if (imageCache.containsKey(cacheKey)) {
+            return imageCache.get(cacheKey);
+        }
+        PDImageXObject created = decodePDImage(docImage);
+        imageCache.put(cacheKey, created);
+        return created;
+    }
+
+    private static String buildImageCacheKey(DocImage docImage) {
+        return StringUtils.valueWithDefault(docImage.getType(), "")
+                + "|" + StringUtils.valueWithDefault(docImage.getUrl(), "")
+                + "|" + StringUtils.valueWithDefault(docImage.getBase64(), "");
+    }
+
+    private PDImageXObject decodePDImage(DocImage docImage) {
         return SafeFunction.get(() -> {
             byte[] data = SourceResolverHelper.resolveImage(docImage);
             if (data == null || data.length == 0) {
@@ -343,7 +364,11 @@ public class PdfBoxDocumentRenderer {
             }
             BufferedImage bImg = ImageIO.read(new ByteArrayInputStream(data));
             if (bImg != null) {
-                return LosslessFactory.createFromImage(document, bImg);
+                try {
+                    return LosslessFactory.createFromImage(document, bImg);
+                } finally {
+                    bImg.flush();
+                }
             }
             return null;
         });
@@ -419,6 +444,26 @@ public class PdfBoxDocumentRenderer {
             }
         }
         return sb.toString();
+    }
+
+    private String prepareLineForShowText(PDFont font, String text) {
+        if (text == null) {
+            return "";
+        }
+        String singleLine = text.replace("\r", " ").replace("\n", " ");
+        return canEncode(font, singleLine) ? singleLine : sanitizeTextForFont(font, singleLine);
+    }
+
+    private Color parseColorOrDefault(String colorStr, Color fallback) {
+        if (StringUtils.isEmpty(colorStr)) {
+            return fallback;
+        }
+        try {
+            return DocModelUtils.parseHtmlColor(colorStr);
+        } catch (Exception e) {
+            log.debug("Failed to parse color '{}', using fallback", colorStr);
+            return fallback;
+        }
     }
 
     private float calculateLineHeight(Number leading, float fontSize) {
@@ -569,18 +614,8 @@ public class PdfBoxDocumentRenderer {
                 });
             }
 
-            if (StringUtils.isNotEmpty(foreColor)) {
-                SafeFunction.applySilent(() -> {
-                    Color fg = DocModelUtils.parseHtmlColor(foreColor);
-                    contentStream.setNonStrokingColor(fg);
-                });
-            } else {
-                contentStream.setNonStrokingColor(Color.BLACK);
-            }
-
-            if (!canEncode(realFont, line)) {
-                line = sanitizeTextForFont(realFont, line);
-            }
+            contentStream.setNonStrokingColor(parseColorOrDefault(foreColor, Color.BLACK));
+            line = prepareLineForShowText(realFont, line);
 
             contentStream.beginText();
             contentStream.setFont(realFont, fontSize);
@@ -669,9 +704,7 @@ public class PdfBoxDocumentRenderer {
         contentStream.beginText();
         contentStream.setFont(font, fontSize);
         contentStream.newLineAtOffset(this.marginLeft, currentY);
-        if (!canEncode(font, bullet)) {
-            bullet = sanitizeTextForFont(font, bullet);
-        }
+        bullet = prepareLineForShowText(font, bullet);
         contentStream.showText(bullet);
         contentStream.endText();
 
@@ -688,10 +721,7 @@ public class PdfBoxDocumentRenderer {
                     checkNewPage();
                 }
 
-                String l = lines.get(i);
-                if (!canEncode(itemFont, l)) {
-                    l = sanitizeTextForFont(itemFont, l);
-                }
+                String l = prepareLineForShowText(itemFont, lines.get(i));
 
                 contentStream.beginText();
                 contentStream.setFont(itemFont, fontSize);
@@ -1049,21 +1079,11 @@ public class PdfBoxDocumentRenderer {
         }
         float cellY = startY;
         for (CellLine line : data.lines) {
-            String text = line.text;
-            if (!canEncode(line.font, text)) {
-                text = sanitizeTextForFont(line.font, text);
-            }
+            String text = prepareLineForShowText(line.font, line.text);
             float textWidth = calculateTextWidth(text, line.font, line.fontSize);
             float lineX = computeAlignedX(cellX, data.width, textWidth, 3f, line.align);
 
-            if (StringUtils.isNotEmpty(line.foreColor)) {
-                SafeFunction.applySilent(() -> {
-                    Color fg = DocModelUtils.parseHtmlColor(line.foreColor);
-                    contentStream.setNonStrokingColor(fg);
-                });
-            } else {
-                contentStream.setNonStrokingColor(Color.BLACK);
-            }
+            contentStream.setNonStrokingColor(parseColorOrDefault(line.foreColor, Color.BLACK));
 
             contentStream.beginText();
             contentStream.setFont(line.font, line.fontSize);
@@ -1252,9 +1272,7 @@ public class PdfBoxDocumentRenderer {
             text = replacePlaceholders(text, currentPage, totalPages);
             int align = para.getAlign();
             float xPos = calculateXPosition(text, font, fontSize, align);
-            if (!canEncode(font, text)) {
-                text = sanitizeTextForFont(font, text);
-            }
+            text = prepareLineForShowText(font, text);
             stream.setNonStrokingColor(Color.BLACK);
             stream.beginText();
             stream.setFont(font, fontSize);
@@ -1272,9 +1290,7 @@ public class PdfBoxDocumentRenderer {
         if (text != null && !text.isEmpty()) {
             text = replacePlaceholders(text, currentPage, totalPages);
             float xPos = this.marginLeft;
-            if (!canEncode(font, text)) {
-                text = sanitizeTextForFont(font, text);
-            }
+            text = prepareLineForShowText(font, text);
             stream.setNonStrokingColor(Color.BLACK);
             stream.beginText();
             stream.setFont(font, fontSize);
@@ -1338,9 +1354,7 @@ public class PdfBoxDocumentRenderer {
             } else if (align == DocPara.ALIGN_RIGHT) {
                 xPos = cellX + cWidth - textWidth;
             }
-            if (!canEncode(ctx.font, text)) {
-                text = sanitizeTextForFont(ctx.font, text);
-            }
+            text = prepareLineForShowText(ctx.font, text);
             ctx.stream.setNonStrokingColor(Color.BLACK);
             ctx.stream.beginText();
             ctx.stream.setFont(ctx.font, ctx.fontSize);
@@ -1457,7 +1471,8 @@ public class PdfBoxDocumentRenderer {
             return nullSafeText(((DocPhrase) element).getText());
         }
         if (element instanceof DocBarcode) {
-            return "*" + ((DocBarcode) element).getText() + "*";
+            String barcodeText = ((DocBarcode) element).getText();
+            return StringUtils.isNotEmpty(barcodeText) ? "*" + barcodeText + "*" : "";
         }
         return "";
     }
@@ -1479,7 +1494,8 @@ public class PdfBoxDocumentRenderer {
         if (child instanceof DocPhrase) {
             text = nullSafeText(((DocPhrase) child).getText());
         } else if (child instanceof DocBarcode) {
-            text = "*" + ((DocBarcode) child).getText() + "*";
+            String barcodeText = ((DocBarcode) child).getText();
+            text = StringUtils.isNotEmpty(barcodeText) ? "*" + barcodeText + "*" : "";
         } else {
             text = extractText(child);
         }

@@ -62,7 +62,10 @@ public class FontManager {
      */
     public PDFont getFont(int style, String fontName) throws IOException {
         // Create cache key
-        String cacheKey = (fontName != null ? fontName : "helvetica") + "-" + style;
+        String normalizedKey = (fontName != null && !fontName.trim().isEmpty())
+                ? fontName.trim().toLowerCase(Locale.ROOT)
+                : "<default>";
+        String cacheKey = normalizedKey + "-" + style;
 
         if (fontCache.containsKey(cacheKey)) {
             return fontCache.get(cacheKey);
