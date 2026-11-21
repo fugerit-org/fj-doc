@@ -12,6 +12,7 @@ import org.apache.xmpbox.schema.XMPBasicSchema;
 import org.apache.xmpbox.type.BadFieldValueException;
 import org.apache.xmpbox.xml.XmpSerializer;
 import org.fugerit.java.core.lang.helpers.ClassHelper;
+import org.fugerit.java.core.lang.helpers.StringUtils;
 
 import javax.xml.transform.TransformerException;
 import java.io.ByteArrayOutputStream;
@@ -35,20 +36,24 @@ public class PdfAConfigurator {
         info.setTitle(config.getDocumentTitle());
         info.setAuthor(config.getDocumentAuthor());
         info.setSubject(config.getDocumentSubject());
-        info.setCreator("Venus Doc PDFBox Handler");
-        info.setProducer("Apache PDFBox 3.x");
+        if (StringUtils.isEmpty(info.getCreator())) {
+            info.setCreator("Venus Doc PDFBox Handler");
+        }
+        if (StringUtils.isEmpty(info.getProducer())) {
+            info.setProducer("Apache PDFBox 3.x");
+        }
         Calendar creationDate = new GregorianCalendar();
         info.setCreationDate(creationDate);
         info.setModificationDate(creationDate);
 
         // Add XMP metadata for PDF/A
-        addPdfAMetadata(document, config);
+        addPdfAMetadata(document, config, creationDate, info.getCreator());
 
         // Add sRGB color profile (required for PDF/A-1b)
         addOutputIntent(document);
     }
 
-    private static void addPdfAMetadata(PDDocument document, PdfBoxConfig config)
+    private static void addPdfAMetadata(PDDocument document, PdfBoxConfig config, Calendar timestamp, String creatorTool)
             throws IOException {
         try {
             // Create XMP metadata
@@ -68,9 +73,9 @@ public class PdfAConfigurator {
 
             // XMP Basic Schema
             XMPBasicSchema xmpBasic = xmp.createAndAddXMPBasicSchema();
-            xmpBasic.setCreateDate(Calendar.getInstance());
-            xmpBasic.setModifyDate(Calendar.getInstance());
-            xmpBasic.setCreatorTool("Venus Doc PDFBox Handler");
+            xmpBasic.setCreateDate(timestamp);
+            xmpBasic.setModifyDate(timestamp);
+            xmpBasic.setCreatorTool(creatorTool);
 
             // Serialize and attach to document
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
