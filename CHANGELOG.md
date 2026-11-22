@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.18.10] - 2026-11-22
+
+### Fixed
+
+- fj-doc-mod-pdfbox - harden concurrency, serialization safety, and null checks in `PdfBoxTypeHandler` and `PdfBoxConfig`: add `serialVersionUID` and `readObject()` to restore `transient configRef`, resolve `DocBase` metadata read-only without mutating shared models, fail fast on null `DocInput`/`DocOutput`, and guard `PdfBoxConfig.fromProperties(null)` <https://github.com/fugerit-org/fj-doc/issues/697> (<https://github.com/fugerit-org/fj-doc/pull/698>)
+- fj-doc-mod-pdfbox - guarantee `PDPageContentStream` disposal in `try/finally`, deduplicate `PDImageXObject` across pages with `BufferedImage.flush()`, normalize CR/LF before `showText()`, and harden color and `DocBarcode` null fallbacks in `PdfBoxDocumentRenderer` <https://github.com/fugerit-org/fj-doc/issues/697> (<https://github.com/fugerit-org/fj-doc/pull/698>)
+- fj-doc-mod-pdfbox - avoid `FontManager` cache key collision between default and explicit `"helvetica"` fonts, and preserve hardened `creator`/`producer` metadata with synchronized Document Info and XMP timestamps in `PdfAConfigurator` <https://github.com/fugerit-org/fj-doc/issues/697> (<https://github.com/fugerit-org/fj-doc/pull/698>)
+
 ## [8.18.9] - 2026-11-20
 
 ### Changed
